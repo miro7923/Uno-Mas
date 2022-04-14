@@ -54,7 +54,7 @@
 
 ## 필요 기능 명세서
 
-<p align="center"><img src="../images/unoMasDocumentation.png" width="400"></p>
+<p align="center"><img src="../images/unoMasDocumentation.png" width="600"></p>
 
 * 무료로 사용할 수 있는 쇼핑몰 템플릿을 이 기능 명세서에 맞게 변형해서 사용하기로 했다.
 * [https://freemiumdownload.com/demo?theme=fashi](https://freemiumdownload.com/demo?theme=fashi)
