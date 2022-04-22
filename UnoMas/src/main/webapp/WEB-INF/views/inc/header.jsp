@@ -7,7 +7,17 @@
         <div class="loader"></div>
     </div>
     
+     <!-- Header Section Begin -->
+    <%
+	    String userID = null;
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
+		}
+    %>
     <header class="headerSection">
+    <%
+    	if(userID == null){ // 로그인 안 했을 때 링크
+    %>
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
@@ -21,13 +31,32 @@
     			</li>
     		</ul>
     	</div>
-    	 <div class="container">
+    	<%
+			} else { // 로그인 했을 때 링크
+    	%>	
+    	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
+    		<ul class="listMenu">
+    			<li class="menu menuMypage">
+    				<a href="login.html" class="linkMenu">마이페이지</a>
+    			</li>
+    			<li class="menu menuLogout">
+    				<a href="register.html" class="linkMenu">로그아웃</a>
+    			</li>
+    			<li class="menu CS">
+    				<a href="customerService.html" class="linkMenu">고객센터</a>
+    			</li>
+    		</ul>
+    	</div>
+    	<%
+			}
+    	%>
+    	 <div class="headerMiddle">
             <div class="inner-header">
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="index">
-                                <img src="${path}/resources/img/logo.jpg" alt="로고";>
+                                <img src="${path}/resources/img/logo.png" alt="로고";>
                             </a>
                         </div>
                     </div>
@@ -41,10 +70,16 @@
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
+                        	<li class="heart-icon">
+                                <a href="#">
+                                    <i class="icon_heart_alt"></i>
+                                </a>
+                            </li>
                             <li class="cart-icon">
                                 <a href="shopping-cart">
                                     <i class="icon_bag_alt"></i>
                                 </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
