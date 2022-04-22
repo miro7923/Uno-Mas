@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.unomas.mapper.MemberMapper">
+  <!-- 디비시간정보 가져오기 -->
+  <!-- 겟타임 메서드를 호출하면 현재시간을 받아서 스트링 형태로 가져올 것이다. -->
+  <select id="getTime" resultType="string">
+      select now()
+  </select>
+  
+  <!-- 관리자 등록 쿼리문 -->
+  <insert id="joinAdmin">
+      insert into admin(admin_id, admin_pass) 
+      values(#{admin_id}, #{admin_pass})
+  </insert>
+</mapper>
