@@ -21,7 +21,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./home.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
+                        <a href="shop">Shop</a>
                         <span>Detail</span>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="product-pic-zoom">
-                                <img class="product-big-img" src="img/product-single/product-1.jpg" alt="">
+                                <img class="product-big-img" src="${path}/resources/img/product-single/product-1.jpg" alt="">
                                 <div class="zoom-icon">
                                     <i class="fa fa-search-plus"></i>
                                 </div>
@@ -171,13 +171,13 @@
                             <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
                                     <div class="pt active" data-imgbigurl="img/product-single/product-1.jpg"><img
-                                            src="img/product-single/product-1.jpg" alt=""></div>
+                                            src="${path}/resources/img/product-single/product-1.jpg" alt=""></div>
                                     <div class="pt" data-imgbigurl="img/product-single/product-2.jpg"><img
-                                            src="img/product-single/product-2.jpg" alt=""></div>
+                                            src="${path}/resources/img/product-single/product-2.jpg" alt=""></div>
                                     <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="img/product-single/product-3.jpg" alt=""></div>
+                                            src="${path}/resources/img/product-single/product-3.jpg" alt=""></div>
                                     <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="img/product-single/product-3.jpg" alt=""></div>
+                                            src="${path}/resources/img/product-single/product-3.jpg" alt=""></div>
                                 </div>
                             </div>
                         </div>
@@ -261,7 +261,7 @@
                                         <input type="text" value="1">
                                     </div>
 -->
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                    <a href="shopping-cart" class="primary-btn pd-cart">Add To Cart</a>
                                 </div>
 <!--
                                 <div class="pd-share">
@@ -292,7 +292,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="img/products/women-1.jpg" alt="">
+                            <img src="${path}/resources/img/products/women-1.jpg" alt="">
                             <div class="sale">Sale</div>
                             <div class="icon">
                                 <i class="icon_heart_alt"></i>
@@ -318,7 +318,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="img/products/women-2.jpg" alt="">
+                            <img src="${path}/resources/img/products/women-2.jpg" alt="">
                             <div class="icon">
                                 <i class="icon_heart_alt"></i>
                             </div>
@@ -342,7 +342,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="img/products/women-3.jpg" alt="">
+                            <img src="${path}/resources/img/products/women-3.jpg" alt="">
                             <div class="icon">
                                 <i class="icon_heart_alt"></i>
                             </div>
@@ -366,7 +366,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="img/products/women-4.jpg" alt="">
+                            <img src="${path}/resources/img/products/women-4.jpg" alt="">
                             <div class="icon">
                                 <i class="icon_heart_alt"></i>
                             </div>
@@ -427,7 +427,7 @@
                                                     aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
                                             </div>
                                             <div class="col-lg-5">
-                                                <img src="img/product-single/tab-desc.jpg" alt="">
+                                                <img src="${path}/resources/img/product-single/tab-desc.jpg" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -497,7 +497,7 @@
                                         <div class="comment-option">
                                             <div class="co-item">
                                                 <div class="avatar-pic">
-                                                    <img src="img/product-single/avatar-1.png" alt="">
+                                                    <img src="${path}/resources/img/product-single/avatar-1.png" alt="">
                                                 </div>
                                                 <div class="avatar-text">
                                                     <div class="at-rating">
@@ -513,7 +513,7 @@
                                             </div>
                                             <div class="co-item">
                                                 <div class="avatar-pic">
-                                                    <img src="img/product-single/avatar-2.png" alt="">
+                                                    <img src="${path}/resources/img/product-single/avatar-2.png" alt="">
                                                 </div>
                                                 <div class="avatar-text">
                                                     <div class="at-rating">
@@ -566,40 +566,7 @@
     </section>
     <!-- Product Shop Section End -->
 
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Partner Logo Section End -->
-
     <!-- Footer Section Begin -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     <!-- Footer Section End -->

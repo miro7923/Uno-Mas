@@ -3,6 +3,41 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
+
+<!-- Partner Logo Section Begin -->
+    <div class="partner-logo">
+        <div class="container">
+            <div class="logo-carousel owl-carousel">
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="${path}/resources/img/logo-carousel/logo-1.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="${path}/resources/img/logo-carousel/logo-2.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="${path}/resources/img/logo-carousel/logo-3.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="${path}/resources/img/logo-carousel/logo-4.png" alt="">
+                    </div>
+                </div>
+                <div class="logo-item">
+                    <div class="tablecell-inner">
+                        <img src="${path}/resources/img/logo-carousel/logo-5.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Partner Logo Section End -->
+    
 	<footer class="footer-section">
         <div class="container">
             <div class="row">
@@ -10,7 +45,7 @@
                     <div class="footer-left">
                         <div class="footerCS">
                             <h3>
-                            <a href="customerService.html">고객행복센터</a>
+                            <a href="faq">고객행복센터</a>
                             </h3>
                         </div>
                         <ul>
@@ -20,7 +55,7 @@
                         </ul>
                         <div class="footerInquiry">
                         	<h3>
-                            	<a href="#">1:1문의</a>
+                            	<a href="contact">1:1문의</a>
                         	</h3>
                         	<dl class="inquiryExpln">
                         		<dt>24시간 접수 가능</dt>

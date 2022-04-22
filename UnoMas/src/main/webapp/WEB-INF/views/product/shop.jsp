@@ -179,7 +179,8 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-1.jpg" alt="">
+                                    	<a href="product">
+                                        <img src="${path}/resources/img/products/product-1.jpg" alt=""></a>
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
@@ -205,7 +206,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-2.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-2.jpg" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -230,7 +231,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-3.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -255,7 +256,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-4.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-4.jpg" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -280,7 +281,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-5.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-5.jpg" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -305,7 +306,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-6.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-6.jpg" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -330,7 +331,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-7.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-7.jpg" alt="">
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
@@ -356,7 +357,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-8.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-8.jpg" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -381,7 +382,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-9.jpg" alt="">
+                                        <img src="${path}/resources/img/products/product-9.jpg" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
@@ -417,40 +418,8 @@
     </section>
     <!-- Product Shop Section End -->
 
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partner Logo Section End -->
 
+    <!-- Partner Logo Section End -->
     <!-- Footer Section Begin -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     <!-- Footer Section End -->
