@@ -4,67 +4,33 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 
-<!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${path}/resources/img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${path}/resources/img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${path}/resources/img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${path}/resources/img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="${path}/resources/img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Partner Logo Section End -->
-    
 	<footer class="footer-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-6">
                     <div class="footer-left">
-                        <div class="footerCS">
-                            <h3>
-                            <a href="faq">고객행복센터</a>
-                            </h3>
-                        </div>
-                        <ul>
-                            <li>Address: <br>부산광역시 부산진구<br> 동천로109 삼한골든게이트 7층</li>
-                            <li>Phone: +82 051.123.4567</li>
-                            <li>Email: cs@unomas.com</li>
-                        </ul>
-                        <div class="footerInquiry">
-                        	<h3>
-                            	<a href="contact">1:1문의</a>
-                        	</h3>
-                        	<dl class="inquiryExpln">
-                        		<dt>24시간 접수 가능</dt>
-                        		<dd>고객센터 운영시간에 순차적으로 답변해드리겠습니다.</dd>
-                        	</dl>
-                        </div>
+                    	<h3 class="footerCS">고객행복센터</h3>
+						<div class="CSNumber">
+							<h3>
+								<span class="number">1544-1544</span>
+							</h3>
+							<dl class="numberExpln">
+								<dt>
+									<a href="contact">365고객센터</a>
+								</dt>
+								<dd>오전 9시 - 오후 6시</dd>
+							</dl>
+						</div>
+                        <h3 class="footerInquiry">
+                           	<a href="#">1:1문의</a>
+                        </h3>
+                        <dl class="inquiryExpln">
+                        	<dt>24시간 접수 가능</dt>
+                        	<dd>고객센터 운영시간에 순차적으로 답변해드리겠습니다.</dd>
+                        </dl>
                     </div>
                 </div>
-                <div class="company">
+                <div class="col-lg-6 company">
                     <ul class="list">
                     	<li>
                     		<a class="link" href="">회사소개</a>
