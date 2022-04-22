@@ -11,13 +11,13 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="login.html" class="linkMenu">로그인</a>
+    				<a href="login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="register.html" class="linkMenu">회원가입</a>
+    				<a href="register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="customerService.html" class="linkMenu">고객센터</a>
+    				<a href="faq" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -26,8 +26,8 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="./index.html">
-                                <img src="${path}/resources/img/logo.png" alt="로고">
+                            <a href="index">
+                                <img src="${path}/resources/img/logo.jpg" alt="로고";>
                             </a>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                             <li class="cart-icon">
-                                <a href="shopping-cart.html">
+                                <a href="shopping-cart">
                                     <i class="icon_bag_alt"></i>
                                 </a>
                         </ul>
@@ -69,9 +69,9 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="./index.html">신상품</a></li>
-                        <li><a href="./shop.html">특가</a></li>
-                        <li><a href="#">공동구매</a>
+                        <li><a href="shop">신상품</a></li>
+                        <li><a href="shop">특가</a></li>
+                        <li><a href="shop">공동구매</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
                                 <li><a href="#">Women's</a></li>

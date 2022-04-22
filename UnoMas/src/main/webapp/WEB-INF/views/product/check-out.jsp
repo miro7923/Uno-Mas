@@ -21,7 +21,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./shop.html">Shop</a>
+                        <a href="shop">Shop</a>
                         <span>Check Out</span>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout-content">
-                            <a href="#" class="content-btn">Click Here To Login</a>
+                            <a href="login" class="content-btn">Click Here To Login</a>
                         </div>
                         <h4>Biiling Details</h4>
                         <div class="row">
@@ -132,40 +132,7 @@
     </section>
     <!-- Shopping Cart Section End -->
 
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Partner Logo Section End -->
-
     <!-- Footer Section Begin -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     <!-- Footer Section End -->
