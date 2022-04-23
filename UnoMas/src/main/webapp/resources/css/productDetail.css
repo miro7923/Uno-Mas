@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+h3 {
+	margin-top: 30px;
+}
+
 .priceText {
 	font-size: 16px;
 	font-weight: 700;
@@ -61,4 +65,71 @@ p.memberInfo {
     overflow: hidden;
     line-height: 20px;
     word-break: break-all;
+}
+
+.recomendation {
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+.detailSubTitle {
+    color: #636363;
+    line-height: 50px;
+}
+
+.detailTitle {
+	font-weight: bold;
+    font-size: 50px;
+}
+
+.detailMainContent {
+	font-size: 25px;
+    line-height: 40px;
+}
+
+.detailOtherTitle {
+	font-size: 27px;
+	font-weight: bold;
+	line-height: 50px;
+}
+
+.detailOtherContent {
+	font-size: 20px;
+    line-height: 35px;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.extraInfo {
+	width: 100%;
+	border: 0;
+    background: #e0e0e0;
+    margin: 30px 0 60px;
+}
+
+table.extraInfo th, table.extraInfo td {
+	font-weight: 400;
+    text-align: left;
+    padding-left: 15px;
+    background: #fff;
+    font-family: Dotum;
+    font-size: 11px;
+    height: 28px;
+    padding: 5px 0 5px 10px;
+    border-width: 1px;
+    line-height: 20px;
+}
+
+table.extraInfo th {
+	width: 15%;
+    background: #f5f5f5;
+    color: #515151;
+}
+
+table.extraInfo td {
+	width: 35%;
+    color: #666;
 }

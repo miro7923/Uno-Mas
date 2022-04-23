@@ -272,22 +272,74 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
                                     <div class="product-content">
+                                        <div class="col-lg-12">
+                                            <img src="${path}/resources/img/product-single/product_vegi02.webp" alt="">
+                                        </div><br><br>
                                         <div class="row">
-                                            <div class="col-lg-7">
-                                                <h5>Introduction</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
-                                                <h5>Features</h5>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                                                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                                    aliquip ex ea commodo consequat. Duis aute irure dolor in </p>
+                                            <div class="text-center col-lg-12">
+                                                <!-- id 선택자 지정된 부분만 디비에서 불러와서 채우면 됨 -->
+                                                <h3 class="detailSubTitle" id="detailSubTitle">아삭하고 부드러운</h3>
+                                                <h1 class="detailTitle" id="detailTitle">청경채</h1><br>
+                                                <hr>
+                                                <p class="detailMainContent" id="detailMainContent">청경채는 잎과 줄기가 붙어 자라는 한 포기 쌈채소에요. 아삭하면서도 싱그러운 식감이 
+                                                    매력적이지만, 살짝 데치거나 볶아주면 새로운 풍미를 선사해요. 신선한 청경채를 
+                                                    Uno más를 통해 만나보세요.</p><br><br><br><br><br><br>
+                                                <hr>
+                                                <h3 class="detailOtherTitle">재료와 성분</h3>
+                                                <p class="detailOtherContent" id="ingredient">비타민 C, 칼륨, 칼슘 풍부</p>
+                                                <h3 class="detailOtherTitle">활용법</h3>
+                                                <ul class="recomendation">
+                                                    <!-- 활용법은 3개만 합시다. -->
+                                                    <li class="detailOtherContent" id="recomendation1">중화풍 요리, 샤브샤브 재료로 활용</li>
+                                                    <li class="detailOtherContent" id="recomendation2">다양한 볶음, 무침으로 만들어도 OK</li>
+                                                    <li class="detailOtherContent" id="recomendation3">1인 가구도 부담없이 사용하기 좋은 양</li>
+                                                </ul>
+                                                <h3 class="detailOtherTitle">보관법</h3>
+                                                <p class="detailOtherContent" id="ingredient">세척하지 않은 상태로 비닐 팩에 담은 뒤, 냉장고 채소칸에
+                                                    보관하세요.</p>
+                                                <h3 class="detailOtherTitle">세척법</h3>
+                                                <p class="detailOtherContent" id="ingredient">사용할 만큼만 꺼내 흐르는 물로 깨끗이 세척하세요.</p>
                                             </div>
-                                            <div class="col-lg-5">
-                                                <img src="${path}/resources/img/product-single/tab-desc.jpg" alt="">
-                                            </div>
+                                        </div><br><br>
+                                        <!-- id 선택자 지정해 놓은 곳만 바뀌면 됨 -->
+                                        <div class="col-lg-12">
+                                            <table class="extraInfo" cellpadding="0" cellspacing="1">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>품목 또는 명칭</th>
+                                                        <td id="extraInfoProdName">청경채</td>
+                                                        <th>포장단위별 내용물의 용량(중량), 수량, 크기</th>
+                                                        <td id="extraInfoProdWeight">300g</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>관련법상 표시사항</th>
+                                                        <td>농산물 - 농수산물품질관리법상 유전자변형농산물 표시, 지리적 표시<br>
+                                                            축산물 - 축산법에 따른 등급 표시, 쇠고기의 경우 이력관리에 따른 표시 유무<br>
+                                                            수산물 - 농수산물품질관리법상 유전자변형수산물 표시, 지리적 표시<br>
+                                                            수입식품에 해당하는 경우 "수입식품안전특별법에 따른 수입신고를 필함"의 문구</td>
+                                                        <th>생산자, 수입품의 경우 수입자를 함께 표기</th>
+                                                        <td>제품 별도 라벨 표기 참조</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>농수산물의 원산지 표시에 관한 법률에 따른 원산지</th>
+                                                        <td>상품설명 및 상품이미지 참조</td>
+                                                        <th>상품구성</th>
+                                                        <td id="extraInfoCountry">국산</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>보관방법 또는 취급방법</th>
+                                                        <td id="extraInfoKeeping">냉장 보관</td> 
+                                                        <th>제조연월일(포장일 또는 생산연도), 유통기한 또는 품질유지기한</th>
+                                                        <td>제품 별도 라벨 표기 참조</td> 
+                                                    </tr>
+                                                    <tr>
+                                                        <th>식품등의표시·광고에관한법률에 따른 소비자안전을 위한 주의사항</th>
+                                                        <td>상품설명 및 상품이미지참조</td> 
+                                                        <th>소비자상담 관련 전화번호</th>
+                                                        <td>우노마스 고객센터 (1544-1544)</td> 
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
