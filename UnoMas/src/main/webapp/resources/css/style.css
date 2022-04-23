@@ -2070,7 +2070,7 @@ ol {
 }
 
 .product-pic-zoom img {
-	min-width: 100%;
+	min-width: 80%;
 }
 
 .product-pic-zoom .zoom-icon {
@@ -2294,7 +2294,7 @@ ol {
 
 .product-details .quantity .pro-qty {
 	width: 123px;
-	height: 46px;
+	height: 30px;
 	border: 2px solid #ebebeb;
 	padding: 0 15px;
 	float: left;
@@ -2305,7 +2305,7 @@ ol {
 	font-size: 24px;
 	color: #b2b2b2;
 	float: left;
-	line-height: 38px;
+	line-height: 23px;
 	cursor: pointer;
 	width: 18px;
 }
@@ -2321,12 +2321,13 @@ ol {
 	font-weight: 700;
 	border: none;
 	color: #4c4c4c;
-	line-height: 40px;
+	line-height: 25px;
 	float: left;
 }
 
 .product-details .quantity .primary-btn.pd-cart {
-	padding: 14px 70px 10px;
+	padding: 14px 188px 10px;
+    font-size: 20px;
 }
 
 .product-details .pd-tags {

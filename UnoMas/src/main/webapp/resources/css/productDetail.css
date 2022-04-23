@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.priceText {
+	font-size: 16px;
+	font-weight: 700;
+    text-align: right;
+}
+
+.priceText span {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+#wishlistBtn {
+    padding: 20px;
+    border: solid lightgray;
+    background-color: white;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.primary-btn pd-cart {
+    background-color: e7ab3c;
+    border-radius: 3px;
+    border: None;
+}
+
+.product-big-img {
+    max-width: 75%;
+}
+
+.product-pic-zoom {
+    text-align: center;
+}
+
+.list.first {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.list {
+    overflow: hidden;
+    padding: 0;
+}
+
+.title {
+    float: left;
+    width: 128px;
+    line-height: 20px;
+}
+
+.description {
+    overflow: hidden;
+    line-height: 20px;
+    word-break: break-all;
+}
