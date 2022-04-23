@@ -179,7 +179,7 @@
                             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                    	<a href="product">
+                                    	<a href="product_detail">
                                         <img src="${path}/resources/img/products/product-1.jpg" alt=""></a>
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">

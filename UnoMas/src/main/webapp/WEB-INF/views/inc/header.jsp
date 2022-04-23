@@ -104,9 +104,9 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="shop">신상품</a></li>
-                        <li><a href="shop">특가</a></li>
-                        <li><a href="shop">공동구매</a>
+                        <li><a href="product_list">신상품</a></li>
+                        <li><a href="product_list">특가</a></li>
+                        <li><a href="product_list">공동구매</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
                                 <li><a href="#">Women's</a></li>

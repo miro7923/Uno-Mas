@@ -62,13 +62,13 @@ public class HomeController {
 	public String checkout() {
 		return "product/check-out";
 	}
-	@RequestMapping(value = "/product")
-	public String product() {
-		return "product/product";
-	}
-	@RequestMapping(value = "/shop")
+	@RequestMapping(value = "/product_list") // /shop -> /product_list
 	public String shop() {
 		return "product/shop";
+	}
+	@RequestMapping(value = "/product_detail") // /product -> /product_detail
+	public String product() {
+		return "product/product";
 	}
 	@RequestMapping(value = "/shopping-cart")
 	public String cart() {
