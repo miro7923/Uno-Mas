@@ -64,7 +64,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/product_list") // /shop -> /product_list
 	public String shop() {
-		return "product/shop";
+		return "product/productList";
 	}
 	@RequestMapping(value = "/product_detail") // /product -> /product_detail
 	public String product() {
