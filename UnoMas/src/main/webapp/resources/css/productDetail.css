@@ -6,9 +6,17 @@
     text-align: right;
 }
 
+.priceText.top {
+	text-align: left;
+}
+
 .priceText span {
 	font-weight: bold;
 	font-size: 30px;
+}
+
+p.memberInfo {
+	color: #da9f33;
 }
 
 #wishlistBtn {

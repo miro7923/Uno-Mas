@@ -2178,7 +2178,7 @@ ol {
 	margin-bottom: 24px;
 }
 
-.product-details .pd-desc p {
+.product-details .pd-desc p:not(.memberInfo) {
 	color: #636363;
 }
 

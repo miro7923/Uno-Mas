@@ -73,6 +73,10 @@
                                 <div class="pd-desc">
                                     <p>아삭하고 부드러운</p>
                                 </div>
+                                <div class="pd-desc">
+                                    <h5 class="priceText top"><span>2,190</span> 원</h5>
+                                    <p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
+                                </div>
                                 <div class="pd-tags">
                                     <dl class="list first">
                                         <dt class="title">판매단위</dt>
@@ -107,7 +111,7 @@
                                     </dl>
                                 </div>
                                 <div class="pd-desc">
-                                    <h5 class="priceText">총 상품금액 : <span>12,000</span> 원</h5>
+                                    <h5 class="priceText">총 상품금액 : <span>2,190</span> 원</h5>
                                 </div>
                                 <div class="quantity">
 <!--
@@ -134,7 +138,7 @@
                     
                     
                     <!-- Related Products Section End -->
-    <div class="related-products spad">
+    <%-- <div class="related-products spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -244,7 +248,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --%>
     <!-- Related Products Section End -->
                     
                     <div class="product-tab">
