@@ -133,3 +133,18 @@ table.extraInfo td {
 	width: 35%;
     color: #666;
 }
+
+.customer-review-option h4 {
+	margin-bottom: 10px;
+}
+
+.personalInquiry {
+	color: black;
+	text-decoration: underline;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.productReivewTitle {
+	margin-bottom: 30px;
+}

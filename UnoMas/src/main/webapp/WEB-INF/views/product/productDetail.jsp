@@ -7,7 +7,7 @@
 
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productDetail.css?after">
+<link rel="stylesheet" href="${path}/resources/css/productDetail.css?after3">
 <!-- Header end -->
 
 <body>
@@ -402,7 +402,22 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
-                                        <h4>2 Comments</h4>
+                                        <h4>PRODUCT REVIEW</h4>
+                                        <ul class="productReivewTitle">
+                                            <li>
+                                                <span data-icon="&#x5e"></span> 
+                                                상품에 대한 문의를 남기는 공간입니다. 
+                                                해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.
+                                            </li>
+                                            <li>
+                                                <span data-icon="&#x5e"></span> 
+                                                배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이페이지 내 
+                                                <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ -->
+                                                <span
+                                                onclick="window.parent.location.href = '/mypage/my_QnA'" 
+                                                class="personalInquiry">1:1 문의</span>에 남겨주세요.
+                                            </li>
+                                        </ul>
                                         <div class="comment-option">
                                             <div class="co-item">
                                                 <div class="avatar-pic">
