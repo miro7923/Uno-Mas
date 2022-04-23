@@ -74,7 +74,7 @@
                                     <p>아삭하고 부드러운</p>
                                 </div>
                                 <div class="pd-desc">
-                                    <h5 class="priceText top"><span>2,190</span> 원</h5>
+                                    <h5 class="priceText top"><span id="price">2,190</span> 원</h5>
                                     <p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
                                 </div>
                                 <div class="pd-tags">
@@ -111,7 +111,7 @@
                                     </dl>
                                 </div>
                                 <div class="pd-desc">
-                                    <h5 class="priceText">총 상품금액 : <span>2,190</span> 원</h5>
+                                    <h5 class="priceText">총 상품금액 : <span id="price">2,190</span> 원</h5>
                                 </div>
                                 <div class="quantity">
 <!--
@@ -301,9 +301,12 @@
                                                 <p class="detailOtherContent" id="ingredient">사용할 만큼만 꺼내 흐르는 물로 깨끗이 세척하세요.</p>
                                             </div>
                                         </div><br><br>
-                                        <!-- id 선택자 지정해 놓은 곳만 바뀌면 됨 -->
-                                        <div class="col-lg-12">
-                                            <table class="extraInfo" cellpadding="0" cellspacing="1">
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                                    <!-- id 선택자 지정해 놓은 곳만 바뀌면 됨 -->
+                                    <div class="col-lg-12">
+                                        <table class="extraInfo" cellpadding="0" cellspacing="1">
                                                 <tbody>
                                                     <tr>
                                                         <th>품목 또는 명칭</th>
@@ -340,14 +343,9 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="tab-2" role="tabpanel">
-                                    <div class="specification-table">
-                                        <table>
+                                        <!-- <table>
                                             <tr>
-                                                <td class="p-catagory">Customer Rating</td>
+                                                <td class="p-catagory">평점</td>
                                                 <td>
                                                     <div class="pd-rating">
                                                         <i class="fa fa-star"></i>
@@ -360,9 +358,9 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Price</td>
+                                                <td class="p-catagory">가격</td>
                                                 <td>
-                                                    <div class="p-price">$495.00</div>
+                                                    <div class="p-price" id="price">2,190원</div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -399,7 +397,7 @@
                                                     <div class="p-code">00012</div>
                                                 </td>
                                             </tr>
-                                        </table>
+                                        </table> -->
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
