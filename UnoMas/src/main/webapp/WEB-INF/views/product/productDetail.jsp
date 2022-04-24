@@ -264,9 +264,10 @@
 									role="tab">상품설명</a></li>
 								<li><a data-toggle="tab" href="#tab-2" role="tab">상세정보</a>
 								</li>
-								<li><a data-toggle="tab" href="#tab-3" role="tab">후기
+								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
+								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="toggleReview(0);">후기
 										(02)</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="toggleQna(0);">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -418,7 +419,7 @@
 									<div class="customer-review-option">
 										<h4>PRODUCT REVIEW</h4>
 										<ul class="productReivewTitle">
-											<li><span data-icon="&#x5e"></span> 상품에 대한 문의를 남기는
+											<li><span data-icon="&#x5e"></span> 상품에 대한 후기를 남기는
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
 												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
@@ -523,7 +524,6 @@
 												후기쓰기
 												</button>
 											</div>
-											<br> <br>
 
 											<%-- <div class="co-item">
                                                 <div class="avatar-pic">
@@ -582,6 +582,88 @@
 												</div>
 											</form>
 										</div> -->
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-4" role="tabpanel">
+									<div class="customer-review-option">
+										<h4>PRODUCT Q&A</h4>
+										<ul class="productReivewTitle">
+											<li><span data-icon="&#x5e"></span> 상품에 대한 문의를 남기는
+												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
+											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
+												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
+												onclick="window.parent.location.href = '/mypage/my_QnA'"
+												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
+										</ul>
+										<div class="comment-option">
+											<table class="reviewTable" width="100%" border="0"
+												cellpadding="0" cellspacing="0">
+												<caption style="display: none">문의 제목</caption>
+												<colgroup>
+													<col style="width: 110px;">
+													<col style="width: auto;">
+													<%-- <col style="width: 51px;"> --%>
+													<col style="width: 77px;">
+													<col style="width: 100px;">
+													<col style="width: 50px;">
+													<col style="width: 80px;">
+												</colgroup>
+												<tbody>
+													<tr>
+														<th>번호</th>
+														<th>제목</th>
+														<!-- <th scope="col" class="input_txt"><span
+															class="screen_out">회원 등급</span></th> -->
+														<th align="left">작성자</th>
+														<th>작성일</th>
+														<th>좋아요</th>
+														<th>조회</th>
+													</tr>
+												</tbody>
+											</table>
+											<!-- 반복문으로 리뷰글 출력 부분 -->
+											<%
+											for (int i = 0; i < 7; i++) {
+											%>
+											<table class="reviewTable" width="100%" border="0"
+												cellpadding="0" cellspacing="0">
+												<caption style="display: none">문의 제목</caption>
+												<colgroup>
+													<col style="width: 110px;">
+													<col style="width: auto;">
+													<%-- <col style="width: 51px;"> --%>
+													<col style="width: 77px;">
+													<col style="width: 100px;">
+													<col style="width: 50px;">
+													<col style="width: 80px;">
+												</colgroup>
+												<tbody>
+													<tr onmouseover="this.style.background='#f0f0f0'"
+														onmouseout="this.style.background='white'">
+														<td><%=i + 1%></td>
+														<td align="left" class="reviewTitle"
+															onclick="toggleQna(<%=i+1%>);">문의 <%=i + 1%></td>
+														<!-- <th scope="col" class="input_txt"><span
+																class="screen_out">회원 등급</span></th> -->
+														<td align="left">UnoMas</td>
+														<td>2022-04-22</td>
+														<td>0</td>
+														<td>0</td>
+													</tr>
+												</tbody>
+											</table>
+											<div class="reviewContent" id="qnaContent<%=i+1%>">
+												<p>원산지가 어딘가요?</p>
+											</div>
+											<%
+											}
+											%>
+											<div class="col-lg-12 reviewBtnArea">
+												<button type="submit" class="site-btn">
+												문의하기
+												</button>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
