@@ -23,7 +23,7 @@ p.memberInfo {
 	color: #da9f33;
 }
 
-#wishlistBtn {
+#wishlistBtnEmpty, #wishlistBtnFull {
     padding: 20px;
     border: solid lightgray;
     background-color: white;

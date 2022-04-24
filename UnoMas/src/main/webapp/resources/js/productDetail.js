@@ -29,3 +29,7 @@ function toggleQna(num) {
         $(id).hide();
     }
 }
+
+function toggleWishlistBtn() {
+    alert('위시리스트 메서드 호출');
+}

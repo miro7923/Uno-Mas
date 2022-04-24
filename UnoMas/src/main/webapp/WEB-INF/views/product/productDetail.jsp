@@ -11,6 +11,10 @@
 	href="${path}/resources/css/productDetail.css?after2">
 <!-- Header end -->
 
+<%
+    // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
+    boolean isInWishlist = false;
+%>
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -64,11 +68,11 @@
 								<div class="pd-title">
 									<h3>청경채</h3>
 								</div>
-								<div class="pd-rating">
+								<!-- <div class="pd-rating">
 									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 										class="fa fa-star-o"></i> <span>(5)</span>
-								</div>
+								</div> -->
 								<div class="pd-desc">
 									<p>아삭하고 부드러운</p>
 								</div>
@@ -124,7 +128,16 @@
                                         <input type="text" value="1">
                                     </div>
 -->
-									<button class="icon_heart_alt" id="wishlistBtn"></button>
+                                    <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
+                                    <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
+                                    <%if (isInWishlist) { %>
+									    <button class="icon_heart" id="wishlistBtnFull" 
+									        onclick="toggleWishlistBtn();"></button>
+								   <% }
+                                      else { %>
+									    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
+									        onclick="toggleWishlistBtn();"></button>
+								   <% } %>
 									<a href="shopping-cart" class="primary-btn pd-cart">장바구니 담기</a>
 								</div>
 								<!--
@@ -691,7 +704,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/productDetail.js?after2"></script>
+	<script src="${path}/resources/js/productDetail.js"></script>
 </body>
 
 </html>
