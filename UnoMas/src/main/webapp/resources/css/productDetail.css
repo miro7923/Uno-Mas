@@ -32,7 +32,7 @@ p.memberInfo {
 }
 
 .primary-btn pd-cart {
-    background-color: e7ab3c;
+    background-color: #e7ab3c;
     border-radius: 3px;
     border: None;
 }
@@ -101,6 +101,7 @@ p.memberInfo {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+    border-color: grey;
 }
 
 table.extraInfo {
@@ -147,4 +148,45 @@ table.extraInfo td {
 
 .productReivewTitle {
 	margin-bottom: 30px;
+}
+
+table.reviewTable {
+    margin: 0;
+    color: #353535;
+    font-size: 14px;
+    line-height: 140%;
+    table-layout: fixed;
+    /* border-bottom: 2px solid #e7ab3c; */
+}
+
+table.reviewTable th {
+    border-top: 2px solid #e7ab3c;	
+}
+
+table.reviewTable th, table.reviewTable td:not(.reviewTitle) {    
+	padding: 25px 0 23px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+table.reviewTable td {
+	border-top: 1px solid #e3e3e3;
+}
+
+.reviewTitle {
+    text-indent: 60px;
+    cursor: pointer;
+}
+
+.reviewContent {
+	margin: 0;
+	padding: 20px;
+	border-top: 1px solid #e3e3e3;
+	display: none;
+}
+
+.reviewBtnArea {
+	border-top: 2px solid #e7ab3c;	
+	padding-top: 40px;
+	text-align: right;
 }
