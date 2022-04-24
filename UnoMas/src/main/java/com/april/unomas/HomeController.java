@@ -74,6 +74,10 @@ public class HomeController {
 	public String cart() {
 		return "product/shopping-cart";
 	}
+	@RequestMapping(value = "/review_writing_form")
+	public String reviewWritingFoam() {
+		return "product/reviewWritingForm";
+	}
 	
 	
 	@RequestMapping(value = "/index")
