@@ -8,7 +8,7 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/reviewWritingForm.css?after2">
+	href="${path}/resources/css/reviewWritingForm.css?after22">
 <!-- Header end -->
 
 <%
@@ -29,7 +29,7 @@
 							<div class="row">
 								<div class="col-lg-2">제목</div>
 								<div class="col-lg-10">
-									<input type="text" placeholder="제목을 입력해주세요." maxlength="40">
+									<input type="text" class="title" placeholder="제목을 입력해주세요." maxlength="40">
 								</div>
 							</div>
 							<div class="row">
