@@ -17,7 +17,7 @@
 	<!-- Header End -->
 
 	<!-- Breadcrumb Section Begin -->
-	<div class="breacrumb-section">
+	<!-- <div class="breacrumb-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<!-- Breadcrumb Section Begin -->
 
 	<!-- Product Shop Section Begin -->
