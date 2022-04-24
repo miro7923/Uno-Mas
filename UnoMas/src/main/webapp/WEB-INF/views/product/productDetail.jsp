@@ -520,7 +520,7 @@
 											%>
 											<div class="col-lg-12 reviewBtnArea">
 												<button type="submit" class="site-btn">
-												Send message
+												후기쓰기
 												</button>
 											</div>
 											<br> <br>
@@ -568,7 +568,7 @@
                                                 <i class="fa fa-star-o"></i>
                                             </div>
                                         </div> -->
-										<div class="leave-comment">
+										<!-- <div class="leave-comment">
 											<h4>Leave A Comment</h4>
 											<form action="#" class="comment-form">
 												<div class="row">
@@ -581,7 +581,7 @@
 													</div>
 												</div>
 											</form>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
