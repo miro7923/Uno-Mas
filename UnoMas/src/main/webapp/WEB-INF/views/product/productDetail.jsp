@@ -533,7 +533,7 @@
 											}
 											%>
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn">
+												<button type="submit" class="site-btn" onclick="location.href='review_writing_form';">
 												후기쓰기
 												</button>
 											</div>
