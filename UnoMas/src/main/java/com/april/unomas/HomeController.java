@@ -68,18 +68,30 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/product_detail") // /product -> /product_detail
 	public String product() {
-		return "product/product";
+		return "product/productDetail";
 	}
 	@RequestMapping(value = "/shopping-cart")
 	public String cart() {
 		return "product/shopping-cart";
 	}
-	
+	@RequestMapping(value = "/product_register")
+	public String productRegister() {
+		return "product/productRegister";
+	}
 	
 	@RequestMapping(value = "/index")
 	public String index() {
 		return "index";
 	}
-
+	
+	// blog (혹시나 쓸까봐)
+	@RequestMapping(value = "/blog")
+	public String blog() {
+		return "blog/blog";
+	}
+	@RequestMapping(value = "/blog_detail")
+	public String blogDetail() {
+		return "blog/blog-details";
+	}
 
 }
