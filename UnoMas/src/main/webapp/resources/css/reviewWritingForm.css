@@ -24,7 +24,3 @@
 #uploadImg {
     display: none;
 }
-
-.customer-review-option .leave-comment .comment-form input:not(.title) {
-    width: 73%;
-}

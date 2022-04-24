@@ -29,7 +29,8 @@
 							<div class="row">
 								<div class="col-lg-2">제목</div>
 								<div class="col-lg-10">
-									<input type="text" class="title" placeholder="제목을 입력해주세요." maxlength="40">
+									<input type="text" class="title" placeholder="제목을 입력해주세요."
+										maxlength="40">
 								</div>
 							</div>
 							<div class="row">
@@ -44,11 +45,20 @@
 							<div class="row">
 								<div class="col-lg-2">사진등록</div>
 								<div class="col-lg-10">
-								    <input class="uploadImgName" id="uploadImgName" value="이미지 선택" disabled="disabled">
-								    <label class="site-btn" for="uploadImg" id="uploadBtn">업로드</label>
-									<input type="file" id="uploadImg" oninput="checkFileName();">
-									<button type="button" class="site-btn" onclick="removeImg();">삭제</button>
-           							<p>구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우, 통보없이 삭제 및 적립 혜택이 취소됩니다.</p>
+									<div class="row">
+										<div class="col-lg-8">
+											<input class="uploadImgName" id="uploadImgName"
+												value="이미지 선택" disabled="disabled">
+										</div>
+										<div class="col-lg-2">
+											<label class="site-btn" for="uploadImg" id="uploadBtn">업로드</label>
+										</div>
+										<input type="file" id="uploadImg" oninput="checkFileName();">
+										<div class="col-lg-2">
+											<button type="button" class="site-btn" onclick="removeImg();">삭제</button>
+										</div>
+										<p>구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우, 통보없이 삭제 및 적립 혜택이 취소됩니다.</p>
+									</div>
 								</div>
 							</div>
 							<div class="row">
@@ -79,7 +89,7 @@
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 	<script src="${path}/resources/js/reviewWritingForm.js"></script>
-	
+
 
 </body>
 </html>
