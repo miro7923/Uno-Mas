@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -14,6 +16,12 @@
 <%
     // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
     boolean isInWishlist = false;
+
+    // @@ 디비에서 평점 정보 받아와서 저장한 뒤 리뷰글에 출력하기로 수정 @@
+    double[] scores = new double[7];
+    for (int i = 0; i < 7; i++) {
+		scores[i] = i+1;
+    }
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -527,7 +535,7 @@
 												</tbody>
 											</table>
 											<div class="reviewContent" id="reviewContent<%=i+1%>">
-												<p>고객님 안녕하세요, 우노마스입니다.</p>
+												<p>평점 : <span><%=scores[i] %> / 5.0</span></p>
 											</div>
 											<%
 											}
