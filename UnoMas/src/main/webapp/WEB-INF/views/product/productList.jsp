@@ -174,9 +174,8 @@ int cnt = 10;
 							<%
 							for (int i = 0; i < subCategory.length; i++) {
 							%>
-							<li><a class="category"
-								id="category<%=i %>" onclick="changeSort(<%=i%>, <%=subCategory.length%>);">
-								<%=subCategory[i] %></a></li>
+							<li><a class="category" id="category<%=i%>"
+								onclick="changeSort(<%=i%>, <%=subCategory.length%>);"> <%=subCategory[i]%></a></li>
 							<%
 							}
 							%>
@@ -186,254 +185,67 @@ int cnt = 10;
 						<div class="row">
 							<div class="col-lg-12 col-md-12 text-right">
 								<p>
-									총 <%=cnt %>개
+									총
+									<%=cnt%>개
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="product-list">
 						<div class="row">
+							<%
+							for (int i = 0; i < 9; i++) {
+							%>
 							<div class="col-lg-4 col-sm-6">
 								<div class="product-item">
 									<div class="pi-pic">
 										<a href="product_detail"> <img
-											src="${path}/resources/img/products/product-1.jpg" alt=""></a>
-										<div class="sale pp-sale">Sale</div>
+											src="${path}/resources/img/product-single/product_vegi01.jpeg"
+											alt=""></a>
+										<!-- <div class="sale pp-sale">Sale</div> -->
 										<div class="icon">
 											<i class="icon_heart_alt"></i>
 										</div>
 										<ul>
 											<li class="w-icon active"><a href="#"><i
 													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
+											<!-- <li class="quick-view"><a href="#">+ Quick View</a></li>
 											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
+													class="fa fa-random"></i></a></li> -->
 										</ul>
 									</div>
 									<div class="pi-text">
-										<div class="catagory-name">Towel</div>
+										<!-- <div class="catagory-name">Towel</div> -->
 										<a href="#">
-											<h5>Pure Pineapple</h5>
+											<h5>청경채</h5>
 										</a>
 										<div class="product-price">
-											$14.00 <span>$35.00</span>
+											2,190원
+											<!--  <span>$35.00</span> -->
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-2.jpg" alt="">
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Coat</div>
-										<a href="#">
-											<h5>Guangzhou sweater</h5>
-										</a>
-										<div class="product-price">
-											$13.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-3.jpg" alt="">
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Shoes</div>
-										<a href="#">
-											<h5>Guangzhou sweater</h5>
-										</a>
-										<div class="product-price">
-											$34.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-4.jpg" alt="">
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Coat</div>
-										<a href="#">
-											<h5>Microfiber Wool Scarf</h5>
-										</a>
-										<div class="product-price">
-											$64.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-5.jpg" alt="">
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Shoes</div>
-										<a href="#">
-											<h5>Men's Painted Hat</h5>
-										</a>
-										<div class="product-price">
-											$44.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-6.jpg" alt="">
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Shoes</div>
-										<a href="#">
-											<h5>Converse Shoes</h5>
-										</a>
-										<div class="product-price">
-											$34.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-7.jpg" alt="">
-										<div class="sale pp-sale">Sale</div>
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Towel</div>
-										<a href="#">
-											<h5>Pure Pineapple</h5>
-										</a>
-										<div class="product-price">
-											$64.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-8.jpg" alt="">
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Coat</div>
-										<a href="#">
-											<h5>2 Layer Windbreaker</h5>
-										</a>
-										<div class="product-price">
-											$44.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
-									<div class="pi-pic">
-										<img src="${path}/resources/img/products/product-9.jpg" alt="">
-										<div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div>
-										<ul>
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li>
-										</ul>
-									</div>
-									<div class="pi-text">
-										<div class="catagory-name">Shoes</div>
-										<a href="#">
-											<h5>Converse Shoes</h5>
-										</a>
-										<div class="product-price">
-											$34.00 <span>$35.00</span>
-										</div>
-									</div>
-								</div>
-							</div>
+							<%
+							}
+							%>
 						</div>
 					</div>
-					<div class="loading-more">
-						<i class="icon_loading"></i> <a href="#"> Loading More </a>
+					<div class="pagediv">
+						<a href="#main"
+							class="arrow_carrot-2left_alt"></a> <a href="#main"
+							class="arrow_carrot-left_alt"></a> <span>
+							<!----> <strong
+							class="layout-pagination-button layout-pagination-number __active">1</strong>
+						</span><span><a
+							class="layout-pagination-button layout-pagination-number">2</a> <!----></span><span><a
+							class="layout-pagination-button layout-pagination-number">3</a> <!----></span><span><a
+							class="layout-pagination-button layout-pagination-number">4</a> <!----></span><span><a
+							class="layout-pagination-button layout-pagination-number">5</a> <!----></span><span><a
+							class="layout-pagination-button layout-pagination-number">6</a> <!----></span>
+						<a href="#main"
+							class="arrow_carrot-right_alt"></a> <a href="#main"
+							class="arrow_carrot-2right_alt"></a>
 					</div>
 				</div>
 			</div>

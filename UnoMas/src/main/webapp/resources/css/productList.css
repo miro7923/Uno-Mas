@@ -35,3 +35,7 @@
 .categoryList.on li a:hover {
     color: #dea234;
 }
+
+.product-item .pi-text .product-price {
+    color: black;
+}
