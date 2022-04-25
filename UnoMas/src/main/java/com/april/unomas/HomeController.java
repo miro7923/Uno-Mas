@@ -62,11 +62,11 @@ public class HomeController {
 	public String checkout() {
 		return "product/check-out";
 	}
-	@RequestMapping(value = "/product_list") // /shop -> /product_list
+	@RequestMapping(value = "/product_list")
 	public String shop() {
 		return "product/productList";
 	}
-	@RequestMapping(value = "/product_detail") // /product -> /product_detail
+	@RequestMapping(value = "/product_detail")
 	public String product() {
 		return "product/productDetail";
 	}
@@ -74,6 +74,16 @@ public class HomeController {
 	public String cart() {
 		return "product/shopping-cart";
 	}
+
+	@RequestMapping(value = "/product_register")
+	public String productRegister() {
+		return "product/productRegister";
+	}
+	@RequestMapping(value = "/product_lookup")	// 상품 조회 페이지
+	public String productLookup() {
+		return "product/productLookup";
+	}
+
 	@RequestMapping(value = "/review_writing_form")
 	public String reviewWritingForm() {
 		return "product/reviewWritingForm";
@@ -83,11 +93,21 @@ public class HomeController {
 		return "product/qnaWritingForm";
 	}
 	
+
 	
 	@RequestMapping(value = "/index")
 	public String index() {
 		return "index";
 	}
-
+	
+	// blog (혹시나 쓸까봐)
+	@RequestMapping(value = "/blog")
+	public String blog() {
+		return "blog/blog";
+	}
+	@RequestMapping(value = "/blog_detail")
+	public String blogDetail() {
+		return "blog/blog-details";
+	}
 
 }

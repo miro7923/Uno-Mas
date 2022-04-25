@@ -25,7 +25,7 @@
                             <p>travel <span>- May 19, 2019</span></p>
                         </div>
                         <div class="blog-large-pic">
-                            <img src="img/blog/blog-detail.jpg" alt="">
+                            <img src="${path}/resources/img/blog/blog-detail.jpg" alt="">
                         </div>
                         <div class="blog-detail-desc">
                             <p>psum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
@@ -44,13 +44,13 @@
                         <div class="blog-more">
                             <div class="row">
                                 <div class="col-sm-4">
-                                    <img src="img/blog/blog-detail-1.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-detail-1.jpg" alt="">
                                 </div>
                                 <div class="col-sm-4">
-                                    <img src="img/blog/blog-detail-2.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-detail-2.jpg" alt="">
                                 </div>
                                 <div class="col-sm-4">
-                                    <img src="img/blog/blog-detail-3.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-detail-3.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                     <a href="#" class="prev-blog">
                                         <div class="pb-pic">
                                             <i class="ti-arrow-left"></i>
-                                            <img src="img/blog/prev-blog.png" alt="">
+                                            <img src="${path}/resources/img/blog/prev-blog.png" alt="">
                                         </div>
                                         <div class="pb-text">
                                             <span>Previous Post:</span>
@@ -97,7 +97,7 @@
                                 <div class="col-lg-5 offset-lg-2 col-md-6">
                                     <a href="#" class="next-blog">
                                         <div class="nb-pic">
-                                            <img src="img/blog/next-blog.png" alt="">
+                                            <img src="${path}/resources/img/blog/next-blog.png" alt="">
                                             <i class="ti-arrow-right"></i>
                                         </div>
                                         <div class="nb-text">
@@ -110,7 +110,7 @@
                         </div>
                         <div class="posted-by">
                             <div class="pb-pic">
-                                <img src="img/blog/post-by.png" alt="">
+                                <img src="${path}/resources/img/blog/post-by.png" alt="">
                             </div>
                             <div class="pb-text">
                                 <a href="#">
