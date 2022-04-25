@@ -22,20 +22,34 @@
     border: 1px solid #e2e2e2;
 }
 
-.categoryList.on li {
+.categoryList li {
     float: left;
     width: 263px;
     padding: 16px 44px 0 39px;
 }
 
-.categoryList.on li a {
+.categoryList li a {
     cursor: pointer;
-}
-
-.categoryList.on li a:hover {
-    color: #dea234;
 }
 
 .product-item .pi-text .product-price {
     color: black;
+}
+
+#productItem {
+    margin-bottom: 80px;
+}
+
+#pagediv {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 140px;
+}
+
+a:hover {
+    color: #007bffc2;
+}
+
+.pagingBtn {
+	cursor: pointer;
 }

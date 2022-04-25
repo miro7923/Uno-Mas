@@ -8,7 +8,7 @@
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/productList.css?after32">
+	href="${path}/resources/css/productList.css?afte">
 <!-- Start Header -->
 
 <%
@@ -18,6 +18,12 @@ String[] subCategory = { "전체보기", "고구마·감자·당근", "양파·�
 
 // @@ 로드시 현재 카테고리의 상품 총 개수 가져와서 저장 @@
 int cnt = 10;
+
+// @@ DB 연결 후 페이지 정보 가져오기 @@
+int pageCnt = 5;
+int pageBlockCnt = 5;
+int startBlock = 1;
+int endBlock = 5;
 %>
 
 <body>
@@ -170,7 +176,7 @@ int cnt = 10;
 				<div class="col-lg-12 order-1 order-lg-2">
 					<div class="categoryBox">
 						<h3 class="title"><%=category%></h3>
-						<ul class="categoryList on">
+						<ul class="categoryList">
 							<%
 							for (int i = 0; i < subCategory.length; i++) {
 							%>
@@ -184,10 +190,7 @@ int cnt = 10;
 					<div class="product-show-option">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 text-right">
-								<p>
-									총
-									<%=cnt%>개
-								</p>
+								<p>총 <%=cnt%>개</p>
 							</div>
 						</div>
 					</div>
@@ -197,15 +200,15 @@ int cnt = 10;
 							for (int i = 0; i < 9; i++) {
 							%>
 							<div class="col-lg-4 col-sm-6">
-								<div class="product-item">
+								<div class="product-item" id="productItem">
 									<div class="pi-pic">
 										<a href="product_detail"> <img
 											src="${path}/resources/img/product-single/product_vegi01.jpeg"
 											alt=""></a>
 										<!-- <div class="sale pp-sale">Sale</div> -->
-										<div class="icon">
+										<!-- <div class="icon">
 											<i class="icon_heart_alt"></i>
-										</div>
+										</div> -->
 										<ul>
 											<li class="w-icon active"><a href="#"><i
 													class="icon_bag_alt"></i></a></li>
@@ -231,21 +234,26 @@ int cnt = 10;
 							%>
 						</div>
 					</div>
-					<div class="pagediv">
-						<a href="#main"
-							class="arrow_carrot-2left_alt"></a> <a href="#main"
-							class="arrow_carrot-left_alt"></a> <span>
-							<!----> <strong
-							class="layout-pagination-button layout-pagination-number __active">1</strong>
-						</span><span><a
-							class="layout-pagination-button layout-pagination-number">2</a> <!----></span><span><a
-							class="layout-pagination-button layout-pagination-number">3</a> <!----></span><span><a
-							class="layout-pagination-button layout-pagination-number">4</a> <!----></span><span><a
-							class="layout-pagination-button layout-pagination-number">5</a> <!----></span><span><a
-							class="layout-pagination-button layout-pagination-number">6</a> <!----></span>
-						<a href="#main"
-							class="arrow_carrot-right_alt"></a> <a href="#main"
-							class="arrow_carrot-2right_alt"></a>
+					<!-- @@ DB 연결하면 상세 작업하기 @@ -->
+					<div class="row" id="pagediv">
+						<div class="col-lg-12 text-center">
+						<%if (startBlock > pageBlockCnt) { %>
+							<a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a> 
+							<a href="#" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+						<% }
+						
+						for (int i = startBlock; i <= endBlock; i++) { %>
+							<span>
+								<!----> <a class="pagingBtn" id="page<%=i%>" 
+								onclick="changePageNum(<%=i%>, <%=endBlock%>);"><%=i %> <!----></a>
+							</span> 
+						<% }
+						
+						if (endBlock < pageBlockCnt) { %> 
+							<a href="#" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+							<a href="#" class="arrow_carrot-2right_alt pagingBtn" id="toLast"></a>
+						<% } %>
+						</div>
 					</div>
 				</div>
 			</div>
