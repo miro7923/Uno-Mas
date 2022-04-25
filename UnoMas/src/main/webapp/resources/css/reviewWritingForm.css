@@ -24,3 +24,8 @@
 #uploadImg {
     display: none;
 }
+
+.productName {
+	padding-bottom: 40px;
+    font-weight: bold;
+}

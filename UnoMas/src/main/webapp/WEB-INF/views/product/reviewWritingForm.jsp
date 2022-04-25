@@ -8,11 +8,13 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/reviewWritingForm.css?after22">
+	href="${path}/resources/css/reviewWritingForm.css?after2">
 <!-- Header end -->
 
 <%
 // @@ 상품번호를 파라메터로 받아와서 상단에 해당 상품명 노출하기 @@
+String prodName = "청경채";
+int prodNum = 1;
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -26,6 +28,13 @@
 					<div class="leave-comment">
 						<h4>후기쓰기</h4>
 						<form action="#" class="comment-form">
+						    <div class="row">
+						        <div class="col-lg-12">
+						            <!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
+						            <input type="hidden" value="<%=prodNum%>" name="prodNum">
+  						            <p class="productName">상품명 : <%=prodName %></p>
+						        </div>
+						    </div>
 							<div class="row">
 								<div class="col-lg-2">제목</div>
 								<div class="col-lg-10">
@@ -46,15 +55,15 @@
 								<div class="col-lg-2">사진등록</div>
 								<div class="col-lg-10">
 									<div class="row">
-										<div class="col-lg-8">
+										<div class="col-md-8">
 											<input class="uploadImgName" id="uploadImgName"
 												value="이미지 선택" disabled="disabled">
 										</div>
-										<div class="col-lg-2">
+										<div class="col-md-2">
 											<label class="site-btn" for="uploadImg" id="uploadBtn">업로드</label>
 										</div>
 										<input type="file" id="uploadImg" oninput="checkFileName();">
-										<div class="col-lg-2">
+										<div class="col-md-2">
 											<button type="button" class="site-btn" onclick="removeImg();">삭제</button>
 										</div>
 										<p>구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우, 통보없이 삭제 및 적립 혜택이 취소됩니다.</p>
@@ -63,7 +72,7 @@
 							</div>
 							<div class="row">
 								<div class="col-lg-12">
-									<button type="submit" class="site-btn" id="writeBtn">후기쓰기</button>
+									<button type="submit" class="site-btn" id="writeBtn">등록</button>
 								</div>
 							</div>
 						</form>
