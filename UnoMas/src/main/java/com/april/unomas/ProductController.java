@@ -21,6 +21,10 @@ public class ProductController {
 	public String product() {
 		return "product/productDetail";
 	}
+	@RequestMapping(value = "/product_register")
+	public String productRegister() {
+		return "product/productRegister";
+	}
 	@RequestMapping(value = "/shopping-cart")
 	public String cart() {
 		return "product/shopping-cart";
