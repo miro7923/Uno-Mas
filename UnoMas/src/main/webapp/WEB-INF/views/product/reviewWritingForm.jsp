@@ -8,7 +8,7 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/reviewWritingForm.css?after2">
+	href="${path}/resources/css/reviewWritingForm.css?after22">
 <!-- Header end -->
 
 <%
@@ -72,6 +72,7 @@ int prodNum = 1;
 							</div>
 							<div class="row">
 								<div class="col-lg-12">
+									<button type="button" class="site-btn" id="writeBtn">취소</button> 
 									<button type="submit" class="site-btn" id="writeBtn">등록</button>
 								</div>
 							</div>
