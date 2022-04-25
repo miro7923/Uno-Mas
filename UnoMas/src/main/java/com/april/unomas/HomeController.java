@@ -74,6 +74,7 @@ public class HomeController {
 	public String cart() {
 		return "product/shopping-cart";
 	}
+
 	@RequestMapping(value = "/product_register")
 	public String productRegister() {
 		return "product/productRegister";
@@ -82,6 +83,17 @@ public class HomeController {
 	public String productLookup() {
 		return "product/productLookup";
 	}
+
+	@RequestMapping(value = "/review_writing_form")
+	public String reviewWritingForm() {
+		return "product/reviewWritingForm";
+	}
+	@RequestMapping(value = "/product_qna_writing_form")
+	public String qnaWritingForm() {
+		return "product/qnaWritingForm";
+	}
+	
+
 	
 	@RequestMapping(value = "/index")
 	public String index() {
