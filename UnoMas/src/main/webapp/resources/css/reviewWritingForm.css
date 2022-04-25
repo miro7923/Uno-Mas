@@ -10,6 +10,10 @@
     height: 350px;
 }
 
+.customer-review-option .leave-comment .comment-form .uploadImgName {
+    width: 40%;
+}
+
 .customer-review-option {
     padding-top: 10px;
 }
