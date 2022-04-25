@@ -13,6 +13,8 @@
 
 <%
 // @@ 상품번호를 파라메터로 받아와서 상단에 해당 상품명 노출하기 @@
+String prodName = "청경채";
+int prodNum = 1;
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -26,6 +28,13 @@
 					<div class="leave-comment">
 						<h4>문의하기</h4>
 						<form action="#" class="comment-form">
+						    <div class="row">
+						        <div class="col-lg-12">
+						            <!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
+						            <input type="hidden" value="<%=prodNum%>" name="prodNum">
+  						            <p class="productName">상품명 : <%=prodName %></p>
+						        </div>
+						    </div>
 							<div class="row">
 								<div class="col-lg-2">제목</div>
 								<div class="col-lg-10">
@@ -43,7 +52,8 @@
 							<br>
 							<div class="row">
 								<div class="col-lg-12">
-									<button type="submit" class="site-btn" id="writeBtn">문의하기</button>
+									<button type="button" class="site-btn" id="writeBtn">취소</button> 
+									<button type="submit" class="site-btn" id="writeBtn">등록</button>
 								</div>
 							</div>
 						</form>
