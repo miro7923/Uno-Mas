@@ -11,6 +11,15 @@
 	href="${path}/resources/css/productList.css?after32">
 <!-- Start Header -->
 
+<%
+// @@ 로드시 디비에서 카테고리 정보 가져와서 저장 @@
+String category = "채소";
+String[] subCategory = { "전체보기", "고구마·감자·당근", "양파·대파·마늘·배추", "냉동·이색·간편채소" };
+
+// @@ 로드시 현재 카테고리의 상품 총 개수 가져와서 저장 @@
+int cnt = 10;
+%>
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -160,42 +169,24 @@
                 </div> -->
 				<div class="col-lg-12 order-1 order-lg-2">
 					<div class="categoryBox">
-						<h3 class="title">채소</h3>
+						<h3 class="title"><%=category%></h3>
 						<ul class="categoryList on">
-							<li data-start="124" data-end="188">
-							    <a class="category" id="category0" onclick="changeSort(0, 4);">전체보기</a>
-							</li>
-							<!-- <li data-start="316" data-end="368"><a class="">친환경</a></li> -->
-							<li data-start="435" data-end="548">
-							    <a class="category" id="category1" onclick="changeSort(1, 4);">고구마·감자·당근</a>
-							</li>
-							<!-- <li data-start="603" data-end="728"><a class="">시금치·쌈채소·나물</a></li>
-							<li data-start="747" data-end="908"><a class="">브로콜리·파프리카·양배추</a></li> -->
-							<li data-start="956" data-end="1088">
-							    <a class="category" id="category2" onclick="changeSort(2, 4);">양파·대파·마늘·배추</a>
-							</li>
-							<!-- <li data-start="1167" data-end="1268"><a class="">오이·호박·고추</a></li> -->
-							<li data-start="1323" data-end="1448">
-							    <a class="category" id="category3" onclick="changeSort(3, 4);">냉동·이색·간편채소</a>
-							</li>
-							<!-- <li data-start="1545" data-end="1628"><a class="">콩나물·버섯</a></li> -->
-							<li class="bg"></li>
+							<%
+							for (int i = 0; i < subCategory.length; i++) {
+							%>
+							<li><a class="category"
+								id="category<%=i %>" onclick="changeSort(<%=i%>, <%=subCategory.length%>);">
+								<%=subCategory[i] %></a></li>
+							<%
+							}
+							%>
 						</ul>
 					</div>
 					<div class="product-show-option">
 						<div class="row">
-							<!-- <div class="col-lg-7 col-md-7">
-								<div class="select-option">
-									<select class="sorting">
-										<option value="">Default Sorting</option>
-									</select> <select class="p-show">
-										<option value="">Show:</option>
-									</select>
-								</div>
-							</div> -->
 							<div class="col-lg-12 col-md-12 text-right">
 								<p>
-									총 <span>000</span>개
+									총 <%=cnt %>개
 								</p>
 							</div>
 						</div>
