@@ -2,6 +2,8 @@ package com.april.unomas;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 
 @Controller
 public class ProductController {
@@ -30,5 +32,9 @@ public class ProductController {
 	@RequestMapping(value = "/product_qna_writing_form")
 	public String qnaWritingForm() {
 		return "product/qnaWritingForm";
+	}
+	@RequestMapping(value = "/new_product_list", method = RequestMethod.GET)
+	public String newProductList() {
+		return "product/newProductList";
 	}
 }

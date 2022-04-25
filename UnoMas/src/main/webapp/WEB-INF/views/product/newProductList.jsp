@@ -12,9 +12,7 @@
 <!-- Start Header -->
 
 <%
-// @@ 로드시 디비에서 카테고리 정보 가져와서 저장 @@
-String category = "채소";
-String[] subCategory = { "전체보기", "고구마·감자·당근", "양파·대파·마늘·배추", "냉동·이색·간편채소" };
+String category = "신상품";
 
 // @@ 로드시 현재 카테고리의 상품 총 개수 가져와서 저장 @@
 int cnt = 10;
@@ -174,20 +172,8 @@ int endBlock = 5;
                     </div>
                 </div> -->
 				<div class="col-lg-12 order-1 order-lg-2">
-					<div class="categoryBox">
-						<h3 class="title"><%=category%></h3>
-						<ul class="categoryList">
-							<%
-							for (int i = 0; i < subCategory.length; i++) {
-							%>
-							<li><a class="category" id="category<%=i%>"
-								onclick="changeSort(<%=i%>, <%=subCategory.length%>);"> <%=subCategory[i]%></a></li>
-							<%
-							}
-							%>
-						</ul>
-					</div>
 					<div class="product-show-option">
+						<h3 class="title"><%=category%></h3>
 						<div class="row">
 							<div class="col-lg-12 col-md-12 text-right">
 								<p>총 <%=cnt%>개</p>
