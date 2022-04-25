@@ -52,7 +52,7 @@ int prodNum = 1;
 							<br>
 							<div class="row">
 								<div class="col-lg-12">
-									<button type="button" class="site-btn" id="writeBtn">취소</button> 
+									<button type="button" class="site-btn" id="writeBtn" onclick="history.back();">취소</button> 
 									<button type="submit" class="site-btn" id="writeBtn">등록</button>
 								</div>
 							</div>
