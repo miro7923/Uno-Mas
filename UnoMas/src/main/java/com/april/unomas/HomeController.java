@@ -68,11 +68,19 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/product_detail") // /product -> /product_detail
 	public String product() {
-		return "product/product";
+		return "product/productDetail";
 	}
 	@RequestMapping(value = "/shopping-cart")
 	public String cart() {
 		return "product/shopping-cart";
+	}
+	@RequestMapping(value = "/review_writing_form")
+	public String reviewWritingForm() {
+		return "product/reviewWritingForm";
+	}
+	@RequestMapping(value = "/product_qna_writing_form")
+	public String qnaWritingForm() {
+		return "product/qnaWritingForm";
 	}
 	
 	
