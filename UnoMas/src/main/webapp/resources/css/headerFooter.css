@@ -156,6 +156,9 @@ div, th, td, li, dt, dd, p {
     line-height: 0;
     text-indent: -9999px;
 }
+.nav-item{
+	font-family:'Noto Sans';
+}
 .depart-btn .depart-hover>li{
 	position:relative
 }
@@ -166,7 +169,7 @@ div, th, td, li, dt, dd, p {
 	position: absolute;
     top: 0;
     background-color: #f8f9fa;
-    width: 100%;
+    width: 260px;
     padding-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 13px 32px rgba(51, 51, 51, 0.1);
@@ -178,16 +181,15 @@ div, th, td, li, dt, dd, p {
 /* 푸터주석 시작 */
 
 
-.footerCS, .footerInquiry{
-	font-weight: 500;
+.footerCS{
+	font-weight: 600;
 	font-size: 20px;
 	color: #333;
 	line-height: 24px;
-}
-.footerCS{
 	color:white;
 	padding-bottom:20px;
 }
+
 .csNumber{
 	padding-top: 20px;
 }
@@ -255,6 +257,7 @@ div, th, td, li, dt, dd, p {
     letter-spacing: -.2px;
 }
 .inquiryExpln dt{
+	color: #999;
 	display: block;
 }
 .inquiryExpln dd{
@@ -275,8 +278,12 @@ div, th, td, li, dt, dd, p {
     float: left;
     padding-right: 16px;
 }
-.list .link {
+.list a:link{
     font-size: 14px;
+    color: white;
+    line-height: 18px;
+}
+.company a:link{
     color: white;
     line-height: 18px;
 }

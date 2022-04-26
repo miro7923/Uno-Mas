@@ -27,7 +27,7 @@
     				<a href="register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="faq" class="linkMenu">고객센터</a>
+    				<a href="contact" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -37,13 +37,13 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="login.html" class="linkMenu">마이페이지</a>
+    				<a href="" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="register.html" class="linkMenu">로그아웃</a>
+    				<a href="" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="customerService.html" class="linkMenu">고객센터</a>
+    				<a href="contact" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -94,9 +94,9 @@
                         <ul class="depart-hover firstMenu">
                             <li><a href="#">채소</a>
                             	<ul class="secondMenu">
-                            		<li><a href="#">고구마·감자·당근</a></li>
-                            		<li><a href="#">양파·대파·마늘·배추</a></li>
-                            		<li><a href="#">냉동·이색·간편채소</a></li>
+                            		<li><a href="#">고구마 · 감자 · 당근</a></li>
+                            		<li><a href="#">양파 · 대파 · 마늘 · 배추</a></li>
+                            		<li><a href="#">냉동 · 이색 · 간편채소</a></li>
                             	</ul>
                             </li>
                             <li><a href="#">과일 · 견과류 · 쌀</a>
@@ -110,7 +110,7 @@
                            		<ul class="secondMenu">
                             		<li><a href="#">해산물</a></li>
                             		<li><a href="#">수산가공품</a></li>
-                            		<li><a href="#">김·미역</a></li>
+                            		<li><a href="#">김 · 미역</a></li>
                             		<li><a href="#">건어물</a></li>
                             	</ul>
                             </li>
@@ -119,14 +119,14 @@
                             		<li><a href="#">국내산 소고기</a></li>
                             		<li><a href="#">수입산 소고기</a></li>
                             		<li><a href="#">돼지고기</a></li>
-                            		<li><a href="#">닭·오리고기</a></li>
+                            		<li><a href="#">닭 · 오리고기</a></li>
                             	</ul>
                            	</li>
                             <li><a href="#">생수 · 우유 · 커피 · 차</a>
                             	<ul class="secondMenu">
                             		<li><a href="#">생수</a></li>
                             		<li><a href="#">우유</a></li>
-                            		<li><a href="#">커피·차</a></li>
+                            		<li><a href="#">커피 · 차</a></li>
                             	</ul>
                             </li>
                         </ul>
