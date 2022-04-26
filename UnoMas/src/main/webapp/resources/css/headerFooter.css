@@ -5,7 +5,7 @@ div {
     display: block;
 }
 
-#headerTop{
+#headerTop {
 width: 1050px;
 margin-top: 0px;
 margin-right: auto;
@@ -138,7 +138,12 @@ div, th, td, li, dt, dd, p {
     text-align: center;
     bottom: 30px;
 }
-
+.headerMiddle .heart-icon{
+	padding-right: 13px;
+}
+.headerMiddle .cart-icon{
+	padding-right: 50px;
+}
 
 .screenOut {
     display: block;
@@ -151,70 +156,40 @@ div, th, td, li, dt, dd, p {
     line-height: 0;
     text-indent: -9999px;
 }
-#gnb .gnbUnomas {
-    position: relative;
-    z-index: 300;
-    min-width: 1170px;
-    background-color: #fff;
-    font-family: 'Noto Sans';
-    letter-spacing: -0.3px;
+.nav-item{
+	font-family:'Noto Sans';
 }
-#gnb .innerGnbUnomas {
-    position: relative;
-    width: 1170px;
-    height: 56px;
-    margin: 0 auto;
+.depart-btn .depart-hover>li{
+	position:relative
 }
-#gnb .gnbMain {
-    overflow: hidden;
-    width: 1170px;
-    margin: 0 auto;
+.depart-btn .depart-hover>li:hover .secondMenu{
+	left: 100%;
 }
-#gnb .gnbMain .gnb {
-    float: left;
-    width: 100%;
-}
-#gnb .gnbMain .gnb li {
-    float: left;
-}
-#gnb .gnbMain .menu1 a {
-    width: 148px;
-}
-#gnb .gnbMain .gnb a {
-    overflow: hidden;
-    float: left;
-    width: 130px;
-    height: 55px;
-    padding: 16px 0 0;
-    font-size: 16px;
-    color: #333;
-    line-height: 20px;
-    text-align: center;
-}
-#gnb .gnbMain .menu1 .ico {
-    float: left;
-    width: 16px;
-    height: 14px;
-    margin: 5px 14px 0 0;
-    background: url(https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off.png) no-repeat;
-}
-#gnb .gnbMain .gnb a .txt {
-    font-weight: 700;
+.depart-btn .secondMenu{
+	position: absolute;
+    top: 0;
+    background-color: #f8f9fa;
+    width: 260px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 13px 32px rgba(51, 51, 51, 0.1);
+    left: -9999px;
+    /*left: 100%;*/
+    /*display: none;*/
 }
 /* 헤더주석 끝 */
 /* 푸터주석 시작 */
 
 
-.footerCS, .footerInquiry{
-	font-weight: 500;
+.footerCS{
+	font-weight: 600;
 	font-size: 20px;
 	color: #333;
 	line-height: 24px;
-}
-.footerCS{
 	color:white;
 	padding-bottom:20px;
 }
+
 .csNumber{
 	padding-top: 20px;
 }
@@ -282,6 +257,7 @@ div, th, td, li, dt, dd, p {
     letter-spacing: -.2px;
 }
 .inquiryExpln dt{
+	color: #999;
 	display: block;
 }
 .inquiryExpln dd{
@@ -302,8 +278,12 @@ div, th, td, li, dt, dd, p {
     float: left;
     padding-right: 16px;
 }
-.list .link {
+.list a:link{
     font-size: 14px;
+    color: white;
+    line-height: 18px;
+}
+.company a:link{
     color: white;
     line-height: 18px;
 }
