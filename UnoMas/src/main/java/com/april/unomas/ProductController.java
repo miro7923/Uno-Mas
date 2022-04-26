@@ -41,4 +41,8 @@ public class ProductController {
 	public String newProductList() {
 		return "product/newProductList";
 	}
+	@RequestMapping(value = "/sale_product_list", method = RequestMethod.GET)
+	public String saleProductList() {
+		return "product/saleProductList";
+	}
 }
