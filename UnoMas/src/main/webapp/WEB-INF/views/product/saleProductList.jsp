@@ -12,12 +12,12 @@
 <!-- Start Header -->
 
 <%
-// @@ 로드시 디비에서 카테고리 정보 가져와서 저장 @@
-String category = "채소";
-String[] subCategory = { "전체보기", "고구마·감자·당근", "양파·대파·마늘·배추", "냉동·이색·간편채소" };
+String category = "특가";
 
 // @@ 로드시 현재 카테고리의 상품 총 개수 가져와서 저장 @@
 int cnt = 10;
+
+// @@ 원가와 세일비율 저장된 테이블이 필요할 듯... @@
 
 // @@ DB 연결 후 페이지 정보 가져오기 @@
 int pageCnt = 5;
@@ -174,20 +174,8 @@ int endBlock = 5;
                     </div>
                 </div> -->
 				<div class="col-lg-12 order-1 order-lg-2">
-					<div class="categoryBox">
-						<h3 class="title"><%=category%></h3>
-						<ul class="categoryList">
-							<%
-							for (int i = 0; i < subCategory.length; i++) {
-							%>
-							<li><a class="category" id="category<%=i%>"
-								onclick="changeSort(<%=i%>, <%=subCategory.length%>);"> <%=subCategory[i]%></a></li>
-							<%
-							}
-							%>
-						</ul>
-					</div>
 					<div class="product-show-option">
+						<h3 class="title"><%=category%></h3>
 						<div class="row">
 							<div class="col-lg-12 col-md-12 text-right">
 								<p>총 <%=cnt%>개</p>
@@ -223,12 +211,10 @@ int endBlock = 5;
 										<a href="#">
 											<h5>청경채</h5>
 										</a>
+										<!-- @@ 디비에 저장된 할인율로 계산해서 출력하기 @@ -->
 										<div class="product-price">
-											2,190원
-											<!--  <span>$35.00</span> -->
-										</div>
-										<div class="productSubTitle">
-										    아삭하고 부드러운
+											<strong class="discountedRate">30%</strong> 1,530원 <br>
+											<span class="originPrice">2,190원</span>
 										</div>
 									</div>
 								</div>

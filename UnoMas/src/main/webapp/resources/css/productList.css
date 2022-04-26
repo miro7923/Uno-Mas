@@ -53,3 +53,16 @@ a:hover {
 .pagingBtn {
 	cursor: pointer;
 }
+
+.discountedRate {
+    color: #fa622f;
+}
+
+.product-item .pi-text .product-price .originPrice {
+    font-size: 16px;
+}
+
+.productSubTitle {
+    margin-top: 10px;
+    color: #999;
+}
