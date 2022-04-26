@@ -1,16 +1,4 @@
----
-title: JAVA Spring) 1인가구를 위한 쇼핑몰 Uno más 개발일지 5 - 카테고리별 상품 목록 페이지, 신상품 목록 페이지, 특가 목록 페이지 제작
-toc: true
-toc_sticky: true
-toc_label: 목차
-published: true
-categories:
-    - Uno mas
-tags:
-    - Project
-    - UnoMas
-    - Log
----
+# JAVA Spring) 1인가구를 위한 쇼핑몰 Uno más 개발일지 5 - 카테고리별 상품 목록 페이지, 신상품 목록 페이지, 특가 목록 페이지 제작
 
 * 작성일 : 2022.04.26
 * 작성자 : 황유진
