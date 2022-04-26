@@ -156,55 +156,23 @@ div, th, td, li, dt, dd, p {
     line-height: 0;
     text-indent: -9999px;
 }
-#gnb .gnbUnomas {
-    position: relative;
-    z-index: 300;
-    min-width: 1170px;
-    background-color: #fff;
-    font-family: 'Noto Sans';
-    letter-spacing: -0.3px;
+.depart-btn .depart-hover>li{
+	position:relative
 }
-#gnb .innerGnbUnomas {
-    position: relative;
-    width: 1170px;
-    height: 56px;
-    margin: 0 auto;
+.depart-btn .depart-hover>li:hover .secondMenu{
+	left: 100%;
 }
-#gnb .gnbMain {
-    overflow: hidden;
-    width: 1170px;
-    margin: 0 auto;
-}
-#gnb .gnbMain .gnb {
-    float: left;
+.depart-btn .secondMenu{
+	position: absolute;
+    top: 0;
+    background-color: #f8f9fa;
     width: 100%;
-}
-#gnb .gnbMain .gnb li {
-    float: left;
-}
-#gnb .gnbMain .menu1 a {
-    width: 148px;
-}
-#gnb .gnbMain .gnb a {
-    overflow: hidden;
-    float: left;
-    width: 130px;
-    height: 55px;
-    padding: 16px 0 0;
-    font-size: 16px;
-    color: #333;
-    line-height: 20px;
-    text-align: center;
-}
-#gnb .gnbMain .menu1 .ico {
-    float: left;
-    width: 16px;
-    height: 14px;
-    margin: 5px 14px 0 0;
-    background: url(https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off.png) no-repeat;
-}
-#gnb .gnbMain .gnb a .txt {
-    font-weight: 700;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 13px 32px rgba(51, 51, 51, 0.1);
+    left: -9999px;
+    /*left: 100%;*/
+    /*display: none;*/
 }
 /* 헤더주석 끝 */
 /* 푸터주석 시작 */
