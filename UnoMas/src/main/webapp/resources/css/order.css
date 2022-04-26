@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+.checkout-form input[type=radio] {
+    text-align: left;
+    width: 7%;
+    height: 13px;
+    margin: 0;
+}
+
+.deliverListBtn {
+    padding: 3px 8px;
+    margin-left: 20px;
+}
+
+.emph {
+    color: red;
+}
+
+.postalBtn {
+    margin: 0;
+}
+
+.checkout-form input {
+    height: 30px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+} 
+
+.normalAddrInfo {
+	margin-left: 1px;
+    margin-right: 2px;
+}
+
+.pointTitle {
+    font-weight: bolder;
+}
+
+.checkout-form input[type=checkbox] {
+    height: 19px;
+    text-align: left; 
+    width: 18%;
+    vertical-align: text-top;
+}
+
+.selectBox {
+    width: 50%;
+    border: 2px solid #ebebeb;
+    height: 30px;
+}
