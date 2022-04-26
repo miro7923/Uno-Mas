@@ -227,6 +227,9 @@ int endBlock = 5;
 											2,190원
 											<!--  <span>$35.00</span> -->
 										</div>
+										<div class="productSubTitle">
+										    아삭하고 부드러운
+										</div>
 									</div>
 								</div>
 							</div>
