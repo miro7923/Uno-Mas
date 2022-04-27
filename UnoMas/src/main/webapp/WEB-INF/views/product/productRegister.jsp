@@ -21,7 +21,7 @@
 			<div class="row">
 			
 				<!-- 상품관리 카테고리 -->
-				<div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+				<div class="col-lg-2 produts-sidebar-filter">
 					<div class="filter-widget">
 						<h4 class="fw-title">상품관리</h4>
 						<ul class="filter-catagories">
@@ -32,7 +32,7 @@
 				</div>
 
 				<!-- 상품등록-->
-				<div class="col-lg-9 order-1 order-lg-2">
+				<div class="col-lg-10">
 					<h2>상품등록</h2><hr>
 					<div class="container">
 						<form action="#" class="checkout-form">
@@ -102,7 +102,7 @@
 									<h4>판매정보</h4>
 									<div class="row">
 										<div class="col-lg-12">
-											<label>상품 가격<span>*</span></label> <input type="text">
+											<label>판매가<span>*</span></label> <input type="text">
 										</div>
 										<div class="col-lg-12">
 											<label>적립금</label> <input type="text">

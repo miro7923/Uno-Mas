@@ -22,7 +22,7 @@
 
 				<!-- 상품관리 카테고리 -->
 				<div
-					class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+					class="col-lg-2 produts-sidebar-filter">
 					<div class="filter-widget">
 						<h4 class="fw-title">상품관리</h4>
 						<ul class="filter-catagories">
@@ -33,7 +33,7 @@
 				</div>
 				
 				<!-- 상품관리 카테고리 끝-->
-				<div class="col-lg-9 order-1 order-lg-2">
+				<div class="col-lg-10">
 					<h2>상품조회</h2>
 					<hr>
 					<div class="container">
@@ -66,11 +66,11 @@
 																<th><input type="checkbox"></th>
 																<th>품번</th>
 																<th>상품명</th>
-																<th>가격</th>
+																<th>판매가</th>
 																<th>상태</th>
-																<th>조회</th>
-																<th>주문</th>
-																<th>판매</th>
+																<th>조회수</th>
+																<th>주문량</th>
+																<th>판매량</th>
 																<th>재고</th>
 															</tr>
 														</thead>
