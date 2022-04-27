@@ -8,6 +8,24 @@
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+			$("#cbx_checkAll").click(function() {
+				if($("#cbx_checkAll").is(":checked")) $("input[name=check]").prop("checked", true);
+				else $("input[name=check]").prop("checked", false);
+			});
+			
+			$("input[name=check]").click(function() {
+				var total = $("input[name=check]").length;
+				var checked = $("input[name=check]:checked").length;
+				
+				if(total != checked) $("#cbx_checkAll").prop("checked", false);
+				else $("#cbx_checkAll").prop("checked", true); 
+			});
+		});
+</script>
+
 <!-- Start Header -->
 
 <body>
@@ -63,7 +81,7 @@
 													<table>
 														<thead>
 															<tr>
-																<th><input type="checkbox"></th>
+																<th><input type="checkbox" id="cbx_checkAll"></th>
 																<th>품번</th>
 																<th>상품명</th>
 																<th>판매가</th>
@@ -77,7 +95,7 @@
 														<tbody>
 															<tr>
 																<td class="cart-pic first-row">
-																	<input type="checkbox">
+																	<input type="checkbox" name="check">
 																</td>
 																<td class="normal-row">
 																1
@@ -101,7 +119,7 @@
 														<tbody>
 															<tr>
 																<td class="cart-pic first-row">
-																	<input type="checkbox">
+																	<input type="checkbox" name="check">
 																</td>
 																<td class="normal-row">
 																1
