@@ -174,4 +174,7 @@ function convertCurrency(cnt) {
     
     var totalPrice = $('#totalPrice').text();
     $('#totalPrice').text(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    
+    var point = $('#point').text();
+    $('#point').text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 }

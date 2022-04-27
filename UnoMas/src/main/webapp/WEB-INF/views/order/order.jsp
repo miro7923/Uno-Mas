@@ -420,6 +420,7 @@ int deliveryFee = 3000;
                                     <% total += prodPrice; } %>
                                     <li class="total-price">배송비 <span id="deliveryFee"><%=deliveryFee %>원</span></li>
                                     <li class="total-price">합계 <span id="totalPrice"><%=total + deliveryFee %>원</span></li>
+                                    <li class="total-price">적립혜택 <span id="point"><%=(int)(total * 0.05) %>원</span></li>
                                 </ul>
                             </div>
                         </div>
