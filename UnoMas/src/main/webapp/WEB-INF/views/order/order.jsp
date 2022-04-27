@@ -60,7 +60,9 @@ int deliveryFee = 3000;
                                     <div class="col-lg-9">
                                         <input type="radio" value="1" name="deliverSpot" checked="checked">기본배송지 
                                         <input type="radio" value="2" name="deliverSpot">신규배송지
-                                        <button type="button" class="site-btn deliverListBtn">배송지 목록</button>
+                                        <!-- @@ 주소북 목록 불러오기 @@ -->
+                                        <button type="button" class="site-btn deliverListBtn"
+                                         onclick="window.open('/addrBook');">배송지 목록</button>
                                     </div>
                                 </div>
                             </div>
