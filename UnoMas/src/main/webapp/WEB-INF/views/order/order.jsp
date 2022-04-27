@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
@@ -21,7 +21,8 @@ int point = 100;
 
 // @@ 장바구니 목록 가져오기 @@
 int total = 0;
-int prodPrice = 1000;
+int prodPrice = 10000;
+int deliveryFee = 3000;
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -412,10 +413,13 @@ int prodPrice = 1000;
                                 <ul class="order-table">
                                     <li>상품 <span>상품금액</span></li>
                                     <!-- @@ 장바구니 목록 배열 사이즈만큼 출력하기 @@ -->
+                                    <!-- @@ 장바구니 목록 로드시 model에 배열 길이 정보 저장해서 자바스크립트에서 읽어오기 @@ -->
                                     <%for (int i = 0; i < 5; i++) { %>
-	                                    <li class="fw-normal">Combination x 1 <span><%=prodPrice %>원</span></li>
+	                                    <li class="fw-normal">Combination x 1 
+	                                    <span id="prodPrice<%=i %>"><%=prodPrice %>원</span></li>
                                     <% total += prodPrice; } %>
-                                    <li class="total-price">Total <span><%=total %>원</span></li>
+                                    <li class="total-price">배송비 <span id="deliveryFee"><%=deliveryFee %>원</span></li>
+                                    <li class="total-price">합계 <span id="totalPrice"><%=total + deliveryFee %>원</span></li>
                                 </ul>
                             </div>
                         </div>

@@ -12,6 +12,7 @@ $(document).ready(function() {
     toggleCashReciptApply();
     changeIndividualCashReciptType();
     changeCashReciptType();
+    convertCurrency(5);
 });
 
 function toggleAddrBox() {
@@ -157,5 +158,20 @@ function daumPostcode() {
                 guideTextBox.style.display = 'none';
             }
         }
-    }).open(); 
+    }).open();
+}
+
+function convertCurrency(cnt) {
+    for (var i = 0; i < cnt; i++) {
+        var id = '#prodPrice' + i;
+        var price = $(id).text();
+    
+        $(id).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    }
+    
+    var deliveryFee = $('#deliveryFee').text();
+    $('#deliveryFee').text(deliveryFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    
+    var totalPrice = $('#totalPrice').text();
+    $('#totalPrice').text(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 }
