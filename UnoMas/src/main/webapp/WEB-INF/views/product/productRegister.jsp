@@ -7,6 +7,7 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
 <!-- Start Header -->
 
 <body>
@@ -67,10 +68,22 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<input type="text" placeholder="대분류">
+											<select class="selectBox">
+												<option>대분류</option>
+												<option>채소</option>
+												<option>과일·견과·쌀</option>
+												<option>수산·해산·건어물</option>
+												<option>정육·계란</option>
+												<option>생수·음료·우유·커피</option>
+											</select>
 										</div>
 										<div class="col-lg-6">
-											<input type="text" placeholder="소분류">
+											<select class="selectBox">
+												<option>소분류</option>
+												<option>1</option>
+												<option>2</option>
+											</select>
+											<label></label>
 										</div>
 										<div class="col-lg-12">
 											<label>요약 설명<span>*</span></label> <input type="text">
