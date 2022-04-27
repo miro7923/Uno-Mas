@@ -10,6 +10,7 @@ $(document).ready(function() {
     disableDivMonth();
     togglePurchaseMethod();
     toggleCashReciptApply();
+    changeIndividualCashReciptType();
     changeCashReciptType();
 });
 
@@ -76,8 +77,8 @@ function toggleCashReciptApply() {
     });
 }
 
-function changeCashReciptType() {
-    $('select[name=cashReciptType]').change(function() {
+function changeIndividualCashReciptType() {
+    $('select[name=individualCashReciptType]').change(function() {
         if ($(this).val() == 1) {
             // 휴대폰 번호로 현금영수증
             $('#select_phone').show();
@@ -91,10 +92,30 @@ function changeCashReciptType() {
             $('#select_cashReciptCard').hide();
         }
         else {
-            // 현금영수증 카드로 현금영수증
+            // 현금영수증 카드번호로 현금영수증
             $('#select_phone').hide();
             $('#select_citizenNum').hide();
             $('#select_cashReciptCard').show();
         }
     });
+}
+
+function changeCashReciptType() {
+    $('input:radio[name=cashReciptType]').change(function() {
+        if ($(this).val() == 1) {
+            // 개인 현금영수증
+            $('#cash_individual').show();
+            $('#cash_company').hide();
+        }
+        else {
+            // 사업자 현금영수증
+            $('#cash_individual').hide();
+            $('#cash_company').show();
+        }
+    });
+}
+
+function changeCashReciptInfo() {
+    $('#cashReciptChange').show();
+    $('#cashReciptNormal').hide();
 }
