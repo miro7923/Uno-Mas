@@ -47,3 +47,11 @@
     border: 2px solid #ebebeb;
     height: 30px;
 }
+
+.checkout-form input[name=saveCashReciptStat] {
+    width: 13%; 
+}
+
+.checkout-form #cashReciptApply {
+    padding-left: 10px; 
+}

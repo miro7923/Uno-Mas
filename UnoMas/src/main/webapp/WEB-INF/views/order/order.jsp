@@ -14,7 +14,7 @@
 <%
 // @@ 세션값으로 회원정보 가져오기 @@
 String name = "홍길동";
-String phoneNum = "010-1234-5678";
+String phoneNum = "01012345678";
 String email = "hong@hong.com";
 String addr = "부산광역시 부산진구 동천로109 삼한골든게이트 7층";
 int point = 100;
@@ -36,7 +36,9 @@ int point = 100;
                                 <label for="fir"><%=name %></label>
                             </div>
                             <div class="col-lg-12">
-                                <label for="cun-name"><%=phoneNum %></label>
+                                <label for="cun-name"><%=phoneNum.substring(0, 3) %> 
+                                - <%=phoneNum.substring(3, 7) %> 
+                                - <%=phoneNum.substring(7, 11) %></label>
                             </div>
                             <div class="col-lg-12">
                                 <label for="cun"><%=email %></label>
@@ -265,13 +267,103 @@ int point = 100;
 	                                <div class="col-lg-9">
 	                                    <input type="text" id="account" placeholder="'-' 제외한 숫자만 입력해 주세요.">
 	                                </div>
-	                                <div class="col-lg-3 pb-2">
+	                                <div class="col-lg-3 pb-2" id="cashReciptNormal">
 	                                    <label>현금영수증</label>
 	                                </div>
 	                                <div class="col-lg-9">
-	                                    <label>개인소득공제 (휴대폰번호 : <%=phoneNum %>)</label>
+	                                    <label>개인소득공제 
+	                                    (휴대폰번호 : <%=phoneNum.substring(0, 3) %> - <%=phoneNum.substring(3, 7) %>
+	                                     - <%=phoneNum.substring(7, 11) %>)</label>
 	                                    <button type="button" class="site-btn deliverListBtn postalBtn">
 	                                    현금영수증정보 변경</button>
+	                                </div>
+	                                <div class="col-lg-3 pb-2" id="cashReciptChange">
+	                                    <label>현금영수증</label>
+	                                </div>
+	                                <div class="col-lg-9">
+	                                    <input type="radio" name="cashRecipt" value="1" checked><label>신청하기</label>
+	                                    <input type="radio" name="cashRecipt" value="2"><label>신청안함</label>
+	                                </div>
+	                                <div class="row" id="cashReciptApply">
+		                                <div class="col-lg-3 pb-2">
+		                                    <label> </label>
+		                                </div>
+		                                <div class="col-lg-9">
+		                                    <input type="radio" name="cashReciptType" value="1" checked><label>개인소득공제용</label>
+		                                    <input type="radio" name="cashReciptType" value="2"><label>사업자증빙용(세금계산서용)</label>
+		                                </div>
+		                                <div class="col-lg-3 pb-2" id="">
+		                                    <label></label>
+		                                </div>
+		                                <div class="col-lg-9">
+	                                        <div class="row pb-2">
+	                                            <div class="col-lg-12">
+				                                    <select class="selectBox" name="cashReciptType">
+				                                        <option value="1">휴대폰번호</option>
+				                                        <option value="2">주민등록번호</option>
+				                                        <option value="3">현금영수증카드번호</option>
+				                                    </select>
+	                                            </div>
+	                                        </div>
+	                                        <!-- 현금영수증 - 폰번호 입력 -->
+	                                        <div class="row" id="select_phone">
+		                                        <div class="col-lg-3">
+								                    <input type="tel" class="phone" id="phone1" name="phone" 
+								                    maxlength="3" value="<%=phoneNum.substring(0, 3)%>">
+		                                        </div>
+		                                        -
+		                                        <div class="col-lg-3">
+								                    <input type="tel" class="phone" id="phone2" name="phone" 
+								                    maxlength="4" value="<%=phoneNum.substring(3, 7)%>">
+		                                        </div>
+		                                        -
+		                                        <div class="col-lg-3">
+				  		                            <input type="tel" class="phone" id="phone3" name="phone" 
+				  		                            maxlength="4" value="<%=phoneNum.substring(7, 11)%>">
+		                                        </div>
+		                                    </div>
+		                                    <!-- 현금영수증 - 주민번호 -->
+	                                        <div class="row" id="select_citizenNum" style="display: none;">
+		                                        <div class="col-lg-5">
+								                    <input type="text" class="phone" id="citizenNum1" name="phone" 
+								                    maxlength="6">
+		                                        </div>
+		                                        -
+		                                        <div class="col-lg-5">
+								                    <input type="text" class="phone" id="citizenNum2" name="phone" 
+								                    maxlength="7">
+		                                        </div>
+		                                    </div>
+		                                    <!-- 현금영수증 - 현금영수증 카드번호 -->
+	                                        <div class="row" id="select_cashReciptCard" style="display: none;">
+		                                        <div class="col-lg-2 pr-0">
+								                    <input type="text" class="phone" id="citizenNum1" name="phone" 
+								                    maxlength="4">
+		                                        </div>
+		                                        &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+		                                        <div class="col-lg-2 px-0">
+								                    <input type="text" class="phone" id="citizenNum2" name="phone" 
+								                    maxlength="4">
+		                                        </div>
+		                                        &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+		                                        <div class="col-lg-2 px-0">
+								                    <input type="text" class="phone" id="citizenNum2" name="phone" 
+								                    maxlength="4">
+		                                        </div>
+		                                        &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+		                                        <div class="col-lg-3 pl-0">
+								                    <input type="text" class="phone" id="citizenNum2" name="phone" 
+								                    maxlength="7">
+		                                        </div>
+		                                    </div>
+		                                </div>
+	                                </div>
+	                                <div class="col-lg-3 pb-2">
+	                                    <label></label>
+	                                </div>
+	                                <div class="col-lg-9 px-0">
+	                                    <input type="checkbox" class="saveCashReciptStat" name="saveCashReciptStat" 
+	                                    value="1"><label>현재 현금영수증 신청정보를 저장합니다.</label>
 	                                </div>
 	                            </div>
 	                        </div>

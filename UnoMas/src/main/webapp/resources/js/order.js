@@ -9,6 +9,8 @@ $(document).ready(function() {
     toggleUseAllPoints();
     disableDivMonth();
     togglePurchaseMethod();
+    toggleCashReciptApply();
+    changeCashReciptType();
 });
 
 function toggleAddrBox() {
@@ -57,6 +59,42 @@ function togglePurchaseMethod() {
         else {
             $('#method_creditCard').hide();
             $('#method_bankAccount').show();
+        }
+    });
+}
+
+function toggleCashReciptApply() {
+    $('input:radio[name=cashRecipt]').change(function() {
+        if ($(this).val() == 1) {
+            // 현금영수증 신청하기
+            $('#cashReciptApply').show();
+        }
+        else {
+            // 신청 안함
+            $('#cashReciptApply').hide(); 
+        }
+    });
+}
+
+function changeCashReciptType() {
+    $('select[name=cashReciptType]').change(function() {
+        if ($(this).val() == 1) {
+            // 휴대폰 번호로 현금영수증
+            $('#select_phone').show();
+            $('#select_citizenNum').hide();
+            $('#select_cashReciptCard').hide();
+        }
+        else if ($(this).val() == 2) {
+            // 주민 번호로 현금영수증
+            $('#select_phone').hide();
+            $('#select_citizenNum').show();
+            $('#select_cashReciptCard').hide();
+        }
+        else {
+            // 현금영수증 카드로 현금영수증
+            $('#select_phone').hide();
+            $('#select_citizenNum').hide();
+            $('#select_cashReciptCard').show();
         }
     });
 }
