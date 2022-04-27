@@ -55,3 +55,54 @@
 .checkout-form #cashReciptApply {
     padding-left: 10px; 
 }
+
+.orderTable {
+    width: 100%;
+    border: none;
+    border-top: 2px solid #e7ab3c;
+    border-bottom: 1px solid #dddde1;
+    table-layout: fixed;
+}
+
+.orderTable th {
+    padding: 13px 0 12px;
+    border-top: 1px solid #383d4a;
+    color: #20232c;
+    font-weight: normal;
+}
+
+.orderTable th, .orderTable td {
+    border: none;
+    text-align: center;
+}
+
+.orderTable .group td {
+    border-top: 1px solid #dddde1;
+}
+
+.orderTable td.product {
+    padding: 13px 10px 11px;
+    text-align: left;
+    position: relative;
+}
+
+.orderTable td {
+    padding: 15px 0;
+    border-top: 1px solid #edeeef;
+    color: #20232c;
+    vertical-align: middle;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.orderTable a {
+    color: black;
+}
+
+.orderTable a:hover {
+    text-decoration: underline;
+}
+
+.orderNum {
+	font-size: 14px;
+}
