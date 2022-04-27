@@ -18,6 +18,10 @@ String phoneNum = "01012345678";
 String email = "hong@hong.com";
 String addr = "부산광역시 부산진구 동천로109 삼한골든게이트 7층";
 int point = 100;
+
+// @@ 장바구니 목록 가져오기 @@
+int total = 0;
+int prodPrice = 1000;
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -27,7 +31,7 @@ int point = 100;
     <!-- 상품 주문 영역 -->
     <section class="checkout-section spad">
         <div class="container">
-            <form action="#" class="checkout-form">
+            <form action="/order/purchase" class="checkout-form">
                 <div class="row">
                     <div class="col-lg-6">
                         <h4>주문자 정보</h4>
@@ -402,36 +406,25 @@ int point = 100;
                     </div>
                     <div class="col-lg-6">
                         <div class="place-order">
-                            <h4>Your Order</h4>
+                            <h4>상품 정보</h4>
                             <div class="order-total">
                                 <ul class="order-table">
-                                    <li>Product <span>Total</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                    <li class="fw-normal">Subtotal <span>$240.00</span></li>
-                                    <li class="total-price">Total <span>$240.00</span></li>
+                                    <li>상품 <span>상품금액</span></li>
+                                    <!-- @@ 장바구니 목록 배열 사이즈만큼 출력하기 @@ -->
+                                    <%for (int i = 0; i < 5; i++) { %>
+	                                    <li class="fw-normal">Combination x 1 <span><%=prodPrice %>원</span></li>
+                                    <% total += prodPrice; } %>
+                                    <li class="total-price">Total <span><%=total %>원</span></li>
                                 </ul>
-                                <div class="payment-check">
-                                    <div class="pc-item">
-                                        <label for="pc-check">
-                                            Cheque Payment
-                                            <input type="checkbox" id="pc-check">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div class="pc-item">
-                                        <label for="pc-paypal">
-                                            Paypal
-                                            <input type="checkbox" id="pc-paypal">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="order-btn">
-                                    <button type="submit" class="site-btn place-btn">Place Order</button>
-                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row text-center">
+                    <div class="col-lg-12">
+                        <div class="order-btn mt-5">
+                            <button type="submit" class="site-btn place-btn">결제하기</button>
                         </div>
                     </div>
                 </div>
