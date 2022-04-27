@@ -126,20 +126,21 @@ int prodPrice = 1000;
 	                                    <div class="col-lg-9">
 	                                        <div class="row">
 			                                    <div class="col-lg-4">
-						                            <input type="text" id="name" name="name">
+						                            <input type="text" id="postalcode" name="postalcode">
 			                                    </div>
 			                                    <div class="col-lg-3" style="padding: 0;">
 			                                        <button type="button" class="site-btn deliverListBtn postalBtn"
-			                                         onclick="/* 다음 우편번호 API */">우편번호</button>
+			                                         onclick="daumPostcode();">우편번호</button>
 			                                    </div>
 	                                        </div>
 	                                        <div class="row">
 	                                            <div class="col-lg-6" style="padding-right: 3px;">
-	                                                <input type="text">
+	                                                <input type="text" id="roadAddress">
 	                                            </div>
 	                                            <div class="col-lg-6" style="padding-left: 3px;">
-	                                                <input type="text">
+	                                                <input type="text" id="detailAddress">
 	                                            </div>
+	                                            <span id="guide" style="color:#999;display:none"></span>
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -448,6 +449,7 @@ int prodPrice = 1000;
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${path}/resources/js/order.js"></script>
 
 
