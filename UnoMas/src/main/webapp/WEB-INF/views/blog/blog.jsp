@@ -56,7 +56,7 @@
                             <div class="recent-blog">
                                 <a href="#" class="rb-item">
                                     <div class="rb-pic">
-                                        <img src="img/blog/recent-1.jpg" alt="">
+                                        <img src="${path}/resources/img/blog/recent-1.jpg" alt="">
                                     </div>
                                     <div class="rb-text">
                                         <h6>The Personality Trait That Makes...</h6>
@@ -65,7 +65,7 @@
                                 </a>
                                 <a href="#" class="rb-item">
                                     <div class="rb-pic">
-                                        <img src="img/blog/recent-2.jpg" alt="">
+                                        <img src="${path}/resources/img/blog/recent-2.jpg" alt="">
                                     </div>
                                     <div class="rb-text">
                                         <h6>The Personality Trait That Makes...</h6>
@@ -74,7 +74,7 @@
                                 </a>
                                 <a href="#" class="rb-item">
                                     <div class="rb-pic">
-                                        <img src="img/blog/recent-3.jpg" alt="">
+                                        <img src="${path}/resources/img/blog/recent-3.jpg" alt="">
                                     </div>
                                     <div class="rb-text">
                                         <h6>The Personality Trait That Makes...</h6>
@@ -83,7 +83,7 @@
                                 </a>
                                 <a href="#" class="rb-item">
                                     <div class="rb-pic">
-                                        <img src="img/blog/recent-4.jpg" alt="">
+                                        <img src="${path}/resources/img/blog/recent-4.jpg" alt="">
                                     </div>
                                     <div class="rb-text">
                                         <h6>The Personality Trait That Makes...</h6>
@@ -111,7 +111,7 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-1.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-1.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
                                     <a href="./blog-details.html">
@@ -124,7 +124,7 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-2.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-2.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
                                     <a href="./blog-details.html">
@@ -137,7 +137,7 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-3.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-3.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
                                     <a href="./blog-details.html">
@@ -150,7 +150,7 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-4.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
                                     <a href="./blog-details.html">
@@ -163,7 +163,7 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-5.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-5.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
                                     <a href="./blog-details.html">
@@ -176,7 +176,7 @@
                         <div class="col-lg-6 col-sm-6">
                             <div class="blog-item">
                                 <div class="bi-pic">
-                                    <img src="img/blog/blog-6.jpg" alt="">
+                                    <img src="${path}/resources/img/blog/blog-6.jpg" alt="">
                                 </div>
                                 <div class="bi-text">
                                     <a href="./blog-details.html">

@@ -22,7 +22,7 @@
 							</dl>
 						</div>
                         <h3 class="footerInquiry">
-                           	<a href="#">1:1문의</a>
+                           	<a href="contact">1:1문의</a>
                         </h3>
                         <dl class="inquiryExpln">
                         	<dt>24시간 접수 가능</dt>

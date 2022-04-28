@@ -27,7 +27,7 @@
     				<a href="register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="faq" class="linkMenu">고객센터</a>
+    				<a href="contact" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -37,20 +37,20 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="login.html" class="linkMenu">마이페이지</a>
+    				<a href="" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="register.html" class="linkMenu">로그아웃</a>
+    				<a href="" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="customerService.html" class="linkMenu">고객센터</a>
+    				<a href="contact" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
     	<%
 			}
     	%>
-    	 <div class="headerMiddle">
+    	 <div class="headerMiddle"> <!-- 로고·검색창·찜·장바구니 -->
             <div class="inner-header">
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
@@ -86,33 +86,57 @@
             </div>
         </div>
         <div class="nav-item">
-            <div class="container">
+            <div class="container"> <!-- 카테고리 내외부 -->
                 <div class="nav-depart">
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
                         <span>전체 카테고리</span>
-                        <ul class="depart-hover">
-                            <li><a href="#">여성의류</a></li>
-                            <li><a href="#">남성의류</a></li>
-                            <li><a href="#">언더웨어</a></li>
-                            <li><a href="#">유아용의류</a></li>
-                            <li><a href="#">브랜드</a></li>
-                            <li><a href="#">악세사리/신발</a></li>
-                            <li><a href="#">명품의류</a></li>
+                        <ul class="depart-hover firstMenu">
+                            <li><a href="#">채소</a>
+                            	<ul class="secondMenu">
+                            		<li><a href="#">고구마 · 감자 · 당근</a></li>
+                            		<li><a href="#">양파 · 대파 · 마늘 · 배추</a></li>
+                            		<li><a href="#">냉동 · 이색 · 간편채소</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">과일 · 견과류 · 쌀</a>
+                            	<ul class="secondMenu">
+                            		<li><a href="#">제철과일</a></li>
+                            		<li><a href="#">견과류</a></li>
+                            		<li><a href="#">쌀</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">수산 · 해산 · 건어물</a>
+                           		<ul class="secondMenu">
+                            		<li><a href="#">해산물</a></li>
+                            		<li><a href="#">수산가공품</a></li>
+                            		<li><a href="#">김 · 미역</a></li>
+                            		<li><a href="#">건어물</a></li>
+                            	</ul>
+                            </li>
+                            <li><a href="#">정육 · 계란</a>
+                           		<ul class="secondMenu">
+                            		<li><a href="#">국내산 소고기</a></li>
+                            		<li><a href="#">수입산 소고기</a></li>
+                            		<li><a href="#">돼지고기</a></li>
+                            		<li><a href="#">닭 · 오리고기</a></li>
+                            	</ul>
+                           	</li>
+                            <li><a href="#">생수 · 우유 · 커피 · 차</a>
+                            	<ul class="secondMenu">
+                            		<li><a href="#">생수</a></li>
+                            		<li><a href="#">우유</a></li>
+                            		<li><a href="#">커피 · 차</a></li>
+                            	</ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="shop">신상품</a></li>
-                        <li><a href="shop">특가</a></li>
-                        <li><a href="shop">공동구매</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="product_list">신상품</a></li>
+                        <li><a href="product_list">특가</a></li>
+                        <li><a href="product_list">공동구매</a></li>
                     </ul>
                 </nav>
             </div>

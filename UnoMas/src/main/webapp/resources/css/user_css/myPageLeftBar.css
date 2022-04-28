@@ -1,0 +1,34 @@
+.left-bar {
+	float: left;
+    min-width: 200px;
+    width: 200px;
+}
+.page_name {
+    border: 0.5px solid #D5D5D5;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    font-size: 15pt;
+    font-weight: bold;
+    background-color: #B9CE45;
+    color: white;
+}
+.mypage-cate {
+	padding: 30px 20px;
+	border: 0.5px solid #D5D5D5;
+}
+.mypage-cate > p {
+	margin: 3px 0px;
+	font-size: 11pt;
+	cursor: pointer;
+}
+.mypage-cate > p:hover {
+	color: #B9CE45;
+}
+.mypage-cate-info {
+	border: 0.5px solid #D5D5D5;
+	line-height: 45px;
+    text-align: center;
+    margin: 10px 0px;
+    cursor: pointer;
+}
