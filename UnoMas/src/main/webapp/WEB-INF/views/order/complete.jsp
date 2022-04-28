@@ -37,7 +37,7 @@ String deliveryMemo = "문 앞에 놔주세요.";
 			<form action="/order/purchase" class="checkout-form">
 				<div class="row">
 					<div class="col-lg-12">
-						<h4>결제가 완료되었습니다!</h4>
+						<h4><%=name %>님의 결제가 완료되었습니다!</h4>
 						<div class="row pl-3">
 							<div class="col-lg-1">
 								<label for="fir">주문일자</label>
@@ -60,24 +60,18 @@ String deliveryMemo = "문 앞에 놔주세요.";
 							<div class="col-lg-12">
 								<table cellspacing="0" border="1" class="orderTable mgt">
 									<colgroup>
-										<col width="150">
 										<col width="">
-										<col width="98">
-										<col width="100">
+										<col width="150">
 									</colgroup>
 									<thead>
 										<tr>
-											<th scope="col"><strong>상품주문번호</strong></th>
 											<th scope="col">상품정보</th>
 											<th scope="col">상품금액(수량)</th>
-											<th scope="col" class="bg_point">배송비</th>
 										</tr>
 									</thead>
 									<tbody>
 									    <%for (int i = 0; i < cnt; i++) { %>
 										<tr class="group">
-											<td><span class="orderNum">2022041339806841</span>
-											</td>
 											<td class="product">
 												<div class="row">
 													<div class="col-lg-2 text-center">
@@ -98,21 +92,13 @@ String deliveryMemo = "문 앞에 놔주세요.";
 																	target="_blank"> 바이오더마 아토덤 인텐시브 밤 500ml(병원전용제품 정품홀로그램부착) </a>
 																<!--N=a:odd.product-->
 															</dt>
-															<!-- <dd>선택: 12_슈퍼 60P (-12,000원)</dd> -->
+															<dd>수량 : 1개</dd>
 														</dl>
 													</div>
 												</div>
 											</td>
 											<td class="money"><strong>25,500</strong>원<br>
 												<span>(1개)</span></td>
-											<td class="seller bg_point" rowspan="1">
-												<div class="send">
-													<div class="sum">
-														무료 
-														<!--N=a:odd.deldetail-->
-													</div>
-												</div>
-											</td>
 									    <% } %>
 										</tr>
 									</tbody>
@@ -238,19 +224,6 @@ String deliveryMemo = "문 앞에 놔주세요.";
 						<br>
 						<hr>
 						<br>
-						<h4>주문자 정보</h4>
-						<div class="row pl-3">
-							<div class="col-lg-12">
-							    <%=name %>
-							</div>
-							<div class="col-lg-12">
-							    <%=phoneNum.substring(0, 3) %> - <%=phoneNum.substring(3, 7) %> - 
-							    <%=phoneNum.substring(7, 11) %>
-							</div>
-							<div class="col-lg-12">
-							    <%=email %>
-							</div>
-						</div>
 					</div>
 				</div>
 				<br>
