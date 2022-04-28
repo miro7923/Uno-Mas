@@ -43,7 +43,7 @@ public class UserController {
 	// mypage
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
-		return "user/mapage";
+		return "user/myPage";
 	}
 	@RequestMapping(value = "/myInfo")
 	public String myInfo() {

@@ -7,7 +7,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="./UnoMyPage.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/user_css/myPage.css">
 <title>UnoMas 마이페이지</title>
 </head>
 <body>
@@ -91,7 +91,7 @@
   	
   	
   	  <div class="bottom-container">
-  		<img src="orderInfoImg.png">
+  		<img src="${path}/resources/img/user_img/orderInfoImg.png">
   	  </div>
   	</div>
   	

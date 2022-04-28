@@ -17,12 +17,14 @@
 	padding: 30px 20px;
 	border: 0.5px solid #D5D5D5;
 }
-.mypage-cate > p {
+.mypage-cate > a {
+	display: table;
 	margin: 3px 0px;
 	font-size: 11pt;
-	cursor: pointer;
+	text-decoration: none;
+	color: black;
 }
-.mypage-cate > p:hover {
+.mypage-cate > a:hover {
 	color: #B9CE45;
 }
 .mypage-cate-info {
