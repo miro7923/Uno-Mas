@@ -92,7 +92,7 @@ String deliveryMemo = "문 앞에 놔주세요.";
 																	target="_blank"> 바이오더마 아토덤 인텐시브 밤 500ml(병원전용제품 정품홀로그램부착) </a>
 																<!--N=a:odd.product-->
 															</dt>
-															<dd>수량 : 1개</dd>
+															<!-- <dd>수량 : 1개</dd> -->
 														</dl>
 													</div>
 												</div>
