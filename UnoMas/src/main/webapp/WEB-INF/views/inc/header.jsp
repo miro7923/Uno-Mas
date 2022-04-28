@@ -71,7 +71,7 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="#">
+                                <a href="wishlist">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>

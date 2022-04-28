@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.proceed-checkout ul li.shipping {
+	font-weight: 400;
+	text-transform: capitalize;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ffffff;
+}
+.proceed-checkout ul li.shipping span {
+    font-weight: 700;
+}
+.cartCheck{
+	width: 60px;
+}

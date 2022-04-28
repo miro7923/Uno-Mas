@@ -27,4 +27,6 @@
     <link rel="stylesheet" href="${path}/resources/css/slicknav.min.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/style.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/headerFooter.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/shopping-cart.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/wishlist.css?after" type="text/css">
 </head>

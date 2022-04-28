@@ -9,14 +9,6 @@
 <!-- Start Header -->
 
 <body>
-	<script>
-		function selectAll(selectAll){
-			const checkboxes = document.getElementsByName('cartCheck');
-			checkboxes. forEach((checkbox) => {
-				checkbox.checked = selectAll.checked;
-			})
-		}
-	</script>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
@@ -29,7 +21,7 @@
                     <div class="breadcrumb-text product-more">
                         <a href="./home.html"><i class="fa fa-home"></i> Home</a>
                         <a href="shop">Shop</a>
-                        <span>장바구니</span>
+                        <span>위시리스트</span>
                     </div>
                 </div>
             </div>
@@ -46,66 +38,51 @@
                         <table>
                             <thead>
                                 <tr>
-                                	<th class="cartCheck"><input type="checkbox" name="cartCheck" value="selectall" onclick='selectAll(this)'/></th>
                                     <th>이미지</th>
-                                    <th class="p-name">상품 정보</th>
+                                    <th class="p-name">상품정보</th>
                                     <th>가격</th>
-                                    <th>수량</th>
-                                    <th>합계</th>
-                                    <th><i class="ti-close"></i></th>
+                                    <th></th>
+                                    <th>삭제</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                	<td class="cartCheck"><input type="checkbox" name="cartCheck" value="check1"/></td>
                                     <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
                                     <td class="cart-title first-row">
                                         <h5>Pure Pineapple</h5>
                                     </td>
                                     <td class="p-price first-row">$60.00</td>
-                                    <td class="qua-col first-row">
+                                    <td class="cartInFirst">
                                         <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
+		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">장바구니 담기</button>
                                         </div>
                                     </td>
-                                    
-                                    <td class="total-price first-row">$60.00</td>
                                     <td class="close-td first-row"><i class="ti-close"></i></td>
                                 </tr>
                                 <tr>
-                                	<td class="cartCheck"><input type="checkbox" name="cartCheck" value="check2"/></td>
                                     <td class="cart-pic"><img src="img/cart-page/product-2.jpg" alt=""></td>
                                     <td class="cart-title">
                                         <h5>American lobster</h5>
                                     </td>
                                     <td class="p-price">$60.00</td>
-                                    <td class="qua-col">
+                                    <td class="cartInElse">
                                         <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
+                                            <button type="button" class="btn btn-outline-secondary btn-lg px-4">장바구니 담기</button>
                                         </div>
                                     </td>
-                                    <td class="total-price">$60.00</td>
                                     <td class="close-td"><i class="ti-close"></i></td>
                                 </tr>
                                 <tr>
-                                	<td class="cartCheck"><input type="checkbox" name="cartCheck" value="check3"/></td>
                                     <td class="cart-pic"><img src="img/cart-page/product-3.jpg" alt=""></td>
                                     <td class="cart-title">
                                         <h5>Guangzhou sweater</h5>
                                     </td>
                                     <td class="p-price">$60.00</td>
-                                    <td class="qua-col">
+                                    <td class="cartInElse">
                                         <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
+                                            <button type="button" class="btn btn-outline-secondary btn-lg px-4">장바구니 담기</button>
                                         </div>
                                     </td>
-                                    <td class="total-price">$60.00</td>
                                     <td class="close-td"><i class="ti-close"></i></td>
                                 </tr>
                             </tbody>
@@ -115,24 +92,7 @@
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <a href="index" class="primary-btn continue-shop">쇼핑 계속하기</a>
-<!--                                 <a href="#" class="primary-btn up-cart">Update cart</a> -->
-                            </div>
-<!--                             <div class="discount-coupon"> -->
-<!--                                 <h6>Discount Codes</h6> -->
-<!--                                 <form action="#" class="coupon-form"> -->
-<!--                                     <input type="text" placeholder="Enter your codes"> -->
-<!--                                     <button type="submit" class="site-btn coupon-btn">Apply</button> -->
-<!--                                 </form> -->
-<!--                             </div> -->
-                        </div>
-                        <div class="col-lg-4 offset-lg-4">
-                            <div class="proceed-checkout">
-                                <ul>
-                                    <li class="subtotal">총 상품가격 <span>$240.00</span></li>
-                                    <li class="shipping">배송비 <span>$0</span></li>
-                                    <li class="cart-total">총 결제 예상금액 <span>$240.00</span></li>
-                                </ul>
-                                <a href="check-out" class="proceed-btn">구매하기</a>
+                                <a href="shopping-cart" class="primary-btn up-cart">장바구니로 이동</a>
                             </div>
                         </div>
                     </div>

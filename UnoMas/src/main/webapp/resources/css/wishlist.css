@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+.cartInFirst{
+	padding-bottom: 0 !important;
+}
+.cartInElse{
+	padding-bottom: 20px !important;
+}
