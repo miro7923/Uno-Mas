@@ -37,44 +37,6 @@ public class HomeController {
 		
 	}
 	
-	// customerCenter
-	@RequestMapping(value = "/contact")
-	public String contact() {
-		return "customerCenter/contact";
-	}
-	@RequestMapping(value = "/faq")
-	public String faq() {
-		return "customerCenter/faq";
-	}
-	
-	// member
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "member/login";
-	}
-	@RequestMapping(value = "/register")
-	public String register() {
-		return "member/register";
-	}
-	
-	// product
-	@RequestMapping(value = "/check-out")
-	public String checkout() {
-		return "product/check-out";
-	}
-	@RequestMapping(value = "/product")
-	public String product() {
-		return "product/product";
-	}
-	@RequestMapping(value = "/shop")
-	public String shop() {
-		return "product/shop";
-	}
-	@RequestMapping(value = "/shopping-cart")
-	public String cart() {
-		return "product/shopping-cart";
-	}
-	
 	
 	@RequestMapping(value = "/index")
 	public String index() {

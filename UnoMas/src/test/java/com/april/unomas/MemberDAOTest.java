@@ -29,7 +29,7 @@ public class MemberDAOTest {
 		log.info(dao.toString());
 	}
 	
-//	@Test
+	@Test
 	public void DB시간확인() {
 		
 		String time = dao.getTime();
