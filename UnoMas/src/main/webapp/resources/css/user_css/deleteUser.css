@@ -44,7 +44,7 @@ h3 {
 }
 
 
-/* Å»Åð È®ÀÎ ±½Àº ±Û¾¾ */
+/* Å»ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ */
 .leave_list_bold {
 	margin: 50px 0px;
 }
@@ -55,7 +55,7 @@ h3 {
 }
 
 
-/* Å»Åð È®ÀÎ ¸®½ºÆ® */
+/* Å»ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® */
 .leave_list {
 	margin-bottom: 50px;
 	border-bottom: 1px solid #d5d5d5;
@@ -76,7 +76,7 @@ h3 {
         margin: 30px 0px;
 }
 
-/* È¸¿ø Á¤º¸ È®ÀÎ */
+/* È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ */
 .table_info {
 	width: 100%;
     border-top: 1.5px solid #ddd;
@@ -112,7 +112,7 @@ th, td {
 
 
     
-/*¹öÆ°*/
+/*ï¿½ï¿½Æ°*/
 .btn_area {
     padding: 40px 0;
     text-align: center;
@@ -120,7 +120,7 @@ th, td {
 .btn_submit {
 	width: 110px;
     font-size: 15px;
-    background-color: #F15F5F;
+    background-color: #B9CE45;
     color: white;
     display: inline-block;
     text-decoration: none;

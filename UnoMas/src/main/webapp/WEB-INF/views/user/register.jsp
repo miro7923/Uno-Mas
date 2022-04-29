@@ -20,7 +20,7 @@
 	
     <div class="wrap">
     	<div class="form-wrap">
-            <h1>회원가입</h1>
+            <h1 class="register_title">회원가입</h1>
                 
             <form id="register" action="./SignUpAction.us" onsubmit="return signUpCheckFunc()" class="input-group">
                 	
@@ -92,6 +92,6 @@
         </div>
     </div>
 
-<%-- 	<jsp:include page="../inc/bottom.jsp"></jsp:include> --%>
+
 </body>
 </html>

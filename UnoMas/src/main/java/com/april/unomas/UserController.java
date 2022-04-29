@@ -19,7 +19,7 @@ public class UserController {
 	public String registerAgree() {
 		return "user/registerAgree";
 	}
-	@RequestMapping(value = "/delUser")
+	@RequestMapping(value = "/delete_user")
 	public String delUSer() {
 		return "user/deleteUser";
 	}
@@ -51,9 +51,9 @@ public class UserController {
 	}
 	@RequestMapping(value = "/update_myInfo")
 	public String myInfoUpdate() {
-		return "user/myInfoUpdate";
+		return "user/updateMyInfo";
 	}
-	@RequestMapping(value = "/myPoint")
+	@RequestMapping(value = "/mypoint")
 	public String myPoint() {
 		return "user/myPoint";
 	}

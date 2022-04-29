@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -14,60 +15,44 @@
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
 
-    <!-- Breadcrumb Section Begin -->
-    <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Login</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Form Section Begin -->
+    <div id="container">
+		<!-- 헤더 들어가는 곳 -->
 
-    <!-- Register Section Begin -->
-    <div class="register-login-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="login-form">
-                        <h2>Login</h2>
-                        <form action="#">
-                            <div class="group-input">
-                                <label for="username">Username or email address *</label>
-                                <input type="text" id="username">
-                            </div>
-                            <div class="group-input">
-                                <label for="pass">Password *</label>
-                                <input type="text" id="pass">
-                            </div>
-                            <div class="group-input gi-check">
-                                <div class="gi-more">
-                                    <label for="save-pass">
-                                        Save Password
-                                        <input type="checkbox" id="save-pass">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <a href="#" class="forget-pass">Forget your Password</a>
-                                </div>
-                            </div>
-                            <button type="submit" class="site-btn login-btn">Sign In</button>
-                        </form>
-                        <div class="switch-login">
-                            <a href="./register.html" class="or-login">Or Create An Account</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Register Form Section End -->
+		<!-- 헤더 들어가는 곳 -->
 
-    <!-- Partner Logo Section End -->
+		<!-- 본문내용 -->
+		<article>
+			<h3 class="login_name">로그인</h3>
+			<hr>
+			<form action="" id="join" method="post" onsubmit="return memberCk();">
+				<div class="input_box">
+				<input type="text" id="id" name="id" placeholder="아이디를 입력하세요.">
+				<input type="password" id="pass" name="pass" placeholder="비밀번호를 입력하세요.">
+				<p id="cir_text"></p>
+				</div>
+
+				<div class="check_box">
+					<label class="label_checkbox">
+						<input type="checkbox" id="check_save" name="check_save" value="chk">로그인정보 저장
+					</label>
+					<div class="login_search">
+						<a href="" class="id_search">아이디 찾기 | </a> <a href="" class="pass_search">비밀번호 찾기</a>
+					</div>
+				</div>
+				
+				<div id="buttons">
+					<input type="submit" value="로그인" id="loginus">
+					<input type="submit" value="회원가입" id="joinus">
+				</div>
+			</form>
+
+		</article>
+		<!-- 본문내용 -->
+
+
+	</div>
+    
+    
     <!-- Footer Section Begin -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     <!-- Footer Section End -->

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<link rel="stylesheet" href="${path}/resources/css/user_css/member_sub.css">
+<link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
 
 
 <script type="text/javascript" src="../script/jquery-3.6.0.js"></script>
@@ -32,7 +32,8 @@
 <body>
 	<div id="container">
 		<!-- 헤더 들어가는 곳 -->
-
+<jsp:include page="../inc/top.jsp"></jsp:include>
+<%-- <jsp:include page="../inc/header.jsp"></jsp:include> --%>
 		<!-- 헤더 들어가는 곳 -->
 
 		<!-- 본문내용 -->
@@ -53,10 +54,9 @@
 		</article>
 		<!-- 본문내용 -->
 
-		<!-- 푸터 들어가는 곳 -->
-
-		<!-- 푸터 들어가는 곳 -->
-
 	</div>
+	<!-- 푸터 들어가는 곳 -->
+	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	<!-- 푸터 들어가는 곳 -->
 </body>
 </html>

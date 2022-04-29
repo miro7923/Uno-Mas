@@ -6,12 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${path}/resources/css/user_css/point.css">
+<link rel="stylesheet" href="${path}/resources/css/user_css/myPoint.css">
 <title>적립금 확인 페이지</title>
 </head>
 
 <body>
-  <div style="height: 80px; border-bottom: 1px solid black; background-color: green">헤더</div>
+<jsp:include page="../inc/top.jsp"></jsp:include>
+<jsp:include page="../inc/header.jsp"></jsp:include>
+<!--   <div style="height: 80px; border-bottom: 1px solid black; background-color: green">헤더</div> -->
 		
 	
   <div class="point_container">
@@ -97,13 +99,13 @@
 
 			<%
 				//for(int i=startPage; i<=endPage; i++) {
-					%><a>[1]</a> <%		
+					%><a>1</a> <%		
 				//}
 			%>
 
 			<%
 				//if(endPage < pageCount) {
-					%><a href="">[Next]</a> <%
+					%><a href="">[다음]</a> <%
 				//}
 			%>
 
@@ -127,6 +129,7 @@
     </div>
 </div>
 
-	<div style="border-top: 1px solid black; height: 200px; background-color: green; clear:left;"> 푸터 </div>
+<!-- 	<div style="border-top: 1px solid black; height: 200px; background-color: green; clear:left;"> 푸터 </div> -->
+	<jsp:include page="../inc/bottom.jsp"></jsp:include>
 </body>
 </html>

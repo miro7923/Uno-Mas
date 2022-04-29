@@ -4,15 +4,7 @@
     font-family: sans-serif;
 }
 
-span {
-	font-size: 11pt;
-	color: #FF5E00;
-	margin-left: 10px;
-}
-
-label { font-size: 11pt;  }
-
-h1 { 
+.register_title { 
 	text-align: center;
     margin-top: 30px;
     color: black;
@@ -22,14 +14,12 @@ h1 {
     margin-left: 50px
 }
 
-
 .wrap {
     height: 1500px;
     width: 100%;
     background-image: url(img/background.jpg);
     background-position: center;
     background-size: cover;
-    position: absolute;
 }
 
 .form-wrap {
@@ -49,6 +39,14 @@ h1 {
     margin-left: 130px;
     padding-left: 22px;
     padding-top: 40px
+}
+
+.input-group label { font-size: 11pt;  }
+
+.input-group label span {
+	font-size: 11pt;
+	color: #FF5E00;
+	margin-left: 10px;
 }
 
 .input-field{
