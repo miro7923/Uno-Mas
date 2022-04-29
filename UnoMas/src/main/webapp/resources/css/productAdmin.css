@@ -158,6 +158,40 @@ input[type="checkbox"]:checked::before {
     border: 1px solid #e2e2e2;
 }
 
+.section-title .h2 .span {
+	font-size: 16px;
+	color: #636363;
+}
+
+.section-title p {
+	font-size: 26px;
+	font-weight: bold;
+    color: #6e6e6e;
+}
+
+.section-title .square{
+	font-size: 18px;
+	font-weight: bold;
+    color: #e7ab3c;
+}
+
+.section-title .product-price span {
+    font-size: 26px;
+    font-weight: 400;
+    color: #636363;
+    text-decoration: line-through;
+}
+
+.section-title .product-price {
+    font-size: 36px;
+    font-weight: 700;
+    color: #e7ab3c;
+}
+
+.countdown {
+	margin-bottom: 50px;
+}
+
 .countdown .h2 {
 	color: #e7ab3c;
 	font-weight: bold;
@@ -167,10 +201,36 @@ input[type="checkbox"]:checked::before {
 
 .countdown .time-title {
 	font-size: 26px;
-    font-weight: normal;
+    font-weight: bold;
     text-align: center;
 }
 
+.countdown .time-font {
+	font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    color: #e7ab3c;
+}
+
+.hours, .minutes, .seconds {
+	display: inline-block;
+    background: #ffffff;
+    padding: 10px 14px;
+    border-radius: 5px;
+}
+
+.countdown .time-font .col {
+	font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    color: #636363;
+}
+.co-image .img{
+	margin:0px auto;
+	padding:30px;
+	max-height: 60%;
+	text-align: right;
+}
 /* .p { */
 /*     font-size: 26px; */
 /*     font-family: "Muli", sans-serif; */

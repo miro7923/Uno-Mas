@@ -39,6 +39,9 @@ function remaindTime() {
 	} else if(nt>et){
 		$("p.time-title").html("마감");
 		$(".time").fadeOut();
+		$(".hours").html("--");
+		$(".minutes").html("--");
+		$(".seconds").html("--");
 		
 	} else {
 		$(".time").fadeIn();
@@ -70,5 +73,4 @@ function remaindTime() {
    }
 }
  setInterval(remaindTime,1000);
- 
  

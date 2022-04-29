@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
 <!-- Start Header -->
 
-
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -37,76 +36,81 @@
 		<div class="container" >
 			<div class="col-lg-12 order-1 order-lg-2" style="background-color: #FAF5DF;">
 			<div class="row">
-            <div class="col-lg-6 text-center">
-                <div class="section-title">
-                	<label></label>
-                    <h2>Deal Of The Week</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br> do ipsum dolor sit amet,
-                        consectetur adipisicing elit </p>
-                    <div class="product-price">
-                        $35.00
-                        <span>/ HanBag</span>
-                    </div>
-                </div>
-                 <div class="countdown">
+            	<div class="col-lg-6 text-center">
+                	<div class="section-title">
+                		<label></label>
+                   	 	<h2>04월 28일 오픈</h2>
+<!--                    	 	<h2 id="coDate"></h2> -->
+                   	 	<div class="square"><span>무료배송</span></div>
+                    	<p>아삭하고 부드러운 청경채 / 300g</p>
+                    	<div class="product-price">
+                       		1,095원
+                        	<span>/ 2,190원</span>
+                    	</div>
+               		</div>
+                	<div class="countdown">
 	 				<div class="time-title">
-	                <p class="time-title">마감까지 남은 시간</p></div>
-					  	<div class="time font40">
-					    	<span class="hours"></span>
-					    	<span class="col">:</span>
-					    	<span class="minutes"></span>
-					    	<span class="col">:</span>
-					    	<span class="seconds"></span>
-					 	</div>
-                </div>
-                <div class="countdown-timer" id="countdown"><div class="cd-item"><span>6</span> <p>Days</p> </div><div class="cd-item"><span>20</span> <p>Hrs</p> </div><div class="cd-item"><span>59</span> <p>Mins</p> </div><div class="cd-item"><span>57</span> <p>Secs</p> </div></div>
-                <a href="#" class="primary-btn">구매하러 가기</a>
-                <label></label>
-            </div>
-            <div class="co-image"></div>
-            <div class="col-lg-6" style="max-width: 30%; max-height: 30%; margin:0px auto; padding:30px;">
-            	<a href="product_detail">
-            	<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt=""></a>
-            </div>
-            </div>
-            </div>
-        </div>
-        <label></label><br>
+	                	<p class="time-title">마감까지 남은 시간</p></div>
+					  		<div class="time-font">
+					    		<span class="hours"></span>
+					    		<span class="col">:</span>
+					    		<span class="minutes"></span>
+					    		<span class="col">:</span>
+					    		<span class="seconds"></span>
+					 		</div>
+                	</div>
+                	<a href="#" class="primary-btn">구매하러 가기</a>
+                	<label></label>
+           	 	</div>
+            	<div class="col-lg-6">
+            		<div class="co-image">
+            			<a href="product_detail">
+            			<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt=""></a>
+            		</div>
+            	</div>
+          	</div>
+         	</div>
+       	</div>
+       	<label></label><br>
 		<div class="container" >
 			<div class="col-lg-12 order-1 order-lg-2" style="background-color: #FAF5DF;">
 			<div class="row">
-            <div class="col-lg-6 text-center">
-                <div class="section-title">
-                	<label></label>
-                    <h2>Deal Of The Week</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br> do ipsum dolor sit amet,
-                        consectetur adipisicing elit </p>
-                    <div class="product-price">
-                        $35.00
-                        <span>/ HanBag</span>
-                    </div>
-                </div>
-                <div class="countdown">
+            	<div class="col-lg-6 text-center">
+                	<div class="section-title">
+                		<label></label>
+                   	 	<h2>04월 28일 오픈</h2>
+<!--                    	 	<h2 id="coDate"></h2> -->
+                   	 	<div class="square"><span>무료배송</span></div>
+                    	<p>아삭하고 부드러운 청경채 / 300g</p>
+                    	<div class="product-price">
+                       		1,095원
+                        	<span>/ 2,190원</span>
+                    	</div>
+               		</div>
+                	<div class="countdown">
 	 				<div class="time-title">
-	                <p class="time-title">마감까지 남은 시간</p></div>
-					  	<div class="time font40">
-					    	<span class="hours"></span>
-					    	<span class="col">:</span>
-					    	<span class="minutes"></span>
-					    	<span class="col">:</span>
-					    	<span class="seconds"></span>
-					 	</div>
-                </div>
-                <div class="countdown-timer" id="countdown"><div class="cd-item"><span>29</span> <p>Days</p> </div><div class="cd-item"><span>20</span> <p>Hrs</p> </div><div class="cd-item"><span>59</span> <p>Mins</p> </div><div class="cd-item"><span>57</span> <p>Secs</p> </div></div>
-                <a href="#" class="primary-btn">구매하러 가기</a>
-                <label></label>
-            </div>
-            </div>
-            </div>
-        </div>
-        <label></label><br>
-        
-	</section>
+	                	<p class="time-title">마감까지 남은 시간</p></div>
+					  		<div class="time-font">
+					    		<span class="hours"></span>
+					    		<span class="col">:</span>
+					    		<span class="minutes"></span>
+					    		<span class="col">:</span>
+					    		<span class="seconds"></span>
+					 		</div>
+                	</div>
+                	<a href="#" class="primary-btn">구매하러 가기</a>
+                	<label></label>
+           	 	</div>
+            	<div class="col-lg-6">
+            		<div class="co-image">
+            			<a href="product_detail">
+            			<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt=""></a>
+            		</div>
+            	</div>
+          	</div>
+         	</div>
+       	</div>
+       	<label></label><br>
 <!-- style="background-image: url(&quot;/resources/img/time-bg.jpg&quot;);"> -->
 <!-- style="background-color: #ECEDEE;" -->
 
