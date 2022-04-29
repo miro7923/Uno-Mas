@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.unomas.mapper.BoardMapper">
+  <insert id="create">
+		insert into test_board(faq_title,faq_content,faq_cate) 
+		values(#{faq_title},#{faq_content},#{faq_cate})
+	</insert>
+	
+	<select id="listAll" resultType="BoardVO">
+		<![CDATA[
+		select * from test_board 
+		where faq_num > 0
+		]]>
+	</select>
+</mapper>

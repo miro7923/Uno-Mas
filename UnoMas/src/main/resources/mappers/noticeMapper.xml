@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.unomas.mapper.NoticeMapper">
+  <insert id="create">
+		insert into test_notice(admin_num,notice_title,notice_content) 
+		values(#{admin_num},#{notice_title},#{notice_content})
+	</insert>
+	
+	<select id="listAll" resultType="NoticeVO">
+		<![CDATA[
+		select * from test_notice 
+		where notice_num > 0
+		]]>
+	</select>
+	
+	<select id="getNotice" resultType="NoticeVO">
+		select * from test_notice
+		where notice_num=#{notice_num}
+	</select>
+	
+</mapper>

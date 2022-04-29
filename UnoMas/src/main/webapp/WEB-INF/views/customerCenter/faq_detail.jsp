@@ -115,7 +115,79 @@
     background-position: 50% 50%;
     text-indent: -9999px
 }
+.boardView {
+    table-layout: fixed;
+    border-top: 2px solid #333;
+    border-bottom: 1px solid #f4f4f4;
+    color: #333;
+    line-height: 180%;
+    margin-top: 20px
+}
 
+.boardView th {
+    width: 130px;
+    padding: 13px 0 13px 20px;
+    background-color: #f7f5f8;
+    border-top: 1px solid #f4f4f4;
+    text-align: left
+}
+
+.boardView td {
+    width: auto;
+    padding: 13px 0 13px 23px;
+    border-top: 1px solid #f4f4f4
+}
+
+.boardView tr.etcArea td {
+    padding: 0;
+    border: 0
+}
+
+.boardView tr.etcArea ul {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    width: 100%;
+    border-top: 1px solid #f4f4f4
+}
+
+.boardView tr.etcArea ul li {
+    float: left
+}
+
+.boardView tr.etcArea ul .th {
+    float: left;
+    padding: 13px 0 13px 20px;
+    width: 130px;
+    background-color: #f7f5f8
+}
+
+.boardView tr.etcArea ul .td {
+    float: left;
+    padding: 13px 0 13px 20px;
+    width: 180px
+}
+.bhs_button.yb:hover {
+    background-color: #5f0080;
+    color: #fff
+}
+.bhs_button.yb {
+    background-color: #795b8f;
+    color: #fff
+}
+.bhs_button {
+    width: 150px;
+    display: inline-block;
+    line-height: 40px;
+    text-align: center;
+    background-color: #795b8f;
+    border: 1px solid #5f0080;
+    color: #fff;
+    font-size: 15px;
+    float: right;
+    margin-left: 2px;
+    font-size: 13px
+}
 </style>
 
 </head>
@@ -159,14 +231,10 @@
     
     
     <select id="select_location" onchange="select_location()">
-    	<option value="">선택</option>
     	<option value="/faq">공지사항</option>
-    	<option value="/qni">자주하는 질문</option>
+    	<option value="/faq">자주하는 질문</option>
     	<option value="/faq">1:1 문의</option>
     </select>
-    
-    <input type="button" value="글쓰기" onclick="location.href='/faq_insert';">
-    
     <script type="text/javascript">
     	function select_location() {
     		var val = document.getElementById('select_location');
@@ -175,63 +243,81 @@
     	}
     </script>
     
-    <form name="frmList" action="/shop/board/list.php?&amp;" onsubmit="return chkFormList(this)">
-        <input type="hidden" name="id" value="notice">
-        <style>
-            .notice .layout-pagination {
-                margin: 0
-            }
+    
+    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td>
+<table width="100%">
+<tbody><tr>
+<td>
+<table class="boardView" width="100%">
+<tbody><tr>
+<th scope="row" style="border:none;">제목</th>
+<td>${vo.notice_title }</td>
+</tr>
+<tr>
+<th scope="row">작성자</th>
+<td>${vo.admin_num }</td>
+</tr>
+<tr class="etcArea">
+<td colspan="2">
+<ul>
+<li class="date ">
+<strong class="th">작성일</strong> <span class="td">${vo.notice_regdate }</span>
+</li>
+<li class="hit ">
+<strong class="th">조회수</strong> <span class="td">${vo.notice_readcount }</span>
+</li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td align="right" class="eng" style="padding:5px;">
+</td>
+</tr>
+<tr>
+<td style="padding:10px;" height="200" valign="top" id="contents">
+<table width="100%" style="table-layout:fixed">
+<tbody><tr>
+<td>${vo.notice_content }</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr><td height="1" bgcolor="#f4f4f4"></td></tr>
+</tbody></table><br>
+<table width="100%" style="table-layout:fixed" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td align="center" style="padding-top:10px;">
+<table width="100%">
+<tbody><tr>
+<td align="right">
+<a href="/faq"><span class="bhs_button yb" style="float:none;">목록</span></a>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+<!-- <div class="xans-element- xans-board xans-board-movement-1002 xans-board-movement xans-board-1002 "><ul>
+<li class="prev ">
+<strong>이전글</strong><a href="/board/free/read.html?no=27121&amp;board_no=1&amp;page="></a><a href="view.php?id=notice&amp;no=930">[가격인상공지] [아베나] 니트릴 장갑 다목적용 XS 외 3건 (2021 5. 21 ~)</a>
+</li>
+<li class="next ">
+<strong>다음글</strong><a href="/board/free/read.html?no=22443&amp;board_no=1&amp;page="></a><a href="view.php?id=notice&amp;no=932">[가격인상공지] [카구라노사토] 유즈코쇼 (2021 6. 22 ~)</a>
+</li>
+</ul>
+</div> -->
+<br><table width="100%" cellpadding="5" cellspacing="0">
+<colgroup><col width="100" align="right" bgcolor="#f7f7f7" style="padding-right:10px">
+<col style="padding-left:10px">
+</colgroup></table><p>
 
-            .eng2 {
-                color: #939393
-            }
-
-            .xans-board-listheader {
-                font-size: 12px
-            }
-        </style>
-
-
-        <table width="1000px" class="xans-board-listheader jh" cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>작성일</th>
-                    <th>조회</th>
-                </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${boardList }" var="vo">
-                <tr>
-                    <td width="50" nowrap="" align="center">
-                        ${vo.notice_num } </td>
-                    <td style="padding-left:10px; text-align:left; color:#999">
-                        <a href="/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a><b>
-                        </b>
-                    </td>
-                    <td width="100" nowrap="" align="center">
-                        ${vo.admin_num } </td>
-                    <td width="100" nowrap="" align="center" class="eng2">${vo.notice_regdate }</td>
-                    <td width="30" nowrap="" align="center" class="eng2">${vo.notice_readcount }</td>
-                </tr>
-            </c:forEach>
-
-            </tbody>
-        </table>
-        <table class="xans-board-search xans-board-search2">
-            <tbody>
-                <tr>
-
-                    <td class="input_txt">&nbsp;</td>
-                    <td>
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+</p></td></tr></tbody></table>
+    
 </div>
                         
                         
