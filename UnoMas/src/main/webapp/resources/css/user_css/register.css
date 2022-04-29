@@ -5,6 +5,7 @@
 }
 
 .register_title { 
+	font-size: 30px;
 	text-align: center;
     margin-top: 30px;
     color: black;
@@ -14,7 +15,7 @@
     margin-left: 50px
 }
 
-.wrap {
+.register_wrap {
     height: 1500px;
     width: 100%;
     background-image: url(img/background.jpg);
@@ -22,9 +23,9 @@
     background-size: cover;
 }
 
-.form-wrap {
+.register_form {
     width: 700px;
-    height: 1250px;
+    height: 1500px;
     position: relative;
     margin: 6% auto;
     padding: 5px;
@@ -32,7 +33,7 @@
 }
 
 
-.input-group {
+.register_input_group {
     top: 100px;
     position: absolute;
     transition: .5s;
@@ -41,15 +42,15 @@
     padding-top: 40px
 }
 
-.input-group label { font-size: 11pt;  }
+.register_input_group label { font-size: 11pt;  }
 
-.input-group label span {
+.register_input_group label span {
 	font-size: 11pt;
 	color: #FF5E00;
 	margin-left: 10px;
 }
 
-.input-field{
+.register_field{
     width: 310px;
 	padding: 10px 10px;
 	margin-top: 5px;
@@ -106,7 +107,7 @@
 .check-button:hover{ background-color:  transparent; }
 
  
-.submitbutton {
+.register_button {
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;

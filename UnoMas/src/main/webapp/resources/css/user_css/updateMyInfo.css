@@ -9,9 +9,8 @@ a{
 
 .myinfo_container {
 	display: flex;
-	padding: 30px 15%;
+	padding: 70px 15%;
 	min-width: 1050px;
-	max-width: 1050px;
 }
 
 .myinfo_content  {
@@ -20,8 +19,15 @@ a{
     text-align: left;
     width: 100%;
 }
-.myinfo_content > h3 {
+.myinfo_content h2 {
+	font-size: 24px;
+	color: black;
+	font-weight: bold;
+}
+.myinfo_content h3 {
+	font-size: 18px;
 	margin: 30px 0px 10px 0px;
+	font-weight: bold;
 }
 .table_div {
 	border-top: 1px solid #ddd;
@@ -228,6 +234,9 @@ ul, ol {
     vertical-align: middle;
     color: white;
     margin: 50px 0px 30px 0px;
+}
+.reset_btn > span {
+	color: black;
 }
 
 

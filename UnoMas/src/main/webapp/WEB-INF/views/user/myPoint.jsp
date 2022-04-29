@@ -131,5 +131,15 @@
 
 <!-- 	<div style="border-top: 1px solid black; height: 200px; background-color: green; clear:left;"> 푸터 </div> -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/resources/js/bootstrap.min.js"></script>
+    <script src="${path}/resources/js/jquery-ui.min.js"></script>
+    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
+    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
+    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
+    <script src="${path}/resources/js/jquery.dd.min.js"></script>
+    <script src="${path}/resources/js/jquery.slicknav.js"></script>
+    <script src="${path}/resources/js/owl.carousel.min.js"></script>
+    <script src="${path}/resources/js/main.js"></script>
 </body>
 </html>
