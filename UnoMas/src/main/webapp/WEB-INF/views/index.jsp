@@ -6,6 +6,7 @@
 <html>
 <!-- Start header -->
 <jsp:include page="inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/index.css?after" type="text/css">
 <!-- Start header -->
 
 <body>
@@ -51,7 +52,87 @@
         </div>
     </section>
     <!-- Hero Section End -->
-
+	<!-- 지금 Hot한 상품 Begin -->
+	<div class="hotList">
+		<h3>지금 Hot한 상품</h3>
+		<p class="sub-title">지금 많이 찾으시는 상품들을 만나보세요</p>
+		<div class="hotItemWrap">
+			<ul class="item-cont">
+				<dl class="itemList">
+					<dt class="thumb">
+						<a href="">
+							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
+								style="width:200px;">
+						</a>
+					</dt>
+					<dd class="prdInfo">
+						<p class="prdName">
+							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
+						</p>
+						<p class="prdPrice">
+							<del>60,000원</del>
+							<br>
+							47,900원
+						</p>
+					</dd>
+				</dl>
+				<dl class="itemList">
+					<dt class="thumb">
+						<a href="">
+							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
+								style="width:200px;">
+						</a>
+					</dt>
+					<dd class="prdInfo">
+						<p class="prdName">
+							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
+						</p>
+						<p class="prdPrice">
+							<del>60,000원</del>
+							<br>
+							47,900원
+						</p>
+					</dd>
+				</dl><dl class="itemList">
+					<dt class="thumb">
+						<a href="">
+							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
+								style="width:200px;">
+						</a>
+					</dt>
+					<dd class="prdInfo">
+						<p class="prdName">
+							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
+						</p>
+						<p class="prdPrice">
+							<del>60,000원</del>
+							<br>
+							47,900원
+						</p>
+					</dd>
+				</dl>
+				<dl class="itemList">
+					<dt class="thumb">
+						<a href="">
+							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
+								style="width:200px;">
+						</a>
+					</dt>
+					<dd class="prdInfo">
+						<p class="prdName">
+							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
+						</p>
+						<p class="prdPrice">
+							<del>60,000원</del>
+							<br>
+							47,900원
+						</p>
+					</dd>
+				</dl>
+			</ul>
+		</div>
+    </div>
+    <!-- 지금 Hot한 상품 End -->
     <!-- Banner Section Begin -->
     <div class="banner-section spad">
         <div class="container-fluid">
@@ -202,48 +283,17 @@
     </section>
     <!-- Women Banner Section End -->
 
-    <!-- Deal Of The Week Section Begin-->
-    <section class="deal-of-week set-bg spad" data-setbg="${path}/resources/img/time-bg.jpg">
-        <div class="container">
-            <div class="col-lg-6 text-center">
-                <div class="section-title">
-                    <h2>Deal Of The Week</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed<br /> do ipsum dolor sit amet,
-                        consectetur adipisicing elit </p>
-                    <div class="product-price">
-                        $35.00
-                        <span>/ HanBag</span>
-                    </div>
-                </div>
-                <div class="countdown-timer" id="countdown">
-                    <div class="cd-item">
-                        <span>56</span>
-                        <p>Days</p>
-                    </div>
-                    <div class="cd-item">
-                        <span>12</span>
-                        <p>Hrs</p>
-                    </div>
-                    <div class="cd-item">
-                        <span>40</span>
-                        <p>Mins</p>
-                    </div>
-                    <div class="cd-item">
-                        <span>52</span>
-                        <p>Secs</p>
-                    </div>
-                </div>
-                <a href="#" class="primary-btn">Shop Now</a>
-            </div>
-        </div>
-    </section>
-    <!-- Deal Of The Week Section End -->
-
-    <!-- Man Banner Section Begin -->
-    <section class="man-banner spad">
+    <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="${path}/resources/img/products/women-large.jpg">
+                        <h2>Women’s</h2>
+                        <a href="#">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
                         <ul>
                             <li class="active">Clothings</li>
@@ -255,7 +305,7 @@
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/man-1.jpg" alt="">
+                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
@@ -279,7 +329,7 @@
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/man-2.jpg" alt="">
+                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -301,7 +351,7 @@
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/man-3.jpg" alt="">
+                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -323,7 +373,7 @@
                         </div>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/man-4.jpg" alt="">
+                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -345,133 +395,132 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 offset-lg-1">
-                    <div class="product-large set-bg m-large" data-setbg="${path}/resources/img/products/man-large.jpg">
-                        <h2>Men’s</h2>
+            </div>
+        </div>
+    </section>
+    <!-- Women Banner Section End -->    
+
+       <!-- Women Banner Section Begin -->
+    <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" data-setbg="${path}/resources/img/products/women-large.jpg">
+                        <h2>Women’s</h2>
                         <a href="#">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="filter-control">
+                        <ul>
+                            <li class="active">Clothings</li>
+                            <li>HandBag</li>
+                            <li>Shoes</li>
+                            <li>Accessories</li>
+                        </ul>
+                    </div>
+                    <div class="product-slider owl-carousel">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Coat</div>
+                                <a href="#">
+                                    <h5>Pure Pineapple</h5>
+                                </a>
+                                <div class="product-price">
+                                    $14.00
+                                    <span>$35.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Shoes</div>
+                                <a href="#">
+                                    <h5>Guangzhou sweater</h5>
+                                </a>
+                                <div class="product-price">
+                                    $13.00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Towel</div>
+                                <a href="#">
+                                    <h5>Pure Pineapple</h5>
+                                </a>
+                                <div class="product-price">
+                                    $34.00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
+                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Towel</div>
+                                <a href="#">
+                                    <h5>Converse Shoes</h5>
+                                </a>
+                                <div class="product-price">
+                                    $34.00
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Man Banner Section End -->
+    <!-- Women Banner Section End -->
 
-    <!-- Instagram Section Begin -->
-    <div class="instagram-photo">
-        <div class="insta-item set-bg" data-setbg="${path}/resources/img/insta-1.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="${path}/resources/img/insta-2.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="${path}/resources/img/insta-3.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="${path}/resources/img/insta-4.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="${path}/resources/img/insta-5.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-        <div class="insta-item set-bg" data-setbg="${path}/resources/img/insta-6.jpg">
-            <div class="inside-text">
-                <i class="ti-instagram"></i>
-                <h5><a href="#">colorlib_Collection</a></h5>
-            </div>
-        </div>
-    </div>
-    <!-- Instagram Section End -->
+    
 
     <!-- Latest Blog Section Begin -->
-    <section class="latest-blog spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>From The Blog</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="${path}/resources/img/latest-1.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2019
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>The Best Street Style From London Fashion Week</h4>
-                            </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="${path}/resources/img/latest-2.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2019
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>Vogue's Ultimate Guide To Autumn/Winter 2019 Shoes</h4>
-                            </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="${path}/resources/img/latest-3.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2019
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="#">
-                                <h4>How To Brighten Your Wardrobe With A Dash Of Lime</h4>
-                            </a>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    
             <div class="benefit-items">
                 <div class="row">
                     <div class="col-lg-4">

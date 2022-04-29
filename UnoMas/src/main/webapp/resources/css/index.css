@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+.hotList h3 {
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    font-family: 'Noto Sans KR';
+}
+.hotList .sub-title {
+    color: #999;
+    font-size: 13px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 200;
+}
+.itemList{
+    margin-bottom: 60px;
+    display: inline-block;
+    vertical-align: top;
+/*     width: calc(25% - 15px); */
+	height: 250px;
+    margin-right: 20px;
+    margin-bottom: 120px;
+}
+.thumb{
+    position: relative;
+    height: 210px;
+}
+.thumb > a {
+    display: block;
+    overflow: hidden;
+    padding-top: 129%;
+    position: relative;
+}
+.thumb > a img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+.itemList dd {
+    padding-top: 10px;
+    position: relative;
+}
+.prdName {
+    margin: 0 0 10px;
+    font-size: 12px;
+    line-height: 15px;
+    height: 45px;
+}
+.prdName a:visited {
+	color: black;
+}
+.prdPrice {
+    font-size: 12px;
+    margin: 0 0 10px;
+    position: relative;
+}
+.prd-price del {
+    color: #8e8d8d;
+    font-weight: normal;
+    display: block;
+}
