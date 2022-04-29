@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /******************************************************************
   Template Name: Fashi
   Description: Fashi eCommerce HTML Template
@@ -679,7 +680,7 @@ ol {
 	color: #ffffff;
 	right: 20px;
 	top: 13px;
-	content: "";
+/* 	content: "�꼪"; */
 	font-family: FontAwesome;
 	font-size: 18px;
 }
@@ -1699,7 +1700,7 @@ ol {
 	position: absolute;
 	right: -18px;
 	top: 0px;
-	content: "";
+	content: "�꼨";
 	font-family: "FontAwesome";
 	font-size: 16px;
 	color: #b2b2b2;
@@ -3762,7 +3763,7 @@ ol {
 
 .faq-accordin .card-heading a:after,
 .faq-accordin .card-heading>a.active[aria-expanded=false]:after {
-	content: "";
+	content: "�겎";
 	font-family: "FontAwesome";
 	font-size: 14px;
 	color: #404040;
@@ -3779,7 +3780,7 @@ ol {
 
 .faq-accordin .card-heading a[aria-expanded=true]:after,
 .faq-accordin .card-heading>a.active:after {
-	content: "";
+	content: "�겏";
 	font-family: "FontAwesome";
 	float: left;
 	font-size: 13px;
@@ -3950,9 +3951,9 @@ ol {
 	.inner-header .advanced-search .input-group {
 		max-width: 64%;
 	}
-	.nav-item .nav-menu li a {
-		padding: 16px 26px 15px;
-	}
+/* 	.nav-item .nav-menu li a { */
+/* 		padding: 16px 26px 15px; */
+/* 	} */
 	.hero-items .owl-nav button[type=button] {
 		left: 5px;
 	}
@@ -4062,12 +4063,12 @@ ol {
 	.inner-header .nav-right li {
 		margin-left: 8px;
 	}
-	.nav-item .nav-depart .depart-btn {
-		padding: 14px 40px 14px 18px;
-	}
-	.nav-item .nav-menu li a {
-		padding: 16px 10px 15px;
-	}
+/* 	.nav-item .nav-depart .depart-btn { */
+/* 		padding: 14px 40px 14px 18px; */
+/* 	} */
+/* 	.nav-item .nav-menu li a { */
+/* 		padding: 16px 10px 15px; */
+/* 	} */
 	.instagram-photo .insta-item .inside-text h5 {
 		font-size: 14px;
 	}
