@@ -106,7 +106,7 @@
                     <ul>
                         <li><a href="product_list">신상품</a></li>
                         <li><a href="product_list">특가</a></li>
-                        <li><a href="product_list">공동구매</a>
+                        <li><a href="co_buying_list">공동구매</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
                                 <li><a href="#">Women's</a></li>

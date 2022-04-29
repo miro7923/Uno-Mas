@@ -21,6 +21,10 @@ public class ProductController {
 	public String product() {
 		return "product/productDetail";
 	}
+	@RequestMapping(value = "/co_buying_list") // /shop -> /product_list
+	public String coBuyingList() {
+		return "product/coBuyingList";
+	}
 	@RequestMapping(value = "/product_register")
 	public String productRegister() {
 		return "product/productRegister";
