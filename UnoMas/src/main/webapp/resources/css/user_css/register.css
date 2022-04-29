@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.register_title { 
+	text-align: center;
+    margin-top: 30px;
+    color: black;
+    border-bottom: 2px solid #B9CE45;
+    padding-bottom: 20px;
+    width: 600px;
+    margin-left: 50px
+}
+
+.wrap {
+    height: 1500px;
+    width: 100%;
+    background-image: url(img/background.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.form-wrap {
+    width: 700px;
+    height: 1250px;
+    position: relative;
+    margin: 6% auto;
+    padding: 5px;
+    overflow: hidden;
+}
+
+
+.input-group {
+    top: 100px;
+    position: absolute;
+    transition: .5s;
+    margin-left: 130px;
+    padding-left: 22px;
+    padding-top: 40px
+}
+
+.input-group label { font-size: 11pt;  }
+
+.input-group label span {
+	font-size: 11pt;
+	color: #FF5E00;
+	margin-left: 10px;
+}
+
+.input-field{
+    width: 310px;
+	padding: 10px 10px;
+	margin-top: 5px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    outline: none;
+    background: transparent;
+    font-size: 12pt;
+}
+
+
+.input-birth {
+	width: 105px;
+	padding: 10px 10px;
+	margin-top: 5px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    outline: none;
+    background: transparent;
+    font-size: 12pt;
+    margin-right: 5px;
+    color: gray;
+}
+
+
+
+
+.input-addr {
+    width: 400px;
+	padding: 10px 10px;
+	margin-top: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    background: transparent;
+    font-size: 12pt;
+}
+.input-checkbox {
+	cursor:pointer;
+	color: black;
+	font-size: 15px;
+}
+.input-checkbox > input {
+	margin: 10px 0px;
+}
+
+.check-button {
+	padding: 10px 10px;
+	margin-top: 3px;
+    border: 0.5px solid #EAEAEA;
+    background: #F0F0E9;
+    font-size: 12pt;
+    cursor: pointer;
+}
+.check-button:hover{ background-color:  transparent; }
+
+ 
+.submitbutton {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 50px auto;
+    background: #B9CE45;
+    border: 0;
+    outline: none;
+    color: white;
+    font-weight: 700;
+}
+

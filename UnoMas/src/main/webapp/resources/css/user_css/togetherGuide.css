@@ -1,0 +1,30 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+
+.toguide_container {
+	display: flex;
+	padding: 30px 15%;
+	min-width: 1050px;
+	max-width: 1050px;
+}
+
+.toguide_content  {
+    margin-left: 30px;
+    margin-bottom: 80px;
+    text-align: left;
+    width: 100%;
+}
+.guide_title {
+    height: 60px;
+    background-color: #B9CE45;
+    padding: 10px 30px 10px;
+    line-height: 60px;
+    font-weight: bold;
+    font-size: 25px;
+    color: white;
+}
+.content_all {
+	background-color: #F1FBF0;
+}

@@ -10,18 +10,18 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.april.unomas.domain.AdminVO;
-import com.april.unomas.persistence.MemberDAO;
+import com.april.unomas.persistence.UserDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
 		locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"}
 		)
-public class MemberDAOTest {
+public class UserDAOTest {
 
-	private static final Logger log = LoggerFactory.getLogger(MemberDAOTest.class);
+	private static final Logger log = LoggerFactory.getLogger(UserDAOTest.class);
 	
 	@Inject
-	private MemberDAO dao;
+	private UserDAO dao;
 	
 	@Test
 	public void 객체주입확인() {

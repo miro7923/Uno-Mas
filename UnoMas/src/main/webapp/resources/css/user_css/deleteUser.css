@@ -1,0 +1,145 @@
+*{margin: 0px; padding:0px }
+ul, ol {
+    list-style: none;
+}
+
+.delUser_container{
+	width: 1084px;
+	height: 900px;
+    margin: 30px auto;
+}
+
+.delUser_right_container {
+    float:left;
+    margin-left: 25px;
+    margin-bottom: 80px;
+    text-align: left;
+    width: 850px;
+}
+h3 {
+	margin: 10px 0px;
+}
+
+.myinfo_box {
+	padding: 30px 25px;
+	height: 50px;
+    background-color: #eef2f3;
+}
+.myinfo_box li {
+	width: 33.333333%;
+    display: inline-block;
+    text-align: left;
+    float: left;
+}
+.myinfo_box li a {
+    font-size: 11px;
+}
+.pdct_num {
+	color: #3d727f;
+    font-weight: bold;
+    font-family: tahoma,Dotum;
+    font-size: 22px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+
+/* Ż�� Ȯ�� ���� �۾� */
+.leave_list_bold {
+	margin: 50px 0px;
+}
+.leave_list_bold li {
+	margin-top: 10px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+
+/* Ż�� Ȯ�� ����Ʈ */
+.leave_list {
+	margin-bottom: 50px;
+	border-bottom: 1px solid #d5d5d5;
+}
+.leave_list li{
+	font-size: 15px;
+    margin-bottom: 10px;
+}
+
+
+.del_check {
+	cursor:pointer;
+}
+.del_check > input {
+	vertical-align: middle;
+	height: 20px;
+    width: 20px;
+        margin: 30px 0px;
+}
+
+/* ȸ�� ���� Ȯ�� */
+.table_info {
+	width: 100%;
+    border-top: 1.5px solid #ddd;
+    border-bottom: 1.5px solid #ddd;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: inherit;
+    font-size: 12px;
+    color: #333;
+}
+th {
+	background: #f9f9f9; 
+	vertical-align: middle;
+}
+th, td {
+	border-top: 0;
+    color: #666;
+    padding: 18px 15px 16px 20px;
+    border-top: 1px solid #ededed;
+    vertical-align: middle;
+    text-align: left;
+}
+.table_info input {
+	box-sizing: border-box;
+    display: inline-block;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    color: #666;
+    width: 298px;
+    outline: none;
+}
+
+
+    
+/*��ư*/
+.btn_area {
+    padding: 40px 0;
+    text-align: center;
+}
+.btn_submit {
+	width: 110px;
+    font-size: 15px;
+    background-color: #B9CE45;
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+}
+.btn_cancle {
+	width: 110px;
+    font-size: 15px;
+    display: inline-block;
+    text-decoration: none;
+    height: 40px;
+    line-height: 40px;
+    border:1px solid #ddd;
+}
+
+
+
+
+
+
+
