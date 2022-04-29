@@ -42,10 +42,7 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
-	@RequestMapping(value = "/about_us")
-	public String aboutus() {
-		return "about_us";
-	}
+
 
 
 }
