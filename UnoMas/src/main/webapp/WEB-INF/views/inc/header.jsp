@@ -56,7 +56,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="index">
-                                <img src="${path}/resources/img/logo.png" alt="로고";>
+                                <img src="${path}/resources/img/logo.png" alt="로고">
                             </a>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                     <ul>
                         <li><a href="product_list">신상품</a></li>
                         <li><a href="product_list">특가</a></li>
-                        <li><a href="product_list">공동구매</a></li>
+                        <li><a href="co_buying_list">공동구매</a></li>
                     </ul>
                 </nav>
             </div>
