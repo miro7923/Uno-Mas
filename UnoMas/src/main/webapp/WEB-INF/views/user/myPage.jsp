@@ -11,8 +11,8 @@
 <title>UnoMas 마이페이지</title>
 </head>
 <body>
-  <div style="border-bottom: 1px solid black;">헤더</div>
-  <div style="height: 70px; border-bottom: 1px solid black;">로고</div>
+  <jsp:include page="../inc/top.jsp"></jsp:include>
+  <jsp:include page="../inc/header.jsp"></jsp:include>
   
   <div class="mypage_container">
   	<jsp:include page="myPageLeftBar.jsp"></jsp:include>
@@ -97,8 +97,17 @@
   	
   	
   </div>
+  <jsp:include page="../inc/bottom.jsp"></jsp:include>
   
-  <div style="border-top: 1px solid black; height: 200px; clear: left;" >푸터</div>
-
+  <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/resources/js/bootstrap.min.js"></script>
+    <script src="${path}/resources/js/jquery-ui.min.js"></script>
+    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
+    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
+    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
+    <script src="${path}/resources/js/jquery.dd.min.js"></script>
+    <script src="${path}/resources/js/jquery.slicknav.js"></script>
+    <script src="${path}/resources/js/owl.carousel.min.js"></script>
+    <script src="${path}/resources/js/main.js"></script>
 </body>
 </html>

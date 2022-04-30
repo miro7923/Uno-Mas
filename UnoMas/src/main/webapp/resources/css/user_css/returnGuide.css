@@ -42,7 +42,6 @@ li {
 	display: flex;
 	padding: 30px 15%;
 	min-width: 1050px;
-	max-width: 1050px;
 }
 
 .reguide_content  {
@@ -50,6 +49,7 @@ li {
     margin-bottom: 80px;
     text-align: left;
     width: 100%;
+    min-width: 800px;
 }
 .guide_title {
     height: 60px;
