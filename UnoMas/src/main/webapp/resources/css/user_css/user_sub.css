@@ -93,10 +93,14 @@ label {
     margin-top: 9px;
     font-size: 13px;
 }
+.login_search a {
+	color: black;
+}
 .id_search, .pass_search {
 	color: black;
 	text-decoration: none;
 }
+
 .input_box, #buttons {
 	margin: 0px auto;
 	padding: 0px 20px;

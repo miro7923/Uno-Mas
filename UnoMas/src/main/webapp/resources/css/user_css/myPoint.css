@@ -9,6 +9,7 @@
 .point_right_container {
 	float: left;
     width: 850px;
+    min-width: 800px;
     margin-left: 25px;
     margin-top: 20px;
 }
@@ -37,17 +38,21 @@
 }
 .point_ststus_box em {
     font-size: 15pt;
-    color: blue;
+    color: #3d727f;
 }
 .point_ststus_box dd {
 	font-size: 9pt;
 }
 
 
-/* Æ÷ÀÎÆ® ³»¿ª  */
+/* ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½  */
 .point_history {
     margin: 50px 0px;
     min-height: 300px;
+}
+.point_history > h3 {
+	font-size: 18px;
+	font-weight: bold;
 }
 .point_table {
 	width: 100%;
@@ -70,10 +75,13 @@ th, td {
 	text-align: center;
     margin: 20px auto;
 }
-.page_control a {
+.previous_daum {
+/* 	background-color: #B9CE45; */
+}
+.page_control > a {
 	padding: 2px 5px;
 	text-decoration: none;
-	color: #333;
+	color: #333 !important;
 	margin: 0 5px;
 	cursor: pointer;
 }
@@ -85,7 +93,7 @@ th, td {
 
 
 
-/* Æ÷ÀÎÆ® ÀÌ¿ë ¾È³» */
+/* ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¿ï¿½ ï¿½È³ï¿½ */
 .point_notice {
 	margin-top: 80px;
 	padding: 29px 30px 27px;
