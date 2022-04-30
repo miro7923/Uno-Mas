@@ -1,9 +1,10 @@
 /**
  * 
  */
+ /* 타이머 */
 function remaindTime() {
     var now = new Date();
-    var end = new Date(now.getFullYear(),now.getMonth(),now.getDate(),21,00,00);
+    var end = new Date(now.getFullYear(),now.getMonth(),now.getDate(),21,30,00);
     var open = new Date(now.getFullYear(),now.getMonth(),now.getDate(),09,00,00);
   
     var nt = now.getTime();
@@ -73,4 +74,21 @@ function remaindTime() {
    }
 }
  setInterval(remaindTime,1000);
+ 
+ 
+ /* 체크박스 전체 선택 해체 */
+ $(document).ready(function() {
+			$("#cbx_checkAll").click(function() {
+				if($("#cbx_checkAll").is(":checked")) $("input[name=check]").prop("checked", true);
+				else $("input[name=check]").prop("checked", false);
+			});
+			
+			$("input[name=check]").click(function() {
+				var total = $("input[name=check]").length;
+				var checked = $("input[name=check]:checked").length;
+				
+				if(total != checked) $("#cbx_checkAll").prop("checked", false);
+				else $("#cbx_checkAll").prop("checked", true); 
+			});
+		});
  

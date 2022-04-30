@@ -9,22 +9,6 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-		$(document).ready(function() {
-			$("#cbx_checkAll").click(function() {
-				if($("#cbx_checkAll").is(":checked")) $("input[name=check]").prop("checked", true);
-				else $("input[name=check]").prop("checked", false);
-			});
-			
-			$("input[name=check]").click(function() {
-				var total = $("input[name=check]").length;
-				var checked = $("input[name=check]:checked").length;
-				
-				if(total != checked) $("#cbx_checkAll").prop("checked", false);
-				else $("#cbx_checkAll").prop("checked", true); 
-			});
-		});
-</script>
 
 <!-- Start Header -->
 
@@ -88,7 +72,6 @@
 																<th>상태</th>
 																<th>조회수</th>
 																<th>주문량</th>
-																<th>판매량</th>
 																<th>재고</th>
 															</tr>
 														</thead>
@@ -110,7 +93,6 @@
 																	정상
 																</td>
 																<td class="normal-row">1200</td>
-																<td class="normal-row">100</td>
 																<td class="normal-row">100</td>
 																<td class="normal-row">12</td>
 																
@@ -135,9 +117,7 @@
 																</td>
 																<td class="normal-row">1200</td>
 																<td class="normal-row">100</td>
-																<td class="normal-row">100</td>
 																<td class="normal-row">12</td>
-																
 															</tr>
 														</tbody>
 													</table>
@@ -189,6 +169,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/productAdmin.js"></script>
 </body>
 
 </html>

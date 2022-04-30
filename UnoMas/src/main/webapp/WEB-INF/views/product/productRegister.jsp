@@ -125,9 +125,6 @@
 												<label>중량/용량</label> <input type="text">
 											</div>
 											<div class="col-lg-12">
-												<label>배송구분<span>*</span></label> <input type="text">
-											</div>
-											<div class="col-lg-12">
 												<label>포장타입<span>*</span></label> <input type="text">
 											</div>
 										</div>
@@ -258,7 +255,7 @@
 		                            <div class="col-lg-4 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
-		                                        <h5>상세 이미지(가로)</h5><br>
+		                                        <h5>상품 상세 설명</h5><br>
 				                                    <div class="pi-pic">
 				                                        <img src="${path}/resources/img/products/product-2.jpg" alt="">
 				                                        <div class="sale pp-sale">2</div>
@@ -278,61 +275,61 @@
 								</div>
 							</div>
 							<!-- 상품 상세 설명-->
-							<div class="col-lg-12">
-									<br>
-									<h4>상품 상세 설명</h4>
-									<div class="row">
-										<div class="col-lg-12">
-											<label>상품제목<span>*</span></label>
-										</div>
-										<div class="col-lg-6">
-											<input type="text" id="detailSubTitle">
-										</div>
-										<div class="col-lg-6">
-											<input type="text" id="detailTitle">
-										</div>
-										<div class="col-lg-12">
-											<label>재료와 성분<span>*</span></label>
-										</div>
-										<div class="col-lg-12">
-											<input type="text" id="ingredient">
-										</div>
-										<div class="col-lg-12">
-											<label>활용법<span>*</span></label>
-										</div>
-										<div class="col-lg-12">
-											<input type="text" id="recomendation1">
-											<input type="text" id="recomendation2">
-											<input type="text" id="recomendation3">
-										</div>
-										<div class="col-lg-12">
-											<label>상품 내용<span>*</span></label>
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-lg-12">
-		                    <div class="contact-form">
-		                        <div class="leave-comment">
-		                            <form action="#" class="comment-form">
-		                                    <div class="col-lg-12">
-												<div id="detailMainContent">
-		                                        <textarea placeholder="상품 설명"></textarea>
-		                                        </div>
-												<div id="ingredient">
-		                                        <textarea placeholder="보관법"></textarea>
-		                                        </div>
-												<div id="detailMainContent">
-		                                        <textarea placeholder="세척법"></textarea>
-		                                        </div>
+<!-- 							<div class="col-lg-12"> -->
+<!-- 									<br> -->
+<!-- 									<h4>상품 상세 설명</h4> -->
+<!-- 									<div class="row"> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<label>상품제목<span>*</span></label> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-6"> -->
+<!-- 											<input type="text" id="detailSubTitle"> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-6"> -->
+<!-- 											<input type="text" id="detailTitle"> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<label>재료와 성분<span>*</span></label> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<input type="text" id="ingredient"> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<label>활용법<span>*</span></label> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<input type="text" id="recomendation1"> -->
+<!-- 											<input type="text" id="recomendation2"> -->
+<!-- 											<input type="text" id="recomendation3"> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<label>상품 내용<span>*</span></label> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</form> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-lg-12"> -->
+<!-- 		                    <div class="contact-form"> -->
+<!-- 		                        <div class="leave-comment"> -->
+<!-- 		                            <form action="#" class="comment-form"> -->
+<!-- 		                                    <div class="col-lg-12"> -->
+<!-- 												<div id="detailMainContent"> -->
+<!-- 		                                        <textarea placeholder="상품 설명"></textarea> -->
+<!-- 		                                        </div> -->
+<!-- 												<div id="ingredient"> -->
+<!-- 		                                        <textarea placeholder="보관법"></textarea> -->
+<!-- 		                                        </div> -->
+<!-- 												<div id="detailMainContent"> -->
+<!-- 		                                        <textarea placeholder="세척법"></textarea> -->
+<!-- 		                                        </div> -->
 		                                        <button type="button" class="site-btn" onclick="history.back();">취소</button>
 		                                        <button type="submit" class="site-btn" >등록</button>
-		                                    </div>
-		                            </form>
-		                        </div>
-		                    </div>
-		                </div>
+<!-- 		                                    </div> -->
+<!-- 		                            </form> -->
+<!-- 		                        </div> -->
+<!-- 		                    </div> -->
+<!-- 		                </div> -->
 						<!-- 상품 상세 설명 끝-->
 					</div>
 				</div>
