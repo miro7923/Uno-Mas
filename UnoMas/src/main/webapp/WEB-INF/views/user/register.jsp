@@ -5,16 +5,8 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script src="../scripts/jquery-3.6.0.js"></script>
-<script src="./SignUp.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/user_css/register.css">
-
-<title>회원가입 페이지</title>
-
-</head>
+<title>회원가입</title>
 
 <body>
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -24,7 +16,7 @@
     	<div class="register_form">
             <h1 class="register_title">회원가입</h1>
                 
-            <form id="register" action="./SignUpAction.us" onsubmit="return signUpCheckFunc()" class="register_input_group">
+            <form id="register" action="" onsubmit="return signUpCheckFunc()" class="register_input_group">
                 	
                 <label>아이디</label><span id="id"></span><br>
                 <input type="text" class="register_field" name="id" oninput="changeIDCheck()" placeholder="3~20자" minlength=3 maxlength=20 >   
@@ -79,17 +71,13 @@
 				<input type="text" id="detailAddr" placeholder="상세주소" name="detailAddr" class="input-addr"><br>
 				<input type="hidden" id="jibunAdd" placeholder="지번주소"><br>
                     
-                <br>
-                <label onclick="infoAgreeCheck()" class="input-checkbox" id="infoAgree">
-                	<input type="checkbox" name="infoAgree" value="true" id="infoAgree"> 이용약관 동의(필수)
-                </label>
-
+                
                 <span id="infoAgree"></span><br>
                 <label class="input-checkbox" id="emailAgree">
              		<input type="checkbox" name="emailAgree" value="true" id="emailAgree"> 이메일 수신 동의(선택)
              	</label><br>
              		
-                <input type="button" class="register_button" value="회원가입">
+                <input type="submit" class="register_button" value="회원가입">
                 
             </form>
         </div>
@@ -99,6 +87,10 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
+<script src="${path}/resources/js/user_js/register.js"></script>
+
     <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
     <script src="${path}/resources/js/bootstrap.min.js"></script>
     <script src="${path}/resources/js/jquery-ui.min.js"></script>

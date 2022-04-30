@@ -17,10 +17,10 @@
 	padding: 30px 20px;
 	border: 0.5px solid #D5D5D5;
 }
-.mypage-cate > h4 {
-	font-size: 16px;
-	font-weight: bold;
-	margin: 2px 0px;
+.mypage-cate h4 {
+	font-size: 17px;
+    font-weight: bold;
+    margin: 3px 0px;
 }
 .mypage-cate > a {
 	display: table;

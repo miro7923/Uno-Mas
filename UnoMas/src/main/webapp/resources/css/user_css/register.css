@@ -41,10 +41,11 @@
     padding-left: 22px;
     padding-top: 40px
 }
-
-.register_input_group label { font-size: 11pt;  }
-
-.register_input_group label span {
+.register_input_group label { 
+	font-size: 11pt;  
+    margin-bottom: 0px;
+}
+.register_input_group span {
 	font-size: 11pt;
 	color: #FF5E00;
 	margin-left: 10px;
@@ -109,7 +110,7 @@
  
 .register_button {
     width: 85%;
-    padding: 10px 30px;
+    padding: 7px 30px;
     cursor: pointer;
     display: block;
     margin: 50px auto;

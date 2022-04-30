@@ -93,7 +93,7 @@
 			<%
 				// 이전을 누르면 이전 블럭의 제일 첫 페이지로 이동!
 				//if(startPage > pageBlock) {
-					%><a>[이전]</a> <%
+					%><a href="" class="previous_daum">[이전]</a> <%
 				//}
 			%>
 
@@ -105,7 +105,7 @@
 
 			<%
 				//if(endPage < pageCount) {
-					%><a href="">[다음]</a> <%
+					%><a href="" class="previous_daum">[다음]</a> <%
 				//}
 			%>
 
