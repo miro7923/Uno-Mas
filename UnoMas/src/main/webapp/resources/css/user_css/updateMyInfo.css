@@ -1,0 +1,254 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+a{
+	text-decoration: none;
+}
+
+
+.myinfo_container {
+	display: flex;
+	padding: 70px 15%;
+	min-width: 1050px;
+}
+
+.myinfo_content  {
+    margin-left: 30px;
+    margin-bottom: 80px;
+    text-align: left;
+    width: 100%;
+    min-width: 800px;
+}
+.myinfo_content h2 {
+	font-size: 24px;
+	color: black;
+	font-weight: bold;
+}
+.myinfo_content h3 {
+	font-size: 18px;
+	margin: 30px 0px 10px 0px;
+	font-weight: bold;
+}
+.table_div {
+	border-top: 1px solid #ddd;
+}
+
+
+.table_info  {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 60px;
+	width: 100%;
+	border-top: 1px solid #c3c3c3;
+	border-bottom: 1px solid #ddd;
+	border-collapse: collapse;
+	font-size: 14px;
+	color: #333;
+	text-align: left;
+	margin-bottom: 60px;
+}
+.table_info th {
+    background: #f9f9f9;
+    color: #666;
+    width: 165px;
+}
+.table_info th, .table_info td {
+        padding: 10px 0px 10px 20px;
+    border-top: 1px solid #ededed;
+}
+
+.myinfo_content > th, td {
+    text-align: left;
+    vertical-align: top;
+}
+
+.myinfo_content > hr{
+	border: 1px solid #B9CE45;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.rebate_account dt {
+    float: left;
+    clear: both;
+    width: 50px;
+    padding-top: 10px;
+	margin:10px 0px;
+    font-size: 12px;
+}
+#account_no, #account_p {
+	box-sizing: border-box;
+    display: inline-block;
+    height: 38px;
+    margin:10px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    color: #666;
+}
+select {
+	box-sizing: border-box;
+    display: inline-block;
+    width: 40%;
+    height: 38px;
+    margin:10px;
+    padding: 0 10px;
+    border: 1px solid #ddd	;
+    color: #666;
+    font-size: 11px;
+	
+}
+.input-birth {
+	box-sizing: border-box;
+    border-radius: 3px;
+    display: inline-block;
+    width: 3cm;
+    margin: -10px 10px 10px;
+    padding: 0 10px;
+    border: 1px solid #c3c3c3;
+    color: #666;
+    font-size: 11px;
+    vertical-align: middle;
+}
+ul, ol {
+    list-style: none;
+}
+.input_field {
+	border: 1px solid #c3c3c3;
+	margin: 10px;
+	height: 40px;
+    border-radius: 3px;
+    width: 50%;
+    font-size: 12px;
+}
+.list_type {
+	font-size: 10px;
+	color:gray;
+}
+.list_type > li {
+    position: relative;
+    padding-left: 6px;
+}
+#checkbox_text {
+	margin:10px;
+}
+
+#agree_listbox {
+	margin:10px;
+}
+.agree-list {
+	font-size: 12px;
+	margin-left: 20px;
+}
+.agree-list > li{
+	margin:5px auto;
+	
+}
+#postalcode, #postalcode1, #postalcode2 {
+	box-sizing: border-box;
+    display: inline-block;
+    margin:6px auto;
+    padding:3px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    height: 30px;
+    width: 13%
+    
+}
+#roadaddr, #roadaddr1, #roadaddr2 {
+	box-sizing: border-box;
+    display: inline-block;
+    margin:2px auto;
+    padding:3px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    height: 30px;
+    border-radius: 3px;
+    width:40%;
+    
+}
+#detailaddr {
+	box-sizing: border-box;
+    display: inline-block;
+    margin:2px auto;
+    padding:3px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    height: 30px;
+    width: 45%;
+    
+}
+#postal_btn {
+	box-sizing: border-box;
+    display: inline-block;
+    margin: 20px 0px;
+    padding: 5px 25px;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #22741C;
+    font-size: 12px;
+    font-weight:500;
+    color: #22741C;
+    
+}
+#postal_btn2 {
+	box-sizing: border-box;
+    display: inline-block;
+    margin:5px 0px;
+    padding: 5px 25px;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #22741C;
+    font-size: 12px;
+    font-weight:500;
+    color: #22741C;
+    
+}
+.refund_btn {
+	border: 1px solid #4d5d7b;
+    background-color: #4d5d7b;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    padding:10px;
+}
+.reset_btn {
+	border: 1px solid #4d5d7b;
+    background-color: white;
+    color: black;
+    font-size: 12px;
+    border-radius: 3px;
+    padding:10px;
+}
+
+.updateBtn {
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 10px 70px;
+    background-color: #B9CE45;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    margin: 50px 0px 30px 0px;
+}
+.reset_btn > span {
+	color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,12 +13,12 @@ import com.april.unomas.domain.AdminVO;
 // 이 어노테이션이 있어야 root-context.xml에서 읽어와서 의존성 주입이 가능함
 
 @Repository
-public class MemberDAOImpl implements MemberDAO {
+public class UserDAOImpl implements UserDAO {
 
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 	
 	private static final String NAMESPACE = "com.unomas.mapper.MemberMapper";
 	
