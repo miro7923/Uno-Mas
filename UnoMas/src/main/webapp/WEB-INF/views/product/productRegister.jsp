@@ -323,17 +323,19 @@
 <!-- 												<div id="detailMainContent"> -->
 <!-- 		                                        <textarea placeholder="세척법"></textarea> -->
 <!-- 		                                        </div> -->
-		                                        <button type="button" class="site-btn" onclick="history.back();">취소</button>
-		                                        <button type="submit" class="site-btn" >등록</button>
+		                                        <button type="button" class="back-button" onclick="history.back();">취소</button>
+		                                        <button type="submit" class="site-button" >등록</button>
 <!-- 		                                    </div> -->
 <!-- 		                            </form> -->
 <!-- 		                        </div> -->
 <!-- 		                    </div> -->
 <!-- 		                </div> -->
 						<!-- 상품 상세 설명 끝-->
+						</form>
 					</div>
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- Product Register Section End -->
 

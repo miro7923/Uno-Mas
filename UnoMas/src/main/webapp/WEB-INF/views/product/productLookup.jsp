@@ -122,6 +122,8 @@
 														</tbody>
 													</table>
 												</div>
+												<button type="button" class="back-button" onclick="history.back();">삭제</button>
+		                                        <button type="submit" class="site-button" >수정</button>
 											</div>
 										</div>
 									</div>

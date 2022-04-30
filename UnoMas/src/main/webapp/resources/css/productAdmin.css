@@ -231,11 +231,29 @@ input[type="checkbox"]:checked::before {
 	max-height: 60%;
 	text-align: right;
 }
-/* .p { */
-/*     font-size: 26px; */
-/*     font-family: "Muli", sans-serif; */
-/*     color: #636363; */
-/*     font-weight: 400; */
-/*     line-height: 26px; */
-/*     margin: 0 0 15px 0; */
-/* } */
+
+.site-button {
+    color: #ffffff;
+    background: #e7ab3c;
+    border: 1px solid #e7ab3c;
+    margin: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 13px 45px 11px;
+    cursor: pointer;
+    float: right;
+}
+
+.back-button {
+    color: #ffffff;
+    background: #e2e2e2;
+    border: 1px solid #e2e2e2;
+    margin: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 13px 45px 11px;
+    cursor: pointer;
+    float: right;
+}
