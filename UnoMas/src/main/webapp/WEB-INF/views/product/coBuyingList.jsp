@@ -39,8 +39,12 @@
             	<div class="col-lg-6 text-center">
                 	<div class="section-title">
                 		<label></label>
-                   	 	<h2>04월 28일 오픈</h2>
-<!--                    	 	<h2 id="coDate"></h2> -->
+                   	 	<h2>
+                   	 		<span class="month"></span>
+                   	 		<span class="">월</span>
+                   	 		<span class="date"></span>
+                   	 		<span class="">일 오픈</span>
+                   	 	</h2>
                    	 	<div class="square"><span>무료배송</span></div>
                     	<p>아삭하고 부드러운 청경채 / 300g</p>
                     	<div class="product-price">
@@ -78,8 +82,12 @@
             	<div class="col-lg-6 text-center">
                 	<div class="section-title">
                 		<label></label>
-                   	 	<h2>04월 28일 오픈</h2>
-<!--                    	 	<h2 id="coDate"></h2> -->
+                   	 	<h2>
+                   	 		<span class="month"></span>
+                   	 		<span class="">월</span>
+                   	 		<span class="date"></span>
+                   	 		<span class="">일 오픈</span>
+                   	 	</h2>
                    	 	<div class="square"><span>무료배송</span></div>
                     	<p>아삭하고 부드러운 청경채 / 300g</p>
                     	<div class="product-price">
