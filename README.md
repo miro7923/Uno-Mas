@@ -10,3 +10,4 @@
 5. [카테고리별 상품 목록 페이지, 신상품 목록 페이지, 특가 목록 페이지 제작](DevLog/2022-04-26-uno-mas-dev-log-05.md)<br>
 6. [주문페이지와 주문완료페이지 제작](DevLog/2022-04-28-uno-mas-dev-log-06.md)<br>
 7. [쇼핑몰 RDBMS 설계 및 생성](DevLog/2022-05-01-uno-mas-dev-log-07.md)<br>
+8. [(TDD) Junit4를 사용한 DB 연결 테스트 코드 작성](DevLog/2022-05-02-uno-mas-dev-log-08.md)<br>
