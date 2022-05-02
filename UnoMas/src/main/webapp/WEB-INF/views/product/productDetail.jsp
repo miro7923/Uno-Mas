@@ -54,33 +54,13 @@
 								<img class="product-big-img"
 									src="${path}/resources/img/product-single/product_vegi01.jpeg"
 									alt="">
-								<!-- <div class="zoom-icon">
-                                    <i class="fa fa-search-plus"></i>
-                                </div> -->
 							</div>
-							<%-- <div class="product-thumbs">
-                                <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="img/product-single/product_salad01.webp"><img
-                                            src="${path}/resources/img/product-single/product_salad01.webp" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-2.jpg"><img
-                                            src="${path}/resources/img/product-single/product-2.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="${path}/resources/img/product-single/product-3.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="${path}/resources/img/product-single/product-3.jpg" alt=""></div>
-                                </div>
-                            </div> --%>
 						</div>
 						<div class="col-lg-6">
 							<div class="product-details">
 								<div class="pd-title">
 									<h3>청경채</h3>
 								</div>
-								<!-- <div class="pd-rating">
-									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star-o"></i> <span>(5)</span>
-								</div> -->
 								<div class="pd-desc">
 									<p>아삭하고 부드러운</p>
 								</div>
@@ -131,11 +111,6 @@
 									</h5>
 								</div>
 								<div class="quantity">
-									<!--
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
--->
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
                                     <%if (isInWishlist) { %>
@@ -148,135 +123,10 @@
 								   <% } %>
 									<a href="shopping-cart" class="primary-btn pd-cart">장바구니 담기</a>
 								</div>
-								<!--
-                                <div class="pd-share">
-                                    <div class="p-code">Sku : 00012</div>
-                                    <div class="pd-social">
-                                        <a href="#"><i class="ti-facebook"></i></a>
-                                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                                        <a href="#"><i class="ti-linkedin"></i></a>
-                                    </div>
-                                </div>
--->
 							</div>
 						</div>
 					</div>
 					<br> <br>
-
-
-					<!-- Related Products Section End -->
-					<%-- <div class="related-products spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Related Products</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-1.jpg" alt="">
-                            <div class="sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-2.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-3.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-4.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --%>
-					<!-- Related Products Section End -->
 
 					<div class="product-tab">
 						<div class="tab-item">
