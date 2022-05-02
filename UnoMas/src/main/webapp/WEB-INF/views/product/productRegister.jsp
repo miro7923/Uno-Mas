@@ -7,7 +7,7 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
+<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after5">
 <!-- Start Header -->
 
 <body>
@@ -33,7 +33,7 @@
 
 				<!-- 상품등록-->
 				<div class="col-lg-10">
-					<h2>상품등록</h2><hr>
+					<h2>상품등록</h2><div class="line"><hr></div>
 					<div class="container">
 						<form action="#" class="checkout-form">
 							<!-- 기본정보 -->
@@ -90,7 +90,7 @@
 										</div>
 										<div class="col-lg-12">
 											<label for="zip">검색 키워드</label> <input type="text"> <label></label>
-											<hr><br><br>
+											<div class="line"><hr></div><br><br>
 										</div>
 									</div>
 								</div>
@@ -105,9 +105,6 @@
 											<label>판매가<span>*</span></label> <input type="text">
 										</div>
 										<div class="col-lg-12">
-											<label>적립금</label> <input type="text">
-										</div>
-										<div class="col-lg-12">
 											<label>상품 재고<span>*</span></label> <input type="text">
 										</div>
 									</div>
@@ -119,13 +116,16 @@
 										<h4>추가항목</h4>
 										<div class="row">
 											<div class="col-lg-12">
-												<label>판매단위<span>*</span></label> <input type="text">
+												<label>판매단위<span>*</span></label><input type="text">
 											</div>
 											<div class="col-lg-12">
-												<label>중량/용량</label> <input type="text">
+												<label>중량/용량<span>*</span></label><input type="text">
 											</div>
 											<div class="col-lg-12">
-												<label>포장타입<span>*</span></label> <input type="text">
+												<label>원산지<span>*</span></label><input type="text">
+											</div>
+											<div class="col-lg-12">
+												<label>포장타입<span>*</span></label><input type="text">
 											</div>
 										</div>
 									</div>
@@ -135,7 +135,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<label></label>
-									<hr><br><br>
+									<div class="line"><hr></div><br><br>
 								</div>
 							</div>
 							<!-- 상품정보고시 -->
@@ -233,7 +233,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 									<label></label>
-									<hr><br><br>
+									<div class="line"><hr></div><br><br>
 									<h4>상품이미지<label>(100MB)</label></h4>
 								</div>
 							</div>

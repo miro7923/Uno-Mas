@@ -63,7 +63,7 @@
 					    		<span class="seconds"></span>
 					 		</div>
                 	</div>
-                	<a href="#" class="primary-btn">구매하러 가기</a>
+                	<a href="#" class="co-button">구매하러 가기</a>
                 	<label></label>
            	 	</div>
             	<div class="col-lg-6">
@@ -106,7 +106,7 @@
 					    		<span class="seconds"></span>
 					 		</div>
                 	</div>
-                	<a href="#" class="primary-btn">구매하러 가기</a>
+                	<a href="#" class="co-button">구매하러 가기</a>
                 	<label></label>
            	 	</div>
             	<div class="col-lg-6">

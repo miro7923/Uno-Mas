@@ -94,7 +94,7 @@ $(document).ready(function() {
 		
 /* 오늘 날짜 */
 var now = new Date();
-var month = now.getMonth();
+var month = now.getMonth()+1;
 var date = now.getDate();
 $(".month").html(month);
 $(".date").html(date);
