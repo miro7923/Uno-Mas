@@ -3,12 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
-<script type="text/javascript" src="../script/jquery-3.6.0.js"></script>
-<script type="text/javascript" src="find_pw.js"></script>
 </head>
 
 <body>
@@ -52,5 +51,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
+    <script src="${path}/resources/js/user_js/findPW.js"></script>
 </body>
 </html>

@@ -64,7 +64,7 @@ label {
     display: contents;
 }
 #email2 {
-	width: 77%;
+	width: 78%;
 	height: 54px;
     margin: 10px auto;
     padding: 0 19px;
@@ -93,10 +93,8 @@ label {
     margin-top: 9px;
     font-size: 13px;
 }
-.login_search a {
-	color: black;
-}
-.id_search, .pass_search {
+ 
+#id_search, #pass_search {
 	color: black;
 	text-decoration: none;
 }
@@ -141,6 +139,7 @@ label {
     cursor:pointer;
     color: white;
     font-weight: 600;
+    font-size: 13px;
 }
 #find_ok {
 	display: block;

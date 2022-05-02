@@ -9,25 +9,6 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
-
-
-<script type="text/javascript" src="../script/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-	function memberCk() {
-		if ($("#id").val() == "") {
-			$("#cir_text").text("아이디를 입력하세요.");
-			$("#id").focus();
-			return false;
-		};
-
-		if ($("#email1").val() == "") {
-			$("#cir_text").text("이메일을 입력하세요.");
-			$("#email1").focus();
-			return false;
-		};
-
-	}
-</script>
 </head>
 <body>
 <jsp:include page="../inc/top.jsp"></jsp:include>
@@ -66,5 +47,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
+    <script src="${path}/resources/js/user_js/findID.js"></script>
+    
 </body>
 </html>

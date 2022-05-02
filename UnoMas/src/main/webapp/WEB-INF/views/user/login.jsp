@@ -2,10 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-
 <!DOCTYPE html>
 <html lang="zxx">
-
+<link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- Header end -->
@@ -36,7 +35,7 @@
 						<input type="checkbox" id="check_save" name="check_save" value="chk">로그인정보 저장
 					</label>
 					<div class="login_search">
-						<a href="" class="id_search">아이디 찾기 | </a> <a href="" class="pass_search">비밀번호 찾기</a>
+						<a href="" id="id_search">아이디 찾기 | </a> <a href="" id="pass_search">비밀번호 찾기</a>
 					</div>
 				</div>
 				
@@ -68,6 +67,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/user_js/login.js"></script>
 </body>
 
 </html>

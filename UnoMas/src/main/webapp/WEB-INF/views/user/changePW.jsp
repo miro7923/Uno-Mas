@@ -4,7 +4,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 변경하기</title>
@@ -18,9 +17,6 @@
 <jsp:include page="../inc/header.jsp"></jsp:include>
 
 	<div id="container">
-		<!-- 헤더 들어가는 곳 -->
-
-		<!-- 헤더 들어가는 곳 -->
 
 		<!-- 본문내용 -->
 		<article>
@@ -59,6 +55,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/user_js/changePW.js"></script>
 	
 
 </body>
