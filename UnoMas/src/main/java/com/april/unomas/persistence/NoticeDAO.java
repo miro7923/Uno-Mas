@@ -15,4 +15,7 @@ public interface NoticeDAO {
 	// 글 조회
 	public NoticeVO getNotice(Integer notice_num);
 	
+	// 조회수1증가
+	public void rCountUp(Integer notice_num);
+	
 }

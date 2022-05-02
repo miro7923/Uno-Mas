@@ -559,7 +559,21 @@ ul {
                     <div class="css-mm5tap e1vbjq4w2"><label for="inquiry-subject" data-testid="label-text">카테고리<span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span></label></div>
                     <div class="css-12l4j2c e1vbjq4w1">
                         <div class="css-1waqr6j e1uzxhvi4">
-                            <div height="44" class="css-t7kbxx e1uzxhvi1"><input data-testid="input-box" id="inquiry-subject" name="faq_cate" placeholder="카테고리를 적으세요" type="text" height="44" class="css-1fapsij e1uzxhvi0" ></div>
+                            <div height="44" class="css-t7kbxx e1uzxhvi1">
+                            
+<!--                             <input data-testid="input-box" placeholder="카테고리를 적으세요" type="text"   > -->
+                            <select id="inquiry-subject" name="faq_cate" class="css-1fapsij e1uzxhvi0">
+                            	<option value="">카테고리를 선택하세요</option>
+                            	<option value="배송/포장">배송/포장</option>
+                            	<option value="취소/교환/환불">취소/교환/환불</option>
+                            	<option value="이벤트/적립금">이벤트/적립금</option>
+                            	<option value="상품">상품</option>
+                            	<option value="주문/결제">주문/결제</option>
+                            	<option value="회원">회원</option>
+                            	<option value="서비스 이용">서비스 이용</option>
+                            </select>
+                            
+                            </div>
                         </div>
                     </div>
                 </div>

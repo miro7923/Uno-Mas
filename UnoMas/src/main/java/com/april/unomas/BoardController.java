@@ -1,6 +1,7 @@
 ﻿package com.april.unomas;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.april.unomas.domain.BoardVO;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
+import com.april.unomas.domain.PagingVO;
 import com.april.unomas.service.BoardService;
 import com.april.unomas.service.NoticeService;
 
@@ -42,9 +45,9 @@ public class BoardController {
 	
 	@GetMapping(value = "/qni_write")
 	public String boardWriteGET() throws Exception{
-		log.info("registGET() 호출 -> /customerCenter/qni_write.jsp 이동");
+		log.info("registGET() 호출 -> /board/qni_write.jsp 이동");
 		
-		return "/customerCenter/qni_write";
+		return "/board/qni_write";
 	}
 	
 	// 글쓰기  /board/regist  (post)
@@ -76,7 +79,7 @@ public class BoardController {
 //		model.addAttribute("boardList",service.listAll());
 		
 		// /board/listAll.jsp 페이지이동
-		return "/customerCenter/qni";
+		return "/board/qni";
 	}
 	
 	@GetMapping(value = "/faq")
@@ -91,13 +94,13 @@ public class BoardController {
 		model.addAttribute("boardList",boardList);
 //		model.addAttribute("boardList",service.listAll());
 		
-		return "/customerCenter/faq";
+		return "/board/faq";
 	}
 	
 	@GetMapping(value = "/faq_insert")
 	public String noticeWriteGET() throws Exception{
 		
-		return "/customerCenter/faq_insert";
+		return "/board/faq_insert";
 	}
 	
 	@PostMapping(value = "/faq_insert")
@@ -117,9 +120,38 @@ public class BoardController {
 	public String noticeInfoGET(@RequestParam("notice_num") int notice_num,Model model) throws Exception{
 		log.info(notice_num+"");
 		
+		nService.rCountUp(notice_num);
 		model.addAttribute("vo",nService.getNotice(notice_num));
 		
-		return "/customerCenter/faq_detail";
+		return "/board/faq_detail";
 	}
 	
+	@GetMapping(value = "/qni_sort")
+	public String sortList(@RequestParam("faq_cate") String faq_cate, Model model) throws Exception { 
+		log.info(faq_cate);
+		
+		List<BoardVO> boardList = service.sortCate(faq_cate);
+		
+		log.info(boardList+"");
+		
+		model.addAttribute("boardList",boardList);
+		
+		return "/board/qni_sort";
+	}
+	
+	@RequestMapping(value="/board/qni_paging")
+	public String pagingListGET(Criter cri,Model model) throws Exception {
+	        
+	    PagingVO pagingVO = new PagingVO(); 
+	    pagingVO.setCri(cri);
+//	    pagingVO.setTotalCount(100);
+	    pagingVO.setTotalCount(service.countBoardTotal());
+	    List<Map<String,Object>> pList = service.selectBoardList(cri);
+	    model.addAttribute("pList", pList);
+	    model.addAttribute("pagingVO", pagingVO);
+	        
+	    return "/board/qni_paging";
+	        
+	}
+
 }

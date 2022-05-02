@@ -13,6 +13,24 @@
 		<![CDATA[
 		select * from test_board 
 		where faq_num > 0
+		order by faq_num desc
 		]]>
 	</select>
+	
+	<select id="sortCategory" resultType="BoardVO">
+		select * from test_board
+		where faq_cate=#{faq_cate}
+		order by faq_num desc
+	</select>
+	
+	<select id="countBoard" resultType="Integer">
+		select count(*) from test_board
+	</select>
+	
+	<select id="pagingBoard" resultType="BoardVO">
+		select * from test_board
+		order by faq_num desc
+		limit #{pageStart} and #{perPageNum}
+	</select>
+	
 </mapper>

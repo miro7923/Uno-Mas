@@ -21,4 +21,9 @@
 		where notice_num=#{notice_num}
 	</select>
 	
+	<update id="rCountUp">
+		update test_notice set notice_readcount=notice_readcount+1
+		where notice_num=#{notice_num}
+	</update>
+	
 </mapper>

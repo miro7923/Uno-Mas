@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.BoardVO;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.persistence.BoardDAO;
 
 @Service
@@ -38,5 +40,24 @@ public class BoardServiceImpl implements BoardService {
 	
 		return dao.listAll();
 	}
+
+	@Override
+	public List<BoardVO> sortCate(String faq_cate) throws Exception {
+		log.info("sortCate() -> DAO 동작 호출");
+		log.info(dao.sortCate(faq_cate)+"");
+		return dao.sortCate(faq_cate);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectBoardList(Criter cri) {
+		return dao.selectBoardList(cri);
+	}
+
+	@Override
+	public Integer countBoardTotal() {
+		return dao.countBoardList();
+	}
+	
+	
 
 }

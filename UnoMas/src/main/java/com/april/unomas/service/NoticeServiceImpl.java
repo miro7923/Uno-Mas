@@ -48,6 +48,13 @@ public class NoticeServiceImpl implements NoticeService {
 		return vo;
 		
 	}
+
+	@Override
+	public void rCountUp(Integer notice_num) throws Exception {
+		dao.rCountUp(notice_num);
+	}
+	
+	
 	
 
 }

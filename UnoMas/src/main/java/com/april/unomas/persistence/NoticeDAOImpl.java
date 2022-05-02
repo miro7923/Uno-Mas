@@ -51,6 +51,13 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return vo;
 		
 	}
+
+	@Override
+	public void rCountUp(Integer notice_num) {
+		sqlSession.update(NAMESPACE+".rCountUp",notice_num);
+		
+	}
+	
 	
 	
 }

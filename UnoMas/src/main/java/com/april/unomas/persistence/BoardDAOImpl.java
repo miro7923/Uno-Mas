@@ -1,6 +1,7 @@
 package com.april.unomas.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.BoardVO;
+import com.april.unomas.domain.Criter;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -40,5 +42,24 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		return sqlSession.selectList(NAMESPACE+".listAll");
 	}
+
+	@Override
+	public List<BoardVO> sortCate(String faq_cate) {
+		log.info("sortCate");
+		log.info(faq_cate);
+		return sqlSession.selectList(NAMESPACE+".sortCategory",faq_cate);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectBoardList(Criter cri) {
+		return sqlSession.selectList(NAMESPACE+"pagingBoard",cri);
+	}
+
+	@Override
+	public Integer countBoardList() {
+		return sqlSession.selectOne(NAMESPACE+"countBoard");
+	}
+	
+	
 
 }

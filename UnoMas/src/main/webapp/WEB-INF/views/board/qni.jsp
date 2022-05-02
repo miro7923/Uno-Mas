@@ -361,24 +361,27 @@ ul {
 
  
 </script>
-
+<script type="text/javascript">
+	function changeCate(e){
+		var change_cate = e.value;
+		location.href='/qni_sort?faq_cate='+change_cate;
+	};
+</script>
 
 
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
                 
                 <div class="search_date">
-                    <select class="btn_layer">
-                        <option>선택</option>
-                        <option>배송/포장</option>
-                        <option>취소/교환/환불</option>
-                        <option>이벤트/쿠폰/적립금</option>
-                        <option>상품</option>
-                        <option>선물하기</option>
-                        <option>셀프 픽업</option>
-                        <option>주문/결제/대량주문</option>
-                        <option>회원</option>
-                        <option>서비스 이용</option>
+                    <select class="btn_layer" id="qni_category" onchange="changeCate(this)">
+                       			<option>카테고리를 선택하세요</option>
+                       			<option value="배송/포장">배송/포장</option>
+                            	<option value="취소/교환/환불">취소/교환/환불</option>
+                            	<option value="이벤트/적립금">이벤트/적립금</option>
+                            	<option value="상품">상품</option>
+                            	<option value="주문/결제">주문/결제</option>
+                            	<option value="회원">회원</option>
+                            	<option value="서비스 이용">서비스 이용</option>
                     </select>
                 </div>
                 
