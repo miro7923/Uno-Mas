@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.unomas.mapper.ProductMapper">
+    <!-- 상품 전체 목록 불러오기 -->
+    <select id="getList">
+        select * from products
+    </select>
+</mapper>
