@@ -52,11 +52,11 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">서비스 소개</h2>
                     <h3 class="section-subheading text-muted">우노마스는 스페인어로 '하나 더'라는 뜻입니다.</h3>
-                    <p>
+                    <p class="serviceP">
                     	요즘 대부분의 사람들은 장을 보기위해 대형마트나 온라인 쇼핑몰을 이용합니다.<br> 
 						시간과 장소에 구애받지 않는 편한 주문배송 시스템과 식품의 청결함은 이젠 당연하게 소비자가 가져야할 권리가 되었습니다.<br>
 						하지만 우리는 여기서 그치지 않고 어릴 적 재래시장에서 상품을 구매하는 과정에서 받는 '덤'에 주목했습니다.<br>
-						뜻밖에 얻는 즐거움으로 행복을 나누고자 Uno-mas를 런칭하게 되었습니다. 
+						뜻밖에 얻는 즐거움으로 행복을 나누고자 Uno-mas를 런칭하게 되었습니다. <br>
                     </p>
                 </div>
                 <div class="row text-center">
@@ -66,7 +66,8 @@
                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">새벽배송</h4>
-                        <p class="text-muted">내용1</p>
+                        <p class="text-muted">저녁에 주문해 놓고 아침에 일어나 상품을 받아보세요!<br>
+                        신선한 상품을 빠르게 받아보실 수 있습니다.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -74,7 +75,8 @@
                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">쉬운반품</h4>
-                        <p class="text-muted">내용2</p>
+                        <p class="text-muted">상품이 오배송 되었거나 파손되어있나요?<br>
+                        쉬운반품서비스로 빠르고 간편하게 새로운 상품을<br> 받아보세요.</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -82,7 +84,8 @@
                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
                         </span>
                         <h4 class="my-3">정보보안</h4>
-                        <p class="text-muted">내용3</p>
+                        <p class="text-muted">우노마스는 당신의 정보보호에 최선을 다하겠습니다.<br>
+                        당신의 동의 없는 정보유출을 막겠습니다.</p>
                     </div>
                 </div>
             </div>
