@@ -21,8 +21,28 @@ public class ProductDAOTest {
 	private ProductDAO dao;
 	private static final Logger log = LoggerFactory.getLogger(ProductDAOTest.class);
 	
-	@Test
+//	@Test
 	public void DAO생성테스트() {
 		log.info("dao : " + dao.toString());
+	}
+	
+//	@Test
+	public void 상품목록출력테스트() throws Exception {
+		log.info(dao.getProductList()+"");
+	}
+	
+//	@Test
+	public void 카테고리별상품출력() throws Exception {
+		log.info(dao.getProductList(1)+"");
+	}
+	
+//	@Test
+	public void 상위카테고리출력테스트() throws Exception {
+		log.info(dao.getTopCateName(1));
+	}
+	
+	@Test
+	public void 하위카테고리출력테스트() throws Exception {
+		log.info(dao.getDcateNames(1)+"");
 	}
 }

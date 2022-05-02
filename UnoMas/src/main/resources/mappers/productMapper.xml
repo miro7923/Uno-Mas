@@ -5,7 +5,30 @@
   
 <mapper namespace="com.unomas.mapper.ProductMapper">
     <!-- 상품 전체 목록 불러오기 -->
-    <select id="getList">
-        select * from products
+    <select id="getList" resultType="com.april.unomas.domain.ProductVO">
+        SELECT * FROM products
+    </select>
+    
+    <!-- 상품 목록 카테고리별로 불러오기 -->
+    <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
+        SELECT * 
+        FROM products AS p 
+        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
+        JOIN top_category AS t ON d.dcate_num = t.topcate_num
+        WHERE p.prod_category = #{prod_category}
+    </select>
+    
+    <!-- 상품 상위 카테고리 이름 가져오기 -->
+    <select id="getTopCateName" resultType="String">
+        SELECT topcate_name 
+        FROM top_category  
+        WHERE topcate_num = #{topcate_num}
+    </select>
+    
+    <!-- 상위 카테고리의 하위 카테고리 목록 가져오기 -->
+    <select id="getDcateNames" resultType="String">
+        SELECT dcate_name 
+        FROM detail_category 
+        WHERE topcate_num = #{topcate_num}
     </select>
 </mapper>

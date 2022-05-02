@@ -20,9 +20,22 @@ public class ProductDAOImpl implements ProductDAO {
 	private static final Logger log = LoggerFactory.getLogger(ProductDAOImpl.class);
 	
 	@Override
-	public List<ProductVO> getProductList() {
-		log.info("getProductList() 호출");
-		
+	public List<ProductVO> getProductList() throws Exception{
 		return sqlSession.selectList(NAMESPACE + ".getList");
+	}
+
+	@Override
+	public List<ProductVO> getProductList(int prod_category) throws Exception{
+		return sqlSession.selectList(NAMESPACE + ".getListCate", prod_category);
+	}
+
+	@Override
+	public String getTopCateName(int topcate_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getTopCateName", topcate_num);
+	}
+
+	@Override
+	public List<String> getDcateNames(int topcate_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getDcateNames", topcate_num);
 	}
 }
