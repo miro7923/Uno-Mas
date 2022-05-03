@@ -2,6 +2,7 @@ $(document).ready(function() {
     $('#category0').css('color', '#B9CE45');
     $('#category0').css('font-weight', 'bold');
     getPageNum();
+    convertCurrency($('#prodListLen').val());
 });
 
 function getPageNum() {
@@ -48,18 +49,9 @@ function changePageNum(num, maxNum) {
 // 통화에 , 삽입하는 처리
 function convertCurrency(cnt) {
     for (var i = 0; i < cnt; i++) {
-        var id = '#prodPrice' + i;
+        var id = '#prod' + i;
         var price = $(id).text();
     
         $(id).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }
-    
-    var deliveryFee = $('#deliveryFee').text();
-    $('#deliveryFee').text(deliveryFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-    
-    var totalPrice = $('#totalPrice').text();
-    $('#totalPrice').text(totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-    
-    var point = $('#point').text();
-    $('#point').text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 }

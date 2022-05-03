@@ -45,6 +45,7 @@
 					</div>
 					<div class="product-list">
 						<div class="row">
+						    <input type="hidden" id="prodListLen" value="${fn:length(productList) }">
 						    <c:forEach var="vo" items="${productList }" varStatus="it">
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item" id="productItem">
@@ -63,7 +64,7 @@
 											<a href="#">
 												<h5>${vo.prod_name }</h5>
 											</a>
-											<div class="product-price ">
+											<div class="product-price" id="prod${it.index }">
 												${vo.prod_price }원
 											</div>
 											<!-- <div class="productSubTitle">
