@@ -1,5 +1,8 @@
 package com.april.unomas;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.annotations.Param;
@@ -28,8 +31,8 @@ public class ProductController {
 		return "product/check-out";
 	}
 	@RequestMapping(value = "product/product_list", method = RequestMethod.GET) // /shop -> /product_list
-	public String shopGET(@RequestParam("topcate_num") int topcate_num, @RequestParam("pageNum") String pageNum, 
-			Model model) throws Exception {
+	public String shopGET(@RequestParam("topcate_num") int topcate_num, @RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
+			@RequestParam("pageNum") String pageNum, Model model) throws Exception {
 		// 페이징 처리 작업
 		int pageSize = 9;
 		if (pageNum == null) {
@@ -44,7 +47,7 @@ public class ProductController {
 		
 		// 하단 페이징 처리 //////
 		// 현재 대분류의 전체 상품 개수 얻기
-		int postCnt = service.getProductCnt(topcate_num);
+		int postCnt = service.getProductCnt(cateStart, cateEnd);
 		
 		// 페이지 전체 블록 개수 계산
 		int pageCnt = postCnt / pageSize + ((postCnt % pageSize == 0) ? 0 : 1);
@@ -60,19 +63,25 @@ public class ProductController {
 		if (endBlock > pageCnt)
 			endBlock = pageCnt;
 		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
 		// 글 목록 정보 저장
-		model.addAttribute("productList", service.getProductList(topcate_num, startRow, pageSize));
-		model.addAttribute("topcate_num", topcate_num);
-		model.addAttribute("topcate", service.getTopCateName(topcate_num));
-		model.addAttribute("dcateList", service.getDcateNames(topcate_num));
+		map.put("productList", service.getProductList(cateStart, cateEnd, startRow, pageSize));
+		map.put("cateStart", cateStart);
+		map.put("cateEnd", cateEnd);
+		map.put("topcate", service.getTopCateName(topcate_num));
+		map.put("dcateList", service.getDcateNames(topcate_num));
 		
 		// 페이지 처리 정보 저장
-		model.addAttribute("postCnt", postCnt);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("pageCnt", pageCnt);
-		model.addAttribute("pageBlockCnt", pageBlockCnt);
-		model.addAttribute("startBlock", startBlock);
-		model.addAttribute("endBlock", endBlock);
+		map.put("postCnt", postCnt);
+		map.put("pageNum", pageNum);
+		map.put("pageCnt", pageCnt);
+		map.put("pageBlockCnt", pageBlockCnt);
+		map.put("startBlock", startBlock);
+		map.put("endBlock", endBlock);
+		
+		model.addAllAttributes(map);
 		
 		return "product/productList";
 	}

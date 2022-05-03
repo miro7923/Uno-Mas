@@ -33,7 +33,7 @@ public class ProductDAOTest {
 	
 //	@Test
 	public void 카테고리별상품출력() throws Exception {
-		log.info(dao.getProductList(1)+"");
+		log.info(dao.getProductList(1, 3)+"");
 	}
 	
 //	@Test
@@ -48,11 +48,11 @@ public class ProductDAOTest {
 	
 	@Test
 	public void 페이지개수만큼가져오기테스트() throws Exception {
-		log.info(dao.getProductList(1, 2, 9) + "");
+		log.info(dao.getProductList(1, 3, 2, 9) + "");
 	}
 	
 //	@Test
 	public void 대분류별상품개수가져오기() throws Exception {
-		log.info(dao.getProductCnt(1)+"");
+		log.info(dao.getProductCnt(1, 3)+"");
 	}
 }

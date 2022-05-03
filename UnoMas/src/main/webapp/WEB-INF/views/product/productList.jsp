@@ -45,11 +45,12 @@
 					</div>
 					<div class="product-list">
 						<div class="row">
-						    <c:forEach var="vo" items="${productList }">
+						    <c:forEach var="vo" items="${productList }" varStatus="it">
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item" id="productItem">
 										<div class="pi-pic">
-											<a href="product_detail"> <img
+											<a href="product_detail"> 
+											<img
 												src="${path}/resources/img/product-single/product_vegi01.jpeg"
 												alt=""></a>
 											<ul>
@@ -62,7 +63,7 @@
 											<a href="#">
 												<h5>${vo.prod_name }</h5>
 											</a>
-											<div class="product-price">
+											<div class="product-price ">
 												${vo.prod_price }원
 											</div>
 											<!-- <div class="productSubTitle">
@@ -84,7 +85,7 @@
 						
 						<c:forEach var="block" varStatus="it" begin="${startBlock }" end="${endBlock }" step="1">
 							<span>
-								<!----> <a href="/product/product_list?topcate_num=${productList[0].prod_category }&pageNum=${it.index}" 
+								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${productList[0].prod_category }&pageNum=${it.index}" 
 								class="pagingBtn" id="page${it.index }" style="color: black;"
 								onclick="changePageNum(${it.index }, ${endBlock });">${it.index } <!----></a>
 							</span> 

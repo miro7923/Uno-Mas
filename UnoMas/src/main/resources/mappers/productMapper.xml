@@ -15,7 +15,7 @@
         FROM products AS p 
         JOIN detail_category AS d ON p.prod_category = d.dcate_num 
         JOIN top_category AS t ON d.dcate_num = t.topcate_num
-        WHERE p.prod_category = #{prod_category}
+        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     
     <!-- 상위 카테고리별 한 페이지에 표시할 만큼만 가져오기 -->
@@ -24,9 +24,8 @@
         FROM products AS p 
         JOIN detail_category AS d ON p.prod_category = d.dcate_num 
         JOIN top_category AS t ON d.dcate_num = t.topcate_num 
-        WHERE p.prod_category = #{prod_category}
-        ORDER BY p.prod_regdate desc 
-        LIMIT #{startRow}, #{pageSize}
+        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd} 
+        ORDER BY p.prod_regdate desc LIMIT #{startRow}, #{pageSize}
     </select>
     
     <!-- 대분류별 상품 개수 가져오기 -->
@@ -35,7 +34,7 @@
         FROM products AS p 
         JOIN detail_category AS d ON p.prod_category = d.dcate_num 
         JOIN top_category AS t ON d.dcate_num = t.topcate_num 
-        WHERE p.prod_category = #{prod_category}
+        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     
     <!-- 상품 상위 카테고리 이름 가져오기 -->

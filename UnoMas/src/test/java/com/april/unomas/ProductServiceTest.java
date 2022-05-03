@@ -29,7 +29,7 @@ public class ProductServiceTest {
 	
 //	@Test
 	public void 카테고리별출력테스트() throws Exception {
-		log.info(service.getProductList(2)+"");
+		log.info(service.getProductList(1,3)+"");
 	}
 	
 //	@Test
@@ -42,13 +42,13 @@ public class ProductServiceTest {
 		log.info(service.getDcateNames(3)+"");
 	}
 	
-//	@Test
+	@Test
 	public void 페이지개수만큼가져오기() throws Exception {
-		log.info(service.getProductList(1, 1, 9)+"");
+		log.info(service.getProductList(1, 2, 1, 9)+"");
 	}
 	
-	@Test
+//	@Test
 	public void 대분류별상품개수가져오기() throws Exception {
-		log.info(service.getProductCnt(1)+"");
+		log.info(service.getProductCnt(1, 2)+"");
 	}
 }

@@ -27,15 +27,21 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getProductList(int prod_category) throws Exception{
-		return sqlSession.selectList(NAMESPACE + ".getListCate", prod_category);
+	public List<ProductVO> getProductList(int cateStart, int cateEnd) throws Exception{
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		
+		paramMap.put("cateStart", cateStart);
+		paramMap.put("cateEnd", cateEnd);
+		
+		return sqlSession.selectList(NAMESPACE + ".getListCate", paramMap);
 	}
 
 	@Override
-	public List<ProductVO> getProductList(int prod_category, int startRow, int pageSize) throws Exception {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
+	public List<ProductVO> getProductList(int cateStart, int cateEnd, int startRow, int pageSize) throws Exception {
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
 		
-		paramMap.put("prod_category", prod_category);
+		paramMap.put("cateStart", cateStart);
+		paramMap.put("cateEnd", cateEnd);
 		paramMap.put("startRow", startRow-1);
 		paramMap.put("pageSize", pageSize);
 		
@@ -43,8 +49,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public Integer getProductCnt(int prod_category) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", prod_category);
+	public Integer getProductCnt(int cateStart, int cateEnd) throws Exception {
+		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		
+		paramMap.put("cateStart", cateStart);
+		paramMap.put("cateEnd", cateEnd);
+		
+		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", paramMap);
 	}
 
 	@Override
