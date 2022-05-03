@@ -15,14 +15,6 @@
 	href="${path}/resources/css/productList.css?afte">
 <!-- Start Header -->
 
-<%
-// @@ DB 연결 후 페이지 정보 가져오기 @@
-int pageCnt = 5;
-int pageBlockCnt = 5;
-int startBlock = 1;
-int endBlock = 5;
-%>
-
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -47,7 +39,7 @@ int endBlock = 5;
 					<div class="product-show-option">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 text-right">
-								<p>총 ${fn:length(productList) } 개</p>
+								<p>총 ${postCnt } 개</p>
 							</div>
 						</div>
 					</div>
@@ -85,22 +77,23 @@ int endBlock = 5;
 					<!-- @@ DB 연결하면 상세 작업하기 @@ -->
 					<div class="row" id="pagediv">
 						<div class="col-lg-12 text-center">
-						<%if (startBlock > pageBlockCnt) { %>
+						<c:if test="${startBlock > pageBlockCnt }">
 							<a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a> 
 							<a href="#" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
-						<% }
+						</c:if>
 						
-						for (int i = startBlock; i <= endBlock; i++) { %>
+						<c:forEach var="block" varStatus="it" begin="${startBlock }" end="${endBlock }" step="1">
 							<span>
-								<!----> <a class="pagingBtn" id="page<%=i%>" 
-								onclick="changePageNum(<%=i%>, <%=endBlock%>);"><%=i %> <!----></a>
+								<!----> <a href="/product/product_list?topcate_num=${productList[0].prod_category }&pageNum=${it.index}" 
+								class="pagingBtn" id="page${it.index }" style="color: black;"
+								onclick="changePageNum(${it.index }, ${endBlock });">${it.index } <!----></a>
 							</span> 
-						<% }
+						</c:forEach>
 						
-						if (endBlock < pageBlockCnt) { %> 
+						<c:if test="${endBlock > pageBlockCnt }">
 							<a href="#" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
 							<a href="#" class="arrow_carrot-2right_alt pagingBtn" id="toLast"></a>
-						<% } %>
+						</c:if>
 						</div>
 					</div>
 				</div>
@@ -124,7 +117,7 @@ int endBlock = 5;
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/productList.js"></script>
+	<script src="${path}/resources/js/productList.js?123"></script>
 </body>
 
 </html>

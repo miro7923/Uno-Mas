@@ -37,8 +37,18 @@ public class ProductServiceTest {
 		log.info(service.getTopCateName(2));
 	}
 	
-	@Test
+//	@Test
 	public void 하위카테고리목록출력테스트() throws Exception {
 		log.info(service.getDcateNames(3)+"");
+	}
+	
+//	@Test
+	public void 페이지개수만큼가져오기() throws Exception {
+		log.info(service.getProductList(1, 1, 9)+"");
+	}
+	
+	@Test
+	public void 대분류별상품개수가져오기() throws Exception {
+		log.info(service.getProductCnt(1)+"");
 	}
 }

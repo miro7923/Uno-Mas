@@ -30,6 +30,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public List<ProductVO> getProductList(int prod_category, int startRow, int pageSize) throws Exception {
+		return dao.getProductList(prod_category, startRow, pageSize);
+	}
+
+	@Override
+	public Integer getProductCnt(int prod_category) throws Exception {
+		return dao.getProductCnt(prod_category);
+	}
+
+	@Override
 	public String getTopCateName(int topcate_num) throws Exception {
 		return dao.getTopCateName(topcate_num);
 	}
