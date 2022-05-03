@@ -32,15 +32,11 @@ public class ProductController {
 	}
 	@RequestMapping(value = "product/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, @RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
-			@RequestParam("pageNum") String pageNum, Model model) throws Exception {
+			@RequestParam("pageNum") int pageNum, Model model) throws Exception {
 		// 페이징 처리 작업
 		int pageSize = 9;
-		if (pageNum == null) {
-			// 만약 페이지 정보가 없으면 1번 페이지로 설정
-			pageNum = "1";
-		}
 		
-		int curPage = Integer.parseInt(pageNum);
+		int curPage = pageNum;
 		
 		// 현재 페이지정보를 이용해서 시작 행 정보 계산
 		int startRow = (curPage - 1) * pageSize + 1;

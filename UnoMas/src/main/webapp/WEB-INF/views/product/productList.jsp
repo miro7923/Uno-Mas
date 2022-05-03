@@ -30,9 +30,9 @@
 						<ul class="categoryList">
 						    <li><a class="category" id="category0" 
 						        onclick="changeSort(0, ${fn:length(dcateList) });"> 전체보기</a>
-							<c:forEach var="cate" items="${dcateList }" varStatus="it">
-								<li><a class="category" id="category${it.index + 1 }"
-									onclick="changeSort(${it.index + 1 }, ${fn:length(dcateList) });"> ${cate }</a></li>
+							<c:forEach var="dcate" begin="${cateStart-1 }" end="${cateEnd-1 }" step="1" varStatus="it">
+								<li><a class="category" id="category${dcate+1 }"
+									onclick="changeSort(${dcate+1 }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
 							</c:forEach>
 						</ul>
 					</div>
