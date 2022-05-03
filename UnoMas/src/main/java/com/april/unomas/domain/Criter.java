@@ -4,13 +4,18 @@ public class Criter {
 	private int page;
     private int perPageNum;
     
+    private String search_type;
+    private String keyword;
+    
     public int getPageStart() {
         return (this.page-1)*perPageNum;
     }
     
     public Criter() {
         this.page = 1;
-        this.perPageNum = 10;
+        this.perPageNum = 2;
+        this.search_type = null;
+        this.keyword = null;
     }
     
     public int getPage() {

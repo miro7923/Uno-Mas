@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -212,7 +213,7 @@
                         </b>
                     </td>
                     <td width="100" nowrap="" align="center">
-                        ${vo.admin_num } </td>
+                        관리자${vo.admin_num }번 </td>
                     <td width="100" nowrap="" align="center" class="eng2">${vo.notice_regdate }</td>
                     <td width="30" nowrap="" align="center" class="eng2">${vo.notice_readcount }</td>
                 </tr>

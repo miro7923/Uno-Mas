@@ -51,15 +51,29 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectBoardList(Criter cri) {
-		return sqlSession.selectList(NAMESPACE+"pagingBoard",cri);
+	public List<BoardVO> selectBoardList(Criter cri) {
+		return sqlSession.selectList(NAMESPACE+".pagingBoard",cri);
 	}
 
 	@Override
 	public Integer countBoardList() {
-		return sqlSession.selectOne(NAMESPACE+"countBoard");
+		return sqlSession.selectOne(NAMESPACE+".countBoard");
 	}
-	
+
+	@Override
+	public void updateBoard(BoardVO vo) {
+		sqlSession.update(NAMESPACE+".updateBoard",vo);
+	}
+
+	@Override
+	public void deleteBoard(Integer faq_num) {
+		sqlSession.delete(NAMESPACE+".deleteBoard",faq_num);
+	}
+
+	@Override
+	public BoardVO getBoard(Integer faq_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".getBoard",faq_num);
+	}
 	
 
 }

@@ -1,7 +1,6 @@
 package com.april.unomas.persistence;
 
 import java.util.List;
-import java.util.Map;
 
 import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
@@ -18,10 +17,19 @@ public interface BoardDAO {
 	public List<BoardVO> sortCate(String faq_cate);
 	
 	// 페이징
-	public List<Map<String,Object>> selectBoardList(Criter cri);
+	public List<BoardVO> selectBoardList(Criter cri);
 	
 	// 전체 글 갯수
 	public Integer countBoardList();
+	
+	// 글 조회
+	public BoardVO getBoard(Integer faq_num) throws Exception;
+	
+	// 질문 업데이트
+	public void updateBoard(BoardVO vo);
+	
+	// 질문 삭제
+	public void deleteBoard(Integer faq_num);
 	
 	
 }

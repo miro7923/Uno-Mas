@@ -127,7 +127,7 @@ public class BoardController {
 	}
 	
 	@GetMapping(value = "/qni_sort")
-	public String sortList(@RequestParam("faq_cate") String faq_cate, Model model) throws Exception { 
+	public String sortListGET(@RequestParam("faq_cate") String faq_cate, Model model) throws Exception { 
 		log.info(faq_cate);
 		
 		List<BoardVO> boardList = service.sortCate(faq_cate);
@@ -139,19 +139,48 @@ public class BoardController {
 		return "/board/qni_sort";
 	}
 	
-	@RequestMapping(value="/board/qni_paging")
+	@GetMapping(value="/qni_paging")
 	public String pagingListGET(Criter cri,Model model) throws Exception {
 	        
 	    PagingVO pagingVO = new PagingVO(); 
 	    pagingVO.setCri(cri);
+	    log.info(pagingVO+"");
 //	    pagingVO.setTotalCount(100);
 	    pagingVO.setTotalCount(service.countBoardTotal());
-	    List<Map<String,Object>> pList = service.selectBoardList(cri);
+	    List<BoardVO> pList = service.selectBoardList(cri);
 	    model.addAttribute("pList", pList);
 	    model.addAttribute("pagingVO", pagingVO);
 	        
 	    return "/board/qni_paging";
 	        
+	}
+	
+	@GetMapping(value="/qni_update")
+	public String updateBoardGET(@RequestParam("faq_num") int faq_num, Model model) throws Exception {
+		
+		BoardVO vo = service.getBoard(faq_num);
+		
+		model.addAttribute("vo",vo);
+		
+		return "/board/qni_update";
+	}
+	
+	@PostMapping(value="/qni_update")
+	public String updateBoardPOST(BoardVO vo) throws Exception {
+		log.info("수정할 정보 : " + vo);
+		service.updateBoard(vo);
+		
+		
+		
+		return "redirect:/qni_paging";
+	}
+	
+	@GetMapping(value="/qni_delete")
+	public String deleteBoard(@RequestParam("faq_num") int faq_num) throws Exception {
+		
+		service.deleteBoard(faq_num);
+		
+		return "redirect:/qni_paging";
 	}
 
 }

@@ -25,12 +25,46 @@
 	
 	<select id="countBoard" resultType="Integer">
 		select count(*) from test_board
+		where faq_num > 0
+		<include refid="search_condition"></include>
 	</select>
 	
 	<select id="pagingBoard" resultType="BoardVO">
 		select * from test_board
+		where faq_num > 0
+		<include refid="search_condition"></include>
 		order by faq_num desc
-		limit #{pageStart} and #{perPageNum}
+		limit #{pageStart} , #{perPageNum}
 	</select>
+	
+	<select id="getBoard" resultType="BoardVO">
+		select * from test_board
+		where faq_num=#{faq_num}
+	</select>
+	
+	<update id="updateBoard">
+		update test_board 
+		set faq_title=#{faq_title},faq_cate=#{faq_cate},faq_content=#{faq_content} 
+		where faq_num=#{faq_num}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from test_board
+		where faq_num=#{faq_num}
+	</delete>
+	
+	<sql id="search_condition">
+	<if test="search_type != null">
+		<if test="search_type == 'title'.toString()">
+			and faq_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'cate'.toString()">
+			and faq_cate like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'content'.toString()">
+			and faq_content like concat('%', #{keyword}, '%')
+		</if>
+	</if>
+	</sql>
 	
 </mapper>

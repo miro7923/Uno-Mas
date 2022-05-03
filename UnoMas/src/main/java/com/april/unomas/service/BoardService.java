@@ -1,7 +1,6 @@
 package com.april.unomas.service;
 
 import java.util.List;
-import java.util.Map;
 
 import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
@@ -18,8 +17,17 @@ public interface BoardService {
 	public List<BoardVO> sortCate(String faq_cate) throws Exception;
 	
 	// 페이징
-	public List<Map<String,Object>> selectBoardList(Criter cri);
+	public List<BoardVO> selectBoardList(Criter cri) throws Exception;
 	
 	// 전체 글갯수
-	public Integer countBoardTotal();
+	public Integer countBoardTotal() throws Exception;
+	
+	// 질문 조회
+	public BoardVO getBoard(Integer faq_num) throws Exception;
+	
+	// 질문 업데이트
+	public void updateBoard(BoardVO vo) throws Exception;
+	
+	// 질문 삭제
+	public void deleteBoard(Integer faq_num) throws Exception;
 }

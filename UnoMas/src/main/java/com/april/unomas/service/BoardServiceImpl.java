@@ -1,7 +1,6 @@
 package com.april.unomas.service;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -49,13 +48,28 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<Map<String, Object>> selectBoardList(Criter cri) {
+	public List<BoardVO> selectBoardList(Criter cri) throws Exception {
 		return dao.selectBoardList(cri);
 	}
 
 	@Override
-	public Integer countBoardTotal() {
+	public Integer countBoardTotal() throws Exception {
 		return dao.countBoardList();
+	}
+
+	@Override
+	public void updateBoard(BoardVO vo) throws Exception {
+		dao.updateBoard(vo);
+	}
+
+	@Override
+	public void deleteBoard(Integer faq_num) throws Exception {
+		dao.deleteBoard(faq_num);
+	}
+
+	@Override
+	public BoardVO getBoard(Integer faq_num) throws Exception {
+		return dao.getBoard(faq_num);
 	}
 	
 	

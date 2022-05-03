@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%>
+
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -328,6 +334,26 @@ ul {
     </script>
     
     <input type="button" value="글쓰기" onclick="location.href='/qni_write';">
+    <select id="search_type" name="search_type">
+    	<option value="">검색조건</option>
+    	<option value="title">제목</option>
+    	<option value="cate">카테고리</option>
+    	<option value="content">내용</option>
+    </select>
+    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
+<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
+    <button id="search_btn" onclick="search()">버튼</button>
+    
+    <script type="text/javascript">
+    	function search() {
+    		var search_type_val = document.getElementById("search_type");
+    		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
+    		var keyword_val = document.getElementById("keyword").value;
+    		var url = "/qni_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
+    		alert(url);
+    		location.href=url;
+    	}
+    </script>
     
     <script>
   var preContent;
@@ -383,7 +409,7 @@ ul {
                             	<option value="회원">회원</option>
                             	<option value="서비스 이용">서비스 이용</option>
                     </select>
-                </div>
+                </div><!-- seach_date -->
                 
                 
                 <div class="xans-element- xans-myshop xans-myshop-couponserial ">
@@ -395,9 +421,9 @@ ul {
                                 <th class="input_txt">제목</th>
                             </tr>
                         </tbody>
-                    </table>
-                                <c:forEach items="${boardList }" var="vo">
-                    <div>
+                    </table> <!-- table header -->
+                                <c:forEach items="${pList }" var="vo">
+                               
                         <div>
                             <table width="100%" class="table_faq" onclick="view_content(this)" id="faq_7">
                                 <tbody>
@@ -408,7 +434,7 @@ ul {
                                         <td style="cursor:pointer">${vo.faq_title }</td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> 
                                 
                             <div style="display:none;padding:30px; border-top:1px solid #e6e6e6">
                                 <table cellpadding="0" cellspacing="0" border="0">
@@ -416,34 +442,38 @@ ul {
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
                                             <td>
-                                            ${vo.faq_content }
+                                            ${fn:replace(vo.faq_content,cn,br)}<br>
+                                            <input type="button" value="수정하기" onclick="location.href='/qni_update?faq_num=${vo.faq_num}'">
+                                            <input type="button" value="삭제하기" onclick="location.href='/qni_delete?faq_num=${vo.faq_num}'">
+                                            
                                             </td>
                                         </tr>
                                     </tbody>
                                     
                                 </table>
                             </div>
-                        </div>
+                        </div> <!-- table body -->
 
-                    </div>
                                 </c:forEach>
+                                
                     <div style="padding:1px; border-top:1px solid #e6e6e6"></div>
+                    
                     <div class="layout-pagination">
                         <div class="pagediv">
                         <ul class="btn-group pagination">
     <c:if test="${pagingVO.prev }">
     <li>
-        <a href='<c:url value="/board/qni_paging?page=${pagingVO.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a>
+        <a href='<c:url value="/qni_paging?page=${pagingVO.startPage-1 }"/>' class="layout-pagination-button layout-pagination-prev-page"></a>
     </li>
     </c:if>
     <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
     <li>
-        <a href='<c:url value="/board/qni_paging?page=${pageNum }"/>'><i class="fa">${pageNum }</i></a>
+        <a href='<c:url value="/qni_paging?page=${pageNum }"/>' class="layout-pagination-button layout-pagination-number __active"><i class="fa">${pageNum }</i></a>
     </li>
     </c:forEach>
     <c:if test="${pagingVO.next && pagingVO.endPage >0 }">
     <li>
-        <a href='<c:url value="/board/qni_paging?page=${pagingVO.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a>
+        <a href='<c:url value="/qni_paging?page=${pagingVO.endPage+1 }"/>' class="layout-pagination-button layout-pagination-next-page"></a>
     </li>
     </c:if>
 </ul>
@@ -452,7 +482,8 @@ ul {
 <!--                         <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
 <!--                         <a href="" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a> -->
 <!--                         <a href="" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a></div> -->
-                    </div>
+                    </div> <!-- paging div -->
+                    
                     <table class="xans-board-search xans-board-search2">
                         <tbody>
                             <tr>
@@ -460,10 +491,11 @@ ul {
                                 
                             </tr>
                         </tbody>
-                    </table>
-                </div>
+                    </table><!-- 검색 table -->
+                </div><!-- paging 검색 div -->
 
-            </div>
+            </div> <!-- table total div -->
+            </div><!-- page section div -->
         </form>
     
     
