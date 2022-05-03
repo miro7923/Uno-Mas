@@ -22,7 +22,7 @@
 
 
 		<div class="myinfo_content">
-			<h2>개인 정보 확인</h2>
+			<h2>개인 정보 수정</h2>
 			<hr>
 
 			<h3>기본 정보</h3>

@@ -1,16 +1,83 @@
 package com.april.unomas;
 
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.april.unomas.domain.UserVO;
+import com.april.unomas.service.UserService;
+
 
 @Controller
+@RequestMapping("/user/*")
 public class UserController {
 	
-	// user
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "user/login";
+	@Inject
+	private UserService service;
+	
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
+	
+	@RequestMapping(value="/call",method=RequestMethod.GET)
+	public void timeCall(Model model) {
+		String time = service.getTimeS();
+		model.addAttribute("time", time);
 	}
+	
+	// user
+	
+	// 로그인 페이지 구현 (GET)
+	// http://localhost:8088/login
+	@RequestMapping(value = "/login", method=RequestMethod.GET)
+	public String loginGET() {
+		log.info(" loginGET() 호출 -> user/login.jsp 이동" );
+		
+		return "/user/login";
+	}
+	
+	// 로그인 페이지 구현 (POST)
+	// http://localhost:8088/login
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public String loginPOST(UserVO vo, HttpSession session) {
+		log.info(" loginPOST() 호출 -> user/login.jsp 이동" );
+		
+		// 전달된 정보 저장
+		log.info(vo.getUser_id());
+		
+		// 로그인체크 기능 호출 - 서비스
+		UserVO loginVO = service.loginUser(vo);
+		
+		// 로그인 실패
+		if(loginVO == null) {
+			return "redirect:/user/login";
+		}
+		
+		log.info(loginVO+"");
+		
+		// 로그인 성공
+		session.setAttribute("loignCheck", loginVO);
+		
+		// 메인페이지로 이동
+		return "redirect:/index";
+	}
+
+	
+	// 메인 페이지
+	@RequestMapping(value="/index",method=RequestMethod.GET)
+	public void indexGET() {
+		log.info(" indexGET() 호출 -> index");
+	}
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/register")
 	public String register() {
 		return "user/register";

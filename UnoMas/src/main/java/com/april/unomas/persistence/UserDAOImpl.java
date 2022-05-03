@@ -1,5 +1,8 @@
 package com.april.unomas.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.UserVO;
 
 // @Repository : 해당 클래스가 DAO 역할을 하는 객체로 스프링이 인식
 // 이 어노테이션이 있어야 root-context.xml에서 읽어와서 의존성 주입이 가능함
@@ -45,4 +49,39 @@ public class UserDAOImpl implements UserDAO {
 		log.info("DAO : SQL 실행 완료");
 		log.info("DAO : admin - " + vo.toString());
 	}
+
+	// 로그인(GET)
+	@Override
+	public UserVO loginUser(UserVO vo) {
+
+		log.info(" DAO : loginUser(vo) 호출 ");
+		
+		UserVO voTmp = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
+		
+		return voTmp;
+	}
+
+	// 로그인(POST)
+	@Override
+	public UserVO loginUser(String userid, String userpw) {
+
+		log.info(" DAO : loginUser(userid, userpw) 호출" );
+		log.info(" DAO : " + userid+","+userpw);
+		
+		Map<String, Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("userid", userid);
+		paramMap.put("userpw", userpw);
+		
+		UserVO vo = sqlSession.selectOne(NAMESPACE+".loginUser",paramMap);
+		
+		log.info(" DAO : " + vo);
+		
+		return vo;
+	}
+	
+	
+	
+	
+	
+	
 }
