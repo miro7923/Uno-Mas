@@ -12,9 +12,7 @@
     <!-- 상품 목록 카테고리별로 불러오기 -->
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
         SELECT * 
-        FROM products AS p 
-        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
-        JOIN top_category AS t ON d.dcate_num = t.topcate_num
+        FROM products
         WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     

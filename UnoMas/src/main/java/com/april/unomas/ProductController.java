@@ -70,6 +70,7 @@ public class ProductController {
 		map.put("productList", service.getProductList(cateStart, cateEnd, startRow, pageSize));
 		map.put("cateStart", cateStart);
 		map.put("cateEnd", cateEnd);
+		map.put("topcate_num", topcate_num);
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcateList", service.getDcateNames(topcate_num));
 		

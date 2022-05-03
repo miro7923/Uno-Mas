@@ -86,7 +86,7 @@
 						
 						<c:forEach var="block" varStatus="it" begin="${startBlock }" end="${endBlock }" step="1">
 							<span>
-								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${productList[0].prod_category }&pageNum=${it.index}" 
+								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}" 
 								class="pagingBtn" id="page${it.index }" style="color: black;"
 								onclick="changePageNum(${it.index }, ${endBlock });">${it.index } <!----></a>
 							</span> 
