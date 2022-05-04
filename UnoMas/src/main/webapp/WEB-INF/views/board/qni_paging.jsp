@@ -276,7 +276,12 @@ ul {
 .page_aticle .layout-pagination-first-page:first-child {
     border-left: 1px solid #ddd
 }
-
+.layout-pagination-prev-page{
+	background-image: url("prev.png");
+}
+.layout-pagination-next-page{
+	background-image: url("next.png");
+}
 </style>
 
 </head>
@@ -322,7 +327,7 @@ ul {
     <select id="select_location" onchange="select_location()">
     	<option value="">선택</option>
     	<option value="/faq">공지사항</option>
-    	<option value="/qni">자주하는 질문</option>
+    	<option value="/qni_paging">자주하는 질문</option>
     	<option value="/faq">1:1 문의</option>
     </select>
     <script type="text/javascript">
@@ -342,7 +347,7 @@ ul {
     </select>
     <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">버튼</button>
+    <button id="search_btn" onclick="search()">검색</button>
     
     <script type="text/javascript">
     	function search() {
@@ -350,7 +355,7 @@ ul {
     		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
     		var keyword_val = document.getElementById("keyword").value;
     		var url = "/qni_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
-    		alert(url);
+    		
     		location.href=url;
     	}
     </script>
@@ -394,6 +399,7 @@ ul {
 	};
 </script>
 
+<button id="bbb">버튼1</button>
 
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
@@ -461,21 +467,22 @@ ul {
                     <div class="layout-pagination">
                         <div class="pagediv">
                         <ul class="btn-group pagination">
-    <c:if test="${pagingVO.prev }">
+<%--     <c:if test="${pagingVO.prev }"> --%>
     <li>
-        <a href='<c:url value="/qni_paging?page=${pagingVO.startPage-1 }"/>' class="layout-pagination-button layout-pagination-prev-page"></a>
+        <a href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'><img src="${path}/resources/img/prev.png"></a>
     </li>
-    </c:if>
+<%--     </c:if> --%>
     <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
     <li>
-        <a href='<c:url value="/qni_paging?page=${pageNum }"/>' class="layout-pagination-button layout-pagination-number __active"><i class="fa">${pageNum }</i></a>
+        <a href='<c:url value="/qni_paging${pagingVO.makeQuery(pageNum) }"/>' class="layout-pagination-button layout-pagination-number __active"><i class="fa">${pageNum }</i></a>
     </li>
     </c:forEach>
-    <c:if test="${pagingVO.next && pagingVO.endPage >0 }">
+<%--     <c:if test="${pagingVO.next && pagingVO.endPage >0 }"> --%>
     <li>
-        <a href='<c:url value="/qni_paging?page=${pagingVO.endPage+1 }"/>' class="layout-pagination-button layout-pagination-next-page"></a>
+<%--         <a href='<c:url value="/qni_paging?page=${pagingVO.endPage+1 }"/>' class="layout-pagination-button layout-pagination-next-page">다음</a> --%>
+        <a href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'><img src="${path}/resources/img/next.png"></a>
     </li>
-    </c:if>
+<%--     </c:if> --%>
 </ul>
 <!--                         <a href="" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a> -->
 <!--                         <a href="" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a> -->
@@ -527,6 +534,7 @@ ul {
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    
     
 </body>
 

@@ -74,6 +74,20 @@ public class BoardDAOImpl implements BoardDAO {
 	public BoardVO getBoard(Integer faq_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+".getBoard",faq_num);
 	}
+
+	@Override
+	public Integer countBoardList(Criter cri) {
+		
+		return sqlSession.selectOne(NAMESPACE+".countBoard",cri);
+	}
+
+	@Override
+	public Integer sortCateCount(String faq_cate) {
+		
+		return sqlSession.selectOne(NAMESPACE+".sortCateCount",faq_cate);
+	}
+	
+	
 	
 
 }

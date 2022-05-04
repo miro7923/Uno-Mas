@@ -1,5 +1,7 @@
 package com.april.unomas.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class Criter {
 	private int page;
     private int perPageNum;
@@ -13,7 +15,7 @@ public class Criter {
     
     public Criter() {
         this.page = 1;
-        this.perPageNum = 2;
+        this.perPageNum = 10;
         this.search_type = null;
         this.keyword = null;
     }
@@ -28,16 +30,45 @@ public class Criter {
             this.page = page;
         }
     }
+    
+    public String makeQuery() {
+    	UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+    			.queryParam("page", page)
+    			.queryParam("perPageNum", this.perPageNum);
+    	if(search_type != null) {
+    		uriComponentsBuilder
+    			.queryParam("search_type",this.search_type)
+    			.queryParam("keyword",this.keyword);
+    	}
+    	return uriComponentsBuilder.build().encode().toString();
+    }
     public int getPerPageNum() {
         return perPageNum;
     }
-    public void setPerPageNum(int pageCount) {
-        int cnt = this.perPageNum;
-        if(pageCount != cnt) {
-            this.perPageNum = cnt;
+    public void setPerPageNum(int perPageNum) {
+        if(perPageNum <= 0 || perPageNum > 100) {
+            this.perPageNum = 10;
         } else {
-            this.perPageNum = pageCount;
+            this.perPageNum = perPageNum;
         }
     }
 
+	public String getSearch_type() {
+		return search_type;
+	}
+
+	public void setSearch_type(String search_type) {
+		this.search_type = search_type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+    
+    
+    
 }

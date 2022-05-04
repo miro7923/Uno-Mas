@@ -1,14 +1,16 @@
 package com.april.unomas.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PagingVO {
 	
-	 private Criter cri;
+	 	private Criter cri;
 	    private int totalCount;
 	    private int startPage;
 	    private int endPage;
 	    private boolean prev;
 	    private boolean next;
-	    private int displayPageNum = 5;
+	    private int displayPageNum = 6;
 	    
 	    public Criter getCri() {
 	        return cri;
@@ -24,20 +26,26 @@ public class PagingVO {
 	        calcData();
 	    }
 	    
+	    public PagingVO(Criter cri) {
+	    	this.cri = cri;
+	    }
+	    
 	    private void calcData() {
+	    	int page = this.cri.getPage();
+	    	int perPageNum = this.cri.getPerPageNum();
 	        
-	        endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
+	        this.endPage = (int) (Math.ceil(page / (double) displayPageNum) * displayPageNum);
 	 
-	        startPage = (endPage - displayPageNum) + 1;
+	        this.startPage = (this.endPage - displayPageNum) + 1;
 	        if(startPage <= 0) startPage = 1;
 	        
-	        int tempEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
-	        if (endPage > tempEndPage) {
-	            endPage = tempEndPage;
+	        int tempEndPage = (int) (Math.ceil(totalCount / (double) perPageNum));
+	        if (this.endPage > tempEndPage) {
+	            this.endPage = tempEndPage;
 	        }
 	 
-	        prev = startPage == 1 ? false : true;
-	        next = endPage * cri.getPerPageNum() < totalCount ? true : false;
+	        this.prev = (startPage != 1);
+	        this.next = (endPage * perPageNum < totalCount);
 	        
 	    }
 	    
@@ -70,6 +78,19 @@ public class PagingVO {
 	    }
 	    public void setDisplayPageNum(int displayPageNum) {
 	        this.displayPageNum = displayPageNum;
+	    }
+	    
+		public String makeQuery(int page/* , boolean needSearch */) {
+	    	UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+	    			.queryParam("page", page)
+	    			.queryParam("perPageNum", this.cri.getPerPageNum());
+	    	
+	    	if(this.cri.getSearch_type() != null) {
+	    		uriComponentsBuilder
+	    			.queryParam("search_type", this.cri.getSearch_type())
+	    			.queryParam("keyword", this.cri.getKeyword());
+	    	}
+	    	return uriComponentsBuilder.build().encode().toString();
 	    }
 
 

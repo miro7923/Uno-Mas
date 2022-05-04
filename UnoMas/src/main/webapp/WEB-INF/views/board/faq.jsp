@@ -162,7 +162,7 @@
     <select id="select_location" onchange="select_location()">
     	<option value="">선택</option>
     	<option value="/faq">공지사항</option>
-    	<option value="/qni">자주하는 질문</option>
+    	<option value="/qni_paging">자주하는 질문</option>
     	<option value="/faq">1:1 문의</option>
     </select>
     

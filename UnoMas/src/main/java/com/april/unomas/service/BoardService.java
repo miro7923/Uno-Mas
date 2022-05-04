@@ -19,6 +19,9 @@ public interface BoardService {
 	// 페이징
 	public List<BoardVO> selectBoardList(Criter cri) throws Exception;
 	
+	// 전체 글갯수 Criter
+	public Integer countBoardTotal(Criter cri) throws Exception;
+	
 	// 전체 글갯수
 	public Integer countBoardTotal() throws Exception;
 	
@@ -30,4 +33,7 @@ public interface BoardService {
 	
 	// 질문 삭제
 	public void deleteBoard(Integer faq_num) throws Exception;
+	
+	// 전체 정렬 글 갯수
+	public Integer sortCateCount(String faq_cate) throws Exception;
 }

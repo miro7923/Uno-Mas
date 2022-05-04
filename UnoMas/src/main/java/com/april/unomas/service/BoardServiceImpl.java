@@ -71,6 +71,19 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getBoard(Integer faq_num) throws Exception {
 		return dao.getBoard(faq_num);
 	}
+
+	@Override
+	public Integer countBoardTotal(Criter cri) throws Exception {
+		
+		return dao.countBoardList(cri);
+	}
+
+	@Override
+	public Integer sortCateCount(String faq_cate) throws Exception {
+		return dao.sortCateCount(faq_cate);
+	}
+	
+	
 	
 	
 

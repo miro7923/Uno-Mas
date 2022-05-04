@@ -61,26 +61,23 @@ public class BoardController {
 		service.boardWrite(vo);
 		
 		// 페이지 이동(/board/list)
-		return "redirect:/qni";
+		return "redirect:/qni_paging";
 	}
 	
 	// 글목록  /board/listAll  (GET)
-	@GetMapping(value = "/qni")
-	public String listAllGET(Model model) throws Exception {
-		log.info("listAllGET() 호출");
-		
-		// 서비스 -디비에 저장된 글정보 가져오기
-		List<BoardVO> boardList = service.listAll();
-		
-		log.info(boardList+"");
-		
-		// view 페이지로 데이터를 전달
-		model.addAttribute("boardList",boardList);
-//		model.addAttribute("boardList",service.listAll());
-		
-		// /board/listAll.jsp 페이지이동
-		return "/board/qni";
-	}
+	/*
+	 * @GetMapping(value = "/qni") public String listAllGET(Model model) throws
+	 * Exception { log.info("listAllGET() 호출");
+	 * 
+	 * // 서비스 -디비에 저장된 글정보 가져오기 List<BoardVO> boardList = service.listAll();
+	 * 
+	 * log.info(boardList+"");
+	 * 
+	 * // view 페이지로 데이터를 전달 model.addAttribute("boardList",boardList); //
+	 * model.addAttribute("boardList",service.listAll());
+	 * 
+	 * // /board/listAll.jsp 페이지이동 return "/board/qni"; }
+	 */
 	
 	@GetMapping(value = "/faq")
 	public String faq(Model model) throws Exception {
@@ -142,11 +139,12 @@ public class BoardController {
 	@GetMapping(value="/qni_paging")
 	public String pagingListGET(Criter cri,Model model) throws Exception {
 	        
-	    PagingVO pagingVO = new PagingVO(); 
-	    pagingVO.setCri(cri);
+//	    PagingVO pagingVO = new PagingVO(); 
+//	    pagingVO.setCri(cri);
+	    PagingVO pagingVO = new PagingVO(cri);
 	    log.info(pagingVO+"");
 //	    pagingVO.setTotalCount(100);
-	    pagingVO.setTotalCount(service.countBoardTotal());
+	    pagingVO.setTotalCount(service.countBoardTotal(cri));
 	    List<BoardVO> pList = service.selectBoardList(cri);
 	    model.addAttribute("pList", pList);
 	    model.addAttribute("pagingVO", pagingVO);

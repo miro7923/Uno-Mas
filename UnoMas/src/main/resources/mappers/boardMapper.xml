@@ -21,17 +21,27 @@
 		select * from test_board
 		where faq_cate=#{faq_cate}
 		order by faq_num desc
+		limit 1,10
+	</select>
+	
+	<select id="sortCateCount">
+		select count(*) test_board
+		where faq_num > 0 and faq_cate=#{faq_cate}
 	</select>
 	
 	<select id="countBoard" resultType="Integer">
+		<![CDATA[
 		select count(*) from test_board
 		where faq_num > 0
+		]]>
 		<include refid="search_condition"></include>
 	</select>
 	
 	<select id="pagingBoard" resultType="BoardVO">
+		<![CDATA[
 		select * from test_board
 		where faq_num > 0
+		]]>
 		<include refid="search_condition"></include>
 		order by faq_num desc
 		limit #{pageStart} , #{perPageNum}
