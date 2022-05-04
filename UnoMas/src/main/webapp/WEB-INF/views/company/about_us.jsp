@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Uno-mas | 회사소개</title>
+        <title>회사소개</title>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -101,90 +101,66 @@
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
                                 <img class="img-fluid" src="${path}/resources/img/about_us/portfolio/1.jpg" alt="..." />
-                            </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">가치1</div>
-                                <div class="portfolio-caption-subheading text-muted">설명1</div>
+                                <div class="portfolio-caption-heading">신뢰</div>
+                                <div class="portfolio-caption-subheading text-muted">구매완료를 하면 제대로 물건이 도착하는
+                                	<br>정상적인 거래를 보장하겠습니다.</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 2-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
                                 <img class="img-fluid" src="${path}/resources/img/about_us/portfolio/2.jpg" alt="..." />
-                            </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">가치2</div>
-                                <div class="portfolio-caption-subheading text-muted">설명2</div>
+                                <div class="portfolio-caption-heading">가격</div>
+                                <div class="portfolio-caption-subheading text-muted">유통과정 간소화로 원가를 낮추어
+                                	<br>저렴한 가격으로 상품을 제공하겠습니다.</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 3-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
                                 <img class="img-fluid" src="${path}/resources/img/about_us/portfolio/3.jpg" alt="..." />
-                            </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">가치3</div>
-                                <div class="portfolio-caption-subheading text-muted">설명3</div>
+                                <div class="portfolio-caption-heading">상품</div>
+                                <div class="portfolio-caption-subheading text-muted">품질 좋은 상품만을 취급하며,
+                                	<br>유통 중 변질·파손된 상품은 교환해드리겠습니다.</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
                         <!-- Portfolio item 4-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
                                 <img class="img-fluid" src="${path}/resources/img/about_us/portfolio/4.jpg" alt="..." />
-                            </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">가치4</div>
-                                <div class="portfolio-caption-subheading text-muted">설명4</div>
+                                <div class="portfolio-caption-heading">배송</div>
+                                <div class="portfolio-caption-subheading text-muted">빠른 배송으로
+                                	<br>신선한 상품을 전달하겠습니다.</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
                         <!-- Portfolio item 5-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
                                 <img class="img-fluid" src="${path}/resources/img/about_us/portfolio/5.jpg" alt="..." />
-                            </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">가치5</div>
-                                <div class="portfolio-caption-subheading text-muted">설명5</div>
+                                <div class="portfolio-caption-heading">편의성</div>
+                                <div class="portfolio-caption-subheading text-muted">불필요한 구매과정을 개선하고
+                                	<br>간소화 하겠습니다.</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <!-- Portfolio item 6-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                                </div>
                                 <img class="img-fluid" src="${path}/resources/img/about_us/portfolio/6.jpg" alt="..." />
-                            </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">가치6</div>
-                                <div class="portfolio-caption-subheading text-muted">설명6</div>
+                                <div class="portfolio-caption-heading">행복</div>
+                                <div class="portfolio-caption-subheading text-muted">무엇보다 당신의 쇼핑이 즐거운 일임을
+                                	<br>느끼도록 노력하겠습니다.</div>
                             </div>
                         </div>
                     </div>
@@ -351,7 +327,7 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; uno más 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -369,10 +345,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="${path}/resources/js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
