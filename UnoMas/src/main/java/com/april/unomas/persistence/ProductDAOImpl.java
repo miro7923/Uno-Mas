@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.april.unomas.domain.ProdPaging;
 import com.april.unomas.domain.ProductVO;
 
 @Repository
@@ -38,24 +39,22 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<ProductVO> getProductList(int cateStart, int cateEnd, int startRow, int pageSize) throws Exception {
-		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		ProdPaging pp = new ProdPaging();
+		pp.setCateEnd(cateEnd);
+		pp.setCateStart(cateStart);
+		pp.setPageSize(pageSize);
+		pp.setStartRow(startRow - 1);
 		
-		paramMap.put("cateStart", cateStart);
-		paramMap.put("cateEnd", cateEnd);
-		paramMap.put("startRow", startRow-1);
-		paramMap.put("pageSize", pageSize);
-		
-		return sqlSession.selectList(NAMESPACE + ".getListOnPage", paramMap);
+		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pp);
 	}
 
 	@Override
 	public Integer getProductCnt(int cateStart, int cateEnd) throws Exception {
-		Map<String, Integer> paramMap = new HashMap<String, Integer>();
+		ProdPaging pp = new ProdPaging();
+		pp.setCateStart(cateStart);
+		pp.setCateEnd(cateEnd);
 		
-		paramMap.put("cateStart", cateStart);
-		paramMap.put("cateEnd", cateEnd);
-		
-		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", paramMap);
+		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pp);
 	}
 
 	@Override
