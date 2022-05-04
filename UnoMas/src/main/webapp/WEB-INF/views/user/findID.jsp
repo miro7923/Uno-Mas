@@ -20,7 +20,7 @@
 			<hr>
 			<form action="" id="fn_id" method="post" onsubmit="return memberCk();">
 				<div class="input_box">
-					<input type="text" id="id" name="id" placeholder="아이디를 입력하세요.">
+					<input type="text" id="name" name="name" placeholder="이름을 입력하세요.">
 					<input type="email" id="email1" name="email1" placeholder="이메일을 입력하세요.">
 					<p id="cir_text"></p>
 				</div>

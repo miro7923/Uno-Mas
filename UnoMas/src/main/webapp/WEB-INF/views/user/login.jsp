@@ -14,12 +14,8 @@
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
 
+	<!-- 본문내용 -->
     <div id="container">
-		<!-- 헤더 들어가는 곳 -->
-
-		<!-- 헤더 들어가는 곳 -->
-
-		<!-- 본문내용 -->
 		<article>
 			<h3 class="login_name">로그인</h3>
 			<hr>
@@ -35,21 +31,19 @@
 						<input type="checkbox" id="check_save" name="check_save" value="chk">로그인정보 저장
 					</label>
 					<div class="login_search">
-						<a href="" id="id_search">아이디 찾기 | </a> <a href="" id="pass_search">비밀번호 찾기</a>
+						<a href="" id="id_search" onclick=" location.href='/user/findID';">아이디 찾기 | </a> <a href="" id="pass_search" onclick=" location.href='/user/findPW';">비밀번호 찾기</a>
 					</div>
 				</div>
 				
 				<div id="buttons">
 					<input type="submit" value="로그인" id="loginus">
-					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/register';">
+					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/user/register';">
 				</div>
 			</form>
 
 		</article>
-		<!-- 본문내용 -->
-
-
 	</div>
+		<!-- 본문내용 -->
     
     
     <!-- Footer Section Begin -->

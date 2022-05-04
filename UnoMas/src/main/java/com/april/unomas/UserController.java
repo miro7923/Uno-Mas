@@ -30,10 +30,22 @@ public class UserController {
 		model.addAttribute("time", time);
 	}
 	
-	// user
 	
+	// 회원가입 페이지
+	@RequestMapping(value = "/register")
+	public String register() {
+		return "user/register";
+	}
+	
+	// 회원가입 이용약관 페이지
+	@RequestMapping(value = "/register_agree")
+	public String registerAgree() {
+		return "user/registerAgree";
+	}
+	
+	// user
 	// 로그인 페이지 구현 (GET)
-	// http://localhost:8088/login
+	// http://localhost:8088/user/login
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String loginGET() {
 		log.info(" loginGET() 호출 -> user/login.jsp 이동" );
@@ -42,7 +54,7 @@ public class UserController {
 	}
 	
 	// 로그인 페이지 구현 (POST)
-	// http://localhost:8088/login
+	// http://localhost:8088/user/login
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String loginPOST(UserVO vo, HttpSession session) {
 		log.info(" loginPOST() 호출 -> user/login.jsp 이동" );
@@ -66,26 +78,23 @@ public class UserController {
 		// 메인페이지로 이동
 		return "redirect:/index";
 	}
-
 	
-	// 메인 페이지
-	@RequestMapping(value="/index",method=RequestMethod.GET)
-	public void indexGET() {
-		log.info(" indexGET() 호출 -> index");
+	// 로그아웃 구현
+	// http://localhost:8088/user/logout
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+	public String logoutGET(HttpSession session ) {
+		
+		log.info(" logoutGET() 호출 -> 메인 페이지 index.jsp 이동");
+		
+		// 로그아웃 시 세션 초기화
+		session.invalidate();
+		
+		return "redirect:/index";
 	}
 	
 	
 	
 	
-	
-	@RequestMapping(value = "/register")
-	public String register() {
-		return "user/register";
-	}
-	@RequestMapping(value = "/register_agree")
-	public String registerAgree() {
-		return "user/registerAgree";
-	}
 	@RequestMapping(value = "/delete_user")
 	public String delUSer() {
 		return "user/deleteUser";

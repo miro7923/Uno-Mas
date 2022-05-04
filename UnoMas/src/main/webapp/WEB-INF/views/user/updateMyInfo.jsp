@@ -36,12 +36,12 @@
 
 					<tr>
 						<th>이름</th>
-						<td><input type="text" class="input_field" name="name"></td>
+						<td><input type="text" class="input_field" name="name" required></td>
 					</tr>
 
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" class="input_field" name="email"></td>
+						<td><input type="email" class="input_field" name="email" required></td>
 					</tr>
 					
 					<tr>
@@ -73,7 +73,7 @@
 
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="input_field" name="phone" placeholder=" -없이 숫자만 입력">
+						<td><input type="text" class="input_field" name="phone" placeholder=" -없이 숫자만 입력" required>
 						<input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()"></td>
 						<td><div name="phoneCheckDiv"></div><td>
 					</tr>
@@ -152,21 +152,16 @@
 										<dt>계좌번호</dt>
 										<dd>
 											<span class="input_area"> 
-											<input type="text" id="account_no" name="acoount_no" title="계좌번호 입력"  style="width: 228px">
+											<input type="text" id="account_no" name="acoount_no" title="계좌번호 입력"  style="width: 250px">
 											</span>
 										</dd>
 										<dt>예금주</dt>
 										<dd>
 											<span class="input_area">
-											<input type="text" id="account_p" name="account_p" title="예금주 입력" style="width: 228px">
+											<input type="text" id="account_p" name="account_p" title="예금주 입력" style="width: 250px">
 											</span> 
-											<a href="" class="refund_btn" >
-											<span>초기화</span></a>
 										</dd>
 									</dl>
-									<ul class="list_type">
-										<li>* 관계법령(전자상거래법 및 정보통신망법)에 따라 요금정산을 위해 계좌정보를 수집하며 [인증해제&gt; 초기화] 시 삭제됩니다.</li>
-									</ul>
 								</div>
 							</div>
 						</td>
@@ -187,7 +182,7 @@
 			</div>
 
 			<div style="text-align: center;">
-				<a href="" class="updateBtn">수정</a>
+				<input type="submit" class="updateBtn" value="수정" onclick="">
 			</div>
 
 		</div>
