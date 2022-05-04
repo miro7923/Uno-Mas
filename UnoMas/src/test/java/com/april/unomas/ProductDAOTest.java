@@ -51,8 +51,13 @@ public class ProductDAOTest {
 		log.info(dao.getProductList(1, 3, 2, 9) + "");
 	}
 	
-	@Test
+//	@Test
 	public void 대분류별상품개수가져오기() throws Exception {
 		log.info(dao.getProductCnt(1, 3)+"");
+	}
+	
+	@Test
+	public void 소분류별상품목록출력() throws Exception {
+		log.info(dao.getDcateList(1)+"");
 	}
 }

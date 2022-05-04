@@ -66,4 +66,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<String> getDcateNames(int topcate_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getDcateNames", topcate_num);
 	}
+
+	@Override
+	public List<ProductVO> getDcateList(int prod_category) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getDcateProducts", prod_category);
+	}
 }

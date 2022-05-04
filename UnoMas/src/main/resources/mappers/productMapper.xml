@@ -48,4 +48,11 @@
         FROM detail_category 
         WHERE topcate_num = #{topcate_num}
     </select>
+    
+    <!-- 소분류별로 상품 가져오기 -->
+    <select id="getDcateProducts" resultType="ProductVO">
+        SELECT * 
+        FROM products 
+        WHERE prod_category = #{prod_category}
+    </select>
 </mapper>

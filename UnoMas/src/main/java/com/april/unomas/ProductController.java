@@ -18,6 +18,7 @@ import com.april.unomas.service.ProductService;
 
 
 @Controller
+@RequestMapping("/product/*")
 public class ProductController {
 
 	@Inject
@@ -30,8 +31,9 @@ public class ProductController {
 	public String checkout() {
 		return "product/check-out";
 	}
-	@RequestMapping(value = "product/product_list", method = RequestMethod.GET) // /shop -> /product_list
-	public String shopGET(@RequestParam("topcate_num") int topcate_num, @RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
+	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
+	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
+			@RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
 			@RequestParam("pageNum") int pageNum, Model model) throws Exception {
 		// 페이징 처리 작업
 		int pageSize = 9;

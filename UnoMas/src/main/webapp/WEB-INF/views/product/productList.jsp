@@ -46,6 +46,7 @@
 					<div class="product-list">
 						<div class="row">
 						    <input type="hidden" id="prodListLen" value="${fn:length(productList) }">
+						    
 						    <c:forEach var="vo" items="${productList }" varStatus="it">
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item" id="productItem">
@@ -74,6 +75,7 @@
 									</div>
 								</div>
 							</c:forEach>
+							
 						</div>
 					</div>
 					<!-- @@ DB 연결하면 상세 작업하기 @@ -->

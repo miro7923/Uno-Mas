@@ -23,4 +23,7 @@ public interface ProductDAO {
 	
 	// 상위 카테고리의 하위 카테고리 목록 가져오기
 	public List<String> getDcateNames(int topcate_num) throws Exception;
+	
+	// 소분류별로 분류해서 가져오기
+	public List<ProductVO> getDcateList(int prod_category) throws Exception;
 }
