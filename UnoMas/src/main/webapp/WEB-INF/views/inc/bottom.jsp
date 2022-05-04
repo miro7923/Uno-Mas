@@ -33,7 +33,7 @@
                 <div class="col-lg-6 company">
                     <ul class="list">
                     	<li>
-                    		<a class="link" href="">회사소개</a>
+                    		<a class="link" href="about_us">회사소개</a>
                     	</li>
                     </ul>
                     법인명 (상호) : 주식회사 우노마스
