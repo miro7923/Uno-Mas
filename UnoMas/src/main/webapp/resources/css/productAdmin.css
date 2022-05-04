@@ -275,5 +275,5 @@ input[type="checkbox"]:checked::before {
 .line hr {
 	margin-top: 1rem;
     margin-bottom: 1rem;
-    border: 2px solid #b9ce45;
+    border: 1px solid #b9ce45;
 }
