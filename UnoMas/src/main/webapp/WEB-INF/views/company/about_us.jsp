@@ -171,7 +171,7 @@
         <section class="page-section" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">회사 연력</h2>
+                    <h2 class="section-heading text-uppercase">회사 연혁</h2>
                     <h3 class="section-subheading text-muted">우노마스가 걸어온 발자취입니다.</h3>
                 </div>
                 <ul class="timeline">
@@ -182,7 +182,8 @@
                                 <h4>2009-2011</h4>
                                 <h4 class="subheading">팀 결성</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">설명1</p></div>
+                            <div class="timeline-body"><p class="text-muted">Team April 구성원이 모여 사업구상을 하고,
+                            	<br>입출고 시스템을 정립했습니다.</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -192,7 +193,7 @@
                                 <h4>March 2011</h4>
                                 <h4 class="subheading">웹페이지 개설 및 판매 시작</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">설명2</p></div>
+                            <div class="timeline-body"><p class="text-muted">웹페이지를 만들고 본격적으로 상품을 판매시작 했습니다.</p></div>
                         </div>
                     </li>
                     <li>
@@ -202,7 +203,7 @@
                                 <h4>December 2015</h4>
                                 <h4 class="subheading">매출 10억 달성</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">설명3</p></div>
+                            <div class="timeline-body"><p class="text-muted">고객님들의 열띤 성원에 매출 10억을 달성했습니다.</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
@@ -212,7 +213,7 @@
                                 <h4>July 2020</h4>
                                 <h4 class="subheading">미국 진출</h4>
                             </div>
-                            <div class="timeline-body"><p class="text-muted">설명4</p></div>
+                            <div class="timeline-body"><p class="text-muted">LA에 지사를 두고 미국 서부 진출을 시작했습니다.</p></div>
                         </div>
                     </li>
                     <li class="timeline-inverted">
