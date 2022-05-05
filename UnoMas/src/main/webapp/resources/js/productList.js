@@ -18,13 +18,13 @@ function getPageNum() {
     $(id).css('color', '#B9CE45');
 }
 
-function changeSort(num, maxNum) {
+function changeSort(num, start, maxNum) {
     var id = '#category' + num;
     
     $(id).css('color', '#B9CE45');
     $(id).css('font-weight', 'bold');
     
-    for (var i = 0; i < maxNum; i++) {
+    for (var i = start; i < start + maxNum; i++) {
         if (num == i) continue;
         
         id = '#category' + i;
