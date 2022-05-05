@@ -9,4 +9,5 @@ public class ProdPaging {
 	private int cateEnd;
 	private int startRow;
 	private int pageSize;
+	private int prod_category;
 }

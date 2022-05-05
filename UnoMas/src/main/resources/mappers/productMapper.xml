@@ -13,7 +13,7 @@
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
         SELECT * 
         FROM products
-        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
+        WHERE prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     
     <!-- 상위 카테고리별 한 페이지에 표시할 만큼만 가져오기 -->
@@ -52,6 +52,14 @@
     <!-- 소분류별로 상품 가져오기 -->
     <select id="getDcateProducts" resultType="ProductVO">
         SELECT * 
+        FROM products 
+        WHERE prod_category = #{prod_category}
+        LIMIT #{startRow}, #{pageSize}
+    </select>
+    
+    <!-- 소분류별 상품 개수 가져오기 -->
+    <select id="getDcateCnt" resultType="Integer">
+        SELECT count(*) 
         FROM products 
         WHERE prod_category = #{prod_category}
     </select>

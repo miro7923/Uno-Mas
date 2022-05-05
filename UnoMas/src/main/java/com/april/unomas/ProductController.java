@@ -1,6 +1,7 @@
 package com.april.unomas;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.april.unomas.domain.ProdPaging;
+import com.april.unomas.domain.ProductVO;
 import com.april.unomas.service.ProductService;
 
 
@@ -34,18 +37,31 @@ public class ProductController {
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
-			@RequestParam("pageNum") int pageNum, Model model) throws Exception {
+			@RequestParam("pageNum") int pageNum, @RequestParam("dcate_num") int dcate_num, 
+			Model model) throws Exception {
+		ProdPaging pp = new ProdPaging();
+		pp.setCateStart(cateStart);
+		pp.setCateEnd(cateEnd);
+		
 		// 페이징 처리 작업
 		int pageSize = 9;
 		
 		int curPage = pageNum;
 		
 		// 현재 페이지정보를 이용해서 시작 행 정보 계산
-		int startRow = (curPage - 1) * pageSize + 1;
+		int startRow = (curPage - 1) * pageSize;
 		
 		// 하단 페이징 처리 //////
-		// 현재 대분류의 전체 상품 개수 얻기
-		int postCnt = service.getProductCnt(cateStart, cateEnd);
+		// 현재 분류별 전체 상품 개수 얻기
+		// dcate_num(소분류) 번호가 0이라면 전체를 불러오는 것이고
+		// 1이상이라면 각각의 소분류만 불러오는 것이다.
+		int postCnt = 0;
+		if (dcate_num == 0) {
+			postCnt = service.getProductCnt(pp);
+		}
+		else {
+			postCnt = service.getDcateCnt(dcate_num);
+		}
 		
 		// 페이지 전체 블록 개수 계산
 		int pageCnt = postCnt / pageSize + ((postCnt % pageSize == 0) ? 0 : 1);
@@ -61,15 +77,27 @@ public class ProductController {
 		if (endBlock > pageCnt)
 			endBlock = pageCnt;
 		
+		pp.setStartRow(startRow);
+		pp.setPageSize(pageSize);
+		pp.setProd_category(dcate_num);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		List<ProductVO> productList = null;
+		if (dcate_num == 0) {
+			productList = service.getProductPage(pp);
+		}
+		else {
+			productList = service.getDcateList(pp);
+		}
+		
 		// 글 목록 정보 저장
-		map.put("productList", service.getProductList(cateStart, cateEnd, startRow, pageSize));
+		map.put("productList", productList);
 		map.put("cateStart", cateStart);
 		map.put("cateEnd", cateEnd);
 		map.put("topcate_num", topcate_num);
 		map.put("topcate", service.getTopCateName(topcate_num));
+		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
 		
 		// 페이지 처리 정보 저장

@@ -1,6 +1,8 @@
 $(document).ready(function() {
-    $('#category0').css('color', '#B9CE45');
-    $('#category0').css('font-weight', 'bold');
+    var id = '#category' + $('#dcateNum').val();
+    $(id).css('color', '#B9CE45');
+    $(id).css('font-weight', 'bold');
+    
     getPageNum();
     convertCurrency($('#prodListLen').val());
 });

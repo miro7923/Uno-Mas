@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.ProdPaging;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.persistence.ProductDAO;
 
@@ -25,18 +26,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVO> getProductList(int cateStart, int cateEnd) throws Exception {
-		return dao.getProductList(cateStart, cateEnd);
+	public List<ProductVO> getProductList(ProdPaging pp) throws Exception {
+		return dao.getProductList(pp);
 	}
 
 	@Override
-	public List<ProductVO> getProductList(int cateStart, int cateEnd, int startRow, int pageSize) throws Exception {
-		return dao.getProductList(cateStart, cateEnd, startRow, pageSize);
+	public List<ProductVO> getProductPage(ProdPaging pp) throws Exception {
+		return dao.getProductPage(pp);
 	}
 
 	@Override
-	public Integer getProductCnt(int cateStart, int cateEnd) throws Exception {
-		return dao.getProductCnt(cateStart, cateEnd);
+	public Integer getProductCnt(ProdPaging pp) throws Exception {
+		return dao.getProductCnt(pp);
 	}
 
 	@Override
@@ -47,5 +48,15 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<String> getDcateNames(int topcate_num) throws Exception {
 		return dao.getDcateNames(topcate_num);
+	}
+
+	@Override
+	public List<ProductVO> getDcateList(ProdPaging pp) throws Exception {
+		return dao.getDcateList(pp);
+	}
+
+	@Override
+	public Integer getDcateCnt(int prod_category) throws Exception {
+		return dao.getDcateCnt(prod_category);
 	}
 }

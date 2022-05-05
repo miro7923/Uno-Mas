@@ -28,10 +28,13 @@
 					<div class="categoryBox">
 						<h3 class="title">${topcate }</h3>
 						<ul class="categoryList">
-						    <li><a class="category" id="category0" 
+						    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
+						    <li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
+						        class="category" id="category0" style="color: black;" 
 						        onclick="changeSort(0, ${fn:length(dcateList) });"> 전체보기</a>
 							<c:forEach var="dcate" begin="${cateStart-1 }" end="${cateEnd-1 }" step="1" varStatus="it">
-								<li><a class="category" id="category${dcate+1 }"
+								<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=${dcate+1}" 
+								class="category" id="category${dcate+1 }" style="color: black;" 
 									onclick="changeSort(${dcate+1 }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
 							</c:forEach>
 						</ul>
@@ -88,7 +91,7 @@
 						
 						<c:forEach var="block" varStatus="it" begin="${startBlock }" end="${endBlock }" step="1">
 							<span>
-								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}" 
+								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
 								class="pagingBtn" id="page${it.index }" style="color: black;"
 								onclick="changePageNum(${it.index }, ${endBlock });">${it.index } <!----></a>
 							</span> 

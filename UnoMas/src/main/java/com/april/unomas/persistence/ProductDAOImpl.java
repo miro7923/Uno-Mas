@@ -28,32 +28,17 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getProductList(int cateStart, int cateEnd) throws Exception{
-		Map<String, Integer> paramMap = new HashMap<String, Integer>();
-		
-		paramMap.put("cateStart", cateStart);
-		paramMap.put("cateEnd", cateEnd);
-		
-		return sqlSession.selectList(NAMESPACE + ".getListCate", paramMap);
+	public List<ProductVO> getProductList(ProdPaging pp) throws Exception{
+		return sqlSession.selectList(NAMESPACE + ".getListCate", pp);
 	}
 
 	@Override
-	public List<ProductVO> getProductList(int cateStart, int cateEnd, int startRow, int pageSize) throws Exception {
-		ProdPaging pp = new ProdPaging();
-		pp.setCateEnd(cateEnd);
-		pp.setCateStart(cateStart);
-		pp.setPageSize(pageSize);
-		pp.setStartRow(startRow - 1);
-		
+	public List<ProductVO> getProductPage(ProdPaging pp) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pp);
 	}
 
 	@Override
-	public Integer getProductCnt(int cateStart, int cateEnd) throws Exception {
-		ProdPaging pp = new ProdPaging();
-		pp.setCateStart(cateStart);
-		pp.setCateEnd(cateEnd);
-		
+	public Integer getProductCnt(ProdPaging pp) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pp);
 	}
 
@@ -68,7 +53,12 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getDcateList(int prod_category) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getDcateProducts", prod_category);
+	public List<ProductVO> getDcateList(ProdPaging pp) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getDcateProducts", pp);
+	}
+
+	@Override
+	public Integer getDcateCnt(int prod_category) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getDcateCnt", prod_category);
 	}
 }

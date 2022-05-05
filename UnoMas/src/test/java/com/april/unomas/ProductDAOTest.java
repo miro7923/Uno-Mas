@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.april.unomas.domain.ProdPaging;
 import com.april.unomas.persistence.ProductDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -33,7 +34,10 @@ public class ProductDAOTest {
 	
 //	@Test
 	public void 카테고리별상품출력() throws Exception {
-		log.info(dao.getProductList(1, 3)+"");
+		ProdPaging pp = new ProdPaging();
+		pp.setCateStart(1);
+		pp.setCateEnd(3);
+		log.info(dao.getProductList(pp)+"");
 	}
 	
 //	@Test
@@ -48,16 +52,29 @@ public class ProductDAOTest {
 	
 //	@Test
 	public void 페이지개수만큼가져오기테스트() throws Exception {
-		log.info(dao.getProductList(1, 3, 2, 9) + "");
+		ProdPaging pp = new ProdPaging();
+		pp.setCateStart(1);
+		pp.setCateEnd(3);
+		pp.setPageSize(9);
+		pp.setStartRow(1);
+		log.info(dao.getProductPage(pp) + "");
 	}
 	
 //	@Test
 	public void 대분류별상품개수가져오기() throws Exception {
-		log.info(dao.getProductCnt(1, 3)+"");
+		ProdPaging pp = new ProdPaging();
+		pp.setCateStart(1);
+		pp.setCateEnd(3);
+		log.info(dao.getProductCnt(pp)+"");
 	}
 	
 	@Test
 	public void 소분류별상품목록출력() throws Exception {
-		log.info(dao.getDcateList(1)+"");
+		ProdPaging pp = new ProdPaging();
+		pp.setStartRow(1);
+		pp.setPageSize(9);
+		pp.setProd_category(2);
+		log.info(dao.getDcateList(pp)+"");
+		log.info("count: " + dao.getDcateCnt(2));
 	}
 }
