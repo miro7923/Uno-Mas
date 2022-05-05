@@ -63,4 +63,11 @@
         FROM products 
         WHERE prod_category = #{prod_category}
     </select>
+    
+    <!-- 상품 번호로 상품 하나의 정보 가져오기 -->
+    <select id="getProduct" resultType="ProductVO">
+        SELECT *
+        FROM products
+        WHERE prod_num = #{prod_num}
+    </select>
 </mapper>

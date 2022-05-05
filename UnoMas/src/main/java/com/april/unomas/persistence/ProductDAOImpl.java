@@ -61,4 +61,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public Integer getDcateCnt(int prod_category) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getDcateCnt", prod_category);
 	}
+
+	@Override
+	public ProductVO getProduct(int prod_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getProduct", prod_num);
+	}
 }

@@ -64,7 +64,7 @@ public class ProductServiceTest {
 		log.info(service.getProductCnt(pp)+"");
 	}
 	
-	@Test
+//	@Test
 	public void 소분류별상품출력테스트() throws Exception {
 		ProdPaging pp = new ProdPaging();
 		pp.setStartRow(0);
@@ -72,5 +72,10 @@ public class ProductServiceTest {
 		pp.setProd_category(2);
 		log.info(service.getDcateList(pp)+"");
 		log.info(service.getDcateCnt(2)+"");
+	}
+	
+	@Test
+	public void 상품하나정보출력테스트() throws Exception {
+		log.info(service.getProduct(10)+"");
 	}
 }

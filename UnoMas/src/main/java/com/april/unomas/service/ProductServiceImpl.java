@@ -59,4 +59,9 @@ public class ProductServiceImpl implements ProductService {
 	public Integer getDcateCnt(int prod_category) throws Exception {
 		return dao.getDcateCnt(prod_category);
 	}
+
+	@Override
+	public ProductVO getProduct(int prod_num) throws Exception {
+		return dao.getProduct(prod_num);
+	}
 }

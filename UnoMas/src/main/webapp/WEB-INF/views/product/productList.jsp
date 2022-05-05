@@ -71,9 +71,6 @@
 											<div class="product-price" id="prod${it.index }">
 												${vo.prod_price }원
 											</div>
-											<!-- <div class="productSubTitle">
-											    아삭하고 부드러운
-											</div> -->
 										</div>
 									</div>
 								</div>

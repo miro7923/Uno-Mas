@@ -14,6 +14,8 @@
 <!-- Header end -->
 
 <%
+    String user_id = (String) session.getAttribute("user_id");
+
     // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
     boolean isInWishlist = false;
 
@@ -27,21 +29,6 @@
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- Header End -->
-
-	<!-- Breadcrumb Section Begin -->
-	<!-- <div class="breacrumb-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb-text product-more">
-						<a href="./home.html"><i class="fa fa-home"></i> Home</a> <a
-							href="shop">Shop</a> <span>Detail</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- Breadcrumb Section Begin -->
 
 	<!-- Product Shop Section Begin -->
 	<section class="product-shop spad page-details">
@@ -59,25 +46,28 @@
 						<div class="col-lg-6">
 							<div class="product-details">
 								<div class="pd-title">
-									<h3>청경채</h3>
+									<h3>${vo.prod_name }</h3>
 								</div>
 								<div class="pd-desc">
-									<p>아삭하고 부드러운</p>
+									<p>${vo.prod_explain }</p>
 								</div>
 								<div class="pd-desc">
 									<h5 class="priceText top">
-										<span id="price">2,190</span> 원
+									    <input type="hidden" id="originPrice" value="${vo.prod_price }">
+										<span id="price">${vo.prod_price }</span> 원
 									</h5>
-									<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
+									<%if (user_id == null) { %>
+										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
+									<% } %>
 								</div>
 								<div class="pd-tags">
 									<dl class="list first">
 										<dt class="title">판매단위</dt>
-										<dd class="description">1팩</dd>
+										<dd class="description">${vo.prod_sellunit }</dd>
 									</dl>
 									<dl class="list">
 										<dt class="title">중량/용량</dt>
-										<dd class="description">300g</dd>
+										<dd class="description">${vo.prod_weight }g</dd>
 									</dl>
 									<hr>
 									<dl class="list">
@@ -87,19 +77,19 @@
 									<hr>
 									<dl class="list">
 										<dt class="title">원산지</dt>
-										<dd class="description">국산</dd>
+										<dd class="description">${vo.prod_country }</dd>
 									</dl>
 									<hr>
 									<dl class="list">
 										<dt class="title">포장타입</dt>
-										<dd class="description">냉장/스티로품</dd>
+										<dd class="description">${vo.prod_packing }</dd>
 									</dl>
 									<hr>
 									<dl class="list">
 										<div class="quantity">
 											<dt class="title">구매수량</dt>
 											<div class="pro-qty">
-												<input type="text" value="1">
+												<input type="text" id="quantity" value="1">
 											</div>
 											<br>
 										</div>
@@ -107,10 +97,10 @@
 								</div>
 								<div class="pd-desc">
 									<h5 class="priceText">
-										총 상품금액 : <span id="price">2,190</span> 원
+										총 상품금액 : <span id="totalPrice"></span> 원
 									</h5>
 								</div>
-								<div class="quantity">
+								<div class="quantity justify-content-end">
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
                                     <%if (isInWishlist) { %>

@@ -23,4 +23,7 @@ public class ProductVO {
 	private String prod_keep;
 	private int prod_weight;
 	private String prod_country;
+	private String prod_sellunit;
+	private String prod_explain;
+	private String prod_packing;
 }

@@ -1,6 +1,7 @@
 package com.april.unomas;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -41,9 +42,15 @@ public class ProductControllerTest {
 		log.info(mvc.toString());
 	}
 	
-	@Test
+//	@Test
 	public void 상품목록출력테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=2");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
+	}
+	
+	@Test
+	public void 상품하나출력테스트() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_detail?prod_num=10");
+		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(model().attributeExists("vo")).andDo(print());
 	}
 }

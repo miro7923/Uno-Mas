@@ -114,7 +114,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_detail") // /product -> /product_detail
-	public String product() {
+	public String product(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		ProductVO vo = service.getProduct(prod_num);
+		
+		model.addAttribute("vo", vo);
+		
 		return "product/productDetail";
 	}
 

@@ -30,4 +30,7 @@ public interface ProductDAO {
 	
 	// 소분류별 상품 개수
 	public Integer getDcateCnt(int prod_category) throws Exception;
+	
+	// 상품 하나의 정보를 가져오는 메서드
+	public ProductVO getProduct(int prod_num) throws Exception;
 }
