@@ -48,9 +48,15 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	public void 상품하나출력테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_detail?prod_num=10");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(model().attributeExists("vo")).andDo(print());
+	}
+	
+	@Test
+	public void 카트에넣기테스트() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/insert_cart?user_num=1&prod_num=11&prod_amount=1");
+		mvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
 	}
 }

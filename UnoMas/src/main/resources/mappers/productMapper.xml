@@ -70,4 +70,24 @@
         FROM products
         WHERE prod_num = #{prod_num}
     </select>
+    
+    <!-- 카트에 상품 넣기 -->
+    <insert id="insertCart">
+        INSERT INTO cart (user_num, prod_num, prod_amount)
+        VALUES (#{user_num}, #{prod_num}, #{prod_amount})
+    </insert>
+    
+    <!-- 회원의 카트에 담긴 상품 확인 -->
+    <select id="getCart">
+        SELECT *
+        FROM cart
+        WHERE user_num = #{user_num}
+    </select>
+    
+    <!-- 카트에 있는 상품 개수 업데이트 -->
+    <update id="modifyAmount">
+        UPDATE cart
+        SET prod_amount = #{prod_amount}
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </update>
 </mapper>

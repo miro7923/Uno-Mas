@@ -3,6 +3,7 @@ $(document).ready(function() {
     
     convertCurrency();
     calcTotalPrice();
+    insertCart();
 });
 function toggleReview(num) {
     // 선택된 게시글의 본문만 show로 바꾸고 
@@ -41,6 +42,8 @@ function calcTotalPrice() {
         var price = $('#originPrice').val();
         var total = q * price;
         $('#totalPrice').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+        
+        $('#prod_amount').attr('value', q);
     });
     
     $('.dec').click(function() {
@@ -49,7 +52,9 @@ function calcTotalPrice() {
         if (q >= 0) {
 	        var price = $('#originPrice').val();
 	        var total = q * price;
-	        $('#totalPrice').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	
+	        $('#totalPrice').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            
+            $('#prod_amount').attr('value', q);
 		}
     });
 }
@@ -65,4 +70,20 @@ function convertCurrency() {
     price = $(id).text();
     
     $(id).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+}
+
+function insertCart() {
+    $('#cartBtn').click(function() {
+        $.ajax({
+            url: '/product/insert_cart',
+            data: {
+                'user_num': $('#user_num').val(),
+                'prod_num': $('#prod_num').val(),
+                'prod_amount': $('#prod_amount').val()
+                  },
+            success: function() {
+                alert('장바구니에 상품을 넣었습니다!');
+            }
+        });
+    });
 }

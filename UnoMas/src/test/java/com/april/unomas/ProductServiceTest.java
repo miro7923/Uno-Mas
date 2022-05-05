@@ -74,8 +74,13 @@ public class ProductServiceTest {
 		log.info(service.getDcateCnt(2)+"");
 	}
 	
-	@Test
+//	@Test
 	public void 상품하나정보출력테스트() throws Exception {
 		log.info(service.getProduct(10)+"");
+	}
+	
+//	@Test
+	public void 카트에상품넣기테스트() throws Exception {
+		service.insertCart(1, 10, 1);
 	}
 }

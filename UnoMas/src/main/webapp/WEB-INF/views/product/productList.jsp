@@ -54,7 +54,7 @@
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item" id="productItem">
 										<div class="pi-pic">
-											<a href="product_detail"> 
+											<a href="/product/product_detail?prod_num=${vo.prod_num }"> 
 											<img
 												src="${path}/resources/img/product-single/product_vegi01.jpeg"
 												alt=""></a>
@@ -65,7 +65,7 @@
 											</ul>
 										</div>
 										<div class="pi-text">
-											<a href="#">
+											<a href="/product/product_detail?prod_num=${vo.prod_num }">
 												<h5>${vo.prod_name }</h5>
 											</a>
 											<div class="product-price" id="prod${it.index }">

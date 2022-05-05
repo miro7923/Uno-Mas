@@ -16,6 +16,8 @@
 <%
     String user_id = (String) session.getAttribute("user_id");
 
+    int user_num = 1;
+
     // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
     boolean isInWishlist = false;
 
@@ -111,7 +113,13 @@
 									    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
 									        onclick="toggleWishlistBtn();"></button>
 								   <% } %>
-									<a href="shopping-cart" class="primary-btn pd-cart">장바구니 담기</a>
+								   <form action="/product/insert_cart">
+								   </form>
+								       <input type="hidden" id="user_num" value="<%=user_num%>">
+								       <input type="hidden" id="prod_num" value="${vo.prod_num }">
+								       <input type="hidden" id="prod_amount" value="1">
+									<button class="primary-btn pd-cart" id="cartBtn" 
+									    >장바구니 담기</button>
 								</div>
 							</div>
 						</div>
@@ -185,9 +193,9 @@
 											<tbody>
 												<tr>
 													<th>품목 또는 명칭</th>
-													<td id="extraInfoProdName">청경채</td>
+													<td id="extraInfoProdName">${vo.prod_name }</td>
 													<th>포장단위별 내용물의 용량(중량), 수량, 크기</th>
-													<td id="extraInfoProdWeight">300g</td>
+													<td id="extraInfoProdWeight">${vo.prod_weight }g</td>
 												</tr>
 												<tr>
 													<th>관련법상 표시사항</th>
@@ -203,11 +211,11 @@
 													<th>농수산물의 원산지 표시에 관한 법률에 따른 원산지</th>
 													<td>상품설명 및 상품이미지 참조</td>
 													<th>상품구성</th>
-													<td id="extraInfoCountry">국산</td>
+													<td id="extraInfoCountry">${vo.prod_country }</td>
 												</tr>
 												<tr>
 													<th>보관방법 또는 취급방법</th>
-													<td id="extraInfoKeeping">냉장 보관</td>
+													<td id="extraInfoKeeping">${vo.prod_keep }</td>
 													<th>제조연월일(포장일 또는 생산연도), 유통기한 또는 품질유지기한</th>
 													<td>제품 별도 라벨 표기 참조</td>
 												</tr>
@@ -219,61 +227,6 @@
 												</tr>
 											</tbody>
 										</table>
-										<!-- <table>
-                                            <tr>
-                                                <td class="p-catagory">평점</td>
-                                                <td>
-                                                    <div class="pd-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">가격</td>
-                                                <td>
-                                                    <div class="p-price" id="price">2,190원</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Add To Cart</td>
-                                                <td>
-                                                    <div class="cart-add">+ add to cart</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Availability</td>
-                                                <td>
-                                                    <div class="p-stock">22 in stock</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Weight</td>
-                                                <td>
-                                                    <div class="p-weight">1,3kg</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Size</td>
-                                                <td>
-                                                    <div class="p-size">Xxl</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Color</td>
-                                                <td><span class="cs-color"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Sku</td>
-                                                <td>
-                                                    <div class="p-code">00012</div>
-                                                </td>
-                                            </tr>
-                                        </table> -->
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-3" role="tabpanel">
@@ -294,7 +247,6 @@
 												<colgroup>
 													<col style="width: 110px;">
 													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
 													<col style="width: 77px;">
 													<col style="width: 100px;">
 													<col style="width: 50px;">
@@ -304,8 +256,6 @@
 													<tr>
 														<th>번호</th>
 														<th>제목</th>
-														<!-- <th scope="col" class="input_txt"><span
-															class="screen_out">회원 등급</span></th> -->
 														<th align="left">작성자</th>
 														<th>작성일</th>
 														<th>좋아요</th>
@@ -313,36 +263,6 @@
 													</tr>
 												</tbody>
 											</table>
-											<%-- <table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">구매후기 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<col style="width: 51px;">
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td>공지</td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleReview()">상품 후기 적립금 정책 안내</td>
-														<!-- <th scope="col" class="input_txt"><span
-															class="screen_out">회원 등급</span></th> -->
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>245864</td>
-													</tr>
-												</tbody>
-											</table> --%>
-											<!-- <div class="reviewContent">
-												<p>고객님 안녕하세요, 우노마스입니다.</p>
-											</div> -->
 											<!-- 반복문으로 리뷰글 출력 부분 -->
 											<%
 											for (int i = 0; i < 7; i++) {
@@ -385,64 +305,7 @@
 												후기쓰기
 												</button>
 											</div>
-
-											<%-- <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="${path}/resources/img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div> --%>
-											<%-- <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="${path}/resources/img/product-single/avatar-2.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div> --%>
 										</div>
-										<!-- <div class="personal-rating">
-                                            <h6>Your Ratind</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div> -->
-										<!-- <div class="leave-comment">
-											<h4>Leave A Comment</h4>
-											<form action="#" class="comment-form">
-												<div class="row">
-													<div class="col-lg-6">
-														<input type="text" placeholder="Name">
-													</div>
-													<div class="col-lg-6">
-														<input type="text" placeholder="Email">
-												<textarea placeholder="Messages"></textarea>
-													</div>
-												</div>
-											</form>
-										</div> -->
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-4" role="tabpanel">
@@ -463,7 +326,6 @@
 												<colgroup>
 													<col style="width: 110px;">
 													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
 													<col style="width: 77px;">
 													<col style="width: 100px;">
 													<col style="width: 50px;">
@@ -473,8 +335,6 @@
 													<tr>
 														<th>번호</th>
 														<th>제목</th>
-														<!-- <th scope="col" class="input_txt"><span
-															class="screen_out">회원 등급</span></th> -->
 														<th align="left">작성자</th>
 														<th>작성일</th>
 														<th>좋아요</th>

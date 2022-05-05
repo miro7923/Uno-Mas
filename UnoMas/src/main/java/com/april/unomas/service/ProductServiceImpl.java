@@ -64,4 +64,9 @@ public class ProductServiceImpl implements ProductService {
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return dao.getProduct(prod_num);
 	}
+
+	@Override
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
+		dao.insertCart(user_num, prod_num, prod_amount);
+	}
 }
