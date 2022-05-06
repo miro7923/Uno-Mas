@@ -42,9 +42,9 @@ public class ProductControllerTest {
 		log.info(mvc.toString());
 	}
 	
-//	@Test
+	@Test
 	public void 상품목록출력테스트() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=2");
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=1");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
@@ -54,9 +54,15 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(model().attributeExists("vo")).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	public void 카트에넣기테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/insert_cart?user_num=1&prod_num=11&prod_amount=1");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andDo(print());
+	}
+	
+//	@Test
+	public void 신상품목록출력테스트() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/new_product_list");
+		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/newProductList")).andDo(print());
 	}
 }

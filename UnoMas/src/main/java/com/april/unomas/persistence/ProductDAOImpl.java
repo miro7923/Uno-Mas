@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.april.unomas.domain.ProdPaging;
+import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 
 @Repository
@@ -28,18 +28,18 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getProductList(ProdPaging pp) throws Exception{
-		return sqlSession.selectList(NAMESPACE + ".getListCate", pp);
+	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception{
+		return sqlSession.selectList(NAMESPACE + ".getListCate", pc);
 	}
 
 	@Override
-	public List<ProductVO> getProductPage(ProdPaging pp) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pp);
+	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pc);
 	}
 
 	@Override
-	public Integer getProductCnt(ProdPaging pp) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pp);
+	public Integer getProductCnt(ProdCriteria pc) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pc);
 	}
 
 	@Override
@@ -53,8 +53,8 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getDcateList(ProdPaging pp) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getDcateProducts", pp);
+	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getDcateProducts", pc);
 	}
 
 	@Override
@@ -75,5 +75,15 @@ public class ProductDAOImpl implements ProductDAO {
 		cart.put("prod_amount", prod_amount);
 		
 		sqlSession.insert(NAMESPACE + ".insertCart", cart);
+	}
+
+	@Override
+	public List<ProductVO> getNewProductList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getNewProducts", pc);
+	}
+
+	@Override
+	public int getNewProdCnt() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getNewProdCnt");
 	}
 }

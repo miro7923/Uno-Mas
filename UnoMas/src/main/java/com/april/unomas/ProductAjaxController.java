@@ -20,6 +20,7 @@ public class ProductAjaxController {
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductAjaxController.class);
 	
+	// ajax로 장바구니에 물건 담기
 	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
 	public void insertCartPOST(HttpServletRequest request) throws Exception {
 		log.info("insertCartPOST() 호출");

@@ -48,11 +48,11 @@ function changePageNum(num, maxNum) {
     }
 }
 
-// 통화에 , 삽입하는 처리
+// 통화에 , 삽입하는 처리 
 function convertCurrency(cnt) {
     for (var i = 0; i < cnt; i++) {
         var id = '#prod' + i;
-        var price = $(id).text();
+        price = $(id).text();
     
         $(id).text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
     }

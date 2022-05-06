@@ -7,6 +7,7 @@ h3 {
 .product-details .quantity .primary-btn.pd-cart {
 	padding: 14px 60px 10px;
 	background-color: #B9CE45;
+	border: none;
 }
 
 .tab-item ul li a::before {
@@ -169,7 +170,7 @@ table.reviewTable {
 }
 
 table.reviewTable th {
-    border-top: 2px solid #e7ab3c;	
+    border-top: 2px solid #B9CE45;	
 }
 
 table.reviewTable th, table.reviewTable td:not(.reviewTitle) {    
@@ -195,7 +196,12 @@ table.reviewTable td {
 }
 
 .reviewBtnArea {
-	border-top: 2px solid #e7ab3c;	
+	border-top: 2px solid #B9CE45;	
 	padding-top: 40px;
 	text-align: right;
+}
+
+.site-btn {
+	background: #B9CE45;
+    border: 1px solid #B9CE45;
 }

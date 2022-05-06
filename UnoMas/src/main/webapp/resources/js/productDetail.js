@@ -74,7 +74,11 @@ function convertCurrency() {
 
 function insertCart() {
     $('#cartBtn').click(function() {
-        $.ajax({
+        if ($('#prod_amount').val() <= 0) {
+            alert('수량을 1개 이상 선택해 주세요!'); 
+        }
+        else {
+            $.ajax({
             url: '/product/insert_cart',
             data: {
                 'user_num': $('#user_num').val(),
@@ -84,6 +88,7 @@ function insertCart() {
             success: function() {
                 alert('장바구니에 상품을 넣었습니다!');
             }
-        });
+            });
+        }
     });
 }

@@ -119,7 +119,7 @@
 								       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 								       <input type="hidden" id="prod_amount" value="1">
 									<button class="primary-btn pd-cart" id="cartBtn" 
-									    >장바구니 담기</button>
+									    >장바구니 담기</button> 
 								</div>
 							</div>
 						</div>

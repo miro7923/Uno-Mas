@@ -33,7 +33,7 @@
 						        class="category" id="category0" style="color: black;" 
 						        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
 							<c:forEach var="dcate" begin="0" end="${cateEnd-cateStart }" step="1" varStatus="it">
-								<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=${cateStart+dcate}" 
+								<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=1&dcate_num=${cateStart+dcate}" 
 								class="category" id="category${cateStart+dcate }" style="color: black;" 
 									onclick="changeSort(${cateStart+dcate }, ${cateStart }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
 							</c:forEach>
@@ -42,7 +42,7 @@
 					<div class="product-show-option">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 text-right">
-								<p>총 ${postCnt } 개</p>
+								<p>총 ${pm.totalCnt } 개</p>
 							</div>
 						</div>
 					</div>
@@ -81,22 +81,22 @@
 					<!-- @@ DB 연결하면 상세 작업하기 @@ -->
 					<div class="row" id="pagediv">
 						<div class="col-lg-12 text-center">
-						<c:if test="${startBlock > pageBlockCnt }">
-							<a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a> 
+						<c:if test="${pm.prev }">
+							<!-- <a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a>  -->
 							<a href="#" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
 						</c:if>
 						
-						<c:forEach var="block" varStatus="it" begin="${startBlock }" end="${endBlock }" step="1">
+						<c:forEach var="block" varStatus="it" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<span>
 								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
 								class="pagingBtn" id="page${it.index }" style="color: black;"
-								onclick="changePageNum(${it.index }, ${endBlock });">${it.index } <!----></a>
+								onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
 							</span> 
 						</c:forEach>
 						
-						<c:if test="${endBlock > pageBlockCnt }">
+						<c:if test="${pm.next }">
 							<a href="#" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
-							<a href="#" class="arrow_carrot-2right_alt pagingBtn" id="toLast"></a>
+							<!-- <a href="#" class="arrow_carrot-2right_alt pagingBtn" id="toLast"></a> -->
 						</c:if>
 						</div>
 					</div>
