@@ -8,7 +8,7 @@ import com.april.unomas.domain.ProductVO;
 public interface ProductDAO {
 
 	// 상품 등록
-	public void insertProduct(ProductVO vo);
+	public void insertProduct(ProductVO vo) throws Exception;
 	
 	// 상품 전체 목록 불러오기
 	public List<ProductVO> getProductList() throws Exception;

@@ -49,7 +49,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
-	public String productRegisterPOST(ProductVO vo) {
+	public String productRegisterPOST(ProductVO vo) throws Exception {
 		log.info("post");
 		log.info(vo+"");
 		service.insertProduct(vo);

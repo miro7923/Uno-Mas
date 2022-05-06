@@ -23,12 +23,12 @@ public class ProductDAOImpl implements ProductDAO{
 	private static final Logger log = LoggerFactory.getLogger(ProductDAOImpl.class);
 	
 	@Override
-	public void insertProduct(ProductVO vo) {
+	public void insertProduct(ProductVO vo) throws Exception {
 		log.info("insertProduct(ProductVO vo) -> mapper로 이동");
 		sqlSession.insert(NAMESPACE+".setProduct", vo);
 		log.info("mapper 실행완료 -> DAO -> Service 이동");
 	}
-	
+
 	@Override
 	public List<ProductVO> getProductList() throws Exception{
 		return sqlSession.selectList(NAMESPACE + ".getList");

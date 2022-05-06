@@ -8,8 +8,8 @@ import com.april.unomas.domain.ProductVO;
 public interface ProductService {
 
 	// 상품 등록
-	public void insertProduct(ProductVO vo);
-
+	public void insertProduct(ProductVO vo) throws Exception;
+	
 	// 상품 전체 목록 가져오는 메서드
 	public List<ProductVO> getProductList() throws Exception;
 	

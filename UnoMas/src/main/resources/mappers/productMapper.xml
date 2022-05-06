@@ -36,12 +36,12 @@
 <!--     </select> -->
     
 <!--     상품 상위 카테고리 이름 가져오기 -->
-<!--     <select id="getTopCateName" resultType="String"> -->
-<!--         SELECT topcate_name  -->
-<!--         FROM top_category  ' -->
+    <select id="getTopCateName" resultType="String">
+        SELECT topcate_name 
+        FROM top_category
         
-<!--         WHERE topcate_num = #{topcate_num} -->
-<!--     </select> -->
+        WHERE topcate_num = #{topcate_num}
+    </select>
     
 <!--     상위 카테고리의 하위 카테고리 목록 가져오기 -->
 <!--     <select id="getDcateNames" resultType="String"> -->
@@ -80,7 +80,11 @@
     			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
     </insert>
     
-
-    
+	<!-- 상위 카테고리 목록 -->
+<!--     <select id="getTopCategory" resultType="String"> -->
+<!--     	SELECT topcate_name -->
+<!--     	FROM top_category -->
+<!--     	ORDER BY topcate_num -->
+<!--     </select> -->
     
 </mapper>

@@ -20,12 +20,12 @@ public class ProductServiceImpl implements ProductService{
 	private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 	
 	@Override
-	public void insertProduct(ProductVO vo) {
+	public void insertProduct(ProductVO vo) throws Exception {
 		log.info("insertProduct(ProductVO vo) -> DAO:insertProduct(vo) 호출");
 		dao.insertProduct(vo);
 		log.info("DAO 완료 -> 컨트롤러로 이동");
 	}
-	
+
 	@Override
 	public List<ProductVO> getProductList() throws Exception {
 		return dao.getProductList();
