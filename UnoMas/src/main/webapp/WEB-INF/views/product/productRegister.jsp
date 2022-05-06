@@ -134,8 +134,8 @@
 												<label>포장타입<span>*</span></label>
 											<select class="selectBox" name="prod_packing">
 												<option>선택</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
+												<option value="냉장/스티로품">냉장/스티로품</option>
+												<option value="냉동/스티로품">냉동/스티로품</option>
 											</select>
 											</div>
 										</div>
@@ -154,16 +154,16 @@
 								<div class="row">
 								<h4>상품정보고시</h4>
 									<!--  상품 상태 버튼-->
-									<div class="filter-widget">
-										<div class="fw-size-choose">
-											<div class="sc-item">
-												<input type="radio"> <label for="">ON</label>
-											</div>
-											<div class="sc-item">
-												<input type="radio"> <label for="">OFF</label>
-											</div>
-										</div>
-									</div>
+<!-- 									<div class="filter-widget"> -->
+<!-- 										<div class="fw-size-choose"> -->
+<!-- 											<div class="sc-item"> -->
+<!-- 												<input type="radio"> <label for="">ON</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="sc-item"> -->
+<!-- 												<input type="radio"> <label for="">OFF</label> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 									<!-- 상품 상태 버튼 끝-->
 								</div>
 							</div>
@@ -189,8 +189,8 @@
 											<input type="text" value=
 										
 										"농산물 - 농수산물품질관리법상 유전자변형농산물 표시, 지리적 표시<br> 축산물
-<!-- 														- 축산법에 따른 등급 표시, 쇠고기의 경우 이력관리에 따른 표시 유무<br> 수산물 - -->
-<!-- 														농수산물품질관리법상 유전자변형수산물 표시, 지리적 표시<br> 수입식품에 해당하는 경우 -->
+ 														- 축산법에 따른 등급 표시, 쇠고기의 경우 이력관리에 따른 표시 유무<br> 수산물 - 
+ 														농수산물품질관리법상 유전자변형수산물 표시, 지리적 표시<br> 수입식품에 해당하는 경우 
 														'수입식품안전특별법에 따른 수입신고를 필함'의 문구" readonly>
 										
 										</div>
