@@ -13,8 +13,7 @@ public interface BoardDAO {
 	// 글 목록 가져오기
 	public List<BoardVO> listAll();
 	
-	// 카테고리 정렬
-	public List<BoardVO> sortCate(String faq_cate);
+	
 	
 	// 페이징
 	public List<BoardVO> selectBoardList(Criter cri);
@@ -36,7 +35,8 @@ public interface BoardDAO {
 	// 전체 정렬글 갯수
 	public Integer sortCateCount(String faq_cate);
 	
-	
+	// 카테고리 정렬
+	public List<BoardVO> sortCate(String faq_cate, Criter cri);
 	
 	
 }

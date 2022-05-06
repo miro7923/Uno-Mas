@@ -68,6 +68,12 @@ public class Criter {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
+	@Override
+	public String toString() {
+		return "Criter [page=" + page + ", perPageNum=" + perPageNum + ", search_type=" + search_type + ", keyword="
+				+ keyword + "]";
+	}
     
     
     

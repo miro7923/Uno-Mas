@@ -236,8 +236,8 @@
     
     
     <select id="select_location" onchange="select_location()">
-    	<option value="/faq">공지사항</option>
-    	<option value="/qni">자주하는 질문</option>
+    	<option value="/faq_paging">공지사항</option>
+    	<option value="/qni_paging">자주하는 질문</option>
     	<option value="/faq">1:1 문의</option>
     </select>
     <script type="text/javascript">
@@ -248,7 +248,6 @@
     	}
     </script>
     
-    
     <table width="100%" align="center" cellpadding="0" cellspacing="0">
 <tbody><tr>
 <td>
@@ -258,7 +257,7 @@
 <table class="boardView" width="100%">
 <tbody><tr>
 <th scope="row" style="border:none;">제목</th>
-<td>${vo.notice_title }</td>
+<td>${vo.notice_title }<input type="hidden" name="notice_title" value="${vo.notice_title }"></td>
 </tr>
 <tr>
 <th scope="row">작성자</th>
@@ -271,7 +270,7 @@
 <strong class="th">작성일</strong> <span class="td">${vo.notice_regdate }</span>
 </li>
 <li class="hit ">
-<strong class="th">조회수</strong> <span class="td">${vo.notice_readcount }</span>
+<strong class="th">조회수</strong> <span class="td">${vo.notice_readcount }</span><input type="hidden" name="">
 </li>
 </ul>
 </td>
@@ -287,7 +286,9 @@
 <td style="padding:10px;" height="200" valign="top" id="contents">
 <table width="100%" style="table-layout:fixed">
 <tbody><tr>
-<td>${fn:replace(vo.notice_content,cn,br)}</td>
+<td>${fn:replace(vo.notice_content,cn,br)}
+<input type="hidden" name="notice_content" value="${fn:replace(vo.notice_content,cn,br)}">
+</td>
 </tr>
 </tbody></table>
 </td>
@@ -300,13 +301,13 @@
 <table width="100%">
 <tbody><tr>
 <td align="right">
-<a href="/faq"><span class="bhs_button yb" style="float:none;">목록</span></a>
+<a href="/faq_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
 </td>
 <td align="right">
-<a href="/faq"><span class="bhs_button yb" style="float:none;">수정</span></a>
+<a href="/faq_update?notice_num=${vo.notice_num }"><span class="bhs_button yb" style="float:none;">수정</span></a>
 </td>
 <td align="right">
-<a href="/faq"><span class="bhs_button yb" style="float:none;">삭제</span></a>
+<a href="/faq_delete?notice_num=${vo.notice_num }"><span class="bhs_button yb" style="float:none;">삭제</span></a>
 </td>
 </tr>
 </tbody></table>

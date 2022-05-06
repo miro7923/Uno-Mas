@@ -1,5 +1,6 @@
 ﻿package com.april.unomas;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -124,14 +125,20 @@ public class BoardController {
 	}
 	
 	@GetMapping(value = "/qni_sort")
-	public String sortListGET(@RequestParam("faq_cate") String faq_cate, Model model) throws Exception { 
+	public String sortListGET(@RequestParam("faq_cate") String faq_cate,Criter cri, Model model) throws Exception { 
 		log.info(faq_cate);
 		
-		List<BoardVO> boardList = service.sortCate(faq_cate);
+		Map<String,Object> map = new HashMap<String,Object>();
+		log.info(cri+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		PagingVO pagingVO = new PagingVO(cri);
+		pagingVO.setTotalCount(service.sortCateCount(faq_cate));
+		List<BoardVO> pList = service.sortCate(faq_cate, cri);
+//		map.put("pList",pList);
+		model.addAttribute("pList",pList);
+//		map.put("pagingVO",pagingVO);
+		model.addAttribute("pagingVO",pagingVO);
 		
-		log.info(boardList+"");
-		
-		model.addAttribute("boardList",boardList);
+		model.addAttribute("faq_cate",faq_cate);
 		
 		return "/board/qni_sort";
 	}
@@ -179,6 +186,45 @@ public class BoardController {
 		service.deleteBoard(faq_num);
 		
 		return "redirect:/qni_paging";
+	}
+	
+	@GetMapping(value="/faq_paging")
+	public String pagingNoticeGET(Criter cri, Model model) throws Exception {
+		PagingVO pagingVO = new PagingVO(cri);
+		pagingVO.setTotalCount(nService.noticeCnt(cri));
+		List<NoticeVO> pList = nService.pagingNotices(cri);
+		
+		model.addAttribute("pList",pList);
+		model.addAttribute("pagingVO",pagingVO);
+		
+		return "/board/faq_paging";
+	}
+	
+	@GetMapping(value="/faq_update")
+	public String updateNoticeGET(@RequestParam("notice_num") int notice_num, Model model) throws Exception {
+		log.info("notice_num @@@@@@@@@@@@@====" + notice_num);
+		NoticeVO vo = nService.getNotice(notice_num);
+		
+		model.addAttribute("vo",vo);
+		
+		return "/board/faq_update";
+	}
+	
+	@PostMapping(value="/faq_update")
+	public String updateNoticePOST(NoticeVO vo) throws Exception {
+		log.info("수정할 정보 : " + vo);
+		
+		nService.updateNotice(vo);
+		
+		return "redirect:/faq_paging";
+	}
+	
+	@GetMapping(value="/faq_delete")
+	public String deleteNoticeGET(@RequestParam("notice_num") int notice_num) throws Exception {
+		
+		nService.deleteNotice(notice_num);
+		
+		return "redirect:/faq_paging";
 	}
 
 }

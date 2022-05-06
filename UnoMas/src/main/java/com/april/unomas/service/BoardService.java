@@ -14,7 +14,7 @@ public interface BoardService {
 	public List<BoardVO> listAll() throws Exception;
 	
 	// 카테고리 정렬
-	public List<BoardVO> sortCate(String faq_cate) throws Exception;
+	public List<BoardVO> sortCate(String faq_cate, Criter cri) throws Exception;
 	
 	// 페이징
 	public List<BoardVO> selectBoardList(Criter cri) throws Exception;

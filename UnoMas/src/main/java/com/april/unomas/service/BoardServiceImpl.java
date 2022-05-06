@@ -40,13 +40,7 @@ public class BoardServiceImpl implements BoardService {
 		return dao.listAll();
 	}
 
-	@Override
-	public List<BoardVO> sortCate(String faq_cate) throws Exception {
-		log.info("sortCate() -> DAO 동작 호출");
-		log.info(dao.sortCate(faq_cate)+"");
-		return dao.sortCate(faq_cate);
-	}
-
+	
 	@Override
 	public List<BoardVO> selectBoardList(Criter cri) throws Exception {
 		return dao.selectBoardList(cri);
@@ -83,7 +77,12 @@ public class BoardServiceImpl implements BoardService {
 		return dao.sortCateCount(faq_cate);
 	}
 	
-	
+	@Override
+	public List<BoardVO> sortCate(String faq_cate, Criter cri) throws Exception {
+		log.info("sortCate() -> DAO 동작 호출");
+		return dao.sortCate(faq_cate, cri);
+	}
+
 	
 	
 

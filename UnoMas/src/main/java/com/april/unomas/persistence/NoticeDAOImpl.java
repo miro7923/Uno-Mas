@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 
 @Repository
@@ -56,6 +57,26 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public void rCountUp(Integer notice_num) {
 		sqlSession.update(NAMESPACE+".rCountUp",notice_num);
 		
+	}
+
+	@Override
+	public Integer getNoticeCount(Criter cri) {
+		return sqlSession.selectOne(NAMESPACE+".noticeCnt",cri);
+	}
+
+	@Override
+	public List<NoticeVO> pagingNotice(Criter cri) {
+		return sqlSession.selectList(NAMESPACE+".pagingNotice",cri);
+	}
+
+	@Override
+	public void updateNotice(NoticeVO vo) {
+		sqlSession.update(NAMESPACE+".updateNotice",vo);
+	}
+
+	@Override
+	public void deleteNotice(Integer notice_num) {
+		sqlSession.delete(NAMESPACE+".deleteNotice",notice_num);
 	}
 	
 	

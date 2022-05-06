@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -386,7 +390,6 @@ ul {
                     </select>
                 </div>
                 
-                
                 <div class="xans-element- xans-myshop xans-myshop-couponserial ">
                     <table width="100%" class="xans-board-listheader">
                         <tbody>
@@ -397,15 +400,14 @@ ul {
                             </tr>
                         </tbody>
                     </table>
-                                <c:forEach items="${boardList }" var="vo" varStatus="i">
+                                <c:forEach items="${pList }" var="vo" varStatus="i">
                     <div>
                         <div>
-                        
                             <table width="100%" class="table_faq" onclick="view_content(this)" id="faq_7">
                                 <tbody>
     
                                     <tr>
-                                        <td width="70" align="center">${fn:length(boardList)-i.index }</td>
+                                        <td width="70" align="center">${fn:length(pList)-i.index }</td>
                                         <td><input type="hidden" value="${vo.faq_num }"></td>
                                         <td width="135" align="center">${vo.faq_cate }</td>
                                         <td style="cursor:pointer">${vo.faq_title }</td>
@@ -419,7 +421,7 @@ ul {
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
                                             <td>
-                                            ${vo.faq_content }
+                                            ${fn:replace(vo.faq_content,cn,br)}<br>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -432,7 +434,34 @@ ul {
                                 </c:forEach>
                     <div style="padding:1px; border-top:1px solid #e6e6e6"></div>
                     <div class="layout-pagination">
-                        <div class="pagediv"><a href="" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a><a href="" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a><strong class="layout-pagination-button layout-pagination-number __active">1</strong><a href="" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a><a href="" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a></div>
+                        <div class="pagediv">
+<!--                         <a href="" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a> -->
+<!--                         <a href="" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a> -->
+<!--                         <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
+<!--                         <a href="" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a> -->
+<!--                         <a href="" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a> -->
+						
+						<ul class="btn-group pagination">
+<%--     <c:if test="${pagingVO.prev }"> --%>
+    <li>
+        <a href='<c:url value="/qni_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&faq_cate=${faq_cate }"/>'><img src="${path}/resources/img/prev.png"></a>
+    </li>
+<%--     </c:if> --%>
+    <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
+    <li>
+        <a href='<c:url value="/qni_sort${pagingVO.makeQuery(pageNum) }&faq_cate=${faq_cate }"/>' class="layout-pagination-button layout-pagination-number __active"><i class="fa">${pageNum }</i></a>
+    </li>
+    </c:forEach>
+<%--     <c:if test="${pagingVO.next && pagingVO.endPage >0 }"> --%>
+    <li>
+<%--         <a href='<c:url value="/qni_paging?page=${pagingVO.endPage+1 }"/>' class="layout-pagination-button layout-pagination-next-page">다음</a> --%>
+        <a href='<c:url value="/qni_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&faq_cate=${faq_cate }"/>'><img src="${path}/resources/img/next.png"></a>
+    </li>
+<%--     </c:if> --%>
+</ul>
+						
+						
+                        </div>
                     </div>
                     <table class="xans-board-search xans-board-search2">
                         <tbody>

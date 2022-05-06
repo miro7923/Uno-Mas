@@ -1,5 +1,6 @@
 package com.april.unomas.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,13 +44,7 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectList(NAMESPACE+".listAll");
 	}
 
-	@Override
-	public List<BoardVO> sortCate(String faq_cate) {
-		log.info("sortCate");
-		log.info(faq_cate);
-		return sqlSession.selectList(NAMESPACE+".sortCategory",faq_cate);
-	}
-
+	
 	@Override
 	public List<BoardVO> selectBoardList(Criter cri) {
 		return sqlSession.selectList(NAMESPACE+".pagingBoard",cri);
@@ -87,7 +82,16 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(NAMESPACE+".sortCateCount",faq_cate);
 	}
 	
-	
+	@Override
+	public List<BoardVO> sortCate(String faq_cate, Criter cri) {
+		log.info("sortCate");
+		log.info(faq_cate);
+		Map<String,Object> paramMap = new HashMap<String,Object>();
+		paramMap.put("faq_cate",faq_cate);
+		paramMap.put("cri",cri);
+		return sqlSession.selectList(NAMESPACE+".sortCategory",paramMap);
+	}
+
 	
 
 }

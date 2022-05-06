@@ -326,7 +326,7 @@ ul {
     
     <select id="select_location" onchange="select_location()">
     	<option value="">선택</option>
-    	<option value="/faq">공지사항</option>
+    	<option value="/faq_paging">공지사항</option>
     	<option value="/qni_paging">자주하는 질문</option>
     	<option value="/faq">1:1 문의</option>
     </select>
@@ -399,14 +399,12 @@ ul {
 	};
 </script>
 
-<button id="bbb">버튼1</button>
-
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
                 
                 <div class="search_date">
                     <select class="btn_layer" id="qni_category" onchange="changeCate(this)">
-                       			<option>카테고리를 선택하세요</option>
+                       			<option>카테고리 선택</option>
                        			<option value="배송/포장">배송/포장</option>
                             	<option value="취소/교환/환불">취소/교환/환불</option>
                             	<option value="이벤트/적립금">이벤트/적립금</option>

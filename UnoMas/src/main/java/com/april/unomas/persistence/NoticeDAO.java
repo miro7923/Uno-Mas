@@ -2,6 +2,7 @@ package com.april.unomas.persistence;
 
 import java.util.List;
 
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 
 public interface NoticeDAO {
@@ -17,5 +18,17 @@ public interface NoticeDAO {
 	
 	// 조회수1증가
 	public void rCountUp(Integer notice_num);
+	
+	// 전체 글 개수
+	public Integer getNoticeCount(Criter cri);
+	
+	// 페이징
+	public List<NoticeVO> pagingNotice(Criter cri);
+	
+	// 글 수정
+	public void updateNotice(NoticeVO vo);
+	
+	// 글 삭제
+	public void deleteNotice(Integer notice_num);
 	
 }

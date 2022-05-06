@@ -204,13 +204,11 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach items="${boardList }" var="vo">
+            <c:forEach items="${pList }" var="vo">
                 <tr>
-                    <td width="50" nowrap="" align="center">
-                        ${vo.notice_num } </td>
+                    <td width="50" nowrap="" align="center" >${vo.notice_num }</td>
                     <td style="padding-left:10px; text-align:left; color:#999">
-                        <a href="/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a><b>
-                        </b>
+                        <a href="/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a>
                     </td>
                     <td width="100" nowrap="" align="center">
                         관리자${vo.admin_num }번 </td>
@@ -227,7 +225,35 @@
 
                     <td class="input_txt">&nbsp;</td>
                     <td>
-
+                    
+                    
+                    <div class="pagediv">
+                        <ul class="btn-group pagination">
+<%--     <c:if test="${pagingVO.prev }"> --%>
+    <li>
+        <a href='<c:url value="/faq_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'><img src="${path}/resources/img/prev.png"></a>
+    </li>
+<%--     </c:if> --%>
+    <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
+    <li>
+        <a href='<c:url value="/faq_paging${pagingVO.makeQuery(pageNum) }"/>' class="layout-pagination-button layout-pagination-number __active"><i class="fa">${pageNum }</i></a>
+    </li>
+    </c:forEach>
+<%--     <c:if test="${pagingVO.next && pagingVO.endPage >0 }"> --%>
+    <li>
+<%--         <a href='<c:url value="/qni_paging?page=${pagingVO.endPage+1 }"/>' class="layout-pagination-button layout-pagination-next-page">다음</a> --%>
+        <a href='<c:url value="/faq_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'><img src="${path}/resources/img/next.png"></a>
+    </li>
+<%--     </c:if> --%>
+</ul>
+<!--                         <a href="" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a> -->
+<!--                         <a href="" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a> -->
+<!--                         <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
+<!--                         <a href="" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a> -->
+<!--                         <a href="" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a></div> -->
+                    </div> <!-- paging div -->
+                    
+                    
                     </td>
                 </tr>
             </tbody>

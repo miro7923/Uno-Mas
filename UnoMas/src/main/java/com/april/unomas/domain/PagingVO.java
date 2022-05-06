@@ -12,7 +12,7 @@ public class PagingVO {
 	    private boolean next;
 	    private int displayPageNum = 6;
 	    
-	    public Criter getCri() {
+		public Criter getCri() {
 	        return cri;
 	    }
 	    public void setCri(Criter cri) {
@@ -80,6 +80,13 @@ public class PagingVO {
 	        this.displayPageNum = displayPageNum;
 	    }
 	    
+//	    public String sortQuery(int page) {
+//	    	UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+//	    			.queryParam("page", page)
+//	    			.queryParam("perPageNum", this.cri.getPerPageNum());
+//	    	return uriComponentsBuilder.build().encode().toString();
+//	    }
+	    
 		public String makeQuery(int page/* , boolean needSearch */) {
 	    	UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
 	    			.queryParam("page", page)
@@ -92,6 +99,14 @@ public class PagingVO {
 	    	}
 	    	return uriComponentsBuilder.build().encode().toString();
 	    }
-
-
+		@Override
+		public String toString() {
+			return "PagingVO [cri=" + cri + ", totalCount=" + totalCount + ", startPage=" + startPage + ", endPage="
+					+ endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum + "]";
+		}
+		
+		
+		
+		
+		
 }
