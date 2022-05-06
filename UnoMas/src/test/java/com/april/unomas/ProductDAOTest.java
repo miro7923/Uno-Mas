@@ -25,7 +25,7 @@ public class ProductDAOTest {
 	private ProductDAO dao;
 	
 	@Test
-	public void 상품등록() {
+	public void 상품등록() throws Exception {
 		ProductVO vo = new ProductVO();
 		
 		vo.setProd_num(1);
