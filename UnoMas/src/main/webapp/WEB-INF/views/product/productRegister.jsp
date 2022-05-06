@@ -35,7 +35,7 @@
 				<div class="col-lg-10">
 					<h2>상품등록</h2><div class="line"><hr></div>
 					<div class="container">
-						<form action="#" class="checkout-form">
+						<form action="/product_register" method="post" class="checkout-form">
 							<!-- 기본정보 -->
 							<div class="row">
 								<div class="col-lg-12">
@@ -43,13 +43,13 @@
 									<h4>기본정보</h4>
 									<div class="row">
 										<div class="col-lg-6">
-											<label>상품명<span>*</span></label> <input type="text">
+											<label>상품명<span>*</span></label> <input type="text" name="prod_name" id="prod_name">
 										</div>
 										<div class="col-lg-3">
-											<label>상품번호<span>*</span></label> <input type="text">
+											<label>상품번호<span>*</span></label> <input type="text" name="prod_num" id="prod_num">
 										</div>
 										<div class="col-lg-3">
-											<label>상태<span>*</span></label>
+											<label>상태<span></span></label>
 											<div class="filter-widget">
 												<div class="fw-size-choose">
 													<div class="sc-item">
@@ -68,17 +68,20 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox">
-												<option>대분류</option>
-												<option>채소</option>
-												<option>과일·견과·쌀</option>
-												<option>수산·해산·건어물</option>
-												<option>정육·계란</option>
-												<option>생수·음료·우유·커피</option>
+											<select class="selectBox" >
+												<option selected>대분류</option>
+<%-- 												<c:forEach items="${getTopCateName}" var="topcate" > --%>
+<%-- 													<option><c:out value="${topcate.topcate_name}"/></option> --%>
+<%-- 												</c:forEach> --%>
+												<option value="1">채소</option>
+												<option value="2">과일·견과·쌀</option>
+												<option value="3">수산·해산·건어물</option>
+												<option value="4">정육·계란</option>
+												<option value="5">생수·음료·우유·커피</option>
 											</select>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox">
+											<select class="selectBox" name="prod_category">
 												<option>소분류</option>
 												<option>1</option>
 												<option>2</option>
@@ -86,7 +89,7 @@
 											<label></label>
 										</div>
 										<div class="col-lg-12">
-											<label>요약 설명<span>*</span></label> <input type="text">
+											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain">
 										</div>
 										<div class="col-lg-12">
 											<label for="zip">검색 키워드</label> <input type="text"> <label></label>
@@ -102,10 +105,13 @@
 									<h4>판매정보</h4>
 									<div class="row">
 										<div class="col-lg-12">
-											<label>판매가<span>*</span></label> <input type="text">
+											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price">
 										</div>
 										<div class="col-lg-12">
-											<label>상품 재고<span>*</span></label> <input type="text">
+											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" id="prod_stock">
+										</div>
+										<div class="col-lg-12">
+											<label>판매 단위<span>*</span></label> <input type="text" name="prod_sellunit" id="">
 										</div>
 									</div>
 								</div>
@@ -116,16 +122,21 @@
 										<h4>추가항목</h4>
 										<div class="row">
 											<div class="col-lg-12">
-												<label>판매단위<span>*</span></label><input type="text">
+												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight">
 											</div>
 											<div class="col-lg-12">
-												<label>중량/용량<span>*</span></label><input type="text">
+												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
 											</div>
 											<div class="col-lg-12">
-												<label>원산지<span>*</span></label><input type="text">
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="prod_expire">
 											</div>
 											<div class="col-lg-12">
-												<label>포장타입<span>*</span></label><input type="text">
+												<label>포장타입<span>*</span></label>
+											<select class="selectBox" name="prod_packing">
+												<option>선택</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+											</select>
 											</div>
 										</div>
 									</div>
@@ -163,13 +174,13 @@
 											<label>품목 또는 명칭</label>
 										</div>
 										<div class="col-lg-7">
-											<input type="text" id="extraInfoProdName">
+											<input type="text" id="prod_name" >
 										</div>
 										<div class="col-lg-5">
 											<label>포장단위별 내용물의 용량(중량), 수량, 크기</label>
 										</div>
 										<div class="col-lg-7">
-											<input type="text" id="extraInfoProdWeight">
+											<input type="text" id="prod_weight">
 										</div>
 										<div class="col-lg-5">
 											<label>관련법상 표기사항</label>
@@ -199,13 +210,13 @@
 											<label>상품구성</label>
 										</div>
 										<div class="col-lg-7">
-											<input type="text" id="extraInfoCountry">
+											<input type="text" id="prod_country">
 										</div>
 										<div class="col-lg-5">
-											<label>보관방법 또는 취급방법</label>
+											<label>보관방법 또는 취급방법<span>*</span></label>
 										</div>
 										<div class="col-lg-7">
-											<input type="text" >
+											<input type="text" name="prod_keep" id="prod_keep">
 										</div>
 										<div class="col-lg-5">
 											<label>제조연월일(포장일 또는 생산연도), 유통기한 또는 품질유지기한</label>
@@ -259,6 +270,19 @@
 				                                    <div class="pi-pic">
 				                                        <img src="${path}/resources/img/products/product-2.jpg" alt="">
 				                                        <div class="sale pp-sale">2</div>
+				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                    </div>
+		                                     	<div class="catagory-name">[이미지 삭제]</div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-4 col-sm-6">
+		                                <div class="product-item">
+		                                    <div class="pi-text">
+		                                        <h5>썸네일</h5><br>
+				                                    <div class="pi-pic">
+				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
+				                                        <div class="sale pp-sale">3</div>
 				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
 				                                    </div>
 		                                     	<div class="catagory-name">[이미지 삭제]</div>

@@ -1,13 +1,28 @@
 package com.april.unomas;
 
+import javax.inject.Inject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.april.unomas.domain.ProdPaging;
+import com.april.unomas.domain.ProductVO;
+import com.april.unomas.service.ProductService;
 
 
 @Controller
 public class ProductController {
 
+	@Inject
+	private ProductService service;
+	
+	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
+	
 	// product
 	@RequestMapping(value = "/check-out")
 	public String checkout() {
@@ -27,9 +42,19 @@ public class ProductController {
 		return "product/coBuyingList";
 	}
 
-	@RequestMapping(value = "/product_register")
-	public String productRegister() {
+	@RequestMapping(value = "/product_register", method = RequestMethod.GET)
+	public String productRegisterGET() {
+		log.info("get -> 등록페이지");
 		return "product/productRegister";
+	}
+	
+	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
+	public String productRegisterPOST(@ModelAttribute("ProductVO") ProductVO vo) {
+		log.info("post");
+		log.info(vo+"");
+		service.insertProduct(vo);
+		
+		return "";
 	}
 
 	@RequestMapping(value = "/product_lookup")
