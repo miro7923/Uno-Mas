@@ -74,8 +74,8 @@
 					<tr>
 						<th>휴대폰 번호</th>
 						<td><input type="text" class="input_field" name="phone" placeholder=" -없이 숫자만 입력" required>
-						<input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()"></td>
-						<td><div name="phoneCheckDiv"></div><td>
+						<input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()">
+						<div name="phoneCheckDiv"></div></td>
 					</tr>
 				</table>
 

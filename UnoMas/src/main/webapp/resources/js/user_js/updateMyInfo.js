@@ -114,8 +114,16 @@ function birthCheck() {
 // 핸드폰 인증번호
 function phoneCheckFunc() {
 	$('[name=phone]').css('margin-bottom', '0px');
-	$('[name=phoneCheckDiv]').append (
+	$('[name=phoneCheckDiv]').html (
 		'<input type="text" class="input-field" name="phoneCode" placeholder="인증번호 입력"> <input type="button" name="phoneCodeCheck" value="확인" class="check-button"><br>'
 	);
+	$('[name=phoneCode]').css({
+		'border': '1px solid #c3c3c3',
+		'margin': '10px',
+		'height': '40px',
+		'border-radius':'3px',
+		'width': '30%',
+		'font-size':'12px'
+		});
 	
 }			

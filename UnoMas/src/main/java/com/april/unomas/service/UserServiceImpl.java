@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO loginUser(UserVO vo) {
 
-		log.info(" 컨트롤러 -> loginUser(UserVO vo) 호출 -> dao - loginUser(vo)");
+		log.info(" 컨트롤러 -> loginUser(UserVO vo) POST호출 -> dao - loginUser(vo) POST");
 		
 		UserVO loginVO = dao.loginUser(vo);
 		

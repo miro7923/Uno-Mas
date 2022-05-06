@@ -1,5 +1,3 @@
-@CHARSET "UTF-8";
-
 * {margin : 0; padding: 0; box-sizing: border-box; }
 ul, li {list-style: none;}
 
@@ -8,7 +6,7 @@ ul, li {list-style: none;}
 }
 article {
 	width: 400px;
-    margin: 0 auto;
+    margin: 80px auto 200px auto;
     padding-top: 90px;
     letter-spacing: -.6px;
 }
@@ -111,7 +109,7 @@ label {
 #loginus {
 	color:white;
 }
-#joinus {
+#joinus, #login {
 	border: 1px solid #B9CE45;
     background-color: #fff;
     margin-top: 15px;
@@ -141,16 +139,20 @@ label {
     font-weight: 600;
     font-size: 13px;
 }
-#find_ok {
-	display: block;
-	margin: 10px auto;
+#find_ok , #login {
     overflow: hidden;
-    width: 40%;
+    width: 35%;
     height: 54px;
     border-radius: 3px;
     text-align: center;
     cursor:pointer;
-    color: white;
     font-size: 15px;
     font-weight: 700;
+}
+#find_ok {
+	color: white;
+	margin: 20px 10px 20px 35px;
+}
+#login {
+	margin: 20px 35px 20px 10px;
 }

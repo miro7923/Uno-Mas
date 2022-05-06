@@ -30,7 +30,6 @@ public class UserController {
 		model.addAttribute("time", time);
 	}
 	
-	
 	// 회원가입 페이지
 	@RequestMapping(value = "/register")
 	public String register() {
@@ -92,14 +91,10 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
-	
-	
-	
 	@RequestMapping(value = "/delete_user")
 	public String delUSer() {
 		return "user/deleteUser";
 	}
-	
 	
 	// find
 	@RequestMapping(value = "/find_id")
@@ -114,7 +109,6 @@ public class UserController {
 	public String changePW() {
 		return "user/changePW";
 	}
-	
 	
 	// mypage
 	@RequestMapping(value = "/mypage")
@@ -133,7 +127,6 @@ public class UserController {
 	public String myPoint() {
 		return "user/myPoint";
 	}
-	
 	
 	// guide
 	@RequestMapping(value = "/return_guide")

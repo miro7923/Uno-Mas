@@ -26,7 +26,8 @@
 				</div>
 
 				<div id="buttons">
-					<input type="submit" value="확인" id="find_ok">
+					<input type="submit" value="확인" id="find_ok" onclick="">
+					<input type="button" value="로그인" id="login" onclick=" location.href='/user/login';">
 				</div>
 			</form>
 		</article>

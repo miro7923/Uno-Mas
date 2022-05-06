@@ -28,7 +28,6 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public String getTime() {
-		
 		log.info("DAO : 시간정보 확인 메서드 실행");
 		
 		String time = sqlSession.selectOne(NAMESPACE + ".getTime");
@@ -50,33 +49,15 @@ public class UserDAOImpl implements UserDAO {
 		log.info("DAO : admin - " + vo.toString());
 	}
 
-	// 로그인(GET)
+	// 로그인
 	@Override
 	public UserVO loginUser(UserVO vo) {
-
-		log.info(" DAO : loginUser(vo) 호출 ");
+		System.out.println(" DAO : 로그인 동작 포스트" );
+//		log.info(" DAO : loginUser(vo) Post호출 ");
 		
 		UserVO voTmp = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
-		
+	
 		return voTmp;
-	}
-
-	// 로그인(POST)
-	@Override
-	public UserVO loginUser(String userid, String userpw) {
-
-		log.info(" DAO : loginUser(userid, userpw) 호출" );
-		log.info(" DAO : " + userid+","+userpw);
-		
-		Map<String, Object> paramMap = new HashMap<String,Object>();
-		paramMap.put("userid", userid);
-		paramMap.put("userpw", userpw);
-		
-		UserVO vo = sqlSession.selectOne(NAMESPACE+".loginUser",paramMap);
-		
-		log.info(" DAO : " + vo);
-		
-		return vo;
 	}
 	
 	
