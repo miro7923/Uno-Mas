@@ -49,12 +49,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
-	public String productRegisterPOST(@ModelAttribute("ProductVO") ProductVO vo) {
+	public String productRegisterPOST(ProductVO vo) {
 		log.info("post");
 		log.info(vo+"");
 		service.insertProduct(vo);
 		
-		return "";
+		return "redirect:/product_lookup";
 	}
 
 	@RequestMapping(value = "/product_lookup")
