@@ -53,13 +53,13 @@
 											<div class="filter-widget">
 												<div class="fw-size-choose">
 													<div class="sc-item">
-														<input type="radio"> <label for="">정상</label>
+														<input type="radio" name="stock_state" value="normal"> <label for class="active">정상</label>
 													</div>
 													<div class="sc-item">
-														<input type="radio"> <label for="">품절</label>
+														<input type="radio" name="stock_state" value="sold"> <label for="">품절</label>
 													</div>
 													<div class="sc-item">
-														<input type="radio"> <label for="">숨김</label>
+														<input type="radio" name="stock_state" value="hide"> <label for="">숨김</label>
 													</div>
 												</div>
 											</div>
@@ -108,7 +108,7 @@
 											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price">
 										</div>
 										<div class="col-lg-12">
-											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" id="prod_stock">
+											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock">
 										</div>
 										<div class="col-lg-12">
 											<label>판매 단위<span>*</span></label> <input type="text" name="prod_sellunit" id="">
@@ -383,6 +383,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/productAdmin.js"></script>
 </body>
 
 </html>

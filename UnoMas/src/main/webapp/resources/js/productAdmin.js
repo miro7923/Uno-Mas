@@ -100,6 +100,11 @@ $(".month").html(month);
 $(".date").html(date);
 
 
-
-
-
+/* 재고 상태 라디오버튼 제어 */
+//function stockBtn(){
+	
+//	var stock = $('prod_stock');
+//	if(stock = 0){
+//		$('input:radio[name=stock_state]:input[value=' + sold + ']').attr("checked", true);
+//	}
+//}
