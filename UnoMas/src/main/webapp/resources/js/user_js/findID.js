@@ -1,6 +1,6 @@
 function memberCk() {
 		if ($("#id").val() == "") {
-			$("#cir_text").text("아이디를 입력하세요.");
+			$("#cir_text").text("이름을 입력하세요.");
 			$("#id").focus();
 			return false;
 		};
