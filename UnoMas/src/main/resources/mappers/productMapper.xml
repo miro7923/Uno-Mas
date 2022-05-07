@@ -74,9 +74,9 @@
     
      <!-- 상품 등록 (이미지 x)-->
     <insert id="setProduct">
-    	INSERT INTO products(prod_num, prod_name, prod_category, prod_price, prod_stock, prod_expire, 
+    	INSERT INTO products(prod_name, prod_category, prod_price, prod_stock, prod_expire, 
     						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing)
-    	VALUES (#{prod_num}, #{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
+    	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
     			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
     </insert>
     

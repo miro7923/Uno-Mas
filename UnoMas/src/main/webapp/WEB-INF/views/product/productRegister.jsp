@@ -46,9 +46,6 @@
 											<label>상품명<span>*</span></label> <input type="text" name="prod_name" id="prod_name">
 										</div>
 										<div class="col-lg-3">
-											<label>상품번호<span>*</span></label> <input type="text" name="prod_num" id="prod_num">
-										</div>
-										<div class="col-lg-3">
 											<label>상태<span></span></label>
 											<div class="filter-widget">
 												<div class="fw-size-choose">
