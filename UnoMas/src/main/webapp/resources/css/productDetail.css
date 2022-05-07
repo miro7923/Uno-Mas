@@ -4,6 +4,16 @@ h3 {
 	margin-top: 30px;
 }
 
+.product-details .quantity .primary-btn.pd-cart {
+	padding: 14px 60px 10px;
+	background-color: #B9CE45;
+	border: none;
+}
+
+.tab-item ul li a::before {
+	background: #B9CE45;
+}
+
 .priceText {
 	font-size: 16px;
 	font-weight: 700;
@@ -20,7 +30,7 @@ h3 {
 }
 
 p.memberInfo {
-	color: #da9f33;
+	color: #9db329;
 }
 
 #wishlistBtnEmpty, #wishlistBtnFull {
@@ -32,7 +42,7 @@ p.memberInfo {
 }
 
 .primary-btn pd-cart {
-    background-color: #e7ab3c;
+    background-color: #B9CE45;
     border-radius: 3px;
     border: None;
 }
@@ -160,7 +170,7 @@ table.reviewTable {
 }
 
 table.reviewTable th {
-    border-top: 2px solid #e7ab3c;	
+    border-top: 2px solid #B9CE45;	
 }
 
 table.reviewTable th, table.reviewTable td:not(.reviewTitle) {    
@@ -186,7 +196,12 @@ table.reviewTable td {
 }
 
 .reviewBtnArea {
-	border-top: 2px solid #e7ab3c;	
+	border-top: 2px solid #B9CE45;	
 	padding-top: 40px;
 	text-align: right;
+}
+
+.site-btn {
+	background: #B9CE45;
+    border: 1px solid #B9CE45;
 }

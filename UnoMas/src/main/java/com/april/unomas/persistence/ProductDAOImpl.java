@@ -11,11 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.april.unomas.domain.ProdPaging;
+import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 
 @Repository
-public class ProductDAOImpl implements ProductDAO{
+public class ProductDAOImpl implements ProductDAO {
 
 	@Inject
 	private SqlSession sqlSession;
@@ -24,9 +24,7 @@ public class ProductDAOImpl implements ProductDAO{
 	
 	@Override
 	public void insertProduct(ProductVO vo) throws Exception {
-		log.info("insertProduct(ProductVO vo) -> mapper로 이동");
 		sqlSession.insert(NAMESPACE+".setProduct", vo);
-		log.info("mapper 실행완료 -> DAO -> Service 이동");
 	}
 
 	@Override
@@ -35,18 +33,18 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public List<ProductVO> getProductList(ProdPaging pp) throws Exception{
-		return sqlSession.selectList(NAMESPACE + ".getListCate", pp);
+	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception{
+		return sqlSession.selectList(NAMESPACE + ".getListCate", pc);
 	}
 
 	@Override
-	public List<ProductVO> getProductPage(ProdPaging pp) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pp);
+	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pc);
 	}
 
 	@Override
-	public Integer getProductCnt(ProdPaging pp) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pp);
+	public Integer getProductCnt(ProdCriteria pc) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pc);
 	}
 
 	@Override
@@ -60,8 +58,8 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 
 	@Override
-	public List<ProductVO> getDcateList(ProdPaging pp) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getDcateProducts", pp);
+	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getDcateProducts", pc);
 	}
 
 	@Override
@@ -73,10 +71,24 @@ public class ProductDAOImpl implements ProductDAO{
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProduct", prod_num);
 	}
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
+		Map<String, Object> cart = new HashMap<String, Object>();
+		cart.put("user_num", user_num);
+		cart.put("prod_num", prod_num);
+		cart.put("prod_amount", prod_amount);
+		
+		sqlSession.insert(NAMESPACE + ".insertCart", cart);
+	}
+
+	@Override
+	public List<ProductVO> getNewProductList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getNewProducts", pc);
+	}
+
+	@Override
+	public int getNewProdCnt() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getNewProdCnt");
+	}
 }
