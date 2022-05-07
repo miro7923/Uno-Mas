@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.april.unomas.domain.ProdPaging;
+import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.persistence.ProductDAO;
 
@@ -21,9 +21,7 @@ public class ProductServiceImpl implements ProductService{
 	
 	@Override
 	public void insertProduct(ProductVO vo) throws Exception {
-		log.info("insertProduct(ProductVO vo) -> DAO:insertProduct(vo) 호출");
 		dao.insertProduct(vo);
-		log.info("DAO 완료 -> 컨트롤러로 이동");
 	}
 
 	@Override
@@ -32,18 +30,18 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> getProductList(ProdPaging pp) throws Exception {
-		return dao.getProductList(pp);
+	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception {
+		return dao.getProductList(pc);
 	}
 
 	@Override
-	public List<ProductVO> getProductPage(ProdPaging pp) throws Exception {
-		return dao.getProductPage(pp);
+	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
+		return dao.getProductPage(pc);
 	}
 
 	@Override
-	public Integer getProductCnt(ProdPaging pp) throws Exception {
-		return dao.getProductCnt(pp);
+	public Integer getProductCnt(ProdCriteria pc) throws Exception {
+		return dao.getProductCnt(pc);
 	}
 
 	@Override
@@ -57,8 +55,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> getDcateList(ProdPaging pp) throws Exception {
-		return dao.getDcateList(pp);
+	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception {
+		return dao.getDcateList(pc);
 	}
 
 	@Override
@@ -69,6 +67,21 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return dao.getProduct(prod_num);
-	}	
-	
+	}
+
+	@Override
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
+		dao.insertCart(user_num, prod_num, prod_amount);
+	}
+
+	@Override
+	public List<ProductVO> getNewProductList(ProdCriteria pc) throws Exception {
+		return dao.getNewProductList(pc);
+	}
+
+	@Override
+	public int getNewProdCnt() throws Exception {
+		return dao.getNewProdCnt();
+	}
+
 }

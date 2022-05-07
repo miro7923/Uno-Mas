@@ -4,81 +4,25 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.unomas.mapper.ProductMapper">
-    <!-- 상품 전체 목록 불러오기 -->
-    <select id="getList" resultType="com.april.unomas.domain.ProductVO">
-        SELECT * FROM products
-    </select>
-    
-<!--     상품 목록 카테고리별로 불러오기 -->
-    <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
-        SELECT * 
-        FROM products
-        WHERE prod_category BETWEEN #{cateStart} AND #{cateEnd}
-    </select>
-    
-<!--     상위 카테고리별 한 페이지에 표시할 만큼만 가져오기 -->
-<!--     <select id="getListOnPage" resultType="ProductVO"> -->
-<!--         SELECT *  -->
-<!--         FROM products AS p  -->
-<!--         JOIN detail_category AS d ON p.prod_category = d.dcate_num  -->
-<!--         JOIN top_category AS t ON d.dcate_num = t.topcate_num  -->
-<!--         WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}  -->
-<!--         ORDER BY p.prod_regdate desc LIMIT #{startRow}, #{pageSize} -->
-<!--     </select> -->
-    
-<!--     대분류별 상품 개수 가져오기 -->
-<!--     <select id="getProdCnt" resultType="Integer"> -->
-<!--         SELECT count(*)  -->
-<!--         FROM products AS p  -->
-<!--         JOIN detail_category AS d ON p.prod_category = d.dcate_num  -->
-<!--         JOIN top_category AS t ON d.dcate_num = t.topcate_num  -->
-<!--         WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd} -->
-<!--     </select> -->
-    
-<!--     상품 상위 카테고리 이름 가져오기 -->
-    <select id="getTopCateName" resultType="String">
-        SELECT topcate_name 
-        FROM top_category
-        
-        WHERE topcate_num = #{topcate_num}
-    </select>
-    
-<!--     상위 카테고리의 하위 카테고리 목록 가져오기 -->
-<!--     <select id="getDcateNames" resultType="String"> -->
-<!--         SELECT dcate_name  -->
-<!--         FROM detail_category  -->
-<!--         WHERE topcate_num = #{topcate_num} -->
-<!--     </select> -->
-    
-<!--     소분류별로 상품 가져오기 -->
-<!--     <select id="getDcateProducts" resultType="ProductVO"> -->
-<!--         SELECT *  -->
-<!--         FROM products  -->
-<!--         WHERE prod_category = #{prod_category} -->
-<!--         LIMIT #{startRow}, #{pageSize} -->
-<!--     </select> -->
-    
-<!--     소분류별 상품 개수 가져오기 -->
-<!--     <select id="getDcateCnt" resultType="Integer"> -->
-<!--         SELECT count(*)  -->
-<!--         FROM products  -->
-<!--         WHERE prod_category = #{prod_category} -->
-<!--     </select> -->
-    
-<!--     상품 번호로 상품 하나의 정보 가져오기 -->
-<!--     <select id="getProduct" resultType="ProductVO"> -->
-<!--         SELECT * -->
-<!--         FROM products -->
-<!--         WHERE prod_num = #{prod_num} -->
-<!--     </select> -->
-    
-     <!-- 상품 등록 (이미지 x)-->
+    <!-- 상품 등록 (이미지 x)-->
     <insert id="setProduct">
     	INSERT INTO products(prod_name, prod_category, prod_price, prod_stock, prod_expire, 
     						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing)
     	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
     			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
     </insert>
+  
+    <!-- 상품 전체 목록 불러오기 -->
+    <select id="getList" resultType="com.april.unomas.domain.ProductVO">
+        SELECT * FROM products
+    </select>
+
+    <!-- 상품 목록 카테고리별로 불러오기 -->
+    <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
+        SELECT * 
+        FROM products
+        WHERE prod_category BETWEEN #{cateStart} AND #{cateEnd}
+    </select>
     
 	<!-- 상위 카테고리 목록 -->
 <!--     <select id="getTopCategory" resultType="String"> -->
@@ -86,5 +30,97 @@
 <!--     	FROM top_category -->
 <!--     	ORDER BY topcate_num -->
 <!--     </select> -->
+
+    <!-- 상위 카테고리별 한 페이지에 표시할 만큼만 가져오기 -->
+    <select id="getListOnPage" resultType="ProductVO">
+        SELECT * 
+        FROM products AS p 
+        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
+        JOIN top_category AS t ON d.dcate_num = t.topcate_num 
+        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd} 
+        ORDER BY p.prod_regdate DESC LIMIT #{pageStart}, #{perPageNum}
+    </select>
     
+    <!-- 대분류별 상품 개수 가져오기 -->
+    <select id="getProdCnt" resultType="Integer">
+        SELECT COUNT(prod_num) 
+        FROM products AS p 
+        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
+        JOIN top_category AS t ON d.dcate_num = t.topcate_num 
+        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
+    </select>
+    
+    <!-- 상품 상위 카테고리 이름 가져오기 -->
+    <select id="getTopCateName" resultType="String">
+        SELECT topcate_name 
+        FROM top_category  
+        WHERE topcate_num = #{topcate_num}
+    </select>
+    
+    <!-- 상위 카테고리의 하위 카테고리 목록 가져오기 -->
+    <select id="getDcateNames" resultType="String">
+        SELECT dcate_name 
+        FROM detail_category 
+        WHERE topcate_num = #{topcate_num}
+    </select>
+    
+    <!-- 소분류별로 상품 가져오기 -->
+    <select id="getDcateProducts" resultType="ProductVO">
+        SELECT * 
+        FROM products 
+        WHERE prod_category = #{prod_category}
+        ORDER BY prod_regdate DESC
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 소분류별 상품 개수 가져오기 -->
+    <select id="getDcateCnt" resultType="Integer">
+        SELECT COUNT(prod_num) 
+        FROM products 
+        WHERE prod_category = #{prod_category}
+    </select>
+    
+    <!-- 상품 번호로 상품 하나의 정보 가져오기 -->
+    <select id="getProduct" resultType="ProductVO">
+        SELECT *
+        FROM products
+        WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 카트에 상품 넣기 -->
+    <insert id="insertCart">
+        INSERT INTO cart (user_num, prod_num, prod_amount)
+        VALUES (#{user_num}, #{prod_num}, #{prod_amount})
+    </insert>
+    
+    <!-- 회원의 카트에 담긴 상품 확인 -->
+    <select id="getCart">
+        SELECT *
+        FROM cart
+        WHERE user_num = #{user_num}
+    </select>
+    
+    <!-- 카트에 있는 상품 개수 업데이트(현빈 작업물과 합친 후 삭제) -->
+    <update id="modifyAmount">
+        UPDATE cart
+        SET prod_amount = prod_amount + #{prod_amount}
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </update>
+    
+    <!-- 한 달 이내 신상품 목록 가져오기 -->
+    <select id="getNewProducts" resultType="ProductVO">
+        SELECT *
+        FROM products
+        WHERE prod_regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
+        ORDER BY prod_regdate DESC
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 신상품 개수 가져오기 -->
+    <select id="getNewProdCnt" resultType="int">
+        SELECT COUNT(prod_num)
+        FROM products
+        WHERE prod_regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
+    </select>
+  
 </mapper>
