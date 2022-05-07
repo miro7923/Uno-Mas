@@ -1,5 +1,8 @@
 package com.april.unomas;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -7,8 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import java.util.*;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -104,13 +105,11 @@ public class ProductController {
 
 	@RequestMapping(value = "/product_register", method = RequestMethod.GET)
 	public String productRegisterGET() {
-		log.info("get -> 등록페이지");
 		return "product/productRegister";
 	}
 	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
 	public String productRegisterPOST(ProductVO vo) throws Exception {
-		log.info("post");
 		log.info(vo+"");
 		service.insertProduct(vo);
 		
