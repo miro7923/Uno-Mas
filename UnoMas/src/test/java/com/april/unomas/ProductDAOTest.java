@@ -28,12 +28,10 @@ public class ProductDAOTest {
 //	@Test
 	public void 상품등록() throws Exception {
 		ProductVO vo = new ProductVO();
-		
 		vo.setProd_num(1);
 		vo.setProd_name("청경채");
-
 		dao.insertProduct(vo);
-		log.info("완료");
+	}
 	
 //	@Test
 	public void DAO생성테스트() {
