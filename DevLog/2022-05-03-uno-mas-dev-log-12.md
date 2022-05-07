@@ -28,7 +28,7 @@
   
 ## 회원정보 수정 페이지
 ### 기본정보 수정
-<p align="center"><img src="../images/updateMyInfo_basic.jpg" width="800"></p>
+<p align="center"><img src="../images/updateMyInfo_basic.JPG" width="800"></p>
 * 회원정보 확인 페이지와 큰 틀은 유사하다.
 * 이 페이지의 기본정보에서는 이름, 이메일, 생년월일, 휴대폰 번호를 수정할 수 있다
 * 아이디는 변경을 하지못하게 `disabled` 처리를 하였다.
@@ -36,7 +36,7 @@
 <br><br>
 
 ### 배송지정보 수정
-<p align="center"><img src="../images/address3.jpg" width="800"></p> 
+<p align="center"><img src="../images/address3.JPG" width="800"></p> 
 * 배송지는 최대 3개까지 가능하게 만들었다.
 * 기본 배송지 1개와 추가 배송지 2개까지 저장이 가능하다.
 * 우편API는 다음 우편번호API의 팝업창을 이용해서 구현했다.
@@ -83,7 +83,7 @@
 <br><br>
 
 ### 환불정보 수정
-<p align="center"><img src="../images/refund.jpg" width="800"></p> 
+<p align="center"><img src="../images/refund.JPG" width="800"></p> 
 * 목록의 형태로 은행명을 선택할 수 있고, 계좌번호와 예금주를 입력할 수 있게 만들었다.
 <br><br>
 
@@ -93,7 +93,7 @@
 * `쿠팡`을 참고했다.
   
  ## 취소/반품안내 페이지 
-<p align="center"><img src="../images/returnGuide.jpg" width="800"></p> 
+<p align="center"><img src="../images/returnGuide.JPG" width="800"></p> 
 * 반품방법을 간략히 설명했으며, 배송비 부담여부, 취소방법, 환불시점 등 가독성을 편하게 하기위해 표를 이용했다.
 
 # 구현시 어려웠던 점
