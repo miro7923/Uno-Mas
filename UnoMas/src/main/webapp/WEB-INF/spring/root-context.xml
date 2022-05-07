@@ -11,9 +11,9 @@
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 	    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-	    <property name="url" value="jdbc:mysql://unomasdb.cj546xkv07yk.ap-northeast-2.rds.amazonaws.com:3306/unomasdb"/>
-	    <property name="username" value="admin"/>
-	    <property name="password" value="!unomas4"/>
+	    <property name="url" value="jdbc:mysql://localhost:3306/unomasdb"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="1234"/>
 	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
