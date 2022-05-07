@@ -9,6 +9,7 @@ target
 pom.properties
 .classpath
 MANIFEST.MF
+root-context.xml
 
 ### Eclipse ###
 .metadata
