@@ -105,15 +105,17 @@ public class ProductController {
 
 	@RequestMapping(value = "/product_register", method = RequestMethod.GET)
 	public String productRegisterGET() {
+		log.info("post 페이지 호출");
 		return "product/productRegister";
 	}
 	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
 	public String productRegisterPOST(ProductVO vo) throws Exception {
+		log.info("get 페이지 호출");
 		log.info(vo+"");
 		service.insertProduct(vo);
 		
-		return "redirect:/product_lookup";
+		return "redirect:/product/product_lookup";
 	}
 
 	@RequestMapping(value = "/product_lookup")
