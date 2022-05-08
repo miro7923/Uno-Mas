@@ -79,6 +79,7 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
+		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
 		map.put("pageNum", pageNum);
@@ -129,11 +130,23 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/new_product_list", method = RequestMethod.GET)
-	public String newProductListGET(ProdCriteria pc, Model model) throws Exception {
-		model.addAttribute("newProductList", service.getNewProductList(pc));
-		model.addAttribute("newProdCnt", service.getNewProdCnt());
+	public String newProductListGET(@RequestParam("pageNum") int pageNum, ProdCriteria pc, Model model) throws Exception {
+		pc.setPage(pageNum);
 		
-		return "product/newProductList";
+		int postCnt = service.getNewProdCnt();
+		
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(postCnt);
+
+		model.addAttribute("productList", service.getNewProductList(pc));
+		model.addAttribute("postCnt", postCnt);
+		model.addAttribute("topcate", "신상품");
+		model.addAttribute("topcate_num", 6);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pm", pm);
+		
+		return "product/productList";
 	}
 	
 	@RequestMapping(value = "/sale_product_list", method = RequestMethod.GET)

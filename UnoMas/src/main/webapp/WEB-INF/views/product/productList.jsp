@@ -27,17 +27,19 @@
 				<div class="col-lg-12 order-1 order-lg-2">
 					<div class="categoryBox">
 						<h3 class="title">${topcate }</h3>
-						<ul class="categoryList">
-						    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
-						    <li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
-						        class="category" id="category0" style="color: black;" 
-						        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
-							<c:forEach var="dcate" begin="0" end="${cateEnd-cateStart }" step="1" varStatus="it">
-								<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=1&dcate_num=${cateStart+dcate}" 
-								class="category" id="category${cateStart+dcate }" style="color: black;" 
-									onclick="changeSort(${cateStart+dcate }, ${cateStart }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
-							</c:forEach>
-						</ul>
+						<c:if test="${topcate_num <= 5 }">
+							<ul class="categoryList">
+							    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
+							    <li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
+							        class="category" id="category0" style="color: black;" 
+							        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
+								<c:forEach var="dcate" begin="0" end="${cateEnd-cateStart }" step="1" varStatus="it">
+									<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=1&dcate_num=${cateStart+dcate}" 
+									class="category" id="category${cateStart+dcate }" style="color: black;" 
+										onclick="changeSort(${cateStart+dcate }, ${cateStart }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
+								</c:forEach>
+							</ul>
+						</c:if>
 					</div>
 					<div class="product-show-option">
 						<div class="row">
@@ -88,9 +90,16 @@
 						
 						<c:forEach var="block" varStatus="it" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<span>
-								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
-								class="pagingBtn" id="page${it.index }" style="color: black;"
-								onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+							    <c:if test="${topcate_num <= 5 }">
+									<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
+									class="pagingBtn" id="page${it.index }" style="color: black;"
+									onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+							    </c:if>
+							    <c:if test="${topcate_num > 5 }">
+							        <!----> <a href="/product/new_product_list?pageNum=${it.index}" 
+									class="pagingBtn" id="page${it.index }" style="color: black;"
+									onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+							    </c:if>
 							</span> 
 						</c:forEach>
 						

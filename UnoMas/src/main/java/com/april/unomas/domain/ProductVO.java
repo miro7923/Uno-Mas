@@ -21,7 +21,7 @@ public class ProductVO {
 	private int prod_readcnt;
 	private int prod_sellcnt;
 	private String prod_keep;
-	private int prod_weight;
+	private String prod_weight;
 	private String prod_country;
 	private String prod_sellunit;
 	private String prod_explain;
