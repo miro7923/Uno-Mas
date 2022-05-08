@@ -10,6 +10,11 @@
 <link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after5">
 <!-- Start Header -->
 
+<%
+
+
+%>
+
 <body>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -35,7 +40,7 @@
 				<div class="col-lg-10">
 					<h2>상품등록</h2><div class="line"><hr></div>
 					<div class="container">
-						<form action="/product_register" method="post" class="checkout-form">
+						<form method="post" class="checkout-form">
 							<!-- 기본정보 -->
 							<div class="row">
 								<div class="col-lg-12">
@@ -110,6 +115,9 @@
 										<div class="col-lg-12">
 											<label>판매 단위<span>*</span></label> <input type="text" name="prod_sellunit" id="">
 										</div>
+										<div class="col-lg-12">
+												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight">
+										</div>
 									</div>
 								</div>
 								<!-- 판매정보 끝-->
@@ -119,124 +127,40 @@
 										<h4>추가항목</h4>
 										<div class="row">
 											<div class="col-lg-12">
-												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight">
-											</div>
-											<div class="col-lg-12">
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="prod_expire">
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" >
+											</div>
+											<div class="col-lg-12">
+												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2">
 											</div>
 											<div class="col-lg-12">
 												<label>포장타입<span>*</span></label>
-											<select class="selectBox" name="prod_packing">
+											<select class="selectBox" name="prod_packing" >
 												<option>선택</option>
 												<option value="냉장/스티로품">냉장/스티로품</option>
 												<option value="냉동/스티로품">냉동/스티로품</option>
 											</select>
+											</div>
+											<div class="col-lg-12">
+											<br>
+												<label>보관방법 또는 취급방법<span>*</span></label>
+											<select class="selectBox" name="prod_keep" id="selbox">
+												<option>선택</option>
+												<option value="냉장보관">냉장보관</option>
+												<option value="실온보관">실온보관</option>
+												<option value="직접기재">상품별 직접기재</option>
+											</select>
+											</div>
+											<div class="col-lg-12">
+												<input type="text" name="prod_keep" id="selboxDirect">
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 							<!-- 추가항목 끝-->
-							<div class="row">
-								<div class="col-lg-12">
-									<label></label>
-									<div class="line"><hr></div><br><br>
-								</div>
-							</div>
-							<!-- 상품정보고시 -->
-							<div class="col-lg-12">
-								<div class="row">
-								<h4>상품정보고시</h4>
-									<!--  상품 상태 버튼-->
-<!-- 									<div class="filter-widget"> -->
-<!-- 										<div class="fw-size-choose"> -->
-<!-- 											<div class="sc-item"> -->
-<!-- 												<input type="radio"> <label for="">ON</label> -->
-<!-- 											</div> -->
-<!-- 											<div class="sc-item"> -->
-<!-- 												<input type="radio"> <label for="">OFF</label> -->
-<!-- 											</div> -->
-<!-- 										</div> -->
-<!-- 									</div> -->
-									<!-- 상품 상태 버튼 끝-->
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="row">
-										<div class="col-lg-5">
-											<label>품목 또는 명칭</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" id="prod_name" >
-										</div>
-										<div class="col-lg-5">
-											<label>포장단위별 내용물의 용량(중량), 수량, 크기</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" id="prod_weight">
-										</div>
-										<div class="col-lg-5">
-											<label>관련법상 표기사항</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" value=
-										
-										"농산물 - 농수산물품질관리법상 유전자변형농산물 표시, 지리적 표시<br> 축산물
- 														- 축산법에 따른 등급 표시, 쇠고기의 경우 이력관리에 따른 표시 유무<br> 수산물 - 
- 														농수산물품질관리법상 유전자변형수산물 표시, 지리적 표시<br> 수입식품에 해당하는 경우 
-														'수입식품안전특별법에 따른 수입신고를 필함'의 문구" readonly>
-										
-										</div>
-										<div class="col-lg-5">
-											<label>생산자, 수입품의 경우 수입자를 함께 표기</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" value="제품 별도 라벨 표기 참조" readonly>
-										</div>
-										<div class="col-lg-5">
-											<label>농수산물의 원산지 표시에 관한 법률에 따른 원산지</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" value="상품설명 및 상품이미지참조" readonly>
-										</div>
-										<div class="col-lg-5">
-											<label>상품구성</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" id="prod_country">
-										</div>
-										<div class="col-lg-5">
-											<label>보관방법 또는 취급방법<span>*</span></label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" name="prod_keep" id="prod_keep">
-										</div>
-										<div class="col-lg-5">
-											<label>제조연월일(포장일 또는 생산연도), 유통기한 또는 품질유지기한</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" value="제품 별도 라벨 표기 참조" readonly>
-										</div>
-										<div class="col-lg-5">
-											<label>식품 등의 표시·광고에 관한 법률에 따른 소비자 안전을 위한 주의사항</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" value="상품설명 및 상품이미지참조" readonly>
-										</div>
-										<div class="col-lg-5">
-											<label>소비자상담 관련 전화번호</label>
-										</div>
-										<div class="col-lg-7">
-											<input type="text" value="우노마스 고객센터 (1544-1544)" readonly>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- 상품정보고시 끝-->
 							<!-- 상품이미지-->
 							<div class="row">
 								<div class="col-lg-12">

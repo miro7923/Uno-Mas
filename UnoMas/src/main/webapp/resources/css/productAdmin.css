@@ -120,6 +120,7 @@ input[type="checkbox"]:checked::before {
     border: 1px solid #ECEDEE;
     height: 45px;
     line-height: 35px;
+    margin: 0px 0px 2px;
 }
 
 .title {
