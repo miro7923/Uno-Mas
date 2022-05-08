@@ -21,5 +21,10 @@
   	select * from users where userid=#{userid} and userpw=#{userpw}
   </select>
   
+  <!-- 회원탈퇴 -->
+  <delete id="deleteUser">
+  	delete from users 
+  	where not user_id=#{user_id}
+  </delete>
   
 </mapper>
