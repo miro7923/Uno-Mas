@@ -23,6 +23,11 @@ public class ProductDAOImpl implements ProductDAO {
 	private static final Logger log = LoggerFactory.getLogger(ProductDAOImpl.class);
 	
 	@Override
+	public void insertProduct(ProductVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE+".setProduct", vo);
+	}
+
+	@Override
 	public List<ProductVO> getProductList() throws Exception{
 		return sqlSession.selectList(NAMESPACE + ".getList");
 	}

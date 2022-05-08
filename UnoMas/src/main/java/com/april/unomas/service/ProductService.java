@@ -7,6 +7,10 @@ import com.april.unomas.domain.ProductVO;
 
 public interface ProductService {
 
+
+	// 상품 등록
+	public void insertProduct(ProductVO vo) throws Exception;
+
 	// 상품 전체 목록 가져오는 메서드
 	public List<ProductVO> getProductList() throws Exception;
 	
@@ -33,7 +37,7 @@ public interface ProductService {
 	
 	// 상품 하나의 정보를 가져오는 메서드
 	public ProductVO getProduct(int prod_num) throws Exception;
-	
+  
 	// 장바구니에 상품 넣는 메서드
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
 	

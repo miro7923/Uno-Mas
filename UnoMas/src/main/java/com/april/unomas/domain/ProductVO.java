@@ -26,4 +26,5 @@ public class ProductVO {
 	private String prod_sellunit;
 	private String prod_explain;
 	private String prod_packing;
+
 }

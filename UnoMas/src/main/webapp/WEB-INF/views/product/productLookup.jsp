@@ -37,7 +37,7 @@
 				<!-- 상품관리 카테고리 끝-->
 				<div class="col-lg-10">
 					<h2>상품조회</h2>
-					<hr>
+					<div class="line"><hr></div>
 					<div class="container">
 
 							<form action="#" class="checkout-form">

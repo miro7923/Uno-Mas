@@ -13,13 +13,17 @@ import com.april.unomas.domain.ProductVO;
 import com.april.unomas.persistence.ProductDAO;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService{
 
 	@Inject
 	private ProductDAO dao;
-	
 	private static final Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
 	
+	@Override
+	public void insertProduct(ProductVO vo) throws Exception {
+		dao.insertProduct(vo);
+	}
+
 	@Override
 	public List<ProductVO> getProductList() throws Exception {
 		return dao.getProductList();
@@ -79,4 +83,5 @@ public class ProductServiceImpl implements ProductService {
 	public int getNewProdCnt() throws Exception {
 		return dao.getNewProdCnt();
 	}
+
 }
