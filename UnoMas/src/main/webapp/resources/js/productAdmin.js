@@ -102,17 +102,17 @@ $(".date").html(date);
 
 /* 선택상자 직접 입력 */
 
-$(function(){
-	$("#selboxDirect").hide();
-	$("#selbox").change(function() {
-
-		if($("#selbox").val() != "냉장보관" && $("#selbox").val() != "실온보관") {
-			$("#selboxDirect").show();
-		}  else {
-			$("#selboxDirect").hide();
-		}
-	}) 
-});
+//$(function(){
+//	$("#selboxDirect").hide();
+//	$("#selbox").change(function() {
+//
+//		if($("#selbox").val() != "냉장보관" && $("#selbox").val() != "실온보관") {
+//			$("#selboxDirect").show();
+//		}  else {
+//			$("#selboxDirect").hide();
+//		}
+//	}) 
+//});
 
 $(function(){
 	$("#selboxDirect2").hide();
@@ -121,8 +121,10 @@ $(function(){
 		if($("#selbox2").val() == "" || $("#selbox2") == onfocus) {
 			$("#selboxDirect2").show();
 			$("#selbox2").hide();
+			
 		}  else {
 			$("#selboxDirect2").hide();
+			
 		}
 	}) 
 });

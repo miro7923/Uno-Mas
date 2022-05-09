@@ -80,13 +80,9 @@
 																<td class="cart-pic first-row">
 																	<input type="checkbox" name="check">
 																</td>
-																<td class="normal-row">
-																1
-																</td>
+																<td class="normal-row">${vo.prod_num }</td>
 <!-- 															<td class="cart-title first-row"> -->
-																<td class="normal-row">
-																	<h5>상품명</h5>
-																</td>
+																<td class="normal-row">${vo.prod_name}</td>
 																<td class="normal-row">10,000</td>
 <!-- 															<td class="qua-col first-row"> -->
 																<td class="normal-row">
@@ -96,28 +92,6 @@
 																<td class="normal-row">100</td>
 																<td class="normal-row">12</td>
 																
-															</tr>
-														</tbody>
-														<tbody>
-															<tr>
-																<td class="cart-pic first-row">
-																	<input type="checkbox" name="check">
-																</td>
-																<td class="normal-row">
-																1
-																</td>
-<!-- 															<td class="cart-title first-row"> -->
-																<td class="normal-row">
-																	<h5>상품명</h5>
-																</td>
-																<td class="normal-row">10,000</td>
-<!-- 															<td class="qua-col first-row"> -->
-																<td class="normal-row">
-																	정상
-																</td>
-																<td class="normal-row">1200</td>
-																<td class="normal-row">100</td>
-																<td class="normal-row">12</td>
 															</tr>
 														</tbody>
 													</table>

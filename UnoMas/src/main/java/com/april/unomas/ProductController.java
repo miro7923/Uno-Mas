@@ -118,8 +118,13 @@ public class ProductController {
 		return "redirect:/product/product_lookup";
 	}
 
-	@RequestMapping(value = "/product_lookup")
-	public String productLookup() {
+	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
+	public String productLookup(Model model) throws Exception {
+		
+		List<ProductVO> productList = service.getProductList();
+		log.info(productList+"");
+		model.addAttribute("product_list", service.getProductList());
+		
 		return "product/productLookup";
 	}
 

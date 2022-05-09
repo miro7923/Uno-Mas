@@ -40,7 +40,7 @@
 				<div class="col-lg-10">
 					<h2>상품등록</h2><div class="line"><hr></div>
 					<div class="container">
-						<form method="post" class="checkout-form">
+						<form method="post" class="checkout-form" >
 							<!-- 기본정보 -->
 							<div class="row">
 								<div class="col-lg-12">
@@ -153,9 +153,9 @@
 												<option value="직접기재">상품별 직접기재</option>
 											</select>
 											</div>
-											<div class="col-lg-12">
-												<input type="text" name="prod_keep" id="selboxDirect">
-											</div>
+<!-- 											<div class="col-lg-12"> -->
+<!-- 												<input type="text" name="prod_keep" id="selboxDirect"> -->
+<!-- 											</div> -->
 										</div>
 									</div>
 								</div>
