@@ -50,7 +50,7 @@
     	<%
 			}
     	%>
-    	 <div class="headerMiddle"> <!-- 로고·검색창·찜·장바구니 -->
+    	 <div class="container"> <!-- 로고·검색창·찜·장바구니 -->
             <div class="inner-header">
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
@@ -62,6 +62,7 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
+                            <button type="button" class="category-btn">All Categories</button>
                             <div class="input-group">
                                 <input type="text" placeholder="검색어를 입력해주세요.">
                                 <button type="button"><i class="ti-search"></i></button>
