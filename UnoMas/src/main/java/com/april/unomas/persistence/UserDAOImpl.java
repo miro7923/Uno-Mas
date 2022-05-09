@@ -60,6 +60,30 @@ public class UserDAOImpl implements UserDAO {
 		return voTmp;
 	}
 	
+	// 회원정보수정
+	@Override
+	public Integer updateUser(UserVO vo) {
+		
+		Integer result =sqlSession.update(NAMESPACE+".updateUser",vo);
+
+		log.info("회원정보수정 완료");
+		
+		return result;
+	}
+
+	// 회원탈퇴
+	@Override
+	public void delUser(UserVO vo) {
+
+		log.info("delUser 실행");
+		
+		sqlSession.delete(NAMESPACE+".deleteUser",vo);
+		
+		log.info("회원탈퇴 완료");
+		
+		
+	}
+	
 	
 	
 	

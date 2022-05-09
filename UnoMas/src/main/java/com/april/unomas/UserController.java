@@ -71,8 +71,8 @@ public class UserController {
 		
 		log.info(loginVO+"");
 		
-		// 로그인 성공
-		session.setAttribute("loignCheck", loginVO);
+		// 로그인 성공 및 정보 저장
+		session.setAttribute("loginCheck", loginVO);
 		
 		// 메인페이지로 이동
 		return "redirect:/index";
@@ -91,10 +91,29 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
-	@RequestMapping(value = "/delete_user")
-	public String delUSer() {
+	// 회원탈퇴(GET)
+	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
+	public String delUserGET() {
+		
+		log.info("delUserGET() 호출 -> deleteUser.jsp 이동");
+		
 		return "user/deleteUser";
 	}
+	
+	// 회원탈퇴(POST)
+	@RequestMapping(value = "/delete_user",method=RequestMethod.POST)
+	public String delUserPOST(UserVO vo,HttpSession session) {
+		
+		service.delUser(vo);
+		
+		session.invalidate();
+		
+		log.info("delUserPOST 처리 완료");
+		
+		return "redirect:/user/index";
+	}
+	
+	
 	
 	// find
 	@RequestMapping(value = "/find_id")
@@ -119,10 +138,28 @@ public class UserController {
 	public String myInfo() {
 		return "user/myInfo";
 	}
-	@RequestMapping(value = "/update_myInfo")
-	public String myInfoUpdate() {
+	
+
+	// 회원정보수정(GET)
+	// http://localhost:8088/user/update_myInfo
+	@RequestMapping(value = "/update_myInfo",method = RequestMethod.GET)
+	public String myInfoUpdateGET(HttpSession session, Model model) {
+		
+		UserVO vo = (UserVO)session.getAttribute("loginCheck");
+		
+//		UserVO infoVO = service.
+		
+		
 		return "user/updateMyInfo";
 	}
+	
+	// 회원정보수정(POST)
+	// http://localhost:8088/user/update_myInfo
+	@RequestMapping(value = "/update_myInfo",method = RequestMethod.POST)
+	public String myInfoUpdatePOST(UserVO vo) {
+		return "redirect:/user/myPage";
+	}
+	
 	@RequestMapping(value = "/mypoint")
 	public String myPoint() {
 		return "user/myPoint";

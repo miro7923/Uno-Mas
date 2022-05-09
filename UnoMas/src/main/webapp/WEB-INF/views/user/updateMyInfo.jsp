@@ -136,7 +136,7 @@
 									<dl>
 										<dt>은행명</dt>
 										<dd>
-											<select class="form-select form-select-sm" aria-label=".form-select-sm example" 
+											<select class="form-select form-select-sm" name="bank" aria-label=".form-select-sm example" 
 											style="box-sizing: border-box;display: inline-block;width: 40%;
 											height: 38px;margin:10px;padding: 0 10px;border: 1px solid #ddd	;color: #666;font-size: 11px;">
 											  <option value="" >은행을 선택해주세요.</option>
@@ -152,13 +152,13 @@
 										<dt>계좌번호</dt>
 										<dd>
 											<span class="input_area"> 
-											<input type="text" id="account_no" name="acoount_no" title="계좌번호 입력"  style="width: 250px">
+											<input type="text" id="account_no" name="acoount" title="계좌번호 입력"  style="width: 250px">
 											</span>
 										</dd>
 										<dt>예금주</dt>
 										<dd>
 											<span class="input_area">
-											<input type="text" id="account_p" name="account_p" title="예금주 입력" style="width: 250px">
+											<input type="text" id="account_p" name="account_holder" title="예금주 입력" style="width: 250px">
 											</span> 
 										</dd>
 									</dl>

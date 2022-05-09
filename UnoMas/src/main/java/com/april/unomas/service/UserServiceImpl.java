@@ -39,5 +39,27 @@ public class UserServiceImpl implements UserService {
 		return loginVO;
 	}
 	
+	// 회원정보 조회
+	@Override
+	public UserVO getUserInfo(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// 회원정보수정
+	@Override
+	public void updateUser(UserVO vo) {
+		dao.updateUser(vo);
+	}
+
+
+	// 회원 탈퇴
+	@Override
+	public void delUser(UserVO vo) {
+
+		dao.delUser(vo);
+	}
+	
+	
 	
 }

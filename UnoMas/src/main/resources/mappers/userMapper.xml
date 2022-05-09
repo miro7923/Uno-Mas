@@ -21,6 +21,13 @@
   	select * from users where userid=#{userid} and userpw=#{userpw}
   </select>
   
+  <!-- 회원정보 수정 -->
+  <update id="updateUser">
+  	update users set *
+  	where not user_id=#{user_id},user_regdate=#{user_regdate},user_status=#{user_status},
+  	user_emailagree=#{user_emailagree}, user_point=#{user_point},user_use_point=#{user_use_point}
+  </update>
+  
   <!-- 회원탈퇴 -->
   <delete id="deleteUser">
   	delete from users 

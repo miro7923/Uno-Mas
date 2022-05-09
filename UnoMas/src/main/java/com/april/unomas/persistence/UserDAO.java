@@ -11,4 +11,10 @@ public interface UserDAO {
 	// 로그인
 	public UserVO loginUser(UserVO vo);
 	
+	// 회원정보수정
+	public Integer updateUser(UserVO vo);
+	
+	// 회원탈퇴
+	public void delUser(UserVO vo);
+	
 }
