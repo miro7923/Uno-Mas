@@ -117,13 +117,23 @@ public class ProductController {
 		
 		return "redirect:/product/product_lookup";
 	}
-
+	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
-	public String productLookup(Model model) throws Exception {
+	public String productLookup(ProdCriteria pc, Model model) throws Exception {
 		
-		List<ProductVO> productList = service.getProductList();
+		// 상품 데이터 조회
+		log.info(pc+"");
+		List<ProductVO> productList = service.getAllProductList(pc);
 		log.info(productList+"");
-		model.addAttribute("productList", service.getProductList());
+		
+		model.addAttribute("productList", productList);
+		
+		// 하단 페이지 처리
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(service.getAllCnt());
+		model.addAttribute("pm", pm);
+		
 		return "product/productLookup";
 	}
 

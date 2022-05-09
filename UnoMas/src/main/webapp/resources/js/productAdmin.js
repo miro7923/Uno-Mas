@@ -124,7 +124,7 @@ $(function(){
 			
 		}  else {
 			$("#selboxDirect2").hide();
-			
+			$("#selboxDirect2 option:").val() == null;
 		}
 	}) 
 });

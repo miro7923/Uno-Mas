@@ -11,11 +11,6 @@
     	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
     			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
     </insert>
-  
-    <!-- 상품 전체 목록 불러오기 -->
-    <select id="getList" resultType="com.april.unomas.domain.ProductVO">
-        SELECT * FROM products
-    </select>
 
     <!-- 상품 목록 카테고리별로 불러오기 -->
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
@@ -39,6 +34,20 @@
         JOIN top_category AS t ON d.dcate_num = t.topcate_num 
         WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd} 
         ORDER BY p.prod_regdate DESC LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 전체 상품 목록 가져오기 -->
+    <select id="getAllProductList" resultType="ProductVO">
+		SELECT *
+		FROM products
+		ORDER BY prod_num DESC, prod_regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!--  전체 상품 개수 가져오기 -->
+    <select id="getAllCnt" resultType="Integer">
+    	SELECT count(prod_num)
+    	FROM products
     </select>
     
     <!-- 대분류별 상품 개수 가져오기 -->

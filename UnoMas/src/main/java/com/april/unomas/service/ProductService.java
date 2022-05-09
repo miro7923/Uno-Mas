@@ -10,15 +10,18 @@ public interface ProductService {
 
 	// 상품 등록
 	public void insertProduct(ProductVO vo) throws Exception;
-
-	// 상품 전체 목록 가져오는 메서드
-	public List<ProductVO> getProductList() throws Exception;
 	
 	// 상위 카테고리별로 상품 목록 가져오는 메서드
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
 	
 	// 상위 카테고리별 한 페이지에 표시할 만큼만 상품 목록 불러오기
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception;
+	
+	// 전체 상품 목록 가져오기
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception;
+	
+	// 전체 상품 개수 가져오기
+	public Integer getAllCnt() throws Exception;
 	
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;

@@ -25,14 +25,6 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> getProductList() throws Exception {
-		
-		log.info("getProductList -> DAO");
-		log.info("DAO -> 컨트롤러");
-		return dao.getProductList();
-	}
-
-	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception {
 		return dao.getProductList(pc);
 	}
@@ -40,6 +32,16 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
 		return dao.getProductPage(pc);
+	}
+	
+	@Override
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
+		return dao.getAllProductList(pc);
+	}
+
+	@Override
+	public Integer getAllCnt() throws Exception {
+		return dao.getAllCnt();
 	}
 
 	@Override

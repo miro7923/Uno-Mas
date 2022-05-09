@@ -28,16 +28,6 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getProductList() throws Exception{
-		log.info("getProductList -> mapper");
-		
-		List<ProductVO> productList = sqlSession.selectList(NAMESPACE + ".getList");
-		log.info("mapper -> service");
-		return productList;
-//		return sqlSession.selectList(NAMESPACE + ".getList");
-	}
-
-	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception{
 		return sqlSession.selectList(NAMESPACE + ".getListCate", pc);
 	}
@@ -45,6 +35,16 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pc);
+	}
+	
+	@Override
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".getAllProductList" ,pc);
+	}
+
+	@Override
+	public Integer getAllCnt() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".getAllCnt");
 	}
 
 	@Override

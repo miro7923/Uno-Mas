@@ -7,11 +7,10 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after">
+<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- Start Header -->
-
 <body>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -114,6 +113,25 @@
 														</tbody>
 													</table>
 												</div>
+												<!-- 페이징처리 -->
+												<div class="row" id="pagediv">
+													<div class="col-lg-12 text-center">
+<!-- 													<ul class="pagination pagination-sm no-margin"> -->
+														<c:if test="${pm.prev }">
+															<span><a href="product_lookup?page=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a></span>
+														</c:if>
+														
+														<c:forEach var="i" begin="${pm.startPage }" end="${pm.endPage }">
+															<span><a href="product_lookup?page=${i }" class="pagingBtn" style="color: black; font-weight: bold;"  >${i } </a></span>
+														</c:forEach>
+														
+														<c:if test="${pm.next && pm.endPage > 0 }">
+															<span><a href="product_lookup?page=${pm.endPage+1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a></span>
+														</c:if>
+<!-- 													</ul> -->
+												</div>
+												</div>
+												<!-- 페이징처리 -->
 												<button type="button" class="back-button" onclick="history.back();">삭제</button>
 		                                        <button type="submit" class="site-button" >수정</button>
 											</div>

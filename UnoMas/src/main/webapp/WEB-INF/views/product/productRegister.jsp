@@ -54,15 +54,28 @@
 											<label>상태<span></span></label>
 											<div class="filter-widget">
 												<div class="fw-size-choose">
-													<div class="sc-item">
-														<input type="radio" name="stock_state" value="normal"> <label for class="active">정상</label>
-													</div>
-													<div class="sc-item">
-														<input type="radio" name="stock_state" value="sold"> <label for="sold">품절</label>
-													</div>
-													<div class="sc-item">
-														<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
-													</div>
+<%-- 													<c:choose> --%>
+<%-- 														<c:when test="${vo.prod_stock eq 0}"> --%>
+															<div class="sc-item">
+																<input type="radio" name="stock_state" value="normal"> <label for= "normal" >정상</label>
+															</div>
+															<div class="sc-item">
+																<input type="radio" name="stock_state" value="sold"> <label for="sold" class="active">품절</label>
+															</div>
+															<div class="sc-item">
+																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
+															</div>
+<%-- 														</c:when> --%>
+															<div class="sc-item">
+																<input type="radio" name="stock_state" value="normal"> <label for= "normal" class="active">정상</label>
+															</div>
+															<div class="sc-item">
+																<input type="radio" name="stock_state" value="sold"> <label for="sold">품절</label>
+															</div>
+															<div class="sc-item">
+																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
+															</div>
+<%-- 													</c:choose> --%>
 												</div>
 											</div>
 										</div>
@@ -130,7 +143,7 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" >
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다.">
 											</div>
 											<div class="col-lg-12">
 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2">
