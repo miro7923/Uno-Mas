@@ -413,7 +413,7 @@ ol {
 }
 
 .inner-header {
-	padding: 39px 0;
+	padding: 39px 0 10px;
 }
 
 .inner-header .logo {
@@ -3916,9 +3916,9 @@ ol {
 	.inner-header .advanced-search .input-group {
 		max-width: 100%;
 	}
-	.nav-item .nav-menu li a {
-		padding: 16px 26px 15px;
-	}
+/* 	.nav-item .nav-menu li a { */
+/* 		padding: 16px 26px 15px; */
+/* 	} */
 	.hero-items .owl-nav button[type=button] {
 		left: 5px;
 	}
@@ -4028,12 +4028,12 @@ ol {
 	.inner-header .nav-right li {
 		margin-left: 30px;
 	}
-	.nav-item .nav-depart .depart-btn {
-		padding: 14px 40px 14px 18px;
-	}
-	.nav-item .nav-menu li a {
-		padding: 16px 10px 15px;
-	}
+/* 	.nav-item .nav-depart .depart-btn { */
+/* 		padding: 14px 40px 14px 18px; */
+/* 	} */
+/* 	.nav-item .nav-menu li a { */
+/* 		padding: 16px 10px 15px; */
+/* 	} */
 	.instagram-photo .insta-item .inside-text h5 {
 		font-size: 14px;
 	}
@@ -4100,6 +4100,7 @@ ol {
 	}
 	.inner-header .nav-right {
 		text-align: left;
+		padding-left: 10px;
 	}
 	.inner-header .nav-right li:first-child {
 		margin-left: 0;
@@ -4117,7 +4118,7 @@ ol {
 		display: block;
 		background: transparent;
 		text-align: center;
-		margin-top: -48px;
+		margin-top: -70px;
 	}
 	.slicknav_nav {
 		background: #333;

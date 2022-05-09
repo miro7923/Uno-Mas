@@ -91,6 +91,36 @@ div, th, td, li, dt, dd, p {
     font-size: 0;
     text-indent: -9999px;
 }
+@media only screen and (min-width: 1200px){
+	.inner-header{
+		padding: 39px 0 10px;
+	}
+	.col-lg-2{
+		bottom: 30px;
+	}
+}
+@media only screen and (max-width: 1199px){
+	.inner-header{
+		padding: 39px 0 20px;
+	}
+	.col-lg-2{
+		bottom: 10px;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 991px){
+	.inner-header{
+		padding: 39px 0 39px;
+	}
+	.col-lg-2{
+		top: 1px;
+	}
+}
+@media only screen and (max-width: 767px){
+	.col-lg-2{
+		width: 50%;
+		left: 100px;
+	}
+}
 .inner-header .advanced-search .category-btn {
     display: none;
 }
@@ -147,38 +177,38 @@ div, th, td, li, dt, dd, p {
 /* 	padding-right: 50px; */
 /* } */
 
-/* .screenOut { */
-/*     display: block; */
-/*     overflow: hidden; */
-/*     position: absolute; */
-/*     left: -9999px; */
-/*     width: 1px; */
-/*     height: 1px; */
-/*     font-size: 0; */
-/*     line-height: 0; */
-/*     text-indent: -9999px; */
-/* } */
-/* .nav-item{ */
-/* 	font-family:'Noto Sans'; */
-/* } */
-/* .depart-btn .depart-hover>li{ */
-/* 	position:relative */
-/* } */
-/* .depart-btn .depart-hover>li:hover .secondMenu{ */
-/* 	left: 100%; */
-/* } */
-/* .depart-btn .secondMenu{ */
-/* 	position: absolute; */
-/*     top: 0; */
-/*     background-color: #f8f9fa; */
-/*     width: 260px; */
-/*     padding-bottom: 20px; */
-/*     border-radius: 10px; */
-/*     box-shadow: 0 13px 32px rgba(51, 51, 51, 0.1); */
-/*     left: -9999px; */
+.screenOut {
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+}
+.nav-item{
+	font-family:'Noto Sans';
+}
+.depart-btn .depart-hover>li{
+	position:relative
+}
+.depart-btn .depart-hover>li:hover .secondMenu{
+	left: 100%;
+}
+.depart-btn .secondMenu{
+	position: absolute;
+    top: 0;
+    background-color: #f8f9fa;
+    width: 260px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 13px 32px rgba(51, 51, 51, 0.1);
+    left: -9999px;
 /*     left: 100%; */
 /*     display: none; */
-/* } */
+}
 /* 헤더주석 끝 */
 /* 푸터주석 시작 */
 
