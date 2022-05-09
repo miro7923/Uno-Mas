@@ -1,4 +1,4 @@
-package com.april.unomas;
+package com.april.unomas.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
