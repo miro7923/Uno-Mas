@@ -96,7 +96,7 @@
     <select id="getNewProducts" resultType="ProductVO">
         SELECT *
         FROM products
-        WHERE prod_regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
+        WHERE prod_regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() AND prod_discntrate = 0
         ORDER BY prod_regdate DESC
         LIMIT #{pageStart}, #{perPageNum}
     </select>
@@ -106,5 +106,21 @@
         SELECT COUNT(prod_num)
         FROM products
         WHERE prod_regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
+    </select>
+    
+    <!-- 특가 상품 목록 가져오기 -->
+    <select id="getSaleProducts" resultType="ProductVO">
+        SELECT *
+        FROM products
+        WHERE prod_discntrate > 0
+        ORDER BY prod_regdate DESC
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 특가 상품 개수 가져오기 -->
+    <select id="getSaleProdCnt" resultType="int">
+        SELECT COUNT(prod_num)
+        FROM products
+        WHERE prod_discntrate > 0
     </select>
 </mapper>

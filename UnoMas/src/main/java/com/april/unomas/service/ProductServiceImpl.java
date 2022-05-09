@@ -79,4 +79,14 @@ public class ProductServiceImpl implements ProductService {
 	public int getNewProdCnt() throws Exception {
 		return dao.getNewProdCnt();
 	}
+
+	@Override
+	public List<ProductVO> getSaleProductList(ProdCriteria pc) throws Exception {
+		return dao.getSaleProductList(pc);
+	}
+
+	@Override
+	public int getSaleCnt() throws Exception {
+		return dao.getSaleCnt();
+	}
 }

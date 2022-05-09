@@ -129,8 +129,9 @@ public class ProductController {
 		return "product/qnaWritingForm";
 	}
 
-	@RequestMapping(value = "/new_product_list", method = RequestMethod.GET)
-	public String newProductListGET(@RequestParam("pageNum") int pageNum, ProdCriteria pc, Model model) throws Exception {
+	@RequestMapping(value = "/new_list", method = RequestMethod.GET)
+	public String newProductListGET(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+			ProdCriteria pc, Model model) throws Exception {
 		pc.setPage(pageNum);
 		
 		int postCnt = service.getNewProdCnt();
@@ -149,9 +150,26 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping(value = "/sale_product_list", method = RequestMethod.GET)
-	public String saleProductList() {
-		return "product/saleProductList";
+	// http://localhost:8090/product/sale_list
+	@RequestMapping(value = "/sale_list", method = RequestMethod.GET)
+	public String saleProductList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+			ProdCriteria pc, Model model) throws Exception {
+		pc.setPage(pageNum);
+		
+		int postCnt = service.getSaleCnt();
+		
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(postCnt);
+
+		model.addAttribute("productList", service.getSaleProductList(pc));
+		model.addAttribute("postCnt", postCnt);
+		model.addAttribute("topcate", "특가");
+		model.addAttribute("topcate_num", 7);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pm", pm);
+		
+		return "product/productList";
 	}
 
 }

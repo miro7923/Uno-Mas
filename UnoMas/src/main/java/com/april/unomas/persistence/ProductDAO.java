@@ -42,4 +42,10 @@ public interface ProductDAO {
 	
 	// 신상품 개수 가져오는 메서드
 	public int getNewProdCnt() throws Exception;
+	
+	// 특가 목록 가져오는 메서드
+	public List<ProductVO> getSaleProductList(ProdCriteria pc) throws Exception;
+	
+	// 특가 상품 개수 가져오는 메서드
+	public int getSaleCnt() throws Exception;
 }
