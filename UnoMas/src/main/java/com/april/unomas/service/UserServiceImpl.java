@@ -27,6 +27,20 @@ public class UserServiceImpl implements UserService {
 		
 		return time;
 	}
+	
+	// 회원가입
+	@Override
+	public void joinUser(UserVO vo) {
+		dao.joinUser(vo);
+	}
+
+	// 로그인 중복체크
+	@Override
+	public int idCheck(UserVO vo) {
+		int result = dao.idCheck(vo);
+		return result;
+	}
+
 
 	// 로그인
 	@Override
@@ -39,11 +53,12 @@ public class UserServiceImpl implements UserService {
 		return loginVO;
 	}
 	
-	// 회원정보 조회
+	// 회원 정보 조회
 	@Override
 	public UserVO getUserInfo(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		UserVO userInfoVO = dao.getUserInfo(id);
+		
+		return userInfoVO;
 	}
 	
 	// 회원정보수정
@@ -60,6 +75,13 @@ public class UserServiceImpl implements UserService {
 		dao.delUser(vo);
 	}
 	
-	
+	// 아이디 찾기
+	@Override
+	public int findIdProcess(UserVO vo) {
+		System.out.println("아이디 찾기 서비스로 들어옴!!!!!!!!!");
+		// DAO를 호출하여 아이디가 있는지 판단.
+		int result = dao.findIdProcess(vo);
+		return result;
+	}
 	
 }

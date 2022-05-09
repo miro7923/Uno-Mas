@@ -3,11 +3,65 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
-<html lang="zxx">
+
+<head>
 <meta charset=UTF-8>
 <title>개인정보수정 페이지</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="postalcode.js"></script>
+<script type="text/javascript" src="../script/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+
+function birthCheck() {
+   if($("select[name=birth-year]").val()== "" || $("select[name=birth-month]").val()== ""){
+      $("select[name=birth-month]").val("");
+      $("select[name=birth-month]").attr('disabled', true);
+      $("select[name=birth-day]").val("");
+      $("select[name=birth-day]").attr('disabled', true)
+   }
+   
+   if($("select[name=birth-year]").val() != "") {
+      $("select[name=birth-month]").attr('disabled', false);
+   } 
+   
+   if($("select[name=birth-month]").val() != "") {
+      $("select[name=birth-day]").attr('disabled', false);
+      
+      switch ($("select[name=birth-month]").val()) {
+      case "2":
+         for(var i=1; i<=28; i++) {
+            $("select[name=birth-day]").append("<option value='"+i+"'>"+i+"일"+"</option>")
+         }
+         break;
+      case "4":
+      case "6":
+      case "9":
+      case "11":
+         for(var i=1; i<=30; i++) {
+            $("select[name=birth-day]").append("<option value='"+i+"'>"+i+"일"+"</option>")
+         }
+         break;
+      case "1":
+      case "3":
+      case "5":
+      case "7":
+      case "8":
+      case "10":
+      case "12":
+         for(var i=1; i<=31; i++) {
+            $("select[name=birth-day]").append("<option value='"+i+"'>"+i+"일"+"</option>")
+         }
+         break;
+      default:
+         break;
+      }
+      
+   } 
+}
+</script>
+</head>
 <body>
 	<!-- 헤더 -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -22,7 +76,7 @@
 
 
 		<div class="myinfo_content">
-			<h2>개인 정보 수정</h2>
+			<h2>개인 정보 확인</h2>
 			<hr>
 
 			<h3>기본 정보</h3>
@@ -36,12 +90,12 @@
 
 					<tr>
 						<th>이름</th>
-						<td><input type="text" class="input_field" name="name" required></td>
+						<td><input type="text" class="input_field" name="name"></td>
 					</tr>
 
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" class="input_field" name="email" required></td>
+						<td><input type="email" class="input_field" name="email"></td>
 					</tr>
 					
 					<tr>
@@ -73,9 +127,7 @@
 
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="input_field" name="phone" placeholder=" -없이 숫자만 입력" required>
-						<input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()">
-						<div name="phoneCheckDiv"></div></td>
+						<td><input type="text" class="input_field" name="phone" placeholder=" -없이 숫자만 입력"></td>
 					</tr>
 				</table>
 
@@ -136,9 +188,7 @@
 									<dl>
 										<dt>은행명</dt>
 										<dd>
-											<select class="form-select form-select-sm" name="bank" aria-label=".form-select-sm example" 
-											style="box-sizing: border-box;display: inline-block;width: 40%;
-											height: 38px;margin:10px;padding: 0 10px;border: 1px solid #ddd	;color: #666;font-size: 11px;">
+											<select class="form-select form-select-sm" aria-label=".form-select-sm example">
 											  <option value="" >은행을 선택해주세요.</option>
 											  <option value="기업은행">기업은행</option>
 											  <option value="국민은행">국민은행</option>
@@ -152,16 +202,23 @@
 										<dt>계좌번호</dt>
 										<dd>
 											<span class="input_area"> 
-											<input type="text" id="account_no" name="acoount" title="계좌번호 입력"  style="width: 250px">
+											<input type="text" id="account_no" name="acoount_no" title="계좌번호 입력"  style="width: 228px">
 											</span>
 										</dd>
 										<dt>예금주</dt>
 										<dd>
 											<span class="input_area">
-											<input type="text" id="account_p" name="account_holder" title="예금주 입력" style="width: 250px">
+											<input type="text" id="account_p" name="account_p" title="예금주 입력" style="width: 228px">
 											</span> 
+											<a href="" class="refund_btn" >
+											<span>계좌인증</span></a>
+											<a href="" class="reset_btn">
+											<span>초기화</span></a>
 										</dd>
 									</dl>
+									<ul class="list_type">
+										<li>* 관계법령(전자상거래법 및 정보통신망법)에 따라 요금정산을 위해 계좌정보를 수집하며 [인증해제&gt; 초기화] 시 삭제됩니다.</li>
+									</ul>
 								</div>
 							</div>
 						</td>
@@ -182,7 +239,7 @@
 			</div>
 
 			<div style="text-align: center;">
-				<input type="submit" class="updateBtn" value="수정" onclick="">
+				<a href="" class="updateBtn">수정</a>
 			</div>
 
 		</div>
@@ -203,8 +260,5 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
-    <script src="${path}/resources/js/user_js/updateMyInfo.js"></script>
 </body>
 </html>

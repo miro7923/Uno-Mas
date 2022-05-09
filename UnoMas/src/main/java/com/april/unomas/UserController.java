@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.UserService;
@@ -21,28 +23,39 @@ public class UserController {
 	
 	@Inject
 	private UserService service;
-	
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
-	@RequestMapping(value="/call",method=RequestMethod.GET)
-	public void timeCall(Model model) {
-		String time = service.getTimeS();
-		model.addAttribute("time", time);
-	}
-	
-	// 회원가입 페이지
-	@RequestMapping(value = "/register")
-	public String register() {
-		return "user/register";
-	}
 	
 	// 회원가입 이용약관 페이지
 	@RequestMapping(value = "/register_agree")
 	public String registerAgree() {
-		return "user/registerAgree";
+		return "/user/registerAgree";
 	}
 	
-	// user
+	@RequestMapping(value = "/register")
+	public String registerGet() {
+		return "/user/register";
+	}
+	
+	@RequestMapping(value = "/register", method=RequestMethod.POST)
+	public String registerPost(@RequestParam("emailAgree") String eAgree, UserVO vo) {
+		if(eAgree.equals("1")) {
+			vo.setUser_emailagree(1);
+		}
+		service.joinUser(vo);
+		System.out.println("회원가입 완료");
+		return "redirect:/user/login";
+	}
+	
+	@RequestMapping(value = "/idCheck")
+	@ResponseBody
+	public String idCheck(UserVO vo) {
+		String res = Integer.toString(service.idCheck(vo));
+		return res;
+	}
+	
+	
+
 	// 로그인 페이지 구현 (GET)
 	// http://localhost:8088/user/login
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
@@ -117,9 +130,20 @@ public class UserController {
 	
 	// find
 	@RequestMapping(value = "/find_id")
-	public String findID() {
+	public String findIDGet() {
 		return "user/findID";
 	}
+
+	@RequestMapping(value = "/find_id", method = RequestMethod.POST)
+	@ResponseBody
+	public String findIDPost(UserVO vo) {
+		System.out.println("입력한거 잘 들어오는지 확인: " + vo.getUser_name());
+		String result = Integer.toString(service.findIdProcess(vo));
+		System.out.println("아이디 찾기 완료 => " + result);
+
+		return result;
+	}
+	
 	@RequestMapping(value = "/find_pw")
 	public String findPW() {
 		return "user/findPW";
@@ -134,10 +158,15 @@ public class UserController {
 	public String mypage() {
 		return "user/myPage";
 	}
+
 	@RequestMapping(value = "/myInfo")
-	public String myInfo() {
+	public String myInfo(HttpSession session, Model model) {
+		String saveID = (String) session.getAttribute("saveID");
+		UserVO userInfoVO = service.getUserInfo("Admin"); // 일단 직접 입력하고 추 후에 세션값 입력.
+		model.addAttribute("userInfoVO", userInfoVO);
 		return "user/myInfo";
 	}
+
 	
 
 	// 회원정보수정(GET)
@@ -149,7 +178,6 @@ public class UserController {
 		
 //		UserVO infoVO = service.
 		
-		
 		return "user/updateMyInfo";
 	}
 	
@@ -159,6 +187,8 @@ public class UserController {
 	public String myInfoUpdatePOST(UserVO vo) {
 		return "redirect:/user/myPage";
 	}
+	
+	
 	
 	@RequestMapping(value = "/mypoint")
 	public String myPoint() {

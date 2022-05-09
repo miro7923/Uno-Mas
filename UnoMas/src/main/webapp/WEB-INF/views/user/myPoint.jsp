@@ -15,7 +15,6 @@
 <jsp:include page="../inc/header.jsp"></jsp:include>
 <!--   <div style="height: 80px; border-bottom: 1px solid black; background-color: green">헤더</div> -->
 		
-	
   <div class="point_container">
 	<jsp:include page="myPageLeftBar.jsp"></jsp:include>
 	

@@ -29,16 +29,15 @@ public class UserDAOTest {
 		log.info(dao.toString());
 	}
 	
-	@Test
+//	@Test
 	public void DB시간확인() {
 		
 		String time = dao.getTime();
 		log.info("DB시간 : " + time);
 	}
 	
-	@Test
+//	@Test
 	public void 관리자등록확인() {
-		
 		AdminVO vo = new AdminVO();
 		vo.setAdmin_id("admin");
 		vo.setAdmin_pass("1234");

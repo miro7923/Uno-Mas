@@ -86,7 +86,6 @@
 					
 					
 		<h3>회원 정보 확인</h3>
-		<form action="delete" method="post">
 		<table class="table_info">
 			<colgroup><col style="width: 164px;"><col style="width: *;"></colgroup>
 				
@@ -98,16 +97,15 @@
 
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" id="_password" value="${sessionScope.loginCheck.user_id }" title="비밀번호 입력"></td>
+					<td><input type="password" id="_password" value="" title="비밀번호 입력"></td>
 				</tr>
 
 				<tr>
 					<th>이름</th>
-					<td><input type="text" id="_userName" value="${sessionScope.loginCheck.user_name }" title="이름 입력"></td>
+					<td><input type="text" id="_userName" value="" title="이름 입력"></td>
 				</tr>
 			</tbody>
 		</table>
-		</form>
 			
 			
 		<div class="btn_area">

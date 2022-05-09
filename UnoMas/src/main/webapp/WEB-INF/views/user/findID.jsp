@@ -18,18 +18,20 @@
 		<article>
 			<h3 class="find_id">아이디 찾기</h3>
 			<hr>
-			<form action="" id="fn_id" method="post" onsubmit="return memberCk();">
+			<p id="find_result" class="find_result_text"></p>
+			
+			<form role="form" action="find_id" id="fn_id" method="post">
 				<div class="input_box">
-					<input type="text" id="name" name="name" placeholder="이름을 입력하세요.">
-					<input type="email" id="email1" name="email1" placeholder="이메일을 입력하세요.">
+					<input type="text" id="name" name="user_name" placeholder="이름을 입력하세요.">
+					<input type="email" id="name" name="user_email" placeholder="이메일을 입력하세요.">
 					<p id="cir_text"></p>
-				</div>
-
-				<div id="buttons">
-					<input type="submit" value="확인" id="find_ok" onclick="">
-					<input type="button" value="로그인" id="login" onclick=" location.href='/user/login';">
-				</div>
+				</div>	
 			</form>
+			
+			<div id="buttons">
+				<input type="submit" value="확인" id="find_ok" onclick="findIdFunc()">
+				<input type="button" value="로그인" id="login" onclick=" location.href='/user/login';">
+			</div>
 		</article>
 		<!-- 본문내용 -->
 

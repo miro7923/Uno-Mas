@@ -156,3 +156,11 @@ label {
 #login {
 	margin: 20px 35px 20px 10px;
 }
+
+.find_result_text {
+	color: red;
+    text-align: center;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+

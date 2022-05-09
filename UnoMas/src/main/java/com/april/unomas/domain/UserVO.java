@@ -2,15 +2,19 @@ package com.april.unomas.domain;
 
 import java.sql.Timestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
-@Setter
 @Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserVO {
-
 	private int user_num;
 	private String user_id;
 	private String user_pass;
@@ -25,6 +29,10 @@ public class UserVO {
 	private int user_status;
 	private int user_emailagree;
 	private int user_point;
-	
-	
+	private int user_use_point;
+	private String user_bank;
+	private String user_account;
+	private String user_account_holder;
+
 }
+

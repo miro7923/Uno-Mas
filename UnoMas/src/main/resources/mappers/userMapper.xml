@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.unomas.mapper.UserMapper">
+<mapper namespace="com.unomas.mapper.userMapper">
   <!-- 디비시간정보 가져오기 -->
   <!-- 겟타임 메서드를 호출하면 현재시간을 받아서 스트링 형태로 가져올 것이다. -->
   <select id="getTime" resultType="string">
@@ -16,9 +16,42 @@
       values(#{admin_id}, #{admin_pass})
   </insert>
   
+    <!-- 유저 회원가입 -->
+  <insert id="joinUser">
+	insert into users(user_id, user_pass, user_name, user_birth, user_phone, user_email, user_postalcode, user_roadaddr, user_detailaddr, user_emailagree) 
+	values(#{user_id}, #{user_pass}, #{user_name}, #{user_birth}, #{user_phone}, #{user_email}, #{user_postalcode}, #{user_roadaddr}, #{user_detailaddr}, #{user_emailagree})  
+  </insert>
+  
+  <!-- 아이디 중복검사 -->
+  <select id="idCheck_sql" resultType="int">
+  	select count(*) from users where user_id=#{user_id}
+  </select>
+  
+  <!-- 아이디 찾기 -->
+  <select id="findID_sql" resultType="String">
+  	select user_id 
+  	from users 
+  	where user_email=#{user_email} and user_name=#{user_name}
+  </select>
+  
+  <!-- 비번 찾기 -->
+  <select id="findPW_sql" resultType="String">
+  	select count(user_num)
+  	from users 
+  	where user_name=#{user_name} and user_email=#{user_email} and user_name=#{user_name}
+  </select>
+  
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
   	select * from users where userid=#{userid} and userpw=#{userpw}
+  </select>
+  
+  <!-- 회원 정보 가져오기 -->
+  <select id="getUserInfo" parameterType="String" resultType="com.april.unomas.domain.UserVO">
+	select user_id, user_name, user_birth, user_phone, user_email, 
+	user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point
+	from users 
+	where user_id = #{id}
   </select>
   
   <!-- 회원정보 수정 -->
