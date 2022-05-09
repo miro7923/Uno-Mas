@@ -59,7 +59,7 @@
 									    <c:choose>
 									        <c:when test="${vo.prod_discntrate eq 0 }">
 											    <input type="hidden" id="originPrice" value="${vo.prod_price }">
-												<span class="finalPrice"><fmt:formatNumber value="${vo.prod_price }" type="number"/> 원</span>
+												<span class="finalPrice"><fmt:formatNumber value="${vo.prod_price }" type="number"/></span> 원
 									        </c:when>
 									        <c:otherwise>
 									            <div class="saleSubTit">회원할인가</div>
