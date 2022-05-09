@@ -29,7 +29,12 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<ProductVO> getProductList() throws Exception{
-		return sqlSession.selectList(NAMESPACE + ".getList");
+		log.info("getProductList -> mapper");
+		
+		List<ProductVO> productList = sqlSession.selectList(NAMESPACE + ".getList");
+		log.info("mapper -> service");
+		return productList;
+//		return sqlSession.selectList(NAMESPACE + ".getList");
 	}
 
 	@Override

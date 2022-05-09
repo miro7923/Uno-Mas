@@ -7,7 +7,7 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
+<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- Start Header -->
@@ -76,23 +76,23 @@
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
-																<td class="cart-pic first-row">
-																	<input type="checkbox" name="check">
-																</td>
-																<td class="normal-row">${vo.prod_num }</td>
-<!-- 															<td class="cart-title first-row"> -->
-																<td class="normal-row">${vo.prod_name}</td>
-																<td class="normal-row">10,000</td>
-<!-- 															<td class="qua-col first-row"> -->
-																<td class="normal-row">
-																	정상
-																</td>
-																<td class="normal-row">1200</td>
-																<td class="normal-row">100</td>
-																<td class="normal-row">12</td>
-																
-															</tr>
+															<c:forEach var="vo" items="${productList }">
+																<tr>
+																	<td class="cart-pic first-row">
+																		<input type="checkbox" name="check">
+																	</td>
+																	<td class="normal-row">${vo.prod_num }</td>
+	<!-- 															<td class="cart-title first-row"> -->
+																	<td class="normal-row">${vo.prod_name }</td>
+																	<td class="normal-row">${vo.prod_price }</td>
+	<!-- 															<td class="qua-col first-row"> -->
+																	<td class="normal-row"><!-- 상태 -->ddddd
+																	</td>
+																	<td class="normal-row">sssss</td> <!-- 조회수 -->
+																	<td class="normal-row">sssss</td> <!-- 주문량 -->
+																	<td class="normal-row">${vo.prod_stock }</td>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>

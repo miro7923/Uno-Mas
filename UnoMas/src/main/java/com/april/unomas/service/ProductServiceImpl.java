@@ -27,7 +27,8 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<ProductVO> getProductList() throws Exception {
 		
-		log.info("serviceImpl");
+		log.info("getProductList -> DAO");
+		log.info("DAO -> 컨트롤러");
 		return dao.getProductList();
 	}
 

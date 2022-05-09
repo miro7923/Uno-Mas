@@ -123,8 +123,7 @@ public class ProductController {
 		
 		List<ProductVO> productList = service.getProductList();
 		log.info(productList+"");
-		model.addAttribute("product_list", service.getProductList());
-		
+		model.addAttribute("productList", service.getProductList());
 		return "product/productLookup";
 	}
 

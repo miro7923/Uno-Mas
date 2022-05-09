@@ -75,8 +75,19 @@ input[type="checkbox"]:checked::before {
 	width: 5%;
 }
 
+.cart-table table tr th {
+	font-size: 16px;
+	color: #252525;
+	font-weight: 700;
+	border-bottom: 1px solid #ebebeb;
+	text-align: center;
+	padding: 18px 10px 19px 20px;
+	text-transform: uppercase;
+}
+
 .cart-table table tr td {
     padding-top: 30px;
+    padding: 18px 10px 19px 20px;
 }
 .normal-row {
 /* 	color: #b9ce45; */
