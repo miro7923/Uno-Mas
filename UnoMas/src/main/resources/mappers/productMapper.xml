@@ -4,11 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.unomas.mapper.ProductMapper">
+    <!-- 상품 등록 (이미지 x)-->
+    <insert id="setProduct">
+    	INSERT INTO products(prod_name, prod_category, prod_price, prod_stock, prod_expire, 
+    						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing)
+    	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
+    			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
+    </insert>
+  
     <!-- 상품 전체 목록 불러오기 -->
     <select id="getList" resultType="com.april.unomas.domain.ProductVO">
         SELECT * FROM products
     </select>
-    
+
     <!-- 상품 목록 카테고리별로 불러오기 -->
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
         SELECT * 
@@ -16,6 +24,13 @@
         WHERE prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     
+	<!-- 상위 카테고리 목록 -->
+<!--     <select id="getTopCategory" resultType="String"> -->
+<!--     	SELECT topcate_name -->
+<!--     	FROM top_category -->
+<!--     	ORDER BY topcate_num -->
+<!--     </select> -->
+
     <!-- 상위 카테고리별 한 페이지에 표시할 만큼만 가져오기 -->
     <select id="getListOnPage" resultType="ProductVO">
         SELECT * 

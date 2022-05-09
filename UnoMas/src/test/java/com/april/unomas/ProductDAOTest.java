@@ -9,19 +9,30 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.persistence.ProductDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
-		locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"}
+		locations = {"file:Src/main/webapp/WEB-INF/spring/root-context.xml"}
 		)
-public class ProductDAOTest {
 
+public class ProductDAOTest {
+  
 	@Inject
 	private ProductDAO dao;
 	private static final Logger log = LoggerFactory.getLogger(ProductDAOTest.class);
+	
+	
+//	@Test
+	public void 상품등록() throws Exception {
+		ProductVO vo = new ProductVO();
+		vo.setProd_num(1);
+		vo.setProd_name("청경채");
+		dao.insertProduct(vo);
+	}
 	
 //	@Test
 	public void DAO생성테스트() {

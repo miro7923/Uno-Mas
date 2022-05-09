@@ -9,8 +9,8 @@
 	position: absolute;
 	right: -7px;
 	top: -1px;
-	border: 1px solid #e7ab3c;
-	background: #e7ab3c;
+	border: 1px solid #b9ce45;
+	background: #b9ce45;
 	padding: 12px 16px 12px;
 	cursor: pointer;
 	max-width: 60%;
@@ -25,8 +25,8 @@
 /* 	height: 18px; */
 /* } */
 /* input[type="checkbox"]:checked { */
-/* 	background: #e7ab3c; */
-/*     border-color: #e7ab3c; */
+/* 	background: #b9ce45; */
+/*     border-color: #b9ce45; */
 /* 	color: #ffffff; */
 /* } */
 
@@ -58,8 +58,8 @@ input[type="checkbox"]:hover {
 }
 
 input[type="checkbox"]:checked {
-    background-color: #e7ab3c;;
-    border-color: #e7ab3c;
+    background-color: #b9ce45;;
+    border-color: #b9ce45;
     color: white;
 }
 
@@ -79,20 +79,20 @@ input[type="checkbox"]:checked::before {
     padding-top: 30px;
 }
 .normal-row {
-/* 	color: #e7ab3c; */
+/* 	color: #b9ce45; */
     font-size: 16px;
     font-weight: normal;
     text-align: center;
 }
 .normal-color-row {
-	color: #e7ab3c;
+	color: #b9ce45;
     font-size: 16px;
     font-weight: normal;
     text-align: center;
 }
 
 .bold-row {
-/* 	color: #e7ab3c; */
+/* 	color: #b9ce45; */
     font-size: 16px;
     font-weight: 700;
     text-align: center;
@@ -120,6 +120,7 @@ input[type="checkbox"]:checked::before {
     border: 1px solid #ECEDEE;
     height: 45px;
     line-height: 35px;
+    margin: 0px 0px 2px;
 }
 
 .title {
@@ -132,17 +133,19 @@ input[type="checkbox"]:checked::before {
 	text-align: center;
 }
 
+.subtitle h3 {
+	margin-top: 30px;
+}
 .subtitle-box {
     position: relative;
-    margin-top: 20px;
-    margin-bottom: 20px;
+	margin: 0px auto;
     text-align: center;
 }
 
 .subtitle-box .span {
-	color: #e7ab3c;
+	color: #b9ce45;
 }
-.subtitle-box .h5 {
+.subtitle-box h5 {
 	margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -172,7 +175,7 @@ input[type="checkbox"]:checked::before {
 .section-title .square{
 	font-size: 18px;
 	font-weight: bold;
-    color: #e7ab3c;
+    color: #b9ce45;
 }
 
 .section-title .product-price span {
@@ -185,15 +188,15 @@ input[type="checkbox"]:checked::before {
 .section-title .product-price {
     font-size: 36px;
     font-weight: 700;
-    color: #e7ab3c;
+    color: #b9ce45;
 }
 
 .countdown {
 	margin-bottom: 50px;
 }
 
-.countdown .h2 {
-	color: #e7ab3c;
+.countdown h2 {
+	color: #b9ce45;
 	font-weight: bold;
 	text-align: center;
 	background-color: white;
@@ -209,7 +212,7 @@ input[type="checkbox"]:checked::before {
 	font-size: 35px;
     font-weight: bold;
     text-align: center;
-    color: #e7ab3c;
+    color: #b9ce45;
 }
 
 .hours, .minutes, .seconds {
@@ -225,7 +228,7 @@ input[type="checkbox"]:checked::before {
     text-align: center;
     color: #636363;
 }
-.co-image .img{
+.co-image img{
 	margin:0px auto;
 	padding:30px;
 	max-height: 60%;
@@ -234,8 +237,8 @@ input[type="checkbox"]:checked::before {
 
 .site-button {
     color: #ffffff;
-    background: #e7ab3c;
-    border: 1px solid #e7ab3c;
+    background: #b9ce45;
+    border: 1px solid #b9ce45;
     margin: 3px;
     font-size: 14px;
     font-weight: 700;
@@ -256,4 +259,22 @@ input[type="checkbox"]:checked::before {
     padding: 13px 45px 11px;
     cursor: pointer;
     float: right;
+}
+
+.co-button {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 30px;
+    color: #ffffff;
+    background: #b9ce45;
+    text-transform: uppercase;
+}
+.section-title h2:before {
+	background: none;
+}
+.line hr {
+	margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #b9ce45;
 }

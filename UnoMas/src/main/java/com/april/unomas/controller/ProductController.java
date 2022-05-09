@@ -103,10 +103,20 @@ public class ProductController {
 	public String coBuyingList() {
 		return "product/coBuyingList";
 	}
-
-	@RequestMapping(value = "/product_register")
-	public String productRegister() {
+  
+	@RequestMapping(value = "/product_register", method = RequestMethod.GET)
+	public String productRegisterGET() {
+		log.info("post 페이지 호출");
 		return "product/productRegister";
+	}
+	
+	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
+	public String productRegisterPOST(ProductVO vo) throws Exception {
+		log.info("get 페이지 호출");
+		log.info(vo+"");
+		service.insertProduct(vo);
+		
+		return "redirect:/product/product_lookup";
 	}
 
 	@RequestMapping(value = "/product_lookup")
@@ -150,7 +160,6 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	// http://localhost:8090/product/sale_list
 	@RequestMapping(value = "/sale_list", method = RequestMethod.GET)
 	public String saleProductList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
 			ProdCriteria pc, Model model) throws Exception {
@@ -171,5 +180,4 @@ public class ProductController {
 		
 		return "product/productList";
 	}
-
 }
