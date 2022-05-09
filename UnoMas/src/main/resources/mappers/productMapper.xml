@@ -96,7 +96,7 @@
     <select id="getNewProducts" resultType="ProductVO">
         SELECT *
         FROM products
-        WHERE prod_regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW() AND prod_discntrate = 0
+        WHERE prod_regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 MONTH) AND NOW()
         ORDER BY prod_regdate DESC
         LIMIT #{pageStart}, #{perPageNum}
     </select>
