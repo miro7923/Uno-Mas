@@ -25,12 +25,10 @@ function findIdFunc() {
             console.log("아이디 조회 결과: ", result); 
             if (result == "1") { 
             	$("#find_result").text("아이디를 이메일로 보냈습니다.");	
-            	setTimeout("location.href='login', 5000");
+            	setTimeout("location.href='login', 10000");
             } else if(result == 0) {
-				alert("이메일 보내기 실패!");
 				$("#find_result").text("이메일을 보내는데 실패했습니다.");
             } else {
-				alert("회원정보 없음.");
 				$("#find_result").text("회원 정보가 없습니다.");
 			}
         },

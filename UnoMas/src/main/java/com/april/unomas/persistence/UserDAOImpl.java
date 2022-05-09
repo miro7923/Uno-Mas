@@ -1,6 +1,7 @@
 package com.april.unomas.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -63,9 +64,7 @@ public class UserDAOImpl implements UserDAO {
 	// 아이디 중복검사
 	@Override
 	public int idCheck(UserVO vo) {
-		System.out.println("DAO: 아이디 중복검사 들어옴");
 		int result = sqlSession.selectOne(NAMESPACE + ".idCheck_sql", vo);
-		System.out.println("DAO: 아이디 중복검사 결과: " + result);
 		return result;
 	}
 
@@ -136,14 +135,16 @@ public class UserDAOImpl implements UserDAO {
 
 	// 회원 비밀번호 찾기
 	@Override
-	public int findPwProcess(UserVO vo) {
+	public HashMap<String, String> findPwProcess(UserVO vo) {
 		int result = -1;
-		String find_pw = sqlSession.selectOne(NAMESPACE + ".findPW_sql", vo);
-		System.out.println("비번찾기 결과: " + find_pw);
+		String pwCode = null;
+		HashMap findpw_map = new HashMap<String, String>();
 
-		if (find_pw != null) {
+		String find_pw = sqlSession.selectOne(NAMESPACE + ".findPW_sql", vo);
+
+		if (find_pw.equals("1")) {
 			Random r = new Random();
-			String pwCode = String.valueOf((char) (r.nextInt(26) + 65));
+			pwCode = String.valueOf((char) (r.nextInt(26) + 65));
 			for (int i = 0; i < 5; i++) {
 				pwCode += Integer.toString(r.nextInt(10));
 			}
@@ -160,7 +161,10 @@ public class UserDAOImpl implements UserDAO {
 				result = 0;
 			}
 		}
-		return result;
+		findpw_map.put("find_pw", Integer.toString(result));
+		findpw_map.put("pwCode", pwCode);
+		
+		return findpw_map;
 	}
 	
 	

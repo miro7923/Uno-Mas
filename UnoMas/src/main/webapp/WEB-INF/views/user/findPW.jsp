@@ -20,19 +20,19 @@
 			<h3 class="find_pw">비밀번호 찾기</h3>
 			<hr>
 			<form action="" id="fn_pw" method="post">
-				<div class="input_box">
-				<input type="text" id="name" name="name" placeholder="이름을 입력하세요."><br>
-				<input type="text" id="id" name="id" placeholder="아이디를 입력하세요."><br>
-				<input type="email" id="email2" name="email2" placeholder="이메일을 입력하세요.">
-				<input type="submit" value="인증요청" id="check_req">
-				<input type="text" id="num" name="number" placeholder="인증번호 6자리 숫자 입력">
+			  <div class="input_box">
+				<input type="text"  name="name" class="findpw_input" onkeyup="delWarnText()" placeholder="이름을 입력하세요."><br>
+				<input type="text" name="id" class="findpw_input" onkeyup="delWarnText()" placeholder="아이디를 입력하세요."><br>
+				<input type="email" name="email" class="findpw_input" onkeyup="delWarnText()" placeholder="이메일을 입력하세요." style="width: 78%;">
+				<input type="button" value="인증요청" id="check_req" onkeyup="delWarnText()" onclick="reqEmailCode()">			
 				<p id="cir_text"></p>
-				</div>
+				
+			  </div>
 			</form>
 			
 			<div id="buttons">
-				<input type="submit" value="확인" id="find_ok" onclick="memberCk()">
-				<input type="button" value="로그인" id="login" onclick=" location.href='/user/login';">
+				<input type="button" value="확인" id="find_ok" onclick="findPWFunc()">
+				<input type="button" value="로그인" id="login" onclick=" location.href='login';">
 			</div>
 		</article>
 	<!-- 본문내용 -->

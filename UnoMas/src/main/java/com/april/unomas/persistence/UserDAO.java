@@ -1,5 +1,8 @@
 package com.april.unomas.persistence;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.EmailVO;
 import com.april.unomas.domain.UserVO;
@@ -31,7 +34,7 @@ public interface UserDAO {
 	public int findIdProcess(UserVO vo);
 
 	// 회원 비번 찾기
-	public int findPwProcess(UserVO vo);
+	public HashMap<String, String> findPwProcess(UserVO vo);
 
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);

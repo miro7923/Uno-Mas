@@ -1,4 +1,4 @@
-package com.april.unomas;
+package com.april.unomas.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -42,6 +42,7 @@ public class HomeController {
 	public String index() {
 		return "index";
 	}
+
 
 
 }

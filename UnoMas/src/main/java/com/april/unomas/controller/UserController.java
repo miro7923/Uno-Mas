@@ -1,5 +1,8 @@
-package com.april.unomas;
+package com.april.unomas.controller;
 
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -43,7 +46,6 @@ public class UserController {
 			vo.setUser_emailagree(1);
 		}
 		service.joinUser(vo);
-		System.out.println("회원가입 완료");
 		return "redirect:/user/login";
 	}
 	
@@ -128,30 +130,43 @@ public class UserController {
 	
 	
 	
-	// find
+	// 아이디 찾기
 	@RequestMapping(value = "/find_id")
 	public String findIDGet() {
 		return "user/findID";
 	}
-
 	@RequestMapping(value = "/find_id", method = RequestMethod.POST)
 	@ResponseBody
 	public String findIDPost(UserVO vo) {
-		System.out.println("입력한거 잘 들어오는지 확인: " + vo.getUser_name());
 		String result = Integer.toString(service.findIdProcess(vo));
-		System.out.println("아이디 찾기 완료 => " + result);
-
 		return result;
 	}
 	
+	// 비번 찾기
 	@RequestMapping(value = "/find_pw")
 	public String findPW() {
 		return "user/findPW";
 	}
+	@RequestMapping(value = "/find_pw", method = RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, String> findPWPost(UserVO vo) {
+		HashMap<String, String> findpw_map = service.findPwProcess(vo);
+		
+		return findpw_map;
+	}
+	
+	// 비번 변경
 	@RequestMapping(value = "/change_pw")
-	public String changePW() {
+	public String changePWGet() {
 		return "user/changePW";
 	}
+	@RequestMapping(value = "/change_pw")
+	public String changePWPost() {
+		return "user/changePW";
+	}
+	
+	
+	
 	
 	// mypage
 	@RequestMapping(value = "/mypage")

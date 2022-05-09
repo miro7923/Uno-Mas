@@ -164,3 +164,15 @@ label {
     font-size: 14px;
 }
 
+
+/* findPW.jsp */
+.findpw_input {
+	width: 100%;
+    height: 54px;
+    margin-top: 15px;
+    padding: 0 19px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 13px;
+}

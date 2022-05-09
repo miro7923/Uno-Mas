@@ -94,12 +94,44 @@ $(document).ready(function() {
 		
 /* 오늘 날짜 */
 var now = new Date();
-var month = now.getMonth();
+var month = now.getMonth()+1;
 var date = now.getDate();
 $(".month").html(month);
 $(".date").html(date);
 
 
+/* 선택상자 직접 입력 */
 
+$(function(){
+	$("#selboxDirect").hide();
+	$("#selbox").change(function() {
 
+		if($("#selbox").val() != "냉장보관" && $("#selbox").val() != "실온보관") {
+			$("#selboxDirect").show();
+		}  else {
+			$("#selboxDirect").hide();
+		}
+	}) 
+});
 
+$(function(){
+	$("#selboxDirect2").hide();
+	$("#selbox2").change(function() {
+
+		if($("#selbox2").val() == "" || $("#selbox2") == onfocus) {
+			$("#selboxDirect2").show();
+			$("#selbox2").hide();
+		}  else {
+			$("#selboxDirect2").hide();
+		}
+	}) 
+});
+
+/* 재고 상태 라디오버튼 제어 */
+//function stockBtn(){
+	
+//	var stock = $('prod_stock');
+//	if(stock = 0){
+//		$('input:radio[name=stock_state]:input[value=' + sold + ']').attr("checked", true);
+//	}
+//}

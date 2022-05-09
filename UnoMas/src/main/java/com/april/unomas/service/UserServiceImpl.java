@@ -1,5 +1,8 @@
 package com.april.unomas.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -78,10 +81,20 @@ public class UserServiceImpl implements UserService {
 	// 아이디 찾기
 	@Override
 	public int findIdProcess(UserVO vo) {
-		System.out.println("아이디 찾기 서비스로 들어옴!!!!!!!!!");
 		// DAO를 호출하여 아이디가 있는지 판단.
 		int result = dao.findIdProcess(vo);
 		return result;
 	}
+
+	// 비번찾기
+	@Override
+	public HashMap<String, String> findPwProcess(UserVO vo) {
+		HashMap<String, String> findpw_map = dao.findPwProcess(vo);
+		
+		return findpw_map;
+	}
+	
+	
+	
 	
 }

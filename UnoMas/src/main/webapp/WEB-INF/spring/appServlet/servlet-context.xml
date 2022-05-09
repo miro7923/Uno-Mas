@@ -19,9 +19,10 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="redirectHttp10Compatible" value="false"/>
 	</beans:bean>
 	
-	<context:component-scan base-package="com.april.unomas" />
+	<context:component-scan base-package="com.april.unomas.controller" />
 	
 	
 	
