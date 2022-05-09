@@ -4131,7 +4131,8 @@ ol {
 		padding: 0;
 	}
 	.inner-header .logo {
-		text-align: center;
+		position: absolute !important;
+	    width: 9% !important;
 	}
 	.inner-header .nav-right {
 		text-align: left;
