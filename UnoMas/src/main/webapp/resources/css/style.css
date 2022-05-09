@@ -497,7 +497,7 @@ ol {
 	list-style: none;
 	display: inline-block;
 	font-size: 20px;
-	margin-left: 15px;
+	margin-left: 30px;
 }
 
 .inner-header .nav-right li.heart-icon a {
@@ -4026,7 +4026,7 @@ ol {
 		max-width: 100%;
 	}
 	.inner-header .nav-right li {
-		margin-left: 8px;
+		margin-left: 30px;
 	}
 	.nav-item .nav-depart .depart-btn {
 		padding: 14px 40px 14px 18px;
