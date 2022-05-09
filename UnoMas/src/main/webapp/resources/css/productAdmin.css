@@ -89,6 +89,11 @@ input[type="checkbox"]:checked::before {
     padding-top: 30px;
     padding: 18px 10px 19px 20px;
 }
+
+.cart-table table .sold {
+	color: #f67555;
+}
+
 .normal-row {
 /* 	color: #b9ce45; */
     font-size: 16px;

@@ -78,19 +78,37 @@
 														<tbody>
 															<c:forEach var="vo" items="${productList }">
 																<tr>
-																	<td class="cart-pic first-row">
-																		<input type="checkbox" name="check">
-																	</td>
-																	<td class="normal-row">${vo.prod_num }</td>
-	<!-- 															<td class="cart-title first-row"> -->
-																	<td class="normal-row">${vo.prod_name }</td>
-																	<td class="normal-row">${vo.prod_price }</td>
-	<!-- 															<td class="qua-col first-row"> -->
-																	<td class="normal-row"><!-- 상태 -->ddddd
-																	</td>
-																	<td class="normal-row">sssss</td> <!-- 조회수 -->
-																	<td class="normal-row">sssss</td> <!-- 주문량 -->
-																	<td class="normal-row">${vo.prod_stock }</td>
+																	<c:choose>
+																		<c:when test="${vo.prod_stock eq 0 }">
+																			<td class="cart-pic first-row">
+																				<input type="checkbox" name="check">
+																			</td>
+																			<td class="normal-row"><span class="sold">${vo.prod_num }</span></td>
+			<!-- 															<td class="cart-title first-row"> -->
+																			<td class="normal-row"><span class="sold">${vo.prod_name }</span></td>
+																			<td class="normal-row"><span class="sold">${vo.prod_price }</span></td>
+			<!-- 															<td class="qua-col first-row"> -->
+																			<td class="normal-row"><span class="sold">품절</span></td>
+																			<td class="normal-row"><span class="sold">sssss</span></td> <!-- 조회수 -->
+																			<td class="normal-row"><span class="sold">sssss</span></td> <!-- 주문량 -->
+																			<td class="normal-row"><span class="sold">${vo.prod_stock }</span></td>
+																		</c:when>
+																		<c:otherwise>
+																			<td class="cart-pic first-row">
+																				<input type="checkbox" name="check">
+																			</td>
+																			<td class="normal-row">${vo.prod_num }</td>
+			<!-- 															<td class="cart-title first-row"> -->
+																			<td class="normal-row">${vo.prod_name }</td>
+																			<td class="normal-row">${vo.prod_price }</td>
+			<!-- 															<td class="qua-col first-row"> -->
+																			<td class="normal-row">정상</td>
+																			<td class="normal-row">sssss</td> <!-- 조회수 -->
+																			<td class="normal-row">sssss</td> <!-- 주문량 -->
+																			<td class="normal-row">${vo.prod_stock }</td>
+																		</c:otherwise>
+																		
+																	</c:choose>
 																</tr>
 															</c:forEach>
 														</tbody>

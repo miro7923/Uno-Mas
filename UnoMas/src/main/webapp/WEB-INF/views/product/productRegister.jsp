@@ -58,10 +58,10 @@
 														<input type="radio" name="stock_state" value="normal"> <label for class="active">정상</label>
 													</div>
 													<div class="sc-item">
-														<input type="radio" name="stock_state" value="sold"> <label for="">품절</label>
+														<input type="radio" name="stock_state" value="sold"> <label for="sold">품절</label>
 													</div>
 													<div class="sc-item">
-														<input type="radio" name="stock_state" value="hide"> <label for="">숨김</label>
+														<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
 													</div>
 												</div>
 											</div>
