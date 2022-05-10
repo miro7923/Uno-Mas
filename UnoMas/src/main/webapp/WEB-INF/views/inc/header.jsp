@@ -27,7 +27,7 @@
     				<a href="/user/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="contact" class="linkMenu">고객센터</a>
+    				<a href="faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -43,7 +43,7 @@
     				<a href="/user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="contact" class="linkMenu">고객센터</a>
+    				<a href="faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -72,7 +72,7 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="#">
+                                <a href="wishlist">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>
