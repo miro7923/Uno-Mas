@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.april.unomas.service.MemberService;
+import com.april.unomas.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -20,7 +20,7 @@ public class MemberServiceTest {
 	private static final Logger log = LoggerFactory.getLogger(MemberServiceTest.class);
 	
 	@Inject
-	private MemberService service;
+	private UserService service;
 	
 	@Test
 	public void 시간체크서비스() {

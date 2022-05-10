@@ -1,5 +1,3 @@
-@CHARSET "UTF-8";
-
 * {margin : 0; padding: 0; box-sizing: border-box; }
 ul, li {list-style: none;}
 
@@ -8,7 +6,7 @@ ul, li {list-style: none;}
 }
 article {
 	width: 400px;
-    margin: 0 auto;
+    margin: 80px auto 200px auto;
     padding-top: 90px;
     letter-spacing: -.6px;
 }
@@ -64,7 +62,7 @@ label {
     display: contents;
 }
 #email2 {
-	width: 77%;
+	width: 78%;
 	height: 54px;
     margin: 10px auto;
     padding: 0 19px;
@@ -93,10 +91,8 @@ label {
     margin-top: 9px;
     font-size: 13px;
 }
-.login_search a {
-	color: black;
-}
-.id_search, .pass_search {
+ 
+#id_search, #pass_search {
 	color: black;
 	text-decoration: none;
 }
@@ -113,7 +109,7 @@ label {
 #loginus {
 	color:white;
 }
-#joinus {
+#joinus, #login {
 	border: 1px solid #B9CE45;
     background-color: #fff;
     margin-top: 15px;
@@ -141,17 +137,62 @@ label {
     cursor:pointer;
     color: white;
     font-weight: 600;
+    font-size: 13px;
 }
-#find_ok {
-	display: block;
-	margin: 10px auto;
+#find_ok , #login {
     overflow: hidden;
-    width: 40%;
+    width: 35%;
     height: 54px;
     border-radius: 3px;
     text-align: center;
     cursor:pointer;
-    color: white;
     font-size: 15px;
     font-weight: 700;
 }
+#find_ok {
+	color: white;
+	margin: 20px 10px 20px 35px;
+}
+#login {
+	margin: 20px 35px 20px 10px;
+}
+
+.find_result_text {
+	color: red;
+    text-align: center;
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+
+
+/* findPW.jsp */
+.findpw_input {
+	width: 100%;
+    height: 54px;
+    margin-top: 15px;
+    padding: 0 19px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 13px;
+}
+
+
+/* change_pw */
+.button_box {
+	text-align: center;
+}
+.button_box > input {
+	color: white;
+	border: none;
+    background-color: #B9CE45;
+    overflow: hidden;
+    width: 35%;
+    height: 54px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px 0px !important;
+}
+

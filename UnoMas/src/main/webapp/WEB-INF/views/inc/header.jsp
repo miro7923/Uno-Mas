@@ -21,10 +21,10 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="login" class="linkMenu">로그인</a>
+    				<a href="../user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="register_agree" class="linkMenu">회원가입</a>
+    				<a href="../user/register_agree" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
     				<a href="contact" class="linkMenu">고객센터</a>

@@ -33,7 +33,7 @@
 		<a href="myInfo">개인정보확인/수정</a>
 
 	</div>
-	<div class="mypage-cate-info">취소/환불 안내</div>
-	<div class="mypage-cate-info">공동구매 안내</div>
+		<a href="return_guide"><div class="mypage-cate-info">취소/환불 안내</div></a>
+		<div class="mypage-cate-info">공동구매 안내</div>
 </div>
 </html>
