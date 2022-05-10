@@ -79,6 +79,7 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
+		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
 		map.put("pageNum", pageNum);
@@ -102,7 +103,7 @@ public class ProductController {
 	public String coBuyingList() {
 		return "product/coBuyingList";
 	}
-
+  
 	@RequestMapping(value = "/product_register", method = RequestMethod.GET)
 	public String productRegisterGET() {
 		log.info("post 페이지 호출");
@@ -138,17 +139,45 @@ public class ProductController {
 		return "product/qnaWritingForm";
 	}
 
-	@RequestMapping(value = "/new_product_list", method = RequestMethod.GET)
-	public String newProductListGET(ProdCriteria pc, Model model) throws Exception {
-		model.addAttribute("newProductList", service.getNewProductList(pc));
-		model.addAttribute("newProdCnt", service.getNewProdCnt());
+	@RequestMapping(value = "/new_list", method = RequestMethod.GET)
+	public String newProductListGET(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+			ProdCriteria pc, Model model) throws Exception {
+		pc.setPage(pageNum);
 		
-		return "product/newProductList";
+		int postCnt = service.getNewProdCnt();
+		
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(postCnt);
+
+		model.addAttribute("productList", service.getNewProductList(pc));
+		model.addAttribute("postCnt", postCnt);
+		model.addAttribute("topcate", "신상품");
+		model.addAttribute("topcate_num", 6);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pm", pm);
+		
+		return "product/productList";
 	}
 	
-	@RequestMapping(value = "/sale_product_list", method = RequestMethod.GET)
-	public String saleProductList() {
-		return "product/saleProductList";
-	}
+	@RequestMapping(value = "/sale_list", method = RequestMethod.GET)
+	public String saleProductList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+			ProdCriteria pc, Model model) throws Exception {
+		pc.setPage(pageNum);
+		
+		int postCnt = service.getSaleCnt();
+		
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(postCnt);
 
+		model.addAttribute("productList", service.getSaleProductList(pc));
+		model.addAttribute("postCnt", postCnt);
+		model.addAttribute("topcate", "특가");
+		model.addAttribute("topcate_num", 7);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pm", pm);
+		
+		return "product/productList";
+	}
 }

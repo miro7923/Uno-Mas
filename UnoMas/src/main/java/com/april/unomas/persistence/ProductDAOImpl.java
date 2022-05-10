@@ -91,4 +91,14 @@ public class ProductDAOImpl implements ProductDAO {
 	public int getNewProdCnt() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getNewProdCnt");
 	}
+
+	@Override
+	public List<ProductVO> getSaleProductList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getSaleProducts", pc);
+	}
+
+	@Override
+	public int getSaleCnt() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getSaleProdCnt");
+	}
 }
