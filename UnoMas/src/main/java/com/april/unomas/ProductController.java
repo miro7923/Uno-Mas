@@ -136,6 +136,17 @@ public class ProductController {
 		
 		return "product/productLookup";
 	}
+	
+	@RequestMapping(value ="/status", method = RequestMethod.GET)
+	public String products(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		log.info("get호출");
+		log.info(prod_num+"");
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
+		return "product/productStatus";
+		
+	}
+	
 
 	@RequestMapping(value = "/shopping-cart")
 	public String cart() {

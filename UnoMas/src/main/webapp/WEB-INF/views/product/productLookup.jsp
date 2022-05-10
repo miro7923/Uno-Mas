@@ -81,10 +81,9 @@
 																		<c:when test="${vo.prod_stock eq 0 }">
 																			<td class="cart-pic first-row">
 																				<input type="checkbox" name="check">
-																			</td>
 																			<td class="normal-row"><span class="sold">${vo.prod_num }</span></td>
 			<!-- 															<td class="cart-title first-row"> -->
-																			<td class="normal-row"><span class="sold">${vo.prod_name }</span></td>
+																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }"><span class="sold">${vo.prod_name }</span></a></td>
 																			<td class="normal-row"><span class="sold">${vo.prod_price }</span></td>
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row"><span class="sold">품절</span></td>
@@ -98,7 +97,7 @@
 																			</td>
 																			<td class="normal-row">${vo.prod_num }</td>
 			<!-- 															<td class="cart-title first-row"> -->
-																			<td class="normal-row">${vo.prod_name }</td>
+																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }">${vo.prod_name }</a></td>
 																			<td class="normal-row">${vo.prod_price }</td>
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row">정상</td>
