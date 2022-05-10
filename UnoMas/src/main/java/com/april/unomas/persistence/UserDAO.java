@@ -28,7 +28,7 @@ public interface UserDAO {
 	public HashMap<String, String> findPwProcess(UserVO vo);
 	
 	// 비번 변경
-	public void changePW(String pw);
+	public int changePW(UserVO vo);
 	
 	// 회원정보 조회
 	public UserVO getUserInfo(String id);

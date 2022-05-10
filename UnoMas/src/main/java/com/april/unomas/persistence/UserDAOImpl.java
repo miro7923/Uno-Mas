@@ -140,9 +140,10 @@ public class UserDAOImpl implements UserDAO {
 	
 	// 비번 변경
 	@Override
-	public void changePW(String pw) {
-		sqlSession.selectOne(NAMESPACE + ".changePW_sql", pw);
-		System.out.println("보내기 완료");
+	public int changePW(UserVO vo) {	
+		int result = sqlSession.update(NAMESPACE + ".changePW_sql", vo);
+
+		return result;
 	}
 
 	

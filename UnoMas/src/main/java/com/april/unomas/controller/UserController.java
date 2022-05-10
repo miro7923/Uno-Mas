@@ -157,15 +157,16 @@ public class UserController {
 
 	// 비번 변경
 	@RequestMapping(value = "/change_pw")
-	public String changePWGet(@RequestParam(value="id", required=false) String id) {
+	public String changePWGet(@RequestParam(value="id", required=false) String id, Model model) {
+		model.addAttribute("id", id);
 		return "user/changePW";
 	}
 	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
+	@ResponseBody
 	public String changePWPost(UserVO vo) {
-		System.out.println("값 확인: " + vo.getUser_id() + vo.getUser_pass());
-//		service.changePW(vo);
-		
-		return "user/changePW";
+		String result = Integer.toString(service.changePW(vo));
+
+		return result;
 	}
 	
 	

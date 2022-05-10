@@ -43,7 +43,7 @@
   
   <!-- 비번 변경 -->
   <update id="changePW_sql">
-  	update users set user_pass = #{pw} where user_id=#{user_id}
+  	update users set user_pass=#{user_pass} where user_id=#{user_id}
   </update>
   
   <!-- 로그인 -->

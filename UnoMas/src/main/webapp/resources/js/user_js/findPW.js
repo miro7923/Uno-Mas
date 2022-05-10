@@ -61,6 +61,13 @@ function delWarnText() {
 
 
 function findPWFunc() {
+
+	if($("[name=authNum]").length < 1) {
+		$("#cir_text").text("인증번호 요청을 해주세요.");
+		$("[name=authNum]").focus();
+		return false;
+	};
+	
 	if($("[name=authNum]").val() == "") {
 		$("[name=code_text]").text("인증번호(6자리)를 입력하세요.");
 		$("[name=authNum]").focus();

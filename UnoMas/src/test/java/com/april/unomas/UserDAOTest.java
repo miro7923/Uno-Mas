@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,8 +49,11 @@ public class UserDAOTest {
 		log.info("TEST : vo - " + vo);
 	}
 	
-	@Test
+//	@Test
 	public void 비번변경테스트() {
-		dao.changePW("Tmvmfld99@");
+		UserVO vo = new UserVO();
+		vo.setUser_id("user1");
+		vo.setUser_pass("Tmvmfld00@");
+		dao.changePW(vo);
 	}
 }

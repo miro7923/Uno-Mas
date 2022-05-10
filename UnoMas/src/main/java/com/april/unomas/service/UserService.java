@@ -29,6 +29,10 @@ public interface UserService {
 	// 비번 찾기
 	public HashMap<String, String> findPwProcess(UserVO vo);
 	
+	// 비번 변경
+	public int changePW(UserVO vo);
+	
+	
 	// 회원 정보 가져오기
 	public UserVO getUserInfo(String id);
 		

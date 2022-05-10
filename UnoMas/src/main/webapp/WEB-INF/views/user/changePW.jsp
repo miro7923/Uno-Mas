@@ -15,26 +15,27 @@
 <body>
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <jsp:include page="../inc/header.jsp"></jsp:include>
-<%
-	String id = "가나다";
-%>
 
 	<div id="container">
 		<article>
 			<h3 class="change_pw">새로운 비밀번호로 변경</h3>
-			<hr>
+			<hr style="margin-bottom: 0px;">
 			<form role="form" id="ch_pw" method="post">
 				<div class="input_box">
 					<input type="text" name="id" value="${id }" hidden="true">
-					<input type="password" id="ch_pass" name="newPW" placeholder="새로운 비밀번호를 입력하세요.">
-					<input type="password" id="ch_pass2" name="newPW_ck" placeholder="새로운 비밀번호를 한번 더 입력하세요.">
+					
 					<p id="cir_text"></p>
+					<input type="password" id="ch_pass" name="newPW" placeholder="비밀번호">
+					<input type="password" id="ch_pass2" name="newPW_ck" placeholder="비밀번호 확인">
+					<p class="find_result_text"></p>
 				</div>
+
 			</form>
-			
 			<div class="button_box">
-				<input type="submit" value="확인" onclick="changePWFunc()">
-			</div>
+					<input type="button" value="확인" onclick="changePWFunc()">
+				</div>
+			
+			
 		</article>
 
 
