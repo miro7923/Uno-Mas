@@ -154,14 +154,17 @@ public class UserController {
 		
 		return findpw_map;
 	}
-	
+
 	// 비번 변경
 	@RequestMapping(value = "/change_pw")
-	public String changePWGet() {
+	public String changePWGet(@RequestParam(value="id", required=false) String id) {
 		return "user/changePW";
 	}
-	@RequestMapping(value = "/change_pw")
-	public String changePWPost() {
+	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
+	public String changePWPost(UserVO vo) {
+		System.out.println("값 확인: " + vo.getUser_id() + vo.getUser_pass());
+//		service.changePW(vo);
+		
 		return "user/changePW";
 	}
 	

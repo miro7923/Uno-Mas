@@ -21,6 +21,15 @@ public interface UserDAO {
 	// 로그인
 	public UserVO loginUser(UserVO vo);
 	
+	// 아이디 찾기
+	public int findIdProcess(UserVO vo);
+
+	// 비번 찾기
+	public HashMap<String, String> findPwProcess(UserVO vo);
+	
+	// 비번 변경
+	public void changePW(String pw);
+	
 	// 회원정보 조회
 	public UserVO getUserInfo(String id);
 
@@ -30,11 +39,7 @@ public interface UserDAO {
 	// 회원탈퇴
 	public void delUser(UserVO vo);
 
-	// 회원 아이디 찾기
-	public int findIdProcess(UserVO vo);
-
-	// 회원 비번 찾기
-	public HashMap<String, String> findPwProcess(UserVO vo);
+	
 
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);

@@ -79,37 +79,6 @@ public class UserDAOImpl implements UserDAO {
 		return voTmp;
 	}
 	
-	// 회원 정보 조회
-	@Override
-	public UserVO getUserInfo(String id) {
-		UserVO userInfoVO = sqlSession.selectOne(NAMESPACE + ".getUserInfo", id);
-
-		return userInfoVO;
-	}
-	
-	// 회원정보수정
-	@Override
-	public Integer updateUser(UserVO vo) {
-		
-		Integer result =sqlSession.update(NAMESPACE+".updateUser",vo);
-
-		log.info("회원정보수정 완료");
-		
-		return result;
-	}
-
-	// 회원탈퇴
-	@Override
-	public void delUser(UserVO vo) {
-
-		log.info("delUser 실행");
-		
-		sqlSession.delete(NAMESPACE+".deleteUser",vo);
-		
-		log.info("회원탈퇴 완료");
-		
-		
-	}
 	
 	// 회원 아이디 찾기
 	@Override
@@ -133,6 +102,7 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	
 	// 회원 비밀번호 찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
@@ -166,6 +136,50 @@ public class UserDAOImpl implements UserDAO {
 		
 		return findpw_map;
 	}
+	
+	
+	// 비번 변경
+	@Override
+	public void changePW(String pw) {
+		sqlSession.selectOne(NAMESPACE + ".changePW_sql", pw);
+		System.out.println("보내기 완료");
+	}
+
+	
+	// 회원 정보 조회
+	@Override
+	public UserVO getUserInfo(String id) {
+		UserVO userInfoVO = sqlSession.selectOne(NAMESPACE + ".getUserInfo", id);
+
+		return userInfoVO;
+	}
+	
+	// 회원정보수정
+	@Override
+	public Integer updateUser(UserVO vo) {
+		
+		Integer result =sqlSession.update(NAMESPACE+".updateUser",vo);
+
+		log.info("회원정보수정 완료");
+		
+		return result;
+	}
+
+	
+	// 회원탈퇴
+	@Override
+	public void delUser(UserVO vo) {
+
+		log.info("delUser 실행");
+		
+		sqlSession.delete(NAMESPACE+".deleteUser",vo);
+		
+		log.info("회원탈퇴 완료");
+		
+		
+	}
+	
+
 	
 	
 	@Override

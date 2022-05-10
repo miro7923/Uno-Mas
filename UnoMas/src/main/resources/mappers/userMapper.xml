@@ -41,6 +41,11 @@
   	where user_name=#{user_name} and user_email=#{user_email} and user_name=#{user_name}
   </select>
   
+  <!-- 비번 변경 -->
+  <update id="changePW_sql">
+  	update users set user_pass = #{pw} where user_id=#{user_id}
+  </update>
+  
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
   	select * from users where userid=#{userid} and userpw=#{userpw}

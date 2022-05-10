@@ -47,4 +47,9 @@ public class UserDAOTest {
 		log.info("TEST : 관리자 등록 완료");
 		log.info("TEST : vo - " + vo);
 	}
+	
+	@Test
+	public void 비번변경테스트() {
+		dao.changePW("Tmvmfld99@");
+	}
 }

@@ -68,7 +68,7 @@ function findPWFunc() {
 	};
 	
 	if($("[name=authNum]").val() == pwCode) {
-		location.href='change_pw'
+		location.href='change_pw?id='+$("[name=id]").val();
 	} else {
 		$("[name=code_text]").text("인증번호가 틀립니다.");
 	}

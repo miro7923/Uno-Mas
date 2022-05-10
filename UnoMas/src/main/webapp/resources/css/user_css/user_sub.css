@@ -176,3 +176,22 @@ label {
     background-color: #fff;
     font-size: 13px;
 }
+
+
+/* change_pw */
+.button_box {
+	text-align: center;
+}
+.button_box > input {
+	color: white;
+	border: none;
+    background-color: #B9CE45;
+    overflow: hidden;
+    width: 35%;
+    height: 54px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px 0px !important;
+}
