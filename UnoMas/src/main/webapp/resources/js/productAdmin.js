@@ -114,20 +114,20 @@ $(".date").html(date);
 //	}) 
 //});
 
-$(function(){
-	$("#selboxDirect2").hide();
-	$("#selbox2").change(function() {
-
-		if($("#selbox2").val() == "" || $("#selbox2") == onfocus) {
-			$("#selboxDirect2").show();
-			$("#selbox2").hide();
-			
-		}  else {
-			$("#selboxDirect2").hide();
-			$("#selboxDirect2 option:").val() == null;
-		}
-	}) 
-});
+//$(function(){
+//	$("#selboxDirect2").hide();
+//	$("#selbox2").change(function() {
+//
+//		if($("#selbox2").val() == "" || $("#selbox2") == onfocus) {
+//			$("#selboxDirect2").show();
+//			$("#selbox2").hide();
+//			
+//		}  else {
+//			$("#selboxDirect2").hide();
+//			$("#selboxDirect2 option:").val() == null;
+//		}
+//	}) 
+//});
 
 /* 재고 상태 라디오버튼 제어 */
 //function stockBtn(){

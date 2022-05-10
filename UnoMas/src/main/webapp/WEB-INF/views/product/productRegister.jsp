@@ -143,11 +143,11 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다.">
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="2022-01-01">
 											</div>
-											<div class="col-lg-12">
-												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2">
-											</div>
+<!-- 											<div class="col-lg-12"> -->
+<!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->
+<!-- 											</div> -->
 											<div class="col-lg-12">
 												<label>포장타입<span>*</span></label>
 											<select class="selectBox" name="prod_packing" >
