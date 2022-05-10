@@ -93,7 +93,8 @@
 							47,900원
 						</p>
 					</dd>
-				</dl><dl class="itemList">
+				</dl>
+				<dl class="itemList">
 					<dt class="thumb">
 						<a href="">
 							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
@@ -138,10 +139,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="single-banner">
+                    <div class="single-banner" >
                         <img src="${path}/resources/img/banner-1.jpg" alt="">
                         <div class="inner-text">
-                            <h4>Men’s</h4>
+                            <h4>조회수 높은 상품</h4>
                         </div>
                     </div>
                 </div>
@@ -157,7 +158,7 @@
                     <div class="single-banner">
                         <img src="${path}/resources/img/banner-3.jpg" alt="">
                         <div class="inner-text">
-                            <h4>Kid’s</h4>
+                            <h4>신상품</h4>
                         </div>
                     </div>
                 </div>
@@ -171,20 +172,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="${path}/resources/img/products/women-large.jpg">
+                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
                         <h2>Women’s</h2>
                         <a href="#">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
-                    <div class="filter-control">
-                        <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
-                        </ul>
-                    </div>
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
@@ -195,8 +188,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -218,8 +209,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -240,8 +229,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -262,8 +249,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
