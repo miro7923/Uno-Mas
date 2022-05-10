@@ -133,10 +133,18 @@ input[type="checkbox"]:checked::before {
 	word-wrap: normal;
     width: 100%;
     border-radius: 0;
-    border: 1px solid #ECEDEE;
-    height: 45px;
-    line-height: 35px;
-    margin: 0px 0px 2px;
+/*     border: 2px solid #ECEDEE; */
+/*     height: 46px; */
+/*     line-height: 35px; */
+/*     margin: 0px 0px 2px; */
+    
+}
+
+.selectBox {
+    height: 46px;
+    border: 2px solid #ebebeb;
+    margin-bottom: 10px;
+    padding-left: 15px;
 }
 
 .title {

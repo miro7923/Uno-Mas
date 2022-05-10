@@ -126,10 +126,20 @@
 											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock">
 										</div>
 										<div class="col-lg-12">
-											<label>판매 단위<span>*</span></label> <input type="text" name="prod_sellunit" id="">
+											<label>판매 단위<span>*</span></label>
+											<select class="selectBox" name="prod_sellunit">
+												<option>선택</option>
+												<option value="1봉">1봉</option>
+												<option value="1팩">1팩</option>
+												<option value="1개">1개</option>
+												<option value="1통">1통</option>
+												<option value="1박스">1박스</option>
+												<option value="1포대">1포대</option>
+											</select>
+											<label></label>
 										</div>
 										<div class="col-lg-12">
-												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight">
+												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight" placeholder="ex) 430g / 1.5L">
 										</div>
 									</div>
 								</div>
@@ -143,7 +153,7 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="2022-01-01">
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="ex) 2022-01-01">
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->
