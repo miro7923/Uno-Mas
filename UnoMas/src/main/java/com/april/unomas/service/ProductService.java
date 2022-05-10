@@ -56,4 +56,13 @@ public interface ProductService {
 	
 	// 리뷰글 작성하는 메서드
 	public void insertReview(BoardReviewVO vo) throws Exception;
+	
+	// 리뷰글 목록 가져오는 메서드
+	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception;
+	
+	// 상품별 리뷰글 개수 가져오는 메서드
+	public int getReviewCnt(int prod_num) throws Exception;
+	
+	// 회원 번호로 회원 아이디 가져오는 메서드
+	public String getUserid(int user_num) throws Exception;
 }

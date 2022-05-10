@@ -93,11 +93,17 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping(value = "/product_detail", method = RequestMethod.GET) // /product -> /product_detail
+	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
 	public String product(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		ProductVO vo = service.getProduct(prod_num);
+		List<BoardReviewVO> reviewList = service.getReviewList(prod_num);
+		
+		for (int i = 0; i < reviewList.size(); i++)
+			reviewList.get(i).setUser_id(service.getUserid(reviewList.get(i).getUser_num()));
 		
 		model.addAttribute("vo", vo);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewCnt", service.getReviewCnt(prod_num));
 		
 		return "product/productDetail";
 	}

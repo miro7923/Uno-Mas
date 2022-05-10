@@ -153,9 +153,9 @@
 								<li><a data-toggle="tab" href="#tab-2" role="tab">상세정보</a>
 								</li>
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
-								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="toggleReview(0);">후기
-										(02)</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="toggleQna(0);">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
+										(${reviewCnt })</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -206,7 +206,6 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-2" role="tabpanel">
-									<!-- id 선택자 지정해 놓은 곳만 바뀌면 됨 -->
 									<div class="col-lg-12">
 										<table class="extraInfo" cellpadding="0" cellspacing="1">
 											<tbody>
@@ -283,39 +282,36 @@
 												</tbody>
 											</table>
 											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<%
-											for (int i = 0; i < 7; i++) {
-											%>
-											<table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">구매후기 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td><%=i + 1%></td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleReview(<%=i+1%>);">리뷰 <%=i + 1%></td>
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>0</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="reviewContent" id="reviewContent<%=i+1%>">
-												<p>평점 : <span><%=scores[i] %> / 5.0</span></p>
-											</div>
-											<%
-											}
-											%>
+											<c:forEach var="vo" items="${reviewList }" varStatus="it">
+												<table class="reviewTable" width="100%" border="0"
+													cellpadding="0" cellspacing="0">
+													<caption style="display: none">구매후기 제목</caption>
+													<colgroup>
+														<col style="width: 110px;">
+														<col style="width: auto;">
+														<col style="width: 77px;">
+														<col style="width: 100px;">
+														<col style="width: 50px;">
+														<col style="width: 80px;">
+													</colgroup>
+													<tbody>
+														<tr onmouseover="this.style.background='#f0f0f0'"
+															onmouseout="this.style.background='white'">
+															<td>${vo.review_num }</td>
+															<td align="left" class="reviewTitle"
+																onclick="toggleReview(${it.index});">${vo.review_title }</td>
+															<td align="left">${vo.user_id }</td>
+															<td><fmt:formatDate value="${vo.review_regdate }" type="date"/></td>
+															<td>${vo.review_likecnt }</td>
+															<td>${vo.review_readcnt }</td>
+														</tr>
+													</tbody>
+												</table>
+												<div class="reviewContent" id="reviewContent${it.index }">
+													<p>평점 : <span>0.0 / 5.0</span></p>
+												</div>
+											</c:forEach>
+											
 											<div class="col-lg-12 reviewBtnArea">
 												<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
 												후기쓰기

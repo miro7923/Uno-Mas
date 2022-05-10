@@ -144,4 +144,25 @@
         INSERT INTO board_review(user_num, prod_num, review_title, review_content, review_ip, review_image)
         VALUES (#{user_num}, #{prod_num}, #{review_title}, #{review_content}, #{review_ip}, #{review_image})
     </select>
+    
+    <!-- 상품번호별 리뷰글 목록 가져오기 -->
+    <select id="getReviewList" resultType="BoardReviewVO">
+        SELECT *
+        FROM board_review
+        WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 회원번호로 아이디 가져오기 -->
+    <select id="getUserid" resultType="String">
+        SELECT user_id
+        FROM users
+        WHERE user_num = #{user_num}
+    </select>
+    
+    <!-- 상품번호별 리뷰글 개수 가져오기 -->
+    <select id="getReviewCnt" resultType="int">
+        SELECT COUNT(review_num)
+        FROM board_review
+        WHERE prod_num = #{prod_num}
+    </select>
 </mapper>

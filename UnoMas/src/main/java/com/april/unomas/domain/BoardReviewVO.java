@@ -9,6 +9,7 @@ public class BoardReviewVO {
 
 	private Integer review_num;
 	private Integer user_num;
+	private String user_id;
 	private Integer prod_num;
 	private String review_title;
 	private String review_content;

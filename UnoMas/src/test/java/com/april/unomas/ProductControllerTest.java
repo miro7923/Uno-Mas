@@ -54,9 +54,9 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
-//	@Test
+	@Test
 	public void 상품하나출력테스트() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_detail?prod_num=10");
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_detail?prod_num=23");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(model().attributeExists("vo")).andDo(print());
 	}
 	
@@ -84,7 +84,7 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/reviewWritingForm")).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	@Transactional(rollbackFor = Exception.class)
 	public void 리뷰작성테스트() throws Exception {
 		mvc.perform(post("/product/write_review").param("prod_num", "10").param("user_num", "1")

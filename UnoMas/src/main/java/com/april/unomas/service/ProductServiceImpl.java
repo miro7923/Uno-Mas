@@ -99,4 +99,19 @@ public class ProductServiceImpl implements ProductService{
 	public void insertReview(BoardReviewVO vo) throws Exception {
 		dao.insertReview(vo);
 	}
+
+	@Override
+	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception {
+		return dao.getReviewList(prod_num);
+	}
+
+	@Override
+	public int getReviewCnt(int prod_num) throws Exception {
+		return dao.getReviewCnt(prod_num);
+	}
+
+	@Override
+	public String getUserid(int user_num) throws Exception {
+		return dao.getUserid(user_num);
+	}
 }

@@ -107,4 +107,19 @@ public class ProductDAOImpl implements ProductDAO {
 	public void insertReview(BoardReviewVO vo) throws Exception {
 		sqlSession.insert(NAMESPACE + ".insertReview", vo);
 	}
+
+	@Override
+	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getReviewList", prod_num);
+	}
+
+	@Override
+	public int getReviewCnt(int prod_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getReviewCnt", prod_num);
+	}
+
+	@Override
+	public String getUserid(int user_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getUserid", user_num);
+	}
 }

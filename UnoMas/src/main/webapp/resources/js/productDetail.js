@@ -5,6 +5,14 @@ $(document).ready(function() {
     calcTotalPrice();
     insertCart();
 });
+
+function initReview() {
+	for (var i = 0; i < 7; i++) {
+		var id = '#reviewContent' + i;
+		$(id).hide();
+	}
+}
+
 function toggleReview(num) {
     // 선택된 게시글의 본문만 show로 바꾸고 
     var id = '#reviewContent' + num;
@@ -16,6 +24,13 @@ function toggleReview(num) {
         id = '#reviewContent' + i;
         $(id).hide();
     }
+}
+
+function initQna() {
+	for (var i = 0; i < 7; i++) {
+		var id = '#qnaContent' + i;
+		$(id).hide();
+	}
 }
 
 function toggleQna(num) {
