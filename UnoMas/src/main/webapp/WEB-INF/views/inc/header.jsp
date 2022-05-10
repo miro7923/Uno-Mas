@@ -9,22 +9,22 @@
     
      <!-- Header Section Begin -->
     <%
-	    String userID = null;
-		if(session.getAttribute("userID") != null){
-			userID = (String) session.getAttribute("userID");
+	    String user_id = null;
+		if(session.getAttribute("user_id") != null){
+			user_id = (String) session.getAttribute("user_id");
 		}
     %>
     <header class="headerSection">
     <%
-    	if(userID == null){ // 로그인 안 했을 때 링크
+    	if(user_id == null){ // 로그인 안 했을 때 링크
     %>
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="login" class="linkMenu">로그인</a>
+    				<a href="/user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="register" class="linkMenu">회원가입</a>
+    				<a href="/user/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
     				<a href="contact" class="linkMenu">고객센터</a>
@@ -37,10 +37,10 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="" class="linkMenu">마이페이지</a>
+    				<a href="/user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="" class="linkMenu">로그아웃</a>
+    				<a href="/user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
     				<a href="contact" class="linkMenu">고객센터</a>
