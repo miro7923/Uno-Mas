@@ -34,3 +34,19 @@
 	padding-bottom: 40px;
     font-weight: bold;
 }
+
+.site-btn {
+	background-color: #B9CE45;
+	border: 1px solid #B9CE45;
+}
+
+.customer-review-option .leave-comment .comment-form input[id=writeBtn] {
+	width: 120px;
+    font-size: 14px;
+    color: #ffffff;
+    height: 46px;
+    border: 1px solid #B9CE45;
+    margin-bottom: 46px;
+    padding: 0;
+    border-radius: 0;
+}

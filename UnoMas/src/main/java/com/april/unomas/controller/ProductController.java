@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
@@ -33,6 +35,7 @@ public class ProductController {
 	public String checkout() {
 		return "product/check-out";
 	}
+	
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
@@ -129,9 +132,22 @@ public class ProductController {
 		return "product/shopping-cart";
 	}
 	
-	@RequestMapping(value = "/review_writing_form")
-	public String reviewWritingForm() {
+	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
+	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		// 상품번호 가지고 상품정보 조회해와서 모델에 저장하기
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
 		return "product/reviewWritingForm";
+	}
+	
+	@RequestMapping(value = "/write_review", method = RequestMethod.POST)
+	public String writeReviewPOST(BoardReviewVO vo, HttpServletRequest request) throws Exception {
+		// 파라미터값으로 상품번호 넣어주기
+		vo.setReview_ip(request.getRemoteAddr());
+		
+		service.insertReview(vo);
+		
+		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
 	@RequestMapping(value = "/product_qna_writing_form")

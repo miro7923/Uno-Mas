@@ -12,9 +12,7 @@
 <!-- Header end -->
 
 <%
-// @@ 상품번호를 파라메터로 받아와서 상단에 해당 상품명 노출하기 @@
-String prodName = "청경채";
-int prodNum = 1;
+    int user_num = 1;
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -27,27 +25,28 @@ int prodNum = 1;
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>후기쓰기</h4>
-						<form action="#" class="comment-form">
+						<form action="/product/write_review" method="post" class="comment-form">
 							<div class="row">
 								<div class="col-lg-12">
 									<!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
-									<input type="hidden" value="<%=prodNum%>" name="prodNum">
+									<input type="hidden" value="${vo.prod_num }" name="prod_num">
+									<input type="hidden" value="<%=user_num %>" name="user_num">
 									<p class="productName">
 										상품명 :
-										<%=prodName%></p>
+										${vo.prod_name }</p>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-2">제목</div>
 								<div class="col-lg-10">
 									<input type="text" class="title" placeholder="제목을 입력해주세요."
-										maxlength="40">
+										maxlength="40" name="review_title">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-2">내용</div>
 								<div class="col-lg-10">
-									<textarea class="reviewTextarea"
+									<textarea class="reviewTextarea" name="review_content"
 										placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며, 일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성시 검토 후 비공개 조치될 수 있습니다.
 반품/환불 문의는 1:1문의로 가능합니다."></textarea>
 								</div>
@@ -57,18 +56,18 @@ int prodNum = 1;
 								<div class="col-lg-2">사진등록</div>
 								<div class="col-lg-10">
 									<input class="uploadImgName" id="uploadImgName" value="이미지 선택"
-										disabled="disabled"> <label class="site-btn"
-										for="uploadImg" id="uploadBtn">업로드</label>
+										disabled="disabled"> 
+									<label class="site-btn" for="uploadImg" id="uploadBtn">업로드</label>
 									<button type="button" class="site-btn" onclick="removeImg();">삭제</button>
-									<input type="file" id="uploadImg" oninput="checkFileName();">
+									<input type="file" id="uploadImg" name="review_image" oninput="checkFileName();">
 									<p>구매한 상품이 아니거나 캡쳐 사진을 첨부할 경우, 통보없이 삭제 및 적립 혜택이 취소됩니다.</p>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-12">
-									<button type="button" class="site-btn" id="writeBtn"
-										onclick="history.back();">취소</button>
-									<button type="submit" class="site-btn" id="writeBtn">등록</button>
+									<input type="button" class="site-btn" id="writeBtn"
+										onclick="history.back();" value="취소">
+									<input type="submit" class="site-btn" id="writeBtn" value="등록">
 								</div>
 							</div>
 						</form>

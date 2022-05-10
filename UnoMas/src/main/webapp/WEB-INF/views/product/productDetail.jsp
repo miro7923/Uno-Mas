@@ -292,7 +292,6 @@
 												<colgroup>
 													<col style="width: 110px;">
 													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
 													<col style="width: 77px;">
 													<col style="width: 100px;">
 													<col style="width: 50px;">
@@ -304,8 +303,6 @@
 														<td><%=i + 1%></td>
 														<td align="left" class="reviewTitle"
 															onclick="toggleReview(<%=i+1%>);">리뷰 <%=i + 1%></td>
-														<!-- <th scope="col" class="input_txt"><span
-																class="screen_out">회원 등급</span></th> -->
 														<td align="left">UnoMas</td>
 														<td>2022-04-22</td>
 														<td>0</td>
@@ -320,7 +317,7 @@
 											}
 											%>
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='review_writing_form';">
+												<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
 												후기쓰기
 												</button>
 											</div>

@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.persistence.ProductDAO;
@@ -92,5 +93,10 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public int getSaleCnt() throws Exception {
 		return dao.getSaleCnt();
+	}
+
+	@Override
+	public void insertReview(BoardReviewVO vo) throws Exception {
+		dao.insertReview(vo);
 	}
 }

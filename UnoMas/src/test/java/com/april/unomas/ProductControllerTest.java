@@ -1,7 +1,9 @@
 package com.april.unomas;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -22,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -69,9 +72,24 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	public void 특가목록출력테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/sale_list");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
+	}
+	
+//	@Test
+	public void 리뷰작성페이지에서상품이름출력테스트() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/write_review?prod_num=10");
+		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/reviewWritingForm")).andDo(print());
+	}
+	
+	@Test
+	@Transactional(rollbackFor = Exception.class)
+	public void 리뷰작성테스트() throws Exception {
+		mvc.perform(post("/product/write_review").param("prod_num", "10").param("user_num", "1")
+				.param("review_title", "청경채 후기").param("review_content", "후기 내용"))
+		.andExpect(status().is3xxRedirection())
+		.andExpect(redirectedUrl("/product/product_detail?prod_num=10")).andDo(print());
 	}
 }

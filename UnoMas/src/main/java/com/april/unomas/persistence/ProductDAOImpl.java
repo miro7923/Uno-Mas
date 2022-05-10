@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 
@@ -100,5 +101,10 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public int getSaleCnt() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getSaleProdCnt");
+	}
+
+	@Override
+	public void insertReview(BoardReviewVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertReview", vo);
 	}
 }

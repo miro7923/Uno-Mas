@@ -2,6 +2,7 @@ package com.april.unomas.service;
 
 import java.util.List;
 
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 
@@ -52,4 +53,7 @@ public interface ProductService {
 	
 	// 특가 상품 개수 가져오는 메서드
 	public int getSaleCnt() throws Exception;
+	
+	// 리뷰글 작성하는 메서드
+	public void insertReview(BoardReviewVO vo) throws Exception;
 }
