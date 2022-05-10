@@ -252,6 +252,9 @@ div, th, td, li, dt, dd, p {
 .numberExpln dt{
 	display: block;
 }
+.numberExpln dt a:link, a:visited{
+	color: white;
+}
 .numberExpln dd{
 	color: #999;
 }

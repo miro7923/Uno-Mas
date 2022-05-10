@@ -93,42 +93,42 @@
                         <i class="ti-menu"></i>
                         <span>전체 카테고리</span>
                         <ul class="depart-hover firstMenu">
-                            <li><a href="#">채소</a>
+                            <li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=0">채소</a>
                             	<ul class="secondMenu">
-                            		<li><a href="#">고구마 · 감자 · 당근</a></li>
-                            		<li><a href="#">양파 · 대파 · 마늘 · 배추</a></li>
-                            		<li><a href="#">냉동 · 이색 · 간편채소</a></li>
+                            		<li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=1">고구마 · 감자 · 당근</a></li>
+                            		<li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=2">양파 · 대파 · 마늘 · 배추</a></li>
+                            		<li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=3">냉동 · 이색 · 간편채소</a></li>
                             	</ul>
                             </li>
-                            <li><a href="#">과일 · 견과류 · 쌀</a>
+                            <li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=0">과일 · 견과류 · 쌀</a>
                             	<ul class="secondMenu">
-                            		<li><a href="#">제철과일</a></li>
-                            		<li><a href="#">견과류</a></li>
-                            		<li><a href="#">쌀</a></li>
+                            		<li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=4">제철과일</a></li>
+                            		<li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=5">견과류</a></li>
+                            		<li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=6">쌀</a></li>
                             	</ul>
                             </li>
-                            <li><a href="#">수산 · 해산 · 건어물</a>
+                            <li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=0">수산 · 해산 · 건어물</a>
                            		<ul class="secondMenu">
-                            		<li><a href="#">해산물</a></li>
-                            		<li><a href="#">수산가공품</a></li>
-                            		<li><a href="#">김 · 미역</a></li>
-                            		<li><a href="#">건어물</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=7">해산물</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=8">수산가공품</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=9">김 · 미역</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=10">건어물</a></li>
                             	</ul>
                             </li>
-                            <li><a href="#">정육 · 계란</a>
+                            <li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=0">정육 · 계란</a>
                            		<ul class="secondMenu">
-                            		<li><a href="#">국내산 소고기</a></li>
-                            		<li><a href="#">수입산 소고기</a></li>
-                            		<li><a href="#">돼지고기</a></li>
-                            		<li><a href="#">닭 · 오리고기</a></li>
-                            		<li><a href="#">계란류</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=11">국내산 소고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=12">수입산 소고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=13">돼지고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=14">닭 · 오리고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=15">계란류</a></li>
                             	</ul>
                            	</li>
-                            <li><a href="#">생수 · 우유 · 커피 · 차</a>
+                            <li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=0">생수 · 우유 · 커피 · 차</a>
                             	<ul class="secondMenu">
-                            		<li><a href="#">생수</a></li>
-                            		<li><a href="#">우유</a></li>
-                            		<li><a href="#">커피 · 차</a></li>
+                            		<li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=16">생수</a></li>
+                            		<li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=17">우유</a></li>
+                            		<li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=18">커피 · 차</a></li>
                             	</ul>
                             </li>
                         </ul>
@@ -136,9 +136,9 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="product_list">신상품</a></li>
-                        <li><a href="product_list">특가</a></li>
-                        <li><a href="product_list">공동구매</a></li>
+                        <li><a href="/product/new_list">신상품</a></li>
+                        <li><a href="/product/sale_list">특가</a></li>
+                        <li><a href="co_buying_list">공동구매</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>

@@ -16,13 +16,13 @@
 							</h3>
 							<dl class="numberExpln">
 								<dt>
-									<a href="contact">365고객센터</a>
+									<a href="faq_paging">365고객센터</a>
 								</dt>
 								<dd>오전 9시 - 오후 6시</dd>
 							</dl>
 						</div>
                         <h3 class="footerInquiry">
-                           	<a href="contact">1:1문의</a>
+                           	<a href="inquiry_list">1:1문의</a>
                         </h3>
                         <dl class="inquiryExpln">
                         	<dt>24시간 접수 가능</dt>
@@ -33,13 +33,13 @@
                 <div class="col-lg-6 company">
                     <ul class="list">
                     	<li>
-                    		<a class="link" href="">회사소개</a>
+                    		<a class="link" href="about_us">회사소개</a>
                     	</li>
                     </ul>
                     법인명 (상호) : 주식회사 우노마스
                     <span class="bar">I</span>
                     사업자등록번호 : 123-45-67890
-                    <a href="#">사업자정보 확인</a><br>
+                     사업자정보 확인<br>
                     통신판매업 : 제 2022-서울강남-01234 호
                     <span class="bar">I</span>
                     개인정보보호책임자 : 홍길동<br>
@@ -63,9 +63,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright-text">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy; Uno más <script>document.write(new Date().getFullYear());</script> All rights reserved.
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </div>
                         <div class="payment-pic">
                             <img src="${path}/resources/img/payment-method.png" alt="">
