@@ -1,6 +1,11 @@
+<%@page import="org.springframework.ui.Model"%>
+<%@page import="com.april.unomas.domain.ProductVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -11,252 +16,120 @@
 	href="${path}/resources/css/productList.css?afte">
 <!-- Start Header -->
 
-<%
-// @@ 로드시 디비에서 카테고리 정보 가져와서 저장 @@
-String category = "채소";
-String[] subCategory = { "전체보기", "고구마·감자·당근", "양파·대파·마늘·배추", "냉동·이색·간편채소" };
-
-// @@ 로드시 현재 카테고리의 상품 총 개수 가져와서 저장 @@
-int cnt = 10;
-
-// @@ DB 연결 후 페이지 정보 가져오기 @@
-int pageCnt = 5;
-int pageBlockCnt = 5;
-int startBlock = 1;
-int endBlock = 5;
-%>
-
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- Header End -->
 
-	<!-- Breadcrumb Section Begin -->
-	<!-- <div class="breacrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-	<!-- Breadcrumb Section Begin -->
-
 	<!-- Product Shop Section Begin -->
 	<section class="product-shop spad">
 		<div class="container">
 			<div class="row">
-				<!-- <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
-                        <ul class="filter-catagories">
-                            <li><a href="#">Men</a></li>
-                            <li><a href="#">Women</a></li>
-                            <li><a href="#">Kids</a></li>
-                        </ul>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                                <label for="bc-calvin">
-                                    Calvin Klein
-                                    <input type="checkbox" id="bc-calvin">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-diesel">
-                                    Diesel
-                                    <input type="checkbox" id="bc-diesel">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-polo">
-                                    Polo
-                                    <input type="checkbox" id="bc-polo">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="bc-item">
-                                <label for="bc-tommy">
-                                    Tommy Hilfiger
-                                    <input type="checkbox" id="bc-tommy">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Price</h4>
-                        <div class="filter-range-wrap">
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Tags</h4>
-                        <div class="fw-tags">
-                            <a href="#">Towel</a>
-                            <a href="#">Shoes</a>
-                            <a href="#">Coat</a>
-                            <a href="#">Dresses</a>
-                            <a href="#">Trousers</a>
-                            <a href="#">Men's hats</a>
-                            <a href="#">Backpack</a>
-                        </div>
-                    </div>
-                </div> -->
 				<div class="col-lg-12 order-1 order-lg-2">
 					<div class="categoryBox">
-						<h3 class="title"><%=category%></h3>
-						<ul class="categoryList">
-							<%
-							for (int i = 0; i < subCategory.length; i++) {
-							%>
-							<li><a class="category" id="category<%=i%>"
-								onclick="changeSort(<%=i%>, <%=subCategory.length%>);"> <%=subCategory[i]%></a></li>
-							<%
-							}
-							%>
-						</ul>
+						<h3 class="title">${topcate }</h3>
+						<c:if test="${topcate_num <= 5 }">
+							<ul class="categoryList">
+							    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
+							    <li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
+							        class="category" id="category0" style="color: black;" 
+							        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
+								<c:forEach var="dcate" begin="0" end="${cateEnd-cateStart }" step="1" varStatus="it">
+									<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=1&dcate_num=${cateStart+dcate}" 
+									class="category" id="category${cateStart+dcate }" style="color: black;" 
+										onclick="changeSort(${cateStart+dcate }, ${cateStart }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
+								</c:forEach>
+							</ul>
+						</c:if>
 					</div>
 					<div class="product-show-option">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 text-right">
-								<p>총 <%=cnt%>개</p>
+								<p>총 ${pm.totalCnt } 개</p>
 							</div>
 						</div>
 					</div>
 					<div class="product-list">
 						<div class="row">
-							<%
-							for (int i = 0; i < 9; i++) {
-							%>
-							<div class="col-lg-4 col-sm-6">
-								<div class="product-item" id="productItem">
-									<div class="pi-pic">
-										<a href="product_detail"> <img
-											src="${path}/resources/img/product-single/product_vegi01.jpeg"
-											alt=""></a>
-										<!-- <div class="sale pp-sale">Sale</div> -->
-										<!-- <div class="icon">
-											<i class="icon_heart_alt"></i>
-										</div> -->
-										<ul>
-										<!-- 카트담기 버튼 -->
-											<li class="w-icon active"><a href="#"><i
-													class="icon_bag_alt"></i></a></li>
-											<!-- <li class="quick-view"><a href="#">+ Quick View</a></li>
-											<li class="w-icon"><a href="#"><i
-													class="fa fa-random"></i></a></li> -->
-										</ul>
-									</div>
-									<div class="pi-text">
-										<!-- <div class="catagory-name">Towel</div> -->
-										<a href="#">
-											<h5>청경채</h5>
-										</a>
-										<div class="product-price">
-											2,190원
-											<!--  <span>$35.00</span> -->
+						    <input type="hidden" id="prodListLen" value="${fn:length(productList) }">
+						    
+						    <c:forEach var="vo" items="${productList }" varStatus="it">
+								<div class="col-lg-4 col-sm-6">
+									<div class="product-item" id="productItem">
+										<div class="pi-pic">
+											<a href="/product/product_detail?prod_num=${vo.prod_num }"> 
+											<img
+												src="${path}/resources/img/product-single/product_vegi01.jpeg"
+												alt=""></a>
+											<ul>
+											<!-- 카트담기 버튼 -->
+												<li class="w-icon active"><a href="#"><i
+														class="icon_bag_alt"></i></a></li>
+											</ul>
 										</div>
-										<div class="productSubTitle">
-										    아삭하고 부드러운
+										<div class="pi-text">
+											<a href="/product/product_detail?prod_num=${vo.prod_num }">
+												<h5>${vo.prod_name }</h5>
+											</a>
+											    <c:choose>
+												    <c:when test="${vo.prod_discntrate eq 0}">
+														<div class="product-price">
+															<fmt:formatNumber value="${vo.prod_price}"/>원
+														</div>
+												    </c:when>
+												    <c:otherwise>
+												        <span class="product-price discountedRate">${vo.prod_discntrate}%</span>
+												        <span class="product-price">
+													        <c:set var="discnted" value="${vo.prod_price*(100-vo.prod_discntrate)/100}"/>
+													        <fmt:formatNumber value="${discnted+((discnted%10>5)?(10-(discnted%10))%10:-(discnted%10))}" type="number"/>원<br>
+												        </span>
+												        <div class="product-price">
+													        <span><fmt:formatNumber value="${vo.prod_price}" type="number"/>원</span>
+												        </div>
+												    </c:otherwise>
+											    </c:choose>
 										</div>
 									</div>
 								</div>
-							</div>
-							<%
-							}
-							%>
+							</c:forEach>
+							
 						</div>
 					</div>
 					<!-- @@ DB 연결하면 상세 작업하기 @@ -->
 					<div class="row" id="pagediv">
+					    <input type="hidden" value="${pageNum }" id="curPage">
 						<div class="col-lg-12 text-center">
-						<%if (startBlock > pageBlockCnt) { %>
-							<a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a> 
+						<c:if test="${pm.prev }">
+							<!-- <a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a>  -->
 							<a href="#" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
-						<% }
+						</c:if>
 						
-						for (int i = startBlock; i <= endBlock; i++) { %>
+						<c:forEach var="block" varStatus="it" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<span>
-								<!----> <a class="pagingBtn" id="page<%=i%>" 
-								onclick="changePageNum(<%=i%>, <%=endBlock%>);"><%=i %> <!----></a>
+							    <c:choose>
+								    <c:when test="${topcate_num <= 5 }">
+										<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
+										class="pagingBtn" id="page${it.index }" style="color: black;"
+										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+								    </c:when>
+								    <c:when test="${topcate_num > 5 }">
+								        <!----> <a href="/product/new_list?pageNum=${it.index}" 
+										class="pagingBtn" id="page${it.index }" style="color: black;"
+										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+								    </c:when>
+								    <c:otherwise>
+								        <!----> <a href="/product/sale_list?pageNum=${it.index}" 
+										class="pagingBtn" id="page${it.index }" style="color: black;"
+										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+								    </c:otherwise>
+							    </c:choose>
 							</span> 
-						<% }
+						</c:forEach>
 						
-						if (endBlock < pageBlockCnt) { %> 
+						<c:if test="${pm.next }">
 							<a href="#" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
-							<a href="#" class="arrow_carrot-2right_alt pagingBtn" id="toLast"></a>
-						<% } %>
+							<!-- <a href="#" class="arrow_carrot-2right_alt pagingBtn" id="toLast"></a> -->
+						</c:if>
 						</div>
 					</div>
 				</div>
@@ -265,8 +138,6 @@ int endBlock = 5;
 	</section>
 	<!-- Product Shop Section End -->
 
-
-	<!-- Partner Logo Section End -->
 	<!-- Footer Section Begin -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
 	<!-- Footer Section End -->
@@ -282,7 +153,7 @@ int endBlock = 5;
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/productList.js"></script>
+	<script src="${path}/resources/js/productList.js?123"></script>
 </body>
 
 </html>

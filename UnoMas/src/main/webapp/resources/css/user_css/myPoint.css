@@ -1,0 +1,121 @@
+*{ margin:0px; padding: 0px; }
+
+
+.point_container {
+	width: 1084px;
+	height: 900px;
+    margin: 30px auto;
+}
+.point_right_container {
+	float: left;
+    width: 850px;
+    min-width: 800px;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+
+.point_simple_container{
+    width: 850px;
+    height: 120px;
+    border: 4px solid #B9CE45;
+}
+.point_hello{
+    font-weight: bold;
+    letter-spacing: -.5px;
+    padding: 10px;
+}
+.point_simple_box {
+	display: flex;
+    height: 80px;
+    border-top: 1px solid #d5d5d5;
+}
+.point_ststus_box {
+	border-left: 1px solid #d5d5d5;
+    width: 33%;
+    padding: 10px;
+    font-size: 11pt;
+}
+.point_ststus_box em {
+    font-size: 15pt;
+    color: #3d727f;
+}
+.point_ststus_box dd {
+	font-size: 9pt;
+}
+
+
+/* ����Ʈ ����  */
+.point_history {
+    margin: 50px 0px;
+    min-height: 300px;
+}
+.point_history > h3 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.point_table {
+	width: 100%;
+	font-size: 12px;
+	margin-top: 10px;
+    border-top: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+    text-align: center;
+}
+th, td {
+	border: 1px solid #ddd;
+	padding: 15px 10px;
+}
+.num_plus { color: blue; }
+.num_minus{ color: red; }
+
+
+.page_control {
+	text-align: center;
+    margin: 20px auto;
+}
+.previous_daum {
+/* 	background-color: #B9CE45; */
+}
+.page_control > a {
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #333 !important;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.page_control a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #B9CE45;
+}
+
+
+
+/* ����Ʈ �̿� �ȳ� */
+.point_notice {
+	margin-top: 80px;
+	padding: 29px 30px 27px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    line-height: 16px;
+    color: #666;
+}
+.point_notice dt {
+	padding-bottom: 4px;
+    font-weight: bold;
+    color: #333;
+}
+.point_notice dd {
+	margin-top: 10px;
+    position: relative;
+    padding-left: 7px;
+}
+
+
+
+
+
+
+

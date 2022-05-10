@@ -29,7 +29,7 @@ public class DataSourceTest {
 		log.info("DataSource 객체: " + ds);
 	}
 	
-//	@Test
+	@Test
 	public void DB연결테스트() {
 		
 		log.info("DB 연결");

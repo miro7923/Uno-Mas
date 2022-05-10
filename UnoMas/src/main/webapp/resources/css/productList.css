@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+a:link {
+	color: black;
+}
+
 .title {
     text-align: center;
     font-weight: bold;
@@ -51,15 +55,18 @@ a:hover {
 }
 
 .pagingBtn {
-	cursor: pointer;
-}
+	cursor: porgb(150, 150, 150)}
 
-.discountedRate {
+.product-item .pi-text .discountedRate {
     color: #fa622f;
 }
 
 .product-item .pi-text .product-price .originPrice {
     font-size: 16px;
+}
+
+.product-item .pi-text .product-price span {
+	font-size: 20px;
 }
 
 .productSubTitle {
