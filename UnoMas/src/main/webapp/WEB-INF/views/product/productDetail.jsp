@@ -103,7 +103,12 @@
 									<hr>
 									<dl class="list">
 										<dt class="title">유통기한</dt>
-										<dd class="description">${vo.prod_expire }</dd>
+										<c:if test="${vo.prod_expire == 0 }">
+											<dd class="description">신선식품으로 별도의 유통기한은 없으나 가급적 빠른 시일 내에 드시길 바랍니다.</dd>
+										</c:if>
+										<c:if test="${vo.prod_expire > 0 }">
+											<dd class="description">수령일 포함 최소 ${vo.prod_expire }일 이상 남은 제품을 보내드립니다.</dd>
+										</c:if>
 									</dl>
 									<hr>
 									<dl class="list">
