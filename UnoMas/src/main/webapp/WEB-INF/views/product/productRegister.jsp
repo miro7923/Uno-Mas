@@ -47,26 +47,18 @@
 									<br>
 									<h4>기본정보</h4>
 									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-12">
 											<label>상품명<span>*</span></label> <input type="text" name="prod_name" id="prod_name">
 										</div>
-<!-- 										<div class="col-lg-3"> -->
-<!-- 											<label>상태<span></span></label> -->
-<!-- 										</div> -->
 										<div class="col-lg-12">
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
 											<select class="selectBox" >
 												<option selected>대분류</option>
-<%-- 												<c:forEach items="${getTopCateName}" var="topcate" > --%>
-<%-- 													<option><c:out value="${topcate.topcate_name}"/></option> --%>
-<%-- 												</c:forEach> --%>
-												<option value="1">채소</option>
-												<option value="2">과일·견과·쌀</option>
-												<option value="3">수산·해산·건어물</option>
-												<option value="4">정육·계란</option>
-												<option value="5">생수·음료·우유·커피</option>
+												<c:forEach var="cvo" items="${categories }">
+												<option value="">${cvo.topcate_num}. ${cvo.topcate_name }</option>
+												</c:forEach>
 											</select>
 										</div>
 										<div class="col-lg-6">
@@ -127,7 +119,7 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="ex) 2022-01-01">
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="ex) YYMMDD">
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->

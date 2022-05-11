@@ -102,14 +102,9 @@ $(document).ready(function(){
 										<div class="col-lg-6">
 											<select class="selectBox" >
 												<option selected>대분류</option>
-<%-- 												<c:forEach items="${getTopCateName}" var="topcate" > --%>
-<%-- 													<option><c:out value="${topcate.topcate_name}"/></option> --%>
-<%-- 												</c:forEach> --%>
-												<option value="1">채소</option>
-												<option value="2">과일·견과·쌀</option>
-												<option value="3">수산·해산·건어물</option>
-												<option value="4">정육·계란</option>
-												<option value="5">생수·음료·우유·커피</option>
+												<c:forEach var="cvo" items="${categories }">
+												<option value="">${cvo.topcate_num}. ${cvo.topcate_name }</option>
+												</c:forEach>
 											</select>
 										</div>
 										<div class="col-lg-6">

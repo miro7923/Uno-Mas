@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.persistence.ProductDAO;
@@ -47,6 +48,12 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return dao.getProductCnt(pc);
+	}
+	
+	@Override
+	public List<CategoryVO> getTopCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getTopCategory();
 	}
 
 	@Override

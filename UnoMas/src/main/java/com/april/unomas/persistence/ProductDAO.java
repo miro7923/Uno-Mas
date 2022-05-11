@@ -2,6 +2,7 @@ package com.april.unomas.persistence;
 
 import java.util.List;
 
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 
@@ -25,6 +26,9 @@ public interface ProductDAO {
 	
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;
+	
+	// 상품 상위 카테고리 가져오기
+	public List<CategoryVO> getTopCategory() throws Exception;
 	
 	// 상품 상위 카테고리 이름 가져오기
 	public String getTopCateName(int topcate_num) throws Exception;

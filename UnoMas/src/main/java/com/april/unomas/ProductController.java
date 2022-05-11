@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
@@ -104,13 +105,18 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/product_register", method = RequestMethod.GET)
-	public String productRegisterGET() {
+	public String productRegisterGET(Model model) throws Exception {
 		log.info("post 페이지 호출");
+		
+		List<CategoryVO> categories = service.getTopCategory();
+		log.info(categories+"");
+		model.addAttribute("categories",categories);
+		
 		return "product/productRegister";
 	}
 	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
-	public String productRegisterPOST(ProductVO vo) throws Exception {
+	public String productRegisterPOST(ProductVO vo, Model model) throws Exception {
 		log.info("get 페이지 호출");
 		log.info(vo+"");
 		service.insertProduct(vo);
@@ -141,8 +147,9 @@ public class ProductController {
 	public String products(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		log.info("get호출");
 		log.info(prod_num+"");
+		List<CategoryVO> categories = service.getTopCategory();
+		model.addAttribute("categories",categories);
 		model.addAttribute("vo", service.getProduct(prod_num));
-		
 		return "product/productStatus";
 		
 	}

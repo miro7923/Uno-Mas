@@ -18,7 +18,7 @@ public class ProductVO {
 	private String prod_image2;
 	private String prod_image3;
 	private Timestamp prod_regdate;
-	private Date prod_expire;
+	private int prod_expire;
 	private int prod_readcnt;
 	private int prod_sellcnt;
 	private String prod_keep;

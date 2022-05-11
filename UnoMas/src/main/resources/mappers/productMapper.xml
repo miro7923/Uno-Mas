@@ -59,6 +59,13 @@
         WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     
+    <!-- 상품 상위 카테고리 가져오기 -->
+    <select id="getTopCategory" resultType="CategoryVO">
+    	SELECT *
+        FROM top_category
+        ORDER BY topcate_num ASC
+    </select>
+    
     <!-- 상품 상위 카테고리 이름 가져오기 -->
     <select id="getTopCateName" resultType="String">
         SELECT topcate_name 

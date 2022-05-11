@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProductVO;
 
@@ -50,6 +51,12 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pc);
+	}
+	
+	@Override
+	public List<CategoryVO> getTopCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".getTopCategory");
 	}
 
 	@Override
