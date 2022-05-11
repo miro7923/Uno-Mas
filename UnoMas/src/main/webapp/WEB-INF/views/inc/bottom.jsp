@@ -16,13 +16,13 @@
 							</h3>
 							<dl class="numberExpln">
 								<dt>
-									<a href="faq_paging">365고객센터</a>
+									<a href="/faq_paging">365고객센터</a>
 								</dt>
 								<dd>오전 9시 - 오후 6시</dd>
 							</dl>
 						</div>
                         <h3 class="footerInquiry">
-                           	<a href="inquiry_list">1:1문의</a>
+                           	<a href="/inquiry_list">1:1문의</a>
                         </h3>
                         <dl class="inquiryExpln">
                         	<dt>24시간 접수 가능</dt>
@@ -33,7 +33,7 @@
                 <div class="col-lg-6 company">
                     <ul class="list">
                     	<li>
-                    		<a class="link" href="about_us">회사소개</a>
+                    		<a class="link" href="/about_us">회사소개</a>
                     	</li>
                     </ul>
                     법인명 (상호) : 주식회사 우노마스

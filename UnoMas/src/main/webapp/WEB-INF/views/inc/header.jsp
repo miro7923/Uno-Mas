@@ -21,13 +21,13 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="/user/login" class="linkMenu">로그인</a>
+    				<a href="/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="/user/register" class="linkMenu">회원가입</a>
+    				<a href="/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -37,13 +37,13 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="/user/mypage" class="linkMenu">마이페이지</a>
+    				<a href="/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="/user/logout" class="linkMenu">로그아웃</a>
+    				<a href="/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -55,7 +55,7 @@
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="index">
+                            <a href="/index">
                                 <img src="${path}/resources/img/logo.png" alt="로고">
                             </a>
                         </div>
@@ -72,12 +72,12 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="wishlist">
+                                <a href="/product/wishlist">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>
                             <li class="cart-icon">
-                                <a href="shopping-cart">
+                                <a href="/product/shopping-cart">
                                     <i class="icon_bag_alt"></i>
                                 </a>
                             </li>
