@@ -33,7 +33,21 @@
 									<input type="hidden" value="<%=user_num %>" name="user_num">
 									<p class="productName">
 										상품명 :
-										${vo.prod_name }</p>
+										${vo.prod_name } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+										평가 : 
+										<select class="rating" name="review_rating">
+										    <option>5.0</option>
+										    <option>4.5</option>
+										    <option>4.0</option>
+										    <option>3.5</option>
+										    <option>3.0</option>
+										    <option>2.5</option>
+										    <option>2.0</option>
+										    <option>1.5</option>
+										    <option>1.0</option>
+										    <option>0.5</option>
+										</select>
+								    </p>
 								</div>
 							</div>
 							<div class="row">

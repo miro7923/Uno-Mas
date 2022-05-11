@@ -18,4 +18,5 @@ public class BoardReviewVO {
 	private String review_ip;
 	private String review_image;
 	private int review_likecnt;
+	private float review_rating;
 }

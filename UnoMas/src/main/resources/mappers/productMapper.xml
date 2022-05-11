@@ -141,8 +141,8 @@
     
     <!-- 리뷰게시판 글 삽입 -->
     <select id="insertReview">
-        INSERT INTO board_review(user_num, prod_num, review_title, review_content, review_ip, review_image)
-        VALUES (#{user_num}, #{prod_num}, #{review_title}, #{review_content}, #{review_ip}, #{review_image})
+        INSERT INTO board_review(user_num, prod_num, review_title, review_content, review_ip, review_image, review_rating)
+        VALUES (#{user_num}, #{prod_num}, #{review_title}, #{review_content}, #{review_ip}, #{review_image}, #{review_rating})
     </select>
     
     <!-- 상품번호별 리뷰글 목록 가져오기 -->
