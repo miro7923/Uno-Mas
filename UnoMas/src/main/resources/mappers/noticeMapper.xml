@@ -50,4 +50,18 @@
 		where notice_num=#{notice_num}
 	</delete>
 	
+	<sql id="search_condition">
+	<if test="search_type != null">
+		<if test="search_type == 'title'.toString()">
+			and faq_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'cate'.toString()">
+			and faq_cate like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'content'.toString()">
+			and faq_content like concat('%', #{keyword}, '%')
+		</if>
+	</if>
+	</sql>
+	
 </mapper>

@@ -23,8 +23,11 @@ import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.PagingVO;
+import com.april.unomas.domain.QnaCateVO;
+import com.april.unomas.domain.QnaVO;
 import com.april.unomas.service.BoardService;
 import com.april.unomas.service.NoticeService;
+import com.april.unomas.service.QnaService;
 
 @Controller
 public class BoardController {
@@ -37,6 +40,9 @@ public class BoardController {
 	
 	@Inject
 	private NoticeService nService;
+	
+	@Inject
+	private QnaService qService;
 	
 	// customerCenter
 //	@RequestMapping(value = "/contact")
@@ -80,7 +86,7 @@ public class BoardController {
 	 * // /board/listAll.jsp 페이지이동 return "/board/qni"; }
 	 */
 	
-	@GetMapping(value = "/faq")
+	/*@GetMapping(value = "/faq")
 	public String faq(Model model) throws Exception {
 		
 //		 서비스 -디비에 저장된 글정보 가져오기
@@ -93,7 +99,7 @@ public class BoardController {
 //		model.addAttribute("boardList",service.listAll());
 		
 		return "/board/faq";
-	}
+	}*/
 	
 	@GetMapping(value = "/faq_insert")
 	public String noticeWriteGET() throws Exception{
@@ -111,7 +117,7 @@ public class BoardController {
 		nService.noticeWrite(vo);
 		
 		// 페이지 이동(/board/list)
-		return "redirect:/faq";
+		return "redirect:/faq_paging";
 	}
 	
 	@GetMapping(value = "/faq_detail")
@@ -128,7 +134,7 @@ public class BoardController {
 	public String sortListGET(@RequestParam("faq_cate") String faq_cate,Criter cri, Model model) throws Exception { 
 		log.info(faq_cate);
 		
-		Map<String,Object> map = new HashMap<String,Object>();
+//		Map<String,Object> map = new HashMap<String,Object>();
 		log.info(cri+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(service.sortCateCount(faq_cate));
@@ -226,5 +232,30 @@ public class BoardController {
 		
 		return "redirect:/faq_paging";
 	}
+	
+	@GetMapping(value="/inquiry_list")
+	public String inquiryListGET(Model model) throws Exception {
 
+		List<QnaVO> boardList = qService.qnaList();
+		
+		log.info(boardList+"");
+		
+		model.addAttribute("boardList",boardList);
+//		model.addAttribute("boardList",service.listAll());
+		
+		return "/board/inquiry_list";
+	}
+	
+	@GetMapping(value="/inquiry_form")
+	public String inquiryWriteGET() throws Exception {
+		return "/board/inquiry_form";
+	}
+	
+	@PostMapping(value = "/inquiry_form")
+	public String inquiryWritePOST(QnaVO vo,HttpServletRequest request,RedirectAttributes rttr) throws Exception {
+		log.info(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		qService.qnaWrite(vo);
+		
+		return "redirect:/inquiry_list";
+	}
 }

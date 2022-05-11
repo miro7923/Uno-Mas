@@ -86,9 +86,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> sortCate(String faq_cate, Criter cri) {
 		log.info("sortCate");
 		log.info(faq_cate);
+		log.info(cri+"@@@@@@@@@@@@");
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("faq_cate",faq_cate);
-		paramMap.put("cri",cri);
+		paramMap.put("pageStart",cri.getPage());
+		paramMap.put("perPageNum",cri.getPerPageNum());
+		log.info(paramMap+"##########");
 		return sqlSession.selectList(NAMESPACE+".sortCategory",paramMap);
 	}
 

@@ -10,281 +10,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
-<head>
-<style type="text/css">
-	*,
-*:after,
-*:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0
-}
 
-.xans-board-listheader {
-    border-top: 2px solid #522772;
-    font-size: 13px;
-    line-height: 140%
-}
-
-.xans-board-listheader tr td {
-    padding: 12px;
-    border-top: 1px solid #f4f4f4;
-    text-align: center;
-    vertical-align: middle;
-    word-wrap: break-word
-}
-
-.xans-board-listheader tbody tr:first-child td {
-    border-top: 1px solid #333
-}
-
-.xans-board-listheader.jh {
-    border-bottom: 1px solid #f4f4f4
-}
-
-.xans-board-listheader.jh tr td {
-    padding: 20px 0
-}
-
-
-.xans-board-listheader th {
-    padding: 20px 0;
-    vertical-align: middle;
-    font-size: 12px
-}
-
-.xans-board-listheader td a {
-    color: #555
-}
-.page_aticle .head_aticle {
-    padding: 5px 0 34px
-}
-
-.page_aticle .head_aticle .tit {
-    height: 36px;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 36px;
-    color: #333;
-    letter-spacing: -.5px
-}
-
-.page_aticle .head_aticle .tit_sub {
-    padding-left: 11px;
-    font-size: 14px;
-    color: #999;
-    line-height: 20px;
-    letter-spacing: -.3px;
-    vertical-align: 3px
-}
-.page_article {
-    float: right;
-}
-
-.layout-pagination {
-    margin: 60px 0 0;
-    text-align: center
-}
-
-.layout-pagination-button {
-    display: inline-block;
-    width: 34px;
-    height: 34px;
-    border: 1px solid #ddd;
-    border-left: 0;
-    vertical-align: top
-}
-
-.layout-pagination-button:first-child {
-    border-left: 1px solid #ddd
-}
-
-.layout-pagination-number {
-    font-weight: 700;
-    color: #333;
-    line-height: 34px
-}
-
-.layout-pagination-number:hover,
-.layout-pagination-number.__active {
-    background-color: #f7f7f7;
-    color: #5f0080
-}
-
-.layout-pagination-first-page,
-.layout-pagination-prev-page,
-.layout-pagination-next-page,
-.layout-pagination-last-page {
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    text-indent: -9999px
-}
-
-
-
- 
-
-.table_faq {
-    border-top: 1px solid #f4f4f4
-}
-
-.table_faq tr td {
-    padding: 20px 0
-}
-
-table {
-    font-family: noto sans, malgun gothic, AppleGothic, dotum;
-    line-height: 1;
-    letter-spacing: -.05em;
-    color: #4c4c4c;
-    font-size: 12px;
-    max-width: 100%
-    border-collapse: collapse;
-    border-spacing: 0
-}
-
-td,
-th {
-    padding: 0
-}
-
-ol,
-ul {
-    list-style-type: none
-}
-.page_aticle.aticle_type2 .page_section {
-    float: right;
-    width: 820px
-}
-.page_aticle .head_aticle {
-    padding: 5px 0 34px
-}
-
-.page_aticle .head_aticle .tit {
-    height: 36px;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 36px;
-    color: #333;
-    letter-spacing: -.5px
-}
-
-.page_aticle .head_aticle .tit_sub {
-    padding-left: 11px;
-    font-size: 14px;
-    color: #999;
-    line-height: 20px;
-    letter-spacing: -.3px;
-    vertical-align: 3px
-}
-
-.search_date {
-    position: relative;
-    z-index: 1
-}
-
-.search_date .btn_layer {
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: -74px;
-    width: 157px;
-    height: 44px;
-    padding: 11px 0 0 15px;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    color: #666;
-    line-height: 18px;
-    letter-spacing: -.5px
-}
-
-.search_date .btn_layer:after {
-    content: "";
-    position: absolute;
-    left: 128px;
-    top: 18px;
-    width: 12px;
-    height: 8px;
-    background-size: 12px 8px
-}
-
-.search_date .btn_layer.on:after {
-    transform: rotate(-180deg);
-    -webkit-transform: rotate(-180deg);
-    -moz-transform: rotate(-180deg);
-    -ms-transform: rotate(-180deg);
-    -o-transform: rotate(-180deg)
-}
-
-.search_date .layer_search {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: -30px;
-    width: 157px;
-    border: 1px solid #dddfe1;
-    border-top: 0
-}
-
-.search_date .layer_search li {
-    background-color: #fff;
-    border-top: 1px solid #dddfe1
-}
-
-.search_date .layer_search li:first-child {
-    border-top: 0
-}
-
-.search_date .layer_search a {
-    display: block;
-    overflow: hidden;
-    height: 32px;
-    padding: 7px 0 0 8px;
-    font-size: 12px;
-    color: #666;
-    line-height: 18px;
-    letter-spacing: -.2px
-}
-
-.search_date .layer_search a.on {
-    background-color: #f7f7f7
-}
-.page_aticle .layout-pagination {
-    font-size: 0
-}
-
-.page_aticle .layout-pagination a:hover {
-    background-color: #f7f7f7
-}
-
-.page_aticle .layout-pagination a,
-.page_aticle .layout-pagination strong {
-    font-weight: 700;
-    font-size: 12px
-}
-
-.page_aticle .layout-pagination a {
-    cursor: pointer
-}
-
-.page_aticle .layout-pagination-button:first-child {
-    border-left: 0
-}
-
-.page_aticle .layout-pagination-first-page:first-child {
-    border-left: 1px solid #ddd
-}
-.layout-pagination-prev-page{
-	background-image: url("prev.png");
-}
-.layout-pagination-next-page{
-	background-image: url("next.png");
-}
-</style>
-
-</head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- Head end -->
@@ -328,7 +54,7 @@ ul {
     	<option value="">선택</option>
     	<option value="/faq_paging">공지사항</option>
     	<option value="/qni_paging">자주하는 질문</option>
-    	<option value="/faq">1:1 문의</option>
+    	<option value="/inquiry_list">1:1 문의</option>
     </select>
     <script type="text/javascript">
     	function select_location() {
@@ -392,18 +118,13 @@ ul {
 
  
 </script>
-<script type="text/javascript">
-	function changeCate(e){
-		var change_cate = e.value;
-		location.href='/qni_sort?faq_cate='+change_cate;
-	};
-</script>
+
 
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
                 
                 <div class="search_date">
-                    <select class="btn_layer" id="qni_category" onchange="changeCate(this)">
+                    <select class="btn_layer" id="qni_category" >
                        			<option>카테고리 선택</option>
                        			<option value="배송/포장">배송/포장</option>
                             	<option value="취소/교환/환불">취소/교환/환불</option>
@@ -533,6 +254,15 @@ ul {
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
     
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$("#qni_category").change(function() {
+// 				alert($(this).val());
+				var changeVal = $(this).val();
+				location.href="/qni_sort${pagingVO.makeQuery(pageNum) }&faq_cate="+changeVal;
+			});
+		});
+	</script>
     
 </body>
 

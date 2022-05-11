@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.unomas.mapper.QnaMapper"> 
+<resultMap type="QnaVO" id="qnaMap">
+	<id column="QNA_NUM" property="qna_num"/>
+	<result column="USER_NUM" property=""/>
+	<result column="QNA_TITLE" property="qna_title"/>
+	<result column="QNA_CONTENT" property="qna_content"/>
+	<result column="QNA_REGDATE" property="qna_regdate"/>
+	<result column="QNA_PROCESS" property="qna_process"/>
+	<result column="QNACATE2" property="qnacate2"/>
+	<result column="QNACATE_NUM" property="qnacate_num"/>
+
+	<association javaType="QnaCateVO" property="qnaCateVO">
+		<id column="QNACATE_NUM" property="qnacate_num"/>
+		<result column="QNACATE_NAME" property="qnacate_name"/>
+	</association>
+</resultMap>
+
+	<insert id="createQna">
+		insert into board_qna(USER_NUM,QNA_TITLE,QNA_CONTENT,QNACATE_NUM,QNACATE2)
+		values (#{user_num},#{qna_title},#{qna_content},#{qnacate_num},#{qnacate2})
+	</insert>
+	
+	<select id="qnaList" resultMap="qnaMap">
+		<![CDATA[
+		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
+		from board_qna q join qna_category c
+		where Q.QNACATE_NUM = C.QNACATE_NUM
+		]]>
+	</select>
+</mapper>

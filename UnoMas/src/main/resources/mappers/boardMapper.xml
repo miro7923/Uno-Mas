@@ -21,7 +21,7 @@
 		select * from board_faq
 		where faq_cate=#{faq_cate}
 		order by faq_num desc
-		limit 1 , 10
+		limit #{pageStart} , #{perPageNum}
 	</select>
 	
 	<select id="sortCateCount" resultType="Integer">

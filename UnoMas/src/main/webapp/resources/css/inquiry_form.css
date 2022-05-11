@@ -1,0 +1,12 @@
+#select1 option[selected]{
+    color: rgba(0,0,0,0.38);
+    
+}
+
+#select2 option[selected]{
+    color: rgba(0,0,0,0.38);
+}
+
+button[disabled]{
+    cursor: default;
+}

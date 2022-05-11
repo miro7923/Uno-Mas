@@ -161,12 +161,33 @@
     
     <select id="select_location" onchange="select_location()">
     	<option value="">선택</option>
-    	<option value="/faq">공지사항</option>
+    	<option value="/faq_paging">공지사항</option>
     	<option value="/qni_paging">자주하는 질문</option>
-    	<option value="/faq">1:1 문의</option>
+    	<option value="/inquiry_list">1:1 문의</option>
     </select>
     
     <input type="button" value="글쓰기" onclick="location.href='/faq_insert';">
+    
+    <select id="search_type" name="search_type">
+<!--     	<option value="">검색조건</option> -->
+    	<option value="title">제목</option>
+<!--     	<option value="cate">카테고리</option> -->
+<!--     	<option value="content">내용</option> -->
+    </select>
+    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
+<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
+    <button id="search_btn" onclick="search()">검색</button>
+    
+    <script type="text/javascript">
+    	function search() {
+    		var search_type_val = document.getElementById("search_type");
+    		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
+    		var keyword_val = document.getElementById("keyword").value;
+    		var url = "/qni_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
+    		
+    		location.href=url;
+    	}
+    </script>
     
     <script type="text/javascript">
     	function select_location() {
