@@ -163,6 +163,14 @@ label {
     margin-bottom: 0px;
     font-size: 14px;
 }
+/*login.jsp*/
+.id_search {
+	color: black !important;
+}
+
+.pass_search {
+	color: black !important;
+}
 
 
 /* findPW.jsp */

@@ -66,6 +66,12 @@ public class ProductControllerTest {
 //	@Test
 	public void 신상품목록출력테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/new_product_list");
-		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/newProductList")).andDo(print());
+		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
+	}
+	
+	@Test
+	public void 특가목록출력테스트() throws Exception {
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/sale_list");
+		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 }

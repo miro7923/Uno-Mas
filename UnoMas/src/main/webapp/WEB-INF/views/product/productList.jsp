@@ -5,6 +5,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -27,17 +28,19 @@
 				<div class="col-lg-12 order-1 order-lg-2">
 					<div class="categoryBox">
 						<h3 class="title">${topcate }</h3>
-						<ul class="categoryList">
-						    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
-						    <li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
-						        class="category" id="category0" style="color: black;" 
-						        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
-							<c:forEach var="dcate" begin="0" end="${cateEnd-cateStart }" step="1" varStatus="it">
-								<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=1&dcate_num=${cateStart+dcate}" 
-								class="category" id="category${cateStart+dcate }" style="color: black;" 
-									onclick="changeSort(${cateStart+dcate }, ${cateStart }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
-							</c:forEach>
-						</ul>
+						<c:if test="${topcate_num <= 5 }">
+							<ul class="categoryList">
+							    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
+							    <li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
+							        class="category" id="category0" style="color: black;" 
+							        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
+								<c:forEach var="dcate" begin="0" end="${cateEnd-cateStart }" step="1" varStatus="it">
+									<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=1&dcate_num=${cateStart+dcate}" 
+									class="category" id="category${cateStart+dcate }" style="color: black;" 
+										onclick="changeSort(${cateStart+dcate }, ${cateStart }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
+								</c:forEach>
+							</ul>
+						</c:if>
 					</div>
 					<div class="product-show-option">
 						<div class="row">
@@ -68,9 +71,23 @@
 											<a href="/product/product_detail?prod_num=${vo.prod_num }">
 												<h5>${vo.prod_name }</h5>
 											</a>
-											<div class="product-price" id="prod${it.index }">
-												${vo.prod_price }원
-											</div>
+											    <c:choose>
+												    <c:when test="${vo.prod_discntrate eq 0}">
+														<div class="product-price">
+															<fmt:formatNumber value="${vo.prod_price}"/>원
+														</div>
+												    </c:when>
+												    <c:otherwise>
+												        <span class="product-price discountedRate">${vo.prod_discntrate}%</span>
+												        <span class="product-price">
+													        <c:set var="discnted" value="${vo.prod_price*(100-vo.prod_discntrate)/100}"/>
+													        <fmt:formatNumber value="${discnted+((discnted%10>5)?(10-(discnted%10))%10:-(discnted%10))}" type="number"/>원<br>
+												        </span>
+												        <div class="product-price">
+													        <span><fmt:formatNumber value="${vo.prod_price}" type="number"/>원</span>
+												        </div>
+												    </c:otherwise>
+											    </c:choose>
 										</div>
 									</div>
 								</div>
@@ -80,6 +97,7 @@
 					</div>
 					<!-- @@ DB 연결하면 상세 작업하기 @@ -->
 					<div class="row" id="pagediv">
+					    <input type="hidden" value="${pageNum }" id="curPage">
 						<div class="col-lg-12 text-center">
 						<c:if test="${pm.prev }">
 							<!-- <a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a>  -->
@@ -88,9 +106,23 @@
 						
 						<c:forEach var="block" varStatus="it" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<span>
-								<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
-								class="pagingBtn" id="page${it.index }" style="color: black;"
-								onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+							    <c:choose>
+								    <c:when test="${topcate_num <= 5 }">
+										<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
+										class="pagingBtn" id="page${it.index }" style="color: black;"
+										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+								    </c:when>
+								    <c:when test="${topcate_num > 5 }">
+								        <!----> <a href="/product/new_list?pageNum=${it.index}" 
+										class="pagingBtn" id="page${it.index }" style="color: black;"
+										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+								    </c:when>
+								    <c:otherwise>
+								        <!----> <a href="/product/sale_list?pageNum=${it.index}" 
+										class="pagingBtn" id="page${it.index }" style="color: black;"
+										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+								    </c:otherwise>
+							    </c:choose>
 							</span> 
 						</c:forEach>
 						

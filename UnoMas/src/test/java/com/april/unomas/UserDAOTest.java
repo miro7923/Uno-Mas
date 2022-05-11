@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
+import com.april.unomas.service.SmsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -56,4 +57,7 @@ public class UserDAOTest {
 		vo.setUser_pass("Tmvmfld00@");
 		dao.changePW(vo);
 	}
+	
+	
+	
 }

@@ -45,28 +45,26 @@ function idCheckFunc() {
         return false;
 	} 
 	$.ajax({
-			async: true,
-			type : 'GET',
-			data: {'user_id' : userid },
-			url : "idCheck",
-            success : function(result) {
-            	console.log("로그인 중복 결과: ", result);
-                if (result == '1') {
-                	$("#id").text("*이미 사용중인 아이디입니다.");
-                	$('[name=idCheckBtn]').val("중복확인");
-                	$("[name=user_id]").focus();
-                    
-                } else {
-                	$("#id").text("");
-                	$('[name=idCheckBtn]').val("사용가능✔");
-                	
-                }
-            },
-            error : function(error) {
-                $("#id").text("*잠시 후 다시 시도해주세요.");
-            }
-			
-		});
+		async: true,
+		type: 'GET',
+		data: { 'user_id': userid },
+		url: "idCheck",
+		success: function(result) {
+			console.log("로그인 중복 결과: ", result);
+			if (result == '1') {
+				$("#id").text("*이미 사용중인 아이디입니다.");
+				$('[name=idCheckBtn]').val("중복확인");
+				$("[name=user_id]").focus();
+			} else {
+				$("#id").text("");
+				$('[name=idCheckBtn]').val("사용가능✔");
+			}
+		},
+		error: function(error) {
+			$("#id").text("*잠시 후 다시 시도해주세요.");
+		}
+
+	});
 }
 
 
@@ -83,16 +81,27 @@ function changeIDCheck() {
 }
 
 
-// 핸드폰 인증번호
+// 핸드폰 인증번호 보내기
 function phoneCheckFunc() {
+	if($("[name=user_phone]").val() == ""){
+		$("#phone").text("*핸드폰 번호를 적어주세요.");
+        $("[name=user_phone]").focus();
+        return false;
+    }
+
 	$('[name=user_phone]').css('margin-bottom', '0px');
-	if($('[name=phoneCode]').length == 0) {
-		$('[name=phoneCheckDiv]').append (
-		'<input type="text" class="register_field" name="phoneCode" placeholder="인증번호 입력"> <input type="button" name="phoneCodeCheck" value="확인" class="check-button"><br>'
+	if ($('[name=phoneCode]').length == 0) {
+		$('[name=phoneCheckDiv]').append(
+			'<input type="text" class="register_field" name="phoneCode" placeholder="인증번호 입력"> <input type="button" name="phoneCheck_btn" value="확인" class="check-button"><br>'
 		);
 	}
 	
+
 }
+
+
+
+
 
 
 

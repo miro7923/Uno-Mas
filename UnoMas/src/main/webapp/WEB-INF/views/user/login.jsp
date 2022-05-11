@@ -36,7 +36,7 @@
 						<input type="checkbox" id="check_save" name="check_save" value="chk">로그인정보 저장
 					</label>
 					<div class="login_search">
-						<a href="" class="id_search">아이디 찾기 | </a> <a href="" class="pass_search">비밀번호 찾기</a>
+						<a href="find_id" class="id_search">아이디 찾기 | </a> <a href="find_pw" class="pass_search">비밀번호 찾기</a>
 					</div>
 				</div>
 				

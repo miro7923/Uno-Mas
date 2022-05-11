@@ -26,6 +26,7 @@ public class UserController {
 	
 	@Inject
 	private UserService service;
+
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	
@@ -35,14 +36,23 @@ public class UserController {
 		return "/user/registerAgree";
 	}
 	
+	@RequestMapping(value = "/auth_phone")
+	@ResponseBody
+	public String AuthPhoneNumber(@RequestParam(value="phoneNum", required=false) String phoneNum) {
+		return "";
+	}
+	
 	@RequestMapping(value = "/register")
 	public String registerGet() {
 		return "/user/register";
 	}
 	
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public String registerPost(@RequestParam("emailAgree") String eAgree, UserVO vo) {
-		if(eAgree.equals("1")) {
+	public String registerPost(@RequestParam(value="emailAgree", required=false) String eAgree, UserVO vo) {
+		System.out.println("이메일 수신 여부: " + eAgree);
+		if(eAgree == null) {
+			vo.setUser_emailagree(0);
+		} else {
 			vo.setUser_emailagree(1);
 		}
 		service.joinUser(vo);

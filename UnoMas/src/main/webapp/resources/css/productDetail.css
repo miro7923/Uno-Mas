@@ -29,8 +29,30 @@ h3 {
 	font-size: 30px;
 }
 
+.product-details .priceText .discnted {
+	font-size: 20px;
+	font-weight: 400;
+    color: #b2b2b2;
+    text-decoration: line-through;
+}
+
+.product-details .priceText .finalPrice {
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.product-details .priceText .discntRate {
+	color: #fa622f;
+	line-height: 40px;
+}
+
+.product-details .priceText .saleSubTit {
+    font-weight: 400;
+}
+
 p.memberInfo {
 	color: #9db329;
+	line-height: 50px;
 }
 
 #wishlistBtnEmpty, #wishlistBtnFull {

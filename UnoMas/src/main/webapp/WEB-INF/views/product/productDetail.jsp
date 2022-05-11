@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -55,8 +56,21 @@
 								</div>
 								<div class="pd-desc">
 									<h5 class="priceText top">
-									    <input type="hidden" id="originPrice" value="${vo.prod_price }">
-										<span id="price">${vo.prod_price }</span> 원
+									    <c:choose>
+									        <c:when test="${vo.prod_discntrate eq 0 }">
+											    <input type="hidden" id="originPrice" value="${vo.prod_price }">
+												<span class="finalPrice"><fmt:formatNumber value="${vo.prod_price }" type="number"/></span> 원
+									        </c:when>
+									        <c:otherwise>
+									            <div class="saleSubTit">회원할인가</div>
+									            <c:set var="discnted" value="${vo.prod_price*(100-vo.prod_discntrate)/100}"/>
+									            <c:set var="discntedPrice" value="${discnted+((discnted%10>5)?(10-(discnted%10))%10:-(discnted%10))}"/>
+									            <input type="hidden" id="originPrice" value="<fmt:formatNumber value="${discntedPrice }" type="number"/>">
+									            <span class="finalPrice"><fmt:formatNumber value="${discntedPrice }" type="number"/></span> 원 &nbsp;
+									            <span class="finalPrice discntRate">${vo.prod_discntrate }%</span>
+									            <div class="discnted"><fmt:formatNumber value="${vo.prod_price}" type="number"/>원</div>
+									        </c:otherwise>
+									    </c:choose>
 									</h5>
 									<%if (user_id == null) { %>
 										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
@@ -85,6 +99,11 @@
 									<dl class="list">
 										<dt class="title">포장타입</dt>
 										<dd class="description">${vo.prod_packing }</dd>
+									</dl>
+									<hr>
+									<dl class="list">
+										<dt class="title">유통기한</dt>
+										<dd class="description">${vo.prod_expire }</dd>
 									</dl>
 									<hr>
 									<dl class="list">
