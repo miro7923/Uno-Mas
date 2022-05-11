@@ -17,35 +17,28 @@
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hero-items owl-carousel">
-            <div class="single-hero-items set-bg" data-setbg="${path}/resources/img/hero-1.jpg">
+            <div class="single-hero-items set-bg firstHero" data-setbg="${path}/resources/img/hero-1.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore</p>
-                            <a href="#" class="primary-btn">Shop Now</a>
+                            <h1>가정의 달</h1>
+                            <p>어린이날, 어버이날까지 가정의 달 선물 최대 30% 할인</p>
+                            <a href="#" class="primary-btn">자세히 보기</a>
                         </div>
                     </div>
                     <div class="off-card">
-                        <h2>Sale <span>50%</span></h2>
+                        <h2>Sale <span>30%</span></h2>
                     </div>
                 </div>
             </div>
-            <div class="single-hero-items set-bg" data-setbg="${path}/resources/img/hero-2.jpg">
+            <div class="single-hero-items set-bg secondHero" data-setbg="${path}/resources/img/hero-2.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore</p>
-                            <a href="#" class="primary-btn">Shop Now</a>
+                            <h1>제철 음식</h1>
+                            <p>5월에 꼭 먹어야 할 제철 음식 7가지를 확인해보세요.</p>
+                            <a href="#" class="primary-btn">자세히 보기</a>
                         </div>
-                    </div>
-                    <div class="off-card">
-                        <h2>Sale <span>50%</span></h2>
                     </div>
                 </div>
             </div>
@@ -135,45 +128,45 @@
     </div>
     <!-- 지금 Hot한 상품 End -->
     <!-- Banner Section Begin -->
-    <div class="banner-section spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="single-banner" >
-                        <img src="${path}/resources/img/banner-1.jpg" alt="">
-                        <div class="inner-text">
-                            <h4>조회수 높은 상품</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-banner">
-                        <img src="${path}/resources/img/banner-2.jpg" alt="">
-                        <div class="inner-text">
-                            <h4>Women’s</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="single-banner">
-                        <img src="${path}/resources/img/banner-3.jpg" alt="">
-                        <div class="inner-text">
-                            <h4>신상품</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--     <div class="banner-section spad"> -->
+<!--         <div class="container-fluid"> -->
+<!--             <div class="row"> -->
+<!--                 <div class="col-lg-4"> -->
+<!--                     <div class="single-banner" > -->
+<%--                         <img src="${path}/resources/img/banner-1.jpg" alt=""> --%>
+<!--                         <div class="inner-text"> -->
+<!--                             <h4>조회수 높은 상품</h4> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-4"> -->
+<!--                     <div class="single-banner"> -->
+<%--                         <img src="${path}/resources/img/banner-2.jpg" alt=""> --%>
+<!--                         <div class="inner-text"> -->
+<!--                             <h4>Women’s</h4> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-4"> -->
+<!--                     <div class="single-banner"> -->
+<%--                         <img src="${path}/resources/img/banner-3.jpg" alt=""> --%>
+<!--                         <div class="inner-text"> -->
+<!--                             <h4>신상품</h4> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     </div> -->
     <!-- Banner Section End -->
 
-    <!-- Women Banner Section Begin -->
+    <!-- 조회수 높은 상품 Section Begin -->
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
-                        <h2>Women’s</h2>
+                        <h2>조회수 높은 상품</h2>
                         <a href="#">Discover More</a>
                     </div>
                 </div>
@@ -266,27 +259,120 @@
             </div>
         </div>
     </section>
-    <!-- Women Banner Section End -->
+    <!-- 조회수 높은 상품 Section End -->
 
-    <!-- Women Banner Section Begin -->
+    <!-- 많이 팔리는 상품 Section Begin -->
+   <section class="women-banner spad">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
+                        <h2>많이 팔리는 상품</h2>
+                        <a href="#">Discover More</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 offset-lg-1">
+                    <div class="product-slider owl-carousel">
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
+                                <div class="sale">Sale</div>
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Coat</div>
+                                <a href="#">
+                                    <h5>Pure Pineapple</h5>
+                                </a>
+                                <div class="product-price">
+                                    $14.00
+                                    <span>$35.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Shoes</div>
+                                <a href="#">
+                                    <h5>Guangzhou sweater</h5>
+                                </a>
+                                <div class="product-price">
+                                    $13.00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Towel</div>
+                                <a href="#">
+                                    <h5>Pure Pineapple</h5>
+                                </a>
+                                <div class="product-price">
+                                    $34.00
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-item">
+                            <div class="pi-pic">
+                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
+                                <div class="icon">
+                                    <i class="icon_heart_alt"></i>
+                                </div>
+                                <ul>
+                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="pi-text">
+                                <div class="catagory-name">Towel</div>
+                                <a href="#">
+                                    <h5>Converse Shoes</h5>
+                                </a>
+                                <div class="product-price">
+                                    $34.00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 많이 팔리는 상품 Section End -->    
+
+	<!-- 최신 상품 Section Begin -->
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="${path}/resources/img/products/women-large.jpg">
-                        <h2>Women’s</h2>
+                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
+                        <h2>신상품</h2>
                         <a href="#">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
-                    <div class="filter-control">
-                        <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
-                        </ul>
-                    </div>
                     <div class="product-slider owl-carousel">
                         <div class="product-item">
                             <div class="pi-pic">
@@ -297,8 +383,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -320,8 +404,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -342,8 +424,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -364,8 +444,6 @@
                                 </div>
                                 <ul>
                                     <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -383,169 +461,48 @@
             </div>
         </div>
     </section>
-    <!-- Women Banner Section End -->    
-
-       <!-- Women Banner Section Begin -->
-    <section class="women-banner spad">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="product-large set-bg" data-setbg="${path}/resources/img/products/women-large.jpg">
-                        <h2>Women’s</h2>
-                        <a href="#">Discover More</a>
+    <!-- 최신 상품 Section End -->
+    <!-- 혜택 Section Begin -->
+    <section>
+	<div class="benefit-items">
+    	<div class="row">
+        	<div class="col-lg-4">
+            	<div class="single-benefit">
+                	<div class="sb-icon">
+                    	<img src="${path}/resources/img/icon-1.png" alt="">
                     </div>
-                </div>
-                <div class="col-lg-8 offset-lg-1">
-                    <div class="filter-control">
-                        <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
-                        </ul>
-                    </div>
-                    <div class="product-slider owl-carousel">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                    <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
+                    <div class="sb-text">
+                    	<h6>무료 배송</h6>
+                        <p>5만원 이상의 모든 주문 해당</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Women Banner Section End -->
-
-    
-
-    <!-- Latest Blog Section Begin -->
-    
-            <div class="benefit-items">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="single-benefit">
-                            <div class="sb-icon">
-                                <img src="${path}/resources/img/icon-1.png" alt="">
-                            </div>
-                            <div class="sb-text">
-                                <h6>Free Shipping</h6>
-                                <p>For all order over 99$</p>
-                            </div>
-                        </div>
+            <div class="col-lg-4">
+            	<div class="single-benefit">
+                	<div class="sb-icon">
+                    	<img src="${path}/resources/img/icon-2.png" alt="">
                     </div>
-                    <div class="col-lg-4">
-                        <div class="single-benefit">
-                            <div class="sb-icon">
-                                <img src="${path}/resources/img/icon-2.png" alt="">
-                            </div>
-                            <div class="sb-text">
-                                <h6>Delivery On Time</h6>
-                                <p>If good have prolems</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="single-benefit">
-                            <div class="sb-icon">
-                                <img src="${path}/resources/img/icon-1.png" alt="">
-                            </div>
-                            <div class="sb-text">
-                                <h6>Secure Payment</h6>
-                                <p>100% secure payment</p>
-                            </div>
-                        </div>
+                    <div class="sb-text">
+                     	<h6>예약 배송</h6>
+                        <p>원하는 시간과 장소에 정확히 배송</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Latest Blog Section End -->
+            <div class="col-lg-4">
+            	<div class="single-benefit">
+                	<div class="sb-icon">
+                    	<img src="${path}/resources/img/icon-3.png" alt="">
+                    </div>
+                    <div class="sb-text">
+                    	<h6>보안 결제</h6>
+                        <p>안전한 결제를 보장</p>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	</section>
+    <!-- 혜택 Section End -->
 
     <!-- Footer Section Begin -->
 	<jsp:include page="inc/bottom.jsp"></jsp:include>

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .hotList {
     margin-top: 30px;
 }
@@ -23,13 +24,11 @@
 	margin-top: 30px;
 	}
 .itemList{
-    margin-bottom: 60px;
     display: inline-block;
     vertical-align: top;
-/*     width: calc(25% - 15px); */
 	height: 250px;
     margin-right: 20px;
-    margin-bottom: 120px;
+    margin-bottom: 220px;
 }
 .thumb{
     position: relative;
@@ -71,5 +70,5 @@
 }
 .product-slider {
     display: block;
-    top: 100px;
+    top: 50px;
 }
