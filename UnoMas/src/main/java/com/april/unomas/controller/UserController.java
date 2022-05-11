@@ -49,7 +49,6 @@ public class UserController {
 	
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
 	public String registerPost(@RequestParam(value="emailAgree", required=false) String eAgree, UserVO vo) {
-		System.out.println("이메일 수신 여부: " + eAgree);
 		if(eAgree == null) {
 			vo.setUser_emailagree(0);
 		} else {
