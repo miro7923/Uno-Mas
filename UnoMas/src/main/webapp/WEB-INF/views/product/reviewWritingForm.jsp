@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/reviewWritingForm.css?after2">
 <!-- Header end -->
-
+<!-- @@ 상품 평점 입력받는 셀렉트박스 추가하기 @@ -->
 <%
     int user_num = 1;
 %>
