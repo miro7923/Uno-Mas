@@ -129,48 +129,47 @@ $(document).ready(function(){
 							<!-- 기본정보 끝-->
 							<!-- 판매정보 -->
 							<div class="row">
-								<div class="col-lg-6">
+								<div class="col-lg-12">
 									<h4>판매정보</h4>
 									<div class="row">
-										<div class="col-lg-12">
+										<div class="col-lg-3">
 											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo. prod_price }" readonly>
 										</div>
-										<div class="col-lg-12">
+										<div class="col-lg-3">
 											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }" readonly>
 										</div>
-										<div class="col-lg-12">
+										<div class="col-lg-3">
 											<label>판매 단위<span>*</span></label>
 											<input type="text" name="prod_sellunit" value="${vo.prod_sellunit }" readonly>
 											<label></label>
 										</div>
-										<div class="col-lg-12">
+										<div class="col-lg-3">
 												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight" value="${vo.prod_weight }" readonly>
 										</div>
 									</div>
 								</div>
 								<!-- 판매정보 끝-->
 								<!-- 추가항목 -->
-								<div class="col-lg-6">
+								<div class="col-lg-12">
 									<div class="place-order">
 										<h4>추가항목</h4>
 										<div class="row">
-											<div class="col-lg-12">
+											<div class="col-lg-3">
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country" value="${vo.prod_country }" readonly>
 											</div>
-											<div class="col-lg-12">
+											<div class="col-lg-3">
 												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" value="${vo.prod_expire }" readonly>
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->
 <!-- 											</div> -->
-											<div class="col-lg-12">
+											<div class="col-lg-3">
 												<label>포장타입<span>*</span></label>
 												<input type="text" name="prod_packing" value="${vo.prod_packing }" readonly>
 											</div>
-											<div class="col-lg-12">
-											<br>
-												<label>보관방법 또는 취급방법<span>*</span></label>
-												<input type="text" name="prod_keep"  id="selbox" value="${vo.prod_keep }" readonly>
+											<div class="col-lg-3">
+												<label>보관방법/취급방법<span>*</span></label>
+												<input type="text" name="prod_keep" value="${vo.prod_keep }" readonly>
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" name="prod_keep" id="selboxDirect"> -->
