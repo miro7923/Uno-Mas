@@ -108,24 +108,24 @@ public class UserController {
 	
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
-	public String delUserGET() {
+	public String deleteUserGET() {
 		
-		log.info("delUserGET() 호출 -> deleteUser.jsp 이동");
+		log.info("deleteUserGET() 호출 -> deleteUser.jsp 이동");
 		
-		return "user/deleteUser";
+		return "/user/deleteUser";
 	}
 	
 	// 회원탈퇴(POST)
 	@RequestMapping(value = "/delete_user",method=RequestMethod.POST)
-	public String delUserPOST(UserVO vo,HttpSession session) {
+	public String deleteUserPOST(UserVO vo,HttpSession session) {
 		
-		service.delUser(vo);
+		service.deleteUser(vo);
 		
 		session.invalidate();
 		
-		log.info("delUserPOST 처리 완료");
+		log.info("deleteUserPOST 처리 완료");
 		
-		return "redirect:/user/index";
+		return "redirect:/index";
 	}
 	
 	
@@ -145,7 +145,7 @@ public class UserController {
 	// 비번 찾기
 	@RequestMapping(value = "/find_pw")
 	public String findPW() {
-		return "user/findPW";
+		return "/user/findPW";
 	}
 	@RequestMapping(value = "/find_pw", method = RequestMethod.POST)
 	@ResponseBody
@@ -159,7 +159,7 @@ public class UserController {
 	@RequestMapping(value = "/change_pw")
 	public String changePWGet(@RequestParam(value="id", required=false) String id, Model model) {
 		model.addAttribute("id", id);
-		return "user/changePW";
+		return "/user/changePW";
 	}
 	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
 	@ResponseBody
@@ -175,7 +175,7 @@ public class UserController {
 	// mypage
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
-		return "user/myPage";
+		return "/user/myPage";
 	}
 
 	@RequestMapping(value = "/myInfo")
@@ -183,7 +183,7 @@ public class UserController {
 		String saveID = (String) session.getAttribute("saveID");
 		UserVO userInfoVO = service.getUserInfo("Admin"); // 일단 직접 입력하고 추 후에 세션값 입력.
 		model.addAttribute("userInfoVO", userInfoVO);
-		return "user/myInfo";
+		return "/user/myInfo";
 	}
 
 	
@@ -195,9 +195,11 @@ public class UserController {
 		
 		UserVO vo = (UserVO)session.getAttribute("loginCheck");
 		
-//		UserVO infoVO = service.
+		UserVO infoVO = service.getUserInfo(vo.getUser_id());
 		
-		return "user/updateMyInfo";
+		model.addAttribute("infoVO", infoVO);
+		
+		return "/user/updateMyInfo";
 	}
 	
 	// 회원정보수정(POST)
@@ -211,17 +213,17 @@ public class UserController {
 	
 	@RequestMapping(value = "/mypoint")
 	public String myPoint() {
-		return "user/myPoint";
+		return "/user/myPoint";
 	}
 	
 	// guide
 	@RequestMapping(value = "/return_guide")
 	public String canclePinfo() {
-		return "user/returnGuide";
+		return "/user/returnGuide";
 	}
 	@RequestMapping(value = "/together_guide")
 	public String togetherInfo() {
-		return "user/togetherGuide";
+		return "/user/togetherGuide";
 	}
 	
 	

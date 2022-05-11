@@ -48,7 +48,7 @@
   
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
-  	select * from users where userid=#{userid} and userpw=#{userpw}
+  	select * from users where user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
   
   <!-- 회원 정보 가져오기 -->
