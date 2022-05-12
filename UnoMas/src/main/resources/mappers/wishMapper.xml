@@ -8,8 +8,11 @@
 	<!-- 찜 목록 -->
 	<select id="list" resultType="com.april.unomas.domain.WishVO">
 	select
-		wish_num, user_num, prod_num, prod_name, prod_price
-	from unomasdb.wishlist
+		w.wish_num, w.user_num, w.prod_num, p.prod_name, p.prod_price
+	from 
+		unomasdb.wishlist w
+	inner join unomasdb.products p
+	on w.prod_num =p.prod_num 
 	</select>
 	
 	<!-- 찜 추가 -->
