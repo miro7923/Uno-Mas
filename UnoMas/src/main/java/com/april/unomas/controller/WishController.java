@@ -13,6 +13,7 @@ public class WishController {
 		
 	}
 	
+	// 테스트페이지 연결
 	@RequestMapping(value="/wishtest")
 	public String list() throws Exception {
 		return "product/wishtest";

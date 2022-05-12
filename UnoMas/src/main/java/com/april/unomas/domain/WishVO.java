@@ -18,9 +18,14 @@ public class WishVO {
 	);
 	*/
 	
+	/* 찜 목록 번호 */
 	private int wish_num;
+	/* 유저 번호 */
 	private int user_num;
+	/* 상품 번호 */
 	private int prod_num;
+	/* 상품 이름 */
 	private String prod_name;
+	/* 상품 가격 */
 	private int prod_price;
 }
