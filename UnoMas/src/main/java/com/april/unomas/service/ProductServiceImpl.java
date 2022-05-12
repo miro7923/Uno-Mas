@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.persistence.ProductDAO;
 
@@ -123,5 +124,15 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public int getReviewReadCnt(int review_num) throws Exception {
 		return dao.getReviewReadCnt(review_num);
+	}
+
+	@Override
+	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception {
+		return dao.getInquiryList(prod_num);
+	}
+
+	@Override
+	public void insertInquiry(ProdInquiryVO vo) throws Exception {
+		dao.insertInquiry(vo);
 	}
 }

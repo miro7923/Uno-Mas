@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -288,38 +289,48 @@
 												</tbody>
 											</table>
 											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<c:forEach var="reviewVo" items="${reviewList }" varStatus="it">
-												<table class="reviewTable" width="100%" border="0"
-													cellpadding="0" cellspacing="0">
-													<caption style="display: none">구매후기 제목</caption>
-													<colgroup>
-														<col style="width: 110px;">
-														<col style="width: auto;">
-														<col style="width: 77px;">
-														<col style="width: 100px;">
-														<col style="width: 50px;">
-														<col style="width: 80px;">
-													</colgroup>
-													<tbody>
-														<tr onmouseover="this.style.background='#f0f0f0'"
-															onmouseout="this.style.background='white'">
-															<td>${reviewVo.review_num }</td>
-															<td align="left" class="reviewTitle"
-																onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
-															<td align="left">${reviewVo.user_id }</td>
-															<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
-															<td>${reviewVo.review_likecnt }</td>
-															<td id="reviewReadcnt">${reviewVo.review_readcnt }</td>
-														</tr>
-													</tbody>
-												</table>
-												<div class="reviewContent" id="reviewContent${it.index }">
-												    <input type="hidden" value="${reviewVo.review_num }" id="review_num${it.index }">
-												    <strong>${vo.prod_name }</strong>
-													<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p>
-													<p>${reviewVo.review_content }</p>
-												</div>
-											</c:forEach>
+											<c:choose>
+												<c:when test="${fn:length(reviewList) == 0 }">
+												    <p class="text-center nonPost">아직 등록된 후기가 없어요! 고객님께서 첫 번째 후기를 남겨주세요!</p>
+												</c:when>
+												<c:otherwise>
+													<c:forEach var="reviewVo" items="${reviewList }" varStatus="it">
+														<table class="reviewTable" width="100%" border="0"
+															cellpadding="0" cellspacing="0">
+															<caption style="display: none">구매후기 제목</caption>
+															<colgroup>
+																<col style="width: 110px;">
+																<col style="width: auto;">
+																<col style="width: 77px;">
+																<col style="width: 100px;">
+																<col style="width: 50px;">
+																<col style="width: 80px;">
+															</colgroup>
+															<tbody>
+																<tr onmouseover="this.style.background='#f0f0f0'"
+																	onmouseout="this.style.background='white'">
+																	<td>${reviewVo.review_num }</td>
+																	<td align="left" class="reviewTitle"
+																		onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
+																	<td align="left">${reviewVo.user_id }</td>
+																	<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
+																	<td>${reviewVo.review_likecnt }</td>
+																	<td id="reviewReadcnt">${reviewVo.review_readcnt }</td>
+																</tr>
+															</tbody>
+														</table>
+														<div class="reviewContent" id="reviewContent${it.index }">
+														    <input type="hidden" value="${reviewVo.review_num }" id="review_num${it.index }">
+														    <strong>${vo.prod_name }</strong>
+															<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p>
+															<p>${reviewVo.review_content }</p>
+															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
+															<!-- @@ 관리자도 수정 삭제 가능 -->
+															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+														</div>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
 											
 											<div class="col-lg-12 reviewBtnArea">
 												<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
@@ -349,8 +360,6 @@
 													<col style="width: auto;">
 													<col style="width: 77px;">
 													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
 												</colgroup>
 												<tbody>
 													<tr>
@@ -358,50 +367,40 @@
 														<th>제목</th>
 														<th align="left">작성자</th>
 														<th>작성일</th>
-														<th>좋아요</th>
-														<th>조회</th>
 													</tr>
 												</tbody>
 											</table>
-											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<%
-											for (int i = 0; i < 7; i++) {
-											%>
-											<table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">문의 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td><%=i + 1%></td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleQna(<%=i+1%>);">문의 <%=i + 1%></td>
-														<!-- <th scope="col" class="input_txt"><span
-																class="screen_out">회원 등급</span></th> -->
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>0</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="reviewContent" id="qnaContent<%=i+1%>">
-												<p>원산지가 어딘가요?</p>
-											</div>
-											<%
-											}
-											%>
+											<c:forEach var="inquiryVo" items="${inquiryList }" varStatus="it">
+												<table class="reviewTable" width="100%" border="0"
+													cellpadding="0" cellspacing="0">
+													<caption style="display: none">문의 제목</caption>
+													<colgroup>
+														<col style="width: 110px;">
+														<col style="width: auto;">
+														<col style="width: 77px;">
+														<col style="width: 100px;">
+													</colgroup>
+													<tbody>
+														<tr onmouseover="this.style.background='#f0f0f0'"
+															onmouseout="this.style.background='white'">
+															<td>${inquiryVo.p_inquiry_num }</td>
+															<td align="left" class="reviewTitle"
+																onclick="toggleQna(${it.index});">${inquiryVo.p_inquiry_title }</td>
+															<td align="left">${inquiryVo.user_id }</td>
+															<td><fmt:formatDate value="${inquiryVo.p_inquiry_regdate }" type="date"/></td>
+														</tr>
+													</tbody>
+												</table>
+												<div class="reviewContent" id="qnaContent${it.index }">
+													<p>${inquiryVo.p_inquiry_content }</p>
+													<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
+													<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
+													<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+													<p class="text-right"><a href="#">답변하기</a></p>
+												</div>
+											</c:forEach>
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='product_qna_writing_form';">
+												<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
 												문의하기
 												</button>
 											</div>

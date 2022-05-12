@@ -179,4 +179,17 @@
         FROM board_review
         WHERE review_num = #{review_num}
     </select>
+    
+    <!-- 상품별 문의글 목록 가져오기 -->
+    <select id="getInquiryList" resultType="ProdInquiryVO">
+        SELECT *
+        FROM prod_inquiry
+        WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 상품 문의글 등록 -->
+    <insert id="insertInquiry">
+        INSERT INTO prod_inquiry(user_num, prod_num, p_inquiry_title, p_inquiry_content)
+        VALUES(#{user_num}, #{prod_num}, #{p_inquiry_title}, #{p_inquiry_content})
+    </insert>
 </mapper>

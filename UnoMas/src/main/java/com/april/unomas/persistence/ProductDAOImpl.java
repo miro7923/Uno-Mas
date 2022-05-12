@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
 
 @Repository
@@ -131,5 +132,15 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public int getReviewReadCnt(int review_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getReviewReadCnt", review_num);
+	}
+
+	@Override
+	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getInquiryList", prod_num);
+	}
+
+	@Override
+	public void insertInquiry(ProdInquiryVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertInquiry", vo);
 	}
 }
