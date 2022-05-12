@@ -38,7 +38,7 @@ public class WishController {
 	
 	// 찜 개별 삭제
 	@RequestMapping(value = "/wishlist/deleteWish", method = RequestMethod.GET)
-	public String getDelete(@RequestParam("prod_num") int prod_num) throws Exception {
+	public String getDeleteWish(@RequestParam("prod_num") int prod_num) throws Exception {
 	  
 		service.deleteWish(prod_num);  
 
@@ -46,7 +46,7 @@ public class WishController {
 	}
 	
 	// 찜 전체 삭제
-	@RequestMapping(value = "/wishlist/deleteAllWish.do")
+	@RequestMapping(value = "/wishlist/deleteAllWish", method = RequestMethod.GET)
 	public String deleteAll(HttpSession session) throws Exception {
 		Integer user_num=(Integer)session.getAttribute("user_num");
 		if(user_num!=null) {
@@ -54,5 +54,5 @@ public class WishController {
 		}
 	    return "redirect:/product/wishlist";
 	}
-
+	
 }

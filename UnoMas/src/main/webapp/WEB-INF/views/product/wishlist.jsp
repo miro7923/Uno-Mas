@@ -13,16 +13,29 @@
 <body>
 	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
 	<script>
-		function selectAll(selectAll){ // 전체 체크박스기능
+		function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 selectall체크박스 체크on
+			const checkboxes = document.querySelectorAll('input[name="wishCheck"]'); // 전체 체크박스
+			const checked = document.querySelectorAll('input[name="wishCheck"]:checked'); // 선택된 체크박스
+			const selectAll = document.querySelector('input[name="selectall"]'); // selectall 체크박스
+			
+			if(checkboxes.length === checked.length) {
+				selectAll.checked = true;
+			} else {
+				selectAll.checked = false;
+			}
+		}
+
+		function selectAll(selectAll)  { // selectall 체크박스로 on/off
 			const checkboxes = document.getElementsByName('wishCheck');
-			checkboxes. forEach((checkbox) => {
-				checkbox.checked = selectAll.checked;
+				checkboxes.forEach((checkbox) => {
+				checkbox.checked = selectAll.checked
 			})
 		}
-		$(function(){ // 장바구니 비우기
+		
+		$(function(){ // 찜 전체삭제
 			$("#btnDelete").click(function(){
-				if(confirm("장바구니를 비우시겠습니까?")){
-					location.href="${path}/product/wishlist/deleteAllWish.do";
+				if(confirm("찜 목록을 비우시겠습니까?")){
+					location.href="/product/wishlist/deleteAllWish";
 				}
 			});
 		});
@@ -54,7 +67,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                	<th class="wishCheck"><input type="checkbox" name="wishCheck" value="selectall" onclick='selectAll(this)'/></th>
+                                	<th class="wishCheck"><input type="checkbox" name="selectall" value="selectall" onclick='selectAll(this)'/></th>
                                     <th>이미지</th>
                                     <th class="p-name">상품정보</th>
                                     <th>가격</th>
@@ -63,9 +76,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach items="${list}" var="list" varStatus="i">
+                            	<c:forEach items="${list}" var="list">
                                 <tr>
-                                	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check"/></td>
+                                	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" onclick='checkSelectAll()'/></td>
                                 	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
                                 		<img src="${path}/resources/img/product-single/${list.prod_num}.jpeg" alt="productImg"/></a></td>
                                     <td class="cart-title first-row">
@@ -87,7 +100,7 @@
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <a href="#" class="primary-btn deleteCheck">선택삭제</a>
-                                <button type="button" id="btnDelete" class="primary-btn deleteAllWish">전체 삭제</button>
+                                <button type="button" id="btnDelete" class="primary-btn">전체삭제</button>
                                 <a href="/product/shopping-cart" class="primary-btn up-cart">선택담기</a>
                             </div>
                         </div>
@@ -113,6 +126,10 @@
     <script src="${path}/resources/js/jquery.dd.min.js"></script>
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
+    <script src="${path}/resources/js/main.js"></script>
+</body>
+
+</html>{path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
 </body>
 
