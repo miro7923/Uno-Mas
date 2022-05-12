@@ -25,4 +25,10 @@ public class WishServiceImpl implements WishService {
 		dao.delete(prod_num);
 	}
 
+	@Override
+	public void insertWish(WishVO vo) throws Exception {
+		dao.insertWish(vo);
+		
+	}
+
 }

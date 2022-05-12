@@ -28,4 +28,10 @@ public class WishDAOImpl implements WishDAO {
 		
 	}
 
+	@Override
+	public void insertWish(WishVO vo) throws Exception {
+		sqlSession.insert(namespace + ".insertWish",vo);
+		
+	}
+
 }

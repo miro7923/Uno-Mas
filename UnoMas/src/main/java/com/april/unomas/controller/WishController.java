@@ -29,6 +29,12 @@ public class WishController {
 		model.addAttribute("list", list);
 	}
 	
+	// 찜 추가
+	@RequestMapping(value = "/wishlist/insertwish", method = RequestMethod.GET)
+	public void getInsertWish() throws Exception {
+		
+	}
+	
 	// 찜 개별 삭제
 	@RequestMapping(value = "/wishlist/delete", method = RequestMethod.GET)
 	public String getDelete(@RequestParam("prod_num") int prod_num) throws Exception {

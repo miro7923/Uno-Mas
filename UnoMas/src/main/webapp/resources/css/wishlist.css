@@ -9,3 +9,6 @@
 	padding: .375rem .75rem !important;
 	font-size: 1rem ;
 }
+.close-td a:link, a:visited{
+	color:#333;
+}

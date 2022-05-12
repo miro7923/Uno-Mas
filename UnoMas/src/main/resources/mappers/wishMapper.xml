@@ -12,6 +12,15 @@
 	from unomasdb.wishlist
 	</select>
 	
+	<!-- 찜 추가 -->
+	<insert id="insertWish">
+	insert into unomasdb.wishlist(
+		user_num, prod_num, prod_name, prod_price
+	) values (
+		#{user_num}, #{prod_num}, #{prod_name}, #{prod_price}
+	)
+	</insert>
+	
 	<!-- 찜 개별 삭제 -->
 	<delete id="delete" parameterType="int">
 	delete

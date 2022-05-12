@@ -49,11 +49,11 @@
                             	<c:forEach items="${list}" var="list">
                                 <tr>
                                 	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
-                                		<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt="productImg"/></a></td>
+                                		<img src="${path}/resources/img/product-single/${list.prod_num}.jpeg" alt="productImg"/></a></td>
                                     <td class="cart-title first-row">
                                         <h5>${list.prod_name}</h5>
                                     </td>
-                                    <td class="p-price first-row">${list.prod_price}</td>
+                                    <td class="p-price first-row">${list.prod_price}원</td>
                                     <td class="cartInFirst">
                                         <div class="quantity">
 		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn">장바구니 담기</button>
