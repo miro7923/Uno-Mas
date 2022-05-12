@@ -1,11 +1,11 @@
-package com.april.unomas.persistence;
+package com.april.unomas.domain;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class WishDAO {
+public class WishVO {
 
 	/*
 	CREATE TABLE WISHLIST(

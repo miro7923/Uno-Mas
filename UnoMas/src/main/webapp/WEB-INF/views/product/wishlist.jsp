@@ -21,6 +21,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <span>위시리스트</span>
+                        <a href="/product/wishlist/wishtest" style="color:black"> 테스트페이지</a>
                     </div>
                 </div>
             </div>
