@@ -119,4 +119,9 @@ public class ProductServiceImpl implements ProductService{
 	public void updateReviewReadcnt(int review_num) throws Exception {
 		dao.updateReviewReadcnt(review_num);
 	}
+
+	@Override
+	public int getReviewReadCnt(int review_num) throws Exception {
+		return dao.getReviewReadCnt(review_num);
+	}
 }

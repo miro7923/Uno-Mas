@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +36,10 @@ public class ProductAjaxController {
 	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)
-	public String updateReviewReadcntGET(@RequestParam int review_num, @RequestParam int prod_num,
+	public int updateReviewReadcntGET(@RequestParam int review_num, @RequestParam int prod_num,
 			Model model) throws Exception {
 		service.updateReviewReadcnt(review_num);
-		model.addAttribute("vo", service.getProduct(prod_num));
-		model.addAttribute("reviewList", service.getReviewList(prod_num));
 		
-		return "/product/reviewListAjax";
+		return service.getReviewReadCnt(review_num);
 	}
 }

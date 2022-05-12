@@ -68,4 +68,7 @@ public interface ProductService {
 	
 	// 리뷰글 조회수 증가
 	public void updateReviewReadcnt(int review_num) throws Exception;
+	
+	// 특정 리뷰글 조회수 가져오기
+	public int getReviewReadCnt(int review_num) throws Exception;
 }

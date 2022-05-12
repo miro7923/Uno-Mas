@@ -127,4 +127,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public void updateReviewReadcnt(int review_num) throws Exception {
 		sqlSession.update(NAMESPACE + ".updateReviewReadcnt", review_num);
 	}
+
+	@Override
+	public int getReviewReadCnt(int review_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getReviewReadCnt", review_num);
+	}
 }

@@ -264,7 +264,7 @@
 												onclick="window.parent.location.href = '/mypage/my_QnA'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
-										<div class="comment-option" id="board_review">
+										<div class="comment-option" id="reviewListAjax">
 											<table class="reviewTable" width="100%" border="0"
 												cellpadding="0" cellspacing="0">
 												<caption style="display: none">구매후기 제목</caption>
@@ -305,11 +305,11 @@
 															onmouseout="this.style.background='white'">
 															<td>${reviewVo.review_num }</td>
 															<td align="left" class="reviewTitle"
-																onclick="toggleReview(${it.index});">${reviewVo.review_title }</td>
+																onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
 															<td align="left">${reviewVo.user_id }</td>
 															<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
 															<td>${reviewVo.review_likecnt }</td>
-															<td>${reviewVo.review_readcnt }</td>
+															<td id="reviewReadcnt">${reviewVo.review_readcnt }</td>
 														</tr>
 													</tbody>
 												</table>

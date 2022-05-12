@@ -172,4 +172,11 @@
         SET review_readcnt = review_readcnt + 1
         WHERE review_num = #{review_num}
     </update>
+    
+    <!-- 특정 리뷰글 조회수 가져오기 -->
+    <select id="getReviewReadCnt" resultType="int">
+        SELECT review_readcnt
+        FROM board_review
+        WHERE review_num = #{review_num}
+    </select>
 </mapper>

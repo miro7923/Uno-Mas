@@ -7,7 +7,6 @@ $(document).ready(function() {
 });
 
 function initReview() {
-	alert('initReview() 호출');
 	for (var i = 0; i < 7; i++) {
 		var id = '#reviewContent' + i;
 		$(id).hide();
@@ -15,40 +14,34 @@ function initReview() {
 }
 
 function toggleReview(num) {
-	alert('toggleReview() 호출');
-    var reId = '#review_num' + num;
-    var reNum = $(reId).val();
-    // 조회수 증가
-    $.ajax({
-		type: 'get',
-		url: '/product/update_readcnt',
-		contentType: 'application/json',
-		data: {
-			'prod_num' : $('#prod_num').val(),
-			'review_num' : reNum
-		},
-		success: function() {
-			$('#board_review').load(location.href + ' #board_review');
-			initReview();
-    
-		    // 나머지는 hide로 변경
-			alert('리뷰박스 아이디: #reviewContent'+num);
-			var id = '#reviewContent' + num;
-			$(id).show();
-		    for (var i = 0; i <= 7; i++) {
-		        id = '#reviewContent' + i;
-		        if (i == num) {
-					alert('id: '+id);
-					continue;
-				}
-				
-		        $(id).hide();
-		    }
-		},
-		error: function() {
-			alert('조회수 증가 실패');
-		}
-	});
+	var id = '#reviewContent' + num;
+	$(id).toggle();
+    for (var i = 0; i <= 7; i++) {
+        id = '#reviewContent' + i;
+        if (i == num) continue;
+		
+        $(id).hide();
+    }
+}
+
+function updateReviewReadcnt(num) {
+	var id = '#reviewContent' + num;
+	if ($(id).css('display') == 'none') {		
+	    var reId = '#review_num' + num;
+	    var reNum = $(reId).val();
+	    
+		// 조회수 증가
+	    $.ajax({
+			type: 'get',
+			url: '/product/update_readcnt?prod_num='+$('#prod_num').val()+'&review_num='+reNum,
+			success: function(data) {
+				$('#reviewReadcnt').text(data);
+			},
+			error: function() {
+				alert('조회수 증가 실패');
+			}
+		});
+	}
 }
 
 function initQna() {
