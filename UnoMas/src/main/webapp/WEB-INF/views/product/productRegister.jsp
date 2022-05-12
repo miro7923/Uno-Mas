@@ -54,18 +54,18 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" >
-												<option selected>대분류</option>
+											<select class="selectBox" id="categories">
+												<option value="0" selected="selected">대분류</option>
 												<c:forEach var="cvo" items="${categories }">
-												<option value="">${cvo.topcate_num}. ${cvo.topcate_name }</option>
+												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
 												</c:forEach>
 											</select>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" name="details">
-												<option>소분류</option>
-												<c:forEach var="cvo" items="${categories }">
-												<option value="">${cvo.decate_name }</option>
+											<select class="selectBox" name="details" id="details">
+												<option value="0" selected>소분류</option>
+												<c:forEach var="dvo" items="${details }">
+													<option value="1" class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
 												</c:forEach>
 											</select>
 											<label></label>

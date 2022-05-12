@@ -111,6 +111,7 @@ public class ProductController {
 		List<CategoryVO> categories = service.getTopCategory();
 		List<CategoryVO> details = service.getDCategory();
 		log.info(categories+"");
+		log.info(details+"");
 		model.addAttribute("categories",categories);
 		model.addAttribute("details",details);
 		
