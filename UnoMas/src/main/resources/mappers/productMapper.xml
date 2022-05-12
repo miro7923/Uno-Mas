@@ -73,6 +73,13 @@
         WHERE topcate_num = #{topcate_num}
     </select>
     
+    <!-- 상품 하위 카테고리 가져오기 -->
+    <select id="getDCategory" resultType="CategoryVO">
+    	SELECT *
+    	FROM detail_category
+    	ORDER BY dcate_num
+    </select>
+        
     <!-- 상위 카테고리의 하위 카테고리 목록 가져오기 -->
     <select id="getDcateNames" resultType="String">
         SELECT dcate_name 

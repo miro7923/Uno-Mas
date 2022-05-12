@@ -109,8 +109,11 @@ public class ProductController {
 		log.info("post 페이지 호출");
 		
 		List<CategoryVO> categories = service.getTopCategory();
+		List<CategoryVO> details = service.getDCategory();
 		log.info(categories+"");
 		model.addAttribute("categories",categories);
+		model.addAttribute("details",details);
+		
 		
 		return "product/productRegister";
 	}

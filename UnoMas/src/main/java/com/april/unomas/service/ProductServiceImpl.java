@@ -60,6 +60,12 @@ public class ProductServiceImpl implements ProductService{
 	public String getTopCateName(int topcate_num) throws Exception {
 		return dao.getTopCateName(topcate_num);
 	}
+	
+	@Override
+	public List<CategoryVO> getDCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getDCategory();
+	}
 
 	@Override
 	public List<String> getDcateNames(int topcate_num) throws Exception {

@@ -62,10 +62,11 @@
 											</select>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" name="prod_category">
+											<select class="selectBox" name="details">
 												<option>소분류</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
+												<c:forEach var="cvo" items="${categories }">
+												<option value="">${cvo.decate_name }</option>
+												</c:forEach>
 											</select>
 											<label></label>
 										</div>
