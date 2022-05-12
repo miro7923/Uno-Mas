@@ -15,10 +15,6 @@ public interface UserService {
 
 	// 아이디 중복체크
 	public int idCheck(UserVO vo);
-
-	
-
-	
 	
 	// 로그인
 	public UserVO loginUser(UserVO vo);
@@ -31,7 +27,6 @@ public interface UserService {
 	
 	// 비번 변경
 	public int changePW(UserVO vo);
-	
 	
 	// 회원 정보 가져오기
 	public UserVO getUserInfo(String id);

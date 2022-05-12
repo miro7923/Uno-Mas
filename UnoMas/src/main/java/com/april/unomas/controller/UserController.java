@@ -28,7 +28,6 @@ public class UserController {
 	private UserService service;
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
-	
 	// 회원가입 이용약관 페이지
 	@RequestMapping(value = "/register_agree")
 	public String registerAgree() {
@@ -55,8 +54,6 @@ public class UserController {
 		String res = Integer.toString(service.idCheck(vo));
 		return res;
 	}
-	
-	
 
 	// 로그인 페이지 구현 (GET)
 	// http://localhost:8088/user/login
@@ -80,14 +77,16 @@ public class UserController {
 		UserVO loginVO = service.loginUser(vo);
 		
 		// 로그인 실패
-		if(loginVO == null) {
+		if(loginVO == null || loginVO.getUser_status() != 1) {
 			return "redirect:/user/login";
 		}
+		log.info("로그인 실패");
 		
 		log.info(loginVO+"");
 		
 		// 로그인 성공 및 정보 저장
-		session.setAttribute("loginCheck", loginVO);
+		session.setAttribute("saveID", loginVO);
+		log.info("로그인 성공!");
 		
 		// 메인페이지로 이동
 		return "redirect:/index";
@@ -128,8 +127,6 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
-	
-	
 	// 아이디 찾기
 	@RequestMapping(value = "/find_id")
 	public String findIDGet() {
@@ -169,9 +166,6 @@ public class UserController {
 		return result;
 	}
 	
-	
-	
-	
 	// mypage
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
@@ -186,14 +180,12 @@ public class UserController {
 		return "/user/myInfo";
 	}
 
-	
-
 	// 회원정보수정(GET)
 	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo",method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 		
-		UserVO vo = (UserVO)session.getAttribute("loginCheck");
+		UserVO vo = (UserVO)session.getAttribute("saveID");
 		
 		UserVO infoVO = service.getUserInfo(vo.getUser_id());
 		
@@ -206,10 +198,13 @@ public class UserController {
 	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo",method = RequestMethod.POST)
 	public String myInfoUpdatePOST(UserVO vo) {
-		return "redirect:/user/myPage";
+		
+		log.info("수정한 데이터 : " +vo );
+		
+		service.updateUser(vo);
+		
+		return "redirect:/user/myInfo";
 	}
-	
-	
 	
 	@RequestMapping(value = "/mypoint")
 	public String myPoint() {

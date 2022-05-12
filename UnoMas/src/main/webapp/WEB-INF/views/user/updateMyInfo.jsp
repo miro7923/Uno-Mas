@@ -26,6 +26,7 @@
 			<hr>
 
 			<h3>기본 정보</h3>
+			<form action="updateUser" method="post">
 			<div class="table_div">
 				<table class="table_info"
 					style="margin-bottom: 60px; height: 330px;">
@@ -184,6 +185,7 @@
 			<div style="text-align: center;">
 				<input type="submit" class="updateBtn" value="수정" onclick="">
 			</div>
+			</form>
 
 		</div>
 	</div>

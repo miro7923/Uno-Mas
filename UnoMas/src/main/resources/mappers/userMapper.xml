@@ -24,7 +24,9 @@
   
   <!-- 아이디 중복검사 -->
   <select id="idCheck_sql" resultType="int">
-  	select count(*) from users where user_id=#{user_id}
+  	select count(*) 
+  	from users 
+  	where user_id=#{user_id}
   </select>
   
   <!-- 아이디 찾기 -->
@@ -43,12 +45,16 @@
   
   <!-- 비번 변경 -->
   <update id="changePW_sql">
-  	update users set user_pass=#{user_pass} where user_id=#{user_id}
+  	update users 
+  	set user_pass=#{user_pass} 
+  	where user_id=#{user_id}
   </update>
   
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
-  	select * from users where user_id=#{user_id} and user_pass=#{user_pass} 
+  	select * 
+  	from users 
+  	where user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
   
   <!-- 회원 정보 가져오기 -->
@@ -61,15 +67,16 @@
   
   <!-- 회원정보 수정 -->
   <update id="updateUser">
-  	update users set *
-  	where not user_id=#{user_id},user_regdate=#{user_regdate},user_status=#{user_status},
-  	user_emailagree=#{user_emailagree}, user_point=#{user_point},user_use_point=#{user_use_point}
+  	update users 
+  	set user_pass
+  	where user_id=#{user_id}
   </update>
   
   <!-- 회원탈퇴 -->
-  <delete id="deleteUser">
-  	delete from users 
-  	where not user_id=#{user_id}
-  </delete>
+  <update id="deleteUser">
+  	update users 
+  	set user_status=-1
+  	where user_id=#{user_id}
+  </update>
   
 </mapper>
