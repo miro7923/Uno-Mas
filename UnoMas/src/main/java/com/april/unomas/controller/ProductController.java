@@ -129,6 +129,11 @@ public class ProductController {
 		return "product/shopping-cart";
 	}
 	
+	@RequestMapping(value = "/wishlist")
+	public String wishlist() {
+		return "product/wishlist";
+	}
+	
 	@RequestMapping(value = "/review_writing_form")
 	public String reviewWritingForm() {
 		return "product/reviewWritingForm";
