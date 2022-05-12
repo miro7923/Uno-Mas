@@ -48,7 +48,8 @@
                             <tbody>
                             	<c:forEach items="${list}" var="list">
                                 <tr>
-                                    <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
+                                	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
+                                		<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt="productImg"/></a></td>
                                     <td class="cart-title first-row">
                                         <h5>${list.prod_name}</h5>
                                     </td>
@@ -58,7 +59,7 @@
 		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn">장바구니 담기</button>
                                         </div>
                                     </td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                    <td class="close-td first-row"><a href="/product/wishlist/delete?prod_num=${list.prod_num}"><i class="ti-close" ></i></a></td>
                                 </tr>
                             	</c:forEach>
                             </tbody>

@@ -1,1 +1,11 @@
 @charset "UTF-8";
+.wishImg{
+	padding: 0 !important;
+}
+.wishImg img{
+	height: 70px;
+}
+.cartBtn{
+	padding: .375rem .75rem !important;
+	font-size: 1rem ;
+}

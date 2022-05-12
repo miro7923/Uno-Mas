@@ -5,10 +5,17 @@
 
 <mapper namespace="com.unomas.mapper.wishMapper">
 
-	<!-- 게시물 목록 -->
+	<!-- 찜 목록 -->
 	<select id="list" resultType="com.april.unomas.domain.WishVO">
 	select
 		wish_num, user_num, prod_num, prod_name, prod_price
 	from unomasdb.wishlist
 	</select>
+	
+	<!-- 찜 개별 삭제 -->
+	<delete id="delete" parameterType="int">
+	delete
+	from unomasdb.wishlist
+	where prod_num = #{prod_num}
+	</delete>
 </mapper>

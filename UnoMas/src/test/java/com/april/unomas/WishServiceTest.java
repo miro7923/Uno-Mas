@@ -22,10 +22,15 @@ public class WishServiceTest {
 	
 	private static final Logger log = LoggerFactory.getLogger(WishServiceTest.class);
 	
-	@Test
+//	@Test
 	public void 찜목록출력테스트() throws Exception {
 		log.info(service.list()+"");
 	}
 	
+//	@Test
+	public void 찜개별삭제테스트() throws Exception {
+		service.delete(10);
+		log.info("찜개별삭제 완료!");
+	}
 
 }

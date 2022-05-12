@@ -25,15 +25,20 @@ public class WishDAOTest {
 	
 
 	
-//	@Test
+	@Test
 	public void DAO생성테스트() {
 		log.info("dao : " + dao.toString());
 	}
 	
-	@Test
+//	@Test
 	public void 찜목록출력테스트() throws Exception {
 		log.info(dao.list()+"");
 	}
 	
+//	@Test
+	public void 찜개별삭제테스트() throws Exception {
+		dao.delete(11);
+		log.info("찜개별삭제 완료!");
+	}
 
 }

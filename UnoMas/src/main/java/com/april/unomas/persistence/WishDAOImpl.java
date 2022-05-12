@@ -22,4 +22,10 @@ public class WishDAOImpl implements WishDAO {
 		return sqlSession.selectList(namespace + ".list");
 	}
 
+	@Override
+	public void delete(int prod_num) throws Exception {
+		sqlSession.delete(namespace + ".delete",prod_num);
+		
+	}
+
 }
