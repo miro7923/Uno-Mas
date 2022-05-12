@@ -22,12 +22,6 @@
 
     // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
     boolean isInWishlist = false;
-
-    // @@ 디비에서 평점 정보 받아와서 저장한 뒤 리뷰글에 출력하기로 수정 @@
-    double[] scores = new double[7];
-    for (int i = 0; i < 7; i++) {
-		scores[i] = i+1;
-    }
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -85,7 +79,7 @@
 									</dl>
 									<dl class="list">
 										<dt class="title">중량/용량</dt>
-										<dd class="description">${vo.prod_weight }g</dd>
+										<dd class="description">${vo.prod_weight }</dd>
 									</dl>
 									<hr>
 									<dl class="list">
@@ -105,12 +99,14 @@
 									<hr>
 									<dl class="list">
 										<dt class="title">유통기한</dt>
-										<c:if test="${vo.prod_expire == 0 }">
-											<dd class="description">신선식품으로 별도의 유통기한은 없으나 가급적 빠른 시일 내에 드시길 바랍니다.</dd>
-										</c:if>
-										<c:if test="${vo.prod_expire > 0 }">
-											<dd class="description">수령일 포함 최소 ${vo.prod_expire }일 이상 남은 제품을 보내드립니다.</dd>
-										</c:if>
+										<c:choose>
+											<c:when test="${vo.prod_expire == 0 }">
+												<dd class="description">신선식품으로 별도의 유통기한은 없으나 가급적 빠른 시일 내에 드시길 바랍니다.</dd>
+											</c:when>
+											<c:otherwise>
+												<dd class="description">수령일 포함 최소 ${vo.prod_expire }일 이상 남은 제품을 보내드립니다.</dd>
+											</c:otherwise>
+										</c:choose>
 									</dl>
 									<hr>
 									<dl class="list">
@@ -261,8 +257,8 @@
 											<li><span data-icon="&#x5e"></span> 상품에 대한 후기를 남기는
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
-												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
-												onclick="window.parent.location.href = '/mypage/my_QnA'"
+												문의 및 요청사항은 마이페이지 내  
+												<span onclick="window.parent.location.href = '/mypage/my_QnA'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
 										<div class="comment-option" id="reviewListAjax">
