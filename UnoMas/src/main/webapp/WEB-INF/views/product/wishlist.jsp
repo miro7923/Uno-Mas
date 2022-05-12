@@ -7,6 +7,7 @@
 <html lang="zxx">
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/wishlist.css?after" type="text/css">
 <!-- Start Header -->
 
 <body>
@@ -21,7 +22,6 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <span>위시리스트</span>
-                        <a href="/product/wishlist/wishtest" style="color:black"> 테스트페이지</a>
                     </div>
                 </div>
             </div>
@@ -46,29 +46,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-<%--                             	<c:forEach items="${getWishlist}" var="getWishlist"> --%>
-<!--                                 <tr> -->
-<!--                                     <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td> -->
-<!--                                     <td class="cart-title first-row"> -->
-<%--                                         <h5>${getWishlist.prod_name}</h5> --%>
-<!--                                     </td> -->
-<%--                                     <td class="p-price first-row">${getWishlist.prod_price}</td> --%>
-<!--                                     <td class="cartInFirst"> -->
-<!--                                         <div class="quantity"> -->
-<!-- 		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn">장바구니 담기</button> -->
-<!--                                         </div> -->
-<!--                                     </td> -->
-<!--                                     <td class="close-td first-row"><i class="ti-close"></i></td> -->
-<!--                                 </tr> -->
-<%--                             	</c:forEach> --%>
+                            	<c:forEach items="${list}" var="list">
+                                <tr>
+                                    <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
+                                    <td class="cart-title first-row">
+                                        <h5>${list.prod_name}</h5>
+                                    </td>
+                                    <td class="p-price first-row">${list.prod_price}</td>
+                                    <td class="cartInFirst">
+                                        <div class="quantity">
+		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn">장바구니 담기</button>
+                                        </div>
+                                    </td>
+                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                </tr>
+                            	</c:forEach>
                             </tbody>
                         </table>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <a href="index" class="primary-btn continue-shop">쇼핑 계속하기</a>
-                                <a href="shopping-cart" class="primary-btn up-cart">장바구니로 이동</a>
+                                <a href="/index" class="primary-btn continue-shop">쇼핑 계속하기</a>
+                                <a href="/product/shopping-cart" class="primary-btn up-cart">장바구니로 이동</a>
                             </div>
                         </div>
                     </div>

@@ -6,9 +6,9 @@
 <mapper namespace="com.unomas.mapper.wishMapper">
 
 	<!-- 게시물 목록 -->
-	<select id="list" resultType="com.april.unomas.WishVO">
+	<select id="list" resultType="com.april.unomas.domain.WishVO">
 	select
 		wish_num, user_num, prod_num, prod_name, prod_price
-	from wishlist
+	from unomasdb.wishlist
 	</select>
 </mapper>
