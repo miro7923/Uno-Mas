@@ -122,4 +122,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public String getUserid(int user_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getUserid", user_num);
 	}
+
+	@Override
+	public void updateReviewReadcnt(int review_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateReviewReadcnt", review_num);
+	}
 }

@@ -65,4 +65,7 @@ public interface ProductDAO {
 	
 	// 회원 번호로 회원 아이디 가져오는 메서드
 	public String getUserid(int user_num) throws Exception;
+	
+	// 리뷰글 조회수 증가
+	public void updateReviewReadcnt(int review_num) throws Exception;
 }

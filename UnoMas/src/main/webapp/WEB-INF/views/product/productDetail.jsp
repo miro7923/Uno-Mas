@@ -49,6 +49,7 @@
 						<div class="col-lg-6">
 							<div class="product-details">
 								<div class="pd-title">
+								    <input type="hidden" value="${vo.prod_num }" id="prod_num">
 									<h3>${vo.prod_name }</h3>
 								</div>
 								<div class="pd-desc">
@@ -263,7 +264,7 @@
 												onclick="window.parent.location.href = '/mypage/my_QnA'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
-										<div class="comment-option">
+										<div class="comment-option" id="board_review">
 											<table class="reviewTable" width="100%" border="0"
 												cellpadding="0" cellspacing="0">
 												<caption style="display: none">구매후기 제목</caption>
@@ -287,7 +288,7 @@
 												</tbody>
 											</table>
 											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<c:forEach var="vo" items="${reviewList }" varStatus="it">
+											<c:forEach var="reviewVo" items="${reviewList }" varStatus="it">
 												<table class="reviewTable" width="100%" border="0"
 													cellpadding="0" cellspacing="0">
 													<caption style="display: none">구매후기 제목</caption>
@@ -302,18 +303,21 @@
 													<tbody>
 														<tr onmouseover="this.style.background='#f0f0f0'"
 															onmouseout="this.style.background='white'">
-															<td>${vo.review_num }</td>
+															<td>${reviewVo.review_num }</td>
 															<td align="left" class="reviewTitle"
-																onclick="toggleReview(${it.index});">${vo.review_title }</td>
-															<td align="left">${vo.user_id }</td>
-															<td><fmt:formatDate value="${vo.review_regdate }" type="date"/></td>
-															<td>${vo.review_likecnt }</td>
-															<td>${vo.review_readcnt }</td>
+																onclick="toggleReview(${it.index});">${reviewVo.review_title }</td>
+															<td align="left">${reviewVo.user_id }</td>
+															<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
+															<td>${reviewVo.review_likecnt }</td>
+															<td>${reviewVo.review_readcnt }</td>
 														</tr>
 													</tbody>
 												</table>
 												<div class="reviewContent" id="reviewContent${it.index }">
-													<p>평점 : <span>0.0 / 5.0</span></p>
+												    <input type="hidden" value="${reviewVo.review_num }" id="review_num${it.index }">
+												    <strong>${vo.prod_name }</strong>
+													<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p>
+													<p>${reviewVo.review_content }</p>
 												</div>
 											</c:forEach>
 											

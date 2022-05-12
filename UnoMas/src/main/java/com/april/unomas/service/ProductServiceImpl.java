@@ -114,4 +114,9 @@ public class ProductServiceImpl implements ProductService{
 	public String getUserid(int user_num) throws Exception {
 		return dao.getUserid(user_num);
 	}
+
+	@Override
+	public void updateReviewReadcnt(int review_num) throws Exception {
+		dao.updateReviewReadcnt(review_num);
+	}
 }

@@ -1,6 +1,7 @@
 package com.april.unomas;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
@@ -54,7 +55,7 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	public void 상품하나출력테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_detail?prod_num=23");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(model().attributeExists("vo")).andDo(print());
@@ -91,5 +92,12 @@ public class ProductControllerTest {
 				.param("review_title", "청경채 후기").param("review_content", "후기 내용"))
 		.andExpect(status().is3xxRedirection())
 		.andExpect(redirectedUrl("/product/product_detail?prod_num=10")).andDo(print());
+	}
+	
+	@Test
+	public void 리뷰조회수증가테스트() throws Exception {
+		mvc.perform(post("/product/update_readcnt").param("review_num", "4").param("prod_num", "84"))
+		.andExpect(status().is2xxSuccessful())
+		.andDo(print());
 	}
 }

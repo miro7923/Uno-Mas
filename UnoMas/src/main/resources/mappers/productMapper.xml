@@ -165,4 +165,11 @@
         FROM board_review
         WHERE prod_num = #{prod_num}
     </select>
+    
+    <!-- 리뷰글 조회수 증가 -->
+    <update id="updateReviewReadcnt">
+        UPDATE board_review
+        SET review_readcnt = review_readcnt + 1
+        WHERE review_num = #{review_num}
+    </update>
 </mapper>
