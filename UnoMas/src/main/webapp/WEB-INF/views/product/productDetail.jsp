@@ -366,35 +366,42 @@
 													</tr>
 												</tbody>
 											</table>
-											<c:forEach var="inquiryVo" items="${inquiryList }" varStatus="it">
-												<table class="reviewTable" width="100%" border="0"
-													cellpadding="0" cellspacing="0">
-													<caption style="display: none">문의 제목</caption>
-													<colgroup>
-														<col style="width: 110px;">
-														<col style="width: auto;">
-														<col style="width: 77px;">
-														<col style="width: 100px;">
-													</colgroup>
-													<tbody>
-														<tr onmouseover="this.style.background='#f0f0f0'"
-															onmouseout="this.style.background='white'">
-															<td>${inquiryVo.p_inquiry_num }</td>
-															<td align="left" class="reviewTitle"
-																onclick="toggleQna(${it.index});">${inquiryVo.p_inquiry_title }</td>
-															<td align="left">${inquiryVo.user_id }</td>
-															<td><fmt:formatDate value="${inquiryVo.p_inquiry_regdate }" type="date"/></td>
-														</tr>
-													</tbody>
-												</table>
-												<div class="reviewContent" id="qnaContent${it.index }">
-													<p>${inquiryVo.p_inquiry_content }</p>
-													<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
-													<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
-													<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
-													<p class="text-right"><a href="#">답변하기</a></p>
-												</div>
-											</c:forEach>
+											<c:choose>
+											    <c:when test="${fn:length(inquiryList) == 0 }">
+											        <p class="text-center nonPost">아직 등록된 문의가 없습니다.</p>
+											    </c:when>
+											    <c:otherwise>
+													<c:forEach var="inquiryVo" items="${inquiryList }" varStatus="it">
+														<table class="reviewTable" width="100%" border="0"
+															cellpadding="0" cellspacing="0">
+															<caption style="display: none">문의 제목</caption>
+															<colgroup>
+																<col style="width: 110px;">
+																<col style="width: auto;">
+																<col style="width: 77px;">
+																<col style="width: 100px;">
+															</colgroup>
+															<tbody>
+																<tr onmouseover="this.style.background='#f0f0f0'"
+																	onmouseout="this.style.background='white'">
+																	<td>${inquiryVo.p_inquiry_num }</td>
+																	<td align="left" class="reviewTitle"
+																		onclick="toggleQna(${it.index});">${inquiryVo.p_inquiry_title }</td>
+																	<td align="left">${inquiryVo.user_id }</td>
+																	<td><fmt:formatDate value="${inquiryVo.p_inquiry_regdate }" type="date"/></td>
+																</tr>
+															</tbody>
+														</table>
+														<div class="reviewContent" id="qnaContent${it.index }">
+															<p>${inquiryVo.p_inquiry_content }</p>
+															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
+															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
+															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<p class="text-right"><a href="#">답변하기</a></p>
+														</div>
+													</c:forEach>
+											    </c:otherwise>
+											</c:choose>
 											<div class="col-lg-12 reviewBtnArea">
 												<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
 												문의하기
