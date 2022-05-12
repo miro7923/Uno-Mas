@@ -29,11 +29,17 @@ textarea {
     padding: 5px;
 }
 
-
+.checkbox_div {
+	text-align: right;
+	margin: 20px 10px;
+}
+.warn_text {
+	color: red;
+	margin-bottom: 0px;
+	font-size: 13px;
+}
 .agree_input {
-	float: right;
-    margin: 20px;
-    font-size: 16px;
+	font-size: 16px;
     cursor: pointer;
 }
 .agree_input > input {
@@ -50,16 +56,19 @@ textarea {
 	text-decoration: none;
 }
 .agree_submit input {
+	border: 1px solid #d5d5d5;
+    width: 170px;
+    padding: 5px 0px;
+    border: none;
+    color: black;
+}
+.submit_button {
 	background-color: #B9CE45;
     width: 170px;
     padding: 5px 0px;
     border: none;
-    color: white;
+    color: white !important;
     font-weight: bold;
 }
-
-
-
-
 
 

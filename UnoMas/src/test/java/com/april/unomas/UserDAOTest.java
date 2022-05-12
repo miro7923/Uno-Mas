@@ -10,7 +10,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
+import com.april.unomas.service.SmsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -29,16 +31,15 @@ public class UserDAOTest {
 		log.info(dao.toString());
 	}
 	
-	@Test
+//	@Test
 	public void DB시간확인() {
 		
 		String time = dao.getTime();
 		log.info("DB시간 : " + time);
 	}
 	
-	@Test
+//	@Test
 	public void 관리자등록확인() {
-		
 		AdminVO vo = new AdminVO();
 		vo.setAdmin_id("admin");
 		vo.setAdmin_pass("1234");
@@ -48,4 +49,15 @@ public class UserDAOTest {
 		log.info("TEST : 관리자 등록 완료");
 		log.info("TEST : vo - " + vo);
 	}
+	
+//	@Test
+	public void 비번변경테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user1");
+		vo.setUser_pass("Tmvmfld00@");
+		dao.changePW(vo);
+	}
+	
+	
+	
 }
