@@ -40,17 +40,21 @@ public class WishDAOTest {
 	public void 찜추가테스트() throws Exception {
 		WishVO vo = new WishVO();
 		vo.setUser_num(1);
-		vo.setProd_num(10);
-		vo.setProd_name("청경채");
-		vo.setProd_price(2000);
+		vo.setProd_num(11);
 		dao.insertWish(vo);
 		log.info("찜추가 완료!");
 	}
 	
 //	@Test
 	public void 찜개별삭제테스트() throws Exception {
-		dao.delete(10);
+		dao.deleteWish(10);
 		log.info("찜개별삭제 완료!");
+	}
+	
+//	@Test
+	public void 찜전체삭제테스트() throws Exception {
+		dao.deleteAllWish(1);
+		log.info("찜전체삭제 완료!");
 	}
 
 }

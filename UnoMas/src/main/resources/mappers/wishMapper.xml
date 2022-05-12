@@ -18,16 +18,23 @@
 	<!-- 찜 추가 -->
 	<insert id="insertWish">
 	insert into unomasdb.wishlist(
-		user_num, prod_num, prod_name, prod_price
+		user_num, prod_num
 	) values (
-		#{user_num}, #{prod_num}, #{prod_name}, #{prod_price}
+		#{user_num}, #{prod_num}
 	)
 	</insert>
 	
 	<!-- 찜 개별 삭제 -->
-	<delete id="delete" parameterType="int">
+	<delete id="deleteWish" parameterType="int">
 	delete
 	from unomasdb.wishlist
 	where prod_num = #{prod_num}
+	</delete>
+	
+	<!-- 찜 전체 삭제 -->
+	<delete id="deleteAllWish" parameterType="int">
+	delete
+	from unomasdb.wishlist
+	where user_num = #{user_num}
 	</delete>
 </mapper>

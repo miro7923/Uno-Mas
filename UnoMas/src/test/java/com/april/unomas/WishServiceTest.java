@@ -33,16 +33,19 @@ public class WishServiceTest {
 		WishVO vo = new WishVO();
 		vo.setUser_num(1);
 		vo.setProd_num(10);
-		vo.setProd_name("청경채");
-		vo.setProd_price(2000);
 		service.insertWish(vo);
 		log.info("찜추가 완료!");
 	}
 	
 //	@Test
 	public void 찜개별삭제테스트() throws Exception {
-		service.delete(10);
+		service.deleteWish(10);
 		log.info("찜개별삭제 완료!");
 	}
 
+//	@Test
+	public void 찜전체삭제테스트() throws Exception {
+		service.deleteAllWish(1);
+		log.info("찜전체삭제 완료!");
+	}
 }

@@ -23,8 +23,8 @@ public class WishDAOImpl implements WishDAO {
 	}
 
 	@Override
-	public void delete(int prod_num) throws Exception {
-		sqlSession.delete(namespace + ".delete",prod_num);
+	public void deleteWish(int prod_num) throws Exception {
+		sqlSession.delete(namespace + ".deleteWish",prod_num);
 		
 	}
 
@@ -32,6 +32,11 @@ public class WishDAOImpl implements WishDAO {
 	public void insertWish(WishVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertWish",vo);
 		
+	}
+
+	@Override
+	public void deleteAllWish(int user_num) throws Exception {
+		sqlSession.delete(namespace + ".deleteAllWish",user_num);
 	}
 
 }

@@ -3,6 +3,7 @@ package com.april.unomas.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +37,22 @@ public class WishController {
 	}
 	
 	// 찜 개별 삭제
-	@RequestMapping(value = "/wishlist/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/wishlist/deleteWish", method = RequestMethod.GET)
 	public String getDelete(@RequestParam("prod_num") int prod_num) throws Exception {
 	  
-	 service.delete(prod_num);  
+		service.deleteWish(prod_num);  
 
-	 return "redirect:/product/wishlist";
+		return "redirect:/product/wishlist";
+	}
+	
+	// 찜 전체 삭제
+	@RequestMapping(value = "/wishlist/deleteAllWish.do")
+	public String deleteAll(HttpSession session) throws Exception {
+		Integer user_num=(Integer)session.getAttribute("user_num");
+		if(user_num!=null) {
+			service.deleteAllWish(user_num);
+		}
+	    return "redirect:/product/wishlist";
 	}
 
 }

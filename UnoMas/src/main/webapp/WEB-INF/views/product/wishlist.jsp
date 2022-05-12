@@ -11,6 +11,22 @@
 <!-- Start Header -->
 
 <body>
+	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+	<script>
+		function selectAll(selectAll){ // 전체 체크박스기능
+			const checkboxes = document.getElementsByName('wishCheck');
+			checkboxes. forEach((checkbox) => {
+				checkbox.checked = selectAll.checked;
+			})
+		}
+		$(function(){ // 장바구니 비우기
+			$("#btnDelete").click(function(){
+				if(confirm("장바구니를 비우시겠습니까?")){
+					location.href="${path}/product/wishlist/deleteAllWish.do";
+				}
+			});
+		});
+	</script>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
@@ -38,6 +54,7 @@
                         <table>
                             <thead>
                                 <tr>
+                                	<th class="wishCheck"><input type="checkbox" name="wishCheck" value="selectall" onclick='selectAll(this)'/></th>
                                     <th>이미지</th>
                                     <th class="p-name">상품정보</th>
                                     <th>가격</th>
@@ -46,8 +63,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach items="${list}" var="list">
+                            	<c:forEach items="${list}" var="list" varStatus="i">
                                 <tr>
+                                	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check"/></td>
                                 	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
                                 		<img src="${path}/resources/img/product-single/${list.prod_num}.jpeg" alt="productImg"/></a></td>
                                     <td class="cart-title first-row">
@@ -59,7 +77,7 @@
 		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn">장바구니 담기</button>
                                         </div>
                                     </td>
-                                    <td class="close-td first-row"><a href="/product/wishlist/delete?prod_num=${list.prod_num}"><i class="ti-close" ></i></a></td>
+                                    <td class="close-td first-row"><a href="/product/wishlist/deleteWish?prod_num=${list.prod_num}"><i class="ti-close" ></i></a></td>
                                 </tr>
                             	</c:forEach>
                             </tbody>
@@ -68,8 +86,9 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <a href="/index" class="primary-btn continue-shop">쇼핑 계속하기</a>
-                                <a href="/product/shopping-cart" class="primary-btn up-cart">장바구니로 이동</a>
+                                <a href="#" class="primary-btn deleteCheck">선택삭제</a>
+                                <button type="button" id="btnDelete" class="primary-btn deleteAllWish">전체 삭제</button>
+                                <a href="/product/shopping-cart" class="primary-btn up-cart">선택담기</a>
                             </div>
                         </div>
                     </div>
