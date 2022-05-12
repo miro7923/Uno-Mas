@@ -35,9 +35,12 @@ public class ProductAjaxController {
 	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)
-	public void updateReviewReadcntGET(@RequestParam int review_num, @RequestParam int prod_num,
+	public String updateReviewReadcntGET(@RequestParam int review_num, @RequestParam int prod_num,
 			Model model) throws Exception {
 		service.updateReviewReadcnt(review_num);
 		model.addAttribute("vo", service.getProduct(prod_num));
+		model.addAttribute("reviewList", service.getReviewList(prod_num));
+		
+		return "/product/reviewListAjax";
 	}
 }

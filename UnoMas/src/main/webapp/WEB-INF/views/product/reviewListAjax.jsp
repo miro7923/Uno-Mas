@@ -1,4 +1,6 @@
-<div class="comment-option" id="reviewListAjax">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<div class="comment-option" id="board_review">
 	<table class="reviewTable" width="100%" border="0" cellpadding="0"
 		cellspacing="0">
 		<caption style="display: none">구매후기 제목</caption>
