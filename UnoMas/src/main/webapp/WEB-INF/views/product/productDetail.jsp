@@ -310,19 +310,22 @@
 																		onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
 																	<td align="left">${reviewVo.user_id }</td>
 																	<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
-																	<td>${reviewVo.review_likecnt }</td>
-																	<td id="reviewReadcnt">${reviewVo.review_readcnt }</td>
+																	<td id="reviewLikecnt${it.index }">${reviewVo.review_likecnt }</td>
+																	<td id="reviewReadcnt${it.index }">${reviewVo.review_readcnt }</td>
 																</tr>
 															</tbody>
 														</table>
 														<div class="reviewContent" id="reviewContent${it.index }">
 														    <input type="hidden" value="${reviewVo.review_num }" id="review_num${it.index }">
 														    <strong>${vo.prod_name }</strong>
-															<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p>
+															<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p><br>
 															<p>${reviewVo.review_content }</p>
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
 															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<p class="text-right">
+															    <button type="button" class="site-btn likeBtn" onclick="addLikeCnt(${it.index});">좋아요</button>
+															</p>
 														</div>
 													</c:forEach>
 												</c:otherwise>

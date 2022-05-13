@@ -70,8 +70,11 @@ public interface ProductDAO {
 	// 리뷰글 조회수 증가
 	public void updateReviewReadcnt(int review_num) throws Exception;
 	
-	// 특정 리뷰글 조회수 가져오기
-	public int getReviewReadCnt(int review_num) throws Exception;
+	// 특정 리뷰글 정보 가져오기
+	public BoardReviewVO getReview(int review_num) throws Exception;
+	
+	// 리뷰글 좋아요 증가
+	public void updateReviewLikeCnt(int review_num) throws Exception;
 	
 	// 상품별 문의글 목록 가져오기
 	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception;

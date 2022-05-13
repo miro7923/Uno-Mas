@@ -35,13 +35,26 @@ function updateReviewReadcnt(num) {
 			type: 'get',
 			url: '/product/update_readcnt?prod_num='+$('#prod_num').val()+'&review_num='+reNum,
 			success: function(data) {
-				$('#reviewReadcnt').text(data);
+				$('#reviewReadcnt'+num).text(data);
 			},
 			error: function() {
 				alert('조회수 증가 실패');
 			}
 		});
 	}
+}
+
+function addLikeCnt(review_num) {
+	$.ajax({
+		type: 'get',
+		url: '/product/update_likecnt?review_num='+review_num,
+		success: function(data) {
+			$('#reviewLikecnt' + review_num).text(data);
+		},
+		error: function() {
+			alert('좋아요 증가 실패');
+		}
+	});
 }
 
 function initQna() {

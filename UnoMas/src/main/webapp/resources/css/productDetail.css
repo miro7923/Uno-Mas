@@ -12,6 +12,10 @@ a:hover {
 	color: #5179a5;
 }
 
+.likeBtn {
+	padding: 8px 23px 7px;
+}
+
 .footerInquiry a:link, a:visited {
 	color: #5179a5;
 }

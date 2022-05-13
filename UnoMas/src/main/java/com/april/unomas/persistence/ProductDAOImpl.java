@@ -130,7 +130,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public int getReviewReadCnt(int review_num) throws Exception {
+	public BoardReviewVO getReview(int review_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getReviewReadCnt", review_num);
 	}
 
@@ -142,5 +142,10 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public void insertInquiry(ProdInquiryVO vo) throws Exception {
 		sqlSession.insert(NAMESPACE + ".insertInquiry", vo);
+	}
+
+	@Override
+	public void updateReviewLikeCnt(int review_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateLikecnt", review_num);
 	}
 }

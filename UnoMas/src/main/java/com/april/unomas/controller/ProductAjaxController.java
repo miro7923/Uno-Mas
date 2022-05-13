@@ -36,10 +36,16 @@ public class ProductAjaxController {
 	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)
-	public int updateReviewReadcntGET(@RequestParam int review_num, @RequestParam int prod_num,
-			Model model) throws Exception {
+	public int updateReviewReadcntGET(@RequestParam int review_num) throws Exception {
 		service.updateReviewReadcnt(review_num);
 		
-		return service.getReviewReadCnt(review_num);
+		return service.getReview(review_num).getReview_readcnt();
+	}
+	
+	@RequestMapping(value = "/update_likecnt", method = RequestMethod.GET)
+	public int addReviewLikeCnt(@RequestParam int review_num) throws Exception {
+		service.addReviewLikeCnt(review_num);
+		
+		return service.getReview(review_num).getReview_likecnt();
 	}
 }

@@ -173,9 +173,9 @@
         WHERE review_num = #{review_num}
     </update>
     
-    <!-- 특정 리뷰글 조회수 가져오기 -->
-    <select id="getReviewReadCnt" resultType="int">
-        SELECT review_readcnt
+    <!-- 특정 리뷰글 정보 가져오기 -->
+    <select id="getReviewReadCnt" resultType="BoardReviewVO">
+        SELECT *
         FROM board_review
         WHERE review_num = #{review_num}
     </select>
@@ -192,4 +192,11 @@
         INSERT INTO prod_inquiry(user_num, prod_num, p_inquiry_title, p_inquiry_content)
         VALUES(#{user_num}, #{prod_num}, #{p_inquiry_title}, #{p_inquiry_content})
     </insert>
+    
+    <!-- 리뷰글 좋아요 증가 -->
+    <update id="updateLikecnt">
+        UPDATE board_review
+        SET review_likecnt = review_likecnt + 1
+        WHERE review_num = #{review_num}
+    </update>
 </mapper>

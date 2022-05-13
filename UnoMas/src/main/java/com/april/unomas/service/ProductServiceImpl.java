@@ -122,8 +122,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public int getReviewReadCnt(int review_num) throws Exception {
-		return dao.getReviewReadCnt(review_num);
+	public BoardReviewVO getReview(int review_num) throws Exception {
+		return dao.getReview(review_num);
 	}
 
 	@Override
@@ -134,5 +134,10 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void insertInquiry(ProdInquiryVO vo) throws Exception {
 		dao.insertInquiry(vo);
+	}
+
+	@Override
+	public void addReviewLikeCnt(int review_num) throws Exception {
+		dao.updateReviewLikeCnt(review_num);
 	}
 }
