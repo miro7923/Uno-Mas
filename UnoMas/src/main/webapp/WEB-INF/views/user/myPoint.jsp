@@ -15,7 +15,6 @@
 <jsp:include page="../inc/header.jsp"></jsp:include>
 <!--   <div style="height: 80px; border-bottom: 1px solid black; background-color: green">헤더</div> -->
 		
-	
   <div class="point_container">
 	<jsp:include page="myPageLeftBar.jsp"></jsp:include>
 	
@@ -93,7 +92,7 @@
 			<%
 				// 이전을 누르면 이전 블럭의 제일 첫 페이지로 이동!
 				//if(startPage > pageBlock) {
-					%><a>[이전]</a> <%
+					%><a href="" class="previous_daum">[이전]</a> <%
 				//}
 			%>
 
@@ -105,7 +104,7 @@
 
 			<%
 				//if(endPage < pageCount) {
-					%><a href="">[다음]</a> <%
+					%><a href="" class="previous_daum">[다음]</a> <%
 				//}
 			%>
 
@@ -131,5 +130,15 @@
 
 <!-- 	<div style="border-top: 1px solid black; height: 200px; background-color: green; clear:left;"> 푸터 </div> -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/resources/js/bootstrap.min.js"></script>
+    <script src="${path}/resources/js/jquery-ui.min.js"></script>
+    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
+    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
+    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
+    <script src="${path}/resources/js/jquery.dd.min.js"></script>
+    <script src="${path}/resources/js/jquery.slicknav.js"></script>
+    <script src="${path}/resources/js/owl.carousel.min.js"></script>
+    <script src="${path}/resources/js/main.js"></script>
 </body>
 </html>

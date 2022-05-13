@@ -12,15 +12,15 @@
 </head>
 
 <body>
-  <div style="height: 80px; border-bottom: 1px solid black; background-color: green">헤더</div>
-
+  <jsp:include page="../inc/top.jsp"></jsp:include>
+  <jsp:include page="../inc/header.jsp"></jsp:include>
 
   <div class="delUser_container">
 	<jsp:include page="myPageLeftBar.jsp"></jsp:include>
 
 	<div class="delUser_right_container">
 	
-		<h3>회원탈퇴</h3>
+		<h3 class="delUser_h3">회원탈퇴</h3>
 	
 		<div class="myinfo_box">
 			<ul>
@@ -86,9 +86,9 @@
 					
 					
 		<h3>회원 정보 확인</h3>
+		<form action="delete_user" method="post">
 		<table class="table_info">
 			<colgroup><col style="width: 164px;"><col style="width: *;"></colgroup>
-				
 			<tbody>
 				<tr>
 					<th>아이디(이메일)</th>
@@ -109,9 +109,10 @@
 			
 			
 		<div class="btn_area">
-			<a href="" class="btn_submit">탈퇴</a>
-			<a href="" class="btn_cancle">취소</a>
+			<input type="submit" class="btn_submit" value="탈퇴">
+			<a href="" class="btn_cancle" style="color: black">취소</a>
 		</div>
+		</form>
 				
 			
 
@@ -119,8 +120,20 @@
 	</div> <!-- 우측 컨테이너 -->
   </div> <!-- 전체 컨테이너 -->
 
-	<div style="border-top: 1px solid black; height: 200px; background-color: green; clear:left;"> 푸터 </div>
-   
+  <jsp:include page="../inc/bottom.jsp"></jsp:include>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/resources/js/bootstrap.min.js"></script>
+    <script src="${path}/resources/js/jquery-ui.min.js"></script>
+    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
+    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
+    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
+    <script src="${path}/resources/js/jquery.dd.min.js"></script>
+    <script src="${path}/resources/js/jquery.slicknav.js"></script>
+    <script src="${path}/resources/js/owl.carousel.min.js"></script>
+    <script src="${path}/resources/js/main.js"></script> 
 
 </body>
 </html>

@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -14,34 +16,17 @@
 <!-- Header end -->
 
 <%
+    String user_id = (String) session.getAttribute("user_id");
+
+    int user_num = 1;
+
     // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
     boolean isInWishlist = false;
-
-    // @@ 디비에서 평점 정보 받아와서 저장한 뒤 리뷰글에 출력하기로 수정 @@
-    double[] scores = new double[7];
-    for (int i = 0; i < 7; i++) {
-		scores[i] = i+1;
-    }
 %>
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- Header End -->
-
-	<!-- Breadcrumb Section Begin -->
-	<!-- <div class="breacrumb-section">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="breadcrumb-text product-more">
-						<a href="./home.html"><i class="fa fa-home"></i> Home</a> <a
-							href="shop">Shop</a> <span>Detail</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-	<!-- Breadcrumb Section Begin -->
 
 	<!-- Product Shop Section Begin -->
 	<section class="product-shop spad page-details">
@@ -54,50 +39,47 @@
 								<img class="product-big-img"
 									src="${path}/resources/img/product-single/product_vegi01.jpeg"
 									alt="">
-								<!-- <div class="zoom-icon">
-                                    <i class="fa fa-search-plus"></i>
-                                </div> -->
 							</div>
-							<%-- <div class="product-thumbs">
-                                <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt active" data-imgbigurl="img/product-single/product_salad01.webp"><img
-                                            src="${path}/resources/img/product-single/product_salad01.webp" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-2.jpg"><img
-                                            src="${path}/resources/img/product-single/product-2.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="${path}/resources/img/product-single/product-3.jpg" alt=""></div>
-                                    <div class="pt" data-imgbigurl="img/product-single/product-3.jpg"><img
-                                            src="${path}/resources/img/product-single/product-3.jpg" alt=""></div>
-                                </div>
-                            </div> --%>
 						</div>
 						<div class="col-lg-6">
 							<div class="product-details">
 								<div class="pd-title">
-									<h3>청경채</h3>
+								    <input type="hidden" value="${vo.prod_num }" id="prod_num">
+									<h3>${vo.prod_name }</h3>
 								</div>
-								<!-- <div class="pd-rating">
-									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star-o"></i> <span>(5)</span>
-								</div> -->
 								<div class="pd-desc">
-									<p>아삭하고 부드러운</p>
+									<p>${vo.prod_explain }</p>
 								</div>
 								<div class="pd-desc">
 									<h5 class="priceText top">
-										<span id="price">2,190</span> 원
+									    <c:choose>
+									        <c:when test="${vo.prod_discntrate eq 0 }">
+											    <input type="hidden" id="originPrice" value="${vo.prod_price }">
+												<span class="finalPrice"><fmt:formatNumber value="${vo.prod_price }" type="number"/></span> 원
+									        </c:when>
+									        <c:otherwise>
+									            <div class="saleSubTit">회원할인가</div>
+									            <c:set var="discnted" value="${vo.prod_price*(100-vo.prod_discntrate)/100}"/>
+									            <c:set var="discntedPrice" value="${discnted+((discnted%10>5)?(10-(discnted%10))%10:-(discnted%10))}"/>
+									            <input type="hidden" id="originPrice" value="<fmt:formatNumber value="${discntedPrice }" type="number"/>">
+									            <span class="finalPrice"><fmt:formatNumber value="${discntedPrice }" type="number"/></span> 원 &nbsp;
+									            <span class="finalPrice discntRate">${vo.prod_discntrate }%</span>
+									            <div class="discnted"><fmt:formatNumber value="${vo.prod_price}" type="number"/>원</div>
+									        </c:otherwise>
+									    </c:choose>
 									</h5>
-									<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
+									<%if (user_id == null) { %>
+										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
+									<% } %>
 								</div>
 								<div class="pd-tags">
 									<dl class="list first">
 										<dt class="title">판매단위</dt>
-										<dd class="description">1팩</dd>
+										<dd class="description">${vo.prod_sellunit }</dd>
 									</dl>
 									<dl class="list">
 										<dt class="title">중량/용량</dt>
-										<dd class="description">300g</dd>
+										<dd class="description">${vo.prod_weight }</dd>
 									</dl>
 									<hr>
 									<dl class="list">
@@ -107,19 +89,31 @@
 									<hr>
 									<dl class="list">
 										<dt class="title">원산지</dt>
-										<dd class="description">국산</dd>
+										<dd class="description">${vo.prod_country }</dd>
 									</dl>
 									<hr>
 									<dl class="list">
 										<dt class="title">포장타입</dt>
-										<dd class="description">냉장/스티로품</dd>
+										<dd class="description">${vo.prod_packing }</dd>
+									</dl>
+									<hr>
+									<dl class="list">
+										<dt class="title">유통기한</dt>
+										<c:choose>
+											<c:when test="${vo.prod_expire == 0 }">
+												<dd class="description">신선식품으로 별도의 유통기한은 없으나 가급적 빠른 시일 내에 드시길 바랍니다.</dd>
+											</c:when>
+											<c:otherwise>
+												<dd class="description">수령일 포함 최소 ${vo.prod_expire }일 이상 남은 제품을 보내드립니다.</dd>
+											</c:otherwise>
+										</c:choose>
 									</dl>
 									<hr>
 									<dl class="list">
 										<div class="quantity">
 											<dt class="title">구매수량</dt>
 											<div class="pro-qty">
-												<input type="text" value="1">
+												<input type="text" id="quantity" value="1">
 											</div>
 											<br>
 										</div>
@@ -127,15 +121,10 @@
 								</div>
 								<div class="pd-desc">
 									<h5 class="priceText">
-										총 상품금액 : <span id="price">2,190</span> 원
+										총 상품금액 : <span id="totalPrice"></span> 원
 									</h5>
 								</div>
-								<div class="quantity">
-									<!--
-                                    <div class="pro-qty">
-                                        <input type="text" value="1">
-                                    </div>
--->
+								<div class="quantity justify-content-end">
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
                                     <%if (isInWishlist) { %>
@@ -146,137 +135,18 @@
 									    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
 									        onclick="toggleWishlistBtn();"></button>
 								   <% } %>
-									<a href="shopping-cart" class="primary-btn pd-cart">장바구니 담기</a>
+								   <form action="/product/insert_cart">
+								   </form>
+								       <input type="hidden" id="user_num" value="<%=user_num%>">
+								       <input type="hidden" id="prod_num" value="${vo.prod_num }">
+								       <input type="hidden" id="prod_amount" value="1">
+									<button class="primary-btn pd-cart" id="cartBtn" 
+									    >장바구니 담기</button> 
 								</div>
-								<!--
-                                <div class="pd-share">
-                                    <div class="p-code">Sku : 00012</div>
-                                    <div class="pd-social">
-                                        <a href="#"><i class="ti-facebook"></i></a>
-                                        <a href="#"><i class="ti-twitter-alt"></i></a>
-                                        <a href="#"><i class="ti-linkedin"></i></a>
-                                    </div>
-                                </div>
--->
 							</div>
 						</div>
 					</div>
 					<br> <br>
-
-
-					<!-- Related Products Section End -->
-					<%-- <div class="related-products spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>Related Products</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-1.jpg" alt="">
-                            <div class="sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-2.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-3.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="${path}/resources/img/products/women-4.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --%>
-					<!-- Related Products Section End -->
 
 					<div class="product-tab">
 						<div class="tab-item">
@@ -286,9 +156,9 @@
 								<li><a data-toggle="tab" href="#tab-2" role="tab">상세정보</a>
 								</li>
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
-								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="toggleReview(0);">후기
-										(02)</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="toggleQna(0);">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
+										(${reviewCnt })</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -339,15 +209,14 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-2" role="tabpanel">
-									<!-- id 선택자 지정해 놓은 곳만 바뀌면 됨 -->
 									<div class="col-lg-12">
 										<table class="extraInfo" cellpadding="0" cellspacing="1">
 											<tbody>
 												<tr>
 													<th>품목 또는 명칭</th>
-													<td id="extraInfoProdName">청경채</td>
+													<td id="extraInfoProdName">${vo.prod_name }</td>
 													<th>포장단위별 내용물의 용량(중량), 수량, 크기</th>
-													<td id="extraInfoProdWeight">300g</td>
+													<td id="extraInfoProdWeight">${vo.prod_weight }g</td>
 												</tr>
 												<tr>
 													<th>관련법상 표시사항</th>
@@ -363,11 +232,11 @@
 													<th>농수산물의 원산지 표시에 관한 법률에 따른 원산지</th>
 													<td>상품설명 및 상품이미지 참조</td>
 													<th>상품구성</th>
-													<td id="extraInfoCountry">국산</td>
+													<td id="extraInfoCountry">${vo.prod_country }</td>
 												</tr>
 												<tr>
 													<th>보관방법 또는 취급방법</th>
-													<td id="extraInfoKeeping">냉장 보관</td>
+													<td id="extraInfoKeeping">${vo.prod_keep }</td>
 													<th>제조연월일(포장일 또는 생산연도), 유통기한 또는 품질유지기한</th>
 													<td>제품 별도 라벨 표기 참조</td>
 												</tr>
@@ -379,61 +248,6 @@
 												</tr>
 											</tbody>
 										</table>
-										<!-- <table>
-                                            <tr>
-                                                <td class="p-catagory">평점</td>
-                                                <td>
-                                                    <div class="pd-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">가격</td>
-                                                <td>
-                                                    <div class="p-price" id="price">2,190원</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Add To Cart</td>
-                                                <td>
-                                                    <div class="cart-add">+ add to cart</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Availability</td>
-                                                <td>
-                                                    <div class="p-stock">22 in stock</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Weight</td>
-                                                <td>
-                                                    <div class="p-weight">1,3kg</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Size</td>
-                                                <td>
-                                                    <div class="p-size">Xxl</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Color</td>
-                                                <td><span class="cs-color"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Sku</td>
-                                                <td>
-                                                    <div class="p-code">00012</div>
-                                                </td>
-                                            </tr>
-                                        </table> -->
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-3" role="tabpanel">
@@ -443,18 +257,17 @@
 											<li><span data-icon="&#x5e"></span> 상품에 대한 후기를 남기는
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
-												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
-												onclick="window.parent.location.href = '/mypage/my_QnA'"
+												문의 및 요청사항은 마이페이지 내  
+												<span onclick="window.parent.location.href = '/mypage/my_QnA'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
-										<div class="comment-option">
+										<div class="comment-option" id="reviewListAjax">
 											<table class="reviewTable" width="100%" border="0"
 												cellpadding="0" cellspacing="0">
 												<caption style="display: none">구매후기 제목</caption>
 												<colgroup>
 													<col style="width: 110px;">
 													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
 													<col style="width: 77px;">
 													<col style="width: 100px;">
 													<col style="width: 50px;">
@@ -464,8 +277,6 @@
 													<tr>
 														<th>번호</th>
 														<th>제목</th>
-														<!-- <th scope="col" class="input_txt"><span
-															class="screen_out">회원 등급</span></th> -->
 														<th align="left">작성자</th>
 														<th>작성일</th>
 														<th>좋아요</th>
@@ -473,136 +284,59 @@
 													</tr>
 												</tbody>
 											</table>
-											<%-- <table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">구매후기 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<col style="width: 51px;">
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td>공지</td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleReview()">상품 후기 적립금 정책 안내</td>
-														<!-- <th scope="col" class="input_txt"><span
-															class="screen_out">회원 등급</span></th> -->
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>245864</td>
-													</tr>
-												</tbody>
-											</table> --%>
-											<!-- <div class="reviewContent">
-												<p>고객님 안녕하세요, 우노마스입니다.</p>
-											</div> -->
 											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<%
-											for (int i = 0; i < 7; i++) {
-											%>
-											<table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">구매후기 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td><%=i + 1%></td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleReview(<%=i+1%>);">리뷰 <%=i + 1%></td>
-														<!-- <th scope="col" class="input_txt"><span
-																class="screen_out">회원 등급</span></th> -->
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>0</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="reviewContent" id="reviewContent<%=i+1%>">
-												<p>평점 : <span><%=scores[i] %> / 5.0</span></p>
-											</div>
-											<%
-											}
-											%>
+											<c:choose>
+												<c:when test="${fn:length(reviewList) == 0 }">
+												    <p class="text-center nonPost">아직 등록된 후기가 없어요! 고객님께서 첫 번째 후기를 남겨주세요!</p>
+												</c:when>
+												<c:otherwise>
+													<c:forEach var="reviewVo" items="${reviewList }" varStatus="it">
+														<table class="reviewTable" width="100%" border="0"
+															cellpadding="0" cellspacing="0">
+															<caption style="display: none">구매후기 제목</caption>
+															<colgroup>
+																<col style="width: 110px;">
+																<col style="width: auto;">
+																<col style="width: 77px;">
+																<col style="width: 100px;">
+																<col style="width: 50px;">
+																<col style="width: 80px;">
+															</colgroup>
+															<tbody>
+																<tr onmouseover="this.style.background='#f0f0f0'"
+																	onmouseout="this.style.background='white'">
+																	<td>${reviewVo.review_num }</td>
+																	<td align="left" class="reviewTitle"
+																		onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
+																	<td align="left">${reviewVo.user_id }</td>
+																	<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
+																	<td id="reviewLikecnt${it.index }">${reviewVo.review_likecnt }</td>
+																	<td id="reviewReadcnt${it.index }">${reviewVo.review_readcnt }</td>
+																</tr>
+															</tbody>
+														</table>
+														<div class="reviewContent" id="reviewContent${it.index }">
+														    <input type="hidden" value="${reviewVo.review_num }" id="review_num${it.index }">
+														    <strong>${vo.prod_name }</strong>
+															<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p><br>
+															<p>${reviewVo.review_content }</p>
+															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
+															<!-- @@ 관리자도 수정 삭제 가능 -->
+															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<p class="text-right">
+															    <button type="button" class="site-btn likeBtn" onclick="addLikeCnt(${it.index});">좋아요</button>
+															</p>
+														</div>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+											
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='review_writing_form';">
+												<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
 												후기쓰기
 												</button>
 											</div>
-
-											<%-- <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="${path}/resources/img/product-single/avatar-1.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div> --%>
-											<%-- <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="${path}/resources/img/product-single/avatar-2.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div> --%>
 										</div>
-										<!-- <div class="personal-rating">
-                                            <h6>Your Ratind</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                            </div>
-                                        </div> -->
-										<!-- <div class="leave-comment">
-											<h4>Leave A Comment</h4>
-											<form action="#" class="comment-form">
-												<div class="row">
-													<div class="col-lg-6">
-														<input type="text" placeholder="Name">
-													</div>
-													<div class="col-lg-6">
-														<input type="text" placeholder="Email">
-												<textarea placeholder="Messages"></textarea>
-													</div>
-												</div>
-											</form>
-										</div> -->
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-4" role="tabpanel">
@@ -623,64 +357,56 @@
 												<colgroup>
 													<col style="width: 110px;">
 													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
 													<col style="width: 77px;">
 													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
 												</colgroup>
 												<tbody>
 													<tr>
 														<th>번호</th>
 														<th>제목</th>
-														<!-- <th scope="col" class="input_txt"><span
-															class="screen_out">회원 등급</span></th> -->
 														<th align="left">작성자</th>
 														<th>작성일</th>
-														<th>좋아요</th>
-														<th>조회</th>
 													</tr>
 												</tbody>
 											</table>
-											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<%
-											for (int i = 0; i < 7; i++) {
-											%>
-											<table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">문의 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td><%=i + 1%></td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleQna(<%=i+1%>);">문의 <%=i + 1%></td>
-														<!-- <th scope="col" class="input_txt"><span
-																class="screen_out">회원 등급</span></th> -->
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>0</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="reviewContent" id="qnaContent<%=i+1%>">
-												<p>원산지가 어딘가요?</p>
-											</div>
-											<%
-											}
-											%>
+											<c:choose>
+											    <c:when test="${fn:length(inquiryList) == 0 }">
+											        <p class="text-center nonPost">아직 등록된 문의가 없습니다.</p>
+											    </c:when>
+											    <c:otherwise>
+													<c:forEach var="inquiryVo" items="${inquiryList }" varStatus="it">
+														<table class="reviewTable" width="100%" border="0"
+															cellpadding="0" cellspacing="0">
+															<caption style="display: none">문의 제목</caption>
+															<colgroup>
+																<col style="width: 110px;">
+																<col style="width: auto;">
+																<col style="width: 77px;">
+																<col style="width: 100px;">
+															</colgroup>
+															<tbody>
+																<tr onmouseover="this.style.background='#f0f0f0'"
+																	onmouseout="this.style.background='white'">
+																	<td>${inquiryVo.p_inquiry_num }</td>
+																	<td align="left" class="reviewTitle"
+																		onclick="toggleQna(${it.index});">${inquiryVo.p_inquiry_title }</td>
+																	<td align="left">${inquiryVo.user_id }</td>
+																	<td><fmt:formatDate value="${inquiryVo.p_inquiry_regdate }" type="date"/></td>
+																</tr>
+															</tbody>
+														</table>
+														<div class="reviewContent" id="qnaContent${it.index }">
+															<p>${inquiryVo.p_inquiry_content }</p>
+															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
+															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
+															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<p class="text-right"><a href="#">답변하기</a></p>
+														</div>
+													</c:forEach>
+											    </c:otherwise>
+											</c:choose>
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='product_qna_writing_form';">
+												<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
 												문의하기
 												</button>
 											</div>

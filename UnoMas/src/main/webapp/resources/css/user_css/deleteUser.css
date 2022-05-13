@@ -5,7 +5,7 @@ ul, ol {
 
 .delUser_container{
 	width: 1084px;
-	height: 900px;
+	height: 1200px;
     margin: 30px auto;
 }
 
@@ -16,13 +16,15 @@ ul, ol {
     text-align: left;
     width: 850px;
 }
-h3 {
-	margin: 10px 0px;
+.delUser_right_container h3 {
+	font-size: 18.72px;
+    font-weight: bold;
+    margin: 10px 0px;
 }
 
 .myinfo_box {
 	padding: 30px 25px;
-	height: 50px;
+	height: 110px;
     background-color: #eef2f3;
 }
 .myinfo_box li {
@@ -33,6 +35,7 @@ h3 {
 }
 .myinfo_box li a {
     font-size: 11px;
+    color: #3d727f;
 }
 .pdct_num {
 	color: #3d727f;
@@ -61,8 +64,8 @@ h3 {
 	border-bottom: 1px solid #d5d5d5;
 }
 .leave_list li{
-	font-size: 15px;
-    margin-bottom: 10px;
+	font-size: 14px;
+    margin-bottom: 12px;
 }
 
 
@@ -126,6 +129,7 @@ th, td {
     text-decoration: none;
     height: 40px;
     line-height: 40px;
+    border: 1px solid #ddd;
 }
 .btn_cancle {
 	width: 110px;
@@ -135,6 +139,7 @@ th, td {
     height: 40px;
     line-height: 40px;
     border:1px solid #ddd;
+    color: black;
 }
 
 

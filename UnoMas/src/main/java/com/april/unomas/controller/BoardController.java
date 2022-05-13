@@ -308,5 +308,4 @@ public class BoardController {
 		response.getOutputStream().close();
 		
 	}
-	
 }
