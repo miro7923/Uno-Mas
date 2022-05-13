@@ -37,7 +37,7 @@ public interface UserDAO {
 	public Integer updateUser(UserVO vo);
 
 	// 회원탈퇴
-	public void delUser(UserVO vo);
+	public void deleteUser(UserVO vo);
 
 	
 

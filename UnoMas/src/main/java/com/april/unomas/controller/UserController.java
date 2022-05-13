@@ -26,20 +26,12 @@ public class UserController {
 	
 	@Inject
 	private UserService service;
-
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
-	
 	
 	// 회원가입 이용약관 페이지
 	@RequestMapping(value = "/register_agree")
 	public String registerAgree() {
 		return "/user/registerAgree";
-	}
-	
-	@RequestMapping(value = "/auth_phone")
-	@ResponseBody
-	public String AuthPhoneNumber(@RequestParam(value="phoneNum", required=false) String phoneNum) {
-		return "";
 	}
 	
 	@RequestMapping(value = "/register")
@@ -48,10 +40,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/register", method=RequestMethod.POST)
-	public String registerPost(@RequestParam(value="emailAgree", required=false) String eAgree, UserVO vo) {
-		if(eAgree == null) {
-			vo.setUser_emailagree(0);
-		} else {
+	public String registerPost(@RequestParam("emailAgree") String eAgree, UserVO vo) {
+		if(eAgree.equals("1")) {
 			vo.setUser_emailagree(1);
 		}
 		service.joinUser(vo);
@@ -64,8 +54,6 @@ public class UserController {
 		String res = Integer.toString(service.idCheck(vo));
 		return res;
 	}
-	
-	
 
 	// 로그인 페이지 구현 (GET)
 	// http://localhost:8088/user/login
@@ -89,14 +77,16 @@ public class UserController {
 		UserVO loginVO = service.loginUser(vo);
 		
 		// 로그인 실패
-		if(loginVO == null) {
+		if(loginVO == null || loginVO.getUser_status() != 1) {
 			return "redirect:/user/login";
 		}
+		log.info("로그인 실패");
 		
 		log.info(loginVO+"");
 		
 		// 로그인 성공 및 정보 저장
-		session.setAttribute("loginCheck", loginVO);
+		session.setAttribute("saveID", loginVO);
+		log.info("로그인 성공!");
 		
 		// 메인페이지로 이동
 		return "redirect:/index";
@@ -117,27 +107,25 @@ public class UserController {
 	
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
-	public String delUserGET() {
+	public String deleteUserGET() {
 		
-		log.info("delUserGET() 호출 -> deleteUser.jsp 이동");
+		log.info("deleteUserGET() 호출 -> deleteUser.jsp 이동");
 		
-		return "user/deleteUser";
+		return "/user/deleteUser";
 	}
 	
 	// 회원탈퇴(POST)
 	@RequestMapping(value = "/delete_user",method=RequestMethod.POST)
-	public String delUserPOST(UserVO vo,HttpSession session) {
+	public String deleteUserPOST(UserVO vo,HttpSession session) {
 		
-		service.delUser(vo);
+		service.deleteUser(vo);
 		
 		session.invalidate();
 		
-		log.info("delUserPOST 처리 완료");
+		log.info("deleteUserPOST 처리 완료");
 		
-		return "redirect:/user/index";
+		return "redirect:/index";
 	}
-	
-	
 	
 	// 아이디 찾기
 	@RequestMapping(value = "/find_id")
@@ -154,7 +142,7 @@ public class UserController {
 	// 비번 찾기
 	@RequestMapping(value = "/find_pw")
 	public String findPW() {
-		return "user/findPW";
+		return "/user/findPW";
 	}
 	@RequestMapping(value = "/find_pw", method = RequestMethod.POST)
 	@ResponseBody
@@ -168,7 +156,7 @@ public class UserController {
 	@RequestMapping(value = "/change_pw")
 	public String changePWGet(@RequestParam(value="id", required=false) String id, Model model) {
 		model.addAttribute("id", id);
-		return "user/changePW";
+		return "/user/changePW";
 	}
 	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
 	@ResponseBody
@@ -178,59 +166,59 @@ public class UserController {
 		return result;
 	}
 	
-	
-	
-	
 	// mypage
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
-		return "user/myPage";
+		return "/user/myPage";
 	}
 
 	@RequestMapping(value = "/myInfo")
 	public String myInfo(HttpSession session, Model model) {
-		String saveID = (String) session.getAttribute("saveID");
+		UserVO saveID = (UserVO) session.getAttribute("saveID");
 		UserVO userInfoVO = service.getUserInfo("Admin"); // 일단 직접 입력하고 추 후에 세션값 입력.
 		model.addAttribute("userInfoVO", userInfoVO);
-		return "user/myInfo";
+		return "/user/myInfo";
 	}
-
-	
 
 	// 회원정보수정(GET)
 	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo",method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 		
-		UserVO vo = (UserVO)session.getAttribute("loginCheck");
+		UserVO vo = (UserVO)session.getAttribute("saveID");
 		
-//		UserVO infoVO = service.
+		UserVO infoVO = service.getUserInfo(vo.getUser_id());
 		
-		return "user/updateMyInfo";
+		model.addAttribute("infoVO", infoVO);
+		
+		return "/user/updateMyInfo";
 	}
 	
 	// 회원정보수정(POST)
 	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo",method = RequestMethod.POST)
 	public String myInfoUpdatePOST(UserVO vo) {
-		return "redirect:/user/myPage";
+		
+		log.info("수정한 데이터 : " +vo );
+		
+		service.updateUser(vo);
+		
+		return "redirect:/user/myInfo";
 	}
-	
-	
 	
 	@RequestMapping(value = "/mypoint")
 	public String myPoint() {
-		return "user/myPoint";
+		return "/user/myPoint";
 	}
 	
 	// guide
 	@RequestMapping(value = "/return_guide")
 	public String canclePinfo() {
-		return "user/returnGuide";
+		return "/user/returnGuide";
 	}
 	@RequestMapping(value = "/together_guide")
 	public String togetherInfo() {
-		return "user/togetherGuide";
+		return "/user/togetherGuide";
 	}
 	
 	

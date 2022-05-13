@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
-import com.april.unomas.service.SmsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -25,7 +24,7 @@ public class UserDAOTest {
 	@Inject
 	private UserDAO dao;
 	
-	@Test
+	//@Test
 	public void 객체주입확인() {
 		
 		log.info(dao.toString());
@@ -58,6 +57,28 @@ public class UserDAOTest {
 		dao.changePW(vo);
 	}
 	
+	//@Test
+	public void 회원탈퇴테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user4");
+		vo.setUser_pass("1212");
+		dao.deleteUser(vo);
+	}
 	
+	@Test
+	public void 로그인테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user5");
+		vo.setUser_pass("123123");
+		dao.loginUser(vo);
+	}
 	
+	//@Test
+	public void 회원정보수정테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user5");
+		vo.setUser_pass("123123");
+		dao.updateUser(vo);
+		
+	}
 }

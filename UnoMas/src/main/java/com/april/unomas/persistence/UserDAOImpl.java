@@ -72,11 +72,10 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public UserVO loginUser(UserVO vo) {
 		System.out.println(" DAO : 로그인 동작 포스트" );
-//		log.info(" DAO : loginUser(vo) Post호출 ");
 		
-		UserVO voTmp = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
-	
-		return voTmp;
+		UserVO loginVO = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
+		
+		return loginVO;
 	}
 	
 	
@@ -169,9 +168,9 @@ public class UserDAOImpl implements UserDAO {
 	
 	// 회원탈퇴
 	@Override
-	public void delUser(UserVO vo) {
+	public void deleteUser(UserVO vo) {
 
-		log.info("delUser 실행");
+		log.info("DAOImpl-deleteUser(vo) 실행");
 		
 		sqlSession.delete(NAMESPACE+".deleteUser",vo);
 		

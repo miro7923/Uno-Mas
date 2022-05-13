@@ -76,7 +76,7 @@ a{
 	margin:10px 0px;
     font-size: 12px;
 }
-#account_no, #account_p {
+#account, #account_holder {
 	box-sizing: border-box;
     display: inline-block;
     height: 38px;
@@ -84,6 +84,16 @@ a{
     padding: 0 10px;
     border: 1px solid #ddd;
     color: #666;
+}
+.check-button {
+    background-color: #B9CE45;
+    color: white;
+    font-size: 12px;
+    border-radius: 3px;
+    padding:10px;
+  	margin: 10px;
+  	height: 40px;
+  	border: 1px solid #B9CE45
 }
 select {
 	box-sizing: border-box;
@@ -153,7 +163,8 @@ ul, ol {
     border-radius: 3px;
     border: 1px solid #ddd;
     height: 30px;
-    width: 13%
+    width: 13%;
+    font-size: 13px;
     
 }
 #roadaddr, #roadaddr1, #roadaddr2 {
@@ -166,6 +177,7 @@ ul, ol {
     height: 30px;
     border-radius: 3px;
     width:40%;
+    font-size: 13px;
     
 }
 #detailaddr {
@@ -178,6 +190,7 @@ ul, ol {
     border-radius: 3px;
     height: 30px;
     width: 45%;
+    font-size: 13px;
     
 }
 #postal_btn {
@@ -198,7 +211,7 @@ ul, ol {
 	box-sizing: border-box;
     display: inline-block;
     margin:5px 0px;
-    padding: 5px 25px;
+    padding: 3px 25px;
     background-color: white;
     text-align: center;
     vertical-align: middle;
@@ -208,23 +221,6 @@ ul, ol {
     color: #22741C;
     
 }
-.refund_btn {
-	border: 1px solid #4d5d7b;
-    background-color: #4d5d7b;
-    color: #fff;
-    font-size: 12px;
-    border-radius: 3px;
-    padding:10px;
-}
-.reset_btn {
-	border: 1px solid #4d5d7b;
-    background-color: white;
-    color: black;
-    font-size: 12px;
-    border-radius: 3px;
-    padding:10px;
-}
-
 .updateBtn {
     box-sizing: border-box;
     display: inline-block;
@@ -234,9 +230,7 @@ ul, ol {
     vertical-align: middle;
     color: white;
     margin: 50px 0px 30px 0px;
-}
-.reset_btn > span {
-	color: black;
+    border: 1px solid #B9CE45;
 }
 
 
