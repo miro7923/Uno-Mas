@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /******************************************************************
   Template Name: Fashi
   Description: Fashi eCommerce HTML Template
@@ -114,7 +115,7 @@ ol {
 
 .section-title {
 	margin-bottom: 40px;
-	text-align: center;
+	text-align: left;
 }
 
 .section-title .product-price {
@@ -413,7 +414,7 @@ ol {
 }
 
 .inner-header {
-	padding: 39px 0 10px;
+	padding: 39px 0;
 }
 
 .inner-header .logo {
@@ -497,7 +498,7 @@ ol {
 	list-style: none;
 	display: inline-block;
 	font-size: 20px;
-	margin-left: 30px;
+	margin-left: 15px;
 }
 
 .inner-header .nav-right li.heart-icon a {
@@ -662,27 +663,26 @@ ol {
 .nav-item .nav-depart .depart-btn {
 	background: #3b3b3b;
 	color: #ffffff;
-	padding: 14px 84px 14px 18px;
+	padding: 14px 84px 17px 18px;
 	cursor: pointer;
 	position: relative;
 }
 
 .nav-item .nav-depart .depart-btn:hover .depart-hover {
-	top: 52px;
+	top: 56px;
 	opacity: 1;
 	visibility: visible;
 	z-index: 99;
 }
 
-/* .nav-item .nav-depart .depart-btn:before { */
-/* 	position: absolute; */
-/* 	color: #ffffff; */
-/* 	right: 20px; */
-/* 	top: 13px; */
-/* 	content: ""; */
-/* 	font-family: FontAwesome; */
-/* 	font-size: 18px; */
-/* } */
+.nav-item .nav-depart .depart-btn:before {
+	position: absolute;
+	color: #ffffff;
+	right: 20px;
+	top: 13px;
+	font-family: FontAwesome;
+	font-size: 18px;
+}
 
 .nav-item .nav-depart .depart-btn i {
 	color: #ffffff;
@@ -690,10 +690,11 @@ ol {
 }
 
 .nav-item .nav-depart .depart-btn span {
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 700;
 	text-transform: uppercase;
 	margin-left: 16px;
+	letter-spacing: -0.3px;
 }
 
 .nav-item .nav-depart .depart-btn .depart-hover {
@@ -755,8 +756,9 @@ ol {
 }
 
 .nav-item .nav-menu li a {
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 700;
+	font-family: 'Noto Sans';
 	display: block;
 	color: #ffffff;
 	border-right: 2px solid #3b3b3b;
@@ -1697,7 +1699,7 @@ ol {
 	position: absolute;
 	right: -18px;
 	top: 0px;
-	content: "";
+	content: "＞";
 	font-family: "FontAwesome";
 	font-size: 16px;
 	color: #b2b2b2;
@@ -2070,7 +2072,7 @@ ol {
 }
 
 .product-pic-zoom img {
-	min-width: 100%;
+	min-width: 80%;
 }
 
 .product-pic-zoom .zoom-icon {
@@ -2178,7 +2180,7 @@ ol {
 	margin-bottom: 24px;
 }
 
-.product-details .pd-desc p {
+.product-details .pd-desc p:not(.memberInfo) {
 	color: #636363;
 }
 
@@ -2187,6 +2189,17 @@ ol {
 	font-weight: 700;
 }
 
+.product-details .pd-total-price h3 {
+	color: #e7ab3c;
+	font-weight: 700;
+	text-align: right;
+}
+
+.product-details .pd-total-price h3 span {
+	font-size: 16px;
+	color: black;
+
+}
 .product-details .pd-desc h4 span {
 	font-size: 18px;
 	font-weight: 400;
@@ -2283,7 +2296,7 @@ ol {
 
 .product-details .quantity .pro-qty {
 	width: 123px;
-	height: 46px;
+	height: 30px;
 	border: 2px solid #ebebeb;
 	padding: 0 15px;
 	float: left;
@@ -2294,7 +2307,7 @@ ol {
 	font-size: 24px;
 	color: #b2b2b2;
 	float: left;
-	line-height: 38px;
+	line-height: 23px;
 	cursor: pointer;
 	width: 18px;
 }
@@ -2310,12 +2323,13 @@ ol {
 	font-weight: 700;
 	border: none;
 	color: #4c4c4c;
-	line-height: 40px;
+	line-height: 25px;
 	float: left;
 }
 
 .product-details .quantity .primary-btn.pd-cart {
-	padding: 14px 70px 10px;
+	padding: 14px 188px 10px;
+    font-size: 20px;
 }
 
 .product-details .pd-tags {
@@ -2360,22 +2374,42 @@ ol {
 	padding-top: 60px;
 }
 
+.tab-item ul {
+    width: 100%;
+    height: 50%;
+    position: relative;
+}
+
+.tab-item ul li {
+    position: relative;
+    width: 25%;
+}
+
 .tab-item ul li:nth-child(1) a {
 	border-right: 1px solid #ebebeb;
+    width: 100%;
 }
 
 .tab-item ul li:nth-child(2) a {
 	border-right: 1px solid #ebebeb;
+    width: 100%;
 }
 
 .tab-item ul li:nth-child(3) a {
 	border-right: 1px solid #ebebeb;
+    width: 100%;
+}
+
+.tab-item ul li:nth-child(4) a {
+	border-right: 1px solid #ebebeb;
+    width: 100%;
 }
 
 .tab-item ul li a {
 	display: inline-block;
 	font-size: 16px;
 	font-weight: 700;
+    text-align: center;
 	color: #b2b2b2;
 	text-transform: uppercase;
 	padding: 18px 61px;
@@ -2831,7 +2865,6 @@ ol {
 .proceed-checkout ul li.subtotal {
 	font-weight: 400;
 	text-transform: capitalize;
-	border-bottom: 1px solid #ffffff;
 	padding-bottom: 14px;
 }
 
@@ -3728,7 +3761,7 @@ ol {
 
 .faq-accordin .card-heading a:after,
 .faq-accordin .card-heading>a.active[aria-expanded=false]:after {
-	content: "";
+	content: "�겎";
 	font-family: "FontAwesome";
 	font-size: 14px;
 	color: #404040;
@@ -3745,7 +3778,7 @@ ol {
 
 .faq-accordin .card-heading a[aria-expanded=true]:after,
 .faq-accordin .card-heading>a.active:after {
-	content: "";
+	content: "�겏";
 	font-family: "FontAwesome";
 	float: left;
 	font-size: 13px;
@@ -3914,11 +3947,11 @@ ol {
 		max-width: 36%;
 	}
 	.inner-header .advanced-search .input-group {
-		max-width: 100%;
+		max-width: 64%;
 	}
-/* 	.nav-item .nav-menu li a { */
-/* 		padding: 16px 26px 15px; */
-/* 	} */
+	.nav-item .nav-menu li a {
+		padding: 16px 26px 15px;
+	}
 	.hero-items .owl-nav button[type=button] {
 		left: 5px;
 	}
@@ -4023,17 +4056,17 @@ ol {
 		padding-right: 25px;
 	}
 	.inner-header .advanced-search .input-group {
-		max-width: 100%;
+		max-width: 60%;
 	}
 	.inner-header .nav-right li {
-		margin-left: 30px;
+		margin-left: 8px;
 	}
-/* 	.nav-item .nav-depart .depart-btn { */
-/* 		padding: 14px 40px 14px 18px; */
-/* 	} */
-/* 	.nav-item .nav-menu li a { */
-/* 		padding: 16px 10px 15px; */
-/* 	} */
+	.nav-item .nav-depart .depart-btn {
+		padding: 14px 40px 14px 18px;
+	}
+	.nav-item .nav-menu li a {
+		padding: 16px 10px 15px;
+	}
 	.instagram-photo .insta-item .inside-text h5 {
 		font-size: 14px;
 	}
@@ -4100,7 +4133,6 @@ ol {
 	}
 	.inner-header .nav-right {
 		text-align: left;
-		padding-left: 10px;
 	}
 	.inner-header .nav-right li:first-child {
 		margin-left: 0;
@@ -4118,7 +4150,7 @@ ol {
 		display: block;
 		background: transparent;
 		text-align: center;
-		margin-top: -70px;
+		margin-top: -48px;
 	}
 	.slicknav_nav {
 		background: #333;
@@ -4310,4 +4342,5 @@ ol {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
+	
 }

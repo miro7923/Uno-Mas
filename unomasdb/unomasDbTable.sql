@@ -650,3 +650,10 @@ DELIMITER ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+ALTER TABLE `unomasdb`.`products` 
+ADD COLUMN `prod_sellunit` VARCHAR(10) NOT NULL COMMENT '상품 판매단위\n예) 1개/ 1팩/ 1박스…' AFTER `prod_country`,
+ADD COLUMN `prod_explain` VARCHAR(50) NOT NULL COMMENT '상품 요약 설명\n예) 청경채: 아삭하고 부드러운' AFTER `prod_sellunit`,
+ADD COLUMN `prod_packing` VARCHAR(20) NOT NULL COMMENT '상품 포장타입\n예) 냉장/스티로폼, 냉동/스티로폼' AFTER `prod_explain`;
+

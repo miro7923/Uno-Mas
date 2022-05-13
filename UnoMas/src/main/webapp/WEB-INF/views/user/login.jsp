@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
 <!DOCTYPE html>
 <html lang="zxx">
-
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- Header end -->
@@ -15,42 +17,36 @@
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
 
+	<!-- 본문내용 -->
     <div id="container">
-		<!-- 헤더 들어가는 곳 -->
-
-		<!-- 헤더 들어가는 곳 -->
-
-		<!-- 본문내용 -->
 		<article>
 			<h3 class="login_name">로그인</h3>
 			<hr>
-			<form action="" id="join" method="post" onsubmit="return memberCk();">
+			<form action="login" id="join" method="post" onsubmit="return memberCk();">
 				<div class="input_box">
-				<input type="text" id="id" name="id" placeholder="아이디를 입력하세요.">
-				<input type="password" id="pass" name="pass" placeholder="비밀번호를 입력하세요.">
+				<input type="text" id="id" name="user_id" placeholder="아이디를 입력하세요.">
+				<input type="password" id="pass" name="user_pass" placeholder="비밀번호를 입력하세요.">
 				<p id="cir_text"></p>
 				</div>
 
 				<div class="check_box">
 					<label class="label_checkbox">
-						<input type="checkbox" id="check_save" name="check_save" value="chk">로그인정보 저장
+						<input type="checkbox" id="check_save" name="remember-me" value="chk">로그인정보 저장
 					</label>
 					<div class="login_search">
-						<a href="" class="id_search">아이디 찾기 | </a> <a href="" class="pass_search">비밀번호 찾기</a>
+						<a href="find_id" id="id_search">아이디 찾기 | </a> <a href="find_pw" id="pass_search" >비밀번호 찾기</a>
 					</div>
 				</div>
 				
 				<div id="buttons">
-					<input type="submit" value="로그인" id="loginus">
-					<input type="submit" value="회원가입" id="joinus">
+					<input type="submit" value="로그인" id="loginus" onclick="memberCk()">
+					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/user/register';">
 				</div>
 			</form>
 
 		</article>
-		<!-- 본문내용 -->
-
-
 	</div>
+		<!-- 본문내용 -->
     
     
     <!-- Footer Section Begin -->
@@ -68,6 +64,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/user_js/login.js"></script>
 </body>
 
 </html>

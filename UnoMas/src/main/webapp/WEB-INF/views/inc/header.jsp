@@ -1,3 +1,4 @@
+<%@page import="com.april.unomas.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,26 +9,21 @@
     </div>
     
      <!-- Header Section Begin -->
-    <%
-	    String userID = null;
-		if(session.getAttribute("userID") != null){
-			userID = (String) session.getAttribute("userID");
-		}
-    %>
     <header class="headerSection">
     <%
-    	if(userID == null){ // 로그인 안 했을 때 링크
+    	UserVO vo = (UserVO)session.getAttribute("saveID");
+    	if(vo == null){ // 로그인 안 했을 때 링크
     %>
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="login" class="linkMenu">로그인</a>
+    				<a href="../user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="register_agree" class="linkMenu">회원가입</a>
+    				<a href="../user/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="contact" class="linkMenu">고객센터</a>
+    				<a href="/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -37,20 +33,20 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="" class="linkMenu">마이페이지</a>
+    				<a href="../user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="" class="linkMenu">로그아웃</a>
+    				<a href="../user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="contact" class="linkMenu">고객센터</a>
+    				<a href="/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
     	<%
 			}
     	%>
-    	 <div class="headerMiddle"> <!-- 로고·검색창·찜·장바구니 -->
+    	 <div class="container"> <!-- 로고·검색창·찜·장바구니 -->
             <div class="inner-header">
                 <div class="row">
                     <div class="col-lg-2 col-md-2">
@@ -62,6 +58,7 @@
                     </div>
                     <div class="col-lg-7 col-md-7">
                         <div class="advanced-search">
+                            <button type="button" class="category-btn">All Categories</button>
                             <div class="input-group">
                                 <input type="text" placeholder="검색어를 입력해주세요.">
                                 <button type="button"><i class="ti-search"></i></button>
@@ -71,12 +68,12 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="#">
+                                <a href="/product/wishlist">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>
                             <li class="cart-icon">
-                                <a href="shopping-cart">
+                                <a href="/product/shopping-cart">
                                     <i class="icon_bag_alt"></i>
                                 </a>
                             </li>
@@ -140,6 +137,7 @@
                         <li><a href="co_buying_list">공동구매</a></li>
                     </ul>
                 </nav>
+                <div id="mobile-menu-wrap"></div>
             </div>
         </div>
     </header>

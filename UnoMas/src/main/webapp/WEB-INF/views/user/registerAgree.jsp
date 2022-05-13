@@ -13,7 +13,6 @@
   <jsp:include page="../inc/header.jsp"></jsp:include>	
 	
   <div class="register_agree_container">
-	
 	<h3>우노마스 이용동의</h3>
 	<hr>
 		
@@ -150,11 +149,15 @@
 제공받는자의 이용 목적
 상품 및 서비스 판매자	판매자와 구매자 간 원활한 거래의 진행(구매자확인, 해피콜 등), 고객상담 및 불만처리, 서비스 제공, 상품과 경품 배송(전송 및 설치 등 포함)
 	</textarea>
-		
-	<label class="agree_input">전체 동의 <input type="checkbox"></label><br>
-		
+	
+	<div class="checkbox_div">
+		<p class="warn_text" name="warn_text"></p>
+		<label class="agree_input">전체 동의 <input type="checkbox" name="agreeCheckBox"></label><br>
+	</div>
+	
 	<div class="agree_submit">
-		<a href="register"><input type="button" value="확인"></a>
+		<a href="/"><input type="button" value="취소"></a>
+		<input type="button" value="확인" class="submit_button" onclick="return agreeCheck()">
 	</div>
 	
 
@@ -163,18 +166,12 @@
 
 	<!-- 푸터 -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
-    <!-- Footer Section End -->
-
+	
     <!-- Js Plugins -->
+    <script src="${path}/resources/js/user_js/registerAgree.js"></script>
+    
     <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${path}/resources/js/bootstrap.min.js"></script>
-    <script src="${path}/resources/js/jquery-ui.min.js"></script>
-    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
-    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
-    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
-    <script src="${path}/resources/js/jquery.dd.min.js"></script>
-    <script src="${path}/resources/js/jquery.slicknav.js"></script>
-    <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    
 </body>
 </html>
