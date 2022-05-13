@@ -30,7 +30,7 @@
 		<br>
 		
 		<h4>My 정보</h4>
-		<a href="myInfo">개인정보확인/수정</a>
+		<a href="./myInfo">개인정보확인/수정</a>
 
 	</div>
 		<a href="return_guide"><div class="mypage-cate-info">취소/환불 안내</div></a>

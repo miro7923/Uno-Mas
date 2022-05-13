@@ -86,9 +86,9 @@
 					
 					
 		<h3>회원 정보 확인</h3>
+		<form action="delete_user" method="post">
 		<table class="table_info">
 			<colgroup><col style="width: 164px;"><col style="width: *;"></colgroup>
-				
 			<tbody>
 				<tr>
 					<th>아이디(이메일)</th>
@@ -109,9 +109,10 @@
 			
 			
 		<div class="btn_area">
-			<a href="" class="btn_submit">탈퇴</a>
+			<input type="submit" class="btn_submit" value="탈퇴">
 			<a href="" class="btn_cancle" style="color: black">취소</a>
 		</div>
+		</form>
 				
 			
 

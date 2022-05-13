@@ -99,9 +99,9 @@ public class UserServiceImpl implements UserService {
 
 	// 회원 탈퇴
 	@Override
-	public void delUser(UserVO vo) {
+	public void deleteUser(UserVO vo) {
 
-		dao.delUser(vo);
+		dao.deleteUser(vo);
 	}
 	
 

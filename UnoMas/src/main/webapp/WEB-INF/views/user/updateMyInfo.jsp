@@ -3,65 +3,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
-
-<head>
+<html lang="zxx">
 <meta charset=UTF-8>
 <title>개인정보수정 페이지</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="postalcode.js"></script>
-<script type="text/javascript" src="../script/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-
-function birthCheck() {
-   if($("select[name=birth-year]").val()== "" || $("select[name=birth-month]").val()== ""){
-      $("select[name=birth-month]").val("");
-      $("select[name=birth-month]").attr('disabled', true);
-      $("select[name=birth-day]").val("");
-      $("select[name=birth-day]").attr('disabled', true)
-   }
-   
-   if($("select[name=birth-year]").val() != "") {
-      $("select[name=birth-month]").attr('disabled', false);
-   } 
-   
-   if($("select[name=birth-month]").val() != "") {
-      $("select[name=birth-day]").attr('disabled', false);
-      
-      switch ($("select[name=birth-month]").val()) {
-      case "2":
-         for(var i=1; i<=28; i++) {
-            $("select[name=birth-day]").append("<option value='"+i+"'>"+i+"일"+"</option>")
-         }
-         break;
-      case "4":
-      case "6":
-      case "9":
-      case "11":
-         for(var i=1; i<=30; i++) {
-            $("select[name=birth-day]").append("<option value='"+i+"'>"+i+"일"+"</option>")
-         }
-         break;
-      case "1":
-      case "3":
-      case "5":
-      case "7":
-      case "8":
-      case "10":
-      case "12":
-         for(var i=1; i<=31; i++) {
-            $("select[name=birth-day]").append("<option value='"+i+"'>"+i+"일"+"</option>")
-         }
-         break;
-      default:
-         break;
-      }
-      
-   } 
-}
-</script>
-</head>
 <body>
 	<!-- 헤더 -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>
@@ -76,26 +22,27 @@ function birthCheck() {
 
 
 		<div class="myinfo_content">
-			<h2>개인 정보 확인</h2>
+			<h2>개인 정보 수정</h2>
 			<hr>
 
 			<h3>기본 정보</h3>
+			<form action="updateUser" method="post">
 			<div class="table_div">
 				<table class="table_info"
 					style="margin-bottom: 60px; height: 330px;">
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" class="input_field" name="id" disabled></td>
+						<td><input type="text" class="input_field" name="id" value="${sessionScope.saveID.user_id }" disabled></td>
 					</tr>
 
 					<tr>
 						<th>이름</th>
-						<td><input type="text" class="input_field" name="name"></td>
+						<td><input type="text" class="input_field" name="name" value="${sessionScope.saveID.user_name }" required></td>
 					</tr>
 
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" class="input_field" name="email"></td>
+						<td><input type="email" class="input_field" name="email" value="${sessionScope.saveID.user_email }"required></td>
 					</tr>
 					
 					<tr>
@@ -103,7 +50,7 @@ function birthCheck() {
 						<td>
 						<span id="birth"></span><br>
 	          			<select class="input-birth" name="birth-year" oninput="birthCheck()">
-	              			<option value="">연도</option>
+	              			<option value="${sessionScope.saveID.user_birth }">연도</option>
 			               <%
 			                 for(int i=1950; i<=2022; i++) {
 			                    %><option value="<%=i%>"><%=i %>년</option><%
@@ -111,7 +58,7 @@ function birthCheck() {
 			               %>
 			            </select>
 			            <select name="birth-month" class="input-birth" oninput="birthCheck()" disabled="disabled">
-			               <option value="">월</option>
+			               <option value="${sessionScope.saveID.user_birth }">월</option>
 			               <%
 			                 for(int i=1; i<=12; i++) {
 			                    %><option value="<%=i%>"><%=i %>월</option><%
@@ -120,14 +67,16 @@ function birthCheck() {
 			            </select>
 	               
 			            <select name="birth-day" class="input-birth" disabled="disabled">
-			               <option value="">일</option>
+			               <option value="${sessionScope.saveID.user_birth }">일</option>
 			            </select><br>
 				        </td>   
 					</tr>
 
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="input_field" name="phone" placeholder=" -없이 숫자만 입력"></td>
+						<td><input type="text" class="input_field" name="phone" value="${sessionScope.saveID.user_phone }" placeholder=" -없이 숫자만 입력" required>
+						<input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()">
+						<div name="phoneCheckDiv"></div></td>
 					</tr>
 				</table>
 
@@ -142,10 +91,10 @@ function birthCheck() {
 					<tr>
 						<th>기본 배송지</th>
 						<td style="line-height: 25px;">
-							<input type="text" id="postalcode" name="postalcode" placeholder="우편번호">
-							<input type="text" id="roadaddr" name="roadaddr" placeholder="도로명주소">
+							<input type="text" id="postalcode" name="postalcode" value="${sessionScope.saveID.user_postalcode }" placeholder="우편번호">
+							<input type="text" id="roadaddr" name="roadaddr" value="${sessionScope.saveID.user_roadaddr }" placeholder="도로명주소">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="detailaddr" placeholder="상세주소">
+							<input type="text" id="detailaddr" name="detailaddr" value="${sessionScope.saveID.user_detailaddr }" placeholder="상세주소">
 						</td>
 					</tr>
 				</table>
@@ -154,17 +103,17 @@ function birthCheck() {
 						<th>추가 배송지</th>
 						<td style="line-height: 25px;">
 							<label>배송지1</label><br>
-							<input type="text" id="postalcode1" name="postalcode1" placeholder="우편번호">
-							<input type="text" id="roadaddr1" name="roadaddr" placeholder="도로명주소">
+							<input type="text" id="postalcode1" name="postalcode1"  placeholder="우편번호">
+							<input type="text" id="roadaddr1" name="roadaddr1" placeholder="도로명주소">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="detailaddr" placeholder="상세주소">
+							<input type="text" id="detailaddr" name="detailaddr1" placeholder="상세주소">
 							<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
 							<br><br>
 							<label>배송지2</label><br>
 							<input type="text" id="postalcode2" name="postalcode2" placeholder="우편번호">
-							<input type="text" id="roadaddr2" name="roadaddr" placeholder="도로명주소">
+							<input type="text" id="roadaddr2" name="roadaddr2" placeholder="도로명주소">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="detailaddr" placeholder="상세주소">
+							<input type="text" id="detailaddr" name="detailaddr2" placeholder="상세주소">
 							<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('2')">
 						</td>
 					</tr>
@@ -188,8 +137,10 @@ function birthCheck() {
 									<dl>
 										<dt>은행명</dt>
 										<dd>
-											<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-											  <option value="" >은행을 선택해주세요.</option>
+											<select class="form-select form-select-sm" name="bank" aria-label=".form-select-sm example" 
+											style="box-sizing: border-box;display: inline-block;width: 40%;
+											height: 38px;margin:10px;padding: 0 10px;border: 1px solid #ddd	;color: #666;font-size: 11px;">
+											  <option value="${sessionScope.saveID.user_bank }" ></option>
 											  <option value="기업은행">기업은행</option>
 											  <option value="국민은행">국민은행</option>
 											  <option value="농협은행">농협은행</option>
@@ -202,23 +153,16 @@ function birthCheck() {
 										<dt>계좌번호</dt>
 										<dd>
 											<span class="input_area"> 
-											<input type="text" id="account_no" name="acoount_no" title="계좌번호 입력"  style="width: 228px">
+											<input type="text" id="account" name="account" title="계좌번호 입력" value="${sessionScope.saveID.user_account }" style="width: 250px">
 											</span>
 										</dd>
 										<dt>예금주</dt>
 										<dd>
 											<span class="input_area">
-											<input type="text" id="account_p" name="account_p" title="예금주 입력" style="width: 228px">
+											<input type="text" id="account_holder" name="account_holder" title="예금주 입력" value="${sessionScope.saveID.user_account_holder }" style="width: 250px">
 											</span> 
-											<a href="" class="refund_btn" >
-											<span>계좌인증</span></a>
-											<a href="" class="reset_btn">
-											<span>초기화</span></a>
 										</dd>
 									</dl>
-									<ul class="list_type">
-										<li>* 관계법령(전자상거래법 및 정보통신망법)에 따라 요금정산을 위해 계좌정보를 수집하며 [인증해제&gt; 초기화] 시 삭제됩니다.</li>
-									</ul>
 								</div>
 							</div>
 						</td>
@@ -239,8 +183,9 @@ function birthCheck() {
 			</div>
 
 			<div style="text-align: center;">
-				<a href="" class="updateBtn">수정</a>
+				<input type="submit" class="updateBtn" value="수정" onclick="">
 			</div>
+			</form>
 
 		</div>
 	</div>
@@ -260,5 +205,8 @@ function birthCheck() {
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
+    <script src="${path}/resources/js/user_js/updateMyInfo.js"></script>
 </body>
 </html>

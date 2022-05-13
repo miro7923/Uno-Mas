@@ -1,3 +1,4 @@
+<%@page import="com.april.unomas.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,15 +9,10 @@
     </div>
     
      <!-- Header Section Begin -->
-    <%
-	    String user_id = null;
-		if(session.getAttribute("user_id") != null){
-			user_id = (String) session.getAttribute("user_id");
-		}
-    %>
     <header class="headerSection">
     <%
-    	if(user_id == null){ // 로그인 안 했을 때 링크
+    	UserVO vo = (UserVO)session.getAttribute("saveID");
+    	if(vo == null){ // 로그인 안 했을 때 링크
     %>
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
@@ -37,10 +33,10 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="/mypage" class="linkMenu">마이페이지</a>
+    				<a href="../user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="/logout" class="linkMenu">로그아웃</a>
+    				<a href="../user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
     				<a href="/faq_paging" class="linkMenu">고객센터</a>

@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.april.unomas.service.SmsService;
 import com.april.unomas.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,20 +20,12 @@ public class MemberServiceTest {
 	private static final Logger log = LoggerFactory.getLogger(MemberServiceTest.class);
 	
 	@Inject
-	private SmsService sms;
-//	private UserService service;
-	
-//	@Test
-//	public void 시간체크서비스() {
-//		
-//		String time = service.getTimeS();
-//		log.info(time);
-//	}
-	
+	private UserService service;
 	
 	@Test
-	public void 문자보내기테스트() {
-		sms.sendSMS("01030708614");
+	public void 시간체크서비스() {
 		
+		String time = service.getTimeS();
+		log.info(time);
 	}
 }
