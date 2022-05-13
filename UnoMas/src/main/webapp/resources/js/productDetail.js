@@ -3,7 +3,6 @@ $(document).ready(function() {
     
     convertCurrency();
     calcTotalPrice();
-    insertCart();
 });
 
 function initReview() {
@@ -44,15 +43,28 @@ function updateReviewReadcnt(num) {
 	}
 }
 
-function addLikeCnt(review_num) {
+function addLikeCnt(review_num, idNum) {
 	$.ajax({
 		type: 'get',
 		url: '/product/update_likecnt?review_num='+review_num,
 		success: function(data) {
-			$('#reviewLikecnt' + review_num).text(data);
+			$('#reviewLikecnt' + idNum).text(data);
 		},
 		error: function() {
 			alert('좋아요 증가 실패');
+		}
+	});
+}
+
+function cancelLikeCnt(review_num, idNum) {
+	$.ajax({
+		type: 'get',
+		url: '/product/cancel_like?review_num'+review_num,
+		success: function(data) {
+			$('#reviewLikecnt' + idNum).text(data);
+		},
+		error: function(data) {
+			alert('좋아요 취소 실패');
 		}
 	});
 }
@@ -119,22 +131,26 @@ function convertCurrency() {
 }
 
 function insertCart() {
-    $('#cartBtn').click(function() {
-        if ($('#prod_amount').val() <= 0) {
-            alert('수량을 1개 이상 선택해 주세요!'); 
+    if ($('#prod_amount').val() <= 0) {
+        alert('수량을 1개 이상 선택해 주세요!'); 
+    }
+    else {
+        $.ajax({
+        url: '/product/insert_cart',
+        data: {
+            'user_num': $('#user_num').val(),
+            'prod_num': $('#prod_num').val(),
+            'prod_amount': $('#prod_amount').val()
+              },
+        success: function() {
+            alert('장바구니에 상품을 넣었습니다!');
         }
-        else {
-            $.ajax({
-            url: '/product/insert_cart',
-            data: {
-                'user_num': $('#user_num').val(),
-                'prod_num': $('#prod_num').val(),
-                'prod_amount': $('#prod_amount').val()
-                  },
-            success: function() {
-                alert('장바구니에 상품을 넣었습니다!');
-            }
-            });
-        }
-    });
+        });
+    }
+}
+
+function askLogin() {
+	if (confirm('로그인 한 회원만 장바구니에 담을 수 있습니다. 로그인 하시겠습니까?')) {
+		location.href = '/user/login';
+	}
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.ProductService;
 
 @Controller
@@ -95,7 +97,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
-	public String product(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String product(@RequestParam("prod_num") int prod_num, Model model, 
+			HttpSession session) throws Exception {
 		ProductVO vo = service.getProduct(prod_num);
 		
 		List<BoardReviewVO> reviewList = service.getReviewList(prod_num);
@@ -110,6 +113,12 @@ public class ProductController {
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("reviewCnt", service.getReviewCnt(prod_num));
 		model.addAttribute("inquiryList", inquiryList);
+		
+		UserVO userVo = (UserVO) session.getAttribute("saveID");
+		if (userVo != null)
+			model.addAttribute("isInWishlist", service.isInWishlist(userVo.getUser_num(), prod_num));
+		else
+			model.addAttribute("isInWishlist", false);
 		
 		return "product/productDetail";
 	}

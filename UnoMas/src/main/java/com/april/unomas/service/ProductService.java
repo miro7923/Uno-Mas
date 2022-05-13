@@ -76,9 +76,15 @@ public interface ProductService {
 	// 리뷰글 좋아요 증가
 	public void addReviewLikeCnt(int review_num) throws Exception;
 	
+	// 리뷰글 좋아요 취소
+	public void cancelLike(int review_num) throws Exception;
+	
 	// 상품별 문의글 목록 가져오기
 	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception;
 	
 	// 상품 문의글 등록
 	public void insertInquiry(ProdInquiryVO vo) throws Exception;
+	
+	// 해당 상품이 해당 유저의 위시리스트에 있는지 조회
+	public boolean isInWishlist(int user_num, int prod_num) throws Exception;
 }

@@ -1,3 +1,4 @@
+<%@page import="com.april.unomas.domain.UserVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,7 +17,7 @@
 <!-- Header end -->
 
 <%
-    String user_id = (String) session.getAttribute("user_id");
+    UserVO userVO = (UserVO)session.getAttribute("saveID");
 
     int user_num = 1;
 
@@ -68,9 +69,9 @@
 									        </c:otherwise>
 									    </c:choose>
 									</h5>
-									<%if (user_id == null) { %>
+									<c:if test="${sessionScope.saveID == null }">
 										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
-									<% } %>
+									</c:if>									
 								</div>
 								<div class="pd-tags">
 									<dl class="list first">
@@ -127,21 +128,37 @@
 								<div class="quantity justify-content-end">
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
-                                    <%if (isInWishlist) { %>
-									    <button class="icon_heart" id="wishlistBtnFull" 
-									        onclick="toggleWishlistBtn();"></button>
-								   <% }
-                                      else { %>
-									    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
-									        onclick="toggleWishlistBtn();"></button>
-								   <% } %>
+                                    <c:choose>
+                                        <c:when test="${sessionScope.saveID == null }">
+	                                        <button class="icon_heart_alt" id="wishlistBtnEmpty" 
+										        onclick="toggleWishlistBtn();"></button>
+                                        </c:when>
+                                        <c:otherwise>
+		                                    <c:choose>
+		                                        <c:when test="${isInWishlist == true }">
+												    <button class="icon_heart" id="wishlistBtnFull" 
+												        onclick="toggleWishlistBtn();"></button>
+		                                        </c:when>
+		                                        <c:otherwise>
+												    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
+												        onclick="toggleWishlistBtn();"></button>
+		                                        </c:otherwise>
+		                                    </c:choose>
+                                        </c:otherwise>
+                                    </c:choose>
 								   <form action="/product/insert_cart">
 								   </form>
-								       <input type="hidden" id="user_num" value="<%=user_num%>">
-								       <input type="hidden" id="prod_num" value="${vo.prod_num }">
-								       <input type="hidden" id="prod_amount" value="1">
-									<button class="primary-btn pd-cart" id="cartBtn" 
-									    >장바구니 담기</button> 
+								       <c:choose>
+									       <c:when test="${sessionScope.saveID != null }">
+										       <input type="hidden" id="user_num" value="${sessionScope.savaID.user_id }">
+										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
+										       <input type="hidden" id="prod_amount" value="1">
+											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 
+									       </c:when>
+									       <c:otherwise>
+									           <button class="primary-btn pd-cart" id="cartBtn" onclick="askLogin();">장바구니 담기</button>
+									       </c:otherwise>
+								       </c:choose>
 								</div>
 							</div>
 						</div>
@@ -158,7 +175,7 @@
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
 								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
 										(${reviewCnt })</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();" style="border-right: 1px solid #ebebeb;">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -270,7 +287,7 @@
 													<col style="width: auto;">
 													<col style="width: 77px;">
 													<col style="width: 100px;">
-													<col style="width: 50px;">
+													<%-- <col style="width: 50px;"> --%>
 													<col style="width: 80px;">
 												</colgroup>
 												<tbody>
@@ -279,7 +296,7 @@
 														<th>제목</th>
 														<th align="left">작성자</th>
 														<th>작성일</th>
-														<th>좋아요</th>
+														<!-- <th>좋아요</th> -->
 														<th>조회</th>
 													</tr>
 												</tbody>
@@ -299,7 +316,7 @@
 																<col style="width: auto;">
 																<col style="width: 77px;">
 																<col style="width: 100px;">
-																<col style="width: 50px;">
+																<%-- <col style="width: 50px;"> --%>
 																<col style="width: 80px;">
 															</colgroup>
 															<tbody>
@@ -310,7 +327,7 @@
 																		onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
 																	<td align="left">${reviewVo.user_id }</td>
 																	<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
-																	<td id="reviewLikecnt${it.index }">${reviewVo.review_likecnt }</td>
+																	<%-- <td id="reviewLikecnt${it.index }">${reviewVo.review_likecnt }</td> --%>
 																	<td id="reviewReadcnt${it.index }">${reviewVo.review_readcnt }</td>
 																</tr>
 															</tbody>
@@ -323,18 +340,27 @@
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
 															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
-															<p class="text-right">
-															    <button type="button" class="site-btn likeBtn" onclick="addLikeCnt(${it.index});">좋아요</button>
+															
+															<!-- @@ 좋아요 기능 나중에 추가하기 @@ -->
+															<%-- <p class="text-right">
+															    <button type="button" class="site-btn likeBtn" onclick="addLikeCnt(${reviewVo.review_num }, ${it.index});">좋아요</button>
 															</p>
+															<p class="text-right">
+															    <button type="button" class="site-btn likeBtn" onclick="cancelLikeCnt(${reviewVo.review_num }, ${it.index});">좋아요 취소</button>
+															</p> --%>
+															<!-- @@ 좋아요 기능 나중에 추가하기 @@ -->
+															
 														</div>
 													</c:forEach>
 												</c:otherwise>
 											</c:choose>
 											
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
-												후기쓰기
-												</button>
+												<c:if test="${sessionScope.saveID != null }">
+													<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
+													후기쓰기
+													</button>
+												</c:if>
 											</div>
 										</div>
 									</div>
@@ -406,9 +432,11 @@
 											    </c:otherwise>
 											</c:choose>
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
-												문의하기
-												</button>
+											    <c:if test="${sessionScope.saveID != null }">
+													<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
+													문의하기
+													</button>
+											    </c:if>
 											</div>
 										</div>
 									</div>

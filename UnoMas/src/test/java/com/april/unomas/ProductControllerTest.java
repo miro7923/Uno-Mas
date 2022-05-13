@@ -29,6 +29,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.april.unomas.domain.UserVO;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(
@@ -56,10 +58,13 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
-//	@Test
+	@Test
 	public void 상품하나출력테스트() throws Exception {
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_detail?prod_num=23");
-		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(model().attributeExists("vo")).andDo(print());
+		UserVO vo = new UserVO();
+		vo.setUser_num(1);
+		
+		mvc.perform(get("/product/product_detail?prod_num=10").sessionAttr("saveID", vo))
+		.andExpect(status().isOk()).andExpect(model().attributeExists("vo")).andDo(print());
 	}
 	
 //	@Test
@@ -108,12 +113,19 @@ public class ProductControllerTest {
 		.andExpect(status().isOk()).andExpect(view().name("product/inquiryWritingForm")).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	@Transactional(rollbackFor = Exception.class)
 	public void 문의글작성테스트() throws Exception {
 		mvc.perform(post("/product/write_inquiry").param("user_num", "1").param("prod_num", "82")
 				.param("p_inquiry_title", "문의").param("p_inquiry_content", "원산지가 어딘가요?"))
 		.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/product/product_detail?prod_num=82"))
 		.andDo(print());
+	}
+	
+//	@Test
+	@Transactional(rollbackFor = Exception.class)
+	public void 좋아요취소테스트() throws Exception {
+		mvc.perform(get("/product/cancel_like").param("review_num", "4"))
+		.andExpect(status().isOk()).andDo(print());
 	}
 }

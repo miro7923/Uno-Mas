@@ -122,6 +122,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public void cancelLike(int review_num) throws Exception {
+		dao.cancelLike(review_num);
+	}
+
+	@Override
 	public BoardReviewVO getReview(int review_num) throws Exception {
 		return dao.getReview(review_num);
 	}
@@ -139,5 +144,10 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void addReviewLikeCnt(int review_num) throws Exception {
 		dao.updateReviewLikeCnt(review_num);
+	}
+
+	@Override
+	public boolean isInWishlist(int user_num, int prod_num) throws Exception {
+		return dao.isInWishlist(user_num, prod_num);
 	}
 }

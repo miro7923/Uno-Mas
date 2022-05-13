@@ -12,6 +12,10 @@ a:hover {
 	color: #5179a5;
 }
 
+.tab-item ul li a {
+	padding: 18px 117px;
+}
+
 .likeBtn {
 	padding: 8px 23px 7px;
 }
@@ -21,9 +25,10 @@ a:hover {
 }
 
 .product-details .quantity .primary-btn.pd-cart {
-	padding: 14px 60px 10px;
+	padding: 10px 60px;
 	background-color: #B9CE45;
 	border: none;
+	font-size: 17px;
 }
 
 .tab-item ul li a::before {
@@ -85,7 +90,8 @@ p.memberInfo {
     border: None;
 }
 
-.product-big-img {
+.product-pic-zoom .product-big-img {
+    min-width: 50%;
     max-width: 75%;
 }
 

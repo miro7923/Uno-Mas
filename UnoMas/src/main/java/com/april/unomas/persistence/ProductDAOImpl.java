@@ -130,6 +130,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public void cancelLike(int revuew_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".cancelLike", revuew_num);
+	}
+
+	@Override
 	public BoardReviewVO getReview(int review_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getReviewReadCnt", review_num);
 	}
@@ -147,5 +152,17 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public void updateReviewLikeCnt(int review_num) throws Exception {
 		sqlSession.update(NAMESPACE + ".updateLikecnt", review_num);
+	}
+
+	@Override
+	public boolean isInWishlist(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		if (sqlSession.selectOne(NAMESPACE + ".isInWishlist", map) == null) 
+			return false;
+		
+		return true;
 	}
 }

@@ -100,7 +100,7 @@ public class ProductDAOTest {
 		log.info("count: " + dao.getNewProdCnt());
 	}
 	
-	@Test
+//	@Test
 	public void 특가목록출력테스트() throws Exception {
 		ProdCriteria pc = new ProdCriteria();
 		ProdPageMaker pm = new ProdPageMaker();
@@ -109,5 +109,10 @@ public class ProductDAOTest {
 		
 		log.info(dao.getSaleProductList(pc)+"");
 		log.info(pm.getTotalCnt()+"");
+	}
+	
+	@Test
+	public void 유저위시리스트확인() throws Exception {
+		log.info("Is in wishlist? " + dao.isInWishlist(1, 9));
 	}
 }

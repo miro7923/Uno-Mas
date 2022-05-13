@@ -150,6 +150,7 @@
         SELECT *
         FROM board_review
         WHERE prod_num = #{prod_num}
+        ORDER BY review_regdate DESC
     </select>
     
     <!-- 회원번호로 아이디 가져오기 -->
@@ -185,6 +186,7 @@
         SELECT *
         FROM prod_inquiry
         WHERE prod_num = #{prod_num}
+        ORDER BY p_inquiry_regdate DESC
     </select>
     
     <!-- 상품 문의글 등록 -->
@@ -193,10 +195,24 @@
         VALUES(#{user_num}, #{prod_num}, #{p_inquiry_title}, #{p_inquiry_content})
     </insert>
     
-    <!-- 리뷰글 좋아요 증가 -->
-    <update id="updateLikecnt">
+    <!-- 리뷰글 좋아요 증가 - 여유있으면 추가하기!! -->
+    <!-- <update id="updateLikecnt">
         UPDATE board_review
         SET review_likecnt = review_likecnt + 1
         WHERE review_num = #{review_num}
-    </update>
+    </update> -->
+    
+    <!-- 리뷰글 좋아요 취소 -->
+    <!-- <update id="cancelLike">
+        UPDATE board_review
+        SET review_likecnt = review_likecnt - 1
+        WHERE review_num = #{review_num}
+    </update> -->
+    
+    <!-- 해당 상품이 위시리스트에 있는지 조회 -->
+    <select id="isInWishlist" resultType="String">
+        SELECT *
+        FROM wishlist
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </select>
 </mapper>

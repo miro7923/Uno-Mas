@@ -42,10 +42,22 @@ public class ProductAjaxController {
 		return service.getReview(review_num).getReview_readcnt();
 	}
 	
-	@RequestMapping(value = "/update_likecnt", method = RequestMethod.GET)
-	public int addReviewLikeCnt(@RequestParam int review_num) throws Exception {
-		service.addReviewLikeCnt(review_num);
-		
-		return service.getReview(review_num).getReview_likecnt();
+	public boolean isInWishlistGET(@RequestParam int user_num, @RequestParam int prod_num) throws Exception {
+		return service.isInWishlist(user_num, prod_num);
 	}
+	
+	// ------------ 리뷰 좋아요 부분 (여유 생기면 상세 기능 추가할 것임) ------------------- // 
+//	@RequestMapping(value = "/update_likecnt", method = RequestMethod.GET)
+//	public int addReviewLikeCntGET(@RequestParam("review_num") int review_num) throws Exception {
+//		service.addReviewLikeCnt(review_num);
+//		
+//		return service.getReview(review_num).getReview_likecnt();
+//	}
+//	
+//	@RequestMapping(value = "/cancel_like", method = RequestMethod.GET)
+//	public int cancelLikeGET(@RequestParam("review_num") int review_num) throws Exception {
+//		service.cancelLike(review_num);
+//		
+//		return service.getReview(review_num).getReview_likecnt();
+//	}
 }
