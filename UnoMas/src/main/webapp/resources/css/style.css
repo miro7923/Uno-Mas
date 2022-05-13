@@ -2667,12 +2667,13 @@ ol {
 
 .cart-table table tr td {
 	text-align: center;
-	padding-bottom: 34px;
+	padding-bottom: 17px;
+	padding-top: 17px;
 }
 
-.cart-table table tr td.first-row {
-	padding-top: 30px;
-}
+/* .cart-table table tr td.first-row { */
+/* 	padding-top: 30px; */
+/* } */
 
 .cart-table table tr td.cart-pic {
 	width: 21%;
