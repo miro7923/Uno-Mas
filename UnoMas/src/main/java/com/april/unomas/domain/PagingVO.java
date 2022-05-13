@@ -35,9 +35,10 @@ public class PagingVO {
 	    	int perPageNum = this.cri.getPerPageNum();
 	        
 	        this.endPage = (int) (Math.ceil(page / (double) displayPageNum) * displayPageNum);
-	 
+	        System.out.println("endPage == ::" + endPage);
 	        this.startPage = (this.endPage - displayPageNum) + 1;
-	        if(startPage <= 0) startPage = 1;
+	        System.out.println("startPage == :: " + startPage);
+//	        if(startPage <= 0) startPage = 0;
 	        
 	        int tempEndPage = (int) (Math.ceil(totalCount / (double) perPageNum));
 	        if (this.endPage > tempEndPage) {

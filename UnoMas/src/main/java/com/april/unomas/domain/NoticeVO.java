@@ -10,6 +10,9 @@ public class NoticeVO {
 	private Date notice_regdate;
 	private Integer notice_readcount;
 	private String notice_ip;
+	private String notice_file;
+	private String notice_image;
+	
 	public Integer getNotice_num() {
 		return notice_num;
 	}
@@ -52,11 +55,24 @@ public class NoticeVO {
 	public void setNotice_ip(String notice_ip) {
 		this.notice_ip = notice_ip;
 	}
+	public String getNotice_file() {
+		return notice_file;
+	}
+	public void setNotice_file(String notice_file) {
+		this.notice_file = notice_file;
+	}
+	public String getNotice_image() {
+		return notice_image;
+	}
+	public void setNotice_image(String notice_image) {
+		this.notice_image = notice_image;
+	}
 	@Override
 	public String toString() {
 		return "NoticeVO [notice_num=" + notice_num + ", admin_num=" + admin_num + ", notice_title=" + notice_title
 				+ ", notice_content=" + notice_content + ", notice_regdate=" + notice_regdate + ", notice_readcount="
-				+ notice_readcount + ", notice_ip=" + notice_ip + "]";
+				+ notice_readcount + ", notice_ip=" + notice_ip + ", notice_file=" + notice_file + ", notice_image="
+				+ notice_image + "]";
 	}
 	
 	

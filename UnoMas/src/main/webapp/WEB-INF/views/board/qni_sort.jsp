@@ -52,7 +52,7 @@
     	<option value="">선택</option>
     	<option value="/faq_paging">공지사항</option>
     	<option value="/qni_paging">자주하는 질문</option>
-    	<option value="/inquiry_list">1:1 문의</option>
+    	<option value="/inquiry_paging">1:1 문의</option>
     </select>
     <script type="text/javascript">
     	function select_location() {
@@ -160,31 +160,25 @@
                     <div style="padding:1px; border-top:1px solid #e6e6e6"></div>
                     <div class="layout-pagination">
                         <div class="pagediv">
-<!--                         <a href="" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a> -->
-<!--                         <a href="" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a> -->
-<!--                         <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
-<!--                         <a href="" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a> -->
-<!--                         <a href="" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a> -->
-						
-						<ul class="btn-group pagination">
-<%--     <c:if test="${pagingVO.prev }"> --%>
-    <li>
-        <a href='<c:url value="/qni_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&faq_cate=${faq_cate }"/>'><img src="${path}/resources/img/prev.png"></a>
-    </li>
-<%--     </c:if> --%>
-    <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-    <li>
-        <a href='<c:url value="/qni_sort${pagingVO.makeQuery(pageNum) }&faq_cate=${faq_cate }"/>' class="layout-pagination-button layout-pagination-number __active"><i class="fa">${pageNum }</i></a>
-    </li>
-    </c:forEach>
-<%--     <c:if test="${pagingVO.next && pagingVO.endPage >0 }"> --%>
-    <li>
-<%--         <a href='<c:url value="/qni_paging?page=${pagingVO.endPage+1 }"/>' class="layout-pagination-button layout-pagination-next-page">다음</a> --%>
-        <a href='<c:url value="/qni_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&faq_cate=${faq_cate }"/>'><img src="${path}/resources/img/next.png"></a>
-    </li>
-<%--     </c:if> --%>
-</ul>
-						
+<div class="row justify-content-center">
+              <div class="col-1 justify-content-center ">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                      <span aria-hidden="true">&lt;</span>
+                    </a>
+                  </li>
+                  <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  </c:forEach>
+                  <li class="page-item">
+                    <a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                      <span aria-hidden="true">&gt;</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
 						
                         </div>
                     </div>

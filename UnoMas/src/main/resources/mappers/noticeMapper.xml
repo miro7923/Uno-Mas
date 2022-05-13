@@ -9,6 +9,11 @@
 		values(#{admin_num},#{notice_title},#{notice_content})
 	</insert>
 	
+	<insert id="insert">
+		insert into board_notice(admin_num,notice_title,notice_content,notice_file,notice_image)
+		values(#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_image})
+	</insert>
+	
 	<select id="listAll" resultType="NoticeVO">
 		<![CDATA[
 		select * from board_notice 

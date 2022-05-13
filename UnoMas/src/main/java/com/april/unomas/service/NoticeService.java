@@ -9,7 +9,10 @@ import com.april.unomas.domain.NoticeVO;
 public interface NoticeService {
 	
 	// 글쓰기(boardWrite)
-	public void noticeWrite(NoticeVO vo)throws Exception;
+	public void noticeWrite(NoticeVO vo) throws Exception;
+	
+	// 글쓰기(첨부파일)
+	public void noticeInsert(NoticeVO vo) throws Exception;
 			
 	// 글전체 목록(listAll)	
 	public List<NoticeVO> listAll() throws Exception;

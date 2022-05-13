@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.persistence.QnaDAO;
 
@@ -24,6 +25,16 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public List<QnaVO> qnaList() throws Exception {
 		return dao.qnaListAll();
+	}
+
+	@Override
+	public Integer getQnaCnt(Integer user_num) throws Exception {
+		return dao.getQnaCount(user_num);
+	}
+
+	@Override
+	public List<QnaVO> pagingQnaList(int user_num,Criter cri) throws Exception {
+		return dao.pagingQna(user_num,cri);
 	}
 	
 	

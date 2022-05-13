@@ -8,6 +8,7 @@ public class BoardVO {
 	private String faq_cate;
 	private String faq_content;
 	private Date faq_regdate;
+	
 	public Integer getFaq_num() {
 		return faq_num;
 	}

@@ -18,7 +18,7 @@
  <div class="my-5 container" style="width:820px;" >
     <h2>1:1 문의</h2>
         <div class="my-5 p-2" style="border-top: 3px solid rgb(51,51,51); ">
-         <form onsubmit="checkAll()" method="post">
+         <form onsubmit="checkAll()" method="post" enctype="multipart/form-data">
             <div style="width:780px;">
                 <div class="row my-4">
                     <div class="col-2" style="line-height: 40px; " > 
@@ -75,12 +75,13 @@
                     
                     <div class="col-10" >
                         <div class="row pl-3" >
-                            <button class="form-control" type="button" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png); background-size: 100px;"></button>
+<!--                             <input class="form-control" type="file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" name="qna_img" id="qna_img"></input> -->
+                        	<label class="form-control" for="input-file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" ></label>
+                        	<input id="input-file" type="file" style="display: none;" name="qna_img"></input>
                         </div>
                         <div class="row pl-3 my-3">
-                            * 30MB 이하의 이미지만 업로드 가능합니다.<br>
+                            * 4MB 이하의 이미지만 업로드 가능합니다.<br>
                             * 상품과 무관한 내용이거나 음란 및 불법적인 내용은 통보없이 삭제 될 수 있습니다.<br>
-                            * 사진은 최대 8장까지 등록가능합니다.<br>
                         </div>
                     </div>
                 </div>

@@ -78,6 +78,11 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public void deleteNotice(Integer notice_num) {
 		sqlSession.delete(NAMESPACE+".deleteNotice",notice_num);
 	}
+
+	@Override
+	public void noticeInsert(NoticeVO vo) {
+		sqlSession.insert(NAMESPACE+".insert",vo);
+	}
 	
 	
 	

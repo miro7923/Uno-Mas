@@ -1,22 +1,29 @@
 ﻿package com.april.unomas;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.april.unomas.domain.BoardVO;
@@ -44,11 +51,9 @@ public class BoardController {
 	@Inject
 	private QnaService qService;
 	
-	// customerCenter
-//	@RequestMapping(value = "/contact")
-//	public String contact() {
-//		return "/customerCenter/contact";
-//	}
+	// 업로드 폴더 경로
+	@Resource(name="qnaUploadPath")
+	private String uploadPath;
 	
 	@GetMapping(value = "/qni_write")
 	public String boardWriteGET() throws Exception{
@@ -71,54 +76,23 @@ public class BoardController {
 		return "redirect:/qni_paging";
 	}
 	
-	// 글목록  /board/listAll  (GET)
-	/*
-	 * @GetMapping(value = "/qni") public String listAllGET(Model model) throws
-	 * Exception { log.info("listAllGET() 호출");
-	 * 
-	 * // 서비스 -디비에 저장된 글정보 가져오기 List<BoardVO> boardList = service.listAll();
-	 * 
-	 * log.info(boardList+"");
-	 * 
-	 * // view 페이지로 데이터를 전달 model.addAttribute("boardList",boardList); //
-	 * model.addAttribute("boardList",service.listAll());
-	 * 
-	 * // /board/listAll.jsp 페이지이동 return "/board/qni"; }
-	 */
-	
-	/*@GetMapping(value = "/faq")
-	public String faq(Model model) throws Exception {
-		
-//		 서비스 -디비에 저장된 글정보 가져오기
-		List<NoticeVO> boardList = nService.listAll();
-		
-		log.info(boardList+"");
-		
-//		 view 페이지로 데이터를 전달
-		model.addAttribute("boardList",boardList);
-//		model.addAttribute("boardList",service.listAll());
-		
-		return "/board/faq";
-	}*/
-	
 	@GetMapping(value = "/faq_insert")
 	public String noticeWriteGET() throws Exception{
 		
 		return "/board/faq_insert";
 	}
 	
-	@PostMapping(value = "/faq_insert")
-	public String noticeWritePOST(NoticeVO vo, HttpServletRequest request,RedirectAttributes rttr) throws Exception{
-		log.info("noticeWritePOST() 호출");
-		
-		// 전달된 정보를 저장
-		
-		// 서비스 - 글쓰기 동작 수행
-		nService.noticeWrite(vo);
-		
-		// 페이지 이동(/board/list)
-		return "redirect:/faq_paging";
-	}
+	/*
+	 * @PostMapping(value = "/faq_insert") public String noticeWritePOST(NoticeVO
+	 * vo, HttpServletRequest request,RedirectAttributes rttr) throws Exception{
+	 * log.info("noticeWritePOST() 호출");
+	 * 
+	 * // 전달된 정보를 저장
+	 * 
+	 * // 서비스 - 글쓰기 동작 수행 nService.noticeWrite(vo);
+	 * 
+	 * // 페이지 이동(/board/list) return "redirect:/faq_paging"; }
+	 */
 	
 	@GetMapping(value = "/faq_detail")
 	public String noticeInfoGET(@RequestParam("notice_num") int notice_num,Model model) throws Exception{
@@ -233,29 +207,76 @@ public class BoardController {
 		return "redirect:/faq_paging";
 	}
 	
-	@GetMapping(value="/inquiry_list")
-	public String inquiryListGET(Model model) throws Exception {
 
-		List<QnaVO> boardList = qService.qnaList();
-		
-		log.info(boardList+"");
-		
-		model.addAttribute("boardList",boardList);
-//		model.addAttribute("boardList",service.listAll());
-		
-		return "/board/inquiry_list";
-	}
-	
 	@GetMapping(value="/inquiry_form")
 	public String inquiryWriteGET() throws Exception {
 		return "/board/inquiry_form";
 	}
 	
 	@PostMapping(value = "/inquiry_form")
-	public String inquiryWritePOST(QnaVO vo,HttpServletRequest request,RedirectAttributes rttr) throws Exception {
+	public String inquiryWritePOST(HttpServletRequest request,RedirectAttributes rttr, MultipartFile qna_img) throws Exception {
+		QnaVO vo = new QnaVO();
 		log.info(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		vo.setUser_num(Integer.parseInt(request.getParameter("user_num")));
+		vo.setQnacate_num(Integer.parseInt(request.getParameter("qnacate_num")));
+		vo.setQnacate2(request.getParameter("qnacate2"));
+		vo.setQna_title(request.getParameter("qna_title"));
+		vo.setQna_content(request.getParameter("qna_content"));
+		
+		UUID uid = UUID.randomUUID();
+		String fileName = uid.toString()+"_"+qna_img.getOriginalFilename();
+		log.info(fileName);
+		File targetFile = new File(uploadPath,fileName);
+		FileCopyUtils.copy(qna_img.getBytes(), targetFile);
+		vo.setQna_img(fileName);
+		
 		qService.qnaWrite(vo);
 		
-		return "redirect:/inquiry_list";
+		return "redirect:/inquiry_paging";
 	}
+	
+	@GetMapping(value = "/inquiry_paging")
+	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model) throws Exception {
+		
+		
+		List<QnaVO> pList = qService.pagingQnaList(1,cri);
+		model.addAttribute("pList",pList);
+		
+		PagingVO pagingVO = new PagingVO(cri);
+		pagingVO.setTotalCount(qService.getQnaCnt(1));
+		model.addAttribute("pagingVO",pagingVO);
+		
+		return "/board/inquiry_paging";
+	}
+	
+	
+	@PostMapping(value = "/faq_insert")
+	public String noticeInsertPOST(/*NoticeVO vo,*/ HttpServletRequest request,RedirectAttributes rttr,MultipartFile notice_file,MultipartFile notice_image ) throws Exception{
+		log.info("noticeWritePOST() 호출");
+		
+		// 전달된 정보를 저장
+		NoticeVO vo = new NoticeVO();
+		vo.setAdmin_num(Integer.parseInt(request.getParameter("admin_num")));
+		vo.setNotice_title(request.getParameter("notice_title"));
+		vo.setNotice_content(request.getParameter("notice_content"));
+		
+		UUID uid = UUID.randomUUID();
+		
+		String fileName = uid.toString()+"_"+notice_file.getOriginalFilename();
+		File targetFile = new File(uploadPath,fileName);
+		FileCopyUtils.copy(notice_file.getBytes(), targetFile);
+		vo.setNotice_file(fileName);
+		
+		String imageName = uid.toString()+"_"+notice_image.getOriginalFilename();
+		File targetImage = new File(uploadPath,imageName);
+		FileCopyUtils.copy(notice_image.getBytes(), targetImage);
+		vo.setNotice_image(imageName);
+		
+		// 서비스 - 글쓰기 동작 수행
+		nService.noticeWrite(vo);
+		
+		// 페이지 이동(/board/list)
+		return "redirect:/faq_paging";
+	}
+	
 }

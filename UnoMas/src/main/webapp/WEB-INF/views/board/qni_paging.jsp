@@ -54,7 +54,7 @@
     	<option value="">선택</option>
     	<option value="/faq_paging">공지사항</option>
     	<option value="/qni_paging">자주하는 질문</option>
-    	<option value="/inquiry_list">1:1 문의</option>
+    	<option value="/inquiry_paging">1:1 문의</option>
     </select>
     <script type="text/javascript">
     	function select_location() {
@@ -185,35 +185,43 @@
                     
                     <div class="layout-pagination">
                         <div class="pagediv">
-                        <ul class="btn-group pagination">
-<%--     <c:if test="${pagingVO.prev }"> --%>
-    <li>
-        <a href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'><img src="${path}/resources/img/prev.png"></a>
-    </li>
-<%--     </c:if> --%>
-    <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-    <li>
-        <a href='<c:url value="/qni_paging${pagingVO.makeQuery(pageNum) }"/>' class="layout-pagination-button layout-pagination-number __active"><i class="fa">${pageNum }</i></a>
-    </li>
-    </c:forEach>
-<%--     <c:if test="${pagingVO.next && pagingVO.endPage >0 }"> --%>
-    <li>
-<%--         <a href='<c:url value="/qni_paging?page=${pagingVO.endPage+1 }"/>' class="layout-pagination-button layout-pagination-next-page">다음</a> --%>
-        <a href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'><img src="${path}/resources/img/next.png"></a>
-    </li>
-<%--     </c:if> --%>
-</ul>
-<!--                         <a href="" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a> -->
-<!--                         <a href="" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a> -->
-<!--                         <strong class="layout-pagination-button layout-pagination-number __active">1</strong> -->
-<!--                         <a href="" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a> -->
-<!--                         <a href="" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a></div> -->
+                        <div class="row justify-content-center">
+              <div class="col-1 justify-content-center ">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                      <span aria-hidden="true">&lt;</span>
+                    </a>
+                  </li>
+                  <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  </c:forEach>
+                  <li class="page-item">
+                    <a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                      <span aria-hidden="true">&gt;</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
                     </div> <!-- paging div -->
                     
                     <table class="xans-board-search xans-board-search2">
                         <tbody>
                             <tr>
-                                <td class="input_txt">&nbsp;</td>
+                                <td>
+                                
+                                <select id="search_type" name="search_type">
+    	<option value="">검색조건</option>
+    	<option value="title">제목</option>
+    	<option value="cate">카테고리</option>
+    	<option value="content">내용</option>
+    </select>
+    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
+<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
+    <button id="search_btn" onclick="search()">검색</button>
+                                
+                                </td>
                                 
                             </tr>
                         </tbody>

@@ -6,13 +6,14 @@
 <mapper namespace="com.unomas.mapper.QnaMapper"> 
 <resultMap type="QnaVO" id="qnaMap">
 	<id column="QNA_NUM" property="qna_num"/>
-	<result column="USER_NUM" property=""/>
+	<result column="USER_NUM" property="user_num"/>
 	<result column="QNA_TITLE" property="qna_title"/>
 	<result column="QNA_CONTENT" property="qna_content"/>
 	<result column="QNA_REGDATE" property="qna_regdate"/>
 	<result column="QNA_PROCESS" property="qna_process"/>
 	<result column="QNACATE2" property="qnacate2"/>
 	<result column="QNACATE_NUM" property="qnacate_num"/>
+	<result column="QNA_IMG" property="qna_img"/>
 
 	<association javaType="QnaCateVO" property="qnaCateVO">
 		<id column="QNACATE_NUM" property="qnacate_num"/>
@@ -21,15 +22,47 @@
 </resultMap>
 
 	<insert id="createQna">
-		insert into board_qna(USER_NUM,QNA_TITLE,QNA_CONTENT,QNACATE_NUM,QNACATE2)
-		values (#{user_num},#{qna_title},#{qna_content},#{qnacate_num},#{qnacate2})
+		insert into board_qna(USER_NUM,QNA_TITLE,QNA_CONTENT,QNACATE_NUM,QNACATE2,QNA_IMG)
+		values (#{user_num},#{qna_title},#{qna_content},#{qnacate_num},#{qnacate2},#{qna_img})
 	</insert>
 	
 	<select id="qnaList" resultMap="qnaMap">
 		<![CDATA[
-		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
+		select Q.QNA_IMG,Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
 		from board_qna q join qna_category c
 		where Q.QNACATE_NUM = C.QNACATE_NUM
 		]]>
+		
 	</select>
+	
+	<select id="pagingQna" resultMap="qnaMap">
+		<![CDATA[
+		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
+		from board_qna q join qna_category c
+		where Q.QNACATE_NUM = C.QNACATE_NUM
+		and USER_NUM = #{user_num}
+		]]>
+		order by QNA_NUM desc
+		limit #{pageStart}, #{perPageNum}
+		
+	</select>
+	
+	<select id="pageQna" resultMap="qnaMap">
+		<![CDATA[
+		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
+		from board_qna q join qna_category c
+		where Q.QNACATE_NUM = C.QNACATE_NUM
+		and USER_NUM = #{user_num}
+		]]>
+		order by QNA_NUM desc
+		limit #{pageStart}, #{perPageNum}
+		
+	</select>
+	
+	<select id="qnaCnt" resultType="Integer">
+		select count(qna_num) 
+		from board_qna
+		where user_num = #{user_num}
+	</select>
+	
 </mapper>

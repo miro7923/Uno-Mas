@@ -263,6 +263,10 @@
 <th scope="row">작성자</th>
 <td>${vo.admin_num }</td>
 </tr>
+<tr>
+<th scope="row">첨부파일</th>
+<td>${vo.notice_file }</td>
+</tr>
 <tr class="etcArea">
 <td colspan="2">
 <ul>

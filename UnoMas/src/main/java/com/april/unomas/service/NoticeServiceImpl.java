@@ -74,6 +74,11 @@ public class NoticeServiceImpl implements NoticeService {
 	public void deleteNotice(Integer notice_num) throws Exception {
 		dao.deleteNotice(notice_num);
 	}
+
+	@Override
+	public void noticeInsert(NoticeVO vo) throws Exception {
+		dao.noticeInsert(vo);
+	}
 	
 	
 	

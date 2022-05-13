@@ -126,9 +126,9 @@ table {
     letter-spacing: -.05em;
     color: #4c4c4c;
     font-size: 12px;
-    max-width: 100%
+    max-width: 100%;
     border-collapse: collapse;
-    border-spacing: 0
+    border-spacing: 0;
 }
 
 td,
@@ -267,4 +267,13 @@ ul {
 }
 .layout-pagination-next-page{
 	background-image: url("next.png");
+}
+.xans-board-search {
+    margin-top: 30px;
+    padding: 20px 0 20px 10px;
+    color: #2e2e2e;
+    font-size: 12px;
+    clear: both;
+    border-top: 1px solid #5e3d5a;
+    width: 100%
 }
