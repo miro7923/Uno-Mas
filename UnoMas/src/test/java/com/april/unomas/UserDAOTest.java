@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -23,22 +24,21 @@ public class UserDAOTest {
 	@Inject
 	private UserDAO dao;
 	
-	@Test
+	//@Test
 	public void 객체주입확인() {
 		
 		log.info(dao.toString());
 	}
 	
-	@Test
+//	@Test
 	public void DB시간확인() {
 		
 		String time = dao.getTime();
 		log.info("DB시간 : " + time);
 	}
 	
-	@Test
+//	@Test
 	public void 관리자등록확인() {
-		
 		AdminVO vo = new AdminVO();
 		vo.setAdmin_id("admin");
 		vo.setAdmin_pass("1234");
@@ -47,5 +47,38 @@ public class UserDAOTest {
 		
 		log.info("TEST : 관리자 등록 완료");
 		log.info("TEST : vo - " + vo);
+	}
+	
+//	@Test
+	public void 비번변경테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user1");
+		vo.setUser_pass("Tmvmfld00@");
+		dao.changePW(vo);
+	}
+	
+	//@Test
+	public void 회원탈퇴테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user4");
+		vo.setUser_pass("1212");
+		dao.deleteUser(vo);
+	}
+	
+	@Test
+	public void 로그인테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user5");
+		vo.setUser_pass("123123");
+		dao.loginUser(vo);
+	}
+	
+	//@Test
+	public void 회원정보수정테스트() {
+		UserVO vo = new UserVO();
+		vo.setUser_id("user5");
+		vo.setUser_pass("123123");
+		dao.updateUser(vo);
+		
 	}
 }

@@ -10,6 +10,16 @@ function memberCk(){
 		$("#pass").focus();
 		return false;
 	};
-
-
+	
+	$.ajax({
+		type: "get",
+		url: "${contextPath}/user/login",
+		data: {loginVO},
+		success: function(loginVO) {
+			if(result != loginVO)
+				$("#cir_text").text("잘못된 아이디 혹은 비밀번호입니다.");
+			return false;	
+		
+		}
+	}); 
 }

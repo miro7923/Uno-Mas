@@ -35,7 +35,6 @@
 
 .register_input_group {
     top: 100px;
-    position: absolute;
     transition: .5s;
     margin-left: 130px;
     padding-left: 22px;
@@ -109,7 +108,7 @@
 
  
 .register_button {
-    width: 85%;
+    width: 50%;
     padding: 7px 30px;
     cursor: pointer;
     display: block;

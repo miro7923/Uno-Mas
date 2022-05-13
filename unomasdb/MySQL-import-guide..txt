@@ -1,3 +1,0 @@
-EER 다이어그램 확인하고 테이블 생성 쿼리문 import Guide
--> 그대로 따라하시오.
-https://miro7923.github.io/uno%20mas/db-import-guide/

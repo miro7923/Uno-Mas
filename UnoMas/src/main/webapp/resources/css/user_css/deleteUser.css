@@ -129,6 +129,7 @@ th, td {
     text-decoration: none;
     height: 40px;
     line-height: 40px;
+    border: 1px solid #ddd;
 }
 .btn_cancle {
 	width: 110px;

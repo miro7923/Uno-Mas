@@ -5,8 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.april.unomas.service.ProductService;
@@ -30,4 +35,19 @@ public class ProductAjaxController {
 		
 		service.insertCart(user_num, prod_num, prod_amount);
 	}
+	
+	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)
+	public int updateReviewReadcntGET(@RequestParam int review_num) throws Exception {
+		service.updateReviewReadcnt(review_num);
+		
+		return service.getReview(review_num).getReview_readcnt();
+	}
+	
+	@RequestMapping(value = "/update_likecnt", method = RequestMethod.GET)
+	public int addReviewLikeCnt(@RequestParam int review_num) throws Exception {
+		service.addReviewLikeCnt(review_num);
+		
+		return service.getReview(review_num).getReview_likecnt();
+	}
+
 }

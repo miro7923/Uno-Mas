@@ -3,7 +3,9 @@ package com.april.unomas.service;
 import java.util.List;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
 
 public interface ProductService {
@@ -56,4 +58,37 @@ public interface ProductService {
 	
 	// 신상품 개수 가져오는 메서드
 	public int getNewProdCnt() throws Exception;
+	
+	// 특가 목록 가져오는 메서드
+	public List<ProductVO> getSaleProductList(ProdCriteria pc) throws Exception;
+	
+	// 특가 상품 개수 가져오는 메서드
+	public int getSaleCnt() throws Exception;
+	
+	// 리뷰글 작성하는 메서드
+	public void insertReview(BoardReviewVO vo) throws Exception;
+	
+	// 리뷰글 목록 가져오는 메서드
+	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception;
+	
+	// 상품별 리뷰글 개수 가져오는 메서드
+	public int getReviewCnt(int prod_num) throws Exception;
+	
+	// 회원 번호로 회원 아이디 가져오는 메서드
+	public String getUserid(int user_num) throws Exception;
+	
+	// 리뷰글 조회수 증가
+	public void updateReviewReadcnt(int review_num) throws Exception;
+	
+	// 특정 리뷰글 정보 가져오기
+	public BoardReviewVO getReview(int review_num) throws Exception;
+	
+	// 리뷰글 좋아요 증가
+	public void addReviewLikeCnt(int review_num) throws Exception;
+	
+	// 상품별 문의글 목록 가져오기
+	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception;
+	
+	// 상품 문의글 등록
+	public void insertInquiry(ProdInquiryVO vo) throws Exception;
 }

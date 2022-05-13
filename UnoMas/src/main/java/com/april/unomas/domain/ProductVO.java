@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class ProductVO {
 
-	private int prod_num;
+	private Integer prod_num;
 	private String prod_name;
 	private int prod_category;
 	private int prod_price;
@@ -27,5 +27,5 @@ public class ProductVO {
 	private String prod_sellunit;
 	private String prod_explain;
 	private String prod_packing;
-
+	private int prod_discntrate;
 }

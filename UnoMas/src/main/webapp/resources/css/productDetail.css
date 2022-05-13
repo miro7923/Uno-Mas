@@ -4,6 +4,22 @@ h3 {
 	margin-top: 30px;
 }
 
+a {
+	color: #5179a5;
+}
+
+a:hover {
+	color: #5179a5;
+}
+
+.likeBtn {
+	padding: 8px 23px 7px;
+}
+
+.footerInquiry a:link, a:visited {
+	color: #5179a5;
+}
+
 .product-details .quantity .primary-btn.pd-cart {
 	padding: 14px 60px 10px;
 	background-color: #B9CE45;
@@ -29,8 +45,30 @@ h3 {
 	font-size: 30px;
 }
 
+.product-details .priceText .discnted {
+	font-size: 20px;
+	font-weight: 400;
+    color: #b2b2b2;
+    text-decoration: line-through;
+}
+
+.product-details .priceText .finalPrice {
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.product-details .priceText .discntRate {
+	color: #fa622f;
+	line-height: 40px;
+}
+
+.product-details .priceText .saleSubTit {
+    font-weight: 400;
+}
+
 p.memberInfo {
 	color: #9db329;
+	line-height: 50px;
 }
 
 #wishlistBtnEmpty, #wishlistBtnFull {
@@ -181,6 +219,12 @@ table.reviewTable th, table.reviewTable td:not(.reviewTitle) {
 
 table.reviewTable td {
 	border-top: 1px solid #e3e3e3;
+}
+
+.nonPost {
+	border-top: 1px solid #e3e3e3;
+	padding-top: 25px;
+    padding-bottom: 15px;
 }
 
 .reviewTitle {

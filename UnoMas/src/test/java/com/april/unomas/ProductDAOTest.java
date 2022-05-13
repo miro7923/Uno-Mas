@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.persistence.ProductDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -108,5 +109,16 @@ public class ProductDAOTest {
 		
 		log.info(dao.getNewProductList(pp)+"");
 		log.info("count: " + dao.getNewProdCnt());
+	}
+	
+	@Test
+	public void 특가목록출력테스트() throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(dao.getSaleCnt());
+		
+		log.info(dao.getSaleProductList(pc)+"");
+		log.info(pm.getTotalCnt()+"");
 	}
 }

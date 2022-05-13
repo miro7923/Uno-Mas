@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>비밀번호 변경하기</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
-<script type="text/javascript" src="../script/jquery-3.6.0.js"></script>
 
 </head>
 
@@ -18,48 +17,38 @@
 <jsp:include page="../inc/header.jsp"></jsp:include>
 
 	<div id="container">
-		<!-- 헤더 들어가는 곳 -->
-
-		<!-- 헤더 들어가는 곳 -->
-
-		<!-- 본문내용 -->
 		<article>
 			<h3 class="change_pw">새로운 비밀번호로 변경</h3>
-			<hr>
-			<form action="" id="ch_pw" method="post" onsubmit="return memberCk();">
+			<hr style="margin-bottom: 0px;">
+			<form role="form" id="ch_pw" method="post">
 				<div class="input_box">
-					<input type="password" id="ch_pass" name="ch_pass" placeholder="새로운 비밀번호를 입력하세요.">
-					<input type="password" id="ch_pass2" name="ch_pass2" placeholder="새로운 비밀번호를 한번 더 입력하세요.">
+					<input type="text" name="id" value="${id }" hidden="true">
+					
 					<p id="cir_text"></p>
+					<input type="password" id="ch_pass" name="newPW" placeholder="비밀번호">
+					<input type="password" id="ch_pass2" name="newPW_ck" placeholder="비밀번호 확인">
+					<p class="find_result_text"></p>
 				</div>
 
-				<div id="buttons">
-					<input type="submit" value="확인" id="find_ok">
-				</div>
 			</form>
+			<div class="button_box">
+					<input type="button" value="확인" onclick="changePWFunc()">
+				</div>
+			
+			
 		</article>
-		<!-- 본문내용 -->
 
-		<!-- 푸터 들어가는 곳 -->
-
-		<!-- 푸터 들어가는 곳 -->
 
 	</div>
 		<jsp:include page="../inc/bottom.jsp"></jsp:include>
-    <!-- Footer Section End -->
+    <!-- Footer S
+    ection End -->
 
     <!-- Js Plugins -->
-    <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${path}/resources/js/bootstrap.min.js"></script>
-    <script src="${path}/resources/js/jquery-ui.min.js"></script>
-    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
-    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
-    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
-    <script src="${path}/resources/js/jquery.dd.min.js"></script>
-    <script src="${path}/resources/js/jquery.slicknav.js"></script>
-    <script src="${path}/resources/js/owl.carousel.min.js"></script>
-    <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/user_js/changePW.js"></script>
+    
+	<script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
+	<script src="${path}/resources/js/main.js"></script> 
 	
-
 </body>
 </html>

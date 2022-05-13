@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.persistence.ProductDAO;
 
@@ -102,4 +104,58 @@ public class ProductServiceImpl implements ProductService{
 		return dao.getNewProdCnt();
 	}
 
+	@Override
+	public List<ProductVO> getSaleProductList(ProdCriteria pc) throws Exception {
+		return dao.getSaleProductList(pc);
+	}
+
+	@Override
+	public int getSaleCnt() throws Exception {
+		return dao.getSaleCnt();
+	}
+
+	@Override
+	public void insertReview(BoardReviewVO vo) throws Exception {
+		dao.insertReview(vo);
+	}
+
+	@Override
+	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception {
+		return dao.getReviewList(prod_num);
+	}
+
+	@Override
+	public int getReviewCnt(int prod_num) throws Exception {
+		return dao.getReviewCnt(prod_num);
+	}
+
+	@Override
+	public String getUserid(int user_num) throws Exception {
+		return dao.getUserid(user_num);
+	}
+
+	@Override
+	public void updateReviewReadcnt(int review_num) throws Exception {
+		dao.updateReviewReadcnt(review_num);
+	}
+
+	@Override
+	public BoardReviewVO getReview(int review_num) throws Exception {
+		return dao.getReview(review_num);
+	}
+
+	@Override
+	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception {
+		return dao.getInquiryList(prod_num);
+	}
+
+	@Override
+	public void insertInquiry(ProdInquiryVO vo) throws Exception {
+		dao.insertInquiry(vo);
+	}
+
+	@Override
+	public void addReviewLikeCnt(int review_num) throws Exception {
+		dao.updateReviewLikeCnt(review_num);
+	}
 }

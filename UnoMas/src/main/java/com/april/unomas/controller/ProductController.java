@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
+
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.service.ProductService;
@@ -34,6 +38,7 @@ public class ProductController {
 	public String checkout() {
 		return "product/check-out";
 	}
+
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
@@ -80,6 +85,8 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
+
+		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
 		map.put("pageNum", pageNum);
@@ -90,11 +97,22 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping(value = "/product_detail", method = RequestMethod.GET) // /product -> /product_detail
+	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
 	public String product(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		ProductVO vo = service.getProduct(prod_num);
 		
+		List<BoardReviewVO> reviewList = service.getReviewList(prod_num);
+		for (int i = 0; i < reviewList.size(); i++)
+			reviewList.get(i).setUser_id(service.getUserid(reviewList.get(i).getUser_num()));
+		
+		List<ProdInquiryVO> inquiryList = service.getInquiryList(prod_num);
+		for (int i = 0; i < inquiryList.size(); i++)
+			inquiryList.get(i).setUser_id(service.getUserid(inquiryList.get(i).getUser_num()));
+		
 		model.addAttribute("vo", vo);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewCnt", service.getReviewCnt(prod_num));
+		model.addAttribute("inquiryList", inquiryList);
 		
 		return "product/productDetail";
 	}
@@ -114,19 +132,21 @@ public class ProductController {
 		log.info(details+"");
 		model.addAttribute("categories",categories);
 		model.addAttribute("details",details);
-		
-		
+
 		return "product/productRegister";
 	}
 	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
+
 	public String productRegisterPOST(ProductVO vo, Model model) throws Exception {
+
 		log.info("get 페이지 호출");
 		log.info(vo+"");
 		service.insertProduct(vo);
 		
 		return "redirect:/product/product_lookup";
 	}
+
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
 	public String productLookup(ProdCriteria pc, Model model) throws Exception {
@@ -170,27 +190,76 @@ public class ProductController {
 		return "product/shopping-cart";
 	}
 	
-	@RequestMapping(value = "/review_writing_form")
-	public String reviewWritingForm() {
+	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
+	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
 		return "product/reviewWritingForm";
 	}
 	
-	@RequestMapping(value = "/product_qna_writing_form")
-	public String qnaWritingForm() {
-		return "product/qnaWritingForm";
-	}
-
-	@RequestMapping(value = "/new_product_list", method = RequestMethod.GET)
-	public String newProductListGET(ProdCriteria pc, Model model) throws Exception {
-		model.addAttribute("newProductList", service.getNewProductList(pc));
-		model.addAttribute("newProdCnt", service.getNewProdCnt());
+	@RequestMapping(value = "/write_review", method = RequestMethod.POST)
+	public String writeReviewPOST(BoardReviewVO vo, HttpServletRequest request) throws Exception {
+		vo.setReview_ip(request.getRemoteAddr());
 		
-		return "product/newProductList";
+		service.insertReview(vo);
+		
+		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
-	@RequestMapping(value = "/sale_product_list", method = RequestMethod.GET)
-	public String saleProductList() {
-		return "product/saleProductList";
+	@RequestMapping(value = "/write_inquiry", method = RequestMethod.GET)
+	public String writeInquiryGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
+		return "product/inquiryWritingForm";
+	}
+	
+	@RequestMapping(value = "/write_inquiry", method = RequestMethod.POST)
+	public String writeInquiryPOST(ProdInquiryVO vo) throws Exception {
+		service.insertInquiry(vo);
+		
+		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
+
+	@RequestMapping(value = "/new_list", method = RequestMethod.GET)
+	public String newProductListGET(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+			ProdCriteria pc, Model model) throws Exception {
+		pc.setPage(pageNum);
+		
+		int postCnt = service.getNewProdCnt();
+		
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(postCnt);
+
+		model.addAttribute("productList", service.getNewProductList(pc));
+		model.addAttribute("postCnt", postCnt);
+		model.addAttribute("topcate", "신상품");
+		model.addAttribute("topcate_num", 6);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pm", pm);
+		
+		return "product/productList";
+	}
+	
+	@RequestMapping(value = "/sale_list", method = RequestMethod.GET)
+	public String saleProductList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+			ProdCriteria pc, Model model) throws Exception {
+		pc.setPage(pageNum);
+		
+		int postCnt = service.getSaleCnt();
+		
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(postCnt);
+
+		model.addAttribute("productList", service.getSaleProductList(pc));
+		model.addAttribute("postCnt", postCnt);
+		model.addAttribute("topcate", "특가");
+		model.addAttribute("topcate_num", 7);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("pm", pm);
+		
+		return "product/productList";
 	}
 
 }
