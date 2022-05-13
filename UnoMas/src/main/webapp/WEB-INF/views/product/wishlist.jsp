@@ -11,35 +11,6 @@
 <!-- Start Header -->
 
 <body>
-	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-	<script>
-		function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 selectall체크박스 체크on
-			const checkboxes = document.querySelectorAll('input[name="wishCheck"]'); // 전체 체크박스
-			const checked = document.querySelectorAll('input[name="wishCheck"]:checked'); // 선택된 체크박스
-			const selectAll = document.querySelector('input[name="selectall"]'); // selectall 체크박스
-			
-			if(checkboxes.length === checked.length) {
-				selectAll.checked = true;
-			} else {
-				selectAll.checked = false;
-			}
-		}
-
-		function selectAll(selectAll)  { // selectall 체크박스로 on/off
-			const checkboxes = document.getElementsByName('wishCheck');
-				checkboxes.forEach((checkbox) => {
-				checkbox.checked = selectAll.checked
-			})
-		}
-		
-		$(function(){ // 찜 전체삭제
-			$("#btnDelete").click(function(){
-				if(confirm("찜 목록을 비우시겠습니까?")){
-					location.href="/product/wishlist/deleteAllWish";
-				}
-			});
-		});
-	</script>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
@@ -101,57 +72,8 @@
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <button type="button" class="selectDelete_btn">선택 삭제</button>
-                                	<script>
-										$(".selectDelete_btn").click(function(){
-											var confirm_val = confirm("정말 삭제하시겠습니까?");
-											  
-											if(confirm_val) {
-												var checkArr = new Array();
-											   
-												$("input[class='chBox']:checked").each(function(){
-													checkArr.push($(this).attr("data-wishNum"));
-												});
-												    
-												$.ajax({
-													url : "/product/wishlist/deleteCheckWish",
-													type : "post",
-													data : { chbox : checkArr },
-													success : function(result){
-														if(result == 1){
-															location.href = "/product/wishlist";
-														} else {
-															alert("삭제 실패");
-														} 
-													}
-												});
-											} 
-										});
-									</script>
                                 <button type="button" id="btnDelete" class="primary-btn">전체삭제</button>
                                 <button type="button" class="selectInsertWish_btn">선택 담기</button>
-                                	<script>
-										$(".selectInsertWish_btn").click(function(){
-											var checkArr = new Array();
-											   
-											$("input[class='chBox']:checked").each(function(){
-												checkArr.push($(this).attr("data-wishNum"));
-											});
-												    
-											$.ajax({
-												url : "/product/wishlist/insertCheckWish",
-												type : "post",
-												data : { chbox : checkArr },
-												success : function(result){
-													if(result == 1){
-														alert("정상적으로 장바구니에 담았습니다.")
-														location.href = "/product/wishlist";
-													} else {
-														alert("장바구니 담기를 실패했습니다.");
-													} 
-												}
-											});
-										});
-									</script>
                             </div>
                         </div>
                     </div>
@@ -168,6 +90,81 @@
 
     <!-- Js Plugins -->
     <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+	<script>
+		function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 selectall체크박스 체크on
+			const checkboxes = document.querySelectorAll('input[name="wishCheck"]'); // 전체 체크박스
+			const checked = document.querySelectorAll('input[name="wishCheck"]:checked'); // 선택된 체크박스
+			const selectAll = document.querySelector('input[name="selectall"]'); // selectall 체크박스
+			
+			if(checkboxes.length === checked.length) {
+				selectAll.checked = true;
+			} else {
+				selectAll.checked = false;
+			}
+		}
+
+		function selectAll(selectAll)  { // selectall 체크박스로 on/off
+			const checkboxes = document.getElementsByName('wishCheck');
+				checkboxes.forEach((checkbox) => {
+				checkbox.checked = selectAll.checked
+			})
+		}
+		
+		$(function(){ // 찜 전체삭제
+			$("#btnDelete").click(function(){
+				if(confirm("찜 목록을 비우시겠습니까?")){
+					location.href="/product/wishlist/deleteAllWish";
+				}
+			});
+		});
+		
+		$(".selectDelete_btn").click(function(){ // 찜 선택삭제
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			  
+			if(confirm_val) {
+				var checkArr = new Array();
+			   
+				$("input[class='chBox']:checked").each(function(){
+					checkArr.push($(this).attr("data-wishNum"));
+				});
+				    
+				$.ajax({
+					url : "/product/wishlist/deleteCheckWish",
+					type : "post",
+					data : { chbox : checkArr },
+					success : function(result){
+						if(result == 1){
+							location.href = "/product/wishlist";
+						} else {
+							alert("삭제 실패");
+						} 
+					}
+				});
+			} 
+		});
+		
+		$(".selectInsertWish_btn").click(function(){ // 장바구니에 선택 담기
+			var checkArr = new Array();
+			   
+			$("input[class='chBox']:checked").each(function(){
+				checkArr.push($(this).attr("data-wishNum"));
+			});
+				    
+			$.ajax({
+				url : "/product/wishlist/insertCheckWish",
+				type : "post",
+				data : { chbox : checkArr },
+				success : function(result){
+					if(result == 1){
+						alert("정상적으로 장바구니에 담았습니다.")
+						location.href = "/product/wishlist";
+					} else {
+						alert("장바구니 담기에 실패했습니다.");
+					} 
+				}
+			});
+		});
+	</script>
     <script src="${path}/resources/js/bootstrap.min.js"></script>
     <script src="${path}/resources/js/jquery-ui.min.js"></script>
     <script src="${path}/resources/js/jquery.countdown.min.js"></script>
