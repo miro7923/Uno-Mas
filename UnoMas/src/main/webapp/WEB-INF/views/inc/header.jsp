@@ -23,7 +23,7 @@
     				<a href="../user/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="qni_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -39,7 +39,7 @@
     				<a href="../user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/qni_paing" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>

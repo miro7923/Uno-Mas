@@ -164,6 +164,7 @@ public class UserController {
 
 		return result;
 	}
+
 	
 	// mypage
 	@RequestMapping(value = "/mypage")
