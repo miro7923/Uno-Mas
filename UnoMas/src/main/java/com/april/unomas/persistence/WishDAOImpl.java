@@ -39,4 +39,14 @@ public class WishDAOImpl implements WishDAO {
 		sqlSession.delete(namespace + ".deleteAllWish",user_num);
 	}
 
+	@Override
+	public void deleteCheckWish(WishVO wish) throws Exception {
+		sqlSession.delete(namespace + ".deleteCheckWish",wish);
+	}
+
+	@Override
+	public void insertCheckWish(WishVO wish) throws Exception {
+		sqlSession.insert(namespace + ".insertCheckWish",wish);
+	}
+
 }

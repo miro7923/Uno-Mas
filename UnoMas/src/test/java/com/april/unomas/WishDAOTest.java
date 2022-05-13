@@ -36,7 +36,7 @@ public class WishDAOTest {
 		log.info(dao.list()+"");
 	}
 
-	@Test
+//	@Test
 	public void 찜추가테스트() throws Exception {
 		WishVO vo = new WishVO();
 		vo.setUser_num(1);
@@ -46,9 +46,29 @@ public class WishDAOTest {
 	}
 	
 //	@Test
-	public void 찜개별삭제테스트() throws Exception {
+	public void 찜X삭제버튼테스트() throws Exception {
 		dao.deleteWish(10);
 		log.info("찜개별삭제 완료!");
+	}
+	
+//	@Test
+	public void 찜선택삭제테스트() throws Exception {
+		WishVO user = new WishVO();
+		user.setWish_num(17);
+		user.setUser_num(1);
+		dao.deleteCheckWish(user);
+		log.info("찜선택삭제 완료!");
+	}
+	
+//	@Test
+	public void 장바구니선택담기테스트() throws Exception {
+		WishVO user = new WishVO();
+		for(int i=10;i<14;i++) {
+			user.setUser_num(1);
+			user.setProd_num(i);
+			dao.insertCheckWish(user);
+		}
+		log.info("장바구니선택담기 완료!");
 	}
 	
 //	@Test

@@ -35,4 +35,14 @@ public class WishServiceImpl implements WishService {
 		dao.deleteAllWish(user_num);
 	}
 
+	@Override
+	public void deleteCheckWish(WishVO wish) throws Exception {
+		dao.deleteCheckWish(wish);
+	}
+
+	@Override
+	public void insertCheckWish(WishVO wish) throws Exception {
+		dao.insertCheckWish(wish);
+	}
+
 }

@@ -24,12 +24,28 @@
 	)
 	</insert>
 	
-	<!-- 찜 개별 삭제 -->
+	<!-- 찜 X 삭제 버튼 -->
 	<delete id="deleteWish" parameterType="int">
 	delete
 	from unomasdb.wishlist
 	where prod_num = #{prod_num}
 	</delete>
+	
+	<!-- 찜 선택 삭제 -->
+	<delete id="deleteCheckWish">
+	delete
+	from unomasdb.wishlist
+	where wish_num = #{wish_num} and user_num = #{user_num}
+	</delete>
+	
+	<!-- 장바구니 선택 추가 -->
+	<insert id="insertCheckWish">
+	insert into unomasdb.cart(
+		user_num, prod_num
+	) values (
+		#{user_num}, #{prod_num}
+	)
+	</insert>
 	
 	<!-- 찜 전체 삭제 -->
 	<delete id="deleteAllWish" parameterType="int">

@@ -31,16 +31,37 @@ public class WishServiceTest {
 	@Test
 	public void 찜추가테스트() throws Exception {
 		WishVO vo = new WishVO();
-		vo.setUser_num(1);
-		vo.setProd_num(10);
+		vo.setUser_num(2);
+		vo.setProd_num(13);
 		service.insertWish(vo);
 		log.info("찜추가 완료!");
 	}
 	
 //	@Test
-	public void 찜개별삭제테스트() throws Exception {
+	public void 찜X버튼삭제테스트() throws Exception {
 		service.deleteWish(10);
 		log.info("찜개별삭제 완료!");
+	}
+	
+//	!장바구니에 상품이 있는지 확인하고 추가하는 활동 필요함
+//	@Test
+	public void 장바구니선택담기테스트() throws Exception {
+		WishVO user = new WishVO();
+		for(int i=10;i<14;i++) {
+			user.setUser_num(1);
+			user.setProd_num(i);
+			service.insertCheckWish(user);
+		}
+		log.info("장바구니선택담기 완료!");
+	}
+	
+//	@Test
+	public void 찜선택삭제테스트() throws Exception {
+		WishVO user = new WishVO();
+		user.setWish_num(17);
+		user.setUser_num(1);
+		service.deleteCheckWish(user);
+		log.info("찜선택삭제 완료!");
 	}
 
 //	@Test

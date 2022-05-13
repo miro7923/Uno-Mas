@@ -12,8 +12,14 @@ public interface WishService {
 	// 찜 추가
 	public void insertWish(WishVO vo) throws Exception;
 	
-	// 찜 개별 삭제
+	// 찜 X삭제 버튼
 	public void deleteWish(int prod_num) throws Exception;
+	
+	// 찜 선택 삭제
+	public void deleteCheckWish(WishVO wish) throws Exception;
+
+	// 찜 선택 담기
+	public void insertCheckWish(WishVO wish) throws Exception;
 	
 	// 찜 전체 삭제
 	public void deleteAllWish(int user_num) throws Exception;

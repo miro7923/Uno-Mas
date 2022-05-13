@@ -78,7 +78,8 @@
                             <tbody>
                             	<c:forEach items="${list}" var="list">
                                 <tr>
-                                	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" onclick='checkSelectAll()'/></td>
+                                	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" class="chBox" onclick='checkSelectAll()'
+                                		data-wishNum="${list.wish_num}"/></td>
                                 	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
                                 		<img src="${path}/resources/img/product-single/${list.prod_num}.jpeg" alt="productImg"/></a></td>
                                     <td class="cart-title first-row">
@@ -99,9 +100,58 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <a href="#" class="primary-btn deleteCheck">선택삭제</a>
+                                <button type="button" class="selectDelete_btn">선택 삭제</button>
+                                	<script>
+										$(".selectDelete_btn").click(function(){
+											var confirm_val = confirm("정말 삭제하시겠습니까?");
+											  
+											if(confirm_val) {
+												var checkArr = new Array();
+											   
+												$("input[class='chBox']:checked").each(function(){
+													checkArr.push($(this).attr("data-wishNum"));
+												});
+												    
+												$.ajax({
+													url : "/product/wishlist/deleteCheckWish",
+													type : "post",
+													data : { chbox : checkArr },
+													success : function(result){
+														if(result == 1){
+															location.href = "/product/wishlist";
+														} else {
+															alert("삭제 실패");
+														} 
+													}
+												});
+											} 
+										});
+									</script>
                                 <button type="button" id="btnDelete" class="primary-btn">전체삭제</button>
-                                <a href="/product/shopping-cart" class="primary-btn up-cart">선택담기</a>
+                                <button type="button" class="selectInsertWish_btn">선택 담기</button>
+                                	<script>
+										$(".selectInsertWish_btn").click(function(){
+											var checkArr = new Array();
+											   
+											$("input[class='chBox']:checked").each(function(){
+												checkArr.push($(this).attr("data-wishNum"));
+											});
+												    
+											$.ajax({
+												url : "/product/wishlist/insertCheckWish",
+												type : "post",
+												data : { chbox : checkArr },
+												success : function(result){
+													if(result == 1){
+														alert("정상적으로 장바구니에 담았습니다.")
+														location.href = "/product/wishlist";
+													} else {
+														alert("장바구니 담기를 실패했습니다.");
+													} 
+												}
+											});
+										});
+									</script>
                             </div>
                         </div>
                     </div>
@@ -128,9 +178,4 @@
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
 </body>
-
-</html>{path}/resources/js/owl.carousel.min.js"></script>
-    <script src="${path}/resources/js/main.js"></script>
-</body>
-
 </html>
