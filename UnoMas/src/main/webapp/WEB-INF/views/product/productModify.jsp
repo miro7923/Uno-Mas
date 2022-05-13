@@ -38,7 +38,7 @@
 
 				<!-- 상품등록-->
 				<div class="col-lg-10">
-					<h2>상품등록</h2><div class="line"><hr></div>
+					<h2>상품수정</h2><div class="line"><hr></div>
 					<div class="container">
 						<form method="post" class="checkout-form" >
 							<!-- 기본정보 -->

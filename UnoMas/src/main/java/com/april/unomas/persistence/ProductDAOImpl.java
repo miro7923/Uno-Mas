@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -30,11 +32,6 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getProductList() throws Exception{
-		return sqlSession.selectList(NAMESPACE + ".getList");
-	}
-
-	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception{
 		return sqlSession.selectList(NAMESPACE + ".getListCate", pc);
 	}
@@ -43,15 +40,37 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pc);
 	}
+	
+	@Override
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".getAllProductList" ,pc);
+	}
+
+	@Override
+	public Integer getAllCnt() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".getAllCnt");
+	}
 
 	@Override
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pc);
 	}
+	
+	@Override
+	public List<CategoryVO> getTopCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".getTopCategory");
+	}
 
 	@Override
 	public String getTopCateName(int topcate_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getTopCateName", topcate_num);
+	}
+
+	@Override
+	public List<CategoryVO> getDCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE + ".getDCategory");
 	}
 
 	@Override

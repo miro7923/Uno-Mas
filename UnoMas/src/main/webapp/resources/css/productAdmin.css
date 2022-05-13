@@ -75,9 +75,35 @@ input[type="checkbox"]:checked::before {
 	width: 5%;
 }
 
+.cart-table table tr th {
+	font-size: 16px;
+	color: #252525;
+	font-weight: 700;
+	border-bottom: 1px solid #ebebeb;
+	text-align: center;
+	padding: 18px 10px 19px 20px;
+	text-transform: uppercase;
+}
+
 .cart-table table tr td {
     padding-top: 30px;
+    padding: 18px 10px 19px 20px;
 }
+
+.cart-table table a {
+    color: #000000;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.cart-table table .normal-row {
+	color: black;
+}
+
+.cart-table table .sold {
+	color: #f67555;
+}
+
 .normal-row {
 /* 	color: #b9ce45; */
     font-size: 16px;
@@ -117,10 +143,18 @@ input[type="checkbox"]:checked::before {
 	word-wrap: normal;
     width: 100%;
     border-radius: 0;
-    border: 1px solid #ECEDEE;
-    height: 45px;
-    line-height: 35px;
-    margin: 0px 0px 2px;
+/*     border: 2px solid #ECEDEE; */
+/*     height: 46px; */
+/*     line-height: 35px; */
+/*     margin: 0px 0px 2px; */
+    
+}
+
+.selectBox {
+    height: 46px;
+    border: 2px solid #ebebeb;
+    margin-bottom: 10px;
+    padding-left: 15px;
 }
 
 .title {
@@ -278,3 +312,22 @@ input[type="checkbox"]:checked::before {
     margin-bottom: 1rem;
     border: 1px solid #b9ce45;
 }
+
+.filter-widget .fw-size-choose .sc-item label.active {
+    background: #f67555;
+    color: #ffffff;
+}
+
+.filter-widget .fw-size-choose .sc-item .normal label.active {
+    background: #b9ce45;
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+
+

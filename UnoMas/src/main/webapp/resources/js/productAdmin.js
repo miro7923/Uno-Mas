@@ -102,36 +102,56 @@ $(".date").html(date);
 
 /* 선택상자 직접 입력 */
 
-$(function(){
-	$("#selboxDirect").hide();
-	$("#selbox").change(function() {
+//$(function(){
+//	$("#selboxDirect").hide();
+//	$("#selbox").change(function() {
+//
+//		if($("#selbox").val() != "냉장보관" && $("#selbox").val() != "실온보관") {
+//			$("#selboxDirect").show();
+//		}  else {
+//			$("#selboxDirect").hide();
+//		}
+//	}) 
+//});
 
-		if($("#selbox").val() != "냉장보관" && $("#selbox").val() != "실온보관") {
-			$("#selboxDirect").show();
-		}  else {
-			$("#selboxDirect").hide();
-		}
-	}) 
-});
-
-$(function(){
-	$("#selboxDirect2").hide();
-	$("#selbox2").change(function() {
-
-		if($("#selbox2").val() == "" || $("#selbox2") == onfocus) {
-			$("#selboxDirect2").show();
-			$("#selbox2").hide();
-		}  else {
-			$("#selboxDirect2").hide();
-		}
-	}) 
-});
+//$(function(){
+//	$("#selboxDirect2").hide();
+//	$("#selbox2").change(function() {
+//
+//		if($("#selbox2").val() == "" || $("#selbox2") == onfocus) {
+//			$("#selboxDirect2").show();
+//			$("#selbox2").hide();
+//			
+//		}  else {
+//			$("#selboxDirect2").hide();
+//			$("#selboxDirect2 option:").val() == null;
+//		}
+//	}) 
+//});
 
 /* 재고 상태 라디오버튼 제어 */
 //function stockBtn(){
-	
 //	var stock = $('prod_stock');
 //	if(stock = 0){
 //		$('input:radio[name=stock_state]:input[value=' + sold + ']').attr("checked", true);
 //	}
 //}
+
+/* */
+var cates = false;
+
+function update_categories() {
+	$("#details").val(0);
+	$("#details").find("option[value!=0]").detach();
+	$("#details").append(cates.filter(".cate"+$(this).val()));
+}
+
+$(function(){
+	cates =$("#details").find("option[value!=0]");
+	cates.detach();
+	
+	$("#categories").change(update_categories);
+	$("#categories").trigger("change");
+})
+
+

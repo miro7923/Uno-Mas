@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -27,11 +28,6 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> getProductList() throws Exception {
-		return dao.getProductList();
-	}
-
-	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception {
 		return dao.getProductList(pc);
 	}
@@ -40,15 +36,37 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
 		return dao.getProductPage(pc);
 	}
+	
+	@Override
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
+		return dao.getAllProductList(pc);
+	}
+
+	@Override
+	public Integer getAllCnt() throws Exception {
+		return dao.getAllCnt();
+	}
 
 	@Override
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return dao.getProductCnt(pc);
 	}
+	
+	@Override
+	public List<CategoryVO> getTopCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getTopCategory();
+	}
 
 	@Override
 	public String getTopCateName(int topcate_num) throws Exception {
 		return dao.getTopCateName(topcate_num);
+	}
+	
+	@Override
+	public List<CategoryVO> getDCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getDCategory();
 	}
 
 	@Override
