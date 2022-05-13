@@ -43,9 +43,8 @@ $(document).ready(function(){
 				<div class="col-lg-10">
 					<h2>개별상품조회 :: ${vo.prod_name }</h2><div class="line"><hr></div>
 					<div class="container">
-						<form method="post" class="checkout-form" >
+						<form action="/product/modify" method="get" class="checkout-form" >
 						<c:forEach var="vo" items="${productList }"></c:forEach>
-						
 						
 							<!-- 기본정보 -->
 							<div class="row">
@@ -282,7 +281,7 @@ $(document).ready(function(){
 <!-- 		                                        <textarea placeholder="세척법"></textarea> -->
 <!-- 		                                        </div> -->
 		                                        <button type="button" class="back-button" onclick="history.back();">취소</button>
-		                                        <button type="submit" class="site-button" >등록</button>
+		                                        <button type="submit" class="site-button" >수정</button>
 <!-- 		                                    </div> -->
 <!-- 		                            </form> -->
 <!-- 		                        </div> -->

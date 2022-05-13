@@ -158,6 +158,12 @@ public class ProductController {
 		
 	}
 	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String productsModifyGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
+		return "product/productModify";
+	}
 
 	@RequestMapping(value = "/shopping-cart")
 	public String cart() {
