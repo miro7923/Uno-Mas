@@ -10,8 +10,8 @@
 	</insert>
 	
 	<insert id="insert">
-		insert into board_notice(admin_num,notice_title,notice_content,notice_file,notice_image)
-		values(#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_image})
+		insert into board_notice(admin_num,notice_title,notice_content,notice_file,notice_img,notice_ip)
+		values (#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_img},#{notice_ip})
 	</insert>
 	
 	<select id="listAll" resultType="NoticeVO">
@@ -28,7 +28,7 @@
 	
 	<update id="rCountUp">
 		update board_notice 
-		set notice_readcount=notice_readcount+1
+		set notice_readcnt=notice_readcnt+1
 		where notice_num=#{notice_num}
 	</update>
 	

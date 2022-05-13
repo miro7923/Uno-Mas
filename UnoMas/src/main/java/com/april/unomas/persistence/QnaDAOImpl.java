@@ -46,7 +46,7 @@ public class QnaDAOImpl implements QnaDAO{
 		paramMap.put("user_num", user_num);
 		paramMap.put("pageStart",cri.getPage());
 		paramMap.put("perPageNum",cri.getPerPageNum());
-		return sqlSession.selectList(NAMESPACE+".pageQna",paramMap);
+		return sqlSession.selectList(NAMESPACE+".pagingQna1",paramMap);
 	}
 
 	@Override

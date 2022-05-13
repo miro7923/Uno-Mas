@@ -579,7 +579,7 @@ ul {
                     <div class="css-mm5tap e1vbjq4w2"><label for="inquiry-subject" data-testid="label-text">이미지<span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0"></span></label></div>
                     <div class="css-12l4j2c e1vbjq4w1">
                         <div class="css-1waqr6j e1uzxhvi4">
-                            <div height="44" class="css-t7kbxx e1uzxhvi1"><input data-testid="input-box" id="inquiry-subject" name="notice_image" type="file" height="44" class="css-1fapsij e1uzxhvi0"></div>
+                            <div height="44" class="css-t7kbxx e1uzxhvi1"><input data-testid="input-box" id="inquiry-subject" name="notice_img" type="file" height="44" class="css-1fapsij e1uzxhvi0"></div>
                         </div>
                     </div>
                 </div>

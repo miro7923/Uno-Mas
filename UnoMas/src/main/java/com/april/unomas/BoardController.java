@@ -1,6 +1,7 @@
 ﻿package com.april.unomas;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +10,10 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -53,7 +56,13 @@ public class BoardController {
 	
 	// 업로드 폴더 경로
 	@Resource(name="qnaUploadPath")
-	private String uploadPath;
+	private String qnaUploadPath;
+	
+	@Resource(name="noticeFileUploadPath")
+	private String noticeFileUploadPath;
+	
+	@Resource(name="noticeImageUploadPath")
+	private String noticeImageUploadPath;
 	
 	@GetMapping(value = "/qni_write")
 	public String boardWriteGET() throws Exception{
@@ -214,7 +223,7 @@ public class BoardController {
 	}
 	
 	@PostMapping(value = "/inquiry_form")
-	public String inquiryWritePOST(HttpServletRequest request,RedirectAttributes rttr, MultipartFile qna_img) throws Exception {
+	public String inquiryWritePOST(HttpServletRequest request,RedirectAttributes rttr, MultipartFile qna_image1,MultipartFile qna_image2) throws Exception {
 		QnaVO vo = new QnaVO();
 		log.info(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		vo.setUser_num(Integer.parseInt(request.getParameter("user_num")));
@@ -224,12 +233,18 @@ public class BoardController {
 		vo.setQna_content(request.getParameter("qna_content"));
 		
 		UUID uid = UUID.randomUUID();
-		String fileName = uid.toString()+"_"+qna_img.getOriginalFilename();
+		String fileName = uid.toString()+"_"+qna_image1.getOriginalFilename();
 		log.info(fileName);
-		File targetFile = new File(uploadPath,fileName);
-		FileCopyUtils.copy(qna_img.getBytes(), targetFile);
-		vo.setQna_img(fileName);
+		File targetFile = new File(qnaUploadPath,fileName);
+		FileCopyUtils.copy(qna_image1.getBytes(), targetFile);
+		vo.setQna_image1(fileName);
 		
+		UUID uid2 = UUID.randomUUID();
+		String fileName2 = uid2.toString()+"_"+qna_image2.getOriginalFilename();
+		File targetFile2 = new File(qnaUploadPath,fileName2);
+		FileCopyUtils.copy(qna_image2.getBytes(), targetFile2);
+		vo.setQna_image2(fileName2);
+		log.info(vo+"###########################");
 		qService.qnaWrite(vo);
 		
 		return "redirect:/inquiry_paging";
@@ -245,13 +260,13 @@ public class BoardController {
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(qService.getQnaCnt(1));
 		model.addAttribute("pagingVO",pagingVO);
-		
+		log.info(pList+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return "/board/inquiry_paging";
 	}
 	
 	
 	@PostMapping(value = "/faq_insert")
-	public String noticeInsertPOST(/*NoticeVO vo,*/ HttpServletRequest request,RedirectAttributes rttr,MultipartFile notice_file,MultipartFile notice_image ) throws Exception{
+	public String noticeInsertPOST(/*NoticeVO vo,*/ HttpServletRequest request,RedirectAttributes rttr,MultipartFile notice_file,MultipartFile notice_img ) throws Exception{
 		log.info("noticeWritePOST() 호출");
 		
 		// 전달된 정보를 저장
@@ -259,24 +274,39 @@ public class BoardController {
 		vo.setAdmin_num(Integer.parseInt(request.getParameter("admin_num")));
 		vo.setNotice_title(request.getParameter("notice_title"));
 		vo.setNotice_content(request.getParameter("notice_content"));
+		vo.setNotice_ip(request.getRemoteAddr());
 		
 		UUID uid = UUID.randomUUID();
 		
 		String fileName = uid.toString()+"_"+notice_file.getOriginalFilename();
-		File targetFile = new File(uploadPath,fileName);
+		File targetFile = new File(noticeFileUploadPath,fileName);
 		FileCopyUtils.copy(notice_file.getBytes(), targetFile);
 		vo.setNotice_file(fileName);
 		
-		String imageName = uid.toString()+"_"+notice_image.getOriginalFilename();
-		File targetImage = new File(uploadPath,imageName);
-		FileCopyUtils.copy(notice_image.getBytes(), targetImage);
-		vo.setNotice_image(imageName);
+		String imageName = uid.toString()+"_"+notice_img.getOriginalFilename();
+		File targetImage = new File(noticeImageUploadPath,imageName);
+		FileCopyUtils.copy(notice_img.getBytes(), targetImage);
+		vo.setNotice_img(imageName);
 		
 		// 서비스 - 글쓰기 동작 수행
-		nService.noticeWrite(vo);
+		nService.noticeInsert(vo);
 		
 		// 페이지 이동(/board/list)
 		return "redirect:/faq_paging";
+	}
+	
+	@GetMapping(value = "/nFileDown")
+	public void noticeFileDownload(HttpServletResponse response,@RequestParam("notice_file") String notice_file) throws Exception{
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(noticeFileUploadPath+"\\"+notice_file));
+		
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-Disposition", "attachment; filename=\""+URLEncoder.encode(notice_file,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+		
 	}
 	
 }

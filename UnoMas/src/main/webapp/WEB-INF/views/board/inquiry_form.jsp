@@ -77,7 +77,9 @@
                         <div class="row pl-3" >
 <!--                             <input class="form-control" type="file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" name="qna_img" id="qna_img"></input> -->
                         	<label class="form-control" for="input-file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" ></label>
-                        	<input id="input-file" type="file" style="display: none;" name="qna_img"></input>
+                        	<input id="input-file" type="file" style="display: none;" name="qna_image1"></input>
+                        	<label class="form-control" for="input-file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" ></label>
+                        	<input id="input-file" type="file" style="display: none;" name="qna_image2"></input>
                         </div>
                         <div class="row pl-3 my-3">
                             * 4MB 이하의 이미지만 업로드 가능합니다.<br>

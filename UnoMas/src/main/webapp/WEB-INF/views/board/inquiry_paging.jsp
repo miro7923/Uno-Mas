@@ -107,7 +107,6 @@
                                     <tr>
                                         <td class="td_subject">${vo.qna_title }</td>
                         <td class="td_regdate">${vo.qna_regdate }</td>
-                        <td><a>${vo.qna_img }</a></td>
                         <td class="td_answerstatus">답변대기 ${vo.qna_process }</td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
                                     </tr>
                                 </tbody>
@@ -125,8 +124,9 @@
 			            <span> 2차 카테고리 ${vo.qnacate2 }</span>
 			            <div class="question mt-3 pb-5 px-3">
 			            <img src="${path}/resources/img/question.svg" class="questionicon"> 
+			            이미지1 <img alt="" src="${path }/resources/upload/images/board/qna/${vo.qna_image1 }"><input type="hidden" value="${vo.qna_image1 }" name="qna_image1">
+			            이미지2 <img alt="" src="${path }/resources/upload/images/board/qna/${vo.qna_image2 }"><input type="hidden" value="${vo.qna_image2 }" name="qna_image2">
 			            <span> 문의 내용 ${vo.qna_content }</span>
-			            <span>첨부파일 ${vo.qna_img }</span>
 			        </div>
 			        <div class="answer pb-5 px-3" >
 			            <img src="${path}/resources/img/answer.svg" class="answericon"> 

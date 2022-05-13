@@ -113,7 +113,7 @@
                     <td width="100" nowrap="" align="center">
                         관리자${vo.admin_num }번 </td>
                     <td width="100" nowrap="" align="center" class="eng2">${vo.notice_regdate }</td>
-                    <td width="30" nowrap="" align="center" class="eng2">${vo.notice_readcount }</td>
+                    <td width="30" nowrap="" align="center" class="eng2">${vo.notice_readcnt }</td>
                 </tr>
             </c:forEach>
 

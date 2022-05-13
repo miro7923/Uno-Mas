@@ -193,6 +193,9 @@
     margin-left: 2px;
     font-size: 13px
 }
+.nfile:hover {
+	color:red;
+}
 </style>
 
 </head>
@@ -261,11 +264,15 @@
 </tr>
 <tr>
 <th scope="row">작성자</th>
-<td>${vo.admin_num }</td>
+<td>${vo.admin_num }<input type="hidden" name="admin_num" value="${vo.admin_num }"></td>
 </tr>
 <tr>
 <th scope="row">첨부파일</th>
-<td>${vo.notice_file }</td>
+<td><a class="nfile" href="/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
+</tr>
+<tr>
+<th scope="row">이미지</th>
+<td><img alt="" src="${path }/resources/upload/images/board/notice/${vo.notice_img }"><input type="hidden" name="notice_img" value="${vo.notice_img }"></td>
 </tr>
 <tr class="etcArea">
 <td colspan="2">
@@ -274,7 +281,7 @@
 <strong class="th">작성일</strong> <span class="td">${vo.notice_regdate }</span>
 </li>
 <li class="hit ">
-<strong class="th">조회수</strong> <span class="td">${vo.notice_readcount }</span><input type="hidden" name="">
+<strong class="th">조회수</strong> <span class="td">${vo.notice_readcnt }</span><input type="hidden" name="">
 </li>
 </ul>
 </td>
