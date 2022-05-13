@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.service.ProductService;
@@ -33,6 +36,7 @@ public class ProductController {
 	public String checkout() {
 		return "product/check-out";
 	}
+	
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
@@ -90,11 +94,22 @@ public class ProductController {
 		return "product/productList";
 	}
 	
-	@RequestMapping(value = "/product_detail", method = RequestMethod.GET) // /product -> /product_detail
+	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
 	public String product(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		ProductVO vo = service.getProduct(prod_num);
 		
+		List<BoardReviewVO> reviewList = service.getReviewList(prod_num);
+		for (int i = 0; i < reviewList.size(); i++)
+			reviewList.get(i).setUser_id(service.getUserid(reviewList.get(i).getUser_num()));
+		
+		List<ProdInquiryVO> inquiryList = service.getInquiryList(prod_num);
+		for (int i = 0; i < inquiryList.size(); i++)
+			inquiryList.get(i).setUser_id(service.getUserid(inquiryList.get(i).getUser_num()));
+		
 		model.addAttribute("vo", vo);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewCnt", service.getReviewCnt(prod_num));
+		model.addAttribute("inquiryList", inquiryList);
 		
 		return "product/productDetail";
 	}
@@ -129,14 +144,34 @@ public class ProductController {
 		return "product/shopping-cart";
 	}
 	
-	@RequestMapping(value = "/review_writing_form")
-	public String reviewWritingForm() {
+	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
+	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
 		return "product/reviewWritingForm";
 	}
 	
-	@RequestMapping(value = "/product_qna_writing_form")
-	public String qnaWritingForm() {
-		return "product/qnaWritingForm";
+	@RequestMapping(value = "/write_review", method = RequestMethod.POST)
+	public String writeReviewPOST(BoardReviewVO vo, HttpServletRequest request) throws Exception {
+		vo.setReview_ip(request.getRemoteAddr());
+		
+		service.insertReview(vo);
+		
+		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
+	
+	@RequestMapping(value = "/write_inquiry", method = RequestMethod.GET)
+	public String writeInquiryGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
+		return "product/inquiryWritingForm";
+	}
+	
+	@RequestMapping(value = "/write_inquiry", method = RequestMethod.POST)
+	public String writeInquiryPOST(ProdInquiryVO vo) throws Exception {
+		service.insertInquiry(vo);
+		
+		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 
 	@RequestMapping(value = "/new_list", method = RequestMethod.GET)

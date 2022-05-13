@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -21,12 +22,6 @@
 
     // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
     boolean isInWishlist = false;
-
-    // @@ 디비에서 평점 정보 받아와서 저장한 뒤 리뷰글에 출력하기로 수정 @@
-    double[] scores = new double[7];
-    for (int i = 0; i < 7; i++) {
-		scores[i] = i+1;
-    }
 %>
 <body>
 	<!-- Header Section Begin -->
@@ -49,6 +44,7 @@
 						<div class="col-lg-6">
 							<div class="product-details">
 								<div class="pd-title">
+								    <input type="hidden" value="${vo.prod_num }" id="prod_num">
 									<h3>${vo.prod_name }</h3>
 								</div>
 								<div class="pd-desc">
@@ -83,7 +79,7 @@
 									</dl>
 									<dl class="list">
 										<dt class="title">중량/용량</dt>
-										<dd class="description">${vo.prod_weight }g</dd>
+										<dd class="description">${vo.prod_weight }</dd>
 									</dl>
 									<hr>
 									<dl class="list">
@@ -103,7 +99,14 @@
 									<hr>
 									<dl class="list">
 										<dt class="title">유통기한</dt>
-										<dd class="description">${vo.prod_expire }</dd>
+										<c:choose>
+											<c:when test="${vo.prod_expire == 0 }">
+												<dd class="description">신선식품으로 별도의 유통기한은 없으나 가급적 빠른 시일 내에 드시길 바랍니다.</dd>
+											</c:when>
+											<c:otherwise>
+												<dd class="description">수령일 포함 최소 ${vo.prod_expire }일 이상 남은 제품을 보내드립니다.</dd>
+											</c:otherwise>
+										</c:choose>
 									</dl>
 									<hr>
 									<dl class="list">
@@ -153,9 +156,9 @@
 								<li><a data-toggle="tab" href="#tab-2" role="tab">상세정보</a>
 								</li>
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
-								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="toggleReview(0);">후기
-										(02)</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="toggleQna(0);">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
+										(${reviewCnt })</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -206,7 +209,6 @@
 									</div>
 								</div>
 								<div class="tab-pane fade" id="tab-2" role="tabpanel">
-									<!-- id 선택자 지정해 놓은 곳만 바뀌면 됨 -->
 									<div class="col-lg-12">
 										<table class="extraInfo" cellpadding="0" cellspacing="1">
 											<tbody>
@@ -255,11 +257,11 @@
 											<li><span data-icon="&#x5e"></span> 상품에 대한 후기를 남기는
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
-												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
-												onclick="window.parent.location.href = '/mypage/my_QnA'"
+												문의 및 요청사항은 마이페이지 내  
+												<span onclick="window.parent.location.href = '/mypage/my_QnA'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
-										<div class="comment-option">
+										<div class="comment-option" id="reviewListAjax">
 											<table class="reviewTable" width="100%" border="0"
 												cellpadding="0" cellspacing="0">
 												<caption style="display: none">구매후기 제목</caption>
@@ -283,44 +285,54 @@
 												</tbody>
 											</table>
 											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<%
-											for (int i = 0; i < 7; i++) {
-											%>
-											<table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">구매후기 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td><%=i + 1%></td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleReview(<%=i+1%>);">리뷰 <%=i + 1%></td>
-														<!-- <th scope="col" class="input_txt"><span
-																class="screen_out">회원 등급</span></th> -->
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>0</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="reviewContent" id="reviewContent<%=i+1%>">
-												<p>평점 : <span><%=scores[i] %> / 5.0</span></p>
-											</div>
-											<%
-											}
-											%>
+											<c:choose>
+												<c:when test="${fn:length(reviewList) == 0 }">
+												    <p class="text-center nonPost">아직 등록된 후기가 없어요! 고객님께서 첫 번째 후기를 남겨주세요!</p>
+												</c:when>
+												<c:otherwise>
+													<c:forEach var="reviewVo" items="${reviewList }" varStatus="it">
+														<table class="reviewTable" width="100%" border="0"
+															cellpadding="0" cellspacing="0">
+															<caption style="display: none">구매후기 제목</caption>
+															<colgroup>
+																<col style="width: 110px;">
+																<col style="width: auto;">
+																<col style="width: 77px;">
+																<col style="width: 100px;">
+																<col style="width: 50px;">
+																<col style="width: 80px;">
+															</colgroup>
+															<tbody>
+																<tr onmouseover="this.style.background='#f0f0f0'"
+																	onmouseout="this.style.background='white'">
+																	<td>${reviewVo.review_num }</td>
+																	<td align="left" class="reviewTitle"
+																		onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
+																	<td align="left">${reviewVo.user_id }</td>
+																	<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
+																	<td id="reviewLikecnt${it.index }">${reviewVo.review_likecnt }</td>
+																	<td id="reviewReadcnt${it.index }">${reviewVo.review_readcnt }</td>
+																</tr>
+															</tbody>
+														</table>
+														<div class="reviewContent" id="reviewContent${it.index }">
+														    <input type="hidden" value="${reviewVo.review_num }" id="review_num${it.index }">
+														    <strong>${vo.prod_name }</strong>
+															<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p><br>
+															<p>${reviewVo.review_content }</p>
+															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
+															<!-- @@ 관리자도 수정 삭제 가능 -->
+															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<p class="text-right">
+															    <button type="button" class="site-btn likeBtn" onclick="addLikeCnt(${it.index});">좋아요</button>
+															</p>
+														</div>
+													</c:forEach>
+												</c:otherwise>
+											</c:choose>
+											
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='review_writing_form';">
+												<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
 												후기쓰기
 												</button>
 											</div>
@@ -347,8 +359,6 @@
 													<col style="width: auto;">
 													<col style="width: 77px;">
 													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
 												</colgroup>
 												<tbody>
 													<tr>
@@ -356,50 +366,47 @@
 														<th>제목</th>
 														<th align="left">작성자</th>
 														<th>작성일</th>
-														<th>좋아요</th>
-														<th>조회</th>
 													</tr>
 												</tbody>
 											</table>
-											<!-- 반복문으로 리뷰글 출력 부분 -->
-											<%
-											for (int i = 0; i < 7; i++) {
-											%>
-											<table class="reviewTable" width="100%" border="0"
-												cellpadding="0" cellspacing="0">
-												<caption style="display: none">문의 제목</caption>
-												<colgroup>
-													<col style="width: 110px;">
-													<col style="width: auto;">
-													<%-- <col style="width: 51px;"> --%>
-													<col style="width: 77px;">
-													<col style="width: 100px;">
-													<col style="width: 50px;">
-													<col style="width: 80px;">
-												</colgroup>
-												<tbody>
-													<tr onmouseover="this.style.background='#f0f0f0'"
-														onmouseout="this.style.background='white'">
-														<td><%=i + 1%></td>
-														<td align="left" class="reviewTitle"
-															onclick="toggleQna(<%=i+1%>);">문의 <%=i + 1%></td>
-														<!-- <th scope="col" class="input_txt"><span
-																class="screen_out">회원 등급</span></th> -->
-														<td align="left">UnoMas</td>
-														<td>2022-04-22</td>
-														<td>0</td>
-														<td>0</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="reviewContent" id="qnaContent<%=i+1%>">
-												<p>원산지가 어딘가요?</p>
-											</div>
-											<%
-											}
-											%>
+											<c:choose>
+											    <c:when test="${fn:length(inquiryList) == 0 }">
+											        <p class="text-center nonPost">아직 등록된 문의가 없습니다.</p>
+											    </c:when>
+											    <c:otherwise>
+													<c:forEach var="inquiryVo" items="${inquiryList }" varStatus="it">
+														<table class="reviewTable" width="100%" border="0"
+															cellpadding="0" cellspacing="0">
+															<caption style="display: none">문의 제목</caption>
+															<colgroup>
+																<col style="width: 110px;">
+																<col style="width: auto;">
+																<col style="width: 77px;">
+																<col style="width: 100px;">
+															</colgroup>
+															<tbody>
+																<tr onmouseover="this.style.background='#f0f0f0'"
+																	onmouseout="this.style.background='white'">
+																	<td>${inquiryVo.p_inquiry_num }</td>
+																	<td align="left" class="reviewTitle"
+																		onclick="toggleQna(${it.index});">${inquiryVo.p_inquiry_title }</td>
+																	<td align="left">${inquiryVo.user_id }</td>
+																	<td><fmt:formatDate value="${inquiryVo.p_inquiry_regdate }" type="date"/></td>
+																</tr>
+															</tbody>
+														</table>
+														<div class="reviewContent" id="qnaContent${it.index }">
+															<p>${inquiryVo.p_inquiry_content }</p>
+															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
+															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
+															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<p class="text-right"><a href="#">답변하기</a></p>
+														</div>
+													</c:forEach>
+											    </c:otherwise>
+											</c:choose>
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='product_qna_writing_form';">
+												<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
 												문의하기
 												</button>
 											</div>

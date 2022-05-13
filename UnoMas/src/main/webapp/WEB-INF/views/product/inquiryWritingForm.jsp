@@ -11,11 +11,6 @@
 	href="${path}/resources/css/reviewWritingForm.css?after22">
 <!-- Header end -->
 
-<%
-// @@ 상품번호를 파라메터로 받아와서 상단에 해당 상품명 노출하기 @@
-String prodName = "청경채";
-int prodNum = 1;
-%>
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -27,24 +22,24 @@ int prodNum = 1;
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>문의하기</h4>
-						<form action="#" class="comment-form">
+						<form action="/product/write_inquiry" method="post" class="comment-form">
 						    <div class="row">
 						        <div class="col-lg-12">
-						            <!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
-						            <input type="hidden" value="<%=prodNum%>" name="prodNum">
-  						            <p class="productName">상품명 : <%=prodName %></p>
+						            <input type="hidden" value="1" name="user_num">
+						            <input type="hidden" value="${vo.prod_num }" name="prod_num">
+  						            <p class="productName">상품명 : ${vo.prod_name }</p>
 						        </div>
 						    </div>
 							<div class="row">
 								<div class="col-lg-2">제목</div>
 								<div class="col-lg-10">
-									<input type="text" class="title" placeholder="제목을 입력해주세요." maxlength="40">
+									<input type="text" class="title" name="p_inquiry_title" placeholder="제목을 입력해주세요." maxlength="40">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-lg-2">내용</div>
 								<div class="col-lg-10">
-									<textarea class="reviewTextarea"
+									<textarea class="reviewTextarea" name="p_inquiry_content"
 										placeholder="상품에 대한 문의 내용을 입력해 주세요.
 반품/환불 문의는 1:1문의로 가능합니다."></textarea>
 								</div>

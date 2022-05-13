@@ -138,4 +138,65 @@
         FROM products
         WHERE prod_discntrate > 0
     </select>
+    
+    <!-- 리뷰게시판 글 삽입 -->
+    <select id="insertReview">
+        INSERT INTO board_review(user_num, prod_num, review_title, review_content, review_ip, review_image, review_rating)
+        VALUES (#{user_num}, #{prod_num}, #{review_title}, #{review_content}, #{review_ip}, #{review_image}, #{review_rating})
+    </select>
+    
+    <!-- 상품번호별 리뷰글 목록 가져오기 -->
+    <select id="getReviewList" resultType="BoardReviewVO">
+        SELECT *
+        FROM board_review
+        WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 회원번호로 아이디 가져오기 -->
+    <select id="getUserid" resultType="String">
+        SELECT user_id
+        FROM users
+        WHERE user_num = #{user_num}
+    </select>
+    
+    <!-- 상품번호별 리뷰글 개수 가져오기 -->
+    <select id="getReviewCnt" resultType="int">
+        SELECT COUNT(review_num)
+        FROM board_review
+        WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 리뷰글 조회수 증가 -->
+    <update id="updateReviewReadcnt">
+        UPDATE board_review
+        SET review_readcnt = review_readcnt + 1
+        WHERE review_num = #{review_num}
+    </update>
+    
+    <!-- 특정 리뷰글 정보 가져오기 -->
+    <select id="getReviewReadCnt" resultType="BoardReviewVO">
+        SELECT *
+        FROM board_review
+        WHERE review_num = #{review_num}
+    </select>
+    
+    <!-- 상품별 문의글 목록 가져오기 -->
+    <select id="getInquiryList" resultType="ProdInquiryVO">
+        SELECT *
+        FROM prod_inquiry
+        WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 상품 문의글 등록 -->
+    <insert id="insertInquiry">
+        INSERT INTO prod_inquiry(user_num, prod_num, p_inquiry_title, p_inquiry_content)
+        VALUES(#{user_num}, #{prod_num}, #{p_inquiry_title}, #{p_inquiry_content})
+    </insert>
+    
+    <!-- 리뷰글 좋아요 증가 -->
+    <update id="updateLikecnt">
+        UPDATE board_review
+        SET review_likecnt = review_likecnt + 1
+        WHERE review_num = #{review_num}
+    </update>
 </mapper>

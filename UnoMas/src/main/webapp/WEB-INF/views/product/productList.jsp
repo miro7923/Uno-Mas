@@ -95,12 +95,10 @@
 							
 						</div>
 					</div>
-					<!-- @@ DB 연결하면 상세 작업하기 @@ -->
 					<div class="row" id="pagediv">
 					    <input type="hidden" value="${pageNum }" id="curPage">
 						<div class="col-lg-12 text-center">
 						<c:if test="${pm.prev }">
-							<!-- <a href="#" class="arrow_carrot-2left_alt pagingBtn" id="toFirst"></a>  -->
 							<a href="#" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
 						</c:if>
 						
@@ -128,7 +126,6 @@
 						
 						<c:if test="${pm.next }">
 							<a href="#" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
-							<!-- <a href="#" class="arrow_carrot-2right_alt pagingBtn" id="toLast"></a> -->
 						</c:if>
 						</div>
 					</div>

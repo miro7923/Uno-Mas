@@ -11,7 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
 
 @Repository
@@ -100,5 +102,50 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public int getSaleCnt() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getSaleProdCnt");
+	}
+
+	@Override
+	public void insertReview(BoardReviewVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertReview", vo);
+	}
+
+	@Override
+	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getReviewList", prod_num);
+	}
+
+	@Override
+	public int getReviewCnt(int prod_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getReviewCnt", prod_num);
+	}
+
+	@Override
+	public String getUserid(int user_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getUserid", user_num);
+	}
+
+	@Override
+	public void updateReviewReadcnt(int review_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateReviewReadcnt", review_num);
+	}
+
+	@Override
+	public BoardReviewVO getReview(int review_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getReviewReadCnt", review_num);
+	}
+
+	@Override
+	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getInquiryList", prod_num);
+	}
+
+	@Override
+	public void insertInquiry(ProdInquiryVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertInquiry", vo);
+	}
+
+	@Override
+	public void updateReviewLikeCnt(int review_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateLikecnt", review_num);
 	}
 }
