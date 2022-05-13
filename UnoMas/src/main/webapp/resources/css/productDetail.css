@@ -31,6 +31,18 @@ a:hover {
 	font-size: 17px;
 }
 
+.product-details .quantity .pro-qty {
+	height: 30px;
+}
+
+.product-details .quantity .pro-qty input {
+	height: 25px;
+}
+
+.product-details .quantity .pro-qty .qtybtn {
+	line-height: 20px;
+}
+
 .tab-item ul li a::before {
 	background: #B9CE45;
 }
