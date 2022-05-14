@@ -42,6 +42,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public List<Integer> getTopcateCnt(int topcate_num) throws Exception {
+		return dao.getTopcateCnt(topcate_num);
+	}
+
+	@Override
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return dao.getProductCnt(pc);
 	}

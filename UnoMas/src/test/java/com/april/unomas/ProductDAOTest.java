@@ -47,8 +47,7 @@ public class ProductDAOTest {
 //	@Test
 	public void 카테고리별상품출력() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
+		pp.setTopcate_num(1);
 		log.info(dao.getProductList(pp)+"");
 	}
 	
@@ -62,21 +61,13 @@ public class ProductDAOTest {
 		log.info(dao.getDcateNames(1)+"");
 	}
 	
-//	@Test
-	public void 페이지개수만큼가져오기테스트() throws Exception {
+	@Test
+	public void 대분류별페이지개수만큼가져오기테스트() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
+		pp.setTopcate_num(4);
 		pp.setPerPageNum(9);
 		pp.setPage(1);
 		log.info(dao.getProductPage(pp) + "");
-	}
-	
-//	@Test
-	public void 대분류별상품개수가져오기() throws Exception {
-		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
 		log.info(dao.getProductCnt(pp)+"");
 	}
 	
@@ -111,7 +102,7 @@ public class ProductDAOTest {
 		log.info(pm.getTotalCnt()+"");
 	}
 	
-	@Test
+//	@Test
 	public void 유저위시리스트확인() throws Exception {
 		log.info("Is in wishlist? " + dao.isInWishlist(1, 9));
 	}

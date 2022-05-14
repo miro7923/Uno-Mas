@@ -5,8 +5,7 @@ import lombok.Data;
 @Data
 public class ProdCriteria {
 
-	private int cateStart;
-	private int cateEnd;
+	private int topcate_num;
 	private int page;
 	private int perPageNum;
 	private int prod_category;

@@ -41,12 +41,10 @@ public class ProductController {
 	
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
-			@RequestParam("cateStart") int cateStart, @RequestParam("cateEnd") int cateEnd, 
 			@RequestParam("pageNum") int pageNum, @RequestParam("dcate_num") int dcate_num, 
 			Model model) throws Exception {
 		ProdCriteria cri = new ProdCriteria();
-		cri.setCateStart(cateStart);
-		cri.setCateEnd(cateEnd);
+		cri.setTopcate_num(topcate_num);
 		
 		// 하단 페이징 처리 //////
 		// 현재 분류별 전체 상품 개수 얻기
@@ -79,9 +77,8 @@ public class ProductController {
 		
 		// 글 목록 정보 저장
 		map.put("productList", productList);
-		map.put("cateStart", cateStart);
-		map.put("cateEnd", cateEnd);
 		map.put("topcate_num", topcate_num);
+		map.put("dcateNumList", service.getTopcateCnt(topcate_num));
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));

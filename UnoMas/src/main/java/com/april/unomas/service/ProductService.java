@@ -22,6 +22,9 @@ public interface ProductService {
 	// 상위 카테고리별 한 페이지에 표시할 만큼만 상품 목록 불러오기
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception;
 	
+	// 대분류별 소분류 번호 리스트 가져오기
+	public List<Integer> getTopcateCnt(int topcate_num) throws Exception;
+	
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;
 	

@@ -31,13 +31,13 @@
 						<c:if test="${topcate_num <= 5 }">
 							<ul class="categoryList">
 							    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
-							    <li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
+							    <li><a href="/product/product_list?topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
 							        class="category" id="category0" style="color: black;" 
 							        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
-								<c:forEach var="dcate" begin="0" end="${cateEnd-cateStart }" step="1" varStatus="it">
-									<li><a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd}&topcate_num=${topcate_num}&pageNum=1&dcate_num=${cateStart+dcate}" 
-									class="category" id="category${cateStart+dcate }" style="color: black;" 
-										onclick="changeSort(${cateStart+dcate }, ${cateStart }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
+								<c:forEach var="dcate" items="${dcateNumList }" varStatus="it">
+									<li><a href="/product/product_list?topcate_num=${topcate_num}&pageNum=1&dcate_num=${dcate}" 
+									class="category" id="category${dcate }" style="color: black;" 
+										onclick="changeSort(${dcate }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
 								</c:forEach>
 							</ul>
 						</c:if>
@@ -106,7 +106,7 @@
 							<span>
 							    <c:choose>
 								    <c:when test="${topcate_num <= 5 }">
-										<!----> <a href="/product/product_list?cateStart=${cateStart }&cateEnd=${cateEnd }&topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
+										<!----> <a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
 										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
 								    </c:when>

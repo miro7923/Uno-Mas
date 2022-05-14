@@ -35,9 +35,9 @@
     <select id="getListOnPage" resultType="ProductVO">
         SELECT * 
         FROM products AS p 
-        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
-        JOIN top_category AS t ON d.dcate_num = t.topcate_num 
-        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd} 
+        JOIN detail_category AS d ON d.dcate_num = p.prod_category
+        JOIN top_category AS t ON t.topcate_num = d.topcate_num
+        WHERE t.topcate_num = #{topcate_num}
         ORDER BY p.prod_regdate DESC LIMIT #{pageStart}, #{perPageNum}
     </select>
     
@@ -45,9 +45,16 @@
     <select id="getProdCnt" resultType="Integer">
         SELECT COUNT(prod_num) 
         FROM products AS p 
-        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
-        JOIN top_category AS t ON d.dcate_num = t.topcate_num 
-        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
+        JOIN detail_category AS d ON d.dcate_num = p.prod_category 
+        JOIN top_category AS t ON t.topcate_num = d.topcate_num 
+        WHERE t.topcate_num = #{topcate_num}
+    </select>
+    
+    <!-- 대분류별 소분류 번호 리스트 가져오기 -->
+    <select id="getTopcateCnt" resultType="int">
+        SELECT dcate_num
+        FROM detail_category
+        WHERE topcate_num = #{topcate_num}
     </select>
     
     <!-- 상품 상위 카테고리 이름 가져오기 -->

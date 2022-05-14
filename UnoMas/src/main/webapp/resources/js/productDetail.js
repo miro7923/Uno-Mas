@@ -89,8 +89,20 @@ function toggleQna(num) {
     }
 }
 
-function toggleWishlistBtn() {
-    alert('위시리스트 메서드 호출');
+function toggleWishlistBtn(user_num, prod_num) {
+	if ($('#isInWishlist').val() == true) {
+		// 위시리스트에 추가되어 있으면 삭제
+		$.ajax({
+			type: 'get',
+			url: '/product/add_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
+			success: function() {
+				// 버튼만 새로고침
+			}
+		});		
+	}
+	else {
+		// 그렇지 않으면 추가
+	}
 }
 
 function calcTotalPrice() {

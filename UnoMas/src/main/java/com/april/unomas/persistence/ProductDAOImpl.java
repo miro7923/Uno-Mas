@@ -45,6 +45,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public List<Integer> getTopcateCnt(int topcate_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getTopcateCnt", topcate_num);
+	}
+
+	@Override
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pc);
 	}
