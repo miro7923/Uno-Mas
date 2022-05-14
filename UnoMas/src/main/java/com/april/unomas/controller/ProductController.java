@@ -94,7 +94,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_detail", method = RequestMethod.GET)
-	public String product(@RequestParam("prod_num") int prod_num, Model model, 
+	public String productDetailGET(@RequestParam("prod_num") int prod_num, Model model, 
 			HttpSession session) throws Exception {
 		ProductVO vo = service.getProduct(prod_num);
 		
@@ -202,7 +202,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/sale_list", method = RequestMethod.GET)
-	public String saleProductList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
+	public String saleProductListGET(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
 			ProdCriteria pc, Model model) throws Exception {
 		pc.setPage(pageNum);
 		

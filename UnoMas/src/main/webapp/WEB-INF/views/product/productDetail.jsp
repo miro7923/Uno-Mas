@@ -128,21 +128,21 @@
 								<div class="quantity justify-content-end">
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
+                                    <input type="hidden" value="${isInWishlist }" id="isInWishlist">
                                     <c:choose>
-                                        <input type="hidden" value="${isInWishlist }" id="isInWishlist">
                                         <c:when test="${sessionScope.saveID == null }">
-	                                        <button class="icon_heart_alt" id="wishlistBtnEmpty" 
-										        onclick="toggleWishlistBtn();"></button>
+	                                        <button class="icon_heart_alt" id="wishlistBtn" 
+										        onclick="toggleWishlistBtn(null, ${vo.prod_num });"></button>
                                         </c:when>
                                         <c:otherwise>
 		                                    <c:choose>
 		                                        <c:when test="${isInWishlist == true }">
-												    <button class="icon_heart" id="wishlistBtnFull" 
-												        onclick="toggleWishlistBtn();"></button>
+												    <button class="icon_heart" id="wishlistBtn" 
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
 		                                        </c:when>
 		                                        <c:otherwise>
-												    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
-												        onclick="toggleWishlistBtn();"></button>
+												    <button class="icon_heart_alt" id="wishlistBtn" 
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
 		                                        </c:otherwise>
 		                                    </c:choose>
                                         </c:otherwise>

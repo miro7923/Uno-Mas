@@ -155,4 +155,14 @@ public class ProductServiceImpl implements ProductService{
 	public boolean isInWishlist(int user_num, int prod_num) throws Exception {
 		return dao.isInWishlist(user_num, prod_num);
 	}
+
+	@Override
+	public void addWishlist(int user_num, int prod_num) throws Exception {
+		dao.insertWishlist(user_num, prod_num);
+	}
+
+	@Override
+	public void removeWishlist(int user_num, int prod_num) throws Exception {
+		dao.deleteWishlist(user_num, prod_num);
+	}
 }

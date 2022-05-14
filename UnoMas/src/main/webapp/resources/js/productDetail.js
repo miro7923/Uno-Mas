@@ -90,18 +90,41 @@ function toggleQna(num) {
 }
 
 function toggleWishlistBtn(user_num, prod_num) {
-	if ($('#isInWishlist').val() == true) {
+	if ($('#isInWishlist').val() == 'true') {
 		// 위시리스트에 추가되어 있으면 삭제
 		$.ajax({
 			type: 'get',
-			url: '/product/add_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
+			url: '/product/delete_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
 			success: function() {
-				// 버튼만 새로고침
+				// 버튼만 변경
+				$('#isInWishlist').attr('value', false);
+				$('#wishlistBtn').attr('class', 'icon_heart_alt');
+			},
+			error: function() {
+				alert('위시리스트 제거 실패');
 			}
 		});		
 	}
 	else {
-		// 그렇지 않으면 추가
+		if (user_num == null) {
+			if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?'))
+				location.href = '/user/login';
+		}
+		else {			
+			// 그렇지 않으면 추가
+			$.ajax({
+				type: 'get',
+				url: '/product/add_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
+				success: function() {
+					// 버튼만 변경
+					$('#isInWishlist').attr('value', true);
+					$('#wishlistBtn').attr('class', 'icon_heart');
+				},
+				error: function() {
+					alert('위시리스트 추가 실패');
+				}
+			});		
+		}
 	}
 }
 

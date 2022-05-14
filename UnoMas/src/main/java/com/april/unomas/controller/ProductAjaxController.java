@@ -42,8 +42,17 @@ public class ProductAjaxController {
 		return service.getReview(review_num).getReview_readcnt();
 	}
 	
-	public boolean isInWishlistGET(@RequestParam int user_num, @RequestParam int prod_num) throws Exception {
-		return service.isInWishlist(user_num, prod_num);
+	@RequestMapping(value = "/add_wishlist", method = RequestMethod.GET)
+	public void addWishlistGET(@RequestParam int user_num, @RequestParam int prod_num, Model model) throws Exception {
+		// 위시리스트 비동기로 추가 메서드
+		service.addWishlist(user_num, prod_num);
+		model.addAttribute("isInWishlist", true);
+	}
+	
+	@RequestMapping(value = "/delete_wishlist", method = RequestMethod.GET)
+	public void deleteWishlistGET(@RequestParam int user_num, @RequestParam int prod_num, Model model) throws Exception {
+		service.removeWishlist(user_num, prod_num);
+		model.addAttribute("isInWishlist", false);
 	}
 	
 	// ------------ 리뷰 좋아요 부분 (여유 생기면 상세 기능 추가할 것임) ------------------- // 

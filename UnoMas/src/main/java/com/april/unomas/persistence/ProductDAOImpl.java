@@ -170,4 +170,22 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		return true;
 	}
+
+	@Override
+	public void insertWishlist(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		sqlSession.insert(NAMESPACE + ".insertWishlist", map);
+	}
+
+	@Override
+	public void deleteWishlist(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		sqlSession.delete(NAMESPACE + ".deleteWishlist", map);
+	}
 }

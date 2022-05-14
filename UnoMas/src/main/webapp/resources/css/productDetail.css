@@ -88,7 +88,7 @@ p.memberInfo {
 	line-height: 50px;
 }
 
-#wishlistBtnEmpty, #wishlistBtnFull {
+#wishlistBtn {
     padding: 20px;
     border: solid lightgray;
     background-color: white;

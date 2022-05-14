@@ -52,7 +52,7 @@ public class ProductControllerTest {
 		log.info(mvc.toString());
 	}
 	
-	@Test
+//	@Test
 	public void 상품목록출력테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_list?topcate_num=4&pageNum=1&dcate_num=0");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
@@ -126,6 +126,12 @@ public class ProductControllerTest {
 	@Transactional(rollbackFor = Exception.class)
 	public void 좋아요취소테스트() throws Exception {
 		mvc.perform(get("/product/cancel_like").param("review_num", "4"))
+		.andExpect(status().isOk()).andDo(print());
+	}
+	
+	@Test
+	public void 위시리스트추가테스트() throws Exception {
+		mvc.perform(get("/product/add_wishlist").param("user_num", "1").param("prod_num", "11"))
 		.andExpect(status().isOk()).andDo(print());
 	}
 }

@@ -222,4 +222,16 @@
         FROM wishlist
         WHERE user_num = #{user_num} and prod_num = #{prod_num}
     </select>
+    
+    <!-- 위시리스트에 추가 -->
+    <insert id="insertWishlist">
+        INSERT INTO wishlist(user_num, prod_num)
+        VALUES (#{user_num}, #{prod_num})
+    </insert>
+    
+    <!-- 위시리스트 제거 -->
+    <delete id="deleteWishlist">
+        DELETE FROM wishlist
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </delete>
 </mapper>

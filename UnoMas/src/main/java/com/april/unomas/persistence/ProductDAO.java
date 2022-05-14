@@ -90,4 +90,10 @@ public interface ProductDAO {
 	
 	// 해당 상품이 해당 유저의 위시리스트에 있는지 조회
 	public boolean isInWishlist(int user_num, int prod_num) throws Exception;
+	
+	// 위시리스트 등록
+	public void insertWishlist(int user_num, int prod_num) throws Exception;
+	
+	// 위시리스트 제거
+	public void deleteWishlist(int user_num, int prod_num) throws Exception;
 }
