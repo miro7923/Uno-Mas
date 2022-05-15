@@ -9,6 +9,7 @@ public class ProdCriteria {
 	private int page;
 	private int perPageNum;
 	private int prod_category;
+	private int prod_num;
 	
 	public ProdCriteria() {
 		this.page = 1;

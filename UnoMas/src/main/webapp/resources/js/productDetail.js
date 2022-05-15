@@ -3,20 +3,21 @@ $(document).ready(function() {
     
     convertCurrency();
     calcTotalPrice();
+    getPageNum();
 });
 
 function initReview() {
 	for (var i = 0; i < 7; i++) {
-		var id = '#reviewContent' + i;
+		var id = '#reviewContentBox' + i;
 		$(id).hide();
 	}
 }
 
 function toggleReview(num) {
-	var id = '#reviewContent' + num;
+	var id = '#reviewContentBox' + num;
 	$(id).toggle();
     for (var i = 0; i <= 7; i++) {
-        id = '#reviewContent' + i;
+        id = '#reviewContentBox' + i;
         if (i == num) continue;
 		
         $(id).hide();
@@ -24,10 +25,9 @@ function toggleReview(num) {
 }
 
 function updateReviewReadcnt(num) {
-	var id = '#reviewContent' + num;
+	var id = '#reviewContentBox' + num;
 	if ($(id).css('display') == 'none') {		
-	    var reId = '#review_num' + num;
-	    var reNum = $(reId).val();
+	    var reNum = $('#reviewNum' + num).text();
 	    
 		// 조회수 증가
 	    $.ajax({
@@ -187,7 +187,95 @@ function insertCart() {
 }
 
 function askLogin() {
-	if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')) {
+	if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?'))
 		location.href = '/user/login';
+}
+
+function getPageNum() {
+	var id = '#reviewPage' + $('#curReviewPage').val();
+    $(id).css('font-weight', 'bold');
+    $(id).css('color', '#B9CE45');
+    
+    id = '#inquiryPage' + $('#curInquiryPage').val();
+    $(id).css('font-weight', 'bold');
+    $(id).css('color', '#B9CE45');
+}
+
+function changePageNum(num, maxNum, boardType) {    
+    if (boardType == 'review') {
+	    var id = '#reviewPage' + num;
+	    
+	    $(id).css('font-weight', 'bold');
+	    $(id).css('color', '#B9CE45');
+	    
+	    for (var i = 1; i <= maxNum; i++) {
+	        if (num == i) continue;
+	        
+	        id = '#reviewPage' + i;
+	        $(id).css('font-weight', '');
+	    	$(id).css('color', 'black');
+	    }
+	    
+	    $.ajax({
+			type: 'get',
+			url: '/product/review_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			success: function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$('#reviewTitle'+i).text(data[i].review_title);
+					$('#reviewNum'+i).text(data[i].review_num);
+					$('#reviewUserid'+i).text(data[i].user_id);
+					
+					// Timestamp 변환
+					var regdate = new Date(data[i].review_regdate);
+					var year = regdate.getFullYear();
+					var month = regdate.getMonth() + 1;
+					var day = regdate.getDate();
+					$('#reviewRegdate'+i).text(year + '. ' + month + '. ' + day);
+					
+					$('#reviewReadcnt'+i).text(data[i].review_readcnt);
+					$('#reviewRating'+i).text(data[i].review_rating + '/ 5.0');
+					$('#reviewContent'+i).text(data[i].review_content);
+				}
+			}
+		});
+		
+		$('#curReviewPage').val(num);
+	}
+	else {
+	    var id = '#inquiryPage' + num;
+	    
+	    $(id).css('font-weight', 'bold');
+	    $(id).css('color', '#B9CE45');
+	    
+	    for (var i = 1; i <= maxNum; i++) {
+	        if (num == i) continue;
+	        
+	        id = '#inquiryPage' + i;
+	        $(id).css('font-weight', '');
+	    	$(id).css('color', 'black');
+	    }
+	    
+		$.ajax({
+			type: 'get',
+			url: '/product/inquiry_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			success: function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$('#inquiryNum'+i).text(data[i].p_inquiry_num);
+					$('#inquiryTitle'+i).text(data[i].p_inquiry_title);
+					$('#inquiryUserid'+i).text(data[i].user_id);
+					
+					// Timestamp 변환
+					var regdate = new Date(data[i].p_inquiry_regdate);
+					var year = regdate.getFullYear();
+					var month = regdate.getMonth() + 1;
+					var day = regdate.getDate();
+					$('#inquiryRegdate'+i).text(year + '. ' + month + '. ' + day);
+					
+					$('#inquiryContent'+i).text(data[i].p_inquiry_content);
+				}
+			}
+		});
+		
+		$('#curInquiryPage').val(num);
 	}
 }

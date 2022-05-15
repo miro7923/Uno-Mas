@@ -160,6 +160,14 @@
         FROM board_review
         WHERE prod_num = #{prod_num}
         ORDER BY review_regdate DESC
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 상품별 리뷰글 전체 개수 가져오기 -->
+    <select id="getReviewCnt" resultType="int">
+        SELECT COUNT(review_num)
+        FROM board_review
+        WHERE prod_num = #{prod_num}
     </select>
     
     <!-- 회원번호로 아이디 가져오기 -->
@@ -167,13 +175,6 @@
         SELECT user_id
         FROM users
         WHERE user_num = #{user_num}
-    </select>
-    
-    <!-- 상품번호별 리뷰글 개수 가져오기 -->
-    <select id="getReviewCnt" resultType="int">
-        SELECT COUNT(review_num)
-        FROM board_review
-        WHERE prod_num = #{prod_num}
     </select>
     
     <!-- 리뷰글 조회수 증가 -->
@@ -196,6 +197,14 @@
         FROM prod_inquiry
         WHERE prod_num = #{prod_num}
         ORDER BY p_inquiry_regdate DESC
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 상품별 문의글 전체 개수 가져오기 -->
+    <select id="getInquiryCnt" resultType="int">
+        SELECT COUNT(p_inquiry_num)
+        FROM prod_inquiry
+        WHERE prod_num = #{prod_num}
     </select>
     
     <!-- 상품 문의글 등록 -->

@@ -99,18 +99,34 @@ public class ProductController {
 		ProductVO vo = service.getProduct(prod_num);
 		service.addProdReadcnt(prod_num);
 		
-		List<BoardReviewVO> reviewList = service.getReviewList(prod_num);
+		ProdCriteria pc = new ProdCriteria();
+		pc.setProd_num(prod_num);
+		pc.setPerPageNum(7);
+		
+		List<BoardReviewVO> reviewList = service.getReviewList(pc);
 		for (int i = 0; i < reviewList.size(); i++)
 			reviewList.get(i).setUser_id(service.getUserid(reviewList.get(i).getUser_num()));
 		
-		List<ProdInquiryVO> inquiryList = service.getInquiryList(prod_num);
+		List<ProdInquiryVO> inquiryList = service.getInquiryList(pc);
 		for (int i = 0; i < inquiryList.size(); i++)
 			inquiryList.get(i).setUser_id(service.getUserid(inquiryList.get(i).getUser_num()));
 		
+		// 리뷰/문의 게시판 하단 페이징 처리
+		int reviewCnt = service.getReviewCnt(prod_num);
+		ProdPageMaker reviewPm = new ProdPageMaker();
+		reviewPm.setCri(pc);
+		reviewPm.setTotalCnt(reviewCnt);
+		
+		ProdPageMaker inquiryPm = new ProdPageMaker();
+		inquiryPm.setCri(pc);
+		inquiryPm.setTotalCnt(service.getInquiryCnt(prod_num));
+		
 		model.addAttribute("vo", vo);
 		model.addAttribute("reviewList", reviewList);
-		model.addAttribute("reviewCnt", service.getReviewCnt(prod_num));
+		model.addAttribute("reviewCnt", reviewCnt);
 		model.addAttribute("inquiryList", inquiryList);
+		model.addAttribute("reviewPm", reviewPm);
+		model.addAttribute("inquiryPm", inquiryPm);
 		
 		UserVO userVo = (UserVO) session.getAttribute("saveID");
 		if (userVo != null)

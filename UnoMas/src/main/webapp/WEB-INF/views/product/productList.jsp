@@ -99,33 +99,53 @@
 					    <input type="hidden" value="${pageNum }" id="curPage">
 						<div class="col-lg-12 text-center">
 						<c:if test="${pm.prev }">
-							<a href="#" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+						    <c:choose>
+						        <c:when test="${topcate_num <= 5 }">
+									<a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${pm.startPage - 1}&dcate_num=${dcate_num}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+						        </c:when>
+						        <c:when test="${topcate_num == 6 }">
+						            <a href="/product/new_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
+						        </c:when>
+						        <c:otherwise>
+						            <a href="/product/sale_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
+						        </c:otherwise>
+						    </c:choose>
 						</c:if>
 						
 						<c:forEach var="block" varStatus="it" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<span>
 							    <c:choose>
 								    <c:when test="${topcate_num <= 5 }">
-										<!----> <a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${it.index}&dcate_num=${dcate_num}" 
+										<!----> <a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${block}&dcate_num=${dcate_num}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
-										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+										onclick="changePageNum(${it.index }, ${pm.endPage - pm.startPage + 1 });">${block } <!----></a>
 								    </c:when>
-								    <c:when test="${topcate_num > 5 }">
+								    <c:when test="${topcate_num == 6 }">
 								        <!----> <a href="/product/new_list?pageNum=${it.index}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
-										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+										onclick="changePageNum(${it.index }, ${pm.endPage - pm.startPage + 1 });">${block } <!----></a>
 								    </c:when>
 								    <c:otherwise>
 								        <!----> <a href="/product/sale_list?pageNum=${it.index}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
-										onclick="changePageNum(${it.index }, ${pm.endPage });">${it.index } <!----></a>
+										onclick="changePageNum(${it.index }, ${pm.endPage - pm.startPage + 1 });">${block } <!----></a>
 								    </c:otherwise>
 							    </c:choose>
 							</span> 
 						</c:forEach>
 						
-						<c:if test="${pm.next }">
-							<a href="#" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+						<c:if test="${pm.next && pm.endPage > 0 }">
+						    <c:choose>
+						        <c:when test="${topcate_num <= 5 }">
+									<a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${pm.endPage + 1}&dcate_num=${dcate_num}" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+						        </c:when>
+						        <c:when test="${topcate_num == 6 }">
+						            <a href="/product/new_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
+						        </c:when>
+						        <c:otherwise>
+						            <a href="/product/sale_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
+						        </c:otherwise>
+						    </c:choose>
 						</c:if>
 						</div>
 					</div>

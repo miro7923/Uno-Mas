@@ -115,8 +115,8 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getReviewList", prod_num);
+	public List<BoardReviewVO> getReviewList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getReviewList", pc);
 	}
 
 	@Override
@@ -145,8 +145,13 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getInquiryList", prod_num);
+	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getInquiryList", pc);
+	}
+
+	@Override
+	public int getInquiryCnt(int prod_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getInquiryCnt", prod_num);
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class ProductDAOTest {
 		log.info(dao.getDcateNames(1)+"");
 	}
 	
-	@Test
+//	@Test
 	public void 대분류별페이지개수만큼가져오기테스트() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
 		pp.setTopcate_num(4);
@@ -100,5 +100,13 @@ public class ProductDAOTest {
 //	@Test
 	public void 유저위시리스트확인() throws Exception {
 		log.info("Is in wishlist? " + dao.isInWishlist(1, 9));
+	}
+	
+	@Test
+	public void 상품별리뷰글개수() throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setProd_num(84);
+		pc.setPerPageNum(7);
+		log.info("글목록: " + dao.getReviewList(pc));
 	}
 }

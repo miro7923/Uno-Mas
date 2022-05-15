@@ -85,4 +85,9 @@ public class ProductServiceTest {
 		log.info(service.getNewProductList(pp)+"");
 		log.info(service.getNewProdCnt()+"");
 	}
+	
+	@Test
+	public void 리뷰글개수가져오기() throws Exception {
+		log.info("개수: "+service.getReviewCnt(84));
+	}
 }

@@ -1,5 +1,7 @@
 package com.april.unomas.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.service.ProductService;
 
 @RestController
@@ -53,6 +59,36 @@ public class ProductAjaxController {
 	public void deleteWishlistGET(@RequestParam int user_num, @RequestParam int prod_num, Model model) throws Exception {
 		service.removeWishlist(user_num, prod_num);
 		model.addAttribute("isInWishlist", false);
+	}
+	
+	@RequestMapping(value = "/review_list", method = RequestMethod.GET)
+	public List<BoardReviewVO> getReviewListGET(@RequestParam int prod_num, @RequestParam int page) throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<BoardReviewVO> list = service.getReviewList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		return list;
+	}
+	
+	@RequestMapping(value = "/inquiry_list", method = RequestMethod.GET)
+	public List<ProdInquiryVO> getInquiryListGET(@RequestParam int prod_num, @RequestParam int page) throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<ProdInquiryVO> list = service.getInquiryList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		return list;
 	}
 	
 	// ------------ 리뷰 좋아요 부분 (여유 생기면 상세 기능 추가할 것임) ------------------- // 

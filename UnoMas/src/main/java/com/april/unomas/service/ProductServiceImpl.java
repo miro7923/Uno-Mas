@@ -107,8 +107,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception {
-		return dao.getReviewList(prod_num);
+	public List<BoardReviewVO> getReviewList(ProdCriteria pc) throws Exception {
+		return dao.getReviewList(pc);
 	}
 
 	@Override
@@ -137,8 +137,13 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception {
-		return dao.getInquiryList(prod_num);
+	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception {
+		return dao.getInquiryList(pc);
+	}
+
+	@Override
+	public int getInquiryCnt(int prod_num) throws Exception {
+		return dao.getInquiryCnt(prod_num);
 	}
 
 	@Override

@@ -62,7 +62,7 @@ public interface ProductDAO {
 	public void insertReview(BoardReviewVO vo) throws Exception;
 	
 	// 리뷰글 목록 가져오는 메서드
-	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception;
+	public List<BoardReviewVO> getReviewList(ProdCriteria pc) throws Exception;
 	
 	// 상품별 리뷰글 개수 가져오는 메서드
 	public int getReviewCnt(int prod_num) throws Exception;
@@ -83,7 +83,10 @@ public interface ProductDAO {
 	public void cancelLike(int revuew_num) throws Exception;
 	
 	// 상품별 문의글 목록 가져오기
-	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception;
+	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception;
+	
+	// 상품별 문의글 전체 개수 가져오기
+	public int getInquiryCnt(int prod_num) throws Exception;
 	
 	// 상품 문의글 등록
 	public void insertInquiry(ProdInquiryVO vo) throws Exception;
