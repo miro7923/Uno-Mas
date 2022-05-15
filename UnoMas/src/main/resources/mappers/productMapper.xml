@@ -11,11 +11,6 @@
     	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
     			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
     </insert>
-  
-    <!-- 상품 전체 목록 불러오기 -->
-    <select id="getList" resultType="com.april.unomas.domain.ProductVO">
-        SELECT * FROM products
-    </select>
 
     <!-- 상품 목록 카테고리별로 불러오기 -->
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
@@ -93,6 +88,13 @@
         FROM products
         WHERE prod_num = #{prod_num}
     </select>
+    
+    <!-- 상품 조회수 증가 -->
+    <update id="addProdReadcnt">
+        UPDATE products
+        SET prod_readcnt = prod_readcnt + 1
+        WHERE prod_num = #{prod_num}
+    </update>
     
     <!-- 카트에 상품 넣기 -->
     <insert id="insertCart">

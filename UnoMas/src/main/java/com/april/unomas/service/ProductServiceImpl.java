@@ -27,11 +27,6 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<ProductVO> getProductList() throws Exception {
-		return dao.getProductList();
-	}
-
-	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception {
 		return dao.getProductList(pc);
 	}
@@ -74,6 +69,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return dao.getProduct(prod_num);
+	}
+
+	@Override
+	public void addProdReadcnt(int prod_num) throws Exception {
+		dao.updateProdReadcnt(prod_num);
 	}
 
 	@Override

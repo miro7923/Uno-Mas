@@ -30,11 +30,6 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public List<ProductVO> getProductList() throws Exception{
-		return sqlSession.selectList(NAMESPACE + ".getList");
-	}
-
-	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception{
 		return sqlSession.selectList(NAMESPACE + ".getListCate", pc);
 	}
@@ -77,6 +72,11 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProduct", prod_num);
+	}
+
+	@Override
+	public void updateProdReadcnt(int prod_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".addProdReadcnt", prod_num);
 	}
 
 	@Override

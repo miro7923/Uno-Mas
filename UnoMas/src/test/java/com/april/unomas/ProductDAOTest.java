@@ -40,11 +40,6 @@ public class ProductDAOTest {
 	}
 	
 //	@Test
-	public void 상품목록출력테스트() throws Exception {
-		log.info(dao.getProductList()+"");
-	}
-	
-//	@Test
 	public void 카테고리별상품출력() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
 		pp.setTopcate_num(1);

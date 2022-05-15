@@ -58,7 +58,7 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
-//	@Test
+	@Test
 	public void 상품하나출력테스트() throws Exception {
 		UserVO vo = new UserVO();
 		vo.setUser_num(1);
@@ -129,7 +129,7 @@ public class ProductControllerTest {
 		.andExpect(status().isOk()).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	public void 위시리스트추가테스트() throws Exception {
 		mvc.perform(get("/product/add_wishlist").param("user_num", "1").param("prod_num", "11"))
 		.andExpect(status().isOk()).andDo(print());

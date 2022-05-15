@@ -24,11 +24,6 @@ public class ProductServiceTest {
 	private static final Logger log = LoggerFactory.getLogger(ProductServiceTest.class);
 	
 //	@Test
-	public void 상품목록출력테스트() throws Exception {
-		log.info(service.getProductList()+"");
-	}
-	
-//	@Test
 	public void 카테고리별출력테스트() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
 		pp.setTopcate_num(1);

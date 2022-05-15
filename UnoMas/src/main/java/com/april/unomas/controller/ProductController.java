@@ -97,6 +97,7 @@ public class ProductController {
 	public String productDetailGET(@RequestParam("prod_num") int prod_num, Model model, 
 			HttpSession session) throws Exception {
 		ProductVO vo = service.getProduct(prod_num);
+		service.addProdReadcnt(prod_num);
 		
 		List<BoardReviewVO> reviewList = service.getReviewList(prod_num);
 		for (int i = 0; i < reviewList.size(); i++)
