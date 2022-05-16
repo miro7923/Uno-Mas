@@ -49,6 +49,11 @@
 		<filter-name>encoding</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- 세션 유지시간 증가 -->
+	<session-config>
+	   <session-timeout>60</session-timeout>
+	</session-config>
 
 	<!-- 스프링 security 필터 추가(DelegatingFilterProxy) -->
 <!-- 	<filter> -->

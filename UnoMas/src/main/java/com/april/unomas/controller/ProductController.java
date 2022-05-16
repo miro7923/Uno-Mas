@@ -195,7 +195,7 @@ public class ProductController {
 		// 리뷰 이미지파일명: review_리뷰글번호.확장자
 		int idx = file.getOriginalFilename().indexOf(".");
 		String imgType = file.getOriginalFilename().substring(idx + 1);
-		String fileName = "review_" + service.getLastReviewNum() + 1 + imgType;
+		String fileName = "review_" + service.getLastReviewNum() + 1 + "." + imgType;
 		
 		File targetFile = new File(reviewImgUploatPath, fileName);
 		FileCopyUtils.copy(file.getBytes(), targetFile);
