@@ -203,6 +203,8 @@ function getPageNum() {
 
 function changePageNum(num, maxNum, boardType) {    
     if (boardType == 'review') {
+	    initReview();
+	    
 	    var id = '#reviewPage' + num;
 	    
 	    $(id).css('font-weight', 'bold');
@@ -233,7 +235,7 @@ function changePageNum(num, maxNum, boardType) {
 					$('#reviewRegdate'+i).text(year + '. ' + month + '. ' + day);
 					
 					$('#reviewReadcnt'+i).text(data[i].review_readcnt);
-					$('#reviewRating'+i).text(data[i].review_rating + '/ 5.0');
+					$('#reviewRating'+i).text(data[i].review_rating + ' / 5.0');
 					$('#reviewContent'+i).text(data[i].review_content);
 				}
 			}
@@ -242,6 +244,8 @@ function changePageNum(num, maxNum, boardType) {
 		$('#curReviewPage').val(num);
 	}
 	else {
+		initQna();
+		
 	    var id = '#inquiryPage' + num;
 	    
 	    $(id).css('font-weight', 'bold');

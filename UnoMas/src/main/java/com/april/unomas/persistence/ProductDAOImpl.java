@@ -145,6 +145,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public void updateReview(BoardReviewVO vo) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateReview", vo);
+	}
+
+	@Override
 	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getInquiryList", pc);
 	}

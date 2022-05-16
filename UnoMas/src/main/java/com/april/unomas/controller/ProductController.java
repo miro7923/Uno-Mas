@@ -183,6 +183,25 @@ public class ProductController {
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
+	@RequestMapping(value = "/modify_review", method = RequestMethod.GET)
+	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model) throws Exception {
+		BoardReviewVO reviewVO = service.getReview(review_num);
+		
+		model.addAttribute("prod_name", service.getProduct(reviewVO.getProd_num()).getProd_name());
+		model.addAttribute("vo", reviewVO);
+		
+		return "product/reviewModifyForm";
+	}
+	
+	@RequestMapping(value = "/modify_review", method = RequestMethod.POST)
+	public String modifyReviewPOST(BoardReviewVO vo) throws Exception {
+		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@modifyReviewPOST(vo) 호출");
+		
+		service.modifyReview(vo);
+		
+		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
+	
 	@RequestMapping(value = "/write_inquiry", method = RequestMethod.GET)
 	public String writeInquiryGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));

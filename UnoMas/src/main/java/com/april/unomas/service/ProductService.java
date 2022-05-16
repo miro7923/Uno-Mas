@@ -76,6 +76,9 @@ public interface ProductService {
 	// 특정 리뷰글 정보 가져오기
 	public BoardReviewVO getReview(int review_num) throws Exception;
 	
+	// 리뷰글 수정
+	public void modifyReview(BoardReviewVO vo) throws Exception;
+	
 	// 리뷰글 좋아요 증가
 	public void addReviewLikeCnt(int review_num) throws Exception;
 	

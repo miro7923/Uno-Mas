@@ -137,6 +137,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public void modifyReview(BoardReviewVO vo) throws Exception {
+		dao.updateReview(vo);
+	}
+
+	@Override
 	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception {
 		return dao.getInquiryList(pc);
 	}

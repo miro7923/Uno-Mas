@@ -191,6 +191,13 @@
         WHERE review_num = #{review_num}
     </select>
     
+    <!-- 리뷰글 수정 -->
+    <update id="updateReview">
+        UPDATE board_review
+        SET review_title = #{review_title}, review_content = #{review_content}, review_rating = #{review_rating}
+        WHERE review_num = #{review_num}
+    </update>
+    
     <!-- 상품별 문의글 목록 가져오기 -->
     <select id="getInquiryList" resultType="ProdInquiryVO">
         SELECT *

@@ -29,6 +29,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.UserVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -58,7 +59,7 @@ public class ProductControllerTest {
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
 	}
 	
-	@Test
+//	@Test
 	public void 상품하나출력테스트() throws Exception {
 		UserVO vo = new UserVO();
 		vo.setUser_num(1);
@@ -104,6 +105,14 @@ public class ProductControllerTest {
 	public void 리뷰조회수증가테스트() throws Exception {
 		mvc.perform(post("/product/update_readcnt").param("review_num", "4").param("prod_num", "84"))
 		.andExpect(status().is2xxSuccessful())
+		.andDo(print());
+	}
+	
+	@Test
+	public void 리뷰수정테스트() throws Exception {
+		mvc.perform(post("/product/modify_review").param("prod_num", "84").param("review_content", "맛있네요.")
+				.param("review_num", "4").param("review_rating", "4.0").param("review_title", "또 시킬거에요."))
+		.andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/product/product_detail?prod_num=84"))
 		.andDo(print());
 	}
 	
