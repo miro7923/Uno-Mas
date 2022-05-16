@@ -7,6 +7,7 @@ import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.SelectVO;
 
 public interface ProductService {
 
@@ -91,4 +92,22 @@ public interface ProductService {
 	
 	// 상품 문의글 등록
 	public void insertInquiry(ProdInquiryVO vo) throws Exception;
+	
+	// 조회수별 상품 정보
+	public List<SelectVO> readcntSelect() throws Exception;
+	
+	// 판매량별 상품 정보
+	public List<SelectVO> sellcntSelect() throws Exception;
+	
+	// 신상품별 상품 정보(메인페이지)
+	public List<SelectVO> brandnewSelect() throws Exception;
+	
+	// 조회수별 상품 정보
+	public List<SelectVO> readcntSelect2() throws Exception;
+	
+	// 판매량별 상품 정보
+	public List<SelectVO> sellcntSelect2() throws Exception;
+	
+	// 신상품별 상품 정보(메인페이지)
+	public List<SelectVO> brandnewSelect2() throws Exception;
 }

@@ -17,6 +17,7 @@ import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.SelectVO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -166,5 +167,34 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public void updateReviewLikeCnt(int review_num) throws Exception {
 		sqlSession.update(NAMESPACE + ".updateLikecnt", review_num);
+	}
+
+	@Override
+	public List<SelectVO> readcntSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect");
+	}
+
+	@Override
+	public List<SelectVO> sellcntSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".sellcntSelect");
+	}
+	
+	@Override
+	public List<SelectVO> brandnewSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".brandnewSelect");
+	}
+	@Override
+	public List<SelectVO> readcntSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect2");
+	}
+	
+	@Override
+	public List<SelectVO> sellcntSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".sellcntSelect2");
+	}
+	
+	@Override
+	public List<SelectVO> brandnewSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".brandnewSelect2");
 	}
 }

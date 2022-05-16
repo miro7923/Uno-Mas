@@ -13,6 +13,7 @@ import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.SelectVO;
 import com.april.unomas.persistence.ProductDAO;
 
 @Service
@@ -157,5 +158,36 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void addReviewLikeCnt(int review_num) throws Exception {
 		dao.updateReviewLikeCnt(review_num);
+	}
+
+	@Override
+	public List<SelectVO> readcntSelect() throws Exception {
+		List<SelectVO> readlist = dao.readcntSelect();
+		return readlist;
+	}
+	@Override
+	public List<SelectVO> sellcntSelect() throws Exception {
+		List<SelectVO> soldlist = dao.sellcntSelect();
+		return soldlist;
+	}
+	@Override
+	public List<SelectVO> brandnewSelect() throws Exception {
+		List<SelectVO> newlist = dao.brandnewSelect();
+		return newlist;
+	}
+	@Override
+	public List<SelectVO> readcntSelect2() throws Exception {
+		List<SelectVO> readlist2 = dao.readcntSelect2();
+		return readlist2;
+	}
+	@Override
+	public List<SelectVO> sellcntSelect2() throws Exception {
+		List<SelectVO> soldlist2 = dao.sellcntSelect2();
+		return soldlist2;
+	}
+	@Override
+	public List<SelectVO> brandnewSelect2() throws Exception {
+		List<SelectVO> newlist2 = dao.brandnewSelect2();
+		return newlist2;
 	}
 }

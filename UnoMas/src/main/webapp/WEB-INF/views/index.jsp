@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
@@ -51,114 +52,103 @@
 		<p class="sub-title">지금 많이 찾으시는 상품들을 만나보세요</p>
 		<div class="hotItemWrap">
 			<ul class="item-cont">
+				<c:forEach items="${readcntList2}" var="rl2">
 				<dl class="itemList">
 					<dt class="thumb">
 						<a href="">
-							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
-								style="width:200px;">
+							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
+							<a href="">${rl2.prod_name}</a>
 						</p>
-						<p class="prdPrice">
-							<del>60,000원</del>
-							<br>
-							47,900원
-						</p>
+						<c:choose>
+		                    <c:when test="${rl2.prod_discntrate eq 0}">
+						        <div>
+						        	<p class="prdPrice">
+						        	<fmt:formatNumber value="${rl2.prod_price}" type="number"/>원
+						        	</p>
+						        </div>
+		                    </c:when>
+		                    <c:otherwise>
+						        <div>
+									<p class="prdPrice">
+								    <del><fmt:formatNumber value="${rl2.prod_price}" type="number"/>원</del><br>
+								    <fmt:formatNumber value="${rl2.prod_price*(100-rl2.prod_discntrate)/100}" type="number"/>원
+								    </p>
+						        </div>
+		                    </c:otherwise>
+                        </c:choose>
 					</dd>
 				</dl>
+				</c:forEach>
+				<c:forEach items="${sellcntList2}" var="sl2">
 				<dl class="itemList">
 					<dt class="thumb">
 						<a href="">
-							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
-								style="width:200px;">
+							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
+							<a href="">${sl2.prod_name}</a>
 						</p>
-						<p class="prdPrice">
-							<del>60,000원</del>
-							<br>
-							47,900원
-						</p>
+						<c:choose>
+		                    <c:when test="${sl2.prod_discntrate eq 0}">
+						        <div>
+						        	<p class="prdPrice">
+						        	<fmt:formatNumber value="${sl2.prod_price}" type="number"/>원
+						        	</p>
+						        </div>
+		                    </c:when>
+		                    <c:otherwise>
+						        <div>
+									<p class="prdPrice">
+								    <del><fmt:formatNumber value="${sl2.prod_price}" type="number"/>원</del><br>
+								    <fmt:formatNumber value="${sl2.prod_price*(100-sl2.prod_discntrate)/100}" type="number"/>원
+								    </p>
+						        </div>
+		                    </c:otherwise>
+                        </c:choose>
 					</dd>
 				</dl>
+				</c:forEach>
+				<c:forEach items="${brandnewList2}" var="bl2">
 				<dl class="itemList">
 					<dt class="thumb">
 						<a href="">
-							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
-								style="width:200px;">
+							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
+							<a href="">${bl2.prod_name}</a>
 						</p>
-						<p class="prdPrice">
-							<del>60,000원</del>
-							<br>
-							47,900원
-						</p>
+						<c:choose>
+		                    <c:when test="${bl2.prod_discntrate eq 0}">
+						        <div>
+						        	<p class="prdPrice">
+						        	<fmt:formatNumber value="${bl2.prod_price}" type="number"/>원
+						        	</p>
+						        </div>
+		                    </c:when>
+		                    <c:otherwise>
+						        <div>
+									<p class="prdPrice">
+								    <del><fmt:formatNumber value="${bl2.prod_price}" type="number"/>원</del><br>
+								    <fmt:formatNumber value="${bl2.prod_price*(100-bl2.prod_discntrate)/100}" type="number"/>원
+								    </p>
+						        </div>
+		                    </c:otherwise>
+                        </c:choose>
 					</dd>
 				</dl>
-				<dl class="itemList">
-					<dt class="thumb">
-						<a href="">
-							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg"
-								style="width:200px;">
-						</a>
-					</dt>
-					<dd class="prdInfo">
-						<p class="prdName">
-							<a href="">프리미엄 숙성육 소고기 600g, 900g, 1200g 선물세트</a>
-						</p>
-						<p class="prdPrice">
-							<del>60,000원</del>
-							<br>
-							47,900원
-						</p>
-					</dd>
-				</dl>
+				</c:forEach>
 			</ul>
 		</div>
     </div>
     <!-- 지금 Hot한 상품 End -->
-    <!-- Banner Section Begin -->
-<!--     <div class="banner-section spad"> -->
-<!--         <div class="container-fluid"> -->
-<!--             <div class="row"> -->
-<!--                 <div class="col-lg-4"> -->
-<!--                     <div class="single-banner" > -->
-<%--                         <img src="${path}/resources/img/banner-1.jpg" alt=""> --%>
-<!--                         <div class="inner-text"> -->
-<!--                             <h4>조회수 높은 상품</h4> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-4"> -->
-<!--                     <div class="single-banner"> -->
-<%--                         <img src="${path}/resources/img/banner-2.jpg" alt=""> --%>
-<!--                         <div class="inner-text"> -->
-<!--                             <h4>Women’s</h4> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-4"> -->
-<!--                     <div class="single-banner"> -->
-<%--                         <img src="${path}/resources/img/banner-3.jpg" alt=""> --%>
-<!--                         <div class="inner-text"> -->
-<!--                             <h4>신상품</h4> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-<!--         </div> -->
-<!--     </div> -->
-    <!-- Banner Section End -->
 
     <!-- 조회수 높은 상품 Section Begin -->
     <section class="women-banner spad">
@@ -172,10 +162,35 @@
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
+                    	<c:forEach items="${readcntList}" var="rl">
+<%--                    	<% 
+                    		int ttn = 0;
+                    		int cateStart = 0;
+                    		int cateEnd = 0;
+                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
+                    		switch(ttn){
+                    			case 1: cateStart = 1; cateEnd = 3;
+                    				break;
+                    			case 2: cateStart = 4; cateEnd = 7;
+                    				break;
+                    			case 3: cateStart = 7; cateEnd = 10;
+                    				break;
+                    			case 4: cateStart = 11; cateEnd = 15;
+                    				break;
+                    			case 5:	cateStart = 16; cateEnd = 18;
+                    				break;
+                    		}
+                    	%> --%>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
+                            	<a href="/product/product_detail?prod_num=${rl.prod_num}">
+                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                            	</a>
+                            	<c:choose>
+                            		<c:when test="${rl.prod_discntrate>0}">
+		                                <div class="sale">Sale</div>
+                            		</c:when>
+                            	</c:choose>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -184,76 +199,27 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
+<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
+                                <div class="catagory-name">${rl.dcate_name}</div>
+                                <a href="/product/product_detail?prod_num=${rl.prod_num}">
+                                    <h5>${rl.prod_name}</h5>
                                 </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
-                                </div>
+                                <c:choose>
+                                	<c:when test="${rl.prod_discntrate eq 0}">
+		                                <div class="product-price">
+		                                    <fmt:formatNumber value="${rl.prod_price}" type="number"/>원
+		                                </div>
+                                	</c:when>
+                                	<c:otherwise>
+		                                 <div class="product-price">
+		                                    <fmt:formatNumber value="${rl.prod_price*(100-rl.prod_discntrate)/100}" type="number"/>원
+		                                    <span><fmt:formatNumber value="${rl.prod_price}" type="number"/>원</span>
+		                                </div>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -261,22 +227,47 @@
     </section>
     <!-- 조회수 높은 상품 Section End -->
 
-    <!-- 많이 팔리는 상품 Section Begin -->
-   <section class="women-banner spad">
+	<!-- 많이 팔리는 상품 Section Begin -->
+	<section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
-                        <h2>많이 팔리는 상품</h2>
+                    <div class="product-large set-bg" id="highSold" data-setbg="${path}/resources/img/products/women-large.jpg">
+                        <h2>판매량 높은 상품</h2>
                         <a href="#">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
+                    	<c:forEach items="${sellcntList}" var="sl">
+<%--                    	<% 
+                    		int ttn = 0;
+                    		int cateStart = 0;
+                    		int cateEnd = 0;
+                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
+                    		switch(ttn){
+                    			case 1: cateStart = 1; cateEnd = 3;
+                    				break;
+                    			case 2: cateStart = 4; cateEnd = 7;
+                    				break;
+                    			case 3: cateStart = 7; cateEnd = 10;
+                    				break;
+                    			case 4: cateStart = 11; cateEnd = 15;
+                    				break;
+                    			case 5:	cateStart = 16; cateEnd = 18;
+                    				break;
+                    		}
+                    	%> --%>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
+                            	<a href="/product/product_detail?prod_num=${sl.prod_num}">
+                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                            	</a>
+                            	<c:choose>
+                            		<c:when test="${sl.prod_discntrate>0}">
+		                                <div class="sale">Sale</div>
+                            		</c:when>
+                            	</c:choose>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -285,99 +276,75 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
+<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
+                                <div class="catagory-name">${sl.dcate_name}</div>
+                                <a href="/product/product_detail?prod_num=${sl.prod_num}">
+                                    <h5>${sl.prod_name}</h5>
                                 </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
-                                </div>
+                                <c:choose>
+                                	<c:when test="${sl.prod_discntrate eq 0}">
+		                                <div class="product-price">
+		                                    <fmt:formatNumber value="${sl.prod_price}" type="number"/>원
+		                                </div>
+                                	</c:when>
+                                	<c:otherwise>
+		                                 <div class="product-price">
+		                                    <fmt:formatNumber value="${sl.prod_price*(100-sl.prod_discntrate)/100}" type="number"/>원
+		                                    <span><fmt:formatNumber value="${sl.prod_price}" type="number"/>원</span>
+		                                </div>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- 많이 팔리는 상품 Section End -->    
+	</section>
+	<!-- 많이 팔리는 상품 Section End -->    
 
 	<!-- 최신 상품 Section Begin -->
     <section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
+                    <div class="product-large set-bg" id="highSold" data-setbg="${path}/resources/img/products/women-large.jpg">
                         <h2>신상품</h2>
-                        <a href="#">Discover More</a>
+                        <a href="/product/new_list">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
+                    	<c:forEach items="${brandnewList}" var="bl">
+<%--                    	<% 
+                    		int ttn = 0;
+                    		int cateStart = 0;
+                    		int cateEnd = 0;
+                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
+                    		switch(ttn){
+                    			case 1: cateStart = 1; cateEnd = 3;
+                    				break;
+                    			case 2: cateStart = 4; cateEnd = 7;
+                    				break;
+                    			case 3: cateStart = 7; cateEnd = 10;
+                    				break;
+                    			case 4: cateStart = 11; cateEnd = 15;
+                    				break;
+                    			case 5:	cateStart = 16; cateEnd = 18;
+                    				break;
+                    		}
+                    	%> --%>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
+                            	<a href="/product/product_detail?prod_num=${bl.prod_num}">
+                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                            	</a>
+                            	<c:choose>
+                            		<c:when test="${bl.prod_discntrate>0}">
+		                                <div class="sale">Sale</div>
+                            		</c:when>
+                            	</c:choose>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -386,81 +353,32 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
+<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
+                                <div class="catagory-name">${bl.dcate_name}</div>
+                                <a href="/product/product_detail?prod_num=${bl.prod_num}">
+                                    <h5>${bl.prod_name}</h5>
                                 </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
-                                </div>
+                                <c:choose>
+                                	<c:when test="${bl.prod_discntrate eq 0}">
+		                                <div class="product-price">
+		                                    <fmt:formatNumber value="${bl.prod_price}" type="number"/>원
+		                                </div>
+                                	</c:when>
+                                	<c:otherwise>
+		                                 <div class="product-price">
+		                                    <fmt:formatNumber value="${bl.prod_price*(100-bl.prod_discntrate)/100}" type="number"/>원
+		                                    <span><fmt:formatNumber value="${bl.prod_price}" type="number"/>원</span>
+		                                </div>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+	</section>
     <!-- 최신 상품 Section End -->
     <!-- 혜택 Section Begin -->
     <section>
