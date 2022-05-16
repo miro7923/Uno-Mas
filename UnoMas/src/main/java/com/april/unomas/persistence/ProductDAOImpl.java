@@ -180,6 +180,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public void deleteInquiry(int inquiry_num) throws Exception {
+		sqlSession.delete(NAMESPACE + ".deleteInquiry", inquiry_num);
+	}
+
+	@Override
 	public void updateReviewLikeCnt(int review_num) throws Exception {
 		sqlSession.update(NAMESPACE + ".updateLikecnt", review_num);
 	}

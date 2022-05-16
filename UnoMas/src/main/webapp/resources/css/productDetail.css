@@ -20,7 +20,7 @@ a:hover {
 	padding: 8px 23px 7px;
 }
 
-.footerInquiry a:link, a:visited {
+.footerInquiry a, .footerInquiry a:link, a:visited, a:active {
 	color: #5179a5;
 }
 

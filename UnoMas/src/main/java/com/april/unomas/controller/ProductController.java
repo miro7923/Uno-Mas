@@ -201,7 +201,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/remove_review", method = RequestMethod.GET)
-	public String deleteReview(@RequestParam("review_num") int review_num, 
+	public String removeReviewGET(@RequestParam("review_num") int review_num, 
 			@RequestParam("prod_num") int prod_num) throws Exception {
 		service.removeReview(review_num);
 		
@@ -223,7 +223,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.GET)
-	public String modifyInquiry(@RequestParam("inquiry_num") int inquiry_num, Model model) throws Exception {
+	public String modifyInquiryGET(@RequestParam("inquiry_num") int inquiry_num, Model model) throws Exception {
 		ProdInquiryVO vo = service.getInquiry(inquiry_num);
 		
 		model.addAttribute("prod_name", service.getProduct(vo.getProd_num()).getProd_name());
@@ -233,10 +233,18 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.POST)
-	public String modifyInquiry(ProdInquiryVO vo) throws Exception {
+	public String modifyInquiryPOST(ProdInquiryVO vo) throws Exception {
 		service.modifyInquiry(vo);
 		
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
+	
+	@RequestMapping(value = "/remove_inquiry", method = RequestMethod.GET)
+	public String removeInquiryGET(@RequestParam("inquiry_num") int inquiry_num, 
+			@RequestParam("prod_num") int prod_num) throws Exception {
+		service.removeInquiry(inquiry_num);
+		
+		return "redirect:/product/product_detail?prod_num=" + prod_num;
 	}
 
 	@RequestMapping(value = "/new_list", method = RequestMethod.GET)

@@ -79,7 +79,7 @@ public interface ProductDAO {
 	// 리뷰글 수정
 	public void updateReview(BoardReviewVO vo) throws Exception;
 	
-	// 리뷰글 삭제
+	// 리뷰글 하나 삭제
 	public void deleteReview(int review_num) throws Exception;
 	
 	// 리뷰글 좋아요 증가
@@ -102,6 +102,9 @@ public interface ProductDAO {
 	
 	// 상품 문의글 수정
 	public void updateInquiry(ProdInquiryVO vo) throws Exception;
+	
+	// 상품 문의글 하나 삭제
+	public void deleteInquiry(int inquiry_num) throws Exception;
 	
 	// 해당 상품이 해당 유저의 위시리스트에 있는지 조회
 	public boolean isInWishlist(int user_num, int prod_num) throws Exception;

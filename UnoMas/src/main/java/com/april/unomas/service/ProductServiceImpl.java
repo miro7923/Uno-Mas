@@ -172,6 +172,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public void removeInquiry(int inquiry_num) throws Exception {
+		dao.deleteInquiry(inquiry_num);
+	}
+
+	@Override
 	public void addReviewLikeCnt(int review_num) throws Exception {
 		dao.updateReviewLikeCnt(review_num);
 	}

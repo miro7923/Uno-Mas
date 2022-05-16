@@ -333,7 +333,8 @@
 															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == reviewVo.user_num }">
 																<p class="text-right">
 																    <a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
-																    <a href="/product/remove_review?review_num=${reviewVo.review_num }&prod_num=${vo.prod_num}">삭제</a>
+																    <a href="javascript:void(0)" onclick="confirmToRemove('review', ${reviewVo.review_num}, ${vo.prod_num })" 
+																    style="color: #5179a5;">삭제</a>
 																</p>
 															</c:if>
 															
@@ -444,7 +445,8 @@
 															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == inquiryVo.user_num }">
 																<p class="text-right">
 																    <a href="/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
-																    <a href="#">삭제</a>
+																    <a href="javascript:void(0)" 
+																    onclick="confirmToRemove('inquiry', ${inquiryVo.p_inquiry_num}, ${vo.prod_num })" style="color: #5179a5;">삭제</a>
 																</p>
 															</c:if>
 															<p class="text-right"><a href="#">답변하기</a></p>

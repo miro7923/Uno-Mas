@@ -283,3 +283,12 @@ function changePageNum(num, maxNum, boardType) {
 		$('#curInquiryPage').val(num);
 	}
 }
+
+function confirmToRemove(type, postNum, prodNum) {
+	if (confirm('정말 삭제 하시겠습니까?')) {
+		if (type == 'review')
+			location.href = '/product/remove_review?review_num=' + postNum + '&prod_num=' + prodNum;
+		else 
+			location.href = '/product/remove_inquiry?inquiry_num=' + postNum + '&prod_num=' + prodNum;
+	}
+}
