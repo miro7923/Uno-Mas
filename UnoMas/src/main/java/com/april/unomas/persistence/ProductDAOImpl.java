@@ -110,6 +110,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public int getLastReviewNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getLastReviewNum");
+	}
+
+	@Override
 	public void insertReview(BoardReviewVO vo) throws Exception {
 		sqlSession.insert(NAMESPACE + ".insertReview", vo);
 	}

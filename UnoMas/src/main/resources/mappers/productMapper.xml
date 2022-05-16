@@ -148,6 +148,12 @@
         WHERE prod_discntrate > 0
     </select>
     
+    <!-- 새 리뷰글 번호 구하기 -->
+    <select id="getLastReviewNum" resultType="int">
+        SELECT MAX(review_num)
+        FROM board_review
+    </select>
+    
     <!-- 리뷰게시판 글 삽입 -->
     <select id="insertReview">
         INSERT INTO board_review(user_num, prod_num, review_title, review_content, review_ip, review_image, review_rating)

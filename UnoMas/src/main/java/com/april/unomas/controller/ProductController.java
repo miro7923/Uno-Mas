@@ -1,9 +1,11 @@
 package com.april.unomas.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,9 +14,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -32,6 +36,9 @@ public class ProductController {
 	private ProductService service;
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
+	
+	@Resource(name = "reviewImgUploadPath")
+	private String reviewImgUploatPath;
 	
 	// product
 	@RequestMapping(value = "/check-out")
@@ -175,8 +182,25 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/write_review", method = RequestMethod.POST)
-	public String writeReviewPOST(BoardReviewVO vo, HttpServletRequest request) throws Exception {
+	public String writeReviewPOST(HttpServletRequest request, 
+			@RequestParam(value = "review_image", required = false) MultipartFile file) throws Exception {
+		BoardReviewVO vo = new BoardReviewVO();
+		vo.setProd_num(Integer.parseInt(request.getParameter("prod_num")));
+		vo.setReview_content(request.getParameter("review_content"));
+		vo.setReview_rating(Float.parseFloat(request.getParameter("review_rating")));
+		vo.setReview_title(request.getParameter("review_title"));
+		vo.setUser_num(Integer.parseInt(request.getParameter("user_num")));
 		vo.setReview_ip(request.getRemoteAddr());
+		
+		// 리뷰 이미지파일명: review_리뷰글번호.확장자
+		int idx = file.getOriginalFilename().indexOf(".");
+		String imgType = file.getOriginalFilename().substring(idx + 1);
+		String fileName = "review_" + service.getLastReviewNum() + 1 + imgType;
+		
+		File targetFile = new File(reviewImgUploatPath, fileName);
+		FileCopyUtils.copy(file.getBytes(), targetFile);
+
+		vo.setReview_image(fileName);
 		
 		service.insertReview(vo);
 		

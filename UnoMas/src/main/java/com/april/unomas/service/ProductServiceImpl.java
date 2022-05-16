@@ -102,6 +102,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public int getLastReviewNum() throws Exception {
+		return dao.getLastReviewNum();
+	}
+
+	@Override
 	public void insertReview(BoardReviewVO vo) throws Exception {
 		dao.insertReview(vo);
 	}

@@ -32,6 +32,12 @@
 	
 	<context:component-scan base-package="com.april.unomas.controller" />
 	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
 	
+	<beans:bean id="reviewImgUploadPath" class="java.lang.String">
+	    <beans:constructor-arg value="/Users/yujinhwang/spring-workspace4/Uno-Mas/UnoMas/src/main/webapp/resources/upload/images/board/review"/>
+	</beans:bean>
 	
 </beans:beans>

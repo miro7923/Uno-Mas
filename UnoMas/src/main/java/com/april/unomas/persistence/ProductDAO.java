@@ -58,6 +58,9 @@ public interface ProductDAO {
 	// 특가 상품 개수 가져오는 메서드
 	public int getSaleCnt() throws Exception;
 	
+	// 리뷰글 마지막 번호 가져오는 메서드
+	public int getLastReviewNum() throws Exception;
+	
 	// 리뷰글 작성하는 메서드
 	public void insertReview(BoardReviewVO vo) throws Exception;
 	

@@ -6,6 +6,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -327,6 +328,7 @@
 														<div class="reviewContent" id="reviewContentBox${it.index }">
 														    <strong>${vo.prod_name }</strong>
 															<p>평점 : <span id="reviewRating${it.index }">${reviewVo.review_rating } / 5.0</span></p><br>
+															<p align="center"><img src='<spring:url value="/resources/upload/images/board/review/${reviewVo.review_image }"></spring:url>'></p>
 															<p id="reviewContent${it.index }">${reviewVo.review_content }</p>
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
