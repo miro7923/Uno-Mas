@@ -106,9 +106,11 @@
 									<dl class="list">
 										<div class="quantity">
 											<dt class="title">구매수량</dt>
-											<div class="pro-qty">
-												<input type="text" id="quantity" value="1">
-											</div>
+											<c:if test="${vo.prod_stock > 0 }">
+												<div class="pro-qty">
+													<input type="text" id="quantity" value="1">
+												</div>
+											</c:if>
 											<br>
 										</div>
 									</dl>
@@ -143,6 +145,9 @@
 								   <form action="/product/insert_cart">
 								   </form>
 								       <c:choose>
+								           <c:when test="${vo.prod_stock == 0 }">
+								              <button class="primary-btn pd-cart" id="cartBtn" disabled>상품 준비 중입니다.</button>
+								           </c:when>
 									       <c:when test="${sessionScope.saveID != null }">
 										       <input type="hidden" id="user_num" value="${sessionScope.savaID.user_id }">
 										       <input type="hidden" id="prod_num" value="${vo.prod_num }">

@@ -73,3 +73,7 @@ a:hover {
     margin-top: 10px;
     color: #999;
 }
+
+.soldOut {
+	opacity: 0.7;
+}

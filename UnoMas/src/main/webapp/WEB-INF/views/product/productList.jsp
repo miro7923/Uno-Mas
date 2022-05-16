@@ -58,9 +58,14 @@
 									<div class="product-item" id="productItem">
 										<div class="pi-pic">
 											<a href="/product/product_detail?prod_num=${vo.prod_num }"> 
-											<img
-												src="${path}/resources/img/product-single/product_vegi01.jpeg"
-												alt=""></a>
+											<c:choose>
+												<c:when test="${vo.prod_stock == 0 }">
+													<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt="" class="soldOut"></a>
+												</c:when>
+												<c:otherwise>
+													<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt=""></a>
+												</c:otherwise>
+											</c:choose>
 											<ul>
 											<!-- 카트담기 버튼 -->
 												<li class="w-icon active"><a href="#"><i
@@ -69,7 +74,14 @@
 										</div>
 										<div class="pi-text">
 											<a href="/product/product_detail?prod_num=${vo.prod_num }">
-												<h5>${vo.prod_name }</h5>
+											    <c:choose>
+											        <c:when test="${vo.prod_stock == 0 }">
+														<h5>${vo.prod_name } (품절)</h5>
+											        </c:when>
+											        <c:otherwise>
+											        	<h5>${vo.prod_name }</h5>
+											        </c:otherwise>
+											    </c:choose>
 											</a>
 											    <c:choose>
 												    <c:when test="${vo.prod_discntrate eq 0}">
