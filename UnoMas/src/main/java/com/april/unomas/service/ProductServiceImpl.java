@@ -162,6 +162,16 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public ProdInquiryVO getInquiry(int inquiry_num) throws Exception {
+		return dao.getInquiry(inquiry_num);
+	}
+
+	@Override
+	public void modifyInquiry(ProdInquiryVO vo) throws Exception {
+		dao.updateInquiry(vo);
+	}
+
+	@Override
 	public void addReviewLikeCnt(int review_num) throws Exception {
 		dao.updateReviewLikeCnt(review_num);
 	}

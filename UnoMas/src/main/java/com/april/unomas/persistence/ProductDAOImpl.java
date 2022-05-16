@@ -170,6 +170,16 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public ProdInquiryVO getInquiry(int inquiry_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getInquiry", inquiry_num);
+	}
+
+	@Override
+	public void updateInquiry(ProdInquiryVO vo) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateInquiry", vo);
+	}
+
+	@Override
 	public void updateReviewLikeCnt(int review_num) throws Exception {
 		sqlSession.update(NAMESPACE + ".updateLikecnt", review_num);
 	}

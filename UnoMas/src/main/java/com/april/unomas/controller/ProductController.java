@@ -221,6 +221,23 @@ public class ProductController {
 		
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
+	
+	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.GET)
+	public String modifyInquiry(@RequestParam("inquiry_num") int inquiry_num, Model model) throws Exception {
+		ProdInquiryVO vo = service.getInquiry(inquiry_num);
+		
+		model.addAttribute("prod_name", service.getProduct(vo.getProd_num()).getProd_name());
+		model.addAttribute("vo", vo);
+		
+		return "product/inquiryModifyForm";
+	}
+	
+	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.POST)
+	public String modifyInquiry(ProdInquiryVO vo) throws Exception {
+		service.modifyInquiry(vo);
+		
+		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
 
 	@RequestMapping(value = "/new_list", method = RequestMethod.GET)
 	public String newProductListGET(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 

@@ -97,6 +97,12 @@ public interface ProductService {
 	// 상품 문의글 등록
 	public void insertInquiry(ProdInquiryVO vo) throws Exception;
 	
+	// 상품 문의글 하나 가져오기
+	public ProdInquiryVO getInquiry(int inquiry_num) throws Exception;
+	
+	// 상품 문의글 수정
+	public void modifyInquiry(ProdInquiryVO vo) throws Exception;
+	
 	// 해당 상품이 해당 유저의 위시리스트에 있는지 조회
 	public boolean isInWishlist(int user_num, int prod_num) throws Exception;
 	

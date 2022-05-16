@@ -226,6 +226,20 @@
         VALUES(#{user_num}, #{prod_num}, #{p_inquiry_title}, #{p_inquiry_content})
     </insert>
     
+    <!-- 상품 문의글 하나 가져오기 -->
+    <select id="getInquiry" resultType="ProdInquiryVO">
+        SELECT *
+        FROM prod_inquiry
+        WHERE p_inquiry_num = #{p_inquiry_num}
+    </select>
+    
+    <!-- 상품 문의글 수정 -->
+    <update id="updateInquiry">
+        UPDATE prod_inquiry
+        SET p_inquiry_title = #{p_inquiry_title}, p_inquiry_content = #{p_inquiry_content}
+        WHERE p_inquiry_num = #{p_inquiry_num}
+    </update>
+    
     <!-- 리뷰글 좋아요 증가 - 여유있으면 추가하기!! -->
     <!-- <update id="updateLikecnt">
         UPDATE board_review

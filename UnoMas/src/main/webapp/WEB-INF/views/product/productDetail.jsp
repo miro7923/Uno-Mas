@@ -441,7 +441,12 @@
 															<p id="inquiryContent${it.index }">${inquiryVo.p_inquiry_content }</p>
 															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
 															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
-															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == inquiryVo.user_num }">
+																<p class="text-right">
+																    <a href="/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
+																    <a href="#">삭제</a>
+																</p>
+															</c:if>
 															<p class="text-right"><a href="#">답변하기</a></p>
 														</div>
 													</c:forEach>
