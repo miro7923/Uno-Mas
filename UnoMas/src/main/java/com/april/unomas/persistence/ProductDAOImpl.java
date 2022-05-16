@@ -178,4 +178,23 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<SelectVO> sellcntSelect() throws Exception {
 		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".sellcntSelect");
 	}
+	
+	@Override
+	public List<SelectVO> brandnewSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".brandnewSelect");
+	}
+	@Override
+	public List<SelectVO> readcntSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect2");
+	}
+	
+	@Override
+	public List<SelectVO> sellcntSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".sellcntSelect2");
+	}
+	
+	@Override
+	public List<SelectVO> brandnewSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".brandnewSelect2");
+	}
 }

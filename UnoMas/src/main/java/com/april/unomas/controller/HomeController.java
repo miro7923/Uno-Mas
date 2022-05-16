@@ -32,8 +32,12 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("readcntList2", productService.readcntSelect2());
+		model.addAttribute("sellcntList2", productService.sellcntSelect2());
+		model.addAttribute("brandnewList2", productService.brandnewSelect2());
 		model.addAttribute("readcntList", productService.readcntSelect());
 		model.addAttribute("sellcntList", productService.sellcntSelect());
+		model.addAttribute("brandnewList", productService.brandnewSelect());
 		
 		return "index";
 		
@@ -43,8 +47,12 @@ public class HomeController {
 	@RequestMapping(value = "/index")
 	public String index(Model model) throws Exception {
 		
+		model.addAttribute("readcntList2", productService.readcntSelect2());
+		model.addAttribute("sellcntList2", productService.sellcntSelect2());
+		model.addAttribute("brandnewList2", productService.brandnewSelect2());
 		model.addAttribute("readcntList", productService.readcntSelect());
 		model.addAttribute("sellcntList", productService.sellcntSelect());
+		model.addAttribute("brandnewList", productService.brandnewSelect());
 		
 		return "index";
 	}

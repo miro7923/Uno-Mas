@@ -99,4 +99,16 @@ public interface ProductDAO {
 	
 	// 판매량별 상품 정보
 	public List<SelectVO> sellcntSelect() throws Exception;
+	
+	// 신상품별 상품 정보(메인페이지)
+	public List<SelectVO> brandnewSelect() throws Exception;
+	
+	// 조회수별 상품 정보
+	public List<SelectVO> readcntSelect2() throws Exception;
+	
+	// 판매량별 상품 정보
+	public List<SelectVO> sellcntSelect2() throws Exception;
+	
+	// 신상품별 상품 정보(메인페이지)
+	public List<SelectVO> brandnewSelect2() throws Exception;
 }
