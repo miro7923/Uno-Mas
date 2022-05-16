@@ -15,8 +15,25 @@ public class QnaVO {
 	private String qna_image1;
 	private String qna_image2;
 	private QnaCateVO qnaCateVO;
+	private String qna_img1;
+	private String qna_img2;
 	
 	
+	
+	
+	
+	public String getQna_img2() {
+		return qna_img2;
+	}
+	public void setQna_img2(String qna_img2) {
+		this.qna_img2 = qna_img2;
+	}
+	public String getQna_img1() {
+		return qna_img1;
+	}
+	public void setQna_img1(String qna_img1) {
+		this.qna_img1 = qna_img1;
+	}
 	public String getQna_image1() {
 		return qna_image1;
 	}
@@ -89,8 +106,9 @@ public class QnaVO {
 		return "QnaVO [qna_num=" + qna_num + ", user_num=" + user_num + ", qna_title=" + qna_title + ", qna_content="
 				+ qna_content + ", qna_regdate=" + qna_regdate + ", qnacate_num=" + qnacate_num + ", qna_process="
 				+ qna_process + ", qnacate2=" + qnacate2 + ", qna_image1=" + qna_image1 + ", qna_image2=" + qna_image2
-				+ ", qnaCateVO=" + qnaCateVO + "]";
+				+ ", qnaCateVO=" + qnaCateVO + ", qna_img1=" + qna_img1 + ", qna_img2=" + qna_img2 + "]";
 	}
+	
 	
 	
 	
