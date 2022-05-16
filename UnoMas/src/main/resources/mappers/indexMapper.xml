@@ -8,8 +8,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 조회수별 상품목록 가져오기 -->
 <!-- NULL 값은 뒤로 보내고 4개 가져오기 -->
 <select id="readcntSelect" resultType="com.april.unomas.domain.SelectVO">
-	SELECT prod_num, prod_name, prod_readcnt, prod_category, prod_price 
-	FROM unomasdb.products
+	SELECT p.prod_num, p.prod_name, p.prod_readcnt, t.topcate_num, d.dcate_name, p.prod_price 
+	FROM unomasdb.products p
+	INNER JOIN unomasdb.detail_category d
+	ON p.prod_category = d.dcate_num
+	INNER JOIN unomasdb.top_category t
+	ON d.topcate_num = t.topcate_num
 	ORDER BY prod_readcnt is null asc, prod_readcnt desc limit 4
 </select>
 

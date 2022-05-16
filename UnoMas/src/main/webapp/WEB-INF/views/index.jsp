@@ -142,9 +142,29 @@
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
                     	<c:forEach items="${readcntList}" var="rl">
+<%--                    	<% 
+                    		int ttn = 0;
+                    		int cateStart = 0;
+                    		int cateEnd = 0;
+                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
+                    		switch(ttn){
+                    			case 1: cateStart = 1; cateEnd = 3;
+                    				break;
+                    			case 2: cateStart = 4; cateEnd = 7;
+                    				break;
+                    			case 3: cateStart = 7; cateEnd = 10;
+                    				break;
+                    			case 4: cateStart = 11; cateEnd = 15;
+                    				break;
+                    			case 5:	cateStart = 16; cateEnd = 18;
+                    				break;
+                    		}
+                    	%> --%>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
+                            	<a href="/product/product_detail?prod_num=${rl.prod_num}">
+                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                            	</a>
                                 <div class="sale">Sale</div>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
@@ -154,7 +174,8 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">${rl.prod_category}</div>
+<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
+                                <div class="catagory-name">${rl.dcate_name}</div>
                                 <a href="/product/product_detail?prod_num=${rl.prod_num}">
                                     <h5>${rl.prod_name}</h5>
                                 </a>
