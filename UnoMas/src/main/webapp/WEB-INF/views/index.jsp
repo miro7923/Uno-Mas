@@ -183,7 +183,6 @@
                                 <a href="/product/product_detail?prod_num=${rl.prod_num}">
                                     <h5>${rl.prod_name}</h5>
                                 </a>
-                                
                                 <c:choose>
                                 	<c:when test="${rl.prod_discntrate eq 0}">
 		                                <div class="product-price">
@@ -207,22 +206,47 @@
     </section>
     <!-- 조회수 높은 상품 Section End -->
 
-    <!-- 많이 팔리는 상품 Section Begin -->
-   <section class="women-banner spad">
+	<!-- 많이 팔리는 상품 Section Begin -->
+	<section class="women-banner spad">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
-                        <h2>많이 팔리는 상품</h2>
+                    <div class="product-large set-bg" id="highSold" data-setbg="${path}/resources/img/products/women-large.jpg">
+                        <h2>판매량 높은 상품</h2>
                         <a href="#">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
+                    	<c:forEach items="${sellcntList}" var="sl">
+<%--                    	<% 
+                    		int ttn = 0;
+                    		int cateStart = 0;
+                    		int cateEnd = 0;
+                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
+                    		switch(ttn){
+                    			case 1: cateStart = 1; cateEnd = 3;
+                    				break;
+                    			case 2: cateStart = 4; cateEnd = 7;
+                    				break;
+                    			case 3: cateStart = 7; cateEnd = 10;
+                    				break;
+                    			case 4: cateStart = 11; cateEnd = 15;
+                    				break;
+                    			case 5:	cateStart = 16; cateEnd = 18;
+                    				break;
+                    		}
+                    	%> --%>
                         <div class="product-item">
                             <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
+                            	<a href="/product/product_detail?prod_num=${sl.prod_num}">
+                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                            	</a>
+                            	<c:choose>
+                            		<c:when test="${sl.prod_discntrate>0}">
+		                                <div class="sale">Sale</div>
+                            		</c:when>
+                            	</c:choose>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -231,82 +255,33 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name">Coat</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
+<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
+                                <div class="catagory-name">${sl.dcate_name}</div>
+                                <a href="/product/product_detail?prod_num=${sl.prod_num}">
+                                    <h5>${sl.prod_name}</h5>
                                 </a>
-                                <div class="product-price">
-                                    $14.00
-                                    <span>$35.00</span>
-                                </div>
+                                <c:choose>
+                                	<c:when test="${sl.prod_discntrate eq 0}">
+		                                <div class="product-price">
+		                                    <fmt:formatNumber value="${sl.prod_price}" type="number"/>원
+		                                </div>
+                                	</c:when>
+                                	<c:otherwise>
+		                                 <div class="product-price">
+		                                    <fmt:formatNumber value="${sl.prod_price*(100-sl.prod_discntrate)/100}" type="number"/>원
+		                                    <span><fmt:formatNumber value="${sl.prod_price}" type="number"/>원</span>
+		                                </div>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-2.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Shoes</div>
-                                <a href="#">
-                                    <h5>Guangzhou sweater</h5>
-                                </a>
-                                <div class="product-price">
-                                    $13.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-3.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Pure Pineapple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="${path}/resources/img/products/women-4.jpg" alt="">
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="catagory-name">Towel</div>
-                                <a href="#">
-                                    <h5>Converse Shoes</h5>
-                                </a>
-                                <div class="product-price">
-                                    $34.00
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- 많이 팔리는 상품 Section End -->    
+	</section>
+	<!-- 많이 팔리는 상품 Section End -->    
 
 	<!-- 최신 상품 Section Begin -->
     <section class="women-banner spad">

@@ -173,4 +173,9 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<SelectVO> readcntSelect() throws Exception {
 		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect");
 	}
+
+	@Override
+	public List<SelectVO> sellcntSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".sellcntSelect");
+	}
 }

@@ -33,6 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("readcntList", productService.readcntSelect());
+		model.addAttribute("sellcntList", productService.sellcntSelect());
 		
 		return "index";
 		
@@ -43,6 +44,7 @@ public class HomeController {
 	public String index(Model model) throws Exception {
 		
 		model.addAttribute("readcntList", productService.readcntSelect());
+		model.addAttribute("sellcntList", productService.sellcntSelect());
 		
 		return "index";
 	}

@@ -96,4 +96,7 @@ public interface ProductDAO {
 	
 	// 조회수별 상품 정보
 	public List<SelectVO> readcntSelect() throws Exception;
+	
+	// 판매량별 상품 정보
+	public List<SelectVO> sellcntSelect() throws Exception;
 }

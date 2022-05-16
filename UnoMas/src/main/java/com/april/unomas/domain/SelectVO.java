@@ -31,7 +31,7 @@ public class SelectVO {
 	private double prod_readcnt;
 	
 	/* 판매량 */
-	private double pros_sellcnt;
+	private double prod_sellcnt;
 	
 	/* 상품 등록일자 */
 	private Date prod_regdate;

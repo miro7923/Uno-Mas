@@ -165,4 +165,9 @@ public class ProductServiceImpl implements ProductService{
 		List<SelectVO> readlist = dao.readcntSelect();
 		return readlist;
 	}
+	@Override
+	public List<SelectVO> sellcntSelect() throws Exception {
+		List<SelectVO> soldlist = dao.sellcntSelect();
+		return soldlist;
+	}
 }
