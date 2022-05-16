@@ -87,8 +87,8 @@
 																			<td class="normal-row"><span class="sold">${vo.prod_price }</span></td>
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row"><span class="sold">품절</span></td>
-																			<td class="normal-row"><span class="sold">sssss</span></td> <!-- 조회수 -->
-																			<td class="normal-row"><span class="sold">sssss</span></td> <!-- 주문량 -->
+																			<td class="normal-row"><span class="sold">${vo.prod_readcnt }</span></td> <!-- 조회수 -->
+																			<td class="normal-row"><span class="sold">-</span></td> <!-- 주문량 -->
 																			<td class="normal-row"><span class="sold">${vo.prod_stock }</span></td>
 																		</c:when>
 																		<c:otherwise>
@@ -97,12 +97,12 @@
 																			</td>
 																			<td class="normal-row">${vo.prod_num }</td>
 			<!-- 															<td class="cart-title first-row"> -->
-																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }">${vo.prod_name }</a></td>
+																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }">${vo.prod_name }</a></td>
 																			<td class="normal-row">${vo.prod_price }</td>
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row">정상</td>
-																			<td class="normal-row">sssss</td> <!-- 조회수 -->
-																			<td class="normal-row">sssss</td> <!-- 주문량 -->
+																			<td class="normal-row">${vo.prod_readcnt }</td> <!-- 조회수 -->
+																			<td class="normal-row">-</td> <!-- 주문량 -->
 																			<td class="normal-row">${vo.prod_stock }</td>
 																		</c:otherwise>
 																		
