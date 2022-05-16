@@ -195,11 +195,17 @@ public class ProductController {
 	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.POST)
 	public String modifyReviewPOST(BoardReviewVO vo) throws Exception {
-		log.info("@@@@@@@@@@@@@@@@@@@@@@@@@modifyReviewPOST(vo) 호출");
-		
 		service.modifyReview(vo);
 		
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
+	
+	@RequestMapping(value = "/remove_review", method = RequestMethod.GET)
+	public String deleteReview(@RequestParam("review_num") int review_num, 
+			@RequestParam("prod_num") int prod_num) throws Exception {
+		service.removeReview(review_num);
+		
+		return "redirect:/product/product_detail?prod_num=" + prod_num;
 	}
 	
 	@RequestMapping(value = "/write_inquiry", method = RequestMethod.GET)

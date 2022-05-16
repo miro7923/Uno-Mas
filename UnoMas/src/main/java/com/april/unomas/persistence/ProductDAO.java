@@ -79,6 +79,9 @@ public interface ProductDAO {
 	// 리뷰글 수정
 	public void updateReview(BoardReviewVO vo) throws Exception;
 	
+	// 리뷰글 삭제
+	public void deleteReview(int review_num) throws Exception;
+	
 	// 리뷰글 좋아요 증가
 	public void updateReviewLikeCnt(int review_num) throws Exception;
 	

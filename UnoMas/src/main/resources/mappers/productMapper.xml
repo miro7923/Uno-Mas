@@ -198,6 +198,12 @@
         WHERE review_num = #{review_num}
     </update>
     
+    <!-- 리뷰글 삭제 -->
+    <delete id="deleteReview">
+        DELETE FROM board_review
+        WHERE review_num = #{review_num}
+    </delete>
+    
     <!-- 상품별 문의글 목록 가져오기 -->
     <select id="getInquiryList" resultType="ProdInquiryVO">
         SELECT *

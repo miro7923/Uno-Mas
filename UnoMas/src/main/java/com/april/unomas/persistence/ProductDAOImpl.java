@@ -150,6 +150,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public void deleteReview(int review_num) throws Exception {
+		sqlSession.delete(NAMESPACE + ".deleteReview", review_num);
+	}
+
+	@Override
 	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getInquiryList", pc);
 	}

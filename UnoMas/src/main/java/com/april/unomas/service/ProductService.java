@@ -79,6 +79,9 @@ public interface ProductService {
 	// 리뷰글 수정
 	public void modifyReview(BoardReviewVO vo) throws Exception;
 	
+	// 리뷰글 삭제
+	public void removeReview(int review_num) throws Exception;
+	
 	// 리뷰글 좋아요 증가
 	public void addReviewLikeCnt(int review_num) throws Exception;
 	

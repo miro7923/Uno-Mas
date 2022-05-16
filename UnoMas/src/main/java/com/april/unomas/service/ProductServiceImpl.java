@@ -142,6 +142,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public void removeReview(int review_num) throws Exception {
+		dao.deleteReview(review_num);
+	}
+
+	@Override
 	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception {
 		return dao.getInquiryList(pc);
 	}

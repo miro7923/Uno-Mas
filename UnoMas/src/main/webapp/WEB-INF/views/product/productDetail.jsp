@@ -331,7 +331,10 @@
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
 															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == reviewVo.user_num }">
-																<p class="text-right"><a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; <a href="#">삭제</a></p>
+																<p class="text-right">
+																    <a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
+																    <a href="/product/remove_review?review_num=${reviewVo.review_num }&prod_num=${vo.prod_num}">삭제</a>
+																</p>
 															</c:if>
 															
 															<!-- @@ 좋아요 기능 나중에 추가하기 @@ -->
