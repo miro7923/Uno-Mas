@@ -14,6 +14,9 @@ public interface ProductDAO {
 
 	// 상품 등록
 	public void insertProduct(ProductVO vo) throws Exception;
+	
+	// 상품 수정
+	public void updateProduct(ProductVO vo) throws Exception;
 
 	// 상품 목록 상위 카테고리별로 불러오기
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
@@ -41,6 +44,9 @@ public interface ProductDAO {
 	
 	// 상위 카테고리의 하위 카테고리 목록 가져오기
 	public List<String> getDcateNames(int topcate_num) throws Exception;
+	
+	// 상품별 카테고리 가져오기
+	public List<CategoryVO> getCategory(int dcate_num) throws Exception;
 	
 	// 소분류별로 분류해서 가져오기
 	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception;

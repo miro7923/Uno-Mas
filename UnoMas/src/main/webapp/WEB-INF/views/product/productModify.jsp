@@ -9,12 +9,6 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after5">
 <!-- Start Header -->
-
-<%
-
-
-%>
-
 <body>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -47,8 +41,11 @@
 									<br>
 									<h4>기본정보</h4>
 									<div class="row">
-										<div class="col-lg-12">
-											<label>상품명<span>*</span></label> <input type="text" name="prod_name" id="prod_name">
+										<div class="col-lg-3">
+											<label>품번<span>*</span></label> <input type="text" name="prod_num" id="prod_num" value="${vo.prod_num }" readonly>
+										</div>
+										<div class="col-lg-9">
+											<label>상품명<span>*</span></label> <input type="text" name="prod_name" id="prod_name" value="${vo.prod_name }">
 										</div>
 										<div class="col-lg-12">
 											<label>상품 카테고리<span>*</span></label>
@@ -71,7 +68,7 @@
 											<label></label>
 										</div>
 										<div class="col-lg-12">
-											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain">
+											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain" value="${vo.prod_explain }">
 										</div>
 										<div class="col-lg-12">
 											<label for="zip">검색 키워드</label> <input type="text"> <label></label>
@@ -87,26 +84,26 @@
 									<h4>판매정보</h4>
 									<div class="row">
 										<div class="col-lg-12">
-											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price">
+											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo. prod_price }">
 										</div>
 										<div class="col-lg-12">
-											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock">
+											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }">
 										</div>
 										<div class="col-lg-12">
 											<label>판매 단위<span>*</span></label>
-											<select class="selectBox" name="prod_sellunit">
+											<select class="selectBox" name="prod_sellunit" id ="prod_sellunit">
 												<option>선택</option>
-												<option value="1봉">1봉</option>
-												<option value="1팩">1팩</option>
-												<option value="1개">1개</option>
-												<option value="1통">1통</option>
-												<option value="1박스">1박스</option>
-												<option value="1포대">1포대</option>
+												<option value="1봉" <c:if test="${vo.prod_sellunit == '1봉'}">selected</c:if>>1봉</option>
+												<option value="1팩" <c:if test="${vo.prod_sellunit == '1팩'}">selected</c:if>>1팩</option>
+												<option value="1개" <c:if test="${vo.prod_sellunit == '1개'}">selected</c:if>>1개</option>
+												<option value="1통" <c:if test="${vo.prod_sellunit == '1통'}">selected</c:if>>1통</option>
+												<option value="1박스" <c:if test="${vo.prod_sellunit == '1박스'}">selected</c:if>>1박스</option>
+												<option value="1포대" <c:if test="${vo.prod_sellunit == '1포대'}">selected</c:if>>1포대</option>
 											</select>
 											<label></label>
 										</div>
 										<div class="col-lg-12">
-												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight" placeholder="ex) 430g / 1.5L">
+											<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight" value="${vo.prod_weight }" placeholder="ex) 430g / 1.5L">
 										</div>
 									</div>
 								</div>
@@ -117,20 +114,20 @@
 										<h4>추가항목</h4>
 										<div class="row">
 											<div class="col-lg-12">
-												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
+												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country" value="${vo.prod_country }">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="ex) YYMMDD">
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" value="${vo.prod_expire }" placeholder="ex) YYMMDD">
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->
 <!-- 											</div> -->
 											<div class="col-lg-12">
 												<label>포장타입<span>*</span></label>
-											<select class="selectBox" name="prod_packing" >
+											<select class="selectBox" name="prod_packing">
 												<option>선택</option>
-												<option value="냉장/스티로품">냉장/스티로품</option>
-												<option value="냉동/스티로품">냉동/스티로품</option>
+												<option value="냉장/스티로품" <c:if test="${vo.prod_packing == '냉장/스티로품'}">selected</c:if>>냉장/스티로품</option>
+												<option value="냉동/스티로품" <c:if test="${vo.prod_packing == '냉동/스티로품'}">selected</c:if>>냉동/스티로품</option>
 											</select>
 											</div>
 											<div class="col-lg-12">
@@ -138,9 +135,9 @@
 												<label>보관방법 또는 취급방법<span>*</span></label>
 											<select class="selectBox" name="prod_keep" id="selbox">
 												<option>선택</option>
-												<option value="냉장보관">냉장보관</option>
-												<option value="실온보관">실온보관</option>
-												<option value="직접기재">상품별 직접기재</option>
+												<option value="냉장보관" <c:if test="${vo.prod_keep == '냉장보관'}">selected</c:if>>냉장보관</option>
+												<option value="실온보관" <c:if test="${vo.prod_keep == '실온보관'}">selected</c:if>>실온보관</option>
+												<option value="직접기재" <c:if test="${vo.prod_keep == '직접기재'}">selected</c:if>>상품별 직접기재</option>
 											</select>
 											</div>
 <!-- 											<div class="col-lg-12"> -->
@@ -259,7 +256,7 @@
 <!-- 		                                        <textarea placeholder="세척법"></textarea> -->
 <!-- 		                                        </div> -->
 		                                        <button type="button" class="back-button" onclick="history.back();">취소</button>
-		                                        <button type="submit" class="site-button" >등록</button>
+		                                        <button type="submit" class="site-button" >완료</button>
 <!-- 		                                    </div> -->
 <!-- 		                            </form> -->
 <!-- 		                        </div> -->
@@ -273,8 +270,8 @@
 		</div>
 	</section>
 	<!-- Product Register Section End -->
-
-
+	
+		
 
 
 

@@ -168,23 +168,45 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value ="/status", method = RequestMethod.GET)
-	public String products(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String products(@RequestParam("prod_num") int prod_num, /*@RequestParam("dcate_num") int dcate_num,*/ Model model) throws Exception {
 		log.info("get호출");
 		log.info(prod_num+"");
 		List<CategoryVO> categories = service.getTopCategory();
-		model.addAttribute("categories",categories);
+		List<CategoryVO> details = service.getDCategory();
+//		List<CategoryVO> getcate = service.getCategory(dcate_num);
+		
 		model.addAttribute("vo", service.getProduct(prod_num));
+		model.addAttribute("categories",categories);
+		model.addAttribute("details",details);
+//		model.addAttribute("getcate", getcate);
+		
 		return "product/productStatus";
 		
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String productsModifyGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
-		model.addAttribute("vo", service.getProduct(prod_num));
+		log.info("수정페이지 get");
+		List<CategoryVO> categories = service.getTopCategory();
+		List<CategoryVO> details = service.getDCategory();
 		
+		
+		model.addAttribute("vo", service.getProduct(prod_num));
+		log.info("getProduct 호출"+service.getProduct(prod_num));
+		model.addAttribute("categories",categories);
+		model.addAttribute("details",details);
+
 		return "product/productModify";
 	}
-
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String productsModifyPOST(ProductVO vo) throws Exception {
+		log.info("수정할 정보: "+vo);
+		service.updateProduct(vo);
+		
+		return "redirect:/product/product_lookup";
+	}
+	
 	@RequestMapping(value = "/shopping-cart")
 	public String cart() {
 		return "product/shopping-cart";

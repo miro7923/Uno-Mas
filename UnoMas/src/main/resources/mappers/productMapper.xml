@@ -11,6 +11,16 @@
     	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
     			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
     </insert>
+    
+    <!-- 상품 수정 -->
+    <update id="updateProduct">
+    	UPDATE products 
+    	SET prod_name=#{prod_name}, prod_category=#{prod_category}, prod_price=#{prod_price}, 
+    		prod_stock=#{prod_stock}, prod_expire=#{prod_expire}, prod_keep=#{prod_keep}, 
+    		prod_weight=#{prod_weight}, prod_country=#{prod_country}, prod_sellunit=#{prod_sellunit}, 
+    		prod_explain=#{prod_explain}, prod_packing=#{prod_packing}
+    	WHERE prod_num=#{prod_num}
+    </update>
 
     <!-- 상품 목록 카테고리별로 불러오기 -->
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
@@ -19,13 +29,6 @@
         WHERE prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     
-	<!-- 상위 카테고리 목록 -->
-<!--     <select id="getTopCategory" resultType="String"> -->
-<!--     	SELECT topcate_name -->
-<!--     	FROM top_category -->
-<!--     	ORDER BY topcate_num -->
-<!--     </select> -->
-
     <!-- 상위 카테고리별 한 페이지에 표시할 만큼만 가져오기 -->
     <select id="getListOnPage" resultType="ProductVO">
         SELECT * 
@@ -85,6 +88,14 @@
         SELECT dcate_name 
         FROM detail_category 
         WHERE topcate_num = #{topcate_num}
+    </select>
+    
+    <!-- 상품별 카테고리 가져오기 -->
+    <select id="getCategory" resultType="CategoryVO">
+		SELECT t.topcate_name, d.dcate_name
+		FROM top_category t JOIN detail_category d
+		ON (t.topcate_num = d.topcate_num)
+		WHERE dcate_num = #{dcate_num}
     </select>
     
     <!-- 소분류별로 상품 가져오기 -->

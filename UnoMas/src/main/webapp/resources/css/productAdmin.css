@@ -157,6 +157,22 @@ input[type="checkbox"]:checked::before {
     padding-left: 15px;
 }
 
+.selectBox option selected {
+	background-color: #b9ce45;
+}
+
+/* select option { */
+/*     margin: 40px; */
+/*     background: #ebebeb; */
+/*     border: 2px solid #ebebeb; */
+/*     color: #fff; */
+/*     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); */
+/* } */
+
+select:focus option:checked:hover {
+	background-color: #b9ce45;
+}
+
 .title {
     text-align: center;
     font-weight: bold;

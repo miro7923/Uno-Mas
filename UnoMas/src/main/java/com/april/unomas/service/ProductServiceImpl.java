@@ -26,6 +26,11 @@ public class ProductServiceImpl implements ProductService{
 	public void insertProduct(ProductVO vo) throws Exception {
 		dao.insertProduct(vo);
 	}
+	
+	@Override
+	public void updateProduct(ProductVO vo) throws Exception {
+		dao.updateProduct(vo);
+	}
 
 	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception {
@@ -72,6 +77,12 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<String> getDcateNames(int topcate_num) throws Exception {
 		return dao.getDcateNames(topcate_num);
+	}
+	
+	@Override
+	public List<CategoryVO> getCategory(int dcate_num) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getCategory(dcate_num);
 	}
 
 	@Override
