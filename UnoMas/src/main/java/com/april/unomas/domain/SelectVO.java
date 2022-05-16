@@ -24,6 +24,9 @@ public class SelectVO {
 	/* 상품 가격 */
 	private int prod_price;
 	
+	/* 상품 할인률 */
+	private int prod_discntrate;
+	
 	/* 조회수 */
 	private double prod_readcnt;
 	

@@ -165,7 +165,11 @@
                             	<a href="/product/product_detail?prod_num=${rl.prod_num}">
                                 	<img src="${path}/resources/img/products/women-1.jpg" alt="">
                             	</a>
-                                <div class="sale">Sale</div>
+                            	<c:choose>
+                            		<c:when test="${rl.prod_discntrate>0}">
+		                                <div class="sale">Sale</div>
+                            		</c:when>
+                            	</c:choose>
                                 <div class="icon">
                                     <i class="icon_heart_alt"></i>
                                 </div>
@@ -179,15 +183,20 @@
                                 <a href="/product/product_detail?prod_num=${rl.prod_num}">
                                     <h5>${rl.prod_name}</h5>
                                 </a>
-                                <!-- 정상가 -->
-                                <div class="product-price">
-                                    <fmt:formatNumber value="${rl.prod_price}" type="number"/>원
-                                </div>
-                                <!-- 할인가 -->
-<!--                                  <div class="product-price"> -->
-<%--                                     ${rl.prod_price} --%>
-<!--                                     <span>$35.00</span> -->
-<!--                                 </div> -->
+                                
+                                <c:choose>
+                                	<c:when test="${rl.prod_discntrate eq 0}">
+		                                <div class="product-price">
+		                                    <fmt:formatNumber value="${rl.prod_price}" type="number"/>원
+		                                </div>
+                                	</c:when>
+                                	<c:otherwise>
+		                                 <div class="product-price">
+		                                    <fmt:formatNumber value="${rl.prod_price*(100-rl.prod_discntrate)/100}" type="number"/>원
+		                                    <span><fmt:formatNumber value="${rl.prod_price}" type="number"/>원</span>
+		                                </div>
+                                	</c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                         </c:forEach>
