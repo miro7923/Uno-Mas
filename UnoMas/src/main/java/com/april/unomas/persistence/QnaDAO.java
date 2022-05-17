@@ -16,4 +16,6 @@ public interface QnaDAO {
 	
 	public Integer getQnaCount(Integer user_num);
 	
+	public void deleteQna(Integer qna_num);
+	
 }

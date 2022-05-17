@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.unomas.mapper.AdminMapper">
+
+<resultMap type="NoticeVO" id="noticeMap">
+	<id column="NOTICE_NUM" property="notice_num"/>
+	<result column="ADMIN_NUM" property="admin_num"/>
+	<result column="NOTICE_TITLE" property="notice_title"/>
+	<result column="NOTICE_CONTENT" property="notice_content"/>
+	<result column="NOTICE_REGDATE" property="notice_regdate"/>
+	<result column="NOTICE_READCNT" property="notice_readcnt"/>
+	<result column="NOTICE_IP" property="notice_ip"/>
+	<result column="NOTICE_IMG" property="notice_img"/>
+	<result column="NOTICE_FILE" property="notice_file"/>
+	
+
+	<association javaType="AdminVO" property="adminVO">
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<result column="ADMIN_ID" property="admin_id"/>
+		<result column="ADMIN_PASS" property="admin_pass"/>
+		<result column="ADMIN_PERMIT" property="admin_permit"/>
+		<result column="ADMIN_REGDATE" property="admin_regdate"/>
+		<result column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
+	</association>
+</resultMap>
+
+<resultMap type="AdminVO" id="adminMap">
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<id column="ADMIN_ID" property="admin_id"/>
+		<id column="ADMIN_PASS" property="admin_pass"/>
+		<id column="ADMIN_PERMIT" property="admin_permit"/>
+		<id column="ADMIN_REGDATE" property="admin_regdate"/>
+		<id column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
+	</resultMap>
+
+<resultMap type="QnaCateVO" id="qnaCateMap">
+		<id column="QNACATE_NUM" property="qnacate_num"/>
+		<id column="QNACATE_NAME" property="qnacate_name"/>
+	</resultMap>
+	
+	<resultMap type="BoardVO" id="boardMap">
+		<id column="FAQ_NUM" property="faq_num"/>
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<id column="FAQ_TITLE" property="faq_title"/>
+		<id column="FAQ_CONTENT" property="faq_content"/>
+		<id column="FAQ_REGDATE" property="faq_regdate"/>
+		<id column="QNACATE_NUM" property="qnacate_num"/>
+		<collection property="qnaCateVO" resultMap="qnaCateMap"></collection>
+		<collection property="adminVO" resultMap="adminMap"></collection>
+	</resultMap>
+
+	<select id="adminLogin" resultType="AdminVO">
+		select * 
+	  	from admin 
+	  	where admin_id=#{admin_id} and admin_pass=#{admin_pass}
+	</select>
+
+	<select id="adminList" resultType="AdminVO">
+		<![CDATA[
+		select * 
+		from admin
+		where admin_num > 0
+		]]>
+		order by faq_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="adminTotal" resultType="Integer">
+		select count(*)
+		from admin
+	</select>
+	
+	<select id="userList" resultType="UserVO">
+		<![CDATA[
+		select *
+		from users
+		where user_num > 0
+		]]>
+		order by faq_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="userTotal" resultType="Integer">
+		select count(*)
+		from users
+	</select>
+	
+	<insert id="faqInsert">
+		insert into board_faq(faq_title,faq_content,faq_cate) 
+		values(#{faq_title},#{faq_content},#{faq_cate})
+	</insert>
+	
+	<select id="faqList" resultMap="boardMap">
+		<![CDATA[
+		select * 
+		from board_faq b
+		join qna_category q
+		on b.qnacate_num = q.qnacate_num
+		join admin a
+		on b.admin_num = a.admin_num
+		]]>
+		<include refid="search_condition"></include>
+		order by faq_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	
+	<select id="noticeList" resultMap="noticeMap">
+		<![CDATA[
+		select notice_num,notice_title,notice_content,notice_regdate,notice_readcnt,notice_ip,notice_img,notice_file,a.admin_num,a.admin_id
+		from board_notice b join admin a
+		where notice_num > 0
+		]]>
+		<include refid="search_condition"></include>
+		order by notice_num desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="noticeTotal" resultType="Integer">
+		select count(*)
+		from board_notice
+	</select>
+	
+	<insert id="noticeInsert">
+		insert into board_notice(admin_num,notice_title,notice_content,notice_file,notice_img,notice_ip)
+		values (#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_img},#{notice_ip})
+	</insert>
+	
+	
+	
+	<sql id="search_condition">
+	<if test="search_type != null">
+		<if test="search_type == 'title'.toString()">
+			and faq_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'cate'.toString()">
+			and faq_cate like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'content'.toString()">
+			and faq_content like concat('%', #{keyword}, '%')
+		</if>
+	</if>
+	</sql>
+
+</mapper>

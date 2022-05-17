@@ -14,8 +14,8 @@
 	<result column="QNACATE2" property="qnacate2"/>
 	<result column="QNACATE_NUM" property="qnacate_num"/>
 	<result column="QNA_IMG" property="qna_img"/>
-	<result column="QNA_IMAGE1" property="qna_img1"/>
-	<result column="QNA_IMAGE2" property="qna_img2"/>
+	<result column="QNA_IMAGE1" property="qna_image1"/>
+	<result column="QNA_IMAGE2" property="qna_image2"/>
 	
 
 	<association javaType="QnaCateVO" property="qnaCateVO">
@@ -78,5 +78,12 @@
 		from board_qna
 		where user_num = #{user_num}
 	</select>
+	
+	<delete id="deleteQna">
+		delete 
+		from board_qna
+		where qna_num = #{qna_num}
+		
+	</delete>
 	
 </mapper>

@@ -16,4 +16,6 @@ public interface QnaService {
 	
 	public List<QnaVO> pagingQnaList(int user_num,Criter cri) throws Exception;
 	
+	public void deleteInquiry(Integer qna_num);
+	
 }

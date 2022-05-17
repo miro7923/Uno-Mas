@@ -53,6 +53,11 @@ public class QnaDAOImpl implements QnaDAO{
 	public Integer getQnaCount(Integer user_num) {
 		return sqlSession.selectOne(NAMESPACE+".qnaCnt",user_num);
 	}
+
+	@Override
+	public void deleteQna(Integer qna_num) {
+		sqlSession.delete(NAMESPACE+".deleteQna",qna_num);
+	}
 	
 	
 }

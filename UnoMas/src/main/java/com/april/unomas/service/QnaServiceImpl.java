@@ -36,7 +36,11 @@ public class QnaServiceImpl implements QnaService {
 	public List<QnaVO> pagingQnaList(int user_num,Criter cri) throws Exception {
 		return dao.pagingQna(user_num,cri);
 	}
-	
+
+	@Override
+	public void deleteInquiry(Integer qna_num) {
+		dao.deleteQna(qna_num);
+	}
 	
 	
 }

@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	session.invalidate();
-%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -26,8 +23,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>FAQs</span>
+                       
                     </div>
                 </div>
             </div>
@@ -37,6 +33,9 @@
 
     <!-- Faq Section Begin -->
     <div class="faq-section spad">
+    
+    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
+    
         <div class="container">
             <div class="row">
             
@@ -48,14 +47,6 @@
     <div class="head_aticle">
         <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
     </div>
-    
-    
-    <select id="select_location" onchange="select_location()">
-    	<option value="">선택</option>
-    	<option value="/board/faq_paging">공지사항</option>
-    	<option value="/board/qni_paging">자주하는 질문</option>
-    	<option value="/board/inquiry_paging">1:1 문의</option>
-    </select>
     
     <input type="button" value="글쓰기" onclick="location.href='/faq_insert';">
     
@@ -77,14 +68,6 @@
     		var url = "/board/faq_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
     		
     		location.href=url;
-    	}
-    </script>
-    
-    <script type="text/javascript">
-    	function select_location() {
-    		var val = document.getElementById('select_location');
-    		var val_loc = val.options[val.selectedIndex].value;
-    		location.href = val_loc;
     	}
     </script>
     

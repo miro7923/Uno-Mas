@@ -28,8 +28,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>FAQs</span>
+                        
                     </div>
                 </div>
             </div>
@@ -51,19 +50,6 @@
         <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
     </div>
     
-    
-    <select id="select_location" onchange="select_location()">
-    	<option value="/board/faq_paging">공지사항</option>
-    	<option value="/board/qni_paging">자주하는 질문</option>
-    	<option value="/board/inquiry_paging">1:1 문의</option>
-    </select>
-    <script type="text/javascript">
-    	function select_location() {
-    		var val = document.getElementById('select_location');
-    		var val_loc = val.options[val.selectedIndex].value;
-    		location.href = val_loc;
-    	}
-    </script>
     
     <table width="100%" align="center" cellpadding="0" cellspacing="0">
 <tbody><tr>
