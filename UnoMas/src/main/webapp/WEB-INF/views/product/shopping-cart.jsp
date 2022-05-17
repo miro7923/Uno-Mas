@@ -15,7 +15,8 @@
 <body>
 	<%
 	UserVO vo = (UserVO)session.getAttribute("saveID");
-
+	
+	
 	%>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -28,7 +29,6 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <span>장바구니</span>
-                        <h5><%out.print(vo); %></h5>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
 			                                        <input type="hidden" name="cartNum" value="${row.cart_num}">
 			                                    </td>
 			                                    <td class="total-price first-row"><fmt:formatNumber value="${row.prod_price*row.prod_amount}" pattern="#,###,###" />원</td>
-			                                    <td class="close-td first-row"><a href="${path}/product/cart/delete.do?cart_num=${row.cart_num}"><i class="ti-close"></i></a></td>
+			                                    <td class="close-td first-row"><a href="${path}/product/cart/delete?cart_num=${row.cart_num}"><i class="ti-close"></i></a></td>
 			                                </tr>
 			                                </c:forEach>
 			                            </tbody>
@@ -157,13 +157,13 @@
 			checkbox.checked = selectAll.checked
 		})
 	}
-		$(function(){ // 장바구니 비우기
-			$("#btnDelete").click(function(){
-				if(confirm("장바구니를 비우시겠습니까?")){
-					location.href="${path}/product/cart/deleteAll.do";
-				}
-			});
+	$(function(){ // 장바구니 비우기
+		$("#btnDelete").click(function(){
+			if(confirm("장바구니를 비우시겠습니까?")){
+				location.href="${path}/product/cart/deleteAll";
+			}
 		});
+	});
 	</script>
     <script src="${path}/resources/js/bootstrap.min.js"></script>
     <script src="${path}/resources/js/jquery-ui.min.js"></script>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.april.unomas.domain.CartVO;
+import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.CartService;
 
 @Controller
@@ -47,8 +48,8 @@ public class CartController {
 	public ModelAndView list(HttpSession session, ModelAndView mav) {
 		Map<String, Object> map=new HashMap<String, Object>();
 	 
-	    int user_num=1;
-	    		//(Integer)session.getAttribute("user_num");
+		UserVO vo = (UserVO)session.getAttribute("saveID");
+	    int user_num= vo.getUser_num();
 	        	
 	        List<CartVO> list=cartService.listCart(user_num);  // 장바구니 목록
 	        int sumMoney=cartService.sumMoney(user_num);  // 총 상품가격
@@ -77,28 +78,29 @@ public class CartController {
 	 }
 	 
 	// 장바구니 비우기
-	@RequestMapping("deleteAllCart")
+	@RequestMapping("deleteAll")
 	   public String deleteAll(HttpSession session) {
-	       Integer user_num=(Integer)session.getAttribute("user_num");
-	       if(user_num!=null) {
-	           cartService.deleteAll(user_num);
-	       }
-	       return "redirect:/product/cart/list";
+		UserVO vo = (UserVO)session.getAttribute("saveID");
+	    int user_num= vo.getUser_num();
+	    if(user_num!=0) {
+	    	cartService.deleteAll(user_num);
+	    }
+	    return "redirect:/product/cart/list";
 	}
 	 
 	// 장바구니 수정
 	@RequestMapping("updateCart")
 		public String update(@RequestParam int[] prod_amount, @RequestParam int[] prod_num, HttpSession session) {
 			// session의 id
-			Integer user_num=1;
-					//(Integer)session.getAttribute("user_num");
+			UserVO vo = (UserVO)session.getAttribute("saveID");
+		    int user_num= vo.getUser_num();
 			// 레코드의 갯수 만큼 반복문 실행
 			for(int i=0; i<prod_num.length; i++){
-				CartVO vo = new CartVO();
-				vo.setUser_num(user_num);
-				vo.setProd_amount(prod_amount[i]);
-				vo.setProd_num(prod_num[i]);
-				cartService.modifyCart(vo);
+				CartVO cart = new CartVO();
+				cart.setUser_num(user_num);
+				cart.setProd_amount(prod_amount[i]);
+				cart.setProd_num(prod_num[i]);
+				cartService.modifyCart(cart);
 			}
 			
 			return "redirect:/product/cart/list";

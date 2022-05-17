@@ -39,8 +39,7 @@ public class CartDAOImpl implements CartDAO{
 
 	@Override
 	public void deleteAll(int user_num) {
-		cartDao.deleteAll(user_num);
-		
+		sqlSession.delete("deleteAll", user_num);
 	}
 
 

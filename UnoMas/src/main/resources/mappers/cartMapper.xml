@@ -27,15 +27,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 장바구니 개별 상품 삭제 -->
     <delete id="delete">
-        delete from cart where cart_num=#{cart_num}
+        DELETE
+        FROM unomasdb.cart
+        WHERE cart_num = #{cart_num}
     </delete>
-    
-    <!-- 장바구니 X 삭제 버튼 -->
-	<delete id="deleteCart" parameterType="int">
-		DELETE
-		FROM unomasdb.cart
-		WHERE prod_num = #{prod_num} and user_num = #{user_num}
-	</delete>
 	
     <!-- 장바구니 수정 -->
 	<update id="modifyCart">
@@ -45,7 +40,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
     <!-- 장바구니 비우기 -->
     <delete id="deleteAll">
-        delete from cart where user_num=#{user_num}
+        DELETE
+        FROM unomasdb.cart
+        WHERE user_num = #{user_num}
         <!-- 장바구니테이블로부터 회원의 아이디와 삭제하고자하는 회원의 아이디가 같으면 장바구니에 있는 자료를 전부다 삭제 -->
     </delete>
     
@@ -63,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 장바구니 전체 금액 -->
 	<select id="sumMoney" resultType="int">
-		SELECT (SUM(p.prod_price * c.prod_amount)) money
+		SELECT IFNULL(SUM(p.prod_price * c.prod_amount),0) money
 		FROM unomasdb.cart c, unomasdb.products p
 		WHERE c.prod_num = p.prod_num AND c.user_num = #{user_num}
 	</select>
