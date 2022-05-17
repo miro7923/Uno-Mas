@@ -7,7 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 장바구니에 담기 -->
     <insert id="insert">
         INSERT INTO unomasdb.cart (user_num, prod_num, prod_amount)
-        VALUES (#{user_num}, #{prod_num}, #{prod_amount})
+        VALUES (#{user_num}, #{prod_num}, #{prod_amount})         
+        ON DUPLICATE KEY UPDATE prod_amount=prod_amount+values(prod_amount)
+
     </insert>
     
     <!-- 장바구니 목록 -->

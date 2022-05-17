@@ -107,7 +107,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <a href="index" class="primary-btn continue-shop">쇼핑 계속하기</a>
+                                <a href="/index" class="primary-btn continue-shop">쇼핑 계속하기</a>
                                 <button type="button" id="btnDelete" class="primary-btn up-cart">장바구니 비우기</button>
                             </div>
                         </div>

@@ -2,18 +2,23 @@ package com.april.unomas.controller;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.april.unomas.domain.CartVO;
+import com.april.unomas.domain.UserVO;
+import com.april.unomas.service.CartService;
 import com.april.unomas.service.ProductService;
 
 @RestController
@@ -23,17 +28,28 @@ public class ProductAjaxController {
 	@Inject
 	private ProductService service;
 	
+	@Inject
+	private CartService cartService;
+	
 	private static final Logger log = LoggerFactory.getLogger(ProductAjaxController.class);
 	
 	// ajax로 장바구니에 물건 담기
 	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
-	public void insertCartPOST(HttpServletRequest request) throws Exception {
+	public void insertCartPOST(@ModelAttribute CartVO vo,HttpSession session) throws Exception {
 		log.info("insertCartPOST() 호출");
-		int user_num = Integer.parseInt(request.getParameter("user_num"));
-		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
-		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
-		
-		service.insertCart(user_num, prod_num, prod_amount);
+//		int user_num = Integer.parseInt(request.getParameter("user_num"));
+//		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
+//		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
+		UserVO uvo = (UserVO)session.getAttribute("saveID");
+	    int user_num= uvo.getUser_num();
+        vo.setUser_num(user_num);
+        // 장바구니에 기존 상품 있는지 검사
+        int count = cartService.countCart(vo.getProd_num(),user_num);
+        log.info("**count : "+count);
+        if(count==0) { // 없으면 insert
+        	cartService.insert(vo); 
+        }
+//		service.insertCart(user_num, prod_num, prod_amount);
 	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)
