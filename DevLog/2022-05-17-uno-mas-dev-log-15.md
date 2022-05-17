@@ -27,7 +27,7 @@
 
 # 진행상황 
 
-<p align="center"><img src="../../assets/images/unomas_reviewImg.png" width="900"></p>
+<p align="center"><img src="https://miro7923.github.io/assets/images/unomas_reviewImg.png" width="900"></p>
 
 * 상품 후기글에 이미지 하나를 첨부할 수 있도록 설계했기 때문에 후기글에 등록되는 이미지의 업로드 및 수정과 삭제가 가능하게 하는 기능을 구현했다. 업로드 자체는 `MultipartFile`로 쉽게 구현할 수 있었지만 수정 기능을 구현하는 과정이 만만치 않았기 때문에 기록으로 남긴다.
 
