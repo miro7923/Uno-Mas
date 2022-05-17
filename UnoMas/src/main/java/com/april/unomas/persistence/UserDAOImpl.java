@@ -150,7 +150,6 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = sqlSession.selectOne(NAMESPACE + ".getUserInfo", id);
-
 		return userInfoVO;
 	}
 	

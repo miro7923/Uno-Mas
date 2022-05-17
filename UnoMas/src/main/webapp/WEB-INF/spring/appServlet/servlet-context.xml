@@ -52,4 +52,8 @@
 		<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\board\\notice"></beans:constructor-arg>
 	</beans:bean>
 	
+	<beans:bean id="reviewImgUploadPath" class="java.lang.String">
+	    <beans:constructor-arg value="D:\\work_spring\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\images\\board\\review" />
+	</beans:bean>
+	
 </beans:beans>

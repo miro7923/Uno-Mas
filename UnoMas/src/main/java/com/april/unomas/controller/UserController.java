@@ -222,5 +222,14 @@ public class UserController {
 	}
 	
 	
+	// 비밀번호 확인
+	@RequestMapping(value = "/pw_check")
+	@ResponseBody
+	public String pwCheck(@RequestParam(value="pw", required=false) String pw) {
+		
+		return "/user/myPoint";
+	}
+	
+	
 
 }

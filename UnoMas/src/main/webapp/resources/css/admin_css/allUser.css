@@ -1,0 +1,97 @@
+.allUser_container{
+	width: 1084px;
+	min-height: 1000px;
+    margin: 50px auto;
+}
+
+h3 {
+	display: inline-block;
+}
+
+.allUser_top {
+	float: right;
+	margin-bottom: 20px;
+}
+.top_a {
+	color: #B9CE45 !important;
+	font-weight: bold;
+	border: 1px solid #B9CE45 !important;
+}
+.allUser_top > a {
+	border: 1px solid #d5d5d5;
+	margin: 10px 0px;
+	padding: 3px 5px;
+    width: 90px;
+	color: black;
+    font-size: 11pt;
+    display: inline-block;
+    text-align: center;
+}
+.allUser_top > a:visited {
+	color: black;
+}
+.allUser_top > a:hover {
+	color: black;
+	font-weight: bold;
+	border: 1px solid #B9CE45;
+}
+
+
+
+
+table {
+	clear: right;
+    font-size: 14px !important;
+    width: 100%;
+    margin: 50px 0px;
+}
+th {
+	width: 10%;
+} 
+
+td {
+	width: 23%;
+}
+
+th, td {
+	border: 1px solid #d5d5d5;
+    padding: 10px !important;
+}
+
+
+.allUser_btn {
+	float: right;
+    padding: 5px 5px;
+    margin: -5px 3px;
+    font-size: 13px;
+    background-color: white;
+    border: 1px solid;
+}
+.allUser_btn:hover {
+	background-color: #eee;
+}
+
+
+
+.allUser_paging {
+	min-width: 250px;
+/* 	border: 1px solid black; */
+	margin: 70px auto;
+	text-align: center;
+
+}
+.paging_num {
+	color: black !important;
+	margin: 0px 10px;
+}
+.paging_a {
+	color: black !important;
+    border: 1px solid black;
+    padding: 3px 4px;
+}
+.paging_a:hover {
+	color: #B9CE45 !important;
+	font-weight: bold !important;
+}
+
+
