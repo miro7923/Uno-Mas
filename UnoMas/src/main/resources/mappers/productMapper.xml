@@ -4,12 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.unomas.mapper.ProductMapper">
-    <!-- 상품 등록 (이미지 x)-->
+    <!-- 상품 등록 -->
     <insert id="setProduct">
     	INSERT INTO products(prod_name, prod_category, prod_price, prod_stock, prod_expire, 
-    						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing)
+    						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing, 
+    						prod_image1, prod_image2, prod_image3, prod_image4)
     	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
-    			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
+    			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing},
+    			#{prod_image1}, #{prod_image2}, #{prod_image3}, #{prod_image4})
     </insert>
 
     <!-- 상품 목록 카테고리별로 불러오기 -->
@@ -115,6 +117,12 @@
         SELECT *
         FROM products
         WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 상품 마지막 번호 정보 가져오기 -->
+    <select id="getLastProdNum" resultType="int">
+        SELECT MAX(prod_num)
+        FROM products
     </select>
     
     <!-- 상품 조회수 증가 -->

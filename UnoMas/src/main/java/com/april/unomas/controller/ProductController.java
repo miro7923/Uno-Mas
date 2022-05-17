@@ -1,7 +1,10 @@
 package com.april.unomas.controller;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Commons;
+import com.april.unomas.domain.ImgType;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -41,6 +47,15 @@ public class ProductController {
 	
 	@Resource(name = "reviewImgUploadPath")
 	private String reviewImgUploatPath;
+	
+	@Resource(name = "prodDimgUploadPath")
+	private String prodDimgUploadPath;
+	
+	@Resource(name = "prodThumbUploadPath")
+	private String prodThumbUploadPath;
+	
+	@Resource(name = "prodTopImgUploadPath")
+	private String prodTopImgUploadPath;
 	
 	// product
 	@RequestMapping(value = "/check-out")
@@ -166,17 +181,28 @@ public class ProductController {
 		return "product/productRegister";
 	}
 	
+	private List<String> fileProcessor(MultipartHttpServletRequest files) {
+		List<String> fileList = new ArrayList<String>();
+		Iterator<String> fileNames = files.getFileNames();
+		
+		while (fileNames.hasNext()) {
+			String fileName = fileNames.next();
+			log.info("@@@@@@@@@@@@@@@@@ fileName: " + fileName);
+			MultipartFile file = files.getFile(fileName);
+//			String newName = convertImgName(fileName, 0, null);
+		}
+		
+		return fileList;
+	}
+	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
-
 	public String productRegisterPOST(ProductVO vo, Model model) throws Exception {
-
-		log.info("get 페이지 호출");
+		log.info("@@@@@@@@@@@@@@@ get 페이지 호출");
 		log.info(vo+"");
 		service.insertProduct(vo);
 		
 		return "redirect:/product/product_lookup";
 	}
-
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
 	public String productLookup(ProdCriteria pc, Model model) throws Exception {
@@ -222,14 +248,6 @@ public class ProductController {
 		return "product/reviewWritingForm";
 	}
 	
-	private String convertImgName(String fileName, int num) throws Exception {
-		int idx = fileName.lastIndexOf(".");
-		String imgType = fileName.substring(idx + 1);
-		String ret = "review_" + num + "." + imgType;
-		
-		return ret;
-	}
-	
 	@RequestMapping(value = "/write_review", method = RequestMethod.POST)
 	public String writeReviewPOST(HttpServletRequest request, 
 			@RequestParam(value = "review_image", required = false) MultipartFile file) throws Exception {
@@ -244,7 +262,7 @@ public class ProductController {
 		// 업로드 된 파일이 있을 때
 		if (!file.isEmpty()) {
 			// 리뷰 이미지파일명: review_리뷰글번호.확장자
-			String fileName = convertImgName(file.getOriginalFilename(), service.getLastReviewNum() + 1);
+			String fileName = Commons.convertImgName(file.getOriginalFilename(), service.getLastReviewNum() + 1, ImgType.REVIEW);
 			
 			File targetFile = new File(reviewImgUploatPath, fileName);
 			FileCopyUtils.copy(file.getBytes(), targetFile);
@@ -285,7 +303,7 @@ public class ProductController {
 		if (!file.isEmpty()) {
 			// 기존에 저장된 이미지가 없는 경우 파일이름 생성
 			if (reviewImg == null) {
-				reviewImg = convertImgName(file.getOriginalFilename(), vo.getReview_num());
+				reviewImg = Commons.convertImgName(file.getOriginalFilename(), vo.getReview_num(), ImgType.REVIEW);
 			}
 			
 			File targetFile = new File(reviewImgUploatPath, reviewImg);

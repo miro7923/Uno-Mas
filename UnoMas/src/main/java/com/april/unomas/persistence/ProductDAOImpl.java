@@ -75,7 +75,6 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<CategoryVO> getDCategory() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE + ".getDCategory");
 	}
 
@@ -97,6 +96,11 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProduct", prod_num);
+	}
+
+	@Override
+	public int getLastProdNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getLastProdNum");
 	}
 
 	@Override

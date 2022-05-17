@@ -1,27 +1,28 @@
 package com.april.unomas.controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.Commons;
+import com.april.unomas.domain.ImgType;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
-import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.service.ProductService;
 
 @RestController
@@ -32,6 +33,21 @@ public class ProductAjaxController {
 	private ProductService service;
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductAjaxController.class);
+
+	@Resource(name = "reviewImgUploadPath")
+	private String reviewImgUploatPath;
+	
+	@Resource(name = "prodDimgUploadPath")
+	private String prodDimgUploadPath;
+	
+	@Resource(name = "prodThumbUploadPath")
+	private String prodThumbUploadPath;
+	
+	@Resource(name = "prodTopImgUploadPath")
+	private String prodTopImgUploadPath;
+	
+	@Resource(name = "prodSoldoutImgUploadPath")
+	private String prodSoldoutImgUploadPath;
 	
 	// ajax로 장바구니에 물건 담기
 	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
@@ -92,6 +108,53 @@ public class ProductAjaxController {
 		}
 		
 		return list;
+	}
+	
+	@RequestMapping(value = "/upload_topImg", method = RequestMethod.POST)
+	public String uploadTopImgPOST(@RequestParam("uploadImg1") MultipartFile file) throws Exception {
+		log.info("@@@@@@@@@@@@@@@@@@@ 상세이미지 등록 컨트롤러 이동");
+		String fileName = null;
+		if (!file.isEmpty()) {
+			fileName = Commons.convertImgName(file.getOriginalFilename(), service.getLastProdNum() + 1, ImgType.TOP);
+			File targetFile = new File(prodTopImgUploadPath, fileName);
+			FileCopyUtils.copy(file.getBytes(), targetFile);
+		}
+		
+		return fileName;
+	}
+
+	@RequestMapping(value = "/upload_deImg", method = RequestMethod.POST)
+	public String uploadDeImgPOST(@RequestParam("uploadImg2") MultipartFile file) throws Exception {
+		String fileName = null;
+		if (!file.isEmpty()) {
+			fileName = Commons.convertImgName(file.getOriginalFilename(), service.getLastProdNum() + 1, ImgType.DETAIL);
+			File targetFile = new File(prodDimgUploadPath, fileName);
+			FileCopyUtils.copy(file.getBytes(), targetFile);
+		}
+		
+		return fileName;
+	}
+
+	@RequestMapping(value = "/upload_thumb", method = RequestMethod.POST)
+	public String uploadThumbPOST(@RequestParam("uploadImg3") MultipartFile file) throws Exception {
+		String fileName = null;
+		if (!file.isEmpty()) {
+			fileName = Commons.convertImgName(file.getOriginalFilename(), service.getLastProdNum() + 1, ImgType.THUMBNAIL);
+			Commons.resizeImg(file, prodThumbUploadPath, fileName);
+		}
+		
+		return fileName;
+	}
+	
+	@RequestMapping(value = "/upload_soldoutImg", method = RequestMethod.POST)
+	public String uploadSoldoutImgPOST(@RequestParam("uploadImg4") MultipartFile file) throws Exception {
+		String fileName = null;
+		if (!file.isEmpty()) {
+			fileName = Commons.convertImgName(file.getOriginalFilename(), service.getLastProdNum() + 1, ImgType.SOLDOUT);
+			Commons.resizeImg(file, prodSoldoutImgUploadPath, fileName);
+		}
+		
+		return fileName;
 	}
 	
 	// ------------ 리뷰 좋아요 부분 (여유 생기면 상세 기능 추가할 것임) ------------------- // 

@@ -54,6 +54,9 @@ public interface ProductDAO {
 	// 상품 하나의 정보를 가져오는 메서드
 	public ProductVO getProduct(int prod_num) throws Exception;
 	
+	// 상품 마지막 번호 가져오기
+	public int getLastProdNum() throws Exception;
+	
 	// 상품 조회수 증가
 	public void updateProdReadcnt(int prod_num) throws Exception;
 	

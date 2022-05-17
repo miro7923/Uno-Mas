@@ -96,6 +96,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public int getLastProdNum() throws Exception {
+		return dao.getLastProdNum();
+	}
+
+	@Override
 	public void addProdReadcnt(int prod_num) throws Exception {
 		dao.updateProdReadcnt(prod_num);
 	}
