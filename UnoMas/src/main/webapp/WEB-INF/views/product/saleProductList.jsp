@@ -8,7 +8,7 @@
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/productList.css?afte">
+	href="${path}/resources/css/product_css/productList.css?afte">
 <!-- Start Header -->
 
 <%
@@ -268,7 +268,7 @@ int endBlock = 5;
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/productList.js"></script>
+	<script src="${path}/resources/js/product_js/productList.js"></script>
 </body>
 
 </html>

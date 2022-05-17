@@ -228,6 +228,7 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void removeWishlist(int user_num, int prod_num) throws Exception {
 		dao.deleteWishlist(user_num, prod_num);
+	}
 
 	public List<SelectVO> readcntSelect() throws Exception {
 		List<SelectVO> readlist = dao.readcntSelect();

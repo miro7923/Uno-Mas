@@ -252,6 +252,7 @@ public class ProductDAOImpl implements ProductDAO {
 		map.put("prod_num", prod_num);
 		
 		sqlSession.delete(NAMESPACE + ".deleteWishlist", map);
+	}
 
 	public List<SelectVO> readcntSelect() throws Exception {
 		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect");
