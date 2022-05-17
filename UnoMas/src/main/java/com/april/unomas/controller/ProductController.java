@@ -181,24 +181,9 @@ public class ProductController {
 		return "product/productRegister";
 	}
 	
-	private List<String> fileProcessor(MultipartHttpServletRequest files) {
-		List<String> fileList = new ArrayList<String>();
-		Iterator<String> fileNames = files.getFileNames();
-		
-		while (fileNames.hasNext()) {
-			String fileName = fileNames.next();
-			log.info("@@@@@@@@@@@@@@@@@ fileName: " + fileName);
-			MultipartFile file = files.getFile(fileName);
-//			String newName = convertImgName(fileName, 0, null);
-		}
-		
-		return fileList;
-	}
-	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
 	public String productRegisterPOST(ProductVO vo, Model model) throws Exception {
-		log.info("@@@@@@@@@@@@@@@ get 페이지 호출");
-		log.info(vo+"");
+		vo.setProd_num(service.getLastProdNum());
 		service.insertProduct(vo);
 		
 		return "redirect:/product/product_lookup";
