@@ -155,6 +155,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public String getReviewImg(int review_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getReviewImg", review_num);
+	}
+
+	@Override
 	public void deleteReview(int review_num) throws Exception {
 		sqlSession.delete(NAMESPACE + ".deleteReview", review_num);
 	}

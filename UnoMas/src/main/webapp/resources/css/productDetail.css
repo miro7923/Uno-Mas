@@ -31,6 +31,10 @@ a:hover {
 	font-size: 17px;
 }
 
+.product-details .quantity .primary-btn.pd-cart.soldout {
+	background-color: #d0d0d0;
+}
+
 .product-details .quantity .pro-qty {
 	height: 30px;
 }

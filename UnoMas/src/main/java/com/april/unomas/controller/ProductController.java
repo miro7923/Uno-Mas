@@ -181,6 +181,14 @@ public class ProductController {
 		return "product/reviewWritingForm";
 	}
 	
+	private String convertImgName(String fileName, int num) throws Exception {
+		int idx = fileName.lastIndexOf(".");
+		String imgType = fileName.substring(idx + 1);
+		String ret = "review_" + num + "." + imgType;
+		
+		return ret;
+	}
+	
 	@RequestMapping(value = "/write_review", method = RequestMethod.POST)
 	public String writeReviewPOST(HttpServletRequest request, 
 			@RequestParam(value = "review_image", required = false) MultipartFile file) throws Exception {
@@ -192,15 +200,16 @@ public class ProductController {
 		vo.setUser_num(Integer.parseInt(request.getParameter("user_num")));
 		vo.setReview_ip(request.getRemoteAddr());
 		
-		// 리뷰 이미지파일명: review_리뷰글번호.확장자
-		int idx = file.getOriginalFilename().indexOf(".");
-		String imgType = file.getOriginalFilename().substring(idx + 1);
-		String fileName = "review_" + service.getLastReviewNum() + 1 + "." + imgType;
-		
-		File targetFile = new File(reviewImgUploatPath, fileName);
-		FileCopyUtils.copy(file.getBytes(), targetFile);
-
-		vo.setReview_image(fileName);
+		// 업로드 된 파일이 있을 때
+		if (!file.isEmpty()) {
+			// 리뷰 이미지파일명: review_리뷰글번호.확장자
+			String fileName = convertImgName(file.getOriginalFilename(), service.getLastReviewNum() + 1);
+			
+			File targetFile = new File(reviewImgUploatPath, fileName);
+			FileCopyUtils.copy(file.getBytes(), targetFile);
+			
+			vo.setReview_image(fileName);
+		}
 		
 		service.insertReview(vo);
 		
@@ -218,7 +227,49 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.POST)
-	public String modifyReviewPOST(BoardReviewVO vo) throws Exception {
+	public String modifyReviewPOST(HttpServletRequest request, 
+			@RequestParam(value = "review_image", required = false) MultipartFile file) throws Exception {
+		BoardReviewVO vo = new BoardReviewVO();
+		vo.setReview_num(Integer.parseInt(request.getParameter("review_num")));
+		vo.setProd_num(Integer.parseInt(request.getParameter("prod_num")));
+		vo.setReview_content(request.getParameter("review_content"));
+		vo.setReview_rating(Float.parseFloat(request.getParameter("review_rating")));
+		vo.setReview_title(request.getParameter("review_title"));
+		vo.setUser_num(Integer.parseInt(request.getParameter("user_num")));
+		
+		String reviewImg = service.getReviewImg(vo.getReview_num());
+		String uploadImgName = request.getParameter("uploadImgName");
+
+		// 업로드 된 파일이 있을 때 
+		if (!file.isEmpty()) {
+			// 기존에 저장된 이미지가 없는 경우 파일이름 생성
+			if (reviewImg == null) {
+				reviewImg = convertImgName(file.getOriginalFilename(), vo.getReview_num());
+			}
+			
+			File targetFile = new File(reviewImgUploatPath, reviewImg);
+			FileCopyUtils.copy(file.getBytes(), targetFile);
+			vo.setReview_image(reviewImg);
+		}
+		// 업로드 된 파일이 없을 때
+		else { 
+			// 기존에 업로드 된 파일이 없거나 글을 수정하며 이미지를 삭제한 경우
+			if (uploadImgName.equals("이미지 선택")) {
+				if (reviewImg != null) {
+					// 기존에 업로드 된 파일이 있으면 서버에서 삭제
+					File f = new File(reviewImgUploatPath + File.separator + reviewImg);
+
+					if (f.exists())
+						f.delete();
+				}
+				vo.setReview_image(null);
+			}
+			// 기존에 업로드 된 파일이 있으면 그대로 사용
+			else {
+				vo.setReview_image(uploadImgName);
+			}
+		}
+		
 		service.modifyReview(vo);
 		
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
@@ -227,6 +278,11 @@ public class ProductController {
 	@RequestMapping(value = "/remove_review", method = RequestMethod.GET)
 	public String removeReviewGET(@RequestParam("review_num") int review_num, 
 			@RequestParam("prod_num") int prod_num) throws Exception {
+		// 리뷰와 함께 업로드 된 이미지파일 서버에서 삭제
+		File f = new File(reviewImgUploatPath + File.separator + service.getReviewImg(review_num));
+		if (f.exists()) 
+			f.delete();
+		
 		service.removeReview(review_num);
 		
 		return "redirect:/product/product_detail?prod_num=" + prod_num;

@@ -200,9 +200,16 @@
     <!-- 리뷰글 수정 -->
     <update id="updateReview">
         UPDATE board_review
-        SET review_title = #{review_title}, review_content = #{review_content}, review_rating = #{review_rating}
+        SET review_title = #{review_title}, review_content = #{review_content}, review_rating = #{review_rating}, review_image = #{review_image}
         WHERE review_num = #{review_num}
     </update>
+    
+    <!-- 리뷰글 이미지파일 정보 가져오기 -->
+    <select id="getReviewImg" resultType="String">
+        SELECT review_image
+        FROM board_review
+        WHERE review_num = #{review_num}
+    </select>
     
     <!-- 리뷰글 삭제 -->
     <delete id="deleteReview">

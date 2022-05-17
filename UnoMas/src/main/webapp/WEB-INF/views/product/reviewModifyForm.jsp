@@ -22,7 +22,7 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>후기수정</h4>
-						<form action="/product/modify_review" method="post" class="comment-form">
+						<form action="/product/modify_review" method="post" class="comment-form" enctype="multipart/form-data">
 							<div class="row">
 								<div class="col-lg-12">
 									<!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
@@ -67,8 +67,16 @@
 							<div class="row">
 								<div class="col-lg-2">사진등록</div>
 								<div class="col-lg-10">
-									<input class="uploadImgName" id="uploadImgName" value="이미지 선택"
-										disabled="disabled"> 
+								    <c:choose>
+									    <c:when test="${vo.review_image == null }">
+											<input type="text" class="uploadImgName" id="uploadImgName" value="이미지 선택"
+												readonly name="uploadImgName"> 
+									    </c:when>
+									    <c:otherwise>
+									    	<input type="text" class="uploadImgName" id="uploadImgName" value="${vo.review_image }"
+												readonly name="uploadImgName">
+									    </c:otherwise>
+								    </c:choose>
 									<label class="site-btn" for="uploadImg" id="uploadBtn">업로드</label>
 									<button type="button" class="site-btn" onclick="removeImg();">삭제</button>
 									<input type="file" id="uploadImg" name="review_image" oninput="checkFileName();">

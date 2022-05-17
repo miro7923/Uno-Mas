@@ -82,6 +82,9 @@ public interface ProductDAO {
 	// 리뷰글 수정
 	public void updateReview(BoardReviewVO vo) throws Exception;
 	
+	// 리뷰글 이미지파일 정보 가져오기
+	public String getReviewImg(int review_num) throws Exception;
+	
 	// 리뷰글 하나 삭제
 	public void deleteReview(int review_num) throws Exception;
 	

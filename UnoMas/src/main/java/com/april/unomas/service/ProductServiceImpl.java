@@ -147,6 +147,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public String getReviewImg(int review_num) throws Exception {
+		return dao.getReviewImg(review_num);
+	}
+
+	@Override
 	public void removeReview(int review_num) throws Exception {
 		dao.deleteReview(review_num);
 	}
