@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.unomas.mapper.BoardMapper">
+
+<resultMap type="AdminVO" id="adminMap">
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<id column="ADMIN_ID" property="admin_id"/>
+		<id column="ADMIN_PASS" property="admin_pass"/>
+		<id column="ADMIN_PERMIT" property="admin_permit"/>
+		<id column="ADMIN_REGDATE" property="admin_regdate"/>
+		<id column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
+	</resultMap>
+
+<resultMap type="QnaCateVO" id="qnaCateMap">
+		<id column="QNACATE_NUM" property="qnacate_num"/>
+		<id column="QNACATE_NAME" property="qnacate_name"/>
+	</resultMap>
+	
+	<resultMap type="BoardVO" id="boardMap">
+		<id column="FAQ_NUM"/>
+		<id column="ADMIN_NUM"/>
+		<id column="FAQ_TITLE"/>
+		<id column="FAQ_CONTENT"/>
+		<id column="FAQ_REGDATE"/>
+		<id column="QNACATE_NUM"/>
+		<collection property="qnaCateVO" resultMap="qnaCateMap"></collection>
+		<collection property="adminVO" resultMap="adminMap"></collection>
+	</resultMap>
+
+  <insert id="create">
+		insert into board_faq(faq_title,faq_content,faq_cate) 
+		values(#{faq_title},#{faq_content},#{faq_cate})
+	</insert>
+	
+<!-- 	<select id="listAll" resultType="BoardVO"> -->
+<!-- 		<![CDATA[ -->
+<!-- 		select * from board_faq  -->
+<!-- 		where faq_num > 0 -->
+<!-- 		order by faq_num desc -->
+<!-- 		]]> -->
+<!-- 	</select> -->
+	
+	<select id="sortCategory" resultType="BoardVO">
+		select * from board_faq
+		where faq_cate=#{faq_cate}
+		order by faq_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="sortCateCount" resultType="Integer">
+		select count(*) from board_faq
+		where faq_cate=#{faq_cate}
+	</select>
+	
+	<select id="countBoard" resultType="Integer">
+		<![CDATA[
+		select count(*) from board_faq
+		where faq_num > 0
+		]]>
+		<include refid="search_condition"></include>
+	</select>
+	
+	<select id="pagingBoard" resultType="BoardVO">
+		<![CDATA[
+		select * 
+		from board_faq b
+		join qna_category q
+		on b.qnacate_num = q.qnacate_num
+		join admin a
+		on b.admin_num = a.admin_num
+		]]>
+		<include refid="search_condition"></include>
+		order by faq_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="getBoard" resultType="BoardVO">
+		select * from board_faq
+		where faq_num=#{faq_num}
+	</select>
+	
+	<update id="updateBoard">
+		update board_faq 
+		set faq_title=#{faq_title},faq_cate=#{faq_cate},faq_content=#{faq_content} 
+		where faq_num=#{faq_num}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from board_faq
+		where faq_num=#{faq_num}
+	</delete>
+	
+	<sql id="search_condition">
+	<if test="search_type != null">
+		<if test="search_type == 'title'.toString()">
+			and faq_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'cate'.toString()">
+			and faq_cate like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'content'.toString()">
+			and faq_content like concat('%', #{keyword}, '%')
+		</if>
+	</if>
+	</sql>
+	
+</mapper>

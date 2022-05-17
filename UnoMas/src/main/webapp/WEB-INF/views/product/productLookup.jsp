@@ -7,11 +7,10 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
+<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <!-- Start Header -->
-
 <body>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -76,52 +75,62 @@
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
-																<td class="cart-pic first-row">
-																	<input type="checkbox" name="check">
-																</td>
-																<td class="normal-row">
-																1
-																</td>
-<!-- 															<td class="cart-title first-row"> -->
-																<td class="normal-row">
-																	<h5>상품명</h5>
-																</td>
-																<td class="normal-row">10,000</td>
-<!-- 															<td class="qua-col first-row"> -->
-																<td class="normal-row">
-																	정상
-																</td>
-																<td class="normal-row">1200</td>
-																<td class="normal-row">100</td>
-																<td class="normal-row">12</td>
-																
-															</tr>
-														</tbody>
-														<tbody>
-															<tr>
-																<td class="cart-pic first-row">
-																	<input type="checkbox" name="check">
-																</td>
-																<td class="normal-row">
-																1
-																</td>
-<!-- 															<td class="cart-title first-row"> -->
-																<td class="normal-row">
-																	<h5>상품명</h5>
-																</td>
-																<td class="normal-row">10,000</td>
-<!-- 															<td class="qua-col first-row"> -->
-																<td class="normal-row">
-																	정상
-																</td>
-																<td class="normal-row">1200</td>
-																<td class="normal-row">100</td>
-																<td class="normal-row">12</td>
-															</tr>
+															<c:forEach var="vo" items="${productList }">
+																<tr>
+																	<c:choose>
+																		<c:when test="${vo.prod_stock eq 0 }">
+																			<td class="cart-pic first-row">
+																				<input type="checkbox" name="check">
+																			<td class="normal-row"><span class="sold">${vo.prod_num }</span></td>
+			<!-- 															<td class="cart-title first-row"> -->
+																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }"><span class="sold">${vo.prod_name }</span></a></td>
+																			<td class="normal-row"><span class="sold">${vo.prod_price }</span></td>
+			<!-- 															<td class="qua-col first-row"> -->
+																			<td class="normal-row"><span class="sold">품절</span></td>
+																			<td class="normal-row"><span class="sold">sssss</span></td> <!-- 조회수 -->
+																			<td class="normal-row"><span class="sold">sssss</span></td> <!-- 주문량 -->
+																			<td class="normal-row"><span class="sold">${vo.prod_stock }</span></td>
+																		</c:when>
+																		<c:otherwise>
+																			<td class="cart-pic first-row">
+																				<input type="checkbox" name="check">
+																			</td>
+																			<td class="normal-row">${vo.prod_num }</td>
+			<!-- 															<td class="cart-title first-row"> -->
+																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }">${vo.prod_name }</a></td>
+																			<td class="normal-row">${vo.prod_price }</td>
+			<!-- 															<td class="qua-col first-row"> -->
+																			<td class="normal-row">정상</td>
+																			<td class="normal-row">sssss</td> <!-- 조회수 -->
+																			<td class="normal-row">sssss</td> <!-- 주문량 -->
+																			<td class="normal-row">${vo.prod_stock }</td>
+																		</c:otherwise>
+																		
+																	</c:choose>
+																</tr>
+															</c:forEach>
 														</tbody>
 													</table>
 												</div>
+												<!-- 페이징처리 -->
+												<div class="row" id="pagediv">
+													<div class="col-lg-12 text-center">
+<!-- 													<ul class="pagination pagination-sm no-margin"> -->
+														<c:if test="${pm.prev }">
+															<span><a href="product_lookup?page=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a></span>
+														</c:if>
+														
+														<c:forEach var="i" begin="${pm.startPage }" end="${pm.endPage }">
+															<span><a href="product_lookup?page=${i }" class="pagingBtn" style="color: black; font-weight: bold;"  >${i } </a></span>
+														</c:forEach>
+														
+														<c:if test="${pm.next && pm.endPage > 0 }">
+															<span><a href="product_lookup?page=${pm.endPage+1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a></span>
+														</c:if>
+<!-- 													</ul> -->
+												</div>
+												</div>
+												<!-- 페이징처리 -->
 												<button type="button" class="back-button" onclick="history.back();">삭제</button>
 		                                        <button type="submit" class="site-button" >수정</button>
 											</div>

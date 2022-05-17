@@ -8,10 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.SelectVO;
 import com.april.unomas.persistence.ProductDAO;
 
 @Service
@@ -35,6 +37,16 @@ public class ProductServiceImpl implements ProductService{
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
 		return dao.getProductPage(pc);
 	}
+	
+	@Override
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
+		return dao.getAllProductList(pc);
+	}
+
+	@Override
+	public Integer getAllCnt() throws Exception {
+		return dao.getAllCnt();
+	}
 
 	@Override
 	public List<Integer> getTopcateCnt(int topcate_num) throws Exception {
@@ -45,10 +57,22 @@ public class ProductServiceImpl implements ProductService{
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return dao.getProductCnt(pc);
 	}
+	
+	@Override
+	public List<CategoryVO> getTopCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getTopCategory();
+	}
 
 	@Override
 	public String getTopCateName(int topcate_num) throws Exception {
 		return dao.getTopCateName(topcate_num);
+	}
+	
+	@Override
+	public List<CategoryVO> getDCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getDCategory();
 	}
 
 	@Override
@@ -204,5 +228,34 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void removeWishlist(int user_num, int prod_num) throws Exception {
 		dao.deleteWishlist(user_num, prod_num);
+
+	public List<SelectVO> readcntSelect() throws Exception {
+		List<SelectVO> readlist = dao.readcntSelect();
+		return readlist;
+	}
+	@Override
+	public List<SelectVO> sellcntSelect() throws Exception {
+		List<SelectVO> soldlist = dao.sellcntSelect();
+		return soldlist;
+	}
+	@Override
+	public List<SelectVO> brandnewSelect() throws Exception {
+		List<SelectVO> newlist = dao.brandnewSelect();
+		return newlist;
+	}
+	@Override
+	public List<SelectVO> readcntSelect2() throws Exception {
+		List<SelectVO> readlist2 = dao.readcntSelect2();
+		return readlist2;
+	}
+	@Override
+	public List<SelectVO> sellcntSelect2() throws Exception {
+		List<SelectVO> soldlist2 = dao.sellcntSelect2();
+		return soldlist2;
+	}
+	@Override
+	public List<SelectVO> brandnewSelect2() throws Exception {
+		List<SelectVO> newlist2 = dao.brandnewSelect2();
+		return newlist2;
 	}
 }

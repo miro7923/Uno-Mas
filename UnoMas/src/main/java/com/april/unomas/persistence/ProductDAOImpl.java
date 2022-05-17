@@ -11,10 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.SelectVO;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
@@ -38,6 +41,16 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductVO> getProductPage(ProdCriteria pc) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getListOnPage", pc);
 	}
+	
+	@Override
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".getAllProductList" ,pc);
+	}
+
+	@Override
+	public Integer getAllCnt() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".getAllCnt");
+	}
 
 	@Override
 	public List<Integer> getTopcateCnt(int topcate_num) throws Exception {
@@ -48,10 +61,22 @@ public class ProductDAOImpl implements ProductDAO {
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pc);
 	}
+	
+	@Override
+	public List<CategoryVO> getTopCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+".getTopCategory");
+	}
 
 	@Override
 	public String getTopCateName(int topcate_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getTopCateName", topcate_num);
+	}
+
+	@Override
+	public List<CategoryVO> getDCategory() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE + ".getDCategory");
 	}
 
 	@Override
@@ -227,5 +252,32 @@ public class ProductDAOImpl implements ProductDAO {
 		map.put("prod_num", prod_num);
 		
 		sqlSession.delete(NAMESPACE + ".deleteWishlist", map);
+
+	public List<SelectVO> readcntSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect");
+	}
+
+	@Override
+	public List<SelectVO> sellcntSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".sellcntSelect");
+	}
+	
+	@Override
+	public List<SelectVO> brandnewSelect() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".brandnewSelect");
+	}
+	@Override
+	public List<SelectVO> readcntSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect2");
+	}
+	
+	@Override
+	public List<SelectVO> sellcntSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".sellcntSelect2");
+	}
+	
+	@Override
+	public List<SelectVO> brandnewSelect2() throws Exception {
+		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".brandnewSelect2");
 	}
 }

@@ -2,17 +2,19 @@ package com.april.unomas.persistence;
 
 import java.util.List;
 
+
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.SelectVO;
 
 public interface ProductDAO {
 
-
 	// 상품 등록
 	public void insertProduct(ProductVO vo) throws Exception;
-	
+  
 	// 상품 목록 상위 카테고리별로 불러오기
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
 	
@@ -21,12 +23,24 @@ public interface ProductDAO {
 	
 	// 대분류별 소분류 번호 리스트 가져오기
 	public List<Integer> getTopcateCnt(int topcate_num) throws Exception;
+  
+	// 전체 상품 목록 가져오기
+	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception;
+	
+	// 전체 상품 개수 가져오기
+	public Integer getAllCnt() throws Exception;
 	
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;
 	
+	// 상품 상위 카테고리 가져오기
+	public List<CategoryVO> getTopCategory() throws Exception;
+	
 	// 상품 상위 카테고리 이름 가져오기
 	public String getTopCateName(int topcate_num) throws Exception;
+	
+	// 상품 하위 카테고리 가져오기
+	public List<CategoryVO> getDCategory() throws Exception;
 	
 	// 상위 카테고리의 하위 카테고리 목록 가져오기
 	public List<String> getDcateNames(int topcate_num) throws Exception;
@@ -120,4 +134,22 @@ public interface ProductDAO {
 	
 	// 위시리스트 제거
 	public void deleteWishlist(int user_num, int prod_num) throws Exception;
+
+	// 조회수별 상품 정보
+	public List<SelectVO> readcntSelect() throws Exception;
+	
+	// 판매량별 상품 정보
+	public List<SelectVO> sellcntSelect() throws Exception;
+	
+	// 신상품별 상품 정보(메인페이지)
+	public List<SelectVO> brandnewSelect() throws Exception;
+	
+	// 조회수별 상품 정보
+	public List<SelectVO> readcntSelect2() throws Exception;
+	
+	// 판매량별 상품 정보
+	public List<SelectVO> sellcntSelect2() throws Exception;
+	
+	// 신상품별 상품 정보(메인페이지)
+	public List<SelectVO> brandnewSelect2() throws Exception;
 }

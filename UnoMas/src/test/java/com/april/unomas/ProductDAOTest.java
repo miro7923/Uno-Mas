@@ -1,5 +1,7 @@
 package com.april.unomas;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -37,6 +39,19 @@ public class ProductDAOTest {
 //	@Test
 	public void DAO생성테스트() {
 		log.info("dao : " + dao.toString());
+	}
+	
+//	@Test
+	public void 전체상품목록출력테스트() throws Exception {
+		ProdCriteria pp = new ProdCriteria();
+		pp.setPage(5);
+		pp.setPerPageNum(9);
+		
+		List<ProductVO> productList = dao.getAllProductList(pp);
+	
+		for(ProductVO vo : productList) {
+			log.info(vo.getProd_num()+" : " + vo.getProd_name());
+		}
 	}
 	
 //	@Test

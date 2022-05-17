@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
+
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.UserVO;
@@ -45,7 +47,7 @@ public class ProductController {
 	public String checkout() {
 		return "product/check-out";
 	}
-	
+
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("pageNum") int pageNum, @RequestParam("dcate_num") int dcate_num, 
@@ -89,6 +91,7 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
+
 		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
@@ -148,15 +151,25 @@ public class ProductController {
 	public String coBuyingList() {
 		return "product/coBuyingList";
 	}
-  
+
 	@RequestMapping(value = "/product_register", method = RequestMethod.GET)
-	public String productRegisterGET() {
+	public String productRegisterGET(Model model) throws Exception {
 		log.info("post 페이지 호출");
+		
+		List<CategoryVO> categories = service.getTopCategory();
+		List<CategoryVO> details = service.getDCategory();
+		log.info(categories+"");
+		log.info(details+"");
+		model.addAttribute("categories",categories);
+		model.addAttribute("details",details);
+
 		return "product/productRegister";
 	}
 	
 	@RequestMapping(value = "/product_register", method = RequestMethod.POST)
-	public String productRegisterPOST(ProductVO vo) throws Exception {
+
+	public String productRegisterPOST(ProductVO vo, Model model) throws Exception {
+
 		log.info("get 페이지 호출");
 		log.info(vo+"");
 		service.insertProduct(vo);
@@ -164,9 +177,42 @@ public class ProductController {
 		return "redirect:/product/product_lookup";
 	}
 
-	@RequestMapping(value = "/product_lookup")
-	public String productLookup() {
+	
+	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
+	public String productLookup(ProdCriteria pc, Model model) throws Exception {
+		
+		// 상품 데이터 조회
+		log.info(pc+"");
+		List<ProductVO> productList = service.getAllProductList(pc);
+		log.info(productList+"");
+		
+		model.addAttribute("productList", productList);
+		
+		// 하단 페이지 처리
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(pc);
+		pm.setTotalCnt(service.getAllCnt());
+		model.addAttribute("pm", pm);
+		
 		return "product/productLookup";
+	}
+	
+	@RequestMapping(value ="/status", method = RequestMethod.GET)
+	public String products(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		log.info("get호출");
+		log.info(prod_num+"");
+		List<CategoryVO> categories = service.getTopCategory();
+		model.addAttribute("categories",categories);
+		model.addAttribute("vo", service.getProduct(prod_num));
+		return "product/productStatus";
+		
+	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String productsModifyGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+		model.addAttribute("vo", service.getProduct(prod_num));
+		
+		return "product/productModify";
 	}
 
 	@RequestMapping(value = "/shopping-cart")
@@ -368,4 +414,5 @@ public class ProductController {
 		
 		return "product/productList";
 	}
+
 }

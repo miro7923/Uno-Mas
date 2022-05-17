@@ -1,5 +1,6 @@
 package com.april.unomas.domain;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import lombok.Data;

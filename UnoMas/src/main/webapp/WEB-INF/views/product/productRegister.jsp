@@ -40,53 +40,33 @@
 				<div class="col-lg-10">
 					<h2>상품등록</h2><div class="line"><hr></div>
 					<div class="container">
-						<form method="post" class="checkout-form">
+						<form method="post" class="checkout-form" >
 							<!-- 기본정보 -->
 							<div class="row">
 								<div class="col-lg-12">
 									<br>
 									<h4>기본정보</h4>
 									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-12">
 											<label>상품명<span>*</span></label> <input type="text" name="prod_name" id="prod_name">
-										</div>
-										<div class="col-lg-3">
-											<label>상태<span></span></label>
-											<div class="filter-widget">
-												<div class="fw-size-choose">
-													<div class="sc-item">
-														<input type="radio" name="stock_state" value="normal"> <label for class="active">정상</label>
-													</div>
-													<div class="sc-item">
-														<input type="radio" name="stock_state" value="sold"> <label for="">품절</label>
-													</div>
-													<div class="sc-item">
-														<input type="radio" name="stock_state" value="hide"> <label for="">숨김</label>
-													</div>
-												</div>
-											</div>
 										</div>
 										<div class="col-lg-12">
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" >
-												<option selected>대분류</option>
-<%-- 												<c:forEach items="${getTopCateName}" var="topcate" > --%>
-<%-- 													<option><c:out value="${topcate.topcate_name}"/></option> --%>
-<%-- 												</c:forEach> --%>
-												<option value="1">채소</option>
-												<option value="2">과일·견과·쌀</option>
-												<option value="3">수산·해산·건어물</option>
-												<option value="4">정육·계란</option>
-												<option value="5">생수·음료·우유·커피</option>
+											<select class="selectBox" id="categories">
+												<option value="0" selected="selected">대분류</option>
+												<c:forEach var="cvo" items="${categories }">
+												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
+												</c:forEach>
 											</select>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" name="prod_category">
-												<option>소분류</option>
-												<option value="1">1</option>
-												<option value="2">2</option>
+											<select class="selectBox" name="prod_category" id="details">
+												<option value="0" selected>소분류</option>
+												<c:forEach var="dvo" items="${details }">
+													<option value="${dvo.dcate_num }" class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
+												</c:forEach>
 											</select>
 											<label></label>
 										</div>
@@ -113,10 +93,20 @@
 											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock">
 										</div>
 										<div class="col-lg-12">
-											<label>판매 단위<span>*</span></label> <input type="text" name="prod_sellunit" id="">
+											<label>판매 단위<span>*</span></label>
+											<select class="selectBox" name="prod_sellunit">
+												<option>선택</option>
+												<option value="1봉">1봉</option>
+												<option value="1팩">1팩</option>
+												<option value="1개">1개</option>
+												<option value="1통">1통</option>
+												<option value="1박스">1박스</option>
+												<option value="1포대">1포대</option>
+											</select>
+											<label></label>
 										</div>
 										<div class="col-lg-12">
-												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight">
+												<label>중량/용량<span>*</span></label><input type="text" name="prod_weight" id="prod_weight" placeholder="ex) 430g / 1.5L">
 										</div>
 									</div>
 								</div>
@@ -130,11 +120,11 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" >
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" placeholder="ex) YYMMDD">
 											</div>
-											<div class="col-lg-12">
-												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2">
-											</div>
+<!-- 											<div class="col-lg-12"> -->
+<!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->
+<!-- 											</div> -->
 											<div class="col-lg-12">
 												<label>포장타입<span>*</span></label>
 											<select class="selectBox" name="prod_packing" >
@@ -153,9 +143,9 @@
 												<option value="직접기재">상품별 직접기재</option>
 											</select>
 											</div>
-											<div class="col-lg-12">
-												<input type="text" name="prod_keep" id="selboxDirect">
-											</div>
+<!-- 											<div class="col-lg-12"> -->
+<!-- 												<input type="text" name="prod_keep" id="selboxDirect"> -->
+<!-- 											</div> -->
 										</div>
 									</div>
 								</div>

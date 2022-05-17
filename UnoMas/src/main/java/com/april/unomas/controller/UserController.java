@@ -1,6 +1,5 @@
 package com.april.unomas.controller;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -165,6 +164,7 @@ public class UserController {
 
 		return result;
 	}
+
 	
 	// mypage
 	@RequestMapping(value = "/mypage")

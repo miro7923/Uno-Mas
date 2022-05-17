@@ -55,6 +55,9 @@
 	   <session-timeout>60</session-timeout>
 	</session-config>
 
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
 	<!-- 스프링 security 필터 추가(DelegatingFilterProxy) -->
 <!-- 	<filter> -->
 <!-- 		<filter-name>springSecurityFilterChain</filter-name> -->
