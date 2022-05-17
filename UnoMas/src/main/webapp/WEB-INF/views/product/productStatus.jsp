@@ -133,11 +133,14 @@
 								<div class="col-lg-12">
 									<h4>판매정보</h4>
 									<div class="row">
-										<div class="col-lg-3">
-											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo. prod_price }" readonly>
+										<div class="col-lg-12">
+											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo.prod_price }" readonly>
 										</div>
 										<div class="col-lg-3">
-											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }" readonly>
+											<label>할인율<span></span></label> <input type="text" name="prod_discntrate" id="prod_discntrate" value="${vo.prod_discntrate }">
+										</div>
+										<div class="col-lg-3">
+											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo.prod_stock }" readonly>
 										</div>
 										<div class="col-lg-3">
 											<label>판매 단위<span>*</span></label>
@@ -152,7 +155,6 @@
 								<!-- 판매정보 끝-->
 								<!-- 추가항목 -->
 								<div class="col-lg-12">
-									<div class="place-order">
 										<h4>추가항목</h4>
 										<div class="row">
 											<div class="col-lg-3">
@@ -176,7 +178,6 @@
 <!-- 												<input type="text" name="prod_keep" id="selboxDirect"> -->
 <!-- 											</div> -->
 										</div>
-									</div>
 								</div>
 							</div>
 							<!-- 추가항목 끝-->
@@ -190,7 +191,7 @@
 							</div>
 							<div class="product-list">
 		                        <div class="row">
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>기본 이미지(세로)</h5><br>
@@ -203,7 +204,7 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>상품 상세 설명</h5><br>
@@ -216,13 +217,26 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>썸네일</h5><br>
 				                                    <div class="pi-pic">
 				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
 				                                        <div class="sale pp-sale">3</div>
+				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                    </div>
+		                                     	<div class="catagory-name">[이미지 삭제]</div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-3 col-sm-6">
+		                                <div class="product-item">
+		                                    <div class="pi-text">
+		                                        <h5>품절 시 대체 썸네일</h5><br>
+				                                    <div class="pi-pic">
+				                                        <img src="${path}/resources/img/products/product-4.jpg" alt="">
+				                                        <div class="sale pp-sale">4</div>
 				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
 				                                    </div>
 		                                     	<div class="catagory-name">[이미지 삭제]</div>

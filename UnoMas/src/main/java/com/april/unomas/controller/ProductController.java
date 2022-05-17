@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
@@ -152,10 +153,7 @@ public class ProductController {
 	public String productLookup(ProdCriteria pc, Model model) throws Exception {
 		
 		// 상품 데이터 조회
-		log.info(pc+"");
 		List<ProductVO> productList = service.getAllProductList(pc);
-		log.info(productList+"");
-		
 		model.addAttribute("productList", productList);
 		
 		// 하단 페이지 처리
@@ -205,6 +203,31 @@ public class ProductController {
 		service.updateProduct(vo);
 		
 		return "redirect:/product/product_lookup";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public Integer productsDelete(@RequestParam(value = "chbox[]") List<String> chArr,  ProductVO vo) throws Exception {
+		log.info("productsDelete 호출");
+		log.info(vo+"");
+//		log.info(prod_num+"");
+		int result = 0;
+		int prod_num = 0;
+		
+//		if(vo != null) {
+//			vo.setProd_num(prod_num);
+		
+			for(String i : chArr) {
+				log.info("체크한 상품 번호"+i);
+				prod_num = Integer.parseInt(i);
+				log.info("pord_num :"+prod_num);
+				vo.setProd_num(prod_num);
+				log.info("vo.setProd_num :"+vo);
+				service.deleteProduct(vo);
+			}
+			result = 1;
+//		}
+		
+		return result;
 	}
 	
 	@RequestMapping(value = "/shopping-cart")

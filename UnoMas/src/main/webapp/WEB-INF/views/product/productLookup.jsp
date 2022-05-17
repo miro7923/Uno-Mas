@@ -9,6 +9,37 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+		$(".selectDel-button").click(function(){
+			var check = confirm("선택한 상품을 삭제하시겠습니까?");
+			
+			if(check) {
+				var checkArr = new Array();
+				
+				$("input[class='chBox']:checked").each(function(){
+					checkArr.push($(this).attr("prod_num"));
+					console.log(checkArr);
+// 					console.log(chbox);
+				});
+				
+				$.ajax({
+					type : "POST",
+					url : "${contextPath}/product/delete",
+					data : {chbox : checkArr},
+					success : function(){
+						location.href = "/product/product_lookup";
+					}, error : function(){
+						alert("상품삭제 에러");
+					}
+				})
+			}
+		});
+		
+	});
+
+
+</script>
 
 <!-- Start Header -->
 <body>
@@ -60,11 +91,13 @@
 											</div>
 											<div class="col-lg-12">
 											<label></label>
+		                                        <button type="button" class="cancel-button" >취소</button>
+		                                        <button type="button" class="selectDel-button" >선택삭제</button>
 												<div class="cart-table">
 													<table>
 														<thead>
 															<tr>
-																<th><input type="checkbox" id="cbx_checkAll"></th>
+																<th><input type="checkbox" id="allCheck"></th>
 																<th>품번</th>
 																<th>상품명</th>
 																<th>판매가</th>
@@ -80,7 +113,7 @@
 																	<c:choose>
 																		<c:when test="${vo.prod_stock eq 0 }">
 																			<td class="cart-pic first-row">
-																				<input type="checkbox" name="check">
+																				<input type="checkbox" class="chBox" name="chBox" prod_num="${vo.prod_num }">
 																			<td class="normal-row"><span class="sold">${vo.prod_num }</span></td>
 			<!-- 															<td class="cart-title first-row"> -->
 																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }"><span class="sold">${vo.prod_name }</span></a></td>
@@ -93,7 +126,7 @@
 																		</c:when>
 																		<c:otherwise>
 																			<td class="cart-pic first-row">
-																				<input type="checkbox" name="check">
+																				<input type="checkbox" class="chBox" name="chBox" prod_num="${vo.prod_num }">
 																			</td>
 																			<td class="normal-row">${vo.prod_num }</td>
 			<!-- 															<td class="cart-title first-row"> -->
@@ -131,22 +164,11 @@
 												</div>
 												</div>
 												<!-- 페이징처리 -->
-												<button type="button" class="back-button" onclick="history.back();">삭제</button>
-		                                        <button type="submit" class="site-button" >수정</button>
 											</div>
 										</div>
 									</div>
 								</div>
 							</form>
-							
-							
-							
-							
-							
-							
-							
-							
-							
 					</div>
 
 

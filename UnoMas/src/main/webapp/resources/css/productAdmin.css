@@ -298,6 +298,30 @@ select:focus option:checked:hover {
     float: right;
 }
 
+.selectDel-button {
+	color: #ffffff;
+    background: #b9ce45;
+    border: 1px solid #b9ce45;
+    margin: 3px 3px 10px 3px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+	cursor: pointer;
+    float: right;
+}
+
+.cancel-button {
+	color: #ffffff;
+    background: #e2e2e2;
+    border: 1px solid #e2e2e2;
+    margin: 3px 3px 10px 3px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+	cursor: pointer;
+    float: right;
+}
+
 .back-button {
     color: #ffffff;
     background: #e2e2e2;
@@ -338,11 +362,6 @@ select:focus option:checked:hover {
     background: #b9ce45;
     color: #ffffff;
 }
-
-
-
-
-
 
 
 

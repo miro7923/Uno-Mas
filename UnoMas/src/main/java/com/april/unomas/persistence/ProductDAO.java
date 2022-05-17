@@ -17,7 +17,10 @@ public interface ProductDAO {
 	
 	// 상품 수정
 	public void updateProduct(ProductVO vo) throws Exception;
-
+	
+	// 상품 삭제
+	public void deleteProduct(ProductVO vo) throws Exception;
+	
 	// 상품 목록 상위 카테고리별로 불러오기
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
 	

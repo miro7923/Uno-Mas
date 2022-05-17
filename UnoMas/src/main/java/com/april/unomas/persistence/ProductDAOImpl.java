@@ -35,6 +35,11 @@ public class ProductDAOImpl implements ProductDAO {
 	public void updateProduct(ProductVO vo) throws Exception {
 		sqlSession.update(NAMESPACE+".updateProduct", vo);
 	}
+	
+	@Override
+	public void deleteProduct(ProductVO vo) throws Exception {
+		sqlSession.delete(NAMESPACE+".deleteProduct", vo);
+	}
 
 	@Override
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception{
@@ -63,7 +68,6 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public List<CategoryVO> getTopCategory() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+".getTopCategory");
 	}
 
@@ -74,7 +78,6 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List<CategoryVO> getDCategory() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE + ".getDCategory");
 	}
 
@@ -85,7 +88,6 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public List<CategoryVO> getCategory(int dcate_num) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE + ".getCategory", dcate_num);
 	}
 

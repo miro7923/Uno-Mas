@@ -7,9 +7,11 @@
     <!-- 상품 등록 (이미지 x)-->
     <insert id="setProduct">
     	INSERT INTO products(prod_name, prod_category, prod_price, prod_stock, prod_expire, 
-    						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing)
+    						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, 
+    						prod_packing, prod_discntrate)
     	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
-    			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
+    			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, 
+    			#{prod_packing}, ${prod_discntrate})
     </insert>
     
     <!-- 상품 수정 -->
@@ -18,10 +20,16 @@
     	SET prod_name=#{prod_name}, prod_category=#{prod_category}, prod_price=#{prod_price}, 
     		prod_stock=#{prod_stock}, prod_expire=#{prod_expire}, prod_keep=#{prod_keep}, 
     		prod_weight=#{prod_weight}, prod_country=#{prod_country}, prod_sellunit=#{prod_sellunit}, 
-    		prod_explain=#{prod_explain}, prod_packing=#{prod_packing}
+    		prod_explain=#{prod_explain}, prod_packing=#{prod_packing}, prod_discntrate=#{prod_discntrate}
     	WHERE prod_num=#{prod_num}
     </update>
 
+	<!-- 상품 삭제 -->
+	<delete id="deleteProduct">
+		DELETE FROM products
+		WHERE prod_num=#{prod_num}
+	</delete>
+	
     <!-- 상품 목록 카테고리별로 불러오기 -->
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
         SELECT * 

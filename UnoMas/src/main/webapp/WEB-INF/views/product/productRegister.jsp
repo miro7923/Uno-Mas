@@ -90,6 +90,9 @@
 											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price">
 										</div>
 										<div class="col-lg-12">
+											<label>할인율<span>*</span></label> <input type="text" name="prod_discntrate" id="prod_discntrate" placeholder="0 ~ 100">
+										</div>
+										<div class="col-lg-12">
 											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock">
 										</div>
 										<div class="col-lg-12">
@@ -161,7 +164,7 @@
 							</div>
 							<div class="product-list">
 		                        <div class="row">
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>기본 이미지(세로)</h5><br>
@@ -174,7 +177,7 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>상품 상세 설명</h5><br>
@@ -187,13 +190,26 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>썸네일</h5><br>
 				                                    <div class="pi-pic">
 				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
 				                                        <div class="sale pp-sale">3</div>
+				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                    </div>
+		                                     	<div class="catagory-name">[이미지 삭제]</div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-3 col-sm-6">
+		                                <div class="product-item">
+		                                    <div class="pi-text">
+		                                        <h5>품절 시 대체 썸네일</h5><br>
+				                                    <div class="pi-pic">
+				                                        <img src="${path}/resources/img/products/product-4.jpg" alt="">
+				                                        <div class="sale pp-sale">4</div>
 				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
 				                                    </div>
 		                                     	<div class="catagory-name">[이미지 삭제]</div>

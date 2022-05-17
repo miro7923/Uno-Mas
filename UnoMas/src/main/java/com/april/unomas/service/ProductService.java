@@ -17,6 +17,9 @@ public interface ProductService {
 	// 상품 수정
 	public void updateProduct(ProductVO vo) throws Exception;
 	
+	// 상품 삭제
+	public void deleteProduct(ProductVO vo) throws Exception;
+	
 	// 상위 카테고리별로 상품 목록 가져오는 메서드
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
 	
