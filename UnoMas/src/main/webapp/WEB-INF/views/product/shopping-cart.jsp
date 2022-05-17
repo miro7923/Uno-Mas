@@ -112,9 +112,9 @@
                             </div>
                         </div>
                         <div class="col-lg-4 offset-lg-4">
-                        	<div class="cartUpdate">
-                                <button type="submit" id="btnUpdate" class="primary-btn up-cart">장바구니 수정하기</button>
-                        	</div>
+<!--                         	<div class="cartUpdate"> -->
+<!--                                 <button type="submit" id="btnUpdate" class="primary-btn up-cart">장바구니 수정하기</button> -->
+<!--                         	</div> -->
                             <div class="proceed-checkout">
                                 <ul>
                                     <li class="subtotal">총 상품가격 <span><fmt:formatNumber value="${map.sumMoney}" pattern="#,###,###" />원</span></li>

@@ -125,7 +125,7 @@ function insertCart() {
         }
         else {
             $.ajax({
-            url: '/product/cart/insert',
+            url: '/product/insert_cart',
             data: {
                 'user_num': $('#user_num').val(),
                 'prod_num': $('#prod_num').val(),
