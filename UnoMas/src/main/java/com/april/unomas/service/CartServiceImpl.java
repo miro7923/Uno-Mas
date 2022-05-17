@@ -37,12 +37,6 @@ public class CartServiceImpl implements CartService{
 		cartDao.deleteAll(user_num);
 		
 	}
-
-	@Override
-	public int sumMoney(int user_num) {
-		return cartDao.sumMoney(user_num);
-	}
-
 	@Override
 	public int countCart(int user_num, int prod_num) {
 		return cartDao.countCart(user_num, prod_num);
@@ -59,6 +53,9 @@ public class CartServiceImpl implements CartService{
 		cartDao.modifyCart(vo);
 		
 	}
-	
+	@Override
+	public int sumMoney(int user_num) {
+		return cartDao.sumMoney(user_num);
+	}
 
 }

@@ -4,12 +4,14 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +40,7 @@ public class ProductAjaxController {
 		int user_num = Integer.parseInt(request.getParameter("user_num"));
 		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
 		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
-		
+
 		service.insertCart(user_num, prod_num, prod_amount);
 	}
 	
