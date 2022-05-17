@@ -26,12 +26,13 @@ public class CartController {
 	CartService cartService;
 	
 	// 장바구니 담기
-	@RequestMapping("insertCart")
+	@RequestMapping("insert")
 	public String insert(@ModelAttribute CartVO vo,HttpSession session) {
 		
 		//로그인 여부를 체크하기 위해 세션에 저장된 아이디 확인
 
-        Integer user_num=(Integer)session.getAttribute("user_num");
+		UserVO uvo = (UserVO)session.getAttribute("saveID");
+	    int user_num= uvo.getUser_num();
         vo.setUser_num(user_num);
         // 장바구니에 기존 상품 있는지 검사
         int count = cartService.countCart(vo.getProd_num(),user_num);

@@ -17,8 +17,6 @@ public class CartDAOImpl implements CartDAO{
 	@Inject
 	SqlSession sqlSession;
 	CartDAO cartDao;
-	
-	private static String namespace = "com.april.unomas.mappers.cartMapper";
 
 	@Override
 	public int insert(CartVO vo) {

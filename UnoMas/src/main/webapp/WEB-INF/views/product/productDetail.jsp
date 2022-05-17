@@ -1,3 +1,4 @@
+<%@page import="com.april.unomas.domain.UserVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,9 +18,8 @@
 
 <%
     String user_id = (String) session.getAttribute("user_id");
-
-    int user_num = 1;
-
+	UserVO uvo = (UserVO)session.getAttribute("saveID");
+	int user_num= uvo.getUser_num();
     // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
     boolean isInWishlist = false;
 %>
@@ -135,9 +135,9 @@
 									    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
 									        onclick="toggleWishlistBtn();"></button>
 								   <% } %>
-								   <form action="/product/insert_cart">
+								   <form action="/product/cart/insert">
 								   </form>
-								       <input type="hidden" id="user_num" value="<%=user_num%>">
+								       <input type="hidden" id="user_num" value="<%=user_num %>">
 								       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 								       <input type="hidden" id="prod_amount" value="1">
 									<button class="primary-btn pd-cart" id="cartBtn" 

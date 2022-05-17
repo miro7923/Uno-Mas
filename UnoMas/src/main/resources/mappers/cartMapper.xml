@@ -6,12 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.april.unomas.mappers.cartMapper">
 	<!-- 장바구니에 담기 -->
     <insert id="insert">
-        insert into cart (user_num, prod_num, prod_amount)
-        values (#{user_num}, #{prod_num}, #{prod_amount})
- 
-		<!-- 장바구니 담기 버튼을 누를때 실행되는 쿼리문 -->
-		<!-- user_num, product_num, amount 저장 -->
-		<!-- cart_num는 자동으로 1씩 증가하게 설정 -->
+        INSERT INTO unomasdb.cart (user_num, prod_num, prod_amount)
+        VALUES (#{user_num}, #{prod_num}, #{prod_amount})
     </insert>
     
     <!-- 장바구니 목록 -->
@@ -54,8 +50,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 장바구니에 기존의 상품이 존재하면 수정 -->
 	<update id="updateCart">
-		UPDATE cart	SET prod_amount = prod_amount + #{prod_amount} 
-		WHERE user_num= #{user_num} AND prod_num = #{prod_num}
+		UPDATE unomasdb.cart
+		SET prod_amount = prod_amount + #{prod_amount} 
+		WHERE user_num = #{user_num} AND prod_num = #{prod_num}
 	</update>
     
     <!-- 장바구니 전체 금액 -->
