@@ -24,7 +24,7 @@
                     <div class="col-2" style="line-height: 40px; " > 
                     <label class="mx-2">유형</label> 
                     </div>
-	<input type="hidden" name="user_num" value="1">
+	<input type="hidden" name="user_num" value="">
                     <div class="col-5 input-group-prepend" style="display: inline;">
                         <select class="custom-select" id="select1" name="qnacate_num" onchange="submitButtonColorChange()">
                             <option selected disabled>문의 유형을 선택해주세요</option>
@@ -76,10 +76,10 @@
                     <div class="col-10" >
                         <div class="row pl-3" >
 <!--                             <input class="form-control" type="file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" name="qna_img" id="qna_img"></input> -->
-                        	<label class="form-control" for="input-file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" ></label>
-                        	<input id="input-file" type="file" style="display: none;" name="qna_image1"></input>
-                        	<label class="form-control" for="input-file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" ></label>
-                        	<input id="input-file" type="file" style="display: none;" name="qna_image2"></input>
+<!--                         	<label class="form-control" for="input-file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" ></label> -->
+                        	<input id="input-file" type="file" name="qna_image1"></input>
+<!--                         	<label class="form-control" for="input-file" style="width: 100px; height: 100px; background-image:url(https://cdn-icons-png.flaticon.com/512/1555/1555492.png);background-position:top right; background-repeat:no-repeat; background-size: 100px;" ></label> -->
+                        	<input id="input-file" type="file" name="qna_image2"></input>
                         </div>
                         <div class="row pl-3 my-3">
                             * 4MB 이하의 이미지만 업로드 가능합니다.<br>

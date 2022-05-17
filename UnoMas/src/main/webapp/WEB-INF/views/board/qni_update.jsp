@@ -546,7 +546,7 @@ ul {
     <div class="css-171zbec eug5r8l1">
         <h3 class="css-1ttk28w eug5r8l0">자주하는 질문</h3>
         <div class="css-185m8ch e1153ede0">
-            <form method="post" action="/qni_update">
+            <form method="post" action="/board/qni_update">
             
                 <div class="css-17bp14q e1vbjq4w3">
                     <div class="css-mm5tap e1vbjq4w2"><label for="inquiry-subject" data-testid="label-text">제목<span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span></label></div>
