@@ -3,21 +3,21 @@ $(document).ready(function() {
     
     convertCurrency();
     calcTotalPrice();
-    insertCart();
+    getPageNum();
 });
 
 function initReview() {
 	for (var i = 0; i < 7; i++) {
-		var id = '#reviewContent' + i;
+		var id = '#reviewContentBox' + i;
 		$(id).hide();
 	}
 }
 
 function toggleReview(num) {
-	var id = '#reviewContent' + num;
+	var id = '#reviewContentBox' + num;
 	$(id).toggle();
     for (var i = 0; i <= 7; i++) {
-        id = '#reviewContent' + i;
+        id = '#reviewContentBox' + i;
         if (i == num) continue;
 		
         $(id).hide();
@@ -25,10 +25,9 @@ function toggleReview(num) {
 }
 
 function updateReviewReadcnt(num) {
-	var id = '#reviewContent' + num;
+	var id = '#reviewContentBox' + num;
 	if ($(id).css('display') == 'none') {		
-	    var reId = '#review_num' + num;
-	    var reNum = $(reId).val();
+	    var reNum = $('#reviewNum' + num).text();
 	    
 		// 조회수 증가
 	    $.ajax({
@@ -44,15 +43,28 @@ function updateReviewReadcnt(num) {
 	}
 }
 
-function addLikeCnt(review_num) {
+function addLikeCnt(review_num, idNum) {
 	$.ajax({
 		type: 'get',
 		url: '/product/update_likecnt?review_num='+review_num,
 		success: function(data) {
-			$('#reviewLikecnt' + review_num).text(data);
+			$('#reviewLikecnt' + idNum).text(data);
 		},
 		error: function() {
 			alert('좋아요 증가 실패');
+		}
+	});
+}
+
+function cancelLikeCnt(review_num, idNum) {
+	$.ajax({
+		type: 'get',
+		url: '/product/cancel_like?review_num'+review_num,
+		success: function(data) {
+			$('#reviewLikecnt' + idNum).text(data);
+		},
+		error: function(data) {
+			alert('좋아요 취소 실패');
 		}
 	});
 }
@@ -77,8 +89,43 @@ function toggleQna(num) {
     }
 }
 
-function toggleWishlistBtn() {
-    alert('위시리스트 메서드 호출');
+function toggleWishlistBtn(user_num, prod_num) {
+	if ($('#isInWishlist').val() == 'true') {
+		// 위시리스트에 추가되어 있으면 삭제
+		$.ajax({
+			type: 'get',
+			url: '/product/delete_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
+			success: function() {
+				// 버튼만 변경
+				$('#isInWishlist').attr('value', false);
+				$('#wishlistBtn').attr('class', 'icon_heart_alt');
+			},
+			error: function() {
+				alert('위시리스트 제거 실패');
+			}
+		});		
+	}
+	else {
+		if (user_num == null) {
+			if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?'))
+				location.href = '/user/login';
+		}
+		else {			
+			// 그렇지 않으면 추가
+			$.ajax({
+				type: 'get',
+				url: '/product/add_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
+				success: function() {
+					// 버튼만 변경
+					$('#isInWishlist').attr('value', true);
+					$('#wishlistBtn').attr('class', 'icon_heart');
+				},
+				error: function() {
+					alert('위시리스트 추가 실패');
+				}
+			});		
+		}
+	}
 }
 
 function calcTotalPrice() {
@@ -119,22 +166,129 @@ function convertCurrency() {
 }
 
 function insertCart() {
-    $('#cartBtn').click(function() {
-        if ($('#prod_amount').val() <= 0) {
-            alert('수량을 1개 이상 선택해 주세요!'); 
+    if ($('#prod_amount').val() <= 0) {
+        alert('수량을 1개 이상 선택해 주세요!'); 
+    }
+    else {
+		// 장바구니 매핑주소 수정되면 현빈이껄로 변경하기
+        $.ajax({
+        url: '/product/insert_cart',
+        data: {
+            'user_num': $('#user_num').val(),
+            'prod_num': $('#prod_num').val(),
+            'prod_amount': $('#prod_amount').val()
+              },
+        success: function() {
+            if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?'))
+            	location.href = '/product/shopping-cart';
         }
-        else {
-            $.ajax({
-            url: '/product/cart/insert',
-            data: {
-                'user_num': $('#user_num').val(),
-                'prod_num': $('#prod_num').val(),
-                'prod_amount': $('#prod_amount').val()
-                  },
-            success: function() {
-                alert('장바구니에 상품을 넣었습니다!');
-            }
-            });
-        }
-    });
+        });
+    }
+}
+
+function askLogin() {
+	if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?'))
+		location.href = '/user/login';
+}
+
+function getPageNum() {
+	var id = '#reviewPage' + $('#curReviewPage').val();
+    $(id).css('font-weight', 'bold');
+    $(id).css('color', '#B9CE45');
+    
+    id = '#inquiryPage' + $('#curInquiryPage').val();
+    $(id).css('font-weight', 'bold');
+    $(id).css('color', '#B9CE45');
+}
+
+function changePageNum(num, maxNum, boardType) {    
+    if (boardType == 'review') {
+	    initReview();
+	    
+	    var id = '#reviewPage' + num;
+	    
+	    $(id).css('font-weight', 'bold');
+	    $(id).css('color', '#B9CE45');
+	    
+	    for (var i = 1; i <= maxNum; i++) {
+	        if (num == i) continue;
+	        
+	        id = '#reviewPage' + i;
+	        $(id).css('font-weight', '');
+	    	$(id).css('color', 'black');
+	    }
+	    
+	    $.ajax({
+			type: 'get',
+			url: '/product/review_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			success: function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$('#reviewTitle'+i).text(data[i].review_title);
+					$('#reviewNum'+i).text(data[i].review_num);
+					$('#reviewUserid'+i).text(data[i].user_id);
+					
+					// Timestamp 변환
+					var regdate = new Date(data[i].review_regdate);
+					var year = regdate.getFullYear();
+					var month = regdate.getMonth() + 1;
+					var day = regdate.getDate();
+					$('#reviewRegdate'+i).text(year + '. ' + month + '. ' + day);
+					
+					$('#reviewReadcnt'+i).text(data[i].review_readcnt);
+					$('#reviewRating'+i).text(data[i].review_rating + ' / 5.0');
+					$('#reviewContent'+i).text(data[i].review_content);
+				}
+			}
+		});
+		
+		$('#curReviewPage').val(num);
+	}
+	else {
+		initQna();
+		
+	    var id = '#inquiryPage' + num;
+	    
+	    $(id).css('font-weight', 'bold');
+	    $(id).css('color', '#B9CE45');
+	    
+	    for (var i = 1; i <= maxNum; i++) {
+	        if (num == i) continue;
+	        
+	        id = '#inquiryPage' + i;
+	        $(id).css('font-weight', '');
+	    	$(id).css('color', 'black');
+	    }
+	    
+		$.ajax({
+			type: 'get',
+			url: '/product/inquiry_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			success: function(data) {
+				for (var i = 0; i < data.length; i++) {
+					$('#inquiryNum'+i).text(data[i].p_inquiry_num);
+					$('#inquiryTitle'+i).text(data[i].p_inquiry_title);
+					$('#inquiryUserid'+i).text(data[i].user_id);
+					
+					// Timestamp 변환
+					var regdate = new Date(data[i].p_inquiry_regdate);
+					var year = regdate.getFullYear();
+					var month = regdate.getMonth() + 1;
+					var day = regdate.getDate();
+					$('#inquiryRegdate'+i).text(year + '. ' + month + '. ' + day);
+					
+					$('#inquiryContent'+i).text(data[i].p_inquiry_content);
+				}
+			}
+		});
+		
+		$('#curInquiryPage').val(num);
+	}
+}
+
+function confirmToRemove(type, postNum, prodNum) {
+	if (confirm('정말 삭제 하시겠습니까?')) {
+		if (type == 'review')
+			location.href = '/product/remove_review?review_num=' + postNum + '&prod_num=' + prodNum;
+		else 
+			location.href = '/product/remove_inquiry?inquiry_num=' + postNum + '&prod_num=' + prodNum;
+	}
 }
