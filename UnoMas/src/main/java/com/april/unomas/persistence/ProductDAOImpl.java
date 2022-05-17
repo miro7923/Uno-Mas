@@ -53,6 +53,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public List<Integer> getTopcateCnt(int topcate_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getTopcateCnt", topcate_num);
+	}
+
+	@Override
 	public Integer getProductCnt(ProdCriteria pc) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProdCnt", pc);
 	}
@@ -95,6 +100,11 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public void updateProdReadcnt(int prod_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".addProdReadcnt", prod_num);
+	}
+
+	@Override
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
 		Map<String, Object> cart = new HashMap<String, Object>();
 		cart.put("user_num", user_num);
@@ -125,13 +135,18 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public int getLastReviewNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getLastReviewNum");
+	}
+
+	@Override
 	public void insertReview(BoardReviewVO vo) throws Exception {
 		sqlSession.insert(NAMESPACE + ".insertReview", vo);
 	}
 
 	@Override
-	public List<BoardReviewVO> getReviewList(int prod_num) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getReviewList", prod_num);
+	public List<BoardReviewVO> getReviewList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getReviewList", pc);
 	}
 
 	@Override
@@ -150,13 +165,38 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public void cancelLike(int revuew_num) throws Exception {
+		sqlSession.update(NAMESPACE + ".cancelLike", revuew_num);
+	}
+
+	@Override
 	public BoardReviewVO getReview(int review_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getReviewReadCnt", review_num);
 	}
 
 	@Override
-	public List<ProdInquiryVO> getInquiryList(int prod_num) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getInquiryList", prod_num);
+	public void updateReview(BoardReviewVO vo) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateReview", vo);
+	}
+
+	@Override
+	public String getReviewImg(int review_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getReviewImg", review_num);
+	}
+
+	@Override
+	public void deleteReview(int review_num) throws Exception {
+		sqlSession.delete(NAMESPACE + ".deleteReview", review_num);
+	}
+
+	@Override
+	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getInquiryList", pc);
+	}
+
+	@Override
+	public int getInquiryCnt(int prod_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getInquiryCnt", prod_num);
 	}
 
 	@Override
@@ -165,11 +205,54 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public ProdInquiryVO getInquiry(int inquiry_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getInquiry", inquiry_num);
+	}
+
+	@Override
+	public void updateInquiry(ProdInquiryVO vo) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateInquiry", vo);
+	}
+
+	@Override
+	public void deleteInquiry(int inquiry_num) throws Exception {
+		sqlSession.delete(NAMESPACE + ".deleteInquiry", inquiry_num);
+	}
+
+	@Override
 	public void updateReviewLikeCnt(int review_num) throws Exception {
 		sqlSession.update(NAMESPACE + ".updateLikecnt", review_num);
 	}
 
 	@Override
+	public boolean isInWishlist(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		if (sqlSession.selectOne(NAMESPACE + ".isInWishlist", map) == null) 
+			return false;
+		
+		return true;
+	}
+
+	@Override
+	public void insertWishlist(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		sqlSession.insert(NAMESPACE + ".insertWishlist", map);
+	}
+
+	@Override
+	public void deleteWishlist(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		sqlSession.delete(NAMESPACE + ".deleteWishlist", map);
+
 	public List<SelectVO> readcntSelect() throws Exception {
 		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".readcntSelect");
 	}

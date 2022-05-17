@@ -23,7 +23,7 @@ function getPageNum() {
     $(id).css('color', '#B9CE45');
 }
 
-function changeSort(num, start, maxNum) {
+function changeSort(num, maxNum) {
     var id = '#category' + num;
     
     $(id).css('color', '#B9CE45');
