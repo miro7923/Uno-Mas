@@ -1,3 +1,4 @@
+<%@page import="com.april.unomas.domain.UserVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,21 +13,10 @@
 <!-- Start Header -->
 
 <body>
-	<script>
-		function selectAll(selectAll){ // 전체 체크박스기능
-			const checkboxes = document.getElementsByName('cartCheck');
-			checkboxes. forEach((checkbox) => {
-				checkbox.checked = selectAll.checked;
-			})
-		}
-		$(function(){ // 장바구니 비우기
-			$("#btnDelete").click(function(){
-				if(confirm("장바구니를 비우시겠습니까?")){
-					location.href="${path}/product/cart/deleteAll.do";
-				}
-			});
-		});
-	</script>
+	<%
+	UserVO vo = (UserVO)session.getAttribute("saveID");
+
+	%>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
@@ -38,6 +28,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text product-more">
                         <span>장바구니</span>
+                        <h5><%out.print(vo); %></h5>
                     </div>
                 </div>
             </div>
@@ -56,7 +47,7 @@
 					    		<table>
 		                        	<thead>
 		                            	<tr>
-		                                	<th class="cartCheck"><input type="checkbox" name="cartCheck" value="selectall" onclick='selectAll(this)'/></th>
+		                                	<th class="cartCheck"><input type="checkbox" name="selectall" value="selectall" onclick='selectAll(this)'/></th>
 		                                    <th>이미지</th>
 		                                    <th class="p-name">상품 정보</th>
 		                                    <th>가격</th>
@@ -74,11 +65,11 @@
 					    	</c:when>
 					    	
 					    	<c:otherwise>
-					    		<form id="cartForm" name="cartForm" method="post" action="${path}/product/cart/update.do">
+					    		<form id="cartForm" name="cartForm" method="post" action="${path}/product/cart/updateCart">
 							    	<table>
 			                            <thead>
 			                                <tr>
-			                                	<th class="cartCheck"><input type="checkbox" name="cartCheck" value="selectall" onclick='selectAll(this)'/></th>
+			                                	<th class="cartCheck"><input type="checkbox" name="selectall" value="selectall" onclick='selectAll(this)'/></th>
 			                                    <th>이미지</th>
 			                                    <th class="p-name">상품 정보</th>
 			                                    <th>가격</th>
@@ -90,10 +81,11 @@
 			                            <tbody>
 			                                <c:forEach var="row" items="${map.list}" varStatus="i">
 			                                <tr>
-			                                	<td class="cartCheck"><input type="checkbox" name="cartCheck" value="check1"/></td>
+			                                	<td class="cartCheck"><input type="checkbox" name="cartCheck" value="check"  onclick='checkSelectAll()'
+                                					data-wishNum="${row.cart_num}"/></td>
 			                                    <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
 			                                    <td class="cart-title first-row">${row.prod_name}</td>
-			                                    <td class="p-price first-row"><fmt:formatNumber value="${row.prod_price}" pattern="#,###,###" /></td>
+			                                    <td class="p-price first-row"><fmt:formatNumber value="${row.prod_price}" pattern="#,###,###" />원</td>
 			                                    <td class="qua-col first-row">
 			                                        <div class="quantity">
 			                                            <div class="pro-qty">
@@ -102,7 +94,7 @@
 			                                        </div>
 			                                        <input type="hidden" name="cartNum" value="${row.cart_num}">
 			                                    </td>
-			                                    <td class="total-price first-row"><fmt:formatNumber value="${row.prod_money}" pattern="#,###,###" /></td>
+			                                    <td class="total-price first-row"><fmt:formatNumber value="${row.prod_price*row.prod_amount}" pattern="#,###,###" />원</td>
 			                                    <td class="close-td first-row"><a href="${path}/product/cart/delete.do?cart_num=${row.cart_num}"><i class="ti-close"></i></a></td>
 			                                </tr>
 			                                </c:forEach>
@@ -146,6 +138,33 @@
 
     <!-- Js Plugins -->
     <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+    <script>
+    function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 selectall체크박스 체크on
+		const checkboxes = document.querySelectorAll('input[name="cartCheck"]'); // 전체 체크박스
+		const checked = document.querySelectorAll('input[name="cartCheck"]:checked'); // 선택된 체크박스
+		const selectAll = document.querySelector('input[name="selectall"]'); // selectall 체크박스
+		
+		if(checkboxes.length === checked.length) {
+			selectAll.checked = true;
+		} else {
+			selectAll.checked = false;
+		}
+	}
+
+	function selectAll(selectAll)  { // selectall 체크박스로 on/off
+		const checkboxes = document.getElementsByName('cartCheck');
+			checkboxes.forEach((checkbox) => {
+			checkbox.checked = selectAll.checked
+		})
+	}
+		$(function(){ // 장바구니 비우기
+			$("#btnDelete").click(function(){
+				if(confirm("장바구니를 비우시겠습니까?")){
+					location.href="${path}/product/cart/deleteAll.do";
+				}
+			});
+		});
+	</script>
     <script src="${path}/resources/js/bootstrap.min.js"></script>
     <script src="${path}/resources/js/jquery-ui.min.js"></script>
     <script src="${path}/resources/js/jquery.countdown.min.js"></script>

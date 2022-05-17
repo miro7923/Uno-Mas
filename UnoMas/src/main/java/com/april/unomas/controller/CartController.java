@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +25,7 @@ public class CartController {
 	CartService cartService;
 	
 	// 장바구니 담기
-	@RequestMapping("insert.do")
+	@RequestMapping("insertCart")
 	public String insert(@ModelAttribute CartVO vo,HttpSession session) {
 		
 		//로그인 여부를 체크하기 위해 세션에 저장된 아이디 확인
@@ -38,20 +39,20 @@ public class CartController {
         } else { // 있으면 update
         	cartService.updateCart(vo);
         }
-        return "redirect:/products/cart/list.do"; // 장바구니 목록으로 이동
+        return "redirect:/products/cart/list"; // 장바구니 목록으로 이동
 	}
 	
 	// 장바구니 목록
-	@RequestMapping("list.do")
+	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public ModelAndView list(HttpSession session, ModelAndView mav) {
 		Map<String, Object> map=new HashMap<String, Object>();
 	 
-	    Integer user_num=(Integer)session.getAttribute("user_num");
+	    int user_num=1;
+	    		//(Integer)session.getAttribute("user_num");
 	        	
 	        List<CartVO> list=cartService.listCart(user_num);  // 장바구니 목록
 	        int sumMoney=cartService.sumMoney(user_num);  // 총 상품가격
 	        int fee=sumMoney >= 50000 ? 0 : 2500; // 배송비 계산
-	 
 	 
 	        map.put("list", list); // 장바구니 정보를 map에 저장
 	        map.put("count", list.size()); // 장바구니 상품의 유무
@@ -67,29 +68,30 @@ public class CartController {
 	 
 	        
 	 }
-	 
+	
 	 // 장바구니 단품 삭제
-	 @RequestMapping("delete.do")
+	 @RequestMapping("delete")
 	 public String delete(@RequestParam int cart_num) {
 	        cartService.delete(cart_num);
-	        return "redirect:/product/cart/list.do";
+	        return "redirect:/product/cart/list";
 	 }
 	 
 	// 장바구니 비우기
-	@RequestMapping("deleteAll.do")
+	@RequestMapping("deleteAllCart")
 	   public String deleteAll(HttpSession session) {
 	       Integer user_num=(Integer)session.getAttribute("user_num");
 	       if(user_num!=null) {
 	           cartService.deleteAll(user_num);
 	       }
-	       return "redirect:/product/cart/list.do";
+	       return "redirect:/product/cart/list";
 	}
 	 
 	// 장바구니 수정
-	@RequestMapping("update.do")
+	@RequestMapping("updateCart")
 		public String update(@RequestParam int[] prod_amount, @RequestParam int[] prod_num, HttpSession session) {
 			// session의 id
-			Integer user_num=(Integer)session.getAttribute("user_num");
+			Integer user_num=1;
+					//(Integer)session.getAttribute("user_num");
 			// 레코드의 갯수 만큼 반복문 실행
 			for(int i=0; i<prod_num.length; i++){
 				CartVO vo = new CartVO();
@@ -99,6 +101,6 @@ public class CartController {
 				cartService.modifyCart(vo);
 			}
 			
-			return "redirect:/product/cart/list.do";
+			return "redirect:/product/cart/list";
 	}
 }

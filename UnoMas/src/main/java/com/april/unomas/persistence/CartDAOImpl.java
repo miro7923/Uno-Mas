@@ -17,6 +17,8 @@ public class CartDAOImpl implements CartDAO{
 	@Inject
 	SqlSession sqlSession;
 	CartDAO cartDao;
+	
+	private static String namespace = "com.april.unomas.mappers.cartMapper";
 
 	@Override
 	public int insert(CartVO vo) {
@@ -41,11 +43,6 @@ public class CartDAOImpl implements CartDAO{
 		
 	}
 
-	@Override
-	public int sumMoney(int user_num) {
-		sqlSession.selectOne("sumMoney",user_num);
-		return sqlSession.selectOne("sumMoney",user_num);
-	}
 
 	@Override
 	public int countCart(int user_num, int prod_num) {
@@ -67,7 +64,11 @@ public class CartDAOImpl implements CartDAO{
 		
 	}
 
-	
+	@Override
+	public int sumMoney(int user_num) {
+		sqlSession.selectOne("sumMoney", user_num);
+		return sqlSession.selectOne("sumMoney", user_num);
+	}
 	
 	
 }
