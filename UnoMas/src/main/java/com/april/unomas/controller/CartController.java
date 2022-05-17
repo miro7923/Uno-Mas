@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +27,8 @@ public class CartController {
 	@Inject
 	CartService cartService;
 	
+	private static final Logger log = LoggerFactory.getLogger(CartController.class);
+	
 	// 장바구니 담기
 	@RequestMapping("insert")
 	public String insert(@ModelAttribute CartVO vo,HttpSession session) {
@@ -36,12 +40,11 @@ public class CartController {
         vo.setUser_num(user_num);
         // 장바구니에 기존 상품 있는지 검사
         int count = cartService.countCart(vo.getProd_num(),user_num);
+        log.info("**count : "+count);
         if(count==0) { // 없으면 insert
         	cartService.insert(vo); 
-        } else { // 있으면 update
-        	cartService.updateCart(vo);
         }
-        return "redirect:/products/cart/list"; // 장바구니 목록으로 이동
+        return "redirect:/product/cart/list"; // 장바구니 목록으로 이동
 	}
 	
 	// 장바구니 목록
