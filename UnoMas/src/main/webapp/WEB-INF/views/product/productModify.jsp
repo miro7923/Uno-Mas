@@ -87,6 +87,9 @@
 											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo. prod_price }">
 										</div>
 										<div class="col-lg-12">
+											<label>할인율<span>*</span></label> <input type="text" name="prod_discntrate" id="prod_discntrate"  value="${vo. prod_discntrate }" placeholder="0 ~ 100">
+										</div>
+										<div class="col-lg-12">
 											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }">
 										</div>
 										<div class="col-lg-12">
