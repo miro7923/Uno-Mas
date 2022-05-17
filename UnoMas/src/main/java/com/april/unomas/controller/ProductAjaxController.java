@@ -32,14 +32,15 @@ public class ProductAjaxController {
 	private static final Logger log = LoggerFactory.getLogger(ProductAjaxController.class);
 	
 	// ajax로 장바구니에 물건 담기
-//	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
-//	public void insertCartPOST(@ModelAttribute CartVO vo,HttpSession session) throws Exception {
-//		log.info("insertCartPOST() 호출");
-////		int user_num = Integer.parseInt(request.getParameter("user_num"));
-////		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
-////		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
-//		service.insertCart(user_num, prod_num, prod_amount);
-//	}
+	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
+	public void insertCartPOST(HttpServletRequest request) throws Exception {
+		log.info("insertCartPOST() 호출");
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
+		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
+
+		service.insertCart(user_num, prod_num, prod_amount);
+	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)
 	public int updateReviewReadcntGET(@RequestParam int review_num) throws Exception {
