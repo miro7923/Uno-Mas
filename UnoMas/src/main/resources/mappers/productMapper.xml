@@ -139,14 +139,21 @@
     </insert>
     
     <!-- 회원의 카트에 담긴 상품 확인 -->
-    <select id="getCart">
+    <select id="getCart" resultType="CartVO">
         SELECT *
         FROM cart
         WHERE user_num = #{user_num}
     </select>
     
-    <!-- 카트에 있는 상품 개수 업데이트(현빈 작업물과 합친 후 삭제) -->
-    <update id="modifyAmount">
+    <!-- 회원의 카트에 해당 상품이 존재하는지 확인 -->
+    <select id="getProdInCart" resultType="CartVO">
+        SELECT *
+        FROM cart
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </select>
+    
+    <!-- 카트에 있는 상품 개수 업데이트 -->
+    <update id="updateCartAmount">
         UPDATE cart
         SET prod_amount = prod_amount + #{prod_amount}
         WHERE user_num = #{user_num} and prod_num = #{prod_num}

@@ -170,8 +170,8 @@ function insertCart() {
         alert('수량을 1개 이상 선택해 주세요!'); 
     }
     else {
-		// 장바구니 매핑주소 수정되면 현빈이껄로 변경하기
         $.ajax({
+		type: 'get',
         url: '/product/insert_cart',
         data: {
             'user_num': $('#user_num').val(),
@@ -180,7 +180,7 @@ function insertCart() {
               },
         success: function() {
             if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?'))
-            	location.href = '/product/shopping-cart';
+            	location.href = '/product/cart/list';
         }
         });
     }

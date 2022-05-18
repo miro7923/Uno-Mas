@@ -131,7 +131,7 @@
 								<div class="quantity justify-content-end">
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
-                                    <%-- <input type="hidden" value="${isInWishlist }" id="isInWishlist">
+                                    <input type="hidden" value="${isInWishlist }" id="isInWishlist">
                                     <c:choose>
                                         <c:when test="${sessionScope.saveID == null }">
 	                                        <button class="icon_heart_alt" id="wishlistBtn" 
@@ -149,7 +149,7 @@
 		                                        </c:otherwise>
 		                                    </c:choose>
                                         </c:otherwise>
-                                    </c:choose> --%>
+                                    </c:choose>
 								   <form action="/product/insert_cart">
 								   </form>
 								       <c:choose>
@@ -157,7 +157,7 @@
 								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
 								           </c:when>
 									       <c:when test="${sessionScope.saveID != null }">
-										       <input type="hidden" id="user_num" value="${sessionScope.savaID.user_id }">
+										       <input type="hidden" id="user_num" value="${sessionScope.saveID.user_num }">
 										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 										       <input type="hidden" id="prod_amount" value="1">
 											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 
