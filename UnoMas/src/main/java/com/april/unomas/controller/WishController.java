@@ -22,7 +22,7 @@ import com.april.unomas.domain.WishVO;
 import com.april.unomas.service.WishService;
 
 @Controller
-@RequestMapping("/product/*")
+@RequestMapping("/product/wishlist/*")
 public class WishController {
 
 	@Inject
@@ -31,7 +31,7 @@ public class WishController {
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 	
 	// 찜 목록
-	@RequestMapping(value = "/wishlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
 		Map<String, Object> map=new HashMap<String, Object>();
 	 
@@ -50,13 +50,13 @@ public class WishController {
 	        return mav; // 화면 이동
 	}
 	// 찜 추가
-	@RequestMapping(value = "/wishlist/insertwish", method = RequestMethod.GET)
+	@RequestMapping(value = "/insertwish", method = RequestMethod.GET)
 	public void getInsertWish() throws Exception {
 		
 	}
 	
 	// 찜 X삭제 버튼
-	@RequestMapping(value = "/wishlist/deleteWish", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteWish", method = RequestMethod.GET)
 	public String getDeleteWish(@RequestParam("prod_num") int prod_num) throws Exception {
 	  
 		service.deleteWish(prod_num);  
@@ -65,7 +65,7 @@ public class WishController {
 	}
 	// 찜 선택 삭제
 	@ResponseBody
-	@RequestMapping(value = "/wishlist/deleteCheckWish", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteCheckWish", method = RequestMethod.POST)
 	public int postDeleteCheckWish(HttpSession session,
 	    @RequestParam(value = "chbox[]") List<String> chArr, WishVO wish) throws Exception {
 		log.info("찜 선택 삭제");
@@ -92,7 +92,7 @@ public class WishController {
 	
 		
 	// 찜 전체 삭제
-	@RequestMapping(value = "/wishlist/deleteAllWish", method = RequestMethod.GET)
+	@RequestMapping(value = "/deleteAllWish", method = RequestMethod.GET)
 	public String deleteAll(HttpSession session) throws Exception {
 		UserVO vo = (UserVO)session.getAttribute("saveID");
 	    int user_num= vo.getUser_num();

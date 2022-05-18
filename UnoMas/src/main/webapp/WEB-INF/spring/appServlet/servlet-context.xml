@@ -52,4 +52,11 @@
 		<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\board\\notice"></beans:constructor-arg>
 	</beans:bean>
 	
+	<!-- 인터셉터 적용 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/product/wishlist/**"/>
+			<beans:bean id="WishIntreceptor" class="com.april.unomas.interceptor.WishInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 </beans:beans>
