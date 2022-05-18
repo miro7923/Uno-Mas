@@ -204,7 +204,6 @@ public class ProductController {
 		
 		return "redirect:/product/product_lookup";
 	}
-	@ResponseBody
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public Integer productsDelete(@RequestParam(value = "chbox[]") List<String> chArr,  ProductVO vo) throws Exception {
 		log.info("productsDelete 호출");

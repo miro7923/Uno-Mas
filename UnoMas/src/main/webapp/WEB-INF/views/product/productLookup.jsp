@@ -7,7 +7,7 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after3">
+<link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
 	$(function(){
@@ -201,7 +201,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    <script src="${path}/resources/js/productAdmin.js"></script>
+    <script src="${path}/resources/js/product_js/productAdmin.js"></script>
 </body>
 
 </html>
