@@ -1,9 +1,11 @@
 package com.april.unomas.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,6 +35,21 @@ public class ProductController {
 	private ProductService service;
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
+	
+	@Resource(name = "reviewImgUploadPath")
+	private String reviewImgUploatPath;
+	
+	@Resource(name = "prodDimgUploadPath")
+	private String prodDimgUploadPath;
+	
+	@Resource(name = "prodThumbUploadPath")
+	private String prodThumbUploadPath;
+	
+	@Resource(name = "prodTopImgUploadPath")
+	private String prodTopImgUploadPath;
+	
+	@Resource(name = "prodSoldoutImgUploadPath")
+	private String prodSoldoutImgUploadPath;
 	
 	// product
 	@RequestMapping(value = "/check-out")
@@ -207,7 +224,8 @@ public class ProductController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public Integer productsDelete(@RequestParam(value = "chbox[]") List<String> chArr,  ProductVO vo) throws Exception {
+	public Integer productsDelete(@RequestParam(value = "chbox[]") List<String> chArr, 
+			ProductVO vo) throws Exception {
 		log.info("productsDelete 호출");
 		log.info(vo+"");
 		int result = 0;
@@ -216,7 +234,16 @@ public class ProductController {
 			for(String i : chArr) {
 				prod_num = Integer.parseInt(i);
 				vo.setProd_num(prod_num);
-				service.deleteProduct(vo);
+				File f1 = new File(prodTopImgUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image1());
+				File f2 = new File(prodDimgUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image2());
+				File f3 = new File(prodThumbUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image3());
+				File f4 = new File(prodSoldoutImgUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image4());
+//				log.info("경로"+f1.getAbsolutePath());
+					if(f1.exists()) f1.delete();
+					if(f2.exists()) f2.delete();
+					if(f3.exists()) f3.delete();
+					if(f4.exists()) f4.delete();
+				service.deleteProduct(vo); 
 			}
 			result = 1;
 		

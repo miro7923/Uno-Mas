@@ -105,6 +105,11 @@ public class ProductDAOImpl implements ProductDAO {
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProduct", prod_num);
 	}
+	
+	@Override
+	public ProductVO getProdImgs(int prod_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getProdImgs", prod_num);
+	}
 
 	@Override
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {

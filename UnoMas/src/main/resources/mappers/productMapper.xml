@@ -23,7 +23,7 @@
     		prod_explain=#{prod_explain}, prod_packing=#{prod_packing}, prod_discntrate=#{prod_discntrate}
     	WHERE prod_num=#{prod_num}
     </update>
-
+	
 	<!-- 상품 삭제 -->
 	<delete id="deleteProduct">
 		DELETE FROM products
@@ -127,6 +127,13 @@
         SELECT *
         FROM products
         WHERE prod_num = #{prod_num}
+    </select>
+    
+    <!-- 상품 번호로 해당 상품 이미지 가져오기 -->
+    <select id="getProdImgs" resultType="ProductVO">
+		SELECT prod_image1, prod_image2, prod_image3, prod_image4
+		FROM products
+		WHERE prod_num = #{prod_num}
     </select>
     
     <!-- 카트에 상품 넣기 -->

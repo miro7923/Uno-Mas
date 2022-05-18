@@ -9,6 +9,10 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after5">
 <!-- Start Header -->
+<script type="text/javascript">
+// 	$('#details option[value='+${prod_category}]').attr('selected', 'selected');
+</script>
+
 <body>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -34,7 +38,7 @@
 				<div class="col-lg-10">
 					<h2>상품수정</h2><div class="line"><hr></div>
 					<div class="container">
-						<form method="post" class="checkout-form" >
+						<form role="form" method="post" class="checkout-form" >
 							<!-- 기본정보 -->
 							<div class="row">
 								<div class="col-lg-12">
@@ -51,7 +55,7 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" id="categories">
+											<select class="selectBox" name="categories" id="categories">
 												<option value="0" selected="selected">대분류</option>
 												<c:forEach var="cvo" items="${categories }">
 												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
@@ -95,7 +99,7 @@
 										<div class="col-lg-12">
 											<label>판매 단위<span>*</span></label>
 											<select class="selectBox" name="prod_sellunit" id ="prod_sellunit">
-												<option>선택</option>
+												<option value=0>선택</option>
 												<option value="1봉" <c:if test="${vo.prod_sellunit == '1봉'}">selected</c:if>>1봉</option>
 												<option value="1팩" <c:if test="${vo.prod_sellunit == '1팩'}">selected</c:if>>1팩</option>
 												<option value="1개" <c:if test="${vo.prod_sellunit == '1개'}">selected</c:if>>1개</option>
@@ -120,7 +124,7 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country" value="${vo.prod_country }">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" value="${vo.prod_expire }" placeholder="ex) YYMMDD">
+												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" value="${vo.prod_expire }" placeholder="남은 기한 ex) 7">
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->
@@ -128,7 +132,7 @@
 											<div class="col-lg-12">
 												<label>포장타입<span>*</span></label>
 											<select class="selectBox" name="prod_packing">
-												<option>선택</option>
+												<option value=0>선택</option>
 												<option value="냉장/스티로품" <c:if test="${vo.prod_packing == '냉장/스티로품'}">selected</c:if>>냉장/스티로품</option>
 												<option value="냉동/스티로품" <c:if test="${vo.prod_packing == '냉동/스티로품'}">selected</c:if>>냉동/스티로품</option>
 											</select>
@@ -137,7 +141,7 @@
 											<br>
 												<label>보관방법 또는 취급방법<span>*</span></label>
 											<select class="selectBox" name="prod_keep" id="selbox">
-												<option>선택</option>
+												<option value=0>선택</option>
 												<option value="냉장보관" <c:if test="${vo.prod_keep == '냉장보관'}">selected</c:if>>냉장보관</option>
 												<option value="실온보관" <c:if test="${vo.prod_keep == '실온보관'}">selected</c:if>>실온보관</option>
 												<option value="직접기재" <c:if test="${vo.prod_keep == '직접기재'}">selected</c:if>>상품별 직접기재</option>
@@ -161,7 +165,7 @@
 							</div>
 							<div class="product-list">
 		                        <div class="row">
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>기본 이미지(세로)</h5><br>
@@ -174,7 +178,7 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>상품 상세 설명</h5><br>
@@ -187,13 +191,26 @@
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>썸네일</h5><br>
 				                                    <div class="pi-pic">
 				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
 				                                        <div class="sale pp-sale">3</div>
+				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                    </div>
+		                                     	<div class="catagory-name">[이미지 삭제]</div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-3 col-sm-6">
+		                                <div class="product-item">
+		                                    <div class="pi-text">
+		                                        <h5>품절 시 대체 썸네일</h5><br>
+				                                    <div class="pi-pic">
+				                                        <img src="${path}/resources/img/products/product-4.jpg" alt="">
+				                                        <div class="sale pp-sale">4</div>
 				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
 				                                    </div>
 		                                     	<div class="catagory-name">[이미지 삭제]</div>
@@ -259,7 +276,7 @@
 <!-- 		                                        <textarea placeholder="세척법"></textarea> -->
 <!-- 		                                        </div> -->
 		                                        <button type="button" class="back-button" onclick="history.back();">취소</button>
-		                                        <button type="submit" class="site-button" >완료</button>
+		                                        <button type="button" class="site-button" onclick="prodCheck()">완료</button>
 <!-- 		                                    </div> -->
 <!-- 		                            </form> -->
 <!-- 		                        </div> -->
@@ -294,6 +311,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/product_js/productRegister.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
 </body>
 

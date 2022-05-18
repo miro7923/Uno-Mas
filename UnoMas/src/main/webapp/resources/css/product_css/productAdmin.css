@@ -68,6 +68,18 @@ input[type="checkbox"]:checked::before {
     transform: scale(1) translate(-50%, -50%)
 }
 
+input:focus {
+	outline: none !important;
+	border-color: #f67555;
+	box-shadow: 0 0 5px #f67555;
+
+}
+
+select:focus{
+	outline: none !important;
+	border-color: #f67555;
+	box-shadow: 0 0 5px #f67555;
+}
 /* .cart-table table tr td.cart-pic { */
 /* 	width: 4%; */
 /* } */
