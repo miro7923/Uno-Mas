@@ -32,4 +32,5 @@
     <link rel="stylesheet" href="${path}/resources/css/qni_update.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/qni_write.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/inquiry_list.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/faq_detail.css?after" type="text/css">
 </head>

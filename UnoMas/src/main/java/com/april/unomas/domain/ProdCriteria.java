@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class ProdCriteria {
 
-	private int cateStart;
-	private int cateEnd;
+	private int topcate_num;
 	private int page;
 	private int perPageNum;
 	private int prod_category;
+	private int prod_num;
 	
 	public ProdCriteria() {
 		this.page = 1;

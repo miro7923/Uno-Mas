@@ -35,11 +35,13 @@ import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.PagingVO;
 import com.april.unomas.domain.QnaCateVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.BoardService;
 import com.april.unomas.service.NoticeService;
 import com.april.unomas.service.QnaService;
 
 @Controller
+@RequestMapping("/board/*")
 public class BoardController {
 
 	private static final Logger log 
@@ -82,7 +84,7 @@ public class BoardController {
 		service.boardWrite(vo);
 		
 		// 페이지 이동(/board/list)
-		return "redirect:/qni_paging";
+		return "redirect:/board/qni_paging";
 	}
 	
 	@GetMapping(value = "/faq_insert")
@@ -133,8 +135,8 @@ public class BoardController {
 	}
 	
 	@GetMapping(value="/qni_paging")
+//	@RequestMapping(value = "/qni_paging",method = RequestMethod.GET)
 	public String pagingListGET(Criter cri,Model model) throws Exception {
-	        
 //	    PagingVO pagingVO = new PagingVO(); 
 //	    pagingVO.setCri(cri);
 	    PagingVO pagingVO = new PagingVO(cri);
@@ -166,7 +168,7 @@ public class BoardController {
 		
 		
 		
-		return "redirect:/qni_paging";
+		return "redirect:/board/qni_paging";
 	}
 	
 	@GetMapping(value="/qni_delete")
@@ -174,7 +176,7 @@ public class BoardController {
 		
 		service.deleteBoard(faq_num);
 		
-		return "redirect:/qni_paging";
+		return "redirect:/board/qni_paging";
 	}
 	
 	@GetMapping(value="/faq_paging")
@@ -182,6 +184,7 @@ public class BoardController {
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(nService.noticeCnt(cri));
 		List<NoticeVO> pList = nService.pagingNotices(cri);
+		log.info(pList+"$$*****************************************");
 		
 		model.addAttribute("pList",pList);
 		model.addAttribute("pagingVO",pagingVO);
@@ -205,7 +208,7 @@ public class BoardController {
 		
 		nService.updateNotice(vo);
 		
-		return "redirect:/faq_paging";
+		return "redirect:/board/faq_paging";
 	}
 	
 	@GetMapping(value="/faq_delete")
@@ -213,7 +216,7 @@ public class BoardController {
 		
 		nService.deleteNotice(notice_num);
 		
-		return "redirect:/faq_paging";
+		return "redirect:/board/faq_paging";
 	}
 	
 
@@ -223,10 +226,11 @@ public class BoardController {
 	}
 	
 	@PostMapping(value = "/inquiry_form")
-	public String inquiryWritePOST(HttpServletRequest request,RedirectAttributes rttr, MultipartFile qna_image1,MultipartFile qna_image2) throws Exception {
+	public String inquiryWritePOST(HttpServletRequest request,RedirectAttributes rttr, MultipartFile qna_image1,MultipartFile qna_image2,HttpSession session) throws Exception {
 		QnaVO vo = new QnaVO();
+		UserVO userVO = (UserVO) session.getAttribute("saveID");
 		log.info(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		vo.setUser_num(Integer.parseInt(request.getParameter("user_num")));
+		vo.setUser_num(userVO.getUser_num());
 		vo.setQnacate_num(Integer.parseInt(request.getParameter("qnacate_num")));
 		vo.setQnacate2(request.getParameter("qnacate2"));
 		vo.setQna_title(request.getParameter("qna_title"));
@@ -247,18 +251,22 @@ public class BoardController {
 		log.info(vo+"###########################");
 		qService.qnaWrite(vo);
 		
-		return "redirect:/inquiry_paging";
+		return "redirect:/board/inquiry_paging";
 	}
 	
 	@GetMapping(value = "/inquiry_paging")
-	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model) throws Exception {
+	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
 		
-		
-		List<QnaVO> pList = qService.pagingQnaList(1,cri);
+		UserVO userVO = (UserVO) session.getAttribute("saveID");
+		if(userVO == null) {
+			return "redirect:/user/login";
+		}
+		List<QnaVO> pList = qService.pagingQnaList(userVO.getUser_num(),cri);
+		log.info(pList+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		model.addAttribute("pList",pList);
 		
 		PagingVO pagingVO = new PagingVO(cri);
-		pagingVO.setTotalCount(qService.getQnaCnt(1));
+		pagingVO.setTotalCount(qService.getQnaCnt(userVO.getUser_num()));
 		model.addAttribute("pagingVO",pagingVO);
 		log.info(pList+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return "/board/inquiry_paging";
@@ -292,7 +300,7 @@ public class BoardController {
 		nService.noticeInsert(vo);
 		
 		// 페이지 이동(/board/list)
-		return "redirect:/faq_paging";
+		return "redirect:/board/faq_paging";
 	}
 	
 	@GetMapping(value = "/nFileDown")
