@@ -14,7 +14,7 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/productDetail.css?after2">
+	href="${path}/resources/css/product_css/productDetail.css?after2">
 <!-- Header end -->
 
 <body>
@@ -31,8 +31,7 @@
 						<div class="col-lg-6">
 							<div class="product-pic-zoom">
 								<img class="product-big-img"
-									src="${path}/resources/img/product-single/product_vegi01.jpeg"
-									alt="">
+									src='<spring:url value="/resources/upload/images/products/top/${vo.prod_image1 }"></spring:url>' alt="">
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -123,7 +122,7 @@
 								<div class="quantity justify-content-end">
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
-                                    <input type="hidden" value="${isInWishlist }" id="isInWishlist">
+                                    <%-- <input type="hidden" value="${isInWishlist }" id="isInWishlist">
                                     <c:choose>
                                         <c:when test="${sessionScope.saveID == null }">
 	                                        <button class="icon_heart_alt" id="wishlistBtn" 
@@ -141,7 +140,7 @@
 		                                        </c:otherwise>
 		                                    </c:choose>
                                         </c:otherwise>
-                                    </c:choose>
+                                    </c:choose> --%>
 								   <form action="/product/insert_cart">
 								   </form>
 								       <c:choose>
@@ -182,17 +181,14 @@
 								<div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
 									<div class="product-content">
 										<div class="col-lg-12">
-											<img
-												src="${path}/resources/img/product-single/product_vegi02.webp"
-												alt="">
+											<img src='<spring:url value="/resources/upload/images/products/detail/${vo.prod_image2 }"></spring:url>' alt="">
 										</div>
 										<br> <br>
 										<div class="row">
 											<div class="text-center col-lg-12">
 												<!-- id 선택자 지정된 부분만 디비에서 불러와서 채우면 됨 -->
-												<h3 class="detailSubTitle" id="detailSubTitle">아삭하고
-													부드러운</h3>
-												<h1 class="detailTitle" id="detailTitle">청경채</h1>
+												<h3 class="detailSubTitle" id="detailSubTitle">${vo.prod_explain }</h3>
+												<h1 class="detailTitle" id="detailTitle">${vo.prod_name }</h1>
 												<br>
 												<hr>
 												<p class="detailMainContent" id="detailMainContent">청경채는

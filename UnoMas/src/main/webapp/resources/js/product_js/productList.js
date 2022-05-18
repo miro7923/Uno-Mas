@@ -4,7 +4,6 @@ $(document).ready(function() {
     $(id).css('font-weight', 'bold');
     
     getPageNum();
-    convertCurrency($('#prodListLen').val());
 });
 
 function getPageNum() {

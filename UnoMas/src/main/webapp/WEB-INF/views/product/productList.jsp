@@ -6,6 +6,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -13,7 +14,7 @@
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/productList.css?afte">
+	href="${path}/resources/css/product_css/productList.css?afte">
 <!-- Start Header -->
 
 <body>
@@ -60,12 +61,13 @@
 											<a href="/product/product_detail?prod_num=${vo.prod_num }"> 
 											<c:choose>
 												<c:when test="${vo.prod_stock == 0 }">
-													<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt="" class="soldOut"></a>
+													<img src='<spring:url value="/resources/upload/images/products/soldout/${vo.prod_image4 }"></spring:url>' alt="" class="soldOut">
 												</c:when>
 												<c:otherwise>
-													<img src="${path}/resources/img/product-single/product_vegi01.jpeg" alt=""></a>
+													<img src="<spring:url value="/resources/upload/images/products/thumbnail/${vo.prod_image3 }"></spring:url>" alt="">
 												</c:otherwise>
 											</c:choose>
+											</a>
 											<ul>
 											<!-- 카트담기 버튼 -->
 												<li class="w-icon active"><a href="#"><i
@@ -182,7 +184,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/productList.js?123"></script>
+	<script src="${path}/resources/js/product_js/productList.js?1"></script>
 </body>
 
 </html>
