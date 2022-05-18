@@ -1,25 +1,33 @@
-$(function(){
-	$('#submit').click(function(){
+let current_url = new URL(window.location.href);
+let url_pagingNum = current_url.searchParams.get("pagingNum"); 
+
+function showModal(targetID){
+	$('#myModal').show();
+	
+	$('.modal-submit').click(function(){
 		if($('[name=pw]').val() == ""){
-			$('name=warnning-text').text("비밀번호를 입력하세요.")
+			$('[name=warn-text]').text("비밀번호를 입력하세요.")
 			return false;
 		}
+		
 		$.ajax({
 			async: true,
 			type: 'POST',
 			data: {
-				'num': $('#user_num').val(),
-				'pw': $('[name=pw]').val()
+				'user_id': targetID,
+				'user_pass': $('[name=pw]').val()
 			},
-			url: "pw_check",
+			url: "/user/delete_user",
 			success: function(result) {
-				console.log("아이디 조회 결과: ", findResult);
-				if (findResult == 1) {
-					$("#warn-text").text("*이메일을 입력하세요");
-				} else if (findResult == 0) {
-					$("#result-text").text("*메일을 보낼 수 없습니다. 잠시후에 다시 시도.");
+				console.log("비번 조회 결과: ", result);
+				if (result == "1") {
+					$('.modal-submit').removeAttr("onclick");
+					$("[name=modal-text]").text("탈퇴완료");
+					$('[name=warn-text]').remove();
+					$('[name=pw]').remove();
+					$('.modal-submit').attr("onclick", `location.href='all_user?pagingNum=${url_pagingNum}'`);
 				} else {
-					$("#result-text").text("비회원이거나 잘못입력되었습니다. ");
+					$("[name=warn-text]").text("비밀번호가 틀립니다.");
 				}
 			},
 			error: function(error) {
@@ -27,9 +35,10 @@ $(function(){
 			}
 
 		});
-	}) 
 
-});
+	})
+
+}
 
 function close_pop() {
 	$('#myModal').hide();

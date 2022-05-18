@@ -12,7 +12,7 @@
   
   <!-- 회원 전체 조회 -->
   <select id="getAllUser" parameterType="Map" resultType="com.april.unomas.domain.UserVO">
-  	SELECT * FROM users ORDER BY user_regdate ${standard} LIMIT #{cri.pageStart}, #{cri.perPageNum}
+  	SELECT * FROM users ORDER BY user_regdate ${standard} LIMIT #{cri.pageStart},#{cri.perPageNum}
   </select>
   
   <!-- 탈퇴 회원 조회 -->

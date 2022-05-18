@@ -165,17 +165,16 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	
+	
+	@Override
+	public Integer checkPw(UserVO vo) {
+		return sqlSession.selectOne(NAMESPACE+".checkPw",vo);
+	}
+
 	// 회원탈퇴
 	@Override
-	public void deleteUser(UserVO vo) {
-
-		log.info("DAOImpl-deleteUser(vo) 실행");
-		
-		sqlSession.delete(NAMESPACE+".deleteUser",vo);
-		
-		log.info("회원탈퇴 완료");
-		
-		
+	public Integer deleteUser(UserVO vo) {
+		return sqlSession.delete(NAMESPACE+".deleteUser",vo);
 	}
 	
 
@@ -189,10 +188,9 @@ public class UserDAOImpl implements UserDAO {
 		
 		try {
 			msg.setFrom(evo.getSender());
-//			msg.setTo(evo.getRecipients());
-			msg.setTo("tksop59@naver.com");
-			msg.setSubject(evo.getSubject());	// 제목 셋팅
-			msg.setText(evo.getContent());	// 내용 셋팅
+			msg.setTo(evo.getRecipients());
+			msg.setSubject(evo.getSubject());	
+			msg.setText(evo.getContent());	
 		
 			mailSender.send(msg);
 			result = 1;

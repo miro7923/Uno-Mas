@@ -74,11 +74,19 @@
   	where user_id=#{user_id}
   </update>
   
+  <!-- 비밀번호 체크 -->
+  <select id="checkPw" resultType="int">
+  	SELECT count(*)
+  	FROM users
+  	WHERE user_id=#{user_id} and (user_pass=#{user_pass} OR 
+  	(SELECT count(*) FROM admin WHERE admin_pass=#{user_pass}))
+  </select>
+  
   <!-- 회원탈퇴 -->
   <update id="deleteUser">
-  	update users 
-  	set user_status=-1
-  	where user_id=#{user_id}
+  	UPDATE users 
+  	SET user_status=-1, user_deldate=now()
+  	WHERE user_id=#{user_id}
   </update>
   
 </mapper>

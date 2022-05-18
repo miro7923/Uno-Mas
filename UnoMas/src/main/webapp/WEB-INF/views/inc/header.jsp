@@ -17,10 +17,10 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="../user/login" class="linkMenu">로그인</a>
+    				<a href="/user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="../user/register_agree" class="linkMenu">회원가입</a>
+    				<a href="/user/register_agree" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
     				<a href="qni_paging" class="linkMenu">고객센터</a>
@@ -36,7 +36,7 @@
     				<a href="../user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="../user/logout" class="linkMenu">로그아웃</a>
+    				<a href="/user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
     				<a href="/qni_paing" class="linkMenu">고객센터</a>

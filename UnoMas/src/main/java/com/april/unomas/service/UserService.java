@@ -34,6 +34,9 @@ public interface UserService {
 	// 회원정보수정
 	public void updateUser(UserVO vo);
 	
+	// 비번체크
+	public Integer checkPw(UserVO vo);
+	
 	// 회원탈퇴
-	public void deleteUser(UserVO vo);
+	public Integer deleteUser(UserVO vo);
 }

@@ -37,9 +37,10 @@ public interface UserDAO {
 	public Integer updateUser(UserVO vo);
 
 	// 회원탈퇴
-	public void deleteUser(UserVO vo);
+	public Integer deleteUser(UserVO vo);
 
-	
+	// 비번 체크
+	public Integer checkPw(UserVO vo);
 
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);

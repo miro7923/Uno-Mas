@@ -13,7 +13,6 @@ $(function(){
 })
 
 
-function showModal(){
-
-	$('#myModal').show();
-}
+//function showModal(){
+//	$('#myModal').show();
+//}

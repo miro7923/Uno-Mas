@@ -36,22 +36,7 @@ public class AdminUserController {
 		return mav;
 	}
 	
-	// 전체 회원 조회
-//	@RequestMapping(value = "/all_user")
-//	public String selectAllUser(@RequestParam String standard, Model model) throws Exception {
-//		model.addAttribute("userList", service.getAllUser());
-//		
-//		return "/admin/allUser";
-//	}
-	
-//	@RequestMapping(value = "/all_user")
-//	public ResponseEntity<List<UserVO>> getAllUser(@RequestParam(value="standard", required=false) String standard, Model model) throws Exception {
-//		System.out.println("Rest Controller: 들어와?");
-//		
-//		List<UserVO> userList = service.getAllUser();
-//		
-//		return new ResponseEntity<List<UserVO>>(userList, HttpStatus.OK);
-//	}
+
 	
 	@RequestMapping(value = "/all_user")
 	public ModelAndView getAllUser(
@@ -76,9 +61,8 @@ public class AdminUserController {
 		}
 		
 		UserPageMaker pm = new UserPageMaker();
-		pm.setTotalCount(totalUserCnt);
 		pm.setCri(cri);
-		pm.setTotalCount(userList.size());
+		pm.setTotalCount(totalUserCnt);
 		
 		model.addAttribute("userList", userList);
 		model.addAttribute("pagingNum", pagingNum);
@@ -89,17 +73,10 @@ public class AdminUserController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/javaTest")
-	public double javaTest() throws Exception {
-		System.out.println("1번" + Math.ceil(10.0));
-		System.out.println("1번" + Math.ceil(10.1));
-		System.out.println("2번" + Math.ceil(10/4));
-		System.out.println("3번" + Math.ceil(10.0 / 4.0));
-		System.out.println("4번" + Math.ceil(1/10));
-		System.out.println("5번" + Math.ceil(1.0/10.0));
-		
-		return  Math.ceil(1/10);
-	}
+	
+
+	
+
 	
 	
 

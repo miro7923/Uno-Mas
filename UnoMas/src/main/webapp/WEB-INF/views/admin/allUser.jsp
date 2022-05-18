@@ -87,8 +87,9 @@
 	  
 	  	<td>
 	  	  <input type="button" value="상세보기" class="allUser_btn" style="border-color: #B9CE45;">
-	  	  <input type="button" value="탈퇴하기" onclick="showModal()" class="allUser_btn" style="border-color: red;">
-
+	  	  <c:if test="${vo.user_status == 1 }">
+	  	  	<input type="button" value="탈퇴하기" onclick="showModal('${vo.user_id }')" class="allUser_btn" style="border-color: red;">
+		  </c:if>
 	  	</td>
 	  </tr>
 
@@ -97,21 +98,30 @@
 	
 	<div class="allUser_paging">
 	  <c:if test="${pm.prev }">				
-	  	<a href="" class="paging_a">이전</a>
+	  	<a href="all_user?pagingNum=${pm.startPage - 1}" class="paging_a">이전</a>
 	  </c:if>
 	  
 		<c:forEach var="block" varStatus="pg" begin="${pm.startPage }" end="${pm.endPage }" step="1">
-		  <a href="all_user?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
+		  <c:choose>
+		  	<c:when test="${pg.index == pagingNum }">
+		  	  <a href="all_user?pagingNum=${pg.index }" class="paging_num_yes">${pg.index }</a>
+		  	</c:when>
+		  	<c:otherwise>
+		  	  <a href="all_user?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
+		  	</c:otherwise>
+		  </c:choose>
 		</c:forEach>
 	  
 	  <c:if test="${pm.next }">
-	    <a href="" class="paging_a">다음</a>
+	    <a href="all_user?pagingNum=${pm.startPage + 1}" class="paging_a">다음</a>
 	  </c:if>
 	</div>
   </div>
   
-  <jsp:include page="../user/basicModal.jsp"></jsp:include>
-
+  <jsp:include page="../user/basicModal.jsp">
+  	<jsp:param name="targetID" value="${vo.user_id }" />
+  </jsp:include>
+	
 
   <jsp:include page="../inc/bottom.jsp"></jsp:include>
 
@@ -119,6 +129,7 @@
   <script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
   <script src="${path}/resources/js/main.js"></script> 
   
+  <script src="${path}/resources/js/user_js/basicModal.js"></script>
   <script src="${path}/resources/js/admin_js/allUser.js"></script>
 </body>
 </html>

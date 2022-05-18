@@ -96,12 +96,17 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
+	
+	// 비번 체크
+	@Override
+	public Integer checkPw(UserVO vo) {
+		return dao.checkPw(vo);
+	}
 
 	// 회원 탈퇴
 	@Override
-	public void deleteUser(UserVO vo) {
-
-		dao.deleteUser(vo);
+	public Integer deleteUser(UserVO vo) {
+		return dao.deleteUser(vo);
 	}
 	
 

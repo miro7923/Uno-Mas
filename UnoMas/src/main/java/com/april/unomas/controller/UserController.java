@@ -104,27 +104,6 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
-	// 회원탈퇴(GET)
-	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
-	public String deleteUserGET() {
-		
-		log.info("deleteUserGET() 호출 -> deleteUser.jsp 이동");
-		
-		return "/user/deleteUser";
-	}
-	
-	// 회원탈퇴(POST)
-	@RequestMapping(value = "/delete_user",method=RequestMethod.POST)
-	public String deleteUserPOST(UserVO vo,HttpSession session) {
-		
-		service.deleteUser(vo);
-		
-		session.invalidate();
-		
-		log.info("deleteUserPOST 처리 완료");
-		
-		return "redirect:/index";
-	}
 	
 	// 아이디 찾기
 	@RequestMapping(value = "/find_id")
@@ -223,11 +202,38 @@ public class UserController {
 	
 	
 	// 비밀번호 확인
-	@RequestMapping(value = "/pw_check")
+	@RequestMapping(value = "/check_pw")
 	@ResponseBody
-	public String pwCheck(@RequestParam(value="pw", required=false) String pw) {
+	public String pwCheck(UserVO vo) {
+		return Integer.toString(service.checkPw(vo));
+	}
+	
+	
+	// 회원탈퇴(GET)
+	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
+	public String deleteUserGET() {
+		log.info("deleteUserGET() 호출 -> deleteUser.jsp 이동");
+		return "/user/deleteUser";
+	}
+	
+	// 회원탈퇴(POST)
+	@RequestMapping(value = "/delete_user",method=RequestMethod.POST)
+	@ResponseBody
+	public String deleteUserPOST(UserVO vo, HttpSession session) {
+		System.out.println("탈퇴 컨트롤러!!");
+		String totalResult = "0";
+		int pwResult = service.checkPw(vo);
 		
-		return "/user/myPoint";
+		if(pwResult == 1) {	// 비번맞음
+			String delResult = Integer.toString(service.deleteUser(vo));
+			if(delResult.equals("1")) { 
+				session.invalidate(); 
+				totalResult = delResult;
+			} 
+		} 
+		System.out.println("최종 탈퇴 결과:" + totalResult);
+		return totalResult;
+		// return "redirect:/index";
 	}
 	
 	
