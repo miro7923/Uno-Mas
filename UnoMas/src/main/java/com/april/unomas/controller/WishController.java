@@ -57,11 +57,11 @@ public class WishController {
 	
 	// 찜 X삭제 버튼
 	@RequestMapping(value = "/deleteWish", method = RequestMethod.GET)
-	public String getDeleteWish(@RequestParam("prod_num") int prod_num) throws Exception {
+	public String getDeleteWish(@RequestParam("wish_num") int wish_num) throws Exception {
 	  
-		service.deleteWish(prod_num);  
+		service.deleteWish(wish_num);  
 
-		return "redirect:/product/wishlist";
+		return "redirect:/product/wishlist/list";
 	}
 	// 찜 선택 삭제
 	@ResponseBody
@@ -99,7 +99,7 @@ public class WishController {
 		if(user_num!=0) {
 			service.deleteAllWish(user_num);
 		}
-	    return "redirect:/product/wishlist";
+	    return "redirect:/product/wishlist/list";
 	}
 	
 }

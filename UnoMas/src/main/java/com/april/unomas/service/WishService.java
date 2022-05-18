@@ -13,7 +13,7 @@ public interface WishService {
 	public void insertWish(WishVO vo) throws Exception;
 	
 	// 찜 X삭제 버튼
-	public void deleteWish(int prod_num) throws Exception;
+	public void deleteWish(int wish_num) throws Exception;
 	
 	// 찜 선택 삭제
 	public void deleteCheckWish(WishVO wish) throws Exception;

@@ -21,8 +21,8 @@ public class WishServiceImpl implements WishService {
 	}
 
 	@Override
-	public void deleteWish(int prod_num) throws Exception {
-		dao.deleteWish(prod_num);
+	public void deleteWish(int wish_num) throws Exception {
+		dao.deleteWish(wish_num);
 	}
 
 	@Override

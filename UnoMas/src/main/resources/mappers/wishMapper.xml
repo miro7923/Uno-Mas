@@ -23,7 +23,7 @@
 	<delete id="deleteWish" parameterType="int">
 	DELETE
 	FROM unomasdb.wishlist
-	WHERE prod_num = #{prod_num}
+	WHERE wish_num = #{wish_num}
 	</delete>
 	
 	<!-- 찜 선택 삭제 -->
