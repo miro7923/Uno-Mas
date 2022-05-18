@@ -55,14 +55,14 @@ public class ProductAjaxController {
 			@RequestParam("prod_num") int prod_num, @RequestParam("prod_amount") int prod_amount) throws Exception {
 		log.info("insertCartPOST() 호출");
 
-		// 장바구니에 있는 상품이면 수량 증가
-		if (service.getProdInCart(user_num, prod_num) != null) {
-			service.modifyCartAmount(user_num, prod_num, prod_amount);
-			return;
+		if (service.getProdInCart(user_num, prod_num) == null) {
+			// 없는 상품이면 필드 새로 생성
+			service.insertCart(user_num, prod_num, prod_amount);
 		}
-
-		// 없는 상품이면 필드 새로 생성
-		service.insertCart(user_num, prod_num, prod_amount);
+		else {
+			// 장바구니에 있는 상품이면 수량 증가
+			service.modifyCartAmount(user_num, prod_num, prod_amount);
+		}
 	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)

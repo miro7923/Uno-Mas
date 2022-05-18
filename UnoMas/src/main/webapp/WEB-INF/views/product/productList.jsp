@@ -70,8 +70,18 @@
 											</a>
 											<ul>
 											<!-- 카트담기 버튼 -->
-												<li class="w-icon active"><a href="#"><i
-														class="icon_bag_alt"></i></a></li>
+											    <c:if test="${vo.prod_stock > 0 }">
+												    <c:choose>
+												        <c:when test="${sessionScope.saveID != null }">
+															<li class="w-icon active"><a href="javascript:void(0);" onclick="insertCart(${sessionScope.saveID.user_num}, ${vo.prod_num });">
+															<i class="icon_bag_alt"></i></a></li>
+												        </c:when>
+												        <c:otherwise>
+												        	<li class="w-icon active"><a href="javascript:void(0);" onclick="askLogin();">
+												        	<i class="icon_bag_alt"></i></a></li>
+												        </c:otherwise>
+												    </c:choose>
+											    </c:if>
 											</ul>
 										</div>
 										<div class="pi-text">
