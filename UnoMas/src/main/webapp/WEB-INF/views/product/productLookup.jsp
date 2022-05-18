@@ -20,7 +20,6 @@
 				$("input[class='chBox']:checked").each(function(){
 					checkArr.push($(this).attr("prod_num"));
 					console.log(checkArr);
-// 					console.log(chbox);
 				});
 				
 				$.ajax({

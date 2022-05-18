@@ -209,23 +209,15 @@ public class ProductController {
 	public Integer productsDelete(@RequestParam(value = "chbox[]") List<String> chArr,  ProductVO vo) throws Exception {
 		log.info("productsDelete 호출");
 		log.info(vo+"");
-//		log.info(prod_num+"");
 		int result = 0;
 		int prod_num = 0;
 		
-//		if(vo != null) {
-//			vo.setProd_num(prod_num);
-		
 			for(String i : chArr) {
-				log.info("체크한 상품 번호"+i);
 				prod_num = Integer.parseInt(i);
-				log.info("pord_num :"+prod_num);
 				vo.setProd_num(prod_num);
-				log.info("vo.setProd_num :"+vo);
 				service.deleteProduct(vo);
 			}
 			result = 1;
-//		}
 		
 		return result;
 	}
