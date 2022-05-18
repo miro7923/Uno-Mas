@@ -89,10 +89,12 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <button type="button" id="selectDelete_btn" class="primary-btn">선택삭제</button>
-                                <button type="button" id="btnDelete" class="primary-btn">전체삭제</button>
-                                <button type="button" class="selectInsertWish_btn">선택 담기</button>
+                                <button type="button" id="selectDelete_btn" class="primary-btn deleteSelect">선택삭제</button>
+                                <button type="button" id="btnDelete" class="primary-btn deleteAll">전체삭제</button>
                             </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-4">
+                                <button type="button" id="selectInsertWish_btn" class="green-btn">선택 담기</button>
                         </div>
                     </div>
                 </div>
