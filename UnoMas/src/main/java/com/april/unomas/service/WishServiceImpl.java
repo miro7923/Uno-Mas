@@ -16,8 +16,8 @@ public class WishServiceImpl implements WishService {
 	private WishDAO dao;
 	
 	@Override
-	public List<WishVO> list() throws Exception {
-		return dao.list();
+	public List<WishVO> list(int user_num) throws Exception {
+		return dao.list(user_num);
 	}
 
 	@Override

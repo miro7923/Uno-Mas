@@ -7,10 +7,10 @@
 
 	<!-- 찜 목록 -->
 	<select id="list" resultType="com.april.unomas.domain.WishVO">
-	SELECT w.wish_num, w.user_num, w.prod_num, p.prod_name, p.prod_price
-	FROM unomasdb.wishlist w
-	INNER JOIN unomasdb.products p
-	ON w.prod_num = p.prod_num 
+	SELECT w.wish_num, w.prod_num, w.user_num, p.prod_name, p.prod_price
+    FROM products p, wishlist w
+    WHERE w.prod_num = p.prod_num and w.user_num = #{user_num} 
+    ORDER BY wish_num;
 	</select>
 	
 	<!-- 찜 추가 -->

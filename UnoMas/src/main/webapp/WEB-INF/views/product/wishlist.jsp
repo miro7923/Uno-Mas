@@ -65,7 +65,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach items="${list}" var="list">
+                            	<c:forEach items="${map.list}" var="list">
                                 <tr>
                                 	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" class="chBox" onclick='checkSelectAll()'
                                 		data-wishNum="${list.wish_num}"/></td>
@@ -80,7 +80,7 @@
 		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn">장바구니 담기</button>
                                         </div>
                                     </td>
-                                    <td class="close-td first-row"><a href="/product/wishlist/deleteWish?prod_num=${list.prod_num}"><i class="ti-close" ></i></a></td>
+                                    <td class="close-td first-row"><a href="/product/wishlist/deleteWish?wish_num=${list.wish_num}"><i class="ti-close" ></i></a></td>
                                 </tr>
                             	</c:forEach>
                             </tbody>
@@ -89,7 +89,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <button type="button" class="selectDelete_btn">선택 삭제</button>
+                                <button type="button" id="selectDelete_btn" class="primary-btn">선택삭제</button>
                                 <button type="button" id="btnDelete" class="primary-btn">전체삭제</button>
                                 <button type="button" class="selectInsertWish_btn">선택 담기</button>
                             </div>
@@ -131,11 +131,12 @@
 		$(function(){ // 찜 전체삭제
 			$("#btnDelete").click(function(){
 				if(confirm("찜 목록을 비우시겠습니까?")){
-					location.href="/product/wishlist/deleteAllWish";
+					location.href="${path}/product/wishlist/deleteAllWish";
 				}
 			});
 		});
-		$(".selectDelete_btn").click(function(){ // 찜 선택삭제
+		
+		$("#selectDelete_btn").click(function(){ // 찜 선택삭제
 			var confirm_val = confirm("정말 삭제하시겠습니까?");
 			  
 			if(confirm_val) {
@@ -151,9 +152,10 @@
 					data : { chbox : checkArr },
 					success : function(result){
 						if(result == 1){
+							alert("성공적으로 삭제했습니다.")
 							location.href = "/product/wishlist";
 						} else {
-							alert("삭제 실패");
+							alert("찜 삭제에 실패했습니다.");
 						} 
 					}
 				});

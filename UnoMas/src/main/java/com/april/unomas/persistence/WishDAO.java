@@ -7,7 +7,7 @@ import com.april.unomas.domain.WishVO;
 public interface WishDAO {
 
 	// 찜 목록
-	public List<WishVO> list() throws Exception;
+	public List<WishVO> list(int user_num) throws Exception;
 	
 	// 찜 추가
 	public void insertWish(WishVO vo) throws Exception;

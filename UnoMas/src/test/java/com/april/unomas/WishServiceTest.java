@@ -25,7 +25,7 @@ public class WishServiceTest {
 	
 //	@Test
 	public void 찜목록출력테스트() throws Exception {
-		log.info(service.list()+"");
+		log.info(service.list(1)+"");
 	}
 	
 	@Test

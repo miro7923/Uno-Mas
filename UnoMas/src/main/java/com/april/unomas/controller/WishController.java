@@ -1,6 +1,8 @@
 package com.april.unomas.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.domain.WishVO;
@@ -29,13 +32,23 @@ public class WishController {
 	
 	// 찜 목록
 	@RequestMapping(value = "/wishlist", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception {
-	
-		List<WishVO> list = null;
-		list = service.list();
-		model.addAttribute("list", list);
+	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
+		Map<String, Object> map=new HashMap<String, Object>();
+	 
+		UserVO vo = (UserVO)session.getAttribute("saveID");
+	    int user_num= vo.getUser_num();
+	        	
+	        List<WishVO> list=service.list(user_num);  // 장바구니 목록
+	 
+	        map.put("list", list); // 장바구니 정보를 map에 저장
+	        map.put("count", list.size()); // 장바구니 상품의 유무
+	 
+	        // ModelAndView mav에 이동할 페이지의 이름과 데이터를 저장한다.
+	        mav.setViewName("product/wishlist"); // 이동할 페이지의 이름
+	        mav.addObject("map", map); // map변수 저장
+	 
+	        return mav; // 화면 이동
 	}
-	
 	// 찜 추가
 	@RequestMapping(value = "/wishlist/insertwish", method = RequestMethod.GET)
 	public void getInsertWish() throws Exception {
@@ -57,8 +70,8 @@ public class WishController {
 	    @RequestParam(value = "chbox[]") List<String> chArr, WishVO wish) throws Exception {
 		log.info("찜 선택 삭제");
 	 
-	 UserVO user = (UserVO)session.getAttribute("user");
-	 Integer user_num = user.getUser_num();
+	 UserVO user = (UserVO)session.getAttribute("saveID");
+	 int user_num = user.getUser_num();
 	 
 	 int result = 0;
 	 int wish_num = 0;
@@ -81,8 +94,9 @@ public class WishController {
 	// 찜 전체 삭제
 	@RequestMapping(value = "/wishlist/deleteAllWish", method = RequestMethod.GET)
 	public String deleteAll(HttpSession session) throws Exception {
-		Integer user_num=(Integer)session.getAttribute("user_num");
-		if(user_num!=null) {
+		UserVO vo = (UserVO)session.getAttribute("saveID");
+	    int user_num= vo.getUser_num();
+		if(user_num!=0) {
 			service.deleteAllWish(user_num);
 		}
 	    return "redirect:/product/wishlist";
