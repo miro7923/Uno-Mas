@@ -7,7 +7,7 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after5">
+<link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after5">
 <!-- Start Header -->
 
 <%
@@ -40,7 +40,7 @@
 				<div class="col-lg-10">
 					<h2>상품등록</h2><div class="line"><hr></div>
 					<div class="container">
-						<form method="post" class="checkout-form" >
+						<form method="post" class="checkout-form">
 							<!-- 기본정보 -->
 							<div class="row">
 								<div class="col-lg-12">
@@ -161,45 +161,62 @@
 							</div>
 							<div class="product-list">
 		                        <div class="row">
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>기본 이미지(세로)</h5><br>
 				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-1.jpg" alt="">
+				                                        <img src="" alt="" id="prevImg1">
 				                                        <div class="sale pp-sale">1</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                        <input type="hidden" id="prod_image1" name="prod_image1">
+				                                        <input type="file" id="uploadImg1" name="uploadImg1" oninput="checkFileName(1, 'top');">
 				                                    </div>
 		                                        <div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>상품 상세 설명</h5><br>
 				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-2.jpg" alt="">
+				                                        <img src="" alt="" id="prevImg2">
 				                                        <div class="sale pp-sale">2</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                        <input type="hidden" id="prod_image2" name="prod_image2">
+				                                        <input type="file" id="uploadImg2" name="uploadImg2" oninput="checkFileName(2, 'detail');">
 				                                    </div>
 		                                     	<div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>썸네일</h5><br>
 				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
+				                                        <img src="" alt="" id="prevImg3">
 				                                        <div class="sale pp-sale">3</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                        <input type="hidden" id="prod_image3" name="prod_image3">
+				                                        <input type="file" id="uploadImg3" name="uploadImg3" oninput="checkFileName(3, 'thumb');">
 				                                    </div>
 		                                     	<div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
+		                            <div class="col-lg-3 col-sm-6">
+                                      <div class="product-item">
+                                          <div class="pi-text">
+                                              <h5>품절 시 대체 썸네일</h5><br>
+                                                <div class="pi-pic">
+                                                    <img src="" alt="" id="prevImg4">
+                                                    <div class="sale pp-sale">4</div>
+				                                        <input type="hidden" id="prod_image4" name="prod_image4">
+                                                    <input type="file" id="uploadImg4" name="uploadImg4" oninput="checkFileName(4, 'soldout');">
+                                                </div>
+                                              <div class="catagory-name">[이미지 삭제]</div>
+                                          </div>
+                                      </div>
+                                  </div>
 								</div>
 							</div>
 							<!-- 상품이미지 끝-->
@@ -294,7 +311,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    <script src="${path}/resources/js/productAdmin.js"></script>
+    <script src="${path}/resources/js/product_js/productAdmin.js"></script>
 </body>
 
 </html>

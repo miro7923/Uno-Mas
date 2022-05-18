@@ -12,18 +12,39 @@ a:hover {
 	color: #5179a5;
 }
 
+.tab-item ul li a {
+	padding: 18px 117px;
+}
+
 .likeBtn {
 	padding: 8px 23px 7px;
 }
 
-.footerInquiry a:link, a:visited {
+.footerInquiry a, .footerInquiry a:link, a:visited, a:active {
 	color: #5179a5;
 }
 
 .product-details .quantity .primary-btn.pd-cart {
-	padding: 14px 60px 10px;
+	padding: 10px 60px;
 	background-color: #B9CE45;
 	border: none;
+	font-size: 17px;
+}
+
+.product-details .quantity .primary-btn.pd-cart.soldout {
+	background-color: #d0d0d0;
+}
+
+.product-details .quantity .pro-qty {
+	height: 30px;
+}
+
+.product-details .quantity .pro-qty input {
+	height: 25px;
+}
+
+.product-details .quantity .pro-qty .qtybtn {
+	line-height: 20px;
 }
 
 .tab-item ul li a::before {
@@ -71,7 +92,7 @@ p.memberInfo {
 	line-height: 50px;
 }
 
-#wishlistBtnEmpty, #wishlistBtnFull {
+#wishlistBtn {
     padding: 20px;
     border: solid lightgray;
     background-color: white;
@@ -85,7 +106,8 @@ p.memberInfo {
     border: None;
 }
 
-.product-big-img {
+.product-pic-zoom .product-big-img {
+    min-width: 50%;
     max-width: 75%;
 }
 
