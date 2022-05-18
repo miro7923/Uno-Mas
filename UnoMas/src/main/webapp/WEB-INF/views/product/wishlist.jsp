@@ -17,16 +17,6 @@
 	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
 	<%
 	UserVO vo = (UserVO)session.getAttribute("saveID");
-	if(vo == null){
-	
-		PrintWriter script = response.getWriter();
-		script.println("<script>");
-		script.println("alert('로그인이 필요합니다.')");
-		script.println("location.href = '/user/login'");
-		script.println("</script>");
-		return;
-	}
-		
 	%>
 	
     <!-- Header Section Begin -->
