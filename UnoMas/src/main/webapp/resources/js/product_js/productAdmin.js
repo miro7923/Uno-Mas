@@ -189,7 +189,6 @@ function crossBrowsing(num) {
 }
 
 function uploadImg(num, type) {
-	alert('uploadDeImg() 호출 type: '+type+'num: '+num);
 	var reader = new FileReader();
 	
 	reader.onload = e => {
@@ -227,7 +226,6 @@ function uploadImg(num, type) {
 			if (data != null) {
 				alert('이미지 업로드 성공' + data);
 				$('#prod_image' + num).val(data);
-				alert('#prod_image'+num+': '+$('#prod_image'+num).val());
 			}
 		},
 		error: function() {

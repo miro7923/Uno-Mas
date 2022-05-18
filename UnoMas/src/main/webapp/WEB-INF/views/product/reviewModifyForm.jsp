@@ -8,7 +8,7 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/reviewWritingForm.css?after2">
+	href="${path}/resources/css/product_css/reviewWritingForm.css?pafet">
 <!-- Header end -->
 
 <body>
@@ -112,7 +112,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/reviewWritingForm.js"></script>
+	<script src="${path}/resources/js/product_js/reviewWritingForm.js"></script>
 
 
 </body>

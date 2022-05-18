@@ -116,7 +116,16 @@
 								</div>
 								<div class="pd-desc">
 									<h5 class="priceText">
-										총 상품금액 : <span id="totalPrice"></span> 원
+									    총 상품금액 : 
+									    <c:choose>
+									        <c:when test="${vo.prod_stock > 0 }">
+												<span id="totalPrice"></span>
+									        </c:when>
+									        <c:otherwise>
+									            <span><fmt:formatNumber value="${vo.prod_price }" type="number"/></span>
+									        </c:otherwise>
+									    </c:choose>
+									     원
 									</h5>
 								</div>
 								<div class="quantity justify-content-end">
@@ -514,7 +523,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/productDetail.js"></script>
+	<script src="${path}/resources/js/product_js/productDetail.js"></script>
 </body>
 
 </html>
