@@ -24,7 +24,7 @@ public interface BoardDAO {
 	public Integer countBoardList(Criter cri);
 	
 	// 글 조회
-	public BoardVO getBoard(Integer faq_num) throws Exception;
+	public BoardVO getBoard(Integer faq_num);
 	
 	// 질문 업데이트
 	public void updateBoard(BoardVO vo);

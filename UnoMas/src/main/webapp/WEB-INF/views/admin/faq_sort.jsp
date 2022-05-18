@@ -6,6 +6,7 @@
 	pageContext.setAttribute("br", "<br/>");
 	pageContext.setAttribute("cn", "\n");
 %>
+
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
   
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
         
         
-      <div class="container">
+       <div class="container">
             <div class="row">
             
                 <div class="col-lg-12">
@@ -28,26 +29,6 @@
                 </div>
     
     <input type="button" value="글쓰기" onclick="location.href='/admin/faq_write';">
-    <select id="search_type" name="search_type">
-    	<option value="">검색조건</option>
-    	<option value="title">제목</option>
-    	<option value="cate">카테고리</option>
-    	<option value="content">내용</option>
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
-<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
-    
-    <script type="text/javascript">
-    	function search() {
-    		var search_type_val = document.getElementById("search_type");
-    		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
-    		var keyword_val = document.getElementById("keyword").value;
-    		var url = "/admin/faq_board?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
-    		
-    		location.href=url;
-    	}
-    </script>
     
     <script>
   var preContent;
@@ -83,11 +64,12 @@
 </script>
 
 
+
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
                 
                 <div class="search_date">
-                    <select class="btn_layer" id="qni_category" >
+                    <select class="btn_layer" id="qni_category">
                        			<option>카테고리 선택</option>
                        			<option value="1">배송/포장</option>
                             	<option value="2">취소/교환/환불</option>
@@ -97,34 +79,33 @@
                             	<option value="6">회원</option>
                             	<option value="7">서비스 이용</option>
                     </select>
-                </div><!-- seach_date -->
-                
+                </div>
                 
                 <div class="xans-element- xans-myshop xans-myshop-couponserial ">
                     <table width="100%" class="xans-board-listheader">
                         <tbody>
                             <tr>
-                                <th style="width: 70px; text-align: center;" class="input_txt">번호</th>
-                                <th style="width: 135px; text-align: center;" class="input_txt">카테고리</th>
+                                <th width="70" class="input_txt">번호</th>
+                                <th width="135" class="input_txt">카테고리</th>
                                 <th style="width: 500px; text-align: center;" class="input_txt">제목</th>
                                 <th style="width: 100px; text-align: center;" class="input_txt">작성자</th>
                             </tr>
                         </tbody>
-                    </table> <!-- table header -->
-                                <c:forEach items="${pList }" var="vo">
-                               
+                    </table>
+                                <c:forEach items="${pList }" var="vo" varStatus="i">
+                    <div>
                         <div>
                             <table width="100%" class="table_faq" onclick="view_content(this)" id="faq_7">
                                 <tbody>
     
                                     <tr>
-                                        <td width="70" align="center">${vo.faq_num }</td>
+                                        <td width="70" align="center">${fn:length(pList)-i.index }</td>
                                         <td width="135" align="center">${vo.qnaCateVO.qnacate_name }</td>
                                         <td style="cursor:pointer">${vo.faq_title }</td>
                                         <td style="cursor:pointer">${vo.adminVO.admin_id }</td>
                                     </tr>
                                 </tbody>
-                            </table> 
+                            </table>
                                 
                             <div style="display:none;padding:30px; border-top:1px solid #e6e6e6">
                                 <table cellpadding="0" cellspacing="0" border="0">
@@ -133,68 +114,52 @@
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
                                             <td>
                                             ${fn:replace(vo.faq_content,cn,br)}<br>
-                                            <input type="button" value="수정하기" onclick="location.href='/admin/faq_update?faq_num=${vo.faq_num}'">
-                                            <input type="button" value="삭제하기" onclick="location.href='/admin/faq_delete?faq_num=${vo.faq_num}'">
-                                            
                                             </td>
                                         </tr>
                                     </tbody>
                                     
                                 </table>
                             </div>
-                        </div> <!-- table body -->
+                        </div>
 
+                    </div>
                                 </c:forEach>
-                                
                     <div style="padding:1px; border-top:1px solid #e6e6e6"></div>
-                    
                     <div class="layout-pagination">
                         <div class="pagediv">
-                        <div class="row justify-content-center">
+<div class="row justify-content-center">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
-                    </div> <!-- paging div -->
-                    
+						
+                        </div>
+                    </div>
                     <table class="xans-board-search xans-board-search2">
                         <tbody>
                             <tr>
-                                <td>
-                                
-                                <select id="search_type" name="search_type">
-    	<option value="">검색조건</option>
-    	<option value="title">제목</option>
-    	<option value="cate">카테고리</option>
-    	<option value="content">내용</option>
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
-<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
-                                
-                                </td>
+                                <td class="input_txt">&nbsp;</td>
                                 
                             </tr>
                         </tbody>
-                    </table><!-- 검색 table -->
-                </div><!-- paging 검색 div -->
+                    </table>
+                </div>
 
-            </div> <!-- table total div -->
-            </div><!-- page section div -->
+            </div>
         </form>
     
     
@@ -206,7 +171,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
         
         <script type="text/javascript">
 		$(document).ready(function() {

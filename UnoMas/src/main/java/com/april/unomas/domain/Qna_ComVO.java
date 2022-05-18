@@ -9,6 +9,8 @@ public class Qna_ComVO {
 	private int admin_num;
 	private String qna_content;
 	private Date qna_regdate;
+	private QnaVO qnaVO;
+	
 	public int getQnacom_num() {
 		return qnacom_num;
 	}
@@ -42,7 +44,7 @@ public class Qna_ComVO {
 	@Override
 	public String toString() {
 		return "Qna_ComVO [qnacom_num=" + qnacom_num + ", qna_num=" + qna_num + ", admin_num=" + admin_num
-				+ ", qna_content=" + qna_content + ", qna_regdate=" + qna_regdate + "]";
+				+ ", qna_content=" + qna_content + ", qna_regdate=" + qna_regdate + ", qnaVO=" + qnaVO + "]";
 	}
 	
 	

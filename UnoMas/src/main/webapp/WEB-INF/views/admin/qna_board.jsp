@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%
-	pageContext.setAttribute("br", "<br/>");
-	pageContext.setAttribute("cn", "\n");
-%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
   
 <!DOCTYPE html>
@@ -24,30 +19,11 @@
                         
                         <div class="page_aticle">
     <div class="head_aticle">
-                    <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
+                    <h2 class="tit">1:1 문의<span class="tit_sub"></span></h2>
                 </div>
     
-    <input type="button" value="글쓰기" onclick="location.href='/admin/faq_write';">
-    <select id="search_type" name="search_type">
-    	<option value="">검색조건</option>
-    	<option value="title">제목</option>
-    	<option value="cate">카테고리</option>
-    	<option value="content">내용</option>
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
-<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
+    <input type="button" value="글쓰기" onclick="location.href='/board/inquiry_form';">
     
-    <script type="text/javascript">
-    	function search() {
-    		var search_type_val = document.getElementById("search_type");
-    		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
-    		var keyword_val = document.getElementById("keyword").value;
-    		var url = "/admin/faq_board?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
-    		
-    		location.href=url;
-    	}
-    </script>
     
     <script>
   var preContent;
@@ -81,71 +57,80 @@
 
  
 </script>
-
+<script type="text/javascript">
+	function deleteAction(data) {
+		if(confirm("삭제하시겠습니까?") == true){
+			location.href='/board/qna_delete?qna_num='+data;
+		}
+	}
+</script>
 
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
                 
-                <div class="search_date">
-                    <select class="btn_layer" id="qni_category" >
-                       			<option>카테고리 선택</option>
-                       			<option value="1">배송/포장</option>
-                            	<option value="2">취소/교환/환불</option>
-                            	<option value="3">이벤트/적립금</option>
-                            	<option value="4">상품</option>
-                            	<option value="5">주문/결제</option>
-                            	<option value="6">회원</option>
-                            	<option value="7">서비스 이용</option>
-                    </select>
-                </div><!-- seach_date -->
-                
                 
                 <div class="xans-element- xans-myshop xans-myshop-couponserial ">
+                	
                     <table width="100%" class="xans-board-listheader">
                         <tbody>
                             <tr>
-                                <th style="width: 70px; text-align: center;" class="input_txt">번호</th>
-                                <th style="width: 135px; text-align: center;" class="input_txt">카테고리</th>
-                                <th style="width: 500px; text-align: center;" class="input_txt">제목</th>
-                                <th style="width: 100px; text-align: center;" class="input_txt">작성자</th>
+                                <th width="520px;" style="padding-left: 300px;" class="input_txt">제목</th>
+                                <th width="100px;" class="input_txt">작성일</th>
+                                <th width="100px;" class="input_txt">답변상태</th>
+                                <th width="100px;" class="input_txt">삭제</th>
                             </tr>
                         </tbody>
                     </table> <!-- table header -->
                                 <c:forEach items="${pList }" var="vo">
-                               
+                                
+                    
                         <div>
                             <table width="100%" class="table_faq" onclick="view_content(this)" id="faq_7">
                                 <tbody>
     
                                     <tr>
-                                        <td width="70" align="center">${vo.faq_num }</td>
-                                        <td width="135" align="center">${vo.qnaCateVO.qnacate_name }</td>
-                                        <td style="cursor:pointer">${vo.faq_title }</td>
-                                        <td style="cursor:pointer">${vo.adminVO.admin_id }</td>
+                                        <td class="td_subject">${vo.qna_title }</td>
+                        <td class="td_regdate">${vo.qna_regdate }</td>
+                        <td class="td_answerstatus">답변대기 ${vo.qna_process }</td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
+                        <td><input type="button" value="삭제" onclick="deleteAction(${vo.qna_num})"></td>
                                     </tr>
                                 </tbody>
                             </table> 
                                 
                             <div style="display:none;padding:30px; border-top:1px solid #e6e6e6">
-                                <table cellpadding="0" cellspacing="0" border="0">
+                            
+                            
+                            <table cellpadding="0" cellspacing="0" border="0">
                                     <tbody>
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
-                                            <td>
-                                            ${fn:replace(vo.faq_content,cn,br)}<br>
-                                            <input type="button" value="수정하기" onclick="location.href='/admin/faq_update?faq_num=${vo.faq_num}'">
-                                            <input type="button" value="삭제하기" onclick="location.href='/admin/faq_delete?faq_num=${vo.faq_num}'">
+                                            <td><span class="px-3">1차 카테고리 ${vo.qnaCateVO.qnacate_name }</span>
+			            <span> > </span><br>
+			            <span> 2차 카테고리 ${vo.qnacate2 }</span>
+			            <div class="question mt-3 pb-5 px-3">
+<%-- 			            <img src="${path}/resources/img/question.svg" class="questionicon">  --%>
+			            이미지1 <a href="/admin/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="/resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
+			            이미지2 <a href="/admin/image2Down?qna_image2=${vo.qna_image2 }"><img name="qna_image2" alt="img2" src="/resources/upload/images/board/qna/${vo.qna_image2 }"></a><input type="hidden" value="${vo.qna_image2 }" name="qna_image2">
+			            <span> 문의 내용 ${vo.qna_content }</span>
+			        </div>
+			        <div class="answer pb-5 px-3" >
+<%-- 			            <img src="${path}/resources/img/answer.svg" class="answericon">  --%>
+			            <span> 답변 내용 </span>
+			        </div>
+                                            <br>
+                                            
                                             
                                             </td>
                                         </tr>
                                     </tbody>
                                     
                                 </table>
+                            
+                                
                             </div>
                         </div> <!-- table body -->
 
                                 </c:forEach>
-                                
                     <div style="padding:1px; border-top:1px solid #e6e6e6"></div>
                     
                     <div class="layout-pagination">
@@ -154,15 +139,15 @@
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/admin/qna_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/qna_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/admin/qna_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
@@ -176,15 +161,7 @@
                             <tr>
                                 <td>
                                 
-                                <select id="search_type" name="search_type">
-    	<option value="">검색조건</option>
-    	<option value="title">제목</option>
-    	<option value="cate">카테고리</option>
-    	<option value="content">내용</option>
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
-<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
+                               
                                 
                                 </td>
                                 
@@ -208,15 +185,7 @@
             </div>
         </div>
         
-        <script type="text/javascript">
-		$(document).ready(function() {
-			$("#qni_category").change(function() {
-// 				alert($(this).val());
-				var changeVal = $(this).val();
-				location.href="/admin/faq_sort${pagingVO.makeQuery(pageNum) }&qnacate_num="+changeVal;
-			});
-		});
-	</script>
+        
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <jsp:include page="../inc/adminFooter.jsp"></jsp:include>

@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
+import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.AdminDAO;
 
@@ -69,6 +71,90 @@ public class AdminServiceImpl implements AdminService {
 	public AdminVO adminLogin(AdminVO vo) {
 		// 관리자 로그인
 		return dao.adminLogin(vo);
+	}
+
+	@Override
+	public NoticeVO getNotice(Integer notice_num) throws Exception {
+		// 공지사항 조회
+		return dao.noticeRead(notice_num);
+	}
+
+	@Override
+	public void noticeUpdate(NoticeVO vo) throws Exception {
+		// 공지사항 수정하기
+		dao.noticeUpdate(vo);
+	}
+
+	@Override
+	public void noticeDelete(Integer notice_num) throws Exception {
+		// 공지사항 삭제하기
+		dao.noticeDelete(notice_num);
+	}
+
+	@Override
+	public void rCountUp(Integer notice_num) throws Exception {
+		// 공지사항 조회수 증가
+		dao.noticeReadCountUp(notice_num);
+	}
+
+	@Override
+	public void faqWrite(BoardVO vo) throws Exception {
+		// 자주하는 질문 글쓰기
+		dao.faqInsert(vo);
+	}
+
+	@Override
+	public List<BoardVO> faqView(Criter cri) throws Exception {
+		// 자주하는 질문 목록
+		return dao.faqList(cri);
+	}
+
+	@Override
+	public Integer faqCount() throws Exception {
+		// 자주하는 질문 갯수
+		return dao.faqTotal();
+	}
+
+	@Override
+	public List<BoardVO> faqSortView(Integer qnacate_num, Criter cri) throws Exception {
+		// 자주하는 질문 정렬 목록
+		return dao.faqSortCate(qnacate_num, cri);
+	}
+
+	@Override
+	public Integer faqSortCount(Integer qnacate_num) throws Exception {
+		// 자주하는 질문 정렬 갯수
+		return dao.faqSortTotal(qnacate_num);
+	}
+
+	@Override
+	public void faqUpdate(BoardVO vo) throws Exception {
+		// 자주하는 질문 수정
+		dao.faqUpdate(vo);
+	}
+
+	@Override
+	public void faqDelete(Integer faq_num) throws Exception {
+		// 자주하는 질문 삭제
+		dao.faqDelete(faq_num);
+	}
+
+	@Override
+	public BoardVO getFaq(Integer faq_num) throws Exception {
+		// 자주하는 질문 조회
+		return dao.getFaq(faq_num);
+	}
+
+	@Override
+	public List<QnaVO> qnaView(int user_num, Criter cri) throws Exception {
+		// 1:1문의 목록
+		return dao.qnaList(user_num, cri);
+	}
+
+	@Override
+	public Integer qnaCount() throws Exception {
+		// 1:1문의 갯수
+		return dao.qnaTotal();
 	}
 	
 	

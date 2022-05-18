@@ -66,7 +66,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public BoardVO getBoard(Integer faq_num) throws Exception {
+	public BoardVO getBoard(Integer faq_num) {
 		return sqlSession.selectOne(NAMESPACE+".getBoard",faq_num);
 	}
 

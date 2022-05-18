@@ -35,14 +35,6 @@
 		values(#{faq_title},#{faq_content},#{faq_cate})
 	</insert>
 	
-<!-- 	<select id="listAll" resultType="BoardVO"> -->
-<!-- 		<![CDATA[ -->
-<!-- 		select * from board_faq  -->
-<!-- 		where faq_num > 0 -->
-<!-- 		order by faq_num desc -->
-<!-- 		]]> -->
-<!-- 	</select> -->
-	
 	<select id="sortCategory" resultMap="boardMap">
 		select * 
 		from board_faq b

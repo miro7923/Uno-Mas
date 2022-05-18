@@ -50,6 +50,17 @@
 		
 	</select>
 	
+	<select id="pageQna" resultMap="qnaMap">
+		<![CDATA[
+		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
+		from board_qna q join qna_category c
+		on Q.QNACATE_NUM = C.QNACATE_NUM
+		where Q.USER_NUM = #{user_num}
+		]]>
+		order by QNA_NUM desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
 	<select id="pagingQna1" resultMap="qnaMap">
 		<![CDATA[
 		select qna_num, qna_title, qna_content, qna_regdate,qna_process,qna_image1,qna_image2,q.qnacate_num,c.qnacate_name
@@ -61,17 +72,7 @@
 		
 	</select>
 	
-	<select id="pageQna" resultMap="qnaMap">
-		<![CDATA[
-		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
-		from board_qna q join qna_category c
-		on Q.QNACATE_NUM = C.QNACATE_NUM
-		where Q.USER_NUM = #{user_num}
-		]]>
-		order by QNA_NUM desc
-		limit #{pageStart}, #{perPageNum}
 		
-	</select>
 	
 	<select id="qnaCnt" resultType="Integer">
 		select count(qna_num) 

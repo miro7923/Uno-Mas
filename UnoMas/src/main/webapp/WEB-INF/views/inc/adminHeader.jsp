@@ -5,6 +5,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     	AdminVO vo = (AdminVO)session.getAttribute("saveID");
+		if(vo == null) {
+%>
+		<script>location.href="/admin/admin_login";</script>
+<%
+		}
+    		
 %>
 
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
@@ -33,6 +39,12 @@
     <style type="text/css">
     
     </style>
+    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_paging.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_sort.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_update.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_write.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/board_css/faq_detail.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/board_css/faq_insert.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/board_css/faq_update.css?after" type="text/css">
@@ -253,7 +265,11 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs"><%=vo.getAdmin_id() %>님 환영합니다</span>
+                  <span class="hidden-xs">
+                  <%if(vo != null) {%>
+                  <%=vo.getAdmin_id() %>님 환영합니다
+                  <%} %>
+                  </span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
