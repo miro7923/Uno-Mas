@@ -37,14 +37,19 @@
 		<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
 	
-	<!-- 업로드 경로 설정 -->
+	<!-- 1:1문의 이미지 경로 설정 -->
 	<beans:bean id="qnaUploadPath" class="java.lang.String">
 		<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\board\\qna"></beans:constructor-arg>
 	</beans:bean>
 	
-	<!-- 업로드 경로 설정 -->
+	<!-- 공지사항 파일 경로 설정 -->
 	<beans:bean id="noticeFileUploadPath" class="java.lang.String">
 		<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\file\\board\\notice"></beans:constructor-arg>
+	</beans:bean>
+	
+	<!-- 공지사항 이미지 경로 설정 -->
+	<beans:bean id="noticeImageUploadPath" class="java.lang.String">
+		<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\board\\notice"></beans:constructor-arg>
 	</beans:bean>
 	
 	  <!-- 업로드 경로 설정 -->
@@ -83,4 +88,5 @@
 			<beans:bean id="WishIntreceptor" class="com.april.unomas.interceptor.WishInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
+
 </beans:beans>

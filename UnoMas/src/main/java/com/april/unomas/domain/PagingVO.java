@@ -38,7 +38,7 @@ public class PagingVO {
 	        System.out.println("endPage == ::" + endPage);
 	        this.startPage = (this.endPage - displayPageNum) + 1;
 	        System.out.println("startPage == :: " + startPage);
-	        if(startPage <= 0) startPage = 0;
+//	        if(startPage <= 0) startPage = 0;
 	        
 	        int tempEndPage = (int) (Math.ceil(totalCount / (double) perPageNum));
 	        if (this.endPage > tempEndPage) {
