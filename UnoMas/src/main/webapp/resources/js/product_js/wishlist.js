@@ -72,3 +72,18 @@ $(".selectInsertWish_btn").click(function(){ // 장바구니 선택담기
 		}
 	});
 });
+
+function wishToCart() {
+    $.ajax({
+	    url: '/product/wishlist/insert_cart',
+	    data: {
+	        'user_num': $('#user_num').val(),
+	        'prod_num': $('#prod_num').val(),
+	        'prod_amount': $('#prod_amount').val()
+	          },
+	    success: function() {
+	        if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?'))
+	        	location.href = '/product/cart/list';
+	    }
+    });
+}

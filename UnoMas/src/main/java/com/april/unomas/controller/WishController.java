@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -102,4 +103,14 @@ public class WishController {
 	    return "redirect:/product/wishlist/list";
 	}
 	
+	// 장바구니 단품 담기
+	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
+	public void insertCartPOST(HttpServletRequest request) throws Exception {
+		log.info("insertCartPOST() 호출");
+		int user_num = Integer.parseInt(request.getParameter("user_num"));
+		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
+		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
+
+		service.insertCart(user_num, prod_num, prod_amount);
+	}
 }

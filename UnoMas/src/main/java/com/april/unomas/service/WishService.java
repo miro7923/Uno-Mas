@@ -23,4 +23,7 @@ public interface WishService {
 	
 	// 찜 전체 삭제
 	public void deleteAllWish(int user_num) throws Exception;
+
+	// 장바구니 단품 담기
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
 }

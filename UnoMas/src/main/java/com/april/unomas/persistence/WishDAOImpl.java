@@ -1,6 +1,8 @@
 package com.april.unomas.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,6 +49,16 @@ public class WishDAOImpl implements WishDAO {
 	@Override
 	public void insertCheckWish(WishVO wish) throws Exception {
 		sqlSession.insert(namespace + ".insertCheckWish",wish);
+	}
+
+	@Override
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
+		Map<String, Object> cart = new HashMap<String, Object>();
+		cart.put("user_num", user_num);
+		cart.put("prod_num", prod_num);
+		cart.put("prod_amount", prod_amount);
+		
+		sqlSession.insert(namespace + ".insertCart", cart);
 	}
 
 }

@@ -43,6 +43,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="cart-table">
+                    <form action="/product/wishlist/insert_cart">
                         <table>
                             <thead>
                                 <tr>
@@ -66,8 +67,11 @@
                                     </td>
                                     <td class="p-price first-row"><fmt:formatNumber value="${list.prod_price}" type="number"/>원</td>
                                     <td class="cartInFirst">
-                                        <div class="quantity">
-		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn">장바구니 담기</button>
+                                        <div class="cartIn">
+                                        	<input type="hidden" id="user_num" value="${sessionScope.saveID.user_num}">
+                                        	<input type="hidden" id="prod_num" value="${list.prod_num}">
+                                        	<input type="hidden" id="prod_amount" value="1">
+		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn" onclick="wishToCart();">장바구니 담기</button>
                                         </div>
                                     </td>
                                     <td class="close-td first-row"><a href="/product/wishlist/deleteWish?wish_num=${list.wish_num}"><i class="ti-close" ></i></a></td>
@@ -75,6 +79,7 @@
                             	</c:forEach>
                             </tbody>
                         </table>
+                        </form>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">

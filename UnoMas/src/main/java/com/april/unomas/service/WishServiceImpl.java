@@ -45,4 +45,9 @@ public class WishServiceImpl implements WishService {
 		dao.insertCheckWish(wish);
 	}
 
+	@Override
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
+		dao.insertCart(user_num, prod_num, prod_amount);
+	}
+
 }
