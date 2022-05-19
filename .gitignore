@@ -10,6 +10,7 @@ pom.properties
 .classpath
 MANIFEST.MF
 root-context.xml
+servlet-context.xml
 
 ### Eclipse ###
 .metadata
@@ -169,3 +170,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java
+/UnoMas/

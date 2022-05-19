@@ -12,3 +12,26 @@
 .close-td a:link, a:visited{
 	color:#333;
 }
+.green-btn {
+    float: right;
+    padding: 12px 30px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #B9CE45;
+    border: 1px solid #ebebeb;
+}
+.deleteSelect{
+    color: #b2b2b2;
+    border: 2px solid #ebebeb;
+    background: #ffffff;
+    margin-right: 8px;
+    padding: 12px 30px 12px 30px;
+    margin-bottom: 10px;
+}
+.deleteAll{
+    color: #252525;
+    background: #f3f3f3;
+    border: 2px solid #ebebeb;
+    padding: 12px 30px 12px 30px;
+}

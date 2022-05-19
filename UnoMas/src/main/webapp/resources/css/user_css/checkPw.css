@@ -1,0 +1,48 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+a{
+	text-decoration: none;
+}
+
+
+.checkPw_container {
+	display: flex;
+	width: 1084px;
+    margin: 70px auto;
+}
+
+.checkPw_content  {
+    margin-left: 30px;
+    margin-bottom: 80px;
+    text-align: left;
+    width: 100%;
+    min-width: 800px;
+}
+
+.checkPw_content h2 {
+	font-size: 25px;
+	margin: 30px 0px 20px 0px;
+	font-weight: bold;
+}
+
+#pass {
+	border: 1px solid #c3c3c3;
+    margin: 10px 10px 10px 0px;
+    padding: 10px;
+    height: 40px;
+    border-radius: 3px;
+    width: 50%;
+    font-size: 13px;
+}
+
+#reBtn {
+    border: 1px solid #B9CE45;
+    background-color: #B9CE45;
+    width: 80px;
+    height: 40px;
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+}
