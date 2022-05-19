@@ -100,7 +100,7 @@
 
     <!-- Js Plugins -->
     <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${path}/resources/js/wishlist.js"></script>
+    <script src="${path}/resources/js/product_js/wishlist.js"></script>
     <script src="${path}/resources/js/bootstrap.min.js"></script>
     <script src="${path}/resources/js/jquery-ui.min.js"></script>
     <script src="${path}/resources/js/jquery.countdown.min.js"></script>
