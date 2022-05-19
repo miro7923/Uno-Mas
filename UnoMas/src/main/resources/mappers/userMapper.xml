@@ -75,17 +75,12 @@
   <!-- 회원정보 수정 -->
   <update id="updateUser" >
   	update users 
-  	set user_name=#{user_name}, user_email=#{user_email}, user_birth=#{user_birth},user_phone=#{user_phone},
+  	set user_name=#{user_name}, user_email=#{user_email}, user_birth=#{user_birth}, user_phone=#{user_phone},
   		user_postalcode=#{user_postalcode}, user_roadaddr=#{user_roadaddr}, user_detailaddr=#{user_detailaddr},
   		user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}
   	where user_id=#{user_id}
   </update>
   
-  <update id="updateAddr">
-  	update order_addr
-  	set addr_postalcode=#{addr_postalcode}, addr_roadaddr=#{addr_roadaddr}, addr_detailaddr=#{addr_detailaddr}
-  	where user_id=#{user_id}
-  </update>
   
   <!-- 회원탈퇴 -->
   <update id="deleteUser">

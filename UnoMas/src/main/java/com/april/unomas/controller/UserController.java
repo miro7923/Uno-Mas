@@ -170,9 +170,9 @@ public class UserController {
 	@RequestMapping(value = "/myInfo")
 	   public String myInfo(HttpSession session, Model model) {
 	      System.out.println("일단 들어오긴하지??");
-	      UserVO saveID = (UserVO) session.getAttribute("saveID");
-	      System.out.println("세션아이디: " +saveID.getUser_id());
-	      UserVO userInfoVO = service.getUserInfo(saveID.getUser_id()); // 일단 직접 입력하고 추 후에 세션값 입력.
+	      String saveID = (String) session.getAttribute("saveID");
+	      System.out.println("세션아이디: " +saveID);
+	      UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
 	      model.addAttribute("userInfoVO", userInfoVO);
 	      return "/user/myInfo";
 	   }
@@ -198,11 +198,11 @@ public class UserController {
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 
-		UserVO vo = (UserVO) session.getAttribute("saveID");
+		String saveID = (String) session.getAttribute("saveID");
 
-		UserVO infoVO = service.getUserInfo(vo.getUser_id());
+		UserVO userInfoVO = service.getUserInfo(saveID);
 
-		model.addAttribute("infoVO", infoVO);
+		model.addAttribute("userInfoVO", userInfoVO);
 
 		return "/user/updateMyInfo";
 	}
@@ -215,6 +215,7 @@ public class UserController {
 		log.info("수정한 데이터 : " + vo);
 
 		service.updateUser(vo);
+//		service.updateAddr(vo);
 
 		return "redirect:/user/myInfo";
 	}

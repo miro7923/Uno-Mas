@@ -96,6 +96,10 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
+//	@Override
+//	public void updateAddr(UserVO vo) {
+//		dao.updateAddr(vo);
+//	}
 
 	// 회원 탈퇴
 	@Override

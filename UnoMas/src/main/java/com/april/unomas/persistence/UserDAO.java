@@ -38,6 +38,7 @@ public interface UserDAO {
 
 	// 회원정보수정
 	public Integer updateUser(UserVO vo);
+//	public Integer updateAddr(UserVO vo);
 
 	// 회원탈퇴
 	public void deleteUser(UserVO vo);

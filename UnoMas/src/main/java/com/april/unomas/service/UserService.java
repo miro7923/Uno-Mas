@@ -36,6 +36,7 @@ public interface UserService {
 		
 	// 회원정보수정
 	public void updateUser(UserVO vo);
+//	public void updateAddr(UserVO vo);
 	
 	// 회원탈퇴
 	public void deleteUser(UserVO vo);
