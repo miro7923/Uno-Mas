@@ -7,16 +7,8 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css?after5">
+<link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after5">
 <!-- Start Header -->
-
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	// 폼 태그 정보 가져오기
-	var obj = $("form[role='form']");
-	console.log(obj);
-</script>
 
 <body>
     <!-- Header Section Begin -->
@@ -52,7 +44,7 @@ $(document).ready(function(){
 									<br>
 									<h4>기본정보</h4>
 									<div class="row">
-										<div class="col-lg-2">
+										<div class="col-lg-3">
 											<label>품번<span>*</span></label> <input type="text" name="prod_num" id="prod_num" value="${vo.prod_num }" readonly>
 										</div>
 										<div class="col-lg-6">
@@ -99,17 +91,32 @@ $(document).ready(function(){
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" >
-												<option selected>대분류</option>
+											<select class="selectBox" id="categories">
+												<option value="0" selected="selected">대분류</option>
 												<c:forEach var="cvo" items="${categories }">
-												<option value="">${cvo.topcate_num}. ${cvo.topcate_name }</option>
+												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
 												</c:forEach>
 											</select>
 										</div>
 										<div class="col-lg-6">
-											<input type="text" name="prod_category" value="${vo.prod_category }" readonly>
+											<select class="selectBox" name="prod_category" id="details">
+												<option value="0" selected>소분류</option>
+												<c:forEach var="dvo" items="${details }">
+													<c:set var="dcateNum" value="${dvo.dcate_num }"></c:set>
+													<option value="${dvo.dcate_num }" class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
+													<option value="${dvo.dcate_num }" 
+														<c:if test="${vo.prod_category == dcateNum }">selected</c:if>class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
+												</c:forEach>
+											</select>
 											<label></label>
 										</div>
+<!-- 											<select class="selectBox" > -->
+<!-- 												<option selected>대분류</option> -->
+<%-- 												<option value="1봉" <c:if test="${vo.prod_sellunit == '1봉'}">selected</c:if>>1봉</option> --%>
+<!-- 											</select> -->
+											
+											<input type="text" name="prod_category" value="${vo.prod_category }" readonly>
+											<label></label>
 										<div class="col-lg-12">
 											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain" value="${vo.prod_explain }" readonly>
 										</div>
@@ -126,11 +133,14 @@ $(document).ready(function(){
 								<div class="col-lg-12">
 									<h4>판매정보</h4>
 									<div class="row">
-										<div class="col-lg-3">
-											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo. prod_price }" readonly>
+										<div class="col-lg-12">
+											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo.prod_price }" readonly>
 										</div>
 										<div class="col-lg-3">
-											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }" readonly>
+											<label>할인율<span></span></label> <input type="text" name="prod_discntrate" id="prod_discntrate" value="${vo.prod_discntrate }">
+										</div>
+										<div class="col-lg-3">
+											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo.prod_stock }" readonly>
 										</div>
 										<div class="col-lg-3">
 											<label>판매 단위<span>*</span></label>
@@ -145,7 +155,6 @@ $(document).ready(function(){
 								<!-- 판매정보 끝-->
 								<!-- 추가항목 -->
 								<div class="col-lg-12">
-									<div class="place-order">
 										<h4>추가항목</h4>
 										<div class="row">
 											<div class="col-lg-3">
@@ -169,7 +178,6 @@ $(document).ready(function(){
 <!-- 												<input type="text" name="prod_keep" id="selboxDirect"> -->
 <!-- 											</div> -->
 										</div>
-									</div>
 								</div>
 							</div>
 							<!-- 추가항목 끝-->
@@ -183,7 +191,7 @@ $(document).ready(function(){
 							</div>
 							<div class="product-list">
 		                        <div class="row">
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>기본 이미지(세로)</h5><br>
@@ -196,7 +204,7 @@ $(document).ready(function(){
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>상품 상세 설명</h5><br>
@@ -209,13 +217,26 @@ $(document).ready(function(){
 		                                    </div>
 		                                </div>
 		                            </div>
-		                            <div class="col-lg-4 col-sm-6">
+		                            <div class="col-lg-3 col-sm-6">
 		                                <div class="product-item">
 		                                    <div class="pi-text">
 		                                        <h5>썸네일</h5><br>
 				                                    <div class="pi-pic">
 				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
 				                                        <div class="sale pp-sale">3</div>
+				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                    </div>
+		                                     	<div class="catagory-name">[이미지 삭제]</div>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                            <div class="col-lg-3 col-sm-6">
+		                                <div class="product-item">
+		                                    <div class="pi-text">
+		                                        <h5>품절 시 대체 썸네일</h5><br>
+				                                    <div class="pi-pic">
+				                                        <img src="${path}/resources/img/products/product-4.jpg" alt="">
+				                                        <div class="sale pp-sale">4</div>
 				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
 				                                    </div>
 		                                     	<div class="catagory-name">[이미지 삭제]</div>
@@ -281,7 +302,7 @@ $(document).ready(function(){
 <!-- 		                                        <textarea placeholder="세척법"></textarea> -->
 <!-- 		                                        </div> -->
 		                                        <button type="button" class="back-button" onclick="history.back();">취소</button>
-		                                        <button type="submit" class="site-button" >수정</button>
+		                                        <button type="button" class="site-button" onclick="location.href='/product/modify?prod_num=${vo.prod_num}';">수정</button>
 <!-- 		                                    </div> -->
 <!-- 		                            </form> -->
 <!-- 		                        </div> -->
@@ -316,7 +337,7 @@ $(document).ready(function(){
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    <script src="${path}/resources/js/productAdmin.js"></script>
+    <script src="${path}/resources/js/product_js/productAdmin.js"></script>
 </body>
 
 </html>

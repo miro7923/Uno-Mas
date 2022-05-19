@@ -1,3 +1,4 @@
+<%@page import="com.april.unomas.domain.UserVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,6 +6,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -15,14 +17,6 @@
 	href="${path}/resources/css/productDetail.css?after2">
 <!-- Header end -->
 
-<%
-    String user_id = (String) session.getAttribute("user_id");
-
-    int user_num = 1;
-
-    // @@ 로그인 된 회원의 정보에서 위시리스트 정보도 조회해오기 @@
-    boolean isInWishlist = false;
-%>
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -68,9 +62,9 @@
 									        </c:otherwise>
 									    </c:choose>
 									</h5>
-									<%if (user_id == null) { %>
+									<c:if test="${sessionScope.saveID == null }">
 										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
-									<% } %>
+									</c:if>									
 								</div>
 								<div class="pd-tags">
 									<dl class="list first">
@@ -112,9 +106,11 @@
 									<dl class="list">
 										<div class="quantity">
 											<dt class="title">구매수량</dt>
-											<div class="pro-qty">
-												<input type="text" id="quantity" value="1">
-											</div>
+											<c:if test="${vo.prod_stock > 0 }">
+												<div class="pro-qty">
+													<input type="text" id="quantity" value="1">
+												</div>
+											</c:if>
 											<br>
 										</div>
 									</dl>
@@ -127,21 +123,41 @@
 								<div class="quantity justify-content-end">
                                     <!-- 회원의 위시리스트에 이 상품번호가 추가되어 있으면 까만 하트가 기본값 -->
                                     <!-- @@ 클릭시 ajax로 DB 통신해서 위시리스트 추가하고 알림창 띄운 뒤 화면 새로고침 @@ -->
-                                    <%if (isInWishlist) { %>
-									    <button class="icon_heart" id="wishlistBtnFull" 
-									        onclick="toggleWishlistBtn();"></button>
-								   <% }
-                                      else { %>
-									    <button class="icon_heart_alt" id="wishlistBtnEmpty" 
-									        onclick="toggleWishlistBtn();"></button>
-								   <% } %>
+                                    <input type="hidden" value="${isInWishlist }" id="isInWishlist">
+                                    <c:choose>
+                                        <c:when test="${sessionScope.saveID == null }">
+	                                        <button class="icon_heart_alt" id="wishlistBtn" 
+										        onclick="toggleWishlistBtn(null, ${vo.prod_num });"></button>
+                                        </c:when>
+                                        <c:otherwise>
+		                                    <c:choose>
+		                                        <c:when test="${isInWishlist == true }">
+												    <button class="icon_heart" id="wishlistBtn" 
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
+		                                        </c:when>
+		                                        <c:otherwise>
+												    <button class="icon_heart_alt" id="wishlistBtn" 
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
+		                                        </c:otherwise>
+		                                    </c:choose>
+                                        </c:otherwise>
+                                    </c:choose>
 								   <form action="/product/insert_cart">
 								   </form>
-								       <input type="hidden" id="user_num" value="<%=user_num%>">
-								       <input type="hidden" id="prod_num" value="${vo.prod_num }">
-								       <input type="hidden" id="prod_amount" value="1">
-									<button class="primary-btn pd-cart" id="cartBtn" 
-									    >장바구니 담기</button> 
+								       <c:choose>
+								           <c:when test="${vo.prod_stock == 0 }">
+								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
+								           </c:when>
+									       <c:when test="${sessionScope.saveID != null }">
+										       <input type="hidden" id="user_num" value="${sessionScope.savaID.user_id }">
+										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
+										       <input type="hidden" id="prod_amount" value="1">
+											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 
+									       </c:when>
+									       <c:otherwise>
+									           <button class="primary-btn pd-cart" id="cartBtn" onclick="askLogin();">장바구니 담기</button>
+									       </c:otherwise>
+								       </c:choose>
 								</div>
 							</div>
 						</div>
@@ -158,7 +174,7 @@
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
 								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
 										(${reviewCnt })</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();" style="border-right: 1px solid #ebebeb;">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -270,7 +286,7 @@
 													<col style="width: auto;">
 													<col style="width: 77px;">
 													<col style="width: 100px;">
-													<col style="width: 50px;">
+													<%-- <col style="width: 50px;"> --%>
 													<col style="width: 80px;">
 												</colgroup>
 												<tbody>
@@ -279,15 +295,14 @@
 														<th>제목</th>
 														<th align="left">작성자</th>
 														<th>작성일</th>
-														<th>좋아요</th>
+														<!-- <th>좋아요</th> -->
 														<th>조회</th>
 													</tr>
 												</tbody>
 											</table>
-											<!-- 반복문으로 리뷰글 출력 부분 -->
 											<c:choose>
 												<c:when test="${fn:length(reviewList) == 0 }">
-												    <p class="text-center nonPost">아직 등록된 후기가 없어요! 고객님께서 첫 번째 후기를 남겨주세요!</p>
+												    <p class="text-center nonPost">등록된 후기가 없어요. 고객님께서 첫 번째 후기를 남겨주세요!</p>
 												</c:when>
 												<c:otherwise>
 													<c:forEach var="reviewVo" items="${reviewList }" varStatus="it">
@@ -299,42 +314,79 @@
 																<col style="width: auto;">
 																<col style="width: 77px;">
 																<col style="width: 100px;">
-																<col style="width: 50px;">
+																<%-- <col style="width: 50px;"> --%>
 																<col style="width: 80px;">
 															</colgroup>
 															<tbody>
 																<tr onmouseover="this.style.background='#f0f0f0'"
 																	onmouseout="this.style.background='white'">
-																	<td>${reviewVo.review_num }</td>
-																	<td align="left" class="reviewTitle"
+																	<td id="reviewNum${it.index }">${reviewVo.review_num }</td>
+																	<td align="left" class="reviewTitle" id="reviewTitle${it.index }"
 																		onclick="updateReviewReadcnt(${it.index}); toggleReview(${it.index});">${reviewVo.review_title }</td>
-																	<td align="left">${reviewVo.user_id }</td>
-																	<td><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
-																	<td id="reviewLikecnt${it.index }">${reviewVo.review_likecnt }</td>
+																	<td align="left" id="reviewUserid${it.index }">${reviewVo.user_id }</td>
+																	<td id="reviewRegdate${it.index }"><fmt:formatDate value="${reviewVo.review_regdate }" type="date"/></td>
+																	<%-- <td id="reviewLikecnt${it.index }">${reviewVo.review_likecnt }</td> --%>
 																	<td id="reviewReadcnt${it.index }">${reviewVo.review_readcnt }</td>
 																</tr>
 															</tbody>
 														</table>
-														<div class="reviewContent" id="reviewContent${it.index }">
-														    <input type="hidden" value="${reviewVo.review_num }" id="review_num${it.index }">
+														<div class="reviewContent" id="reviewContentBox${it.index }">
 														    <strong>${vo.prod_name }</strong>
-															<p>평점 : <span>${reviewVo.review_rating } / 5.0</span></p><br>
-															<p>${reviewVo.review_content }</p>
+															<p>평점 : <span id="reviewRating${it.index }">${reviewVo.review_rating } / 5.0</span></p><br>
+															<c:if test="${reviewVo.review_image != null && fn:length(reviewVo.review_image) > 0 }">
+																<p align="center"><img src="<spring:url value="/resources/upload/images/board/review/${reviewVo.review_image }"></spring:url>"></p>
+															</c:if>
+															<p id="reviewContent${it.index }">${reviewVo.review_content }</p>
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
-															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
-															<p class="text-right">
-															    <button type="button" class="site-btn likeBtn" onclick="addLikeCnt(${it.index});">좋아요</button>
+															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == reviewVo.user_num }">
+																<p class="text-right">
+																    <a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
+																    <a href="javascript:void(0)" onclick="confirmToRemove('review', ${reviewVo.review_num}, ${vo.prod_num })" 
+																    style="color: #5179a5;">삭제</a>
+																</p>
+															</c:if>
+															
+															<!-- @@ 좋아요 기능 나중에 추가하기 @@ -->
+															<%-- <p class="text-right">
+															    <button type="button" class="site-btn likeBtn" onclick="addLikeCnt(${reviewVo.review_num }, ${it.index});">좋아요</button>
 															</p>
+															<p class="text-right">
+															    <button type="button" class="site-btn likeBtn" onclick="cancelLikeCnt(${reviewVo.review_num }, ${it.index});">좋아요 취소</button>
+															</p> --%>
+															<!-- @@ 좋아요 기능 나중에 추가하기 @@ -->
+															
 														</div>
 													</c:forEach>
 												</c:otherwise>
 											</c:choose>
 											
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
-												후기쓰기
-												</button>
+												<div class="row" id="pagediv">
+												    <input type="hidden" value="1" id="curReviewPage">
+													<div class="col-lg-12 text-center">
+														<c:if test="${reviewPm.prev }">
+															<a href="/product/review_list?page=${reviewPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+														</c:if>
+														
+														<c:forEach var="block" varStatus="it" begin="${reviewPm.startPage }" end="${reviewPm.endPage }" step="1">
+															<span>
+														        <!----> <a href="javascript:void(0)" 
+																class="pagingBtn" id="reviewPage${it.index }" style="color: black;"
+																onclick="changePageNum(${it.index }, ${reviewPm.endPage - reviewPm.startPage + 1 }, 'review');">${block } <!----></a>
+															</span> 
+														</c:forEach>
+														
+														<c:if test="${reviewPm.next }">
+															<a href="/product/review_list?page=${reviewPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+														</c:if>
+													</div>
+												</div>
+												<c:if test="${sessionScope.saveID != null }">
+													<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
+													후기쓰기
+													</button>
+												</c:if>
 											</div>
 										</div>
 									</div>
@@ -371,7 +423,7 @@
 											</table>
 											<c:choose>
 											    <c:when test="${fn:length(inquiryList) == 0 }">
-											        <p class="text-center nonPost">아직 등록된 문의가 없습니다.</p>
+											        <p class="text-center nonPost">등록된 문의가 없습니다.</p>
 											    </c:when>
 											    <c:otherwise>
 													<c:forEach var="inquiryVo" items="${inquiryList }" varStatus="it">
@@ -387,28 +439,56 @@
 															<tbody>
 																<tr onmouseover="this.style.background='#f0f0f0'"
 																	onmouseout="this.style.background='white'">
-																	<td>${inquiryVo.p_inquiry_num }</td>
-																	<td align="left" class="reviewTitle"
+																	<td id="inquiryNum${it.index }">${inquiryVo.p_inquiry_num }</td>
+																	<td align="left" class="reviewTitle" id="inquiryTitle${it.index }"
 																		onclick="toggleQna(${it.index});">${inquiryVo.p_inquiry_title }</td>
-																	<td align="left">${inquiryVo.user_id }</td>
-																	<td><fmt:formatDate value="${inquiryVo.p_inquiry_regdate }" type="date"/></td>
+																	<td align="left" id="inquiryUserid${it.index }">${inquiryVo.user_id }</td>
+																	<td id="inquiryRegdate${it.index }"><fmt:formatDate value="${inquiryVo.p_inquiry_regdate }" type="date"/></td>
 																</tr>
 															</tbody>
 														</table>
 														<div class="reviewContent" id="qnaContent${it.index }">
-															<p>${inquiryVo.p_inquiry_content }</p>
+															<p id="inquiryContent${it.index }">${inquiryVo.p_inquiry_content }</p>
 															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
 															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
-															<p class="text-right"><a href="#">수정</a> &nbsp; <a href="#">삭제</a></p>
+															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == inquiryVo.user_num }">
+																<p class="text-right">
+																    <a href="/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
+																    <a href="javascript:void(0)" 
+																    onclick="confirmToRemove('inquiry', ${inquiryVo.p_inquiry_num}, ${vo.prod_num })" style="color: #5179a5;">삭제</a>
+																</p>
+															</c:if>
 															<p class="text-right"><a href="#">답변하기</a></p>
 														</div>
 													</c:forEach>
 											    </c:otherwise>
 											</c:choose>
 											<div class="col-lg-12 reviewBtnArea">
-												<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
-												문의하기
-												</button>
+												<div class="row" id="pagediv">
+												    <input type="hidden" value="1" id="curInquiryPage">
+													<div class="col-lg-12 text-center">
+														<c:if test="${inquiryPm.prev }">
+															<a href="/product/inquiry_list?page=${inquiryPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+														</c:if>
+														
+														<c:forEach var="block" varStatus="it" begin="${inquiryPm.startPage }" end="${inquiryPm.endPage }" step="1">
+															<span>
+														        <!----> <a href="javascript:void(0)" 
+																class="pagingBtn" id="inquiryPage${it.index }" style="color: black;"
+																onclick="changePageNum(${it.index }, ${inquiryPm.endPage - inquiryPm.startPage + 1 }, 'inquiry');">${block } <!----></a>
+															</span> 
+														</c:forEach>
+														
+														<c:if test="${inquiryPm.next }">
+															<a href="/product/inquiry_list?page=${inquiryPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+														</c:if>
+													</div>
+												</div>
+											    <c:if test="${sessionScope.saveID != null }">
+													<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
+													문의하기
+													</button>
+											    </c:if>
 											</div>
 										</div>
 									</div>

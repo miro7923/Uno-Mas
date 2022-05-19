@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+#writeBtn {
+    margin-top: 30px;
+    margin-left: 10px;
+    float: right;
+}
+
+.customer-review-option .leave-comment .comment-form textarea {
+    height: 350px;
+}
+
+.customer-review-option .leave-comment .comment-form select {
+	width: 7%;
+    font-size: 16px;
+    color: #636363;
+    height: 30px;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+.customer-review-option .leave-comment .comment-form .uploadImgName {
+    width: 40%;
+}
+
+.customer-review-option {
+    padding-top: 10px;
+}
+
+.inputFileUpload {
+    padding: 20px 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid #ebebeb;
+    cursor: pointer;
+}
+
+#uploadImg {
+    display: none;
+}
+
+.productName {
+	padding-bottom: 40px;
+    font-weight: bold;
+}
+
+.site-btn {
+	background-color: #B9CE45;
+	border: 1px solid #B9CE45;
+}
+
+.customer-review-option .leave-comment .comment-form input[id=writeBtn] {
+	width: 120px;
+    font-size: 14px;
+    color: #ffffff;
+    height: 46px;
+    border: 1px solid #B9CE45;
+    margin-bottom: 46px;
+    padding: 0;
+    border-radius: 0;
+}

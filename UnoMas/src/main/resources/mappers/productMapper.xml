@@ -4,14 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.unomas.mapper.ProductMapper">
-    <!-- 상품 등록 (이미지 x)-->
+    <!-- 상품 등록 -->
     <insert id="setProduct">
     	INSERT INTO products(prod_name, prod_category, prod_price, prod_stock, prod_expire, 
-    						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing)
+    						prod_keep, prod_weight, prod_country, prod_sellunit, prod_explain, prod_packing, 
+    						prod_discntrate, prod_image1, prod_image2, prod_image3, prod_image4)
     	VALUES (#{prod_name}, #{prod_category}, #{prod_price}, #{prod_stock}, #{prod_expire}, 
-    			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing})
+    			#{prod_keep}, #{prod_weight}, #{prod_country}, #{prod_sellunit}, #{prod_explain}, #{prod_packing},
+    			#{prod_discntrate}, #{prod_image1}, #{prod_image2}, #{prod_image3}, #{prod_image4})
     </insert>
-
+    
+    <!-- 상품 수정 -->
+    <update id="updateProduct">
+    	UPDATE products 
+    	SET prod_name=#{prod_name}, prod_category=#{prod_category}, prod_price=#{prod_price}, 
+    		prod_stock=#{prod_stock}, prod_expire=#{prod_expire}, prod_keep=#{prod_keep}, 
+    		prod_weight=#{prod_weight}, prod_country=#{prod_country}, prod_sellunit=#{prod_sellunit}, 
+    		prod_explain=#{prod_explain}, prod_packing=#{prod_packing}, prod_discntrate=#{prod_discntrate}
+    	WHERE prod_num=#{prod_num}
+    </update>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deleteProduct">
+		DELETE FROM products
+		WHERE prod_num=#{prod_num}
+	</delete>
+	
     <!-- 상품 목록 카테고리별로 불러오기 -->
     <select id="getListCate" resultType="com.april.unomas.domain.ProductVO">
         SELECT * 
@@ -19,20 +37,13 @@
         WHERE prod_category BETWEEN #{cateStart} AND #{cateEnd}
     </select>
     
-	<!-- 상위 카테고리 목록 -->
-<!--     <select id="getTopCategory" resultType="String"> -->
-<!--     	SELECT topcate_name -->
-<!--     	FROM top_category -->
-<!--     	ORDER BY topcate_num -->
-<!--     </select> -->
-
     <!-- 상위 카테고리별 한 페이지에 표시할 만큼만 가져오기 -->
     <select id="getListOnPage" resultType="ProductVO">
         SELECT * 
         FROM products AS p 
-        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
-        JOIN top_category AS t ON d.dcate_num = t.topcate_num 
-        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd} 
+        JOIN detail_category AS d ON d.dcate_num = p.prod_category
+        JOIN top_category AS t ON t.topcate_num = d.topcate_num
+        WHERE t.topcate_num = #{topcate_num}
         ORDER BY p.prod_regdate DESC LIMIT #{pageStart}, #{perPageNum}
     </select>
     
@@ -54,9 +65,16 @@
     <select id="getProdCnt" resultType="Integer">
         SELECT COUNT(prod_num) 
         FROM products AS p 
-        JOIN detail_category AS d ON p.prod_category = d.dcate_num 
-        JOIN top_category AS t ON d.dcate_num = t.topcate_num 
-        WHERE p.prod_category BETWEEN #{cateStart} AND #{cateEnd}
+        JOIN detail_category AS d ON d.dcate_num = p.prod_category 
+        JOIN top_category AS t ON t.topcate_num = d.topcate_num 
+        WHERE t.topcate_num = #{topcate_num}
+    </select>
+    
+    <!-- 대분류별 소분류 번호 리스트 가져오기 -->
+    <select id="getTopcateCnt" resultType="int">
+        SELECT dcate_num
+        FROM detail_category
+        WHERE topcate_num = #{topcate_num}
     </select>
     
     <!-- 상품 상위 카테고리 가져오기 -->
@@ -87,6 +105,14 @@
         WHERE topcate_num = #{topcate_num}
     </select>
     
+    <!-- 상품별 카테고리 가져오기 -->
+    <select id="getCategory" resultType="CategoryVO">
+		SELECT t.topcate_name, d.dcate_name
+		FROM top_category t JOIN detail_category d
+		ON (t.topcate_num = d.topcate_num)
+		WHERE dcate_num = #{dcate_num}
+    </select>
+    
     <!-- 소분류별로 상품 가져오기 -->
     <select id="getDcateProducts" resultType="ProductVO">
         SELECT * 
@@ -110,6 +136,26 @@
         WHERE prod_num = #{prod_num}
     </select>
     
+    <!-- 상품 번호로 해당 상품 이미지 가져오기 -->
+    <select id="getProdImgs" resultType="ProductVO">
+		SELECT prod_image1, prod_image2, prod_image3, prod_image4
+		FROM products
+		WHERE prod_num = #{prod_num}
+    </select>
+
+    <!-- 상품 마지막 번호 정보 가져오기 -->
+    <select id="getLastProdNum" resultType="int">
+        SELECT MAX(prod_num)
+        FROM products
+    </select>
+    
+    <!-- 상품 조회수 증가 -->
+    <update id="addProdReadcnt">
+        UPDATE products
+        SET prod_readcnt = prod_readcnt + 1
+        WHERE prod_num = #{prod_num}
+    </update>
+
     <!-- 카트에 상품 넣기 -->
     <insert id="insertCart">
         INSERT INTO cart (user_num, prod_num, prod_amount)
@@ -162,6 +208,12 @@
         WHERE prod_discntrate > 0
     </select>
     
+    <!-- 새 리뷰글 번호 구하기 -->
+    <select id="getLastReviewNum" resultType="int">
+        SELECT MAX(review_num)
+        FROM board_review
+    </select>
+    
     <!-- 리뷰게시판 글 삽입 -->
     <select id="insertReview">
         INSERT INTO board_review(user_num, prod_num, review_title, review_content, review_ip, review_image, review_rating)
@@ -173,6 +225,15 @@
         SELECT *
         FROM board_review
         WHERE prod_num = #{prod_num}
+        ORDER BY review_regdate DESC
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 상품별 리뷰글 전체 개수 가져오기 -->
+    <select id="getReviewCnt" resultType="int">
+        SELECT COUNT(review_num)
+        FROM board_review
+        WHERE prod_num = #{prod_num}
     </select>
     
     <!-- 회원번호로 아이디 가져오기 -->
@@ -180,13 +241,6 @@
         SELECT user_id
         FROM users
         WHERE user_num = #{user_num}
-    </select>
-    
-    <!-- 상품번호별 리뷰글 개수 가져오기 -->
-    <select id="getReviewCnt" resultType="int">
-        SELECT COUNT(review_num)
-        FROM board_review
-        WHERE prod_num = #{prod_num}
     </select>
     
     <!-- 리뷰글 조회수 증가 -->
@@ -203,9 +257,38 @@
         WHERE review_num = #{review_num}
     </select>
     
+    <!-- 리뷰글 수정 -->
+    <update id="updateReview">
+        UPDATE board_review
+        SET review_title = #{review_title}, review_content = #{review_content}, review_rating = #{review_rating}, review_image = #{review_image}
+        WHERE review_num = #{review_num}
+    </update>
+    
+    <!-- 리뷰글 이미지파일 정보 가져오기 -->
+    <select id="getReviewImg" resultType="String">
+        SELECT review_image
+        FROM board_review
+        WHERE review_num = #{review_num}
+    </select>
+    
+    <!-- 리뷰글 삭제 -->
+    <delete id="deleteReview">
+        DELETE FROM board_review
+        WHERE review_num = #{review_num}
+    </delete>
+    
     <!-- 상품별 문의글 목록 가져오기 -->
     <select id="getInquiryList" resultType="ProdInquiryVO">
         SELECT *
+        FROM prod_inquiry
+        WHERE prod_num = #{prod_num}
+        ORDER BY p_inquiry_regdate DESC
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 상품별 문의글 전체 개수 가져오기 -->
+    <select id="getInquiryCnt" resultType="int">
+        SELECT COUNT(p_inquiry_num)
         FROM prod_inquiry
         WHERE prod_num = #{prod_num}
     </select>
@@ -216,10 +299,56 @@
         VALUES(#{user_num}, #{prod_num}, #{p_inquiry_title}, #{p_inquiry_content})
     </insert>
     
-    <!-- 리뷰글 좋아요 증가 -->
-    <update id="updateLikecnt">
+    <!-- 상품 문의글 하나 가져오기 -->
+    <select id="getInquiry" resultType="ProdInquiryVO">
+        SELECT *
+        FROM prod_inquiry
+        WHERE p_inquiry_num = #{p_inquiry_num}
+    </select>
+    
+    <!-- 상품 문의글 수정 -->
+    <update id="updateInquiry">
+        UPDATE prod_inquiry
+        SET p_inquiry_title = #{p_inquiry_title}, p_inquiry_content = #{p_inquiry_content}
+        WHERE p_inquiry_num = #{p_inquiry_num}
+    </update>
+    
+    <!-- 상품 문의글 삭제 -->
+    <delete id="deleteInquiry">
+        DELETE FROM prod_inquiry
+        WHERE p_inquiry_num = #{p_inquiry_num}
+    </delete>
+    
+    <!-- 리뷰글 좋아요 증가 - 여유있으면 추가하기!! -->
+    <!-- <update id="updateLikecnt">
         UPDATE board_review
         SET review_likecnt = review_likecnt + 1
         WHERE review_num = #{review_num}
-    </update>
+    </update> -->
+    
+    <!-- 리뷰글 좋아요 취소 -->
+    <!-- <update id="cancelLike">
+        UPDATE board_review
+        SET review_likecnt = review_likecnt - 1
+        WHERE review_num = #{review_num}
+    </update> -->
+    
+    <!-- 해당 상품이 위시리스트에 있는지 조회 -->
+    <select id="isInWishlist" resultType="String">
+        SELECT *
+        FROM wishlist
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </select>
+    
+    <!-- 위시리스트에 추가 -->
+    <insert id="insertWishlist">
+        INSERT INTO wishlist(user_num, prod_num)
+        VALUES (#{user_num}, #{prod_num})
+    </insert>
+    
+    <!-- 위시리스트 제거 -->
+    <delete id="deleteWishlist">
+        DELETE FROM wishlist
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </delete>
 </mapper>

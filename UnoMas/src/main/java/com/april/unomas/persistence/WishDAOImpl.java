@@ -18,13 +18,13 @@ public class WishDAOImpl implements WishDAO {
 	private static String namespace = "com.unomas.mapper.wishMapper";
 	
 	@Override
-	public List<WishVO> list() throws Exception {
-		return sqlSession.selectList(namespace + ".list");
+	public List<WishVO> list(int user_num) throws Exception {
+		return sqlSession.selectList(namespace + ".list",user_num);
 	}
 
 	@Override
-	public void deleteWish(int prod_num) throws Exception {
-		sqlSession.delete(namespace + ".deleteWish",prod_num);
+	public void deleteWish(int wish_num) throws Exception {
+		sqlSession.delete(namespace + ".deleteWish",wish_num);
 		
 	}
 

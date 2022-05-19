@@ -54,12 +54,10 @@ public class ProductDAOTest {
 		}
 	}
 	
-	
 //	@Test
 	public void 카테고리별상품출력() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
+		pp.setTopcate_num(1);
 		log.info(dao.getProductList(pp)+"");
 	}
 	
@@ -74,20 +72,12 @@ public class ProductDAOTest {
 	}
 	
 //	@Test
-	public void 페이지개수만큼가져오기테스트() throws Exception {
+	public void 대분류별페이지개수만큼가져오기테스트() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
+		pp.setTopcate_num(4);
 		pp.setPerPageNum(9);
 		pp.setPage(1);
 		log.info(dao.getProductPage(pp) + "");
-	}
-	
-//	@Test
-	public void 대분류별상품개수가져오기() throws Exception {
-		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
 		log.info(dao.getProductCnt(pp)+"");
 	}
 	
@@ -111,7 +101,7 @@ public class ProductDAOTest {
 		log.info("count: " + dao.getNewProdCnt());
 	}
 	
-	@Test
+//	@Test
 	public void 특가목록출력테스트() throws Exception {
 		ProdCriteria pc = new ProdCriteria();
 		ProdPageMaker pm = new ProdPageMaker();
@@ -120,5 +110,18 @@ public class ProductDAOTest {
 		
 		log.info(dao.getSaleProductList(pc)+"");
 		log.info(pm.getTotalCnt()+"");
+	}
+	
+//	@Test
+	public void 유저위시리스트확인() throws Exception {
+		log.info("Is in wishlist? " + dao.isInWishlist(1, 9));
+	}
+	
+	@Test
+	public void 상품별리뷰글개수() throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setProd_num(84);
+		pc.setPerPageNum(7);
+		log.info("글목록: " + dao.getReviewList(pc));
 	}
 }

@@ -26,8 +26,7 @@ public class ProductServiceTest {
 //	@Test
 	public void 카테고리별출력테스트() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
+		pp.setTopcate_num(1);
 		log.info(service.getProductList(pp)+"");
 	}
 	
@@ -44,8 +43,7 @@ public class ProductServiceTest {
 //	@Test
 	public void 페이지개수만큼가져오기() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
+		pp.setTopcate_num(1);
 		pp.setPage(9);
 		pp.setPerPageNum(1);
 		log.info(service.getProductPage(pp)+"");
@@ -54,8 +52,7 @@ public class ProductServiceTest {
 //	@Test
 	public void 대분류별상품개수가져오기() throws Exception {
 		ProdCriteria pp = new ProdCriteria();
-		pp.setCateStart(1);
-		pp.setCateEnd(3);
+		pp.setTopcate_num(1);
 		log.info(service.getProductCnt(pp)+"");
 	}
 	
@@ -87,5 +84,10 @@ public class ProductServiceTest {
 		
 		log.info(service.getNewProductList(pp)+"");
 		log.info(service.getNewProdCnt()+"");
+	}
+	
+	@Test
+	public void 리뷰글개수가져오기() throws Exception {
+		log.info("개수: "+service.getReviewCnt(84));
 	}
 }
