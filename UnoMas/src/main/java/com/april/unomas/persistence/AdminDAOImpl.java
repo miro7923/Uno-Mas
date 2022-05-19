@@ -25,8 +25,12 @@ public class AdminDAOImpl implements AdminDAO {
 	
 	// 관리자 - User파트
 	@Override
-	public Integer allUserCount() {	
-		return Integer.parseInt(sqlSession.selectOne(NAMESPACE+".allUserCount"));
+	public Integer allUserCount(String standard) {	
+		if(standard.equals("drop")) {
+			return Integer.parseInt(sqlSession.selectOne(NAMESPACE+".allDropUserCount"));
+		} else {
+			return Integer.parseInt(sqlSession.selectOne(NAMESPACE+".allUserCount"));
+		}
 	}
 
 	@Override

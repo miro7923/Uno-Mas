@@ -21,8 +21,8 @@ public class AdminServiceImpl implements AdminService{
 
 	
 	@Override
-	public Integer allUserCount() {
-		return dao.allUserCount();
+	public Integer allUserCount(String standard) {
+		return dao.allUserCount(standard);
 	}
 
 	@Override

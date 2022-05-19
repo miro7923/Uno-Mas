@@ -98,22 +98,22 @@
 	
 	<div class="allUser_paging">
 	  <c:if test="${pm.prev }">				
-	  	<a href="all_user?pagingNum=${pm.startPage - 1}" class="paging_a">이전</a>
+	  	<a href="all_user?standard=${standard }&pagingNum=${pm.startPage - 1}" class="paging_a">이전</a>
 	  </c:if>
 	  
 		<c:forEach var="block" varStatus="pg" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 		  <c:choose>
 		  	<c:when test="${pg.index == pagingNum }">
-		  	  <a href="all_user?pagingNum=${pg.index }" class="paging_num_yes">${pg.index }</a>
+		  	  <a href="all_user?standard=${standard }&pagingNum=${pg.index }" class="paging_num_yes">${pg.index }</a>
 		  	</c:when>
 		  	<c:otherwise>
-		  	  <a href="all_user?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
+		  	  <a href="all_user?standard=${standard }&pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
 		  	</c:otherwise>
 		  </c:choose>
 		</c:forEach>
 	  
 	  <c:if test="${pm.next }">
-	    <a href="all_user?pagingNum=${pm.startPage + 1}" class="paging_a">다음</a>
+	    <a href="all_user?standard=${standard }&pagingNum=${pm.startPage + 1}" class="paging_a">다음</a>
 	  </c:if>
 	</div>
   </div>

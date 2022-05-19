@@ -8,7 +8,7 @@ import com.april.unomas.domain.UserVO;
 
 public interface AdminService {
 	
-	public Integer allUserCount();
+	public Integer allUserCount(String standard);
 
 	public List<UserVO> getAllUser(String standard, CommonCriteria cri) throws Exception;
 	

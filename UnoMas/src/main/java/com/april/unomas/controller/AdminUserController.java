@@ -45,7 +45,7 @@ public class AdminUserController {
 			Model model) throws Exception {
 		List<UserVO> userList;
 		
-		int totalUserCnt = service.allUserCount();
+		int totalUserCnt = service.allUserCount(standard);
 		
 		
 		CommonCriteria cri = new CommonCriteria();
@@ -66,6 +66,7 @@ public class AdminUserController {
 		
 		model.addAttribute("userList", userList);
 		model.addAttribute("pagingNum", pagingNum);
+		model.addAttribute("standard", standard);
 		model.addAttribute("pm", pm);
 		
 		ModelAndView mav = new ModelAndView("admin/allUser");

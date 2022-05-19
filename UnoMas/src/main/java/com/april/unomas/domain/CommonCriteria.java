@@ -13,6 +13,7 @@ import lombok.ToString;
 @Setter
 @Builder
 @AllArgsConstructor
+
 public class CommonCriteria {
 	private int page;
 	private int perPageNum;

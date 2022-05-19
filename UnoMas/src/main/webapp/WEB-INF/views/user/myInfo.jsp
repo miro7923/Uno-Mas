@@ -95,8 +95,15 @@
 
 				<h3 class="myinfo_h3">(선택) 개인정보 수집 및 이용안내</h3>
 				<hr>
-			
-				<input type="checkbox" id="checkbox_text">(선택) 이메일 이벤트등 마케팅 수신 동의
+				<c:choose>
+				<c:when test="${userInfoVO.user_emailagree == 0 }">
+				  <input type="checkbox" id="checkbox_text" disabled="disabled">(선택) 이메일 이벤트등 마케팅 수신 동의
+				</c:when>
+				<c:otherwise>
+				  <input type="checkbox" id="checkbox_text" checked disabled="disabled">(선택) 이메일 이벤트등 마케팅 수신 동의
+				</c:otherwise>
+				</c:choose>
+				
 				<div id="agree_listbox">
 				<ul class="agree-list">
 					<li>개인정보 수집 및 이용동의 미동의 시 성별정보는 저장되지 않습니다.</li>

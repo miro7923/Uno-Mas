@@ -7,7 +7,12 @@
 
   <!-- 전체 회원 수 -->
   <select id="allUserCount" resultType="String">
-  	SELECT count(*) FROM users;
+  	SELECT count(*) FROM users
+  </select>
+  
+  <!-- 탈퇴 회원 수 -->
+  <select id="allDropUserCount" resultType="String">
+  	SELECT count(*) FROM users where user_status = -1
   </select>
   
   <!-- 회원 전체 조회 -->
