@@ -149,7 +149,7 @@
 								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
 								           </c:when>
 									       <c:when test="${sessionScope.saveID != null }">
-										       <input type="hidden" id="user_num" value="${sessionScope.savaID.user_id }">
+										       <input type="hidden" id="user_num" value="${sessionScope.saveID.user_num }">
 										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 										       <input type="hidden" id="prod_amount" value="1">
 											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 

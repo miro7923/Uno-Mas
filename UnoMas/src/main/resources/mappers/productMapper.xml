@@ -136,6 +136,7 @@
     <insert id="insertCart">
         INSERT INTO cart (user_num, prod_num, prod_amount)
         VALUES (#{user_num}, #{prod_num}, #{prod_amount})
+        ON DUPLICATE KEY UPDATE prod_amount=prod_amount+VALUES(prod_amount)
     </insert>
     
     <!-- 회원의 카트에 담긴 상품 확인 -->

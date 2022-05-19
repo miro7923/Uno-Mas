@@ -180,7 +180,7 @@ function insertCart() {
               },
         success: function() {
             if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?'))
-            	location.href = '/product/shopping-cart';
+            	location.href = '/product/cart/list';
         }
         });
     }
