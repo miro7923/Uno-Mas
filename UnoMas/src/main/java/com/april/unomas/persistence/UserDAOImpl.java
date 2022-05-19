@@ -68,15 +68,33 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-	// 로그인
-	@Override
-	public UserVO loginUser(UserVO vo) {
-		System.out.println(" DAO : 로그인 동작 포스트" );
-		
-		UserVO loginVO = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
-		
-		return loginVO;
-	}
+	   // 로그인
+	   @Override
+	   public Integer loginUser(UserVO vo) {
+	      int result = 0;
+	      
+	      UserVO loginVO = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
+	      
+	      // 로그인 실패
+	      if(loginVO == null) {
+	         result=0;
+	      } else {
+	         if (loginVO.getUser_status() != 1) {
+	            result = -1;
+	         } else {
+	            if (vo.getUser_id().equals(loginVO.getUser_id())) {
+	               if(vo.getUser_pass().equals(loginVO.getUser_pass())) {
+	                  result=1;
+	               } else {
+	                  result = 0;
+	               }   
+	            }
+	         }
+	      }
+	      
+	      // 로그인 성공 및 정보 저장
+	      return result;
+	   }
 	
 	
 	// 회원 아이디 찾기
@@ -154,18 +172,47 @@ public class UserDAOImpl implements UserDAO {
 		return userInfoVO;
 	}
 	
+	// 회원정보수정을 위한 비밀번호 재확인
+	@Override
+	public boolean checkPw(UserVO vo) {
+
+		boolean result = false;
+		String user_id = null;
+		String user_pass = null;
+		
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("user_id", user_id);
+		map.put("user_pass", user_pass);
+		int count = sqlSession.selectOne(NAMESPACE+".checkPw", map);
+		if(count == 1)
+			result = true;
+		
+		return result;
+	}
+	
 	// 회원정보수정
 	@Override
 	public Integer updateUser(UserVO vo) {
 		
-		Integer result =sqlSession.update(NAMESPACE+".updateUser",vo);
+		Integer result = sqlSession.update(NAMESPACE+".updateUser",vo);
 
 		log.info("회원정보수정 완료");
 		
 		return result;
+		
 	}
-
 	
+	// 추가 배송지(orderAddr)
+//	@Override
+//	public Integer updateAddr(UserVO vo) {
+//		
+//		Integer result =sqlSession.update(NAMESPACE+".updateAddr",vo);
+//
+//		log.info("회원정보수정-추가배송지 완료");
+//		
+//		return result;
+//	}
+
 	// 회원탈퇴
 	@Override
 	public void deleteUser(UserVO vo) {
