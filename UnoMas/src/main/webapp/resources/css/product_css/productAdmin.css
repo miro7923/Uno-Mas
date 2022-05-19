@@ -72,7 +72,6 @@ input:focus {
 	outline: none !important;
 	border-color: #f67555;
 	box-shadow: 0 0 5px #f67555;
-
 }
 
 select:focus{
@@ -80,6 +79,7 @@ select:focus{
 	border-color: #f67555;
 	box-shadow: 0 0 5px #f67555;
 }
+
 /* .cart-table table tr td.cart-pic { */
 /* 	width: 4%; */
 /* } */
@@ -167,22 +167,6 @@ select:focus{
     border: 2px solid #ebebeb;
     margin-bottom: 10px;
     padding-left: 15px;
-}
-
-.selectBox option selected {
-	background-color: #b9ce45;
-}
-
-/* select option { */
-/*     margin: 40px; */
-/*     background: #ebebeb; */
-/*     border: 2px solid #ebebeb; */
-/*     color: #fff; */
-/*     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4); */
-/* } */
-
-select:focus option:checked:hover {
-	background-color: #b9ce45;
 }
 
 .title {
@@ -374,7 +358,4 @@ select:focus option:checked:hover {
     background: #b9ce45;
     color: #ffffff;
 }
-
-
-
 

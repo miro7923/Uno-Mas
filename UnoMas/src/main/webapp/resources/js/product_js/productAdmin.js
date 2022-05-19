@@ -143,7 +143,6 @@ $(".date").html(date);
 
 /* 대분류 선택에 따른 소분류 카테고리 */
 var cates = false;
-
 function update_categories() {
 	$("#details").val(0);
 	$("#details").find("option[value!=0]").detach();
@@ -158,4 +157,86 @@ $(function(){
 	$("#categories").trigger("change");
 })
 
+
+function checkFileName(num, type) {
+    var regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)");
+    var maxSize = 10 * 1024 * 1024;
+	
+	var fileSize = $('#uploadImg' + num)[0].files[0].size;
+	if (fileSize > maxSize)
+	{
+		alert('5MB 이하만 첨부 가능합니다.');
+		crossBrowsing(num);
+		return;
+	}
+	
+	if (!regex.test($('#uploadImg' + num).val()))
+	{
+		alert('확장자가 jpeg, jpg, png, gif인 이미지 파일만 등록 가능합니다.');
+		crossBrowsing(num);
+		return;
+	}
+	
+	uploadImg(num, type);
+}
+
+function crossBrowsing(num) {
+	var agent = navigator.userAgent.toLowerCase();
+	
+	// 크로스 브라우징 처리
+	// IE일 때
+	if (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1 ||
+		agent.indexOf("msie") != -1)
+		$('#uploadImg' + num).replaceWith($('#uploadImg' + num).clone(true));
+	else // 그 외 브라우저
+		$('#uploadImg' + num).val('');	
+}
+
+function uploadImg(num, type) {
+	alert('uploadDeImg() 호출 type: '+type+'num: '+num);
+	var reader = new FileReader();
+	
+	reader.onload = e => {
+		$('#prevImg' + num).attr('src', e.target.result);
+	}
+	
+	reader.readAsDataURL($('#uploadImg' + num)[0].files[0]);
+	
+	var form = new FormData();
+	form.append('uploadImg' + num, $('#uploadImg' + num)[0].files[0]);
+	
+	var newUrl = '/product/upload_';
+	switch(type) {
+		case 'detail':
+			newUrl += 'deImg';
+			break;
+		case 'top':
+			newUrl += 'topImg';
+			break;
+		case 'thumb':
+			newUrl += 'thumb';
+			break;
+		case 'soldout':
+			newUrl += 'soldoutImg';
+			break;
+	}
+	
+	$.ajax({
+		type: 'post',
+		url: newUrl,
+		data: form,
+		processData: false,
+		contentType: false,
+		success: function(data) {
+			if (data != null) {
+				alert('이미지 업로드 성공' + data);
+				$('#prod_image' + num).val(data);
+				alert('#prod_image'+num+': '+$('#prod_image'+num).val());
+			}
+		},
+		error: function() {
+			alert('서버 오류로 지연되고 있습니다. 잠시 후 다시 시도해 주세요.');
+		}
+	});
+}
 
