@@ -78,17 +78,21 @@ function remaindTime() {
  
 /* 체크박스 전체 선택 해체 */
 $(document).ready(function() {
-	$("#cbx_checkAll").click(function() {
-	if($("#cbx_checkAll").is(":checked")) $("input[name=check]").prop("checked", true);
-	else $("input[name=check]").prop("checked", false);
+	$("#allCheck").click(function() {
+	if($("#allCheck").is(":checked")) {
+		$("input[name=chBox]").prop("checked", true);
+		
+	} else $("input[name=chBox]").prop("checked", false);
+	
 	});
 			
-	$("input[name=check]").click(function() {
-		var total = $("input[name=check]").length;
-		var checked = $("input[name=check]:checked").length;
+	$("input[name=chBox]").click(function() {
+		var total = $("input[name=chBox]").length;
+		var checked = $("input[name=chBox]:checked").length;
 		
-		if(total != checked) $("#cbx_checkAll").prop("checked", false);
-		else $("#cbx_checkAll").prop("checked", true); 
+		if(total != checked) {
+			$("#allCheck").prop("checked", false);
+		} else $("#allCheck").prop("checked", true); 
 	});
 });
 		
@@ -137,9 +141,8 @@ $(".date").html(date);
 //	}
 //}
 
-/* */
+/* 대분류 선택에 따른 소분류 카테고리 */
 var cates = false;
-
 function update_categories() {
 	$("#details").val(0);
 	$("#details").find("option[value!=0]").detach();
@@ -153,6 +156,7 @@ $(function(){
 	$("#categories").change(update_categories);
 	$("#categories").trigger("change");
 })
+
 
 function checkFileName(num, type) {
     var regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)");
@@ -235,3 +239,4 @@ function uploadImg(num, type) {
 		}
 	});
 }
+

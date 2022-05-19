@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.unomas.mapper.AdminMapper">
+
+<resultMap type="NoticeVO" id="noticeMap">
+	<id column="NOTICE_NUM" property="notice_num"/>
+	<result column="ADMIN_NUM" property="admin_num"/>
+	<result column="NOTICE_TITLE" property="notice_title"/>
+	<result column="NOTICE_CONTENT" property="notice_content"/>
+	<result column="NOTICE_REGDATE" property="notice_regdate"/>
+	<result column="NOTICE_READCNT" property="notice_readcnt"/>
+	<result column="NOTICE_IP" property="notice_ip"/>
+	<result column="NOTICE_IMG" property="notice_img"/>
+	<result column="NOTICE_FILE" property="notice_file"/>
+	
+
+	<association javaType="AdminVO" property="adminVO">
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<result column="ADMIN_ID" property="admin_id"/>
+		<result column="ADMIN_PASS" property="admin_pass"/>
+		<result column="ADMIN_PERMIT" property="admin_permit"/>
+		<result column="ADMIN_REGDATE" property="admin_regdate"/>
+		<result column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
+	</association>
+</resultMap>
+
+<resultMap type="AdminVO" id="adminMap">
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<id column="ADMIN_ID" property="admin_id"/>
+		<id column="ADMIN_PASS" property="admin_pass"/>
+		<id column="ADMIN_PERMIT" property="admin_permit"/>
+		<id column="ADMIN_REGDATE" property="admin_regdate"/>
+		<id column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
+	</resultMap>
+
+<resultMap type="QnaCateVO" id="qnaCateMap">
+		<id column="QNACATE_NUM" property="qnacate_num"/>
+		<id column="QNACATE_NAME" property="qnacate_name"/>
+	</resultMap>
+	
+	<resultMap type="BoardVO" id="boardMap">
+		<id column="FAQ_NUM" property="faq_num"/>
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<id column="FAQ_TITLE" property="faq_title"/>
+		<id column="FAQ_CONTENT" property="faq_content"/>
+		<id column="FAQ_REGDATE" property="faq_regdate"/>
+		<id column="QNACATE_NUM" property="qnacate_num"/>
+		<collection property="qnaCateVO" resultMap="qnaCateMap"></collection>
+		<collection property="adminVO" resultMap="adminMap"></collection>
+	</resultMap>
+	
+	<resultMap type="QnaVO" id="qnaMap">
+	<id column="QNA_NUM" property="qna_num"/>
+	<result column="USER_NUM" property="user_num"/>
+	<result column="QNA_TITLE" property="qna_title"/>
+	<result column="QNA_CONTENT" property="qna_content"/>
+	<result column="QNA_REGDATE" property="qna_regdate"/>
+	<result column="QNA_PROCESS" property="qna_process"/>
+	<result column="QNACATE2" property="qnacate2"/>
+	<result column="QNACATE_NUM" property="qnacate_num"/>
+	<result column="QNA_IMG" property="qna_img"/>
+	<result column="QNA_IMAGE1" property="qna_image1"/>
+	<result column="QNA_IMAGE2" property="qna_image2"/>
+	
+
+	<association javaType="QnaCateVO" property="qnaCateVO">
+		<id column="QNACATE_NUM" property="qnacate_num"/>
+		<result column="QNACATE_NAME" property="qnacate_name"/>
+	</association>
+</resultMap>
+
+<resultMap type="Qna_ComVO" id="qnaComMap">
+	<id column="QNACOM_NUM" property="qnacom_num"/>
+	<result column="QNA_NUM" property="qna_num"/>
+	<result column="ADMIN_NUM" property="admin_num"/>
+	<result column="QNACOM_CONTENT" property="qnacom_content"/>
+	<result column="QNACOM_REGDATE" property="qnacom_regdate"/>
+	<collection property="qnaVO" resultMap="qnaMap"></collection>
+</resultMap>
+
+<resultMap type="Qna_ComVO" id="qnaComViewMap">
+	<id column="QNACOM_NUM" property="qnacom_num"/>
+	<result column="QNA_NUM" property="qna_num"/>
+	<result column="ADMIN_NUM" property="admin_num"/>
+	<result column="QNACOM_CONTENT" property="qnacom_content"/>
+	<result column="QNACOM_REGDATE" property="qnacom_regdate"/>
+	<collection property="adminVO" resultMap="adminMap"></collection>
+</resultMap>
+
+<resultMap type="QnaVO" id="adminQna">
+	<id column="QNA_NUM" property="qna_num"/>
+	<result column="USER_NUM" property="user_num"/>
+	<result column="QNA_TITLE" property="qna_title"/>
+	<result column="QNA_CONTENT" property="qna_content"/>
+	<result column="QNA_REGDATE" property="qna_regdate"/>
+	<result column="QNA_PROCESS" property="qna_process"/>
+	<result column="QNACATE2" property="qnacate2"/>
+	<result column="QNACATE_NUM" property="qnacate_num"/>
+	<result column="QNA_IMG" property="qna_img"/>
+	<result column="QNA_IMAGE1" property="qna_image1"/>
+	<result column="QNA_IMAGE2" property="qna_image2"/>
+	<collection property="qnaCateVO" resultMap="qnaCateMap"></collection>
+	<collection property="qna_comVO" resultMap="qnaComMap"></collection>
+</resultMap>
+
+
+
+
+
+	<select id="adminLogin" resultType="AdminVO">
+		select * 
+	  	from admin 
+	  	where admin_id=#{admin_id} and admin_pass=#{admin_pass}
+	</select>
+
+	<select id="adminList" resultType="AdminVO">
+		<![CDATA[
+		select * 
+		from admin
+		where admin_num > 0
+		]]>
+		order by admin_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="adminTotal" resultType="Integer">
+		select count(*)
+		from admin
+	</select>
+	
+	<select id="userList" resultType="UserVO">
+		<![CDATA[
+		select *
+		from users
+		where user_num > 0
+		]]>
+		order by user_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="userTotal" resultType="Integer">
+		select count(*)
+		from users
+	</select>
+	
+	
+	
+	
+	<select id="noticeList" resultMap="noticeMap">
+		<![CDATA[
+		select notice_num,notice_title,notice_content,notice_regdate,notice_readcnt,notice_ip,notice_img,notice_file,a.admin_num,a.admin_id
+		from board_notice b join admin a
+		where notice_num > 0
+		]]>
+		<include refid="search_condition"></include>
+		order by notice_num desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="noticeTotal" resultType="Integer">
+		select count(*)
+		from board_notice
+	</select>
+	
+	<insert id="noticeInsert">
+		insert into board_notice(admin_num,notice_title,notice_content,notice_file,notice_img,notice_ip)
+		values (#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_img},#{notice_ip})
+	</insert>
+	
+	<select id="getNotice" resultMap="noticeMap">
+		select notice_num,notice_title,notice_content,notice_regdate,notice_readcnt,notice_ip,notice_img,notice_file,a.admin_num,a.admin_id 
+		from board_notice b join admin a
+		where notice_num=#{notice_num}
+	</select>
+	
+	<update id="rCountUp">
+		update board_notice 
+		set notice_readcnt=notice_readcnt+1
+		where notice_num=#{notice_num}
+	</update>
+	
+	<update id="noticeUpdate">
+		update board_notice 
+		set notice_title=#{notice_title},notice_content=#{notice_content},notice_regdate=now()
+		where notice_num=#{notice_num}
+	</update>
+	
+	<delete id="noticeDelete">
+		delete from board_notice
+		where notice_num=#{notice_num}
+	</delete>
+	
+	
+	<insert id="faqInsert">
+		insert into board_faq(faq_title,faq_content,qnacate_num,admin_num) 
+		values(#{faq_title},#{faq_content},#{qnacate_num},#{admin_num})
+	</insert>
+	
+	<select id="faqList" resultMap="boardMap">
+		<![CDATA[
+		select * 
+		from board_faq b
+		join qna_category q
+		on b.qnacate_num = q.qnacate_num
+		join admin a
+		on b.admin_num = a.admin_num
+		]]>
+		<include refid="search_condition_faq"></include>
+		order by faq_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="faqSortCategory" resultMap="boardMap">
+		select * 
+		from board_faq b
+		join qna_category q
+		on b.qnacate_num = q.qnacate_num
+		join admin a
+		on b.admin_num = a.admin_num
+		where b.qnacate_num=#{qnacate_num}
+		order by faq_num desc
+		limit #{pageStart} , #{perPageNum}
+	</select>
+	
+	<select id="sortCateCount" resultType="Integer">
+		select count(*) from board_faq
+		where qnacate_num=#{qnacate_num}
+	</select>
+	
+	<select id="faqCount" resultType="Integer">
+		<![CDATA[
+		select count(*) from board_faq
+		where faq_num > 0
+		]]>
+		<include refid="search_condition_faq"></include>
+	</select>
+	
+	<select id="getFaq" resultType="BoardVO">
+		select * from board_faq
+		where faq_num=#{faq_num}
+	</select>
+	
+	<update id="faqUpdate">
+		update board_faq 
+		set faq_title=#{faq_title},qnacate_num=#{qnacate_num},faq_content=#{faq_content} 
+		where faq_num=#{faq_num}
+	</update>
+	
+	<delete id="faqDelete">
+		delete from board_faq
+		where faq_num=#{faq_num}
+	</delete>
+	
+	<select id="qnaList" resultMap="adminQna">
+		<![CDATA[
+		select *
+		from board_qna q 
+		join qna_category c
+		on q.qnacate_num = c.qnacate_num
+		where q.qna_num > 0
+		]]>
+		order by q.qna_num desc
+		limit #{pageStart}, #{perPageNum}
+		
+	</select>
+	
+	<insert id="qnaCommentWrite">
+		insert into qna_comments(qna_num,admin_num,qnacom_content)
+		values (#{qna_num},#{admin_num},#{qnacom_content})
+	</insert>
+	
+	<select id="getComment" resultMap="qnaComViewMap">
+		select *
+		from qna_comments natural join admin
+		where qna_num = #{qna_num}
+	</select>
+	
+	<select id="qnaTotal" resultType="Integer">
+		<![CDATA[
+		select count(*) 
+		from board_qna
+		where qna_num > 0
+		]]>
+	</select>
+	
+	<select id="getQna" resultMap="qnaMap">
+		select * 
+		from board_qna b join qna_category c
+        on b.qnacate_num = c.qnacate_num
+		where b.qna_num = #{qna_num}
+	</select>
+	
+	<update id="qnaProcessUp">
+		update board_qna
+		set qna_process = qna_process + 1
+		where qna_num = #{qna_num}
+	</update>
+	
+	<sql id="search_condition_faq">
+	<if test="search_type != null">
+		<if test="search_type == 'title'.toString()">
+			and faq_title like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'cate'.toString()">
+			and faq_cate like concat('%', #{keyword}, '%')
+		</if>
+		<if test="search_type == 'content'.toString()">
+			and faq_content like concat('%', #{keyword}, '%')
+		</if>
+	</if>
+	</sql>
+	
+	<sql id="search_condition">
+	<if test="search_type != null">
+		<if test="search_type == 'title'.toString()">
+			and notice_title like concat('%', #{keyword}, '%')
+		</if>
+		
+	</if>
+	</sql>
+
+</mapper>
