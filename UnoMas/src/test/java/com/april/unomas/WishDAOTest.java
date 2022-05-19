@@ -33,7 +33,7 @@ public class WishDAOTest {
 	
 //	@Test
 	public void 찜목록출력테스트() throws Exception {
-		log.info(dao.list()+"");
+		log.info(dao.list(1)+"");
 	}
 
 //	@Test
