@@ -15,6 +15,12 @@ public interface ProductService {
 	// 상품 등록
 	public void insertProduct(ProductVO vo) throws Exception;
 	
+	// 상품 수정
+	public void updateProduct(ProductVO vo) throws Exception;
+	
+	// 상품 삭제
+	public void deleteProduct(ProductVO vo) throws Exception;
+	
 	// 상위 카테고리별로 상품 목록 가져오는 메서드
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
 	
@@ -45,6 +51,9 @@ public interface ProductService {
 	// 상위 카테고리의 하위 카테고리 목록 가져오기
 	public List<String> getDcateNames(int topcate_num) throws Exception;
 	
+	// 상품별 카테고리 가져오기
+	public List<CategoryVO> getCategory(int dcate_num) throws Exception;
+	
 	// 소분류별로 분류해서 가져오기
 	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception;
 	
@@ -54,6 +63,9 @@ public interface ProductService {
 	// 상품 하나의 정보를 가져오는 메서드
 	public ProductVO getProduct(int prod_num) throws Exception;
 	
+	// 상품 번호로 해당 상품 이미지 가져오는 메서드
+	public ProductVO getProdImgs(int prod_num) throws Exception;
+
 	// 상품 마지막 번호 가져오기
 	public int getLastProdNum() throws Exception;
 	

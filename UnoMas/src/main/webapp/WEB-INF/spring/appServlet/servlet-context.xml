@@ -47,12 +47,12 @@
 		<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\file\\board\\notice"></beans:constructor-arg>
 	</beans:bean>
 	
-	<!-- 업로드 경로 설정 -->
-	<beans:bean id="noticeImageUploadPath" class="java.lang.String">
-		<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\board\\notice"></beans:constructor-arg>
-	</beans:bean>
+	  <!-- 업로드 경로 설정 -->
+ 	  <beans:bean id="noticeImageUploadPath" class="java.lang.String">
+	  	<beans:constructor-arg value="D:\\workspace_uno\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\board\\notice"></beans:constructor-arg>
+	  </beans:bean>
 
-	<beans:bean id="reviewImgUploadPath" class="java.lang.String">
+	  <beans:bean id="reviewImgUploadPath" class="java.lang.String">
 	    <beans:constructor-arg value="/Users/yujinhwang/spring-workspace4/Uno-Mas/UnoMas/src/main/webapp/resources/upload/images/board/review"/>
     </beans:bean>
     

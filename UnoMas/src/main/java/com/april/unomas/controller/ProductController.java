@@ -3,6 +3,7 @@ package com.april.unomas.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +22,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -57,6 +60,9 @@ public class ProductController {
 	@Resource(name = "prodTopImgUploadPath")
 	private String prodTopImgUploadPath;
 	
+	@Resource(name = "prodSoldoutImgUploadPath")
+	private String prodSoldoutImgUploadPath;
+
 	// product
 	@RequestMapping(value = "/check-out")
 	public String checkout() {
@@ -193,10 +199,7 @@ public class ProductController {
 	public String productLookup(ProdCriteria pc, Model model) throws Exception {
 		
 		// 상품 데이터 조회
-		log.info(pc+"");
 		List<ProductVO> productList = service.getAllProductList(pc);
-		log.info(productList+"");
-		
 		model.addAttribute("productList", productList);
 		
 		// 하단 페이지 처리
@@ -209,23 +212,78 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value ="/status", method = RequestMethod.GET)
-	public String products(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String products(@RequestParam("prod_num") int prod_num, /*@RequestParam("dcate_num") int dcate_num,*/ Model model) throws Exception {
 		log.info("get호출");
 		log.info(prod_num+"");
 		List<CategoryVO> categories = service.getTopCategory();
-		model.addAttribute("categories",categories);
+		List<CategoryVO> details = service.getDCategory();
+//		List<CategoryVO> getcate = service.getCategory(dcate_num);
+		
 		model.addAttribute("vo", service.getProduct(prod_num));
+		model.addAttribute("categories",categories);
+		model.addAttribute("details",details);
+//		model.addAttribute("getcate", getcate);
+		
 		return "product/productStatus";
 		
 	}
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String productsModifyGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
-		model.addAttribute("vo", service.getProduct(prod_num));
+		log.info("수정페이지 get");
+		List<CategoryVO> categories = service.getTopCategory();
+		List<CategoryVO> details = service.getDCategory();
 		
+		
+		model.addAttribute("vo", service.getProduct(prod_num));
+		log.info("getProduct 호출"+service.getProduct(prod_num));
+		model.addAttribute("categories",categories);
+		model.addAttribute("details",details);
+
 		return "product/productModify";
 	}
-
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String productsModifyPOST(ProductVO vo) throws Exception {
+		log.info("수정할 정보: "+vo);
+		service.updateProduct(vo);
+		
+		return "redirect:/product/product_lookup";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public Integer productsDelete(@RequestParam(value = "chbox[]") List<String> chArr, 
+			ProductVO vo) throws Exception {
+		log.info("productsDelete 호출");
+		log.info(vo+"");
+		int result = 0;
+		int prod_num = 0;
+		
+			for(String i : chArr) {
+				prod_num = Integer.parseInt(i);
+				vo.setProd_num(prod_num);
+				File f1 = new File(prodTopImgUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image1());
+				File f2 = new File(prodDimgUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image2());
+				File f3 = new File(prodThumbUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image3());
+				File f4 = new File(prodSoldoutImgUploadPath + File.separator + service.getProdImgs(prod_num).getProd_image4());
+//				log.info("경로"+f1.getAbsolutePath());
+					if(f1.exists()) f1.delete();
+					if(f2.exists()) f2.delete();
+					if(f3.exists()) f3.delete();
+					if(f4.exists()) f4.delete();
+				service.deleteProduct(vo); 
+			}
+			result = 1;
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/shopping-cart")
+	public String cart() {
+		return "product/shopping-cart";
+	}
+	
 	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
 	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));
