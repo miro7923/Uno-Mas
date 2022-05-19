@@ -30,14 +30,7 @@
 		<collection property="adminVO" resultMap="adminMap"></collection>
 	</resultMap>
 
-<resultMap type="Qna_ComVO" id="qnaCommMap">
-	<id column="QNACOM_NUM" property="qnacom_num"/>
-	<result column="QNA_NUM" property="qna_num"/>
-	<result column="ADMIN_NUM" property="admin_num"/>
-	<result column="QNACOM_CONTENT" property="qnacom_content"/>
-	<result column="QNACOM_REGDATE" property="qnacom_regdate"/>
-	<collection property="adminVO" resultMap="adminMap"></collection>
-</resultMap>
+
 
   <insert id="create">
 		insert into board_faq(faq_title,faq_content,faq_cate) 
@@ -99,11 +92,7 @@
 		where faq_num=#{faq_num}
 	</delete>
 	
-	<select id="getComment" resultMap="qnaCommMap">
-		select qancom_content, admin_id, qnacom_regdate
-		from qna_comments c join admin a
-		where qna_num = #{qna_num}
-	</select>
+	
 	
 	<sql id="search_condition">
 	<if test="search_type != null">
