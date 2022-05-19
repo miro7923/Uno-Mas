@@ -166,13 +166,16 @@ public class UserController {
 		return "/user/myPage";
 	}
 
+	// 회원정보 조회
 	@RequestMapping(value = "/myInfo")
-	public String myInfo(HttpSession session, Model model) {
-		UserVO saveID = (UserVO) session.getAttribute("saveID");
-		UserVO userInfoVO = service.getUserInfo("Admin"); // 일단 직접 입력하고 추 후에 세션값 입력.
-		model.addAttribute("userInfoVO", userInfoVO);
-		return "/user/myInfo";
-	}
+	   public String myInfo(HttpSession session, Model model) {
+	      System.out.println("일단 들어오긴하지??");
+	      UserVO saveID = (UserVO) session.getAttribute("saveID");
+	      System.out.println("세션아이디: " +saveID.getUser_id());
+	      UserVO userInfoVO = service.getUserInfo(saveID.getUser_id()); // 일단 직접 입력하고 추 후에 세션값 입력.
+	      model.addAttribute("userInfoVO", userInfoVO);
+	      return "/user/myInfo";
+	   }
 	
 	// 비밀번호 체크
 	@RequestMapping(value="/checkPw",method = RequestMethod.GET)

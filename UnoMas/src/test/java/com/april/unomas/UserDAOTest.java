@@ -65,7 +65,7 @@ public class UserDAOTest {
 		dao.deleteUser(vo);
 	}
 	
-	@Test
+	//@Test
 	public void 로그인테스트() {
 		UserVO vo = new UserVO();
 		vo.setUser_id("user6");
@@ -73,11 +73,10 @@ public class UserDAOTest {
 		dao.loginUser(vo);
 	}
 	
-	//@Test
+	@Test
 	public void 회원정보수정테스트() {
 		UserVO vo = new UserVO();
-		vo.setUser_id("user5");
-		vo.setUser_pass("123123");
+		vo.setUser_name("옹식");
 		dao.updateUser(vo);
 		
 	}
