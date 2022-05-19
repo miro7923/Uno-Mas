@@ -8,7 +8,7 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/reviewWritingForm.css?after2">
+	href="${path}/resources/css/product_css/reviewWritingForm.css?after2">
 <!-- Header end -->
 
 <body>

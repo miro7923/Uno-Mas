@@ -62,7 +62,7 @@ public class ProductController {
 	
 	@Resource(name = "prodSoldoutImgUploadPath")
 	private String prodSoldoutImgUploadPath;
-
+  
 	// product
 	@RequestMapping(value = "/check-out")
 	public String checkout() {

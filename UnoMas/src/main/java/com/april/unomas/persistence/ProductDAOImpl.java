@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
@@ -135,6 +136,25 @@ public class ProductDAOImpl implements ProductDAO {
 		cart.put("prod_amount", prod_amount);
 		
 		sqlSession.insert(NAMESPACE + ".insertCart", cart);
+	}
+
+	@Override
+	public CartVO getProdInCart(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		return sqlSession.selectOne(NAMESPACE + ".getProdInCart", map);
+	}
+
+	@Override
+	public void updateCartAmount(int user_num, int prod_num, int prod_amount) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		map.put("prod_amount", prod_amount);
+		
+		sqlSession.update(NAMESPACE + ".updateCartAmount", map);
 	}
 
 	@Override

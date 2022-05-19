@@ -1,5 +1,6 @@
 $(document).ready(function() {
     showFileName();
+    selectRating();
 });
 
 function checkFileName() {
@@ -49,6 +50,12 @@ function showFileName() {
 
 function removeImg() {
     // @@ 파일업로드 기능 추가하면 추가 수정할 것 @@
-//	$('input[name=imgUploadStatus]').val(false);
+	$('#uploadImg').val(null);
 	$('#uploadImgName').val('이미지 선택');
+}
+
+function selectRating() {
+	if ($('#reviewRating').val() > 0) {
+		$('#review_rating').val($('#reviewRating').val()).attr('selected', 'selected');
+	}
 }
