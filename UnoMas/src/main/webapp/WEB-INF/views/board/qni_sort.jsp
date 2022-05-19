@@ -49,7 +49,6 @@
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
     
-    <input type="button" value="글쓰기" onclick="location.href='/board/qni_write';">
     
     <script>
   var preContent;

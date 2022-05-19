@@ -103,7 +103,14 @@
                                     <tr>
                                         <td class="td_subject">${vo.qna_title }</td>
                         <td class="td_regdate">${vo.qna_regdate }</td>
-                        <td class="td_answerstatus">답변대기 ${vo.qna_process }</td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
+                        <c:choose>
+                        <c:when test="${vo.qna_process eq '0' }">
+                        	<td class="td_answerstatus">답변대기</td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
+                        </c:when>
+                        <c:otherwise>
+                        	<td class="td_answerstatus"><a href="/board/inquiry_comment?qna_num=${vo.qna_num }" style="color: red;">답변완료</a></td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->                        	
+                        </c:otherwise>
+                        </c:choose>
                         <td><input type="button" value="삭제" onclick="deleteAction(${vo.qna_num})"></td>
                                     </tr>
                                 </tbody>
@@ -127,7 +134,6 @@
 			        </div>
 			        <div class="answer pb-5 px-3" >
 <%-- 			            <img src="${path}/resources/img/answer.svg" class="answericon">  --%>
-			            <span> 답변 내용 </span>
 			        </div>
                                             <br>
                                             
@@ -218,7 +224,6 @@
 	<script src="${path}/resources/js/main.js"></script>
 	<script src="${path}/resources/js/complete.js"></script>
 	<script src="${path}/resources/js/inquiry_list.js"></script>
-
 
 
 </body>

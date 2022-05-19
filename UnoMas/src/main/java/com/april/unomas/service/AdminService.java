@@ -7,6 +7,7 @@ import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserVO;
 
 public interface AdminService {
@@ -72,8 +73,20 @@ public interface AdminService {
 	public BoardVO getFaq(Integer faq_num) throws Exception;
 	
 	// 1:1문의 목록
-	public List<QnaVO> qnaView(int user_num,Criter cri) throws Exception;
+	public List<QnaVO> qnaView(Criter cri) throws Exception;
 		
 	// 1:1문의 갯수
 	public Integer qnaCount() throws Exception;
+	
+	// 1:1문의 답변 쓰기
+	public void qnaCommentWrite(Qna_ComVO vo) throws Exception;
+	
+	// 1:1문의 답변 보기
+	public Qna_ComVO qnaCommentView(Integer qna_num) throws Exception;
+	
+	// 1:1문의 답변상태 업데이트
+	public void qnaProcessUp(Integer qna_num) throws Exception;
+	
+	// 1:1문의 조회
+	public QnaVO getQna(Integer qna_num) throws Exception;
 }

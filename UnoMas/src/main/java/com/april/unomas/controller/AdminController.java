@@ -27,6 +27,7 @@ import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.PagingVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.AdminService;
 
@@ -266,19 +267,44 @@ public class AdminController {
 	@GetMapping(value = "/qna_board")
 	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
 		
-//		UserVO userVO = (UserVO) session.getAttribute("saveID");
-//		if(userVO == null) {
-//			return "redirect:/user/login";
-//		}
-//		List<QnaVO> pList = service.qnaView(userVO.getUser_num(),cri);
-//		log.info(pList+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-//		model.addAttribute("pList",pList);
-//		
-//		PagingVO pagingVO = new PagingVO(cri);
-//		pagingVO.setTotalCount(service.qnaCount());
-//		model.addAttribute("pagingVO",pagingVO);
-//		log.info(pList+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
+		if(adminVO == null) {
+			return "redirect:/admin/admin_login";
+		}
+		List<QnaVO> pList = service.qnaView(cri);
+		log.info(pList+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		model.addAttribute("pList",pList);
+		
+		PagingVO pagingVO = new PagingVO(cri);
+		pagingVO.setTotalCount(service.qnaCount());
+		model.addAttribute("pagingVO",pagingVO);
+		log.info(pList+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return "/admin/qna_board";
 	}
+	
+	@GetMapping(value = "/qna_comment")
+	public String qnaCommentWriteGET(@RequestParam("qna_num") Integer qna_num, Model model,HttpSession session) throws Exception {
+		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
+		model.addAttribute("admin_id",adminVO.getAdmin_id());
+		model.addAttribute("qnaVO",service.getQna(qna_num));
+		model.addAttribute("qna_num",qna_num);
+		
+		return "/admin/qna_comment";
+	}
+	
+	@PostMapping(value = "/qna_comment")
+	public String qnaCommentWritePOST(Qna_ComVO qna_comVO,HttpServletRequest request) throws Exception {
+		service.qnaCommentWrite(qna_comVO);
+		service.qnaProcessUp(Integer.parseInt(request.getParameter("qna_num")));
+		return "redirect:/admin/qna_board";
+	}
+	
+	@GetMapping(value = "/qna_commentView")
+	public String qnaCommentViewGET(@RequestParam("qna_num") Integer qna_num,Model model) throws Exception {
+		
+		model.addAttribute("vo",service.qnaCommentView(qna_num));
+		return "/admin/qna_commentView";
+	}
+	
 	
 }

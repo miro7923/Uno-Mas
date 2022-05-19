@@ -23,6 +23,23 @@
 		<result column="QNACATE_NAME" property="qnacate_name"/>
 	</association>
 </resultMap>
+<resultMap type="AdminVO" id="adminMap">
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<id column="ADMIN_ID" property="admin_id"/>
+		<id column="ADMIN_PASS" property="admin_pass"/>
+		<id column="ADMIN_PERMIT" property="admin_permit"/>
+		<id column="ADMIN_REGDATE" property="admin_regdate"/>
+		<id column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
+	</resultMap>
+
+<resultMap type="Qna_ComVO" id="qnaCommMap">
+	<id column="QNACOM_NUM" property="qnacom_num"/>
+	<result column="QNA_NUM" property="qna_num"/>
+	<result column="ADMIN_NUM" property="admin_num"/>
+	<result column="QNACOM_CONTENT" property="qnacom_content"/>
+	<result column="QNACOM_REGDATE" property="qnacom_regdate"/>
+	<collection property="adminVO" resultMap="adminMap"></collection>
+</resultMap>
 
 	<insert id="createQna">
 		insert into board_qna(user_num,qna_title,qna_content,qnacate_num,qna_image1,qna_image2)
@@ -86,5 +103,11 @@
 		where qna_num = #{qna_num}
 		
 	</delete>
+	
+	<select id="getComment" resultMap="qnaCommMap">
+		select qnacom_content, admin_id, qnacom_regdate
+		from qna_comments c join admin a
+		where qna_num = #{qna_num}
+	</select>
 	
 </mapper>

@@ -81,6 +81,31 @@
 	<collection property="qnaVO" resultMap="qnaMap"></collection>
 </resultMap>
 
+<resultMap type="Qna_ComVO" id="qnaComViewMap">
+	<id column="QNACOM_NUM" property="qnacom_num"/>
+	<result column="QNA_NUM" property="qna_num"/>
+	<result column="ADMIN_NUM" property="admin_num"/>
+	<result column="QNACOM_CONTENT" property="qnacom_content"/>
+	<result column="QNACOM_REGDATE" property="qnacom_regdate"/>
+	<collection property="adminVO" resultMap="adminMap"></collection>
+</resultMap>
+
+<resultMap type="QnaVO" id="adminQna">
+	<id column="QNA_NUM" property="qna_num"/>
+	<result column="USER_NUM" property="user_num"/>
+	<result column="QNA_TITLE" property="qna_title"/>
+	<result column="QNA_CONTENT" property="qna_content"/>
+	<result column="QNA_REGDATE" property="qna_regdate"/>
+	<result column="QNA_PROCESS" property="qna_process"/>
+	<result column="QNACATE2" property="qnacate2"/>
+	<result column="QNACATE_NUM" property="qnacate_num"/>
+	<result column="QNA_IMG" property="qna_img"/>
+	<result column="QNA_IMAGE1" property="qna_image1"/>
+	<result column="QNA_IMAGE2" property="qna_image2"/>
+	<collection property="qnaCateVO" resultMap="qnaCateMap"></collection>
+	<collection property="qna_comVO" resultMap="qnaComMap"></collection>
+</resultMap>
+
 
 
 
@@ -229,15 +254,28 @@
 		where faq_num=#{faq_num}
 	</delete>
 	
-	<select id="qnaList" resultMap="qnaMap">
+	<select id="qnaList" resultMap="adminQna">
 		<![CDATA[
-		select qna_num, qna_title, qna_content, qna_regdate,qna_process,qna_image1,qna_image2,q.qnacate_num,c.qnacate_name
-		from board_qna q join qna_category c
-		where user_num = #{user_num}
+		select *
+		from board_qna q 
+		join qna_category c
+		on q.qnacate_num = c.qnacate_num
+		where q.qna_num > 0
 		]]>
-		order by qna_num desc
+		order by q.qna_num desc
 		limit #{pageStart}, #{perPageNum}
 		
+	</select>
+	
+	<insert id="qnaCommentWrite">
+		insert into qna_comments(qna_num,admin_num,qnacom_content)
+		values (#{qna_num},#{admin_num},#{qnacom_content})
+	</insert>
+	
+	<select id="getComment" resultMap="qnaComViewMap">
+		select *
+		from qna_comments natural join admin
+		where qna_num = #{qna_num}
 	</select>
 	
 	<select id="qnaTotal" resultType="Integer">
@@ -250,14 +288,10 @@
 	
 	<select id="getQna" resultMap="qnaMap">
 		select * 
-		from board_qna b join qna_comments c
-		on b.qna_num = c.qna_num
+		from board_qna b join qna_category c
+        on b.qnacate_num = c.qnacate_num
 		where b.qna_num = #{qna_num}
 	</select>
-	
-	<insert id="qnaComWrite">
-		
-	</insert>
 	
 	<update id="qnaProcessUp">
 		update board_qna

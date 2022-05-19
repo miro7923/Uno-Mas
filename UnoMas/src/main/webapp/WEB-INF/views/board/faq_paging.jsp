@@ -48,8 +48,6 @@
         <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
     </div>
     
-    <input type="button" value="글쓰기" onclick="location.href='/faq_insert';">
-    
     <select id="search_type" name="search_type">
 <!--     	<option value="">검색조건</option> -->
     	<option value="title">제목</option>

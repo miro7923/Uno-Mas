@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 
 public interface QnaService {
 	
@@ -14,8 +15,10 @@ public interface QnaService {
 	
 	public Integer getQnaCnt(Integer user_num) throws Exception;
 	
-	public List<QnaVO> pagingQnaList(int user_num,Criter cri) throws Exception;
+	public List<QnaVO> pagingQnaList(Integer user_num,Criter cri) throws Exception;
 	
 	public void deleteInquiry(Integer qna_num);
+	
+	public Qna_ComVO getComment(Integer qna_num);
 	
 }

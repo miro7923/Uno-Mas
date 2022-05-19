@@ -22,9 +22,6 @@
                     <h2 class="tit">1:1 문의<span class="tit_sub"></span></h2>
                 </div>
     
-    <input type="button" value="글쓰기" onclick="location.href='/board/inquiry_form';">
-    
-    
     <script>
   var preContent;
 
@@ -91,7 +88,14 @@
                                     <tr>
                                         <td class="td_subject">${vo.qna_title }</td>
                         <td class="td_regdate">${vo.qna_regdate }</td>
-                        <td class="td_answerstatus">답변대기 ${vo.qna_process }</td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
+                        <c:choose>
+                        <c:when test="${vo.qna_process eq '0'}">
+                        <td class="td_answerstatus"><a href="/admin/qna_comment?qna_num=${vo.qna_num }">답변대기</a> </td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
+                        </c:when>
+                        <c:otherwise>
+                        <td class="td_answerstatus"><a href="/admin/qna_commentView?qna_num=${vo.qna_num }">답변완료</a> </td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
+                        </c:otherwise>
+                        </c:choose>
                         <td><input type="button" value="삭제" onclick="deleteAction(${vo.qna_num})"></td>
                                     </tr>
                                 </tbody>
@@ -112,10 +116,9 @@
 			            이미지1 <a href="/admin/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="/resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
 			            이미지2 <a href="/admin/image2Down?qna_image2=${vo.qna_image2 }"><img name="qna_image2" alt="img2" src="/resources/upload/images/board/qna/${vo.qna_image2 }"></a><input type="hidden" value="${vo.qna_image2 }" name="qna_image2">
 			            <span> 문의 내용 ${vo.qna_content }</span>
-			        </div>
+			        </div><br>
 			        <div class="answer pb-5 px-3" >
 <%-- 			            <img src="${path}/resources/img/answer.svg" class="answericon">  --%>
-			            <span> 답변 내용 </span>
 			        </div>
                                             <br>
                                             

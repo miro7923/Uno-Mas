@@ -356,5 +356,11 @@ public class BoardController {
 		return "redirect:/board/inquiry_paging";
 	}
 	
+	@GetMapping(value = "/inquiry_comment")
+	public String inquiryCommentGET(@RequestParam("qna_num") Integer qna_num, Model model) throws Exception {
+		model.addAttribute("commentList",qService.getComment(qna_num));
+		
+		return "/board/inquiry_comment";
+	}
 	
 }

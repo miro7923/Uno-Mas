@@ -13,6 +13,7 @@ import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.AdminDAO;
 
@@ -146,15 +147,39 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<QnaVO> qnaView(int user_num, Criter cri) throws Exception {
+	public List<QnaVO> qnaView(Criter cri) throws Exception {
 		// 1:1문의 목록
-		return dao.qnaList(user_num, cri);
+		return dao.qnaList(cri);
 	}
 
 	@Override
 	public Integer qnaCount() throws Exception {
 		// 1:1문의 갯수
 		return dao.qnaTotal();
+	}
+
+	@Override
+	public void qnaCommentWrite(Qna_ComVO vo) throws Exception {
+		// 1:1문의 답변 쓰기
+		dao.qnaCommentWrite(vo);
+	}
+
+	@Override
+	public Qna_ComVO qnaCommentView(Integer qna_num) throws Exception {
+		// 1:1문의 답변 내용보기
+		return dao.qnaCommentView(qna_num);
+	}
+
+	@Override
+	public void qnaProcessUp(Integer qna_num) throws Exception {
+		// 1:1문의 답변상태 업데이트
+		dao.qnaProcessUp(qna_num);
+	}
+
+	@Override
+	public QnaVO getQna(Integer qna_num) throws Exception {
+		// 1:1문의 조회
+		return dao.getQna(qna_num);
 	}
 	
 	

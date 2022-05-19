@@ -51,7 +51,6 @@
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
     
-    <input type="button" value="글쓰기" onclick="location.href='/board/qni_write';">
     <select id="search_type" name="search_type">
     	<option value="">검색조건</option>
     	<option value="title">제목</option>
@@ -157,8 +156,6 @@
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
                                             <td>
                                             ${fn:replace(vo.faq_content,cn,br)}<br>
-                                            <input type="button" value="수정하기" onclick="location.href='/board/qni_update?faq_num=${vo.faq_num}'">
-                                            <input type="button" value="삭제하기" onclick="location.href='/board/qni_delete?faq_num=${vo.faq_num}'">
                                             
                                             </td>
                                         </tr>

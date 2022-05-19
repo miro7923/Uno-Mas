@@ -7,6 +7,7 @@ import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserVO;
 
 public interface AdminDAO {
@@ -71,10 +72,22 @@ public interface AdminDAO {
 	// 자주하는 질문 조회
 	public BoardVO getFaq(Integer faq_num);
 	
-	// 1:1 글 목록
-	public List<QnaVO> qnaList(int user_num,Criter cri);
+	// 1:1 문의글 목록
+	public List<QnaVO> qnaList(Criter cri);
 		
-	// 1:1 글 갯수
+	// 1:1 문의글 갯수
 	public Integer qnaTotal();
+	
+	// 1:1 문의글 답변 쓰기
+	public void qnaCommentWrite(Qna_ComVO vo);
+	
+	// 1:1 문의글 답변 보기
+	public Qna_ComVO qnaCommentView(Integer qna_num);
+	
+	// 1:1 문의글 답변상태 업데이트
+	public void qnaProcessUp(Integer qna_num);
+	
+	// 1:1 문의글 하나 가져오기
+	public QnaVO getQna(Integer qna_num);
 	
 }

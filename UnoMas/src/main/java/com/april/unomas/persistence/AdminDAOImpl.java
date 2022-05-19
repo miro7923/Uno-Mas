@@ -14,6 +14,7 @@ import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserVO;
 
 @Repository
@@ -149,22 +150,40 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<QnaVO> qnaList(int user_num, Criter cri) {
+	public List<QnaVO> qnaList(Criter cri) {
 		// 1:1문의 목록
-		Map<String,Object> paramMap = new HashMap<String,Object>();
-		paramMap.put("user_num", user_num);
-		paramMap.put("pageStart",cri.getPage());
-		paramMap.put("perPageNum",cri.getPerPageNum());
-		return sqlSession.selectList(NAMESPACE+".qnaList",paramMap);
+		return sqlSession.selectList(NAMESPACE+".qnaList",cri);
 	}
 
 	@Override
 	public Integer qnaTotal() {
 		// 1:1문의 갯수
-		return sqlSession.selectOne(NAMESPACE+"qnaTotal");
+		return sqlSession.selectOne(NAMESPACE+".qnaTotal");
 	}
-	
-	
+
+	@Override
+	public void qnaCommentWrite(Qna_ComVO vo) {
+		// 1:1문의 답변 쓰기
+		sqlSession.insert(NAMESPACE+".qnaCommentWrite",vo);
+	}
+
+	@Override
+	public Qna_ComVO qnaCommentView(Integer qna_num) {
+		// 1:1문의 답변 보기
+		return sqlSession.selectOne(NAMESPACE+".getComment",qna_num);
+	}
+
+	@Override
+	public void qnaProcessUp(Integer qna_num) {
+		// 1:1문의 답변상태 업데이트
+		sqlSession.update(NAMESPACE+".qnaProcessUp",qna_num);
+	}
+
+	@Override
+	public QnaVO getQna(Integer qna_num) {
+		// 1:1문의 조회
+		return sqlSession.selectOne(NAMESPACE+".getQna",qna_num);
+	}
 	
 	
 }
