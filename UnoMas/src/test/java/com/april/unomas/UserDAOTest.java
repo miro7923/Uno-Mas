@@ -68,8 +68,8 @@ public class UserDAOTest {
 	@Test
 	public void 로그인테스트() {
 		UserVO vo = new UserVO();
-		vo.setUser_id("user5");
-		vo.setUser_pass("123123");
+		vo.setUser_id("user6");
+		vo.setUser_pass("111111");
 		dao.loginUser(vo);
 	}
 	

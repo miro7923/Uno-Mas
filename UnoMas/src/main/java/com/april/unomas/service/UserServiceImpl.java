@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 		dao.joinUser(vo);
 	}
 
-	// 로그인 중복체크
+	// 아이디 중복체크
 	@Override
 	public int idCheck(UserVO vo) {
 		int result = dao.idCheck(vo);
@@ -47,13 +47,8 @@ public class UserServiceImpl implements UserService {
 
 	// 로그인
 	@Override
-	public UserVO loginUser(UserVO vo) {
-
-		log.info(" 컨트롤러 -> loginUser(UserVO vo) POST호출 -> dao - loginUser(vo) POST");
-		
-		UserVO loginVO = dao.loginUser(vo);
-		
-		return loginVO;
+	public Integer loginUser(UserVO vo) {
+		return dao.loginUser(vo);
 	}
 	
 	// 아이디 찾기
@@ -79,6 +74,11 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	// 회원 정보 수정위한 비밀번호 재확인
+	@Override
+	public boolean checkPw(UserVO vo) {
+		return dao.checkPw(vo);
+	}
 	
 	// 회원 정보 조회
 	@Override

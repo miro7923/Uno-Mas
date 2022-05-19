@@ -19,7 +19,7 @@ public interface UserDAO {
 	public int idCheck(UserVO vo);
 	
 	// 로그인
-	public UserVO loginUser(UserVO vo);
+	public Integer loginUser(UserVO vo);
 	
 	// 아이디 찾기
 	public int findIdProcess(UserVO vo);
@@ -29,6 +29,9 @@ public interface UserDAO {
 	
 	// 비번 변경
 	public int changePW(UserVO vo);
+	
+	// 회원정보수정을 위한 비밀번호 재확인
+	public boolean checkPw(UserVO vo);
 	
 	// 회원정보 조회
 	public UserVO getUserInfo(String id);
