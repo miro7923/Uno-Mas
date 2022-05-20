@@ -84,6 +84,7 @@ a{
     padding: 0 10px;
     border: 1px solid #ddd;
     color: #666;
+    font-size: 12px;
 }
 .check-button {
     background-color: #B9CE45;
@@ -154,7 +155,7 @@ ul, ol {
 	margin:5px auto;
 	
 }
-#postalcode, #postalcode1, #postalcode2 {
+#postalcode, #postalcode1, #postalcode2, #addr_num {
 	box-sizing: border-box;
     display: inline-block;
     margin:6px auto;

@@ -30,9 +30,6 @@ public interface UserDAO {
 	// 비번 변경
 	public int changePW(UserVO vo);
 	
-	// 회원정보수정을 위한 비밀번호 재확인
-	public boolean checkPw(UserVO vo);
-	
 	// 회원정보 조회
 	public UserVO getUserInfo(String id);
 
@@ -43,8 +40,9 @@ public interface UserDAO {
 	// 회원탈퇴
 	public void deleteUser(UserVO vo);
 
+	// 비번 체크
+	public Integer checkPW(UserVO vo);
 	
-
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);
 	

@@ -28,16 +28,17 @@ public interface UserService {
 	// 비번 변경
 	public int changePW(UserVO vo);
 	
-	// 회원 정보 가져오기
+	// 회원정보 가져오기
 	public UserVO getUserInfo(String id);
 	
-	// 회원정보 수정을 위한 비밀번호 재확인
-	public boolean checkPw(UserVO vo);
-		
 	// 회원정보수정
 	public void updateUser(UserVO vo);
 //	public void updateAddr(UserVO vo);
 	
 	// 회원탈퇴
 	public void deleteUser(UserVO vo);
+	
+	// 비번 체크
+	public Integer checkPW(UserVO vo);
+	
 }

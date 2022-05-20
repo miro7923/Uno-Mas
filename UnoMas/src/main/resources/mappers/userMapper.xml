@@ -7,86 +7,90 @@
   <!-- 디비시간정보 가져오기 -->
   <!-- 겟타임 메서드를 호출하면 현재시간을 받아서 스트링 형태로 가져올 것이다. -->
   <select id="getTime" resultType="string">
-      select now()
+      SELECT now()
   </select>
   
   <!-- 관리자 등록 쿼리문 -->
   <insert id="joinAdmin">
-      insert into admin(admin_id, admin_pass) 
-      values(#{admin_id}, #{admin_pass})
+      INSERT into admin(admin_id, admin_pass) 
+      VALUES (#{admin_id}, #{admin_pass})
   </insert>
   
     <!-- 유저 회원가입 -->
   <insert id="joinUser">
-	insert into users(user_id, user_pass, user_name, user_birth, user_phone, user_email, user_postalcode, user_roadaddr, user_detailaddr, user_emailagree) 
-	values(#{user_id}, #{user_pass}, #{user_name}, #{user_birth}, #{user_phone}, #{user_email}, #{user_postalcode}, #{user_roadaddr}, #{user_detailaddr}, #{user_emailagree})  
+	INSERT into users(user_id, user_pass, user_name, user_birth, user_phone, user_email, user_postalcode, user_roadaddr, user_detailaddr, user_emailagree) 
+	VALUES (#{user_id}, #{user_pass}, #{user_name}, #{user_birth}, #{user_phone}, #{user_email}, #{user_postalcode}, #{user_roadaddr}, #{user_detailaddr}, #{user_emailagree})  
   </insert>
   
   <!-- 아이디 중복검사 -->
   <select id="idCheck_sql" resultType="int">
-  	select count(*) 
-  	from users 
-  	where user_id=#{user_id}
+  	SELECT count(*) 
+  	FROM users 
+  	WHERE user_id=#{user_id}
   </select>
   
   <!-- 아이디 찾기 -->
   <select id="findID_sql" resultType="String">
-  	select user_id 
-  	from users 
-  	where user_email=#{user_email} and user_name=#{user_name}
+  	SELECT user_id 
+  	FROM users 
+  	WHERE user_email=#{user_email} and user_name=#{user_name}
   </select>
   
   <!-- 비번 찾기 -->
   <select id="findPW_sql" resultType="String">
-  	select count(user_num)
-  	from users 
-  	where user_name=#{user_name} and user_email=#{user_email} and user_name=#{user_name}
+  	SELECT count(user_num)
+  	FROM users 
+  	WHERE user_name=#{user_name} and user_email=#{user_email} and user_name=#{user_name}
   </select>
   
   <!-- 비번 변경 -->
   <update id="changePW_sql">
-  	update users 
-  	set user_pass=#{user_pass} 
-  	where user_id=#{user_id}
+  	UPDATE users 
+  	SET user_pass=#{user_pass} 
+  	WHERE user_id=#{user_id}
   </update>
   
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
-  	select user_id, user_pass, user_status
-  	from users 
-  	where user_id=#{user_id} and user_pass=#{user_pass} 
+  	SELECT user_id, user_pass, user_status
+  	FROM users 
+  	WHERE user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
-  
+
   <!-- 회원 정보 가져오기 -->
   <select id="getUserInfo" parameterType="String" resultType="com.april.unomas.domain.UserVO">
-	select user_id, user_name, user_birth, user_phone, user_email, 
-	user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point
-	from users 
-	where user_id = #{user_id}
-  </select>
-  
-    <!-- 비밀번호 체크 -->
-  <select id="checkPw" resultType="int">
-  	select count(*)
-  	from users
-  	where user_id=#{user_id} and user_pass=#{user_pass}
+   select user_id, user_name, user_birth, user_phone, user_email, 
+   user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point, user_bank, user_account, user_account_holder
+   from users 
+   where user_id = #{user_id}
   </select>
   
   <!-- 회원정보 수정 -->
   <update id="updateUser" >
   	update users 
   	set user_name=#{user_name}, user_email=#{user_email}, user_birth=#{user_birth}, user_phone=#{user_phone},
-  		user_postalcode=#{user_postalcode}, user_roadaddr=#{user_roadaddr}, user_detailaddr=#{user_detailaddr},
-  		user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}
+  	user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}
   	where user_id=#{user_id}
   </update>
   
+  <update id="updatePlusAddr">
+  	update order_addr
+  	set 
+  </update>
   
   <!-- 회원탈퇴 -->
   <update id="deleteUser">
-  	update users 
-  	set user_status=-1
-  	where user_id=#{user_id}
+  	UPDATE users 
+  	SET user_status=-1
+  	WHERE user_id=#{user_id}
   </update>
+  
+  <!-- 비밀번호 체크 -->
+  <select id="checkPW" resultType="int">
+     SELECT count(*)
+     FROM users
+     WHERE user_id=#{user_id} and (user_pass=#{user_pass} OR 
+     (SELECT count(*) FROM admin WHERE admin_pass=#{user_pass}))
+  </select>
   
 </mapper>
