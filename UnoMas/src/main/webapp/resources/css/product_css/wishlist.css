@@ -35,3 +35,9 @@
     border: 2px solid #ebebeb;
     padding: 12px 30px 12px 30px;
 }
+.wishName span{
+	color: #333;
+}
+.cart-title h5{
+	font-size: 12px;
+}
