@@ -32,4 +32,6 @@ public class WishVO {
 	private int prod_discntrate;
 	/* 썸네일 이미지 */
 	private String prod_image3;
+	/* 상품 재고량 */
+	private int prod_stock;
 }

@@ -68,8 +68,6 @@ public class WishController {
 	@RequestMapping(value = "/deleteCheckWish", method = RequestMethod.POST)
 	public int postDeleteCheckWish(HttpSession session,
 	    @RequestParam(value = "chbox[]") List<String> chArr, WishVO wish) throws Exception {
-		log.info("찜 선택 삭제");
-	 
 	 UserVO user = (UserVO)session.getAttribute("saveID");
 	 int user_num = user.getUser_num();
 	 
@@ -95,8 +93,6 @@ public class WishController {
 	@RequestMapping(value = "/insertCheckWish", method = RequestMethod.POST)
 	public int postInsertCheckWish(HttpSession session,
 			@RequestParam(value = "chbox[]") List<String> chArr, WishVO wish) throws Exception {
-		log.info("장바구니 선택 담기");
-		
 		UserVO user = (UserVO)session.getAttribute("saveID");
 		int user_num = user.getUser_num();
 		
@@ -132,7 +128,6 @@ public class WishController {
 	// 장바구니 단품 담기
 	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
 	public void insertCartPOST(HttpServletRequest request) throws Exception {
-		log.info("insertCartPOST() 호출");
 		int user_num = Integer.parseInt(request.getParameter("user_num"));
 		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
 		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
