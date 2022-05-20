@@ -127,7 +127,7 @@ public class WishController {
 	
 	// 장바구니 단품 담기
 	@ResponseBody
-	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
+	@RequestMapping(value = "/insert_cart", method = RequestMethod.POST)
 	public void insertCartPOST(HttpServletRequest request) throws Exception {
 		int user_num = Integer.parseInt(request.getParameter("user_num"));
 		int prod_num = Integer.parseInt(request.getParameter("prod_num"));

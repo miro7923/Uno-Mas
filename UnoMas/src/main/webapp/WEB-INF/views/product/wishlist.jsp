@@ -16,9 +16,6 @@
 
 <body>
 	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-	<%
-	UserVO vo = (UserVO)session.getAttribute("saveID");
-	%>
 	
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
@@ -44,7 +41,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="cart-table">
-                    <form action="/product/wishlist/insert_cart">
+                    <form action="/product/wishlist/insert_cart" method="post">
                         <table>
                         	<c:choose>
                         		<c:when test="${map.count eq 0}">

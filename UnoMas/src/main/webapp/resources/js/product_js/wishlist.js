@@ -76,6 +76,7 @@ $("#selectInsertWish_btn").click(function(){ // 장바구니 선택 담기
 function wishToCart(number) { // 장바구니 단품 담기
     $.ajax({
 	    url: '/product/wishlist/insert_cart',
+	    type: "post",
 	    data: {
 	        'user_num': $('#user_num').val(),
 	        'prod_num': $('#prod_num'+number).val(),
