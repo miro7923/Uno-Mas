@@ -82,9 +82,9 @@
 			<mapping path="/product/wishlist/**"/>
 			<beans:bean id="WishIntreceptor" class="com.april.unomas.interceptor.WishInterceptor"></beans:bean>
 		</interceptor>
-		<interceptor>
+		<!-- <interceptor>
 			<mapping path="/product/cart/**"/>
 			<beans:bean id="CartIntreceptor" class="com.april.unomas.interceptor.CartInterceptor"></beans:bean>
-		</interceptor>
+		</interceptor> -->
 	</interceptors>
 </beans:beans>
