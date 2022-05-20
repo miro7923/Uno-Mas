@@ -14,14 +14,31 @@
 	<result column="QNACATE2" property="qnacate2"/>
 	<result column="QNACATE_NUM" property="qnacate_num"/>
 	<result column="QNA_IMG" property="qna_img"/>
-	<result column="QNA_IMAGE1" property="qna_img1"/>
-	<result column="QNA_IMAGE2" property="qna_img2"/>
+	<result column="QNA_IMAGE1" property="qna_image1"/>
+	<result column="QNA_IMAGE2" property="qna_image2"/>
 	
 
 	<association javaType="QnaCateVO" property="qnaCateVO">
 		<id column="QNACATE_NUM" property="qnacate_num"/>
 		<result column="QNACATE_NAME" property="qnacate_name"/>
 	</association>
+</resultMap>
+<resultMap type="AdminVO" id="adminMap">
+		<id column="ADMIN_NUM" property="admin_num"/>
+		<id column="ADMIN_ID" property="admin_id"/>
+		<id column="ADMIN_PASS" property="admin_pass"/>
+		<id column="ADMIN_PERMIT" property="admin_permit"/>
+		<id column="ADMIN_REGDATE" property="admin_regdate"/>
+		<id column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
+	</resultMap>
+
+<resultMap type="Qna_ComVO" id="qnaCommMap">
+	<id column="QNACOM_NUM" property="qnacom_num"/>
+	<result column="QNA_NUM" property="qna_num"/>
+	<result column="ADMIN_NUM" property="admin_num"/>
+	<result column="QNACOM_CONTENT" property="qnacom_content"/>
+	<result column="QNACOM_REGDATE" property="qnacom_regdate"/>
+	<collection property="adminVO" resultMap="adminMap"></collection>
 </resultMap>
 
 	<insert id="createQna">
@@ -50,6 +67,17 @@
 		
 	</select>
 	
+	<select id="pageQna" resultMap="qnaMap">
+		<![CDATA[
+		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
+		from board_qna q join qna_category c
+		on Q.QNACATE_NUM = C.QNACATE_NUM
+		where Q.USER_NUM = #{user_num}
+		]]>
+		order by QNA_NUM desc
+		limit #{pageStart}, #{perPageNum}
+	</select>
+	
 	<select id="pagingQna1" resultMap="qnaMap">
 		<![CDATA[
 		select qna_num, qna_title, qna_content, qna_regdate,qna_process,qna_image1,qna_image2,q.qnacate_num,c.qnacate_name
@@ -61,22 +89,25 @@
 		
 	</select>
 	
-	<select id="pageQna" resultMap="qnaMap">
-		<![CDATA[
-		select Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
-		from board_qna q join qna_category c
-		on Q.QNACATE_NUM = C.QNACATE_NUM
-		where Q.USER_NUM = #{user_num}
-		]]>
-		order by QNA_NUM desc
-		limit #{pageStart}, #{perPageNum}
 		
-	</select>
 	
 	<select id="qnaCnt" resultType="Integer">
 		select count(qna_num) 
 		from board_qna
 		where user_num = #{user_num}
+	</select>
+	
+	<delete id="deleteQna">
+		delete 
+		from board_qna
+		where qna_num = #{qna_num}
+		
+	</delete>
+	
+	<select id="getComment" resultMap="qnaCommMap">
+		select qnacom_content, admin_id, qnacom_regdate
+		from qna_comments c join admin a
+		where qna_num = #{qna_num}
 	</select>
 	
 </mapper>

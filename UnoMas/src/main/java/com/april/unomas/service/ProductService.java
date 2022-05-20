@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
@@ -14,6 +15,12 @@ public interface ProductService {
 
 	// 상품 등록
 	public void insertProduct(ProductVO vo) throws Exception;
+	
+	// 상품 수정
+	public void updateProduct(ProductVO vo) throws Exception;
+	
+	// 상품 삭제
+	public void deleteProduct(ProductVO vo) throws Exception;
 	
 	// 상위 카테고리별로 상품 목록 가져오는 메서드
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
@@ -45,6 +52,9 @@ public interface ProductService {
 	// 상위 카테고리의 하위 카테고리 목록 가져오기
 	public List<String> getDcateNames(int topcate_num) throws Exception;
 	
+	// 상품별 카테고리 가져오기
+	public List<CategoryVO> getCategory(int prod_num) throws Exception;
+	
 	// 소분류별로 분류해서 가져오기
 	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception;
 	
@@ -54,6 +64,9 @@ public interface ProductService {
 	// 상품 하나의 정보를 가져오는 메서드
 	public ProductVO getProduct(int prod_num) throws Exception;
 	
+	// 상품 번호로 해당 상품 이미지 가져오는 메서드
+	public ProductVO getProdImgs(int prod_num) throws Exception;
+
 	// 상품 마지막 번호 가져오기
 	public int getLastProdNum() throws Exception;
 	
@@ -62,6 +75,12 @@ public interface ProductService {
   
 	// 장바구니에 상품 넣는 메서드
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
+	
+	// 회원 장바구니에 상품 존재 여부 확인
+	public CartVO getProdInCart(int user_num, int prod_num) throws Exception;
+	
+	// 회원 장바구니 수량 업데이트
+	public void modifyCartAmount(int user_num, int prod_num, int prod_amount) throws Exception;
 	
 	// 신상품 목록 가져오는 메서드
 	public List<ProductVO> getNewProductList(ProdCriteria pc) throws Exception;

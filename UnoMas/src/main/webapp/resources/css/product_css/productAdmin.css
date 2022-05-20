@@ -16,20 +16,6 @@
 	max-width: 60%;
 }
 
-/* input[type="checkbox"] { */
-/* 	display: none; */
-/* } */
-
-/* input[type="checkbox"] { */
-/* 	width: 18px;	 */
-/* 	height: 18px; */
-/* } */
-/* input[type="checkbox"]:checked { */
-/* 	background: #b9ce45; */
-/*     border-color: #b9ce45; */
-/* 	color: #ffffff; */
-/* } */
-
 input[type="checkbox"] {
     -webkit-appearance: none;
     position: relative;
@@ -68,9 +54,18 @@ input[type="checkbox"]:checked::before {
     transform: scale(1) translate(-50%, -50%)
 }
 
-/* .cart-table table tr td.cart-pic { */
-/* 	width: 4%; */
-/* } */
+input:focus {
+	outline: none !important;
+	border-color: #b9ce45;
+	box-shadow: 0 0 5px #b9ce45;
+}
+
+select:focus{
+	outline: none !important;
+	border-color: #b9ce45;
+	box-shadow: 0 0 5px #b9ce45;
+}
+
 .cart-table table tr td.cart-pic {
 	width: 5%;
 }
@@ -143,11 +138,6 @@ input[type="checkbox"]:checked::before {
 	word-wrap: normal;
     width: 100%;
     border-radius: 0;
-/*     border: 2px solid #ECEDEE; */
-/*     height: 46px; */
-/*     line-height: 35px; */
-/*     margin: 0px 0px 2px; */
-    
 }
 
 .selectBox {
@@ -155,6 +145,11 @@ input[type="checkbox"]:checked::before {
     border: 2px solid #ebebeb;
     margin-bottom: 10px;
     padding-left: 15px;
+}
+
+.selectBox disabled {
+	font-weight: normal;
+	color: black;
 }
 
 .title {
@@ -179,14 +174,11 @@ input[type="checkbox"]:checked::before {
 .subtitle-box .span {
 	color: #b9ce45;
 }
+
 .subtitle-box h5 {
 	margin-top: 20px;
     margin-bottom: 20px;
 }
-
-/* .categoryList.on { */
-/*     display: block; */
-/* } */
 
 .subtitle-box {
     overflow: hidden;
@@ -282,6 +274,30 @@ input[type="checkbox"]:checked::before {
     float: right;
 }
 
+.selectDel-button {
+	color: #ffffff;
+    background: #b9ce45;
+    border: 1px solid #b9ce45;
+    margin: 3px 3px 10px 3px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+	cursor: pointer;
+    float: right;
+}
+
+.cancel-button {
+	color: #ffffff;
+    background: #e2e2e2;
+    border: 1px solid #e2e2e2;
+    margin: 3px 3px 10px 3px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+	cursor: pointer;
+    float: right;
+}
+
 .back-button {
     color: #ffffff;
     background: #e2e2e2;
@@ -322,12 +338,4 @@ input[type="checkbox"]:checked::before {
     background: #b9ce45;
     color: #ffffff;
 }
-
-
-
-
-
-
-
-
 

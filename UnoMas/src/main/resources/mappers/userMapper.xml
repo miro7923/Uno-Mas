@@ -52,7 +52,7 @@
   
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
-  	select * 
+  	select user_id, user_pass, user_status
   	from users 
   	where user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
@@ -62,17 +62,25 @@
 	select user_id, user_name, user_birth, user_phone, user_email, 
 	user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point
 	from users 
-	where user_id = #{id}
+	where user_id = #{user_id}
+  </select>
+  
+    <!-- 비밀번호 체크 -->
+  <select id="checkPw" resultType="int">
+  	select count(*)
+  	from users
+  	where user_id=#{user_id} and user_pass=#{user_pass}
   </select>
   
   <!-- 회원정보 수정 -->
-  <update id="updateUser">
+  <update id="updateUser" >
   	update users 
-  	set user_name=#{user_name}, user_email=#{user_email}, user_birth=#{user_birth},user_phone=#{user_phone},
+  	set user_name=#{user_name}, user_email=#{user_email}, user_birth=#{user_birth}, user_phone=#{user_phone},
   		user_postalcode=#{user_postalcode}, user_roadaddr=#{user_roadaddr}, user_detailaddr=#{user_detailaddr},
   		user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}
   	where user_id=#{user_id}
   </update>
+  
   
   <!-- 회원탈퇴 -->
   <update id="deleteUser">

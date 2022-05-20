@@ -24,8 +24,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>FAQs</span>
+                        
                     </div>
                 </div>
             </div>
@@ -35,6 +34,9 @@
 
     <!-- Faq Section Begin -->
     <div class="faq-section spad">
+    
+    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
+    
         <div class="container">
             <div class="row">
             
@@ -46,23 +48,7 @@
     <div class="head_aticle">
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
-
     
-    <select id="select_location" onchange="select_location()">
-    	<option value="">선택</option>
-    	<option value="/board/faq_paging">공지사항</option>
-    	<option value="/board/qni_paging">자주하는 질문</option>
-    	<option value="/board/inquiry_paging">1:1 문의</option>
-    </select>
-    <script type="text/javascript">
-    	function select_location() {
-    		var val = document.getElementById('select_location');
-    		var val_loc = val.options[val.selectedIndex].value;
-    		location.href = val_loc;
-    	}
-    </script>
-    
-    <input type="button" value="글쓰기" onclick="location.href='/board/qni_write';">
     
     <script>
   var preContent;
@@ -105,13 +91,13 @@
                 <div class="search_date">
                     <select class="btn_layer" id="qni_category">
                        			<option>카테고리 선택</option>
-                       			<option value="배송/포장">배송/포장</option>
-                            	<option value="취소/교환/환불">취소/교환/환불</option>
-                            	<option value="이벤트/적립금">이벤트/적립금</option>
-                            	<option value="상품">상품</option>
-                            	<option value="주문/결제">주문/결제</option>
-                            	<option value="회원">회원</option>
-                            	<option value="서비스 이용">서비스 이용</option>
+                       			<option value="1">배송/포장</option>
+                            	<option value="2">취소/교환/환불</option>
+                            	<option value="3">이벤트/적립금</option>
+                            	<option value="4">상품</option>
+                            	<option value="5">주문/결제</option>
+                            	<option value="6">회원</option>
+                            	<option value="7">서비스 이용</option>
                     </select>
                 </div>
                 
@@ -121,7 +107,8 @@
                             <tr>
                                 <th width="70" class="input_txt">번호</th>
                                 <th width="135" class="input_txt">카테고리</th>
-                                <th class="input_txt">제목</th>
+                                <th style="width: 500px; text-align: center;" class="input_txt">제목</th>
+                                <th style="width: 100px; text-align: center;" class="input_txt">작성자</th>
                             </tr>
                         </tbody>
                     </table>
@@ -133,9 +120,9 @@
     
                                     <tr>
                                         <td width="70" align="center">${fn:length(pList)-i.index }</td>
-                                        <td><input type="hidden" value="${vo.faq_num }"></td>
-                                        <td width="135" align="center">${vo.faq_cate }</td>
+                                        <td width="135" align="center">${vo.qnaCateVO.qnacate_name }</td>
                                         <td style="cursor:pointer">${vo.faq_title }</td>
+                                        <td style="cursor:pointer">${vo.adminVO.admin_id }</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -164,15 +151,15 @@
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
@@ -228,7 +215,7 @@
 		$(document).ready(function() {
 			$("#qni_category").change(function() {
 				var changeVal = $(this).val();
-				location.href="/qni_sort${pagingVO.makeQuery(pageNum) }&faq_cate="+changeVal;
+				location.href="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num="+changeVal;
 			});
 		});
 	</script>

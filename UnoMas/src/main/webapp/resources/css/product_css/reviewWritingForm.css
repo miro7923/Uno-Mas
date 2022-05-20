@@ -39,6 +39,18 @@
 #uploadImg {
     display: none;
 }
+#uploadImg1{
+    display: none;
+}
+#uploadImg2 {
+    display: none;
+}
+#uploadImg3 {
+    display: none;
+}
+#uploadImg4 {
+    display: none;
+}
 
 .productName {
 	padding-bottom: 40px;
