@@ -61,7 +61,7 @@
                                 	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" class="chBox" onclick='checkSelectAll()'
                                 		data-wishNum="${list.wish_num}" data-prodNum="${list.prod_num}"/></td>
                                 	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
-                                		<img src="${path}/resources/img/product-single/${list.prod_num}.jpeg" alt="productImg"/></a></td>
+                                		<img class="wishImg" src='<spring:url value="/resources/upload/images/products/thumbnail/${vo.prod_image1}"></spring:url>' alt=""></a></td>
                                     <td class="cart-title first-row">
                                         <h5>${list.prod_name}</h5>
                                     </td>

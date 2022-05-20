@@ -63,7 +63,7 @@
     
     <!-- 상품 썸네일 업로드 경로 -->
     <beans:bean id="prodThumbUploadPath" class="java.lang.String">
-        <beans:constructor-arg value="/Users/yujinhwang/spring-workspace4/Uno-Mas/UnoMas/src/main/webapp/resources/upload/images/products/thumbnail"/>
+        <beans:constructor-arg value="D://Uno-Mas/UnoMas/src/main/webapp/resources/upload/images/products/thumbnail"/>
     </beans:bean>
     
     <!-- 상품 상단 이미지 업로드 경로 -->
