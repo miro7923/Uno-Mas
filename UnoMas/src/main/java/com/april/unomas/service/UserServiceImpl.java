@@ -107,6 +107,11 @@ public class UserServiceImpl implements UserService {
 
 		dao.deleteUser(vo);
 	}
+
+	@Override
+	public int getUserNum(String user_id) {
+		return dao.getUserNum(user_id);
+	}
 	
 
 	

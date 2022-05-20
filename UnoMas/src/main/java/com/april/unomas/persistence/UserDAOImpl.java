@@ -251,6 +251,11 @@ public class UserDAOImpl implements UserDAO {
 		
 		return result;
 	}
+
+	@Override
+	public int getUserNum(String user_id) {
+		return sqlSession.selectOne(NAMESPACE + ".getUserNum", user_id);
+	}
 	
 	
 	

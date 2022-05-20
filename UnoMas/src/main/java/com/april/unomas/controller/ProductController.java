@@ -1,6 +1,7 @@
 package com.april.unomas.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -38,6 +39,7 @@ import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.ProductService;
+import com.april.unomas.service.UserService;
 
 @Controller
 @RequestMapping("/product/*")
@@ -45,6 +47,9 @@ public class ProductController {
 
 	@Inject
 	private ProductService service;
+	
+	@Inject
+	private UserService userService;
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 	
@@ -72,7 +77,7 @@ public class ProductController {
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("pageNum") int pageNum, @RequestParam("dcate_num") int dcate_num, 
-			Model model) throws Exception {
+			HttpSession session, Model model) throws Exception {
 		ProdCriteria cri = new ProdCriteria();
 		cri.setTopcate_num(topcate_num);
 		
@@ -119,6 +124,11 @@ public class ProductController {
 		map.put("pageNum", pageNum);
 		map.put("pm", pm);
 		
+		// 세션 로그인 정보가 있으면 회원 번호 저장
+		String user_id = (String)session.getAttribute("saveID");
+		if (user_id != null)
+			map.put("user_num", userService.getUserNum(user_id));
+		
 		model.addAllAttributes(map);
 		
 		return "product/productList";
@@ -159,9 +169,12 @@ public class ProductController {
 		model.addAttribute("reviewPm", reviewPm);
 		model.addAttribute("inquiryPm", inquiryPm);
 		
-		UserVO userVo = (UserVO) session.getAttribute("saveID");
-		if (userVo != null)
-			model.addAttribute("isInWishlist", service.isInWishlist(userVo.getUser_num(), prod_num));
+		String user_id = (String) session.getAttribute("saveID");
+		if (user_id != null) {
+			int user_num = userService.getUserNum(user_id);
+			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
+			model.addAttribute("user_num", user_num);
+		}
 		else
 			model.addAttribute("isInWishlist", false);
 		
@@ -285,8 +298,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
-	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model,
+			HttpSession session) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));
+		model.addAttribute("user_num", userService.getUserInfo((String)session.getAttribute("saveID")));
 		
 		return "product/reviewWritingForm";
 	}
@@ -318,12 +333,38 @@ public class ProductController {
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
+	@RequestMapping(value = "/list_review", method = RequestMethod.GET)
+	public String getReviewListGET(@RequestParam("prod_num") int prod_num, 
+			@RequestParam("page") int page, Model model) throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<BoardReviewVO> list = service.getReviewList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		ProdPageMaker reviewPm = new ProdPageMaker();
+		reviewPm.setCri(pc);
+		reviewPm.setTotalCnt(service.getReviewCnt(prod_num));
+		
+		model.addAttribute("reviewList", list);
+		model.addAttribute("reviewPm", reviewPm);
+		model.addAttribute("page", page);
+		
+		return "product/revBoardAjax";
+	}
+	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.GET)
-	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model) throws Exception {
+	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model,
+			HttpSession session) throws Exception {
 		BoardReviewVO reviewVO = service.getReview(review_num);
 		
 		model.addAttribute("prod_name", service.getProduct(reviewVO.getProd_num()).getProd_name());
 		model.addAttribute("vo", reviewVO);
+		model.addAttribute("user_num", userService.getUserNum((String)session.getAttribute("saveID")));
 		
 		return "product/reviewModifyForm";
 	}
@@ -402,6 +443,32 @@ public class ProductController {
 		service.insertInquiry(vo);
 		
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
+	
+	@RequestMapping(value = "/list_inquiry", method = RequestMethod.GET)
+	public String getInquiryListGET(@RequestParam("prod_num") int prod_num, 
+			@RequestParam("page") int page, Model model) throws Exception {
+		log.info("@@@@@@@@@@@@@@@ getInquiryList() 호출");
+		
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<ProdInquiryVO> list = service.getInquiryList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		ProdPageMaker inquiryPm = new ProdPageMaker();
+		inquiryPm.setCri(pc);
+		inquiryPm.setTotalCnt(service.getInquiryCnt(prod_num));
+		
+		model.addAttribute("inquiryList", list);
+		model.addAttribute("inquiryPm", inquiryPm);
+		model.addAttribute("page", page);
+		
+		return "/product/inqBoardAjax";
 	}
 	
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.GET)

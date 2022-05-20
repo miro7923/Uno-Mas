@@ -40,4 +40,7 @@ public interface UserService {
 	
 	// 회원탈퇴
 	public void deleteUser(UserVO vo);
+	
+	// 회원 아이디로 회원번호 가져오기
+	public int getUserNum(String user_id);
 }

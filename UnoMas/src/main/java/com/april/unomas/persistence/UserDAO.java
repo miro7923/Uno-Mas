@@ -48,4 +48,7 @@ public interface UserDAO {
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);
 	
+	// 회원 아이디로 회원번호 가져오기
+	public int getUserNum(String user_id);
+	
 }
