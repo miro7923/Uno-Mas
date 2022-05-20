@@ -63,7 +63,7 @@
 					    	</c:when>
 					    	
 					    	<c:otherwise>
-					    		<form id="cartForm" name="cartForm" method="post" action="${path}/product/cart/updateCart">
+					    		<form id="cartForm" name="cartForm" method="post" action="/order">
 							    	<table>
 			                            <thead>
 			                                <tr>
@@ -79,7 +79,7 @@
 			                            <tbody>
 			                                <c:forEach var="row" items="${map.list}" varStatus="i">
 			                                <tr>
-			                                	<td class="cartCheck"><input type="checkbox" name="cartCheck" value="check"  onclick='checkSelectAll()'
+			                                	<td class="cartCheck"><input type="checkbox" name="cartCheck" value="1"  onclick='checkSelectAll()'
                                 					data-wishNum="${row.cart_num}"/></td>
 			                                    <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
 			                                    <td class="cart-title first-row">${row.prod_name}</td>
@@ -87,7 +87,7 @@
 			                                    <td class="qua-col first-row">
 			                                        <div class="quantity">
 			                                            <div class="pro-qty">
-			                                                <input type="text" name="amount" value="${row.prod_amount}" min="1">
+			                                                <input type="number" name="amount" id="amount${i.count}" value="${row.prod_amount}" min="1">
 			                                            </div>
 			                                        </div>
 			                                        <input type="hidden" name="cartNum" value="${row.cart_num}">
@@ -119,7 +119,7 @@
                                     <li class="shipping">배송비 <span>${map.fee}원</span></li>
                                     <li class="cart-total">총 결제 예상금액 <span><fmt:formatNumber value="${map.sum}" pattern="#,###,###" />원</span></li>
                                 </ul>
-                                <a href="check-out" class="proceed-btn">구매하기</a>
+                                <button type="button" class="proceed-btn" onclick="goOrder();">주문하기</button>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,6 @@
 
     <!-- Js Plugins -->
     <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${path}/resources/js/product_js/shopping-cart.js"></script>
     <script src="${path}/resources/js/bootstrap.min.js"></script>
     <script src="${path}/resources/js/jquery-ui.min.js"></script>
     <script src="${path}/resources/js/jquery.countdown.min.js"></script>
@@ -146,6 +145,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/product_js/shopping-cart.js"></script>
 </body>
 
 </html>
