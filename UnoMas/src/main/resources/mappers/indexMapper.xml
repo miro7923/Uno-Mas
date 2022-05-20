@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 조회수별 상품목록 가져오기 -->
 <!-- NULL 값은 뒤로 보내고 4개 가져오기 -->
 <select id="readcntSelect" resultType="com.april.unomas.domain.SelectVO">
-	SELECT p.prod_num, p.prod_name, p.prod_readcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate
+	SELECT p.prod_num, p.prod_name, p.prod_readcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate, p.prod_image3
 	FROM unomasdb.products p
 	INNER JOIN unomasdb.detail_category d
 	ON p.prod_category = d.dcate_num
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 판매량별 상품목록 가져오기 -->
 <!-- NULL 값은 뒤로 보내고 4개 가져오기 -->
 <select id="sellcntSelect" resultType="com.april.unomas.domain.SelectVO">
-	SELECT p.prod_num, p.prod_name, p.prod_sellcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate
+	SELECT p.prod_num, p.prod_name, p.prod_sellcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate, p.prod_image3
 	FROM unomasdb.products p
 	INNER JOIN unomasdb.detail_category d
 	ON p.prod_category = d.dcate_num
@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 신상품별 상품목록 가져오기 -->
 <!-- NULL 값은 뒤로 보내고 4개 가져오기 -->
 <select id="brandnewSelect" resultType="com.april.unomas.domain.SelectVO">
-	SELECT p.prod_num, p.prod_name, p.prod_regdate, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate
+	SELECT p.prod_num, p.prod_name, p.prod_regdate, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate, p.prod_image3
 	FROM unomasdb.products p
 	INNER JOIN unomasdb.detail_category d
 	ON p.prod_category = d.dcate_num
@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 조회수별 상품목록 가져오기 -->
 <!-- NULL 값은 뒤로 보내고 1개 가져오기 -->
 <select id="readcntSelect2" resultType="com.april.unomas.domain.SelectVO">
-	SELECT p.prod_num, p.prod_name, p.prod_readcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate
+	SELECT p.prod_num, p.prod_name, p.prod_readcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate, p.prod_image3
 	FROM unomasdb.products p
 	INNER JOIN unomasdb.detail_category d
 	ON p.prod_category = d.dcate_num
@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 판매량별 상품목록 가져오기 -->
 <!-- NULL 값은 뒤로 보내고 4개 가져오기 -->
 <select id="sellcntSelect2" resultType="com.april.unomas.domain.SelectVO">
-	SELECT p.prod_num, p.prod_name, p.prod_sellcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate
+	SELECT p.prod_num, p.prod_name, p.prod_sellcnt, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate, p.prod_image3
 	FROM unomasdb.products p
 	INNER JOIN unomasdb.detail_category d
 	ON p.prod_category = d.dcate_num
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 신상품별 상품목록 가져오기 -->
 <!-- NULL 값은 뒤로 보내고 4개 가져오기 -->
 <select id="brandnewSelect2" resultType="com.april.unomas.domain.SelectVO">
-	SELECT p.prod_num, p.prod_name, p.prod_regdate, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate
+	SELECT p.prod_num, p.prod_name, p.prod_regdate, t.topcate_num, d.dcate_name, p.prod_price, p.prod_discntrate, p.prod_image3
 	FROM unomasdb.products p
 	INNER JOIN unomasdb.detail_category d
 	ON p.prod_category = d.dcate_num

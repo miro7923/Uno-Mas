@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
@@ -55,13 +56,13 @@
 				<c:forEach items="${readcntList2}" var="rl2">
 				<dl class="itemList">
 					<dt class="thumb">
-						<a href="">
-							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg">
+						<a href="/product/product_detail?prod_num=${rl2.prod_num}">
+							<img class="hot1" src="<spring:url value="/resources/upload/images/products/thumbnail/${rl2.prod_image3 }"></spring:url>" alt="hot이미지1">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="">${rl2.prod_name}</a>
+							<a href="/product/product_detail?prod_num=${rl2.prod_num}">${rl2.prod_name}</a>
 						</p>
 						<c:choose>
 		                    <c:when test="${rl2.prod_discntrate eq 0}">
@@ -86,13 +87,13 @@
 				<c:forEach items="${sellcntList2}" var="sl2">
 				<dl class="itemList">
 					<dt class="thumb">
-						<a href="">
-							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg">
+						<a href="/product/product_detail?prod_num=${sl2.prod_num}">
+							<img class="hot1" src="<spring:url value="/resources/upload/images/products/thumbnail/${sl2.prod_image3 }"></spring:url>" alt="hot이미지2">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="">${sl2.prod_name}</a>
+							<a href="/product/product_detail?prod_num=${sl2.prod_num}">${sl2.prod_name}</a>
 						</p>
 						<c:choose>
 		                    <c:when test="${sl2.prod_discntrate eq 0}">
@@ -117,13 +118,13 @@
 				<c:forEach items="${brandnewList2}" var="bl2">
 				<dl class="itemList">
 					<dt class="thumb">
-						<a href="">
-							<img class="hot1" src="https://m.gogiazzi.com/web/product/big/202201/4f7b0f7841bbf29b5a79ea8185ace935.jpg">
+						<a href="/product/product_detail?prod_num=${bl2.prod_num}">
+							<img class="hot1" src="<spring:url value="/resources/upload/images/products/thumbnail/${bl2.prod_image3 }"></spring:url>" alt="hot이미지3">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="">${bl2.prod_name}</a>
+							<a href="/product/product_detail?prod_num=${bl2.prod_num}">${bl2.prod_name}</a>
 						</p>
 						<c:choose>
 		                    <c:when test="${bl2.prod_discntrate eq 0}">
@@ -184,7 +185,7 @@
                         <div class="product-item">
                             <div class="pi-pic">
                             	<a href="/product/product_detail?prod_num=${rl.prod_num}">
-                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${rl.prod_image3 }"></spring:url>" alt="hot이미지1">
                             	</a>
                             	<c:choose>
                             		<c:when test="${rl.prod_discntrate>0}">
@@ -261,7 +262,7 @@
                         <div class="product-item">
                             <div class="pi-pic">
                             	<a href="/product/product_detail?prod_num=${sl.prod_num}">
-                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${sl.prod_image3 }"></spring:url>" alt="hot이미지1">
                             	</a>
                             	<c:choose>
                             		<c:when test="${sl.prod_discntrate>0}">
@@ -338,7 +339,7 @@
                         <div class="product-item">
                             <div class="pi-pic">
                             	<a href="/product/product_detail?prod_num=${bl.prod_num}">
-                                	<img src="${path}/resources/img/products/women-1.jpg" alt="">
+                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${bl.prod_image3 }"></spring:url>" alt="hot이미지1">
                             	</a>
                             	<c:choose>
                             		<c:when test="${bl.prod_discntrate>0}">

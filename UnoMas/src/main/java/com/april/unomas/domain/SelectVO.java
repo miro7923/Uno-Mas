@@ -35,4 +35,7 @@ public class SelectVO {
 	
 	/* 상품 등록일자 */
 	private Date prod_regdate;
+	
+	/* 상품 이미지 */
+	private String prod_image3;
 }
