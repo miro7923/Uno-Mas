@@ -79,9 +79,6 @@
 					</tr>
 				</table>
 
-
-
-
 				<div style="text-align: right;">
 				<h3 style="float: left;">배송지 정보</h3>
 					<input type="button" name="user_postalcode" value="우편번호 찾기" id="postal_btn" onclick="execDaumPostcode('0')">
@@ -166,7 +163,7 @@
 
 				<h3>(선택) 개인정보 수집 및 이용안내</h3>
 				<hr>
-				<input type="checkbox" id="checkbox_text">(선택) 이메일 이벤트등 마케팅 수신 동의
+				<input type="checkbox"  name="emailAgree" value="1" id="checkbox_text" >(선택) 이메일 이벤트등 마케팅 수신 동의
 				<div id="agree_listbox">
 				<ul class="agree-list">
 					<li>개인정보 수집 및 이용동의 미동의 시 성별정보는 저장되지 않습니다.</li>

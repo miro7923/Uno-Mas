@@ -54,19 +54,15 @@ public class UserController {
 	}
 
 	// 로그인 페이지 구현 (GET)
-	// http://localhost:8088/user/login
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET() {
 		return "/user/login";
 	}
 
 	// 로그인 페이지 구현 (POST)
-	// http://localhost:8088/user/login
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
-
-		// 전달된 정보 저장
 		Integer result = service.loginUser(vo);
 
 		if(result == 1) {
@@ -77,11 +73,8 @@ public class UserController {
 	}
 
 	// 로그아웃 구현
-	// http://localhost:8088/user/logout
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpSession session) {
-
-		// 로그아웃 시 세션 초기화
 		session.invalidate();
 
 		return "redirect:/index";
@@ -90,14 +83,12 @@ public class UserController {
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user", method = RequestMethod.GET)
 	public String deleteUserGET() {
-
 		return "/user/deleteUser";
 	}
 
 	// 회원탈퇴(POST)
 	@RequestMapping(value = "/delete_user", method = RequestMethod.POST)
 	public String deleteUserPOST(UserVO vo, HttpSession session) {
-
 		service.deleteUser(vo);
 
 		session.invalidate();
@@ -147,7 +138,7 @@ public class UserController {
 		return result;
 	}
 
-	// mypage
+	// 마이페이지
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
 		return "/user/myPage";
@@ -163,11 +154,9 @@ public class UserController {
 	   }
 
 	//회원정보수정(GET)
-	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 
-//		session.setAttribute("saveID", vo.getUser_id());
 		String userInfo = (String) session.getAttribute("saveID");
 
 		UserVO userInfoVO = service.getUserInfo(userInfo);
@@ -178,10 +167,12 @@ public class UserController {
 	}
 
 	// 회원정보수정(POST)
-	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
-	public String myInfoUpdatePOST(UserVO vo) {
-
+	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
+		if (eAgree.equals("1")) {
+			vo.setUser_emailagree(1);
+		}
+		
 		service.updateUser(vo);
 
 		return "redirect:/user/myInfo";

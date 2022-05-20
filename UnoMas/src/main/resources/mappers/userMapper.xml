@@ -69,7 +69,7 @@
   <update id="updateUser" >
   	update users 
   	set user_name=#{user_name}, user_email=#{user_email}, user_birth=#{user_birth}, user_phone=#{user_phone},
-  	user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}
+  	user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}, user_emailagree=#{user_emailagree}
   	where user_id=#{user_id}
   </update>
   
