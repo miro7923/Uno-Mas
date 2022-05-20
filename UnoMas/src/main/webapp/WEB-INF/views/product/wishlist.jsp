@@ -9,7 +9,7 @@
 <html lang="zxx">
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/wishlist.css?after" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/product_css/wishlist.css?after" type="text/css">
 <title>위시리스트</title>
 <!-- Start Header -->
 
@@ -60,11 +60,14 @@
                                 <tr>
                                 	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" class="chBox" onclick='checkSelectAll()'
                                 		data-wishNum="${list.wish_num}" data-prodNum="${list.prod_num}"/></td>
-                                	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
-                                		<img class="wishImg" src='<spring:url value="/resources/upload/images/products/thumbnail/${vo.prod_image1}"></spring:url>' alt=""></a></td>
+                                	<td class="cart-pic first-row wishImg">
+                                		<a href="/product/product_detail?prod_num=${list.prod_num}">
+                                		<img class="wishImg" src='<spring:url value="/resources/upload/images/products/thumbnail/${vo.prod_image3}"></spring:url>' alt="">
+                                		</a></td>
                                     <td class="cart-title first-row">
+                                    	<a href="/product/product_detail?prod_num=${list.prod_num}">
                                         <h5>${list.prod_name}</h5>
-                                    </td>
+                                        </a></td>
                                     <td class="p-price first-row"><fmt:formatNumber value="${list.prod_price}" type="number"/>원</td>
                                     <td class="cartInFirst">
                                         <div class="cartIn">
@@ -72,8 +75,7 @@
                                         	<input type="hidden" id="prod_num${i.index}" value="${list.prod_num}">
                                         	<input type="hidden" id="prod_amount" value="1">
 		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn" onclick="wishToCart(${i.index});">장바구니 담기</button>
-                                        </div>
-                                    </td>
+                                        </div></td>
                                     <td class="close-td first-row"><a href="/product/wishlist/deleteWish?wish_num=${list.wish_num}"><i class="ti-close" ></i></a></td>
                                 </tr>
                             	</c:forEach>

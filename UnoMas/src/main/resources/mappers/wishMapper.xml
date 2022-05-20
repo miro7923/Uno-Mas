@@ -7,49 +7,50 @@
 
 	<!-- 찜 목록 -->
 	<select id="list" resultType="com.april.unomas.domain.WishVO">
-	SELECT w.wish_num, w.prod_num, w.user_num, p.prod_name, p.prod_price
-    FROM products p, wishlist w
-    WHERE w.prod_num = p.prod_num and w.user_num = #{user_num} 
-    ORDER BY wish_num;
+		SELECT w.wish_num, w.prod_num, w.user_num, p.prod_name, p.prod_price
+	    FROM products p, wishlist w
+	    WHERE w.prod_num = p.prod_num and w.user_num = #{user_num} 
+	    ORDER BY wish_num;
 	</select>
 	
 	<!-- 찜 추가 -->
 	<insert id="insertWish">
-	INSERT INTO unomasdb.wishlist(user_num, prod_num)
-	VALUES (#{user_num}, #{prod_num})
+		INSERT INTO unomasdb.wishlist(user_num, prod_num)
+		VALUES (#{user_num}, #{prod_num})
 	</insert>
 	
 	<!-- 찜 X 삭제 버튼 -->
 	<delete id="deleteWish" parameterType="int">
-	DELETE
-	FROM unomasdb.wishlist
-	WHERE wish_num = #{wish_num}
+		DELETE
+		FROM unomasdb.wishlist
+		WHERE wish_num = #{wish_num}
 	</delete>
 	
 	<!-- 찜 선택 삭제 -->
 	<delete id="deleteCheckWish">
-	DELETE
-	FROM unomasdb.wishlist
-	WHERE wish_num = #{wish_num} and user_num = #{user_num}
+		DELETE
+		FROM unomasdb.wishlist
+		WHERE wish_num = #{wish_num} and user_num = #{user_num}
 	</delete>
 	
 	<!-- 장바구니 선택 추가 -->
 	<insert id="insertCheckWish">
-	INSERT INTO unomasdb.cart(user_num, prod_num)
-	VALUES(#{user_num}, #{prod_num})
+		INSERT INTO unomasdb.cart(user_num, prod_num)
+		VALUES (#{user_num}, #{prod_num})
+		ON DUPLICATE KEY UPDATE  prod_num = prod_num
 	</insert>
 	
 	<!-- 찜 전체 삭제 -->
 	<delete id="deleteAllWish" parameterType="int">
-	DELETE
-	FROM unomasdb.wishlist
-	WHERE user_num = #{user_num}
+		DELETE
+		FROM unomasdb.wishlist
+		WHERE user_num = #{user_num}
 	</delete>
 	
 	<!-- 장바구니 단품 담기 -->
 	<insert id="insertCart">
-	INSERT INTO unomasdb.cart (user_num, prod_num, prod_amount)
-	VALUES (#{user_num}, #{prod_num}, #{prod_amount})         
-	ON DUPLICATE KEY UPDATE prod_amount=prod_amount+values(prod_amount)
+		INSERT INTO unomasdb.cart (user_num, prod_num, prod_amount)
+		VALUES (#{user_num}, #{prod_num}, #{prod_amount})         
+		ON DUPLICATE KEY UPDATE prod_amount = prod_amount
     </insert>
 </mapper>

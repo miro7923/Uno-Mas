@@ -91,7 +91,7 @@ public class WishController {
 	return result;  
 	}
 	
-	// 찜 선택 삭제
+	// 장바구니 선택 담기
 	@ResponseBody
 	@RequestMapping(value = "/insertCheckWish", method = RequestMethod.POST)
 	public int postInsertCheckWish(HttpSession session,
