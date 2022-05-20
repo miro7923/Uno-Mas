@@ -62,7 +62,7 @@
 									    </c:choose>
 									</h5>
 									<c:if test="${sessionScope.saveID == null }">
-										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
+										<p class="memberInfo" style="color: #9db329;">로그인 후, 적립혜택이 제공됩니다.</p>
 									</c:if>									
 								</div>
 								<div class="pd-tags">
