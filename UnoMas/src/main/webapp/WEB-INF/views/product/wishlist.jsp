@@ -63,13 +63,20 @@
                                 		data-wishNum="${list.wish_num}" data-prodNum="${list.prod_num}"/></td>
                                 	<td class="cart-pic first-row wishImg">
                                 		<a href="/product/product_detail?prod_num=${list.prod_num}">
-                                		<img class="wishImg" src='<spring:url value="/resources/upload/images/products/thumbnail/${vo.prod_image3}"></spring:url>' alt="">
+                                		<img class="wishImg" src='<spring:url value="/resources/upload/images/products/thumbnail/thumbnail_${list.prod_num}.png"></spring:url>' alt="">
                                 		</a></td>
                                     <td class="cart-title first-row">
                                     	<a href="/product/product_detail?prod_num=${list.prod_num}">
                                         <h5>${list.prod_name}</h5>
                                         </a></td>
-                                    <td class="p-price first-row"><fmt:formatNumber value="${list.prod_price}" type="number"/>원</td>
+                                    <c:choose>
+                                    	<c:when test="${list.prod_discntrate != 0}">
+                                    		<td class="p-price first-row"><fmt:formatNumber value="${list.prod_price*(100-list.prod_discntrate)/100}" type="number"/>원</td>
+                                    	</c:when>
+                                    	<c:otherwise>
+                                    		<td class="p-price first-row"><fmt:formatNumber value="${list.prod_price}" type="number"/>원</td>
+                                    	</c:otherwise>
+                                    </c:choose>
                                     <td class="cartInFirst">
                                         <div class="cartIn">
                                         	<input type="hidden" id="user_num" value="${sessionScope.saveID.user_num}">

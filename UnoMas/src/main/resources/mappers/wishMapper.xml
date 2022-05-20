@@ -7,7 +7,7 @@
 
 	<!-- 찜 목록 -->
 	<select id="list" resultType="com.april.unomas.domain.WishVO">
-		SELECT w.wish_num, w.prod_num, w.user_num, p.prod_name, p.prod_price
+		SELECT w.wish_num, w.prod_num, w.user_num, p.prod_name, p.prod_price, p.prod_discntrate
 	    FROM products p, wishlist w
 	    WHERE w.prod_num = p.prod_num and w.user_num = #{user_num} 
 	    ORDER BY wish_num;

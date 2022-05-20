@@ -28,4 +28,8 @@ public class WishVO {
 	private String prod_name;
 	/* 상품 가격 */
 	private int prod_price;
+	/* 상품 할인률 */
+	private int prod_discntrate;
+	/* 썸네일 이미지 */
+	private String prod_image3;
 }

@@ -87,7 +87,7 @@
 			                                    <td class="qua-col first-row">
 			                                        <div class="quantity">
 			                                            <div class="pro-qty">
-			                                                <input type="number" name="amount" id="amount${i.count}" value="${row.prod_amount}" min="1">
+			                                                <input type="number" name="amount" value="${row.prod_amount}" min="1">
 			                                            </div>
 			                                        </div>
 			                                        <input type="hidden" name="cartNum" value="${row.cart_num}">

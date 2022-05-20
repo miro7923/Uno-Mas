@@ -1,9 +1,9 @@
 @charset "UTF-8";
 .wishImg{
-	padding: 0 !important;
+	padding: 2px 0px !important;
 }
 .wishImg img{
-	height: 70px;
+	height: 90px;
 }
 .cartBtn{
 	padding: .375rem .75rem !important;
