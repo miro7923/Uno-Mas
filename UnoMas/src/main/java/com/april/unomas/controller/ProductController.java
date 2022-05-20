@@ -212,17 +212,14 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value ="/status", method = RequestMethod.GET)
-	public String products(@RequestParam("prod_num") int prod_num, /*@RequestParam("dcate_num") int dcate_num,*/ Model model) throws Exception {
-		log.info("get호출");
-		log.info(prod_num+"");
+	public String products(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		List<CategoryVO> categories = service.getTopCategory();
 		List<CategoryVO> details = service.getDCategory();
-//		List<CategoryVO> getcate = service.getCategory(dcate_num);
+		List<CategoryVO> getcate = service.getCategory(prod_num);
 		
 		model.addAttribute("vo", service.getProduct(prod_num));
 		model.addAttribute("categories",categories);
 		model.addAttribute("details",details);
-//		model.addAttribute("getcate", getcate);
 		
 		return "product/productStatus";
 		

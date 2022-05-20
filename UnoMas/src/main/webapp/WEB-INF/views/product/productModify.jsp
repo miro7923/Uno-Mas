@@ -55,18 +55,27 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" name="categories" id="categories">
+											<select class="selectBox" id="categories">
 												<option value="0" selected="selected">대분류</option>
 												<c:forEach var="cvo" items="${categories }">
-												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
+<%-- 												<option value="${cvo.topcate_num }" --%>
+<%-- 													>${cvo.topcate_num }. ${cvo.topcate_name }</option> --%>
 												</c:forEach>
+												<option value="1" <c:if test="${vo.prod_category > 0 }">selected</c:if>>채소</option>
+												<option value="2" <c:if test="${vo.prod_category > 3 }">selected</c:if>>과일 · 견과류 · 쌀</option>
+												<option value="3" <c:if test="${vo.prod_category > 6 }">selected</c:if>>수산 · 해산 · 건어물</option>
+												<option value="4" <c:if test="${vo.prod_category > 10 }">selected</c:if>>정육 · 계란</option>
+												<option value="5" <c:if test="${vo.prod_category > 15 }">selected</c:if>>생수 · 우유 · 음료</option>
+												<option value="6" <c:if test="${vo.prod_category > 18 }">selected</c:if>>신상품</option>
+												<option value="7" <c:if test="${vo.prod_category > 19 }">selected</c:if>>특가</option>
 											</select>
 										</div>
 										<div class="col-lg-6">
 											<select class="selectBox" name="prod_category" id="details">
 												<option value="0" selected>소분류</option>
 												<c:forEach var="dvo" items="${details }">
-													<option value="${dvo.dcate_num }" class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
+													<option value="${dvo.dcate_num }" 
+														<c:if test="${vo.prod_category eq dvo.dcate_num }">selected="selected"</c:if>class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
 												</c:forEach>
 											</select>
 											<label></label>
@@ -88,13 +97,13 @@
 									<h4>판매정보</h4>
 									<div class="row">
 										<div class="col-lg-12">
-											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo. prod_price }">
+											<label>판매가<span>*</span></label> <input type="number" name="prod_price" id="prod_price" value="${vo. prod_price }">
 										</div>
 										<div class="col-lg-12">
-											<label>할인율<span>*</span></label> <input type="text" name="prod_discntrate" id="prod_discntrate"  value="${vo. prod_discntrate }" placeholder="0 ~ 100">
+											<label>할인율<span>*</span></label> <input type="number" name="prod_discntrate" id="prod_discntrate"  value="${vo. prod_discntrate }" placeholder="0 ~ 100">
 										</div>
 										<div class="col-lg-12">
-											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }">
+											<label>상품 재고<span>*</span></label> <input type="number" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }">
 										</div>
 										<div class="col-lg-12">
 											<label>판매 단위<span>*</span></label>
@@ -124,7 +133,7 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country" value="${vo.prod_country }">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" value="${vo.prod_expire }" placeholder="남은 기한 ex) 7">
+												<label>유통기한<span>*</span></label><input type="number" name="prod_expire" id="selbox2" value="${vo.prod_expire }" placeholder="남은 기한 ex) 7">
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->

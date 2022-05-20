@@ -90,8 +90,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<CategoryVO> getCategory(int dcate_num) throws Exception {
-		return dao.getCategory(dcate_num);
+	public List<CategoryVO> getCategory(int prod_num) throws Exception {
+		return dao.getCategory(prod_num);
 	}
 
 	@Override
