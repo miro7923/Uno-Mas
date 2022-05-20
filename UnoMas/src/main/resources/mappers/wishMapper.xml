@@ -50,7 +50,7 @@
 	<!-- 장바구니 단품 담기 -->
 	<insert id="insertCart">
 		INSERT INTO unomasdb.cart (user_num, prod_num, prod_amount)
-		VALUES (#{user_num}, #{prod_num}, #{prod_amount})         
+		VALUES (#{user_num}, #{prod_num}, #{prod_amount})
 		ON DUPLICATE KEY UPDATE prod_amount = prod_amount
     </insert>
 </mapper>

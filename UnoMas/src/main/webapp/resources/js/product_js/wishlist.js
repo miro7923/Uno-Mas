@@ -51,7 +51,7 @@ $("#selectDelete_btn").click(function(){ // 찜 선택삭제
 		});
 	} 
 });
-$("#selectInsertWish_btn").click(function(){ // 장바구니 선택담기
+$("#selectInsertWish_btn").click(function(){ // 장바구니 선택 담기
 	var checkArr = new Array();
 	   
 	$("input[class='chBox']:checked").each(function(){
@@ -73,7 +73,7 @@ $("#selectInsertWish_btn").click(function(){ // 장바구니 선택담기
 	});
 });
 
-function wishToCart(number) {
+function wishToCart(number) { // 장바구니 단품 담기
     $.ajax({
 	    url: '/product/wishlist/insert_cart',
 	    data: {
