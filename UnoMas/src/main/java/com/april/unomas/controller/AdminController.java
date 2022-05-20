@@ -84,8 +84,8 @@ public class AdminController {
 		log.info(adminVO+"");
 		
 		// 로그인 성공 및 정보 저장
-		session.setAttribute("saveID", adminVO);
-		log.info("로그인 성공!");
+		session.setAttribute("saveAID", adminVO);
+		log.info("관리자 로그인 성공!");
 		
 		return "redirect:/admin/main";
 	}
