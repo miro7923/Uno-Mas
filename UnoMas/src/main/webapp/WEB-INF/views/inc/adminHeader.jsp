@@ -263,6 +263,7 @@
               </li>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
+              <a href="/admin/admin_logout">로그아웃</a>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                   <span class="hidden-xs">
@@ -271,6 +272,7 @@
                   <%} %>
                   </span>
                 </a>
+                
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">

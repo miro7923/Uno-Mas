@@ -22,45 +22,7 @@
                     <h2 class="tit">1:1 문의<span class="tit_sub"></span></h2>
                 </div>
     
-    <script>
-  var preContent;
-
-  function view_content(obj)
-  {
-    var div = obj.parentNode;
-
-    for (var i=1, m=div.childNodes.length;i<m;i++) {
-      if (div.childNodes[i].nodeType != 1) continue;    // text node.
-      else if (obj == div.childNodes[ i ]) continue;
-
-      obj = div.childNodes[ i ];
-      break;
-    }
-
-    if (preContent && obj!=preContent){
-      obj.style.display = "block";
-      preContent.style.display = "none";
-    }
-    else if (preContent && obj==preContent) preContent.style.display = ( preContent.style.display == "none" ? "block" : "none" );
-    else if (preContent == null ) obj.style.display = "block";
-
-    preContent = obj;
-  }
-
-  { // 초기출력
-    var no = "faq_";
-    if ( document.getElementById( no ) ) view_content( document.getElementById( no ) );
-  }
-
- 
-</script>
-<script type="text/javascript">
-	function deleteAction(data) {
-		if(confirm("삭제하시겠습니까?") == true){
-			location.href='/board/qna_delete?qna_num='+data;
-		}
-	}
-</script>
+   
 
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
@@ -188,7 +150,7 @@
             </div>
         </div>
         
-        
+        <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <jsp:include page="../inc/adminFooter.jsp"></jsp:include>

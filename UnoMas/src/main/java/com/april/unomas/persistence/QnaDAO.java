@@ -9,13 +9,13 @@ import com.april.unomas.domain.Qna_ComVO;
 public interface QnaDAO {
 
 	
-	public void qnaWrite(QnaVO vo);
+	public void qnaWrite(String saveID,QnaVO vo);
 	
 	public List<QnaVO> qnaListAll();
 	
-	public List<QnaVO> pagingQna(Integer user_num,Criter cri);
+	public List<QnaVO> pagingQna(String user_id,Criter cri);
 	
-	public Integer getQnaCount(Integer user_num);
+	public Integer getQnaCount(String user_id);
 	
 	public void deleteQna(Integer qna_num);
 	

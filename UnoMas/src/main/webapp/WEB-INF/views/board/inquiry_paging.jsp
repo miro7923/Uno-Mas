@@ -35,47 +35,7 @@
                 </div>
     
     <input type="button" value="글쓰기" onclick="location.href='/board/inquiry_form';">
-    
-    
-    <script>
-  var preContent;
-
-  function view_content(obj)
-  {
-    var div = obj.parentNode;
-
-    for (var i=1, m=div.childNodes.length;i<m;i++) {
-      if (div.childNodes[i].nodeType != 1) continue;    // text node.
-      else if (obj == div.childNodes[ i ]) continue;
-
-      obj = div.childNodes[ i ];
-      break;
-    }
-
-    if (preContent && obj!=preContent){
-      obj.style.display = "block";
-      preContent.style.display = "none";
-    }
-    else if (preContent && obj==preContent) preContent.style.display = ( preContent.style.display == "none" ? "block" : "none" );
-    else if (preContent == null ) obj.style.display = "block";
-
-    preContent = obj;
-  }
-
-  { // 초기출력
-    var no = "faq_";
-    if ( document.getElementById( no ) ) view_content( document.getElementById( no ) );
-  }
-
  
-</script>
-<script type="text/javascript">
-	function deleteAction(data) {
-		if(confirm("삭제하시겠습니까?") == true){
-			location.href='/board/qna_delete?qna_num='+data;
-		}
-	}
-</script>
 
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
@@ -128,8 +88,8 @@
 			            <span> 2차 카테고리 ${vo.qnacate2 }</span>
 			            <div class="question mt-3 pb-5 px-3">
 <%-- 			            <img src="${path}/resources/img/question.svg" class="questionicon">  --%>
-			            이미지1 <a href="/board/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="/resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
-			            이미지2 <a href="/board/image2Down?qna_image2=${vo.qna_image2 }"><img name="qna_image2" alt="img2" src="/resources/upload/images/board/qna/${vo.qna_image2 }"></a><input type="hidden" value="${vo.qna_image2 }" name="qna_image2">
+			            이미지1 <a href="/board/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="../resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
+			            이미지2 <a href="/board/image2Down?qna_image2=${vo.qna_image2 }"><img name="qna_image2" alt="img2" src="../resources/upload/images/board/qna/${vo.qna_image2 }"></a><input type="hidden" value="${vo.qna_image2 }" name="qna_image2">
 			            <span> 문의 내용 ${vo.qna_content }</span>
 			        </div>
 			        <div class="answer pb-5 px-3" >
@@ -224,7 +184,7 @@
 	<script src="${path}/resources/js/main.js"></script>
 	<script src="${path}/resources/js/complete.js"></script>
 	<script src="${path}/resources/js/inquiry_list.js"></script>
-
-
+	<script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 </html>

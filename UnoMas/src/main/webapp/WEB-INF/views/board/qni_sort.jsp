@@ -48,40 +48,6 @@
     <div class="head_aticle">
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
-    
-    
-    <script>
-  var preContent;
-
-  function view_content(obj)
-  {
-    var div = obj.parentNode;
-
-    for (var i=1, m=div.childNodes.length;i<m;i++) {
-      if (div.childNodes[i].nodeType != 1) continue;    // text node.
-      else if (obj == div.childNodes[ i ]) continue;
-
-      obj = div.childNodes[ i ];
-      break;
-    }
-
-    if (preContent && obj!=preContent){
-      obj.style.display = "block";
-      preContent.style.display = "none";
-    }
-    else if (preContent && obj==preContent) preContent.style.display = ( preContent.style.display == "none" ? "block" : "none" );
-    else if (preContent == null ) obj.style.display = "block";
-
-    preContent = obj;
-  }
-
-  { // 초기출력
-    var no = "faq_";
-    if ( document.getElementById( no ) ) view_content( document.getElementById( no ) );
-  }
-
- 
-</script>
 
 
 
@@ -211,14 +177,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    <script type="text/javascript">
-		$(document).ready(function() {
-			$("#qni_category").change(function() {
-				var changeVal = $(this).val();
-				location.href="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num="+changeVal;
-			});
-		});
-	</script>
+   <script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 
 </html>

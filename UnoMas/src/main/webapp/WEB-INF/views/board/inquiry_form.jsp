@@ -115,7 +115,7 @@
 	<script src="${path}/resources/js/main.js"></script>
 	<script src="${path}/resources/js/complete.js"></script>
 	<script src="${path}/resources/js/inquiry_form.js"></script>
-
-
+	<script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 </html>
