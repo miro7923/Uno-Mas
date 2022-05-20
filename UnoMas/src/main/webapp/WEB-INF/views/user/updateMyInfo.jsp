@@ -26,23 +26,23 @@
 			<hr>
 
 			<h3>기본 정보</h3>
-			<form action="updateUser" method="post">
+			<form action="update_myInfo" method="post">
 			<div class="table_div">
 				<table class="table_info"
 					style="margin-bottom: 60px; height: 330px;">
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" class="input_field" name="id" value="${sessionScope.saveID.user_id }" disabled></td>
+						<td><input type="text" class="input_field" name="user_id" value="${userInfoVO.user_id }" disabled></td>
 					</tr>
 
 					<tr>
 						<th>이름</th>
-						<td><input type="text" class="input_field" name="name" value="${sessionScope.saveID.user_name }" required></td>
+						<td><input type="text" class="input_field" name="user_name" value="${userInfoVO.user_name }" required></td>
 					</tr>
 
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" class="input_field" name="email" value="${sessionScope.saveID.user_email }"required></td>
+						<td><input type="email" class="input_field" name="user_email" value="${userInfoVO.user_email }"required></td>
 					</tr>
 					
 					<tr>
@@ -50,7 +50,7 @@
 						<td>
 						<span id="birth"></span><br>
 	          			<select class="input-birth" name="birth-year" oninput="birthCheck()">
-	              			<option value="${sessionScope.saveID.user_birth }">연도</option>
+	              			<option value="">연도</option>
 			               <%
 			                 for(int i=1950; i<=2022; i++) {
 			                    %><option value="<%=i%>"><%=i %>년</option><%
@@ -58,7 +58,7 @@
 			               %>
 			            </select>
 			            <select name="birth-month" class="input-birth" oninput="birthCheck()" disabled="disabled">
-			               <option value="${sessionScope.saveID.user_birth }">월</option>
+			               <option value="">월</option>
 			               <%
 			                 for(int i=1; i<=12; i++) {
 			                    %><option value="<%=i%>"><%=i %>월</option><%
@@ -67,14 +67,15 @@
 			            </select>
 	               
 			            <select name="birth-day" class="input-birth" disabled="disabled">
-			               <option value="${sessionScope.saveID.user_birth }">일</option>
+			               <option value="">일</option>
 			            </select><br>
+			            <input name="user_birth" hidden value="">
 				        </td>   
 					</tr>
 
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="input_field" name="phone" value="${sessionScope.saveID.user_phone }" placeholder=" -없이 숫자만 입력" required>
+						<td><input type="text" class="input_field" name="user_phone" value="${userInfoVO.user_phone }" placeholder=" -없이 숫자만 입력" required><span id="phone"></span>
 						<input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()">
 						<div name="phoneCheckDiv"></div></td>
 					</tr>
@@ -85,16 +86,16 @@
 
 				<div style="text-align: right;">
 				<h3 style="float: left;">배송지 정보</h3>
-					<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn" onclick="execDaumPostcode('0')">
+					<input type="button" name="user_postalcode" value="우편번호 찾기" id="postal_btn" onclick="execDaumPostcode('0')">
 				</div>
 				<table class="table_info">
 					<tr>
 						<th>기본 배송지</th>
 						<td style="line-height: 25px;">
-							<input type="text" id="postalcode" name="postalcode" value="${sessionScope.saveID.user_postalcode }" placeholder="우편번호">
-							<input type="text" id="roadaddr" name="roadaddr" value="${sessionScope.saveID.user_roadaddr }" placeholder="도로명주소">
+							<input type="text" id="postalcode" name="user_postalcode" value="${userInfoVO.user_postalcode }" placeholder="우편번호">
+							<input type="text" id="roadaddr" name="user_roadaddr" value="${userInfoVO.user_roadaddr }" placeholder="도로명주소">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="detailaddr" value="${sessionScope.saveID.user_detailaddr }" placeholder="상세주소">
+							<input type="text" id="detailaddr" name="user_detailaddr" value="${userInfoVO.user_detailaddr }" placeholder="상세주소">
 						</td>
 					</tr>
 				</table>
@@ -137,10 +138,10 @@
 									<dl>
 										<dt>은행명</dt>
 										<dd>
-											<select class="form-select form-select-sm" name="bank" aria-label=".form-select-sm example" 
+											<select class="form-select form-select-sm" name="user_bank" aria-label=".form-select-sm example" 
 											style="box-sizing: border-box;display: inline-block;width: 40%;
 											height: 38px;margin:10px;padding: 0 10px;border: 1px solid #ddd	;color: #666;font-size: 11px;">
-											  <option value="${sessionScope.saveID.user_bank }" ></option>
+											  <option value="${userInfoVO.user_bank }" ></option>
 											  <option value="기업은행">기업은행</option>
 											  <option value="국민은행">국민은행</option>
 											  <option value="농협은행">농협은행</option>
@@ -153,13 +154,13 @@
 										<dt>계좌번호</dt>
 										<dd>
 											<span class="input_area"> 
-											<input type="text" id="account" name="account" title="계좌번호 입력" value="${sessionScope.saveID.user_account }" style="width: 250px">
+											<input type="text" id="account" name="user_account" title="계좌번호 입력" value="${userInfoVO.user_account }" style="width: 250px">
 											</span>
 										</dd>
 										<dt>예금주</dt>
 										<dd>
 											<span class="input_area">
-											<input type="text" id="account_holder" name="account_holder" title="예금주 입력" value="${sessionScope.saveID.user_account_holder }" style="width: 250px">
+											<input type="text" id="account_holder" name="user_account_holder" title="예금주 입력" value="${userInfoVO.user_account_holder }" style="width: 250px">
 											</span> 
 										</dd>
 									</dl>
@@ -183,7 +184,7 @@
 			</div>
 
 			<div style="text-align: center;">
-				<input type="submit" class="updateBtn" value="수정" onclick="">
+				<input type="button" class="updateBtn" value="수정" onclick="location.href='/user/myInfo'">
 			</div>
 			</form>
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
@@ -30,6 +31,16 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public void insertProduct(ProductVO vo) throws Exception {
 		sqlSession.insert(NAMESPACE+".setProduct", vo);
+	}
+	
+	@Override
+	public void updateProduct(ProductVO vo) throws Exception {
+		sqlSession.update(NAMESPACE+".updateProduct", vo);
+	}
+	
+	@Override
+	public void deleteProduct(ProductVO vo) throws Exception {
+		sqlSession.delete(NAMESPACE+".deleteProduct", vo);
 	}
 
 	@Override
@@ -64,7 +75,6 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public List<CategoryVO> getTopCategory() throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+".getTopCategory");
 	}
 
@@ -82,6 +92,11 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<String> getDcateNames(int topcate_num) throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".getDcateNames", topcate_num);
 	}
+	
+	@Override
+	public List<CategoryVO> getCategory(int prod_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getCategory", prod_num);
+	}
 
 	@Override
 	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception {
@@ -96,6 +111,11 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public ProductVO getProduct(int prod_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getProduct", prod_num);
+	}
+	
+	@Override
+	public ProductVO getProdImgs(int prod_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getProdImgs", prod_num);
 	}
 
 	@Override
@@ -116,6 +136,25 @@ public class ProductDAOImpl implements ProductDAO {
 		cart.put("prod_amount", prod_amount);
 		
 		sqlSession.insert(NAMESPACE + ".insertCart", cart);
+	}
+
+	@Override
+	public CartVO getProdInCart(int user_num, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		return sqlSession.selectOne(NAMESPACE + ".getProdInCart", map);
+	}
+
+	@Override
+	public void updateCartAmount(int user_num, int prod_num, int prod_amount) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		map.put("prod_amount", prod_amount);
+		
+		sqlSession.update(NAMESPACE + ".updateCartAmount", map);
 	}
 
 	@Override

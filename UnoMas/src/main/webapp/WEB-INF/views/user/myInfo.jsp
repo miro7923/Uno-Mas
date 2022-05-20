@@ -11,10 +11,6 @@
 <!-- Start Header -->
 
 <body>
-    <!-- Header Section Begin -->
-    
-    <!-- Header End -->
-
     <div class="myinfo_container">
 
 		<!-- 마이페이지 카테고리 -->
@@ -99,8 +95,15 @@
 
 				<h3 class="myinfo_h3">(선택) 개인정보 수집 및 이용안내</h3>
 				<hr>
-			
-				<input type="checkbox" id="checkbox_text">(선택) 이메일 이벤트등 마케팅 수신 동의
+				<c:choose>
+				<c:when test="${userInfoVO.user_emailagree == 0 }">
+				  <input type="checkbox" id="checkbox_text" disabled="disabled">(선택) 이메일 이벤트등 마케팅 수신 동의
+				</c:when>
+				<c:otherwise>
+				  <input type="checkbox" id="checkbox_text" checked disabled="disabled">(선택) 이메일 이벤트등 마케팅 수신 동의
+				</c:otherwise>
+				</c:choose>
+				
 				<div id="agree_listbox">
 				<ul class="agree-list">
 					<li>개인정보 수집 및 이용동의 미동의 시 성별정보는 저장되지 않습니다.</li>
@@ -122,24 +125,15 @@
 			
 		</div>
 	</div>
-    <!-- Shopping Cart Section End -->
 
-    <!-- Partner Logo Section End -->
+
     <!-- Footer Section Begin -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${path}/resources/js/bootstrap.min.js"></script>
-    <script src="${path}/resources/js/jquery-ui.min.js"></script>
-    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
-    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
-    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
-    <script src="${path}/resources/js/jquery.dd.min.js"></script>
-    <script src="${path}/resources/js/jquery.slicknav.js"></script>
-    <script src="${path}/resources/js/owl.carousel.min.js"></script>
-    <script src="${path}/resources/js/main.js"></script>
+  	<script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
+  	<script src="${path}/resources/js/main.js"></script> 
 </body>
 
 </html>

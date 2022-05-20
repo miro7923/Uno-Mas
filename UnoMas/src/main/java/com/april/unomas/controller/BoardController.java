@@ -66,6 +66,8 @@ public class BoardController {
 	@Resource(name="noticeImageUploadPath")
 	private String noticeImageUploadPath;
 	
+	
+	
 	@GetMapping(value = "/qni_write")
 	public String boardWriteGET() throws Exception{
 		log.info("registGET() 호출 -> /board/qni_write.jsp 이동");
@@ -116,20 +118,21 @@ public class BoardController {
 	}
 	
 	@GetMapping(value = "/qni_sort")
-	public String sortListGET(@RequestParam("faq_cate") String faq_cate,Criter cri, Model model) throws Exception { 
-		log.info(faq_cate);
+	public String sortListGET(@RequestParam("qnacate_num") Integer qnacate_num,Criter cri, Model model) throws Exception { 
 		
 //		Map<String,Object> map = new HashMap<String,Object>();
 		log.info(cri+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		log.info(qnacate_num+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		PagingVO pagingVO = new PagingVO(cri);
-		pagingVO.setTotalCount(service.sortCateCount(faq_cate));
-		List<BoardVO> pList = service.sortCate(faq_cate, cri);
+		pagingVO.setTotalCount(service.sortCateCount(qnacate_num));
+		List<BoardVO> pList = service.sortCate(qnacate_num, cri);
+		log.info(pList+"!@#$%!@#$%!@#$%!@#$%!@#$%!@#$%!@#$%");
 //		map.put("pList",pList);
 		model.addAttribute("pList",pList);
 //		map.put("pagingVO",pagingVO);
 		model.addAttribute("pagingVO",pagingVO);
 		
-		model.addAttribute("faq_cate",faq_cate);
+		model.addAttribute("qnacate_num",qnacate_num);
 		
 		return "/board/qni_sort";
 	}
@@ -144,6 +147,7 @@ public class BoardController {
 //	    pagingVO.setTotalCount(100);
 	    pagingVO.setTotalCount(service.countBoardTotal(cri));
 	    List<BoardVO> pList = service.selectBoardList(cri);
+	    log.info(pList+"!@#$!@#$!@#$!@#$!@#$!@#$!@#$!@#$");
 	    model.addAttribute("pList", pList);
 	    model.addAttribute("pagingVO", pagingVO);
 	        
@@ -283,19 +287,21 @@ public class BoardController {
 		vo.setNotice_title(request.getParameter("notice_title"));
 		vo.setNotice_content(request.getParameter("notice_content"));
 		vo.setNotice_ip(request.getRemoteAddr());
-		
 		UUID uid = UUID.randomUUID();
 		
+		if(notice_file.getOriginalFilename() == null) {
 		String fileName = uid.toString()+"_"+notice_file.getOriginalFilename();
 		File targetFile = new File(noticeFileUploadPath,fileName);
 		FileCopyUtils.copy(notice_file.getBytes(), targetFile);
 		vo.setNotice_file(fileName);
+		} 
 		
+		if(notice_img.getOriginalFilename() != null) {
 		String imageName = uid.toString()+"_"+notice_img.getOriginalFilename();
 		File targetImage = new File(noticeImageUploadPath,imageName);
 		FileCopyUtils.copy(notice_img.getBytes(), targetImage);
 		vo.setNotice_img(imageName);
-		
+		} 
 		// 서비스 - 글쓰기 동작 수행
 		nService.noticeInsert(vo);
 		
@@ -316,4 +322,45 @@ public class BoardController {
 		response.getOutputStream().close();
 		
 	}
+	
+	@GetMapping(value = "/image1Down")
+	public void inquiryImage1Download(HttpServletResponse response,@RequestParam("qna_image1") String qna_image1) throws Exception {
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+"\\"+qna_image1));
+		
+		response.setContentType("application/cotet-stream");
+		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image1,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+	
+	@GetMapping(value = "/image2Down")
+	public void inquiryImage2Download(HttpServletResponse response,@RequestParam("qna_image2") String qna_image2) throws Exception {
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+"\\"+qna_image2));
+		
+		response.setContentType("application/cotet-stream");
+		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image2,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+	
+	@GetMapping(value = "/qna_delete")
+	public String inquiryDelete(@RequestParam("qna_num") Integer qna_num) throws Exception {
+		qService.deleteInquiry(qna_num);
+		
+		return "redirect:/board/inquiry_paging";
+	}
+	
+	@GetMapping(value = "/inquiry_comment")
+	public String inquiryCommentGET(@RequestParam("qna_num") Integer qna_num, Model model) throws Exception {
+		model.addAttribute("commentList",qService.getComment(qna_num));
+		
+		return "/board/inquiry_comment";
+	}
+	
 }
