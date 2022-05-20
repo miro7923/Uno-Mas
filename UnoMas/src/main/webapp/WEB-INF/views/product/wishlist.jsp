@@ -59,7 +59,7 @@
                             	<c:forEach items="${map.list}" var="list">
                                 <tr>
                                 	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" class="chBox" onclick='checkSelectAll()'
-                                		data-wishNum="${list.wish_num}"/></td>
+                                		data-wishNum="${list.wish_num}" data-prodNum="${list.prod_num}"/></td>
                                 	<td class="cart-pic first-row wishImg"><a href="/product/product_detail?prod_num=${list.prod_num}">
                                 		<img src="${path}/resources/img/product-single/${list.prod_num}.jpeg" alt="productImg"/></a></td>
                                     <td class="cart-title first-row">

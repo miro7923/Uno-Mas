@@ -91,6 +91,33 @@ public class WishController {
 	return result;  
 	}
 	
+	// 찜 선택 삭제
+	@ResponseBody
+	@RequestMapping(value = "/insertCheckWish", method = RequestMethod.POST)
+	public int postInsertCheckWish(HttpSession session,
+			@RequestParam(value = "chbox[]") List<String> chArr, WishVO wish) throws Exception {
+		log.info("장바구니 선택 담기");
+		
+		UserVO user = (UserVO)session.getAttribute("saveID");
+		int user_num = user.getUser_num();
+		
+		int result = 0;
+		int prod_num = 0;
+		
+		
+		if(user != null) {
+			wish.setUser_num(user_num);
+			
+			for(String i : chArr) {   
+				prod_num = Integer.parseInt(i);
+				wish.setProd_num(prod_num);
+				service.insertCheckWish(wish);
+			}   
+			result = 1;
+		}  
+		return result;  
+	}
+	
 		
 	// 찜 전체 삭제
 	@RequestMapping(value = "/deleteAllWish", method = RequestMethod.GET)
