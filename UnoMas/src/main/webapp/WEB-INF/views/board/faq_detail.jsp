@@ -10,193 +10,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-<style type="text/css">
-	*,
-*:after,
-*:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0
-}
 
-.xans-board-listheader {
-    border-top: 2px solid #522772;
-    font-size: 13px;
-    line-height: 140%
-}
-
-.xans-board-listheader tr td {
-    padding: 12px;
-    border-top: 1px solid #f4f4f4;
-    text-align: center;
-    vertical-align: middle;
-    word-wrap: break-word
-}
-
-.xans-board-listheader tbody tr:first-child td {
-    border-top: 1px solid #333
-}
-
-.xans-board-listheader.jh {
-    border-bottom: 1px solid #f4f4f4
-}
-
-.xans-board-listheader.jh tr td {
-    padding: 20px 0
-}
-
-
-.xans-board-listheader th {
-    padding: 20px 0;
-    vertical-align: middle;
-    font-size: 12px
-}
-
-.xans-board-listheader td a {
-    color: #555
-}
-.page_aticle .head_aticle {
-    padding: 5px 0 34px
-}
-
-.page_aticle .head_aticle .tit {
-    height: 36px;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 36px;
-    color: #333;
-    letter-spacing: -.5px
-}
-
-.page_aticle .head_aticle .tit_sub {
-    padding-left: 11px;
-    font-size: 14px;
-    color: #999;
-    line-height: 20px;
-    letter-spacing: -.3px;
-    vertical-align: 3px
-}
-.page_article {
-    float: right;
-}
-
-.layout-pagination {
-    margin: 60px 0 0;
-    text-align: center
-}
-
-.layout-pagination-button {
-    display: inline-block;
-    width: 34px;
-    height: 34px;
-    border: 1px solid #ddd;
-    border-left: 0;
-    vertical-align: top
-}
-
-.layout-pagination-button:first-child {
-    border-left: 1px solid #ddd
-}
-
-.layout-pagination-number {
-    font-weight: 700;
-    color: #333;
-    line-height: 34px
-}
-
-.layout-pagination-number:hover,
-.layout-pagination-number.__active {
-    background-color: #f7f7f7;
-    color: #5f0080
-}
-
-.layout-pagination-first-page,
-.layout-pagination-prev-page,
-.layout-pagination-next-page,
-.layout-pagination-last-page {
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    text-indent: -9999px
-}
-.boardView {
-    table-layout: fixed;
-    border-top: 2px solid #333;
-    border-bottom: 1px solid #f4f4f4;
-    color: #333;
-    line-height: 180%;
-    margin-top: 20px
-}
-
-.boardView th {
-    width: 130px;
-    padding: 13px 0 13px 20px;
-    background-color: #f7f5f8;
-    border-top: 1px solid #f4f4f4;
-    text-align: left
-}
-
-.boardView td {
-    width: auto;
-    padding: 13px 0 13px 23px;
-    border-top: 1px solid #f4f4f4
-}
-
-.boardView tr.etcArea td {
-    padding: 0;
-    border: 0
-}
-
-.boardView tr.etcArea ul {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    width: 100%;
-    border-top: 1px solid #f4f4f4
-}
-
-.boardView tr.etcArea ul li {
-    float: left
-}
-
-.boardView tr.etcArea ul .th {
-    float: left;
-    padding: 13px 0 13px 20px;
-    width: 130px;
-    background-color: #f7f5f8
-}
-
-.boardView tr.etcArea ul .td {
-    float: left;
-    padding: 13px 0 13px 20px;
-    width: 180px
-}
-.bhs_button.yb:hover {
-    background-color: #5f0080;
-    color: #fff
-}
-.bhs_button.yb {
-    background-color: #795b8f;
-    color: #fff
-}
-.bhs_button {
-    width: 150px;
-    display: inline-block;
-    line-height: 40px;
-    text-align: center;
-    background-color: #795b8f;
-    border: 1px solid #5f0080;
-    color: #fff;
-    font-size: 15px;
-    float: right;
-    margin-left: 2px;
-    font-size: 13px
-}
-.nfile:hover {
-	color:red;
-}
-</style>
 
 </head>
 <!-- Head start -->
@@ -214,8 +28,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>FAQs</span>
+                        
                     </div>
                 </div>
             </div>
@@ -238,19 +51,6 @@
     </div>
     
     
-    <select id="select_location" onchange="select_location()">
-    	<option value="/faq_paging">공지사항</option>
-    	<option value="/qni_paging">자주하는 질문</option>
-    	<option value="/faq">1:1 문의</option>
-    </select>
-    <script type="text/javascript">
-    	function select_location() {
-    		var val = document.getElementById('select_location');
-    		var val_loc = val.options[val.selectedIndex].value;
-    		location.href = val_loc;
-    	}
-    </script>
-    
     <table width="100%" align="center" cellpadding="0" cellspacing="0">
 <tbody><tr>
 <td>
@@ -264,11 +64,11 @@
 </tr>
 <tr>
 <th scope="row">작성자</th>
-<td>${vo.admin_num }<input type="hidden" name="admin_num" value="${vo.admin_num }"></td>
+<td>${vo.adminVO.admin_id }<input type="hidden" name="admin_num" value="${vo.admin_num }"></td>
 </tr>
 <tr>
 <th scope="row">첨부파일</th>
-<td><a class="nfile" href="/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
+<td><a class="nfile" href="/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
 </tr>
 <tr>
 <th scope="row">이미지</th>
@@ -312,14 +112,9 @@
 <table width="100%">
 <tbody><tr>
 <td align="right">
-<a href="/faq_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
+<a href="/board/faq_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
 </td>
-<td align="right">
-<a href="/faq_update?notice_num=${vo.notice_num }"><span class="bhs_button yb" style="float:none;">수정</span></a>
-</td>
-<td align="right">
-<a href="/faq_delete?notice_num=${vo.notice_num }"><span class="bhs_button yb" style="float:none;">삭제</span></a>
-</td>
+
 </tr>
 </tbody></table>
 </td>

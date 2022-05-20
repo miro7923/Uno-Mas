@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 
 @Repository
 public class QnaDAOImpl implements QnaDAO{
@@ -41,7 +42,7 @@ public class QnaDAOImpl implements QnaDAO{
 	}
 
 	@Override
-	public List<QnaVO> pagingQna(int user_num,Criter cri) {
+	public List<QnaVO> pagingQna(Integer user_num,Criter cri) {
 		Map<String,Object> paramMap = new HashMap<String,Object>();
 		paramMap.put("user_num", user_num);
 		paramMap.put("pageStart",cri.getPage());
@@ -52,6 +53,16 @@ public class QnaDAOImpl implements QnaDAO{
 	@Override
 	public Integer getQnaCount(Integer user_num) {
 		return sqlSession.selectOne(NAMESPACE+".qnaCnt",user_num);
+	}
+
+	@Override
+	public void deleteQna(Integer qna_num) {
+		sqlSession.delete(NAMESPACE+".deleteQna",qna_num);
+	}
+
+	@Override
+	public Qna_ComVO getComment(Integer qna_num) {
+		return sqlSession.selectOne(NAMESPACE+".getComment",qna_num);
 	}
 	
 	

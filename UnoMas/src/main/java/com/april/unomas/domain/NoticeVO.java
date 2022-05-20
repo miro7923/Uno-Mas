@@ -12,7 +12,14 @@ public class NoticeVO {
 	private String notice_ip;
 	private String notice_file;
 	private String notice_img;
+	private AdminVO adminVO;
 	
+	public AdminVO getAdminVO() {
+		return adminVO;
+	}
+	public void setAdminVO(AdminVO adminVO) {
+		this.adminVO = adminVO;
+	}
 	public Integer getNotice_num() {
 		return notice_num;
 	}
@@ -73,8 +80,9 @@ public class NoticeVO {
 		return "NoticeVO [notice_num=" + notice_num + ", admin_num=" + admin_num + ", notice_title=" + notice_title
 				+ ", notice_content=" + notice_content + ", notice_regdate=" + notice_regdate + ", notice_readcnt="
 				+ notice_readcnt + ", notice_ip=" + notice_ip + ", notice_file=" + notice_file + ", notice_img="
-				+ notice_img + "]";
+				+ notice_img + ", adminVO=" + adminVO + "]";
 	}
+	
 	
 	
 	

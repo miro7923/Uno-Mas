@@ -24,7 +24,7 @@ public interface BoardDAO {
 	public Integer countBoardList(Criter cri);
 	
 	// 글 조회
-	public BoardVO getBoard(Integer faq_num) throws Exception;
+	public BoardVO getBoard(Integer faq_num);
 	
 	// 질문 업데이트
 	public void updateBoard(BoardVO vo);
@@ -33,10 +33,10 @@ public interface BoardDAO {
 	public void deleteBoard(Integer faq_num);
 	
 	// 전체 정렬글 갯수
-	public Integer sortCateCount(String faq_cate);
+	public Integer sortCateCount(Integer qnacate_num);
 	
 	// 카테고리 정렬
-	public List<BoardVO> sortCate(String faq_cate, Criter cri);
+	public List<BoardVO> sortCate(Integer qnacate_num, Criter cri);
 	
 	
 }

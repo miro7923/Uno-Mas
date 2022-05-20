@@ -26,8 +26,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <a href="#"><i class="fa fa-home"></i> Home</a>
-                        <span>FAQs</span>
+                        
                     </div>
                 </div>
             </div>
@@ -37,6 +36,9 @@
 
     <!-- Faq Section Begin -->
     <div class="faq-section spad">
+    
+    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
+    
         <div class="container">
             <div class="row">
             
@@ -48,23 +50,7 @@
     <div class="head_aticle">
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
-
     
-    <select id="select_location" onchange="select_location()">
-    	<option value="">선택</option>
-    	<option value="/faq_paging">공지사항</option>
-    	<option value="/qni_paging">자주하는 질문</option>
-    	<option value="/inquiry_paging">1:1 문의</option>
-    </select>
-    <script type="text/javascript">
-    	function select_location() {
-    		var val = document.getElementById('select_location');
-    		var val_loc = val.options[val.selectedIndex].value;
-    		location.href = val_loc;
-    	}
-    </script>
-    
-    <input type="button" value="글쓰기" onclick="location.href='/qni_write';">
     <select id="search_type" name="search_type">
     	<option value="">검색조건</option>
     	<option value="title">제목</option>
@@ -80,7 +66,7 @@
     		var search_type_val = document.getElementById("search_type");
     		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
     		var keyword_val = document.getElementById("keyword").value;
-    		var url = "/qni_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
+    		var url = "/board/qni_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
     		
     		location.href=url;
     	}
@@ -126,13 +112,13 @@
                 <div class="search_date">
                     <select class="btn_layer" id="qni_category" >
                        			<option>카테고리 선택</option>
-                       			<option value="배송/포장">배송/포장</option>
-                            	<option value="취소/교환/환불">취소/교환/환불</option>
-                            	<option value="이벤트/적립금">이벤트/적립금</option>
-                            	<option value="상품">상품</option>
-                            	<option value="주문/결제">주문/결제</option>
-                            	<option value="회원">회원</option>
-                            	<option value="서비스 이용">서비스 이용</option>
+                       			<option value="1">배송/포장</option>
+                            	<option value="2">취소/교환/환불</option>
+                            	<option value="3">이벤트/적립금</option>
+                            	<option value="4">상품</option>
+                            	<option value="5">주문/결제</option>
+                            	<option value="6">회원</option>
+                            	<option value="7">서비스 이용</option>
                     </select>
                 </div><!-- seach_date -->
                 
@@ -141,9 +127,10 @@
                     <table width="100%" class="xans-board-listheader">
                         <tbody>
                             <tr>
-                                <th width="70" class="input_txt">번호</th>
-                                <th width="135" class="input_txt">카테고리</th>
-                                <th class="input_txt">제목</th>
+                                <th style="width: 70px; text-align: center;" class="input_txt">번호</th>
+                                <th style="width: 135px; text-align: center;" class="input_txt">카테고리</th>
+                                <th style="width: 500px; text-align: center;" class="input_txt">제목</th>
+                                <th style="width: 100px; text-align: center;" class="input_txt">작성자</th>
                             </tr>
                         </tbody>
                     </table> <!-- table header -->
@@ -155,8 +142,9 @@
     
                                     <tr>
                                         <td width="70" align="center">${vo.faq_num }</td>
-                                        <td width="135" align="center">${vo.faq_cate }</td>
+                                        <td width="135" align="center">${vo.qnaCateVO.qnacate_name }</td>
                                         <td style="cursor:pointer">${vo.faq_title }</td>
+                                        <td style="cursor:pointer">${vo.adminVO.admin_id }</td>
                                     </tr>
                                 </tbody>
                             </table> 
@@ -168,8 +156,6 @@
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
                                             <td>
                                             ${fn:replace(vo.faq_content,cn,br)}<br>
-                                            <input type="button" value="수정하기" onclick="location.href='/qni_update?faq_num=${vo.faq_num}'">
-                                            <input type="button" value="삭제하기" onclick="location.href='/qni_delete?faq_num=${vo.faq_num}'">
                                             
                                             </td>
                                         </tr>
@@ -189,15 +175,15 @@
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/qni_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
@@ -267,7 +253,7 @@
 			$("#qni_category").change(function() {
 // 				alert($(this).val());
 				var changeVal = $(this).val();
-				location.href="/qni_sort${pagingVO.makeQuery(pageNum) }&faq_cate="+changeVal;
+				location.href="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num="+changeVal;
 			});
 		});
 	</script>

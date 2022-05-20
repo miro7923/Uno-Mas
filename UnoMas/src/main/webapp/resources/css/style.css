@@ -2832,7 +2832,6 @@ ol {
 .proceed-checkout ul li.subtotal {
 	font-weight: 400;
 	text-transform: capitalize;
-	border-bottom: 1px solid #ffffff;
 	padding-bottom: 14px;
 }
 

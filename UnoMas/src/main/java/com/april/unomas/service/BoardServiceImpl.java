@@ -73,14 +73,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Integer sortCateCount(String faq_cate) throws Exception {
-		return dao.sortCateCount(faq_cate);
+	public Integer sortCateCount(Integer qnacate_num) throws Exception {
+		return dao.sortCateCount(qnacate_num);
 	}
 	
 	@Override
-	public List<BoardVO> sortCate(String faq_cate, Criter cri) throws Exception {
+	public List<BoardVO> sortCate(Integer qnacate_num, Criter cri) throws Exception {
 		log.info("sortCate() -> DAO 동작 호출");
-		return dao.sortCate(faq_cate, cri);
+		return dao.sortCate(qnacate_num, cri);
 	}
 
 	

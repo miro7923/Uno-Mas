@@ -16,13 +16,13 @@ public class WishServiceImpl implements WishService {
 	private WishDAO dao;
 	
 	@Override
-	public List<WishVO> list() throws Exception {
-		return dao.list();
+	public List<WishVO> list(int user_num) throws Exception {
+		return dao.list(user_num);
 	}
 
 	@Override
-	public void deleteWish(int prod_num) throws Exception {
-		dao.deleteWish(prod_num);
+	public void deleteWish(int wish_num) throws Exception {
+		dao.deleteWish(wish_num);
 	}
 
 	@Override
