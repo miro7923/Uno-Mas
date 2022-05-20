@@ -56,7 +56,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            	<c:forEach items="${map.list}" var="list">
+                            	<c:forEach items="${map.list}" var="list" varStatus="i">
                                 <tr>
                                 	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" class="chBox" onclick='checkSelectAll()'
                                 		data-wishNum="${list.wish_num}" data-prodNum="${list.prod_num}"/></td>
@@ -69,9 +69,9 @@
                                     <td class="cartInFirst">
                                         <div class="cartIn">
                                         	<input type="hidden" id="user_num" value="${sessionScope.saveID.user_num}">
-                                        	<input type="hidden" id="prod_num" value="${list.prod_num}">
+                                        	<input type="hidden" id="prod_num${i.index}" value="${list.prod_num}">
                                         	<input type="hidden" id="prod_amount" value="1">
-		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn" onclick="wishToCart();">장바구니 담기</button>
+		                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn" onclick="wishToCart(${i.index});">장바구니 담기</button>
                                         </div>
                                     </td>
                                     <td class="close-td first-row"><a href="/product/wishlist/deleteWish?wish_num=${list.wish_num}"><i class="ti-close" ></i></a></td>

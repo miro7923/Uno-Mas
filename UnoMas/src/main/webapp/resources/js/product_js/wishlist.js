@@ -73,12 +73,12 @@ $("#selectInsertWish_btn").click(function(){ // 장바구니 선택담기
 	});
 });
 
-function wishToCart() {
+function wishToCart(number) {
     $.ajax({
 	    url: '/product/wishlist/insert_cart',
 	    data: {
 	        'user_num': $('#user_num').val(),
-	        'prod_num': $('#prod_num').val(),
+	        'prod_num': $('#prod_num'+number).val(),
 	        'prod_amount': $('#prod_amount').val()
 	          },
 	    success: function() {
