@@ -9,9 +9,6 @@ import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 public interface UserService {
-
-	// 시간정보
-	public String getTimeS();
 	
 	// 회원가입
 	public void joinUser(UserVO vo);

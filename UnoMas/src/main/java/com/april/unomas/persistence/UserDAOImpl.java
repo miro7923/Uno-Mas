@@ -37,30 +37,20 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public String getTime() {
-		log.info("DAO : 시간정보 확인 메서드 실행");
 		String time = sqlSession.selectOne(NAMESPACE + ".getTime");
-		log.info("DAO : time - " + time);
 		return time;
 	}
 
 	@Override
 	public void joinAdmin(AdminVO vo) {
-		
-		log.info("DAO : 관리자 등록 메서드 실행");
-		
 		sqlSession.insert(NAMESPACE + ".joinAdmin", vo);
-		
-		log.info("DAO : SQL 실행 완료");
-		log.info("DAO : admin - " + vo.toString());
 	}
 	
 	
 	// 회원가입
 	@Override
 	public void joinUser(UserVO vo) {
-		System.out.println("DAO: insertMember(vo)실행");
 		sqlSession.insert(NAMESPACE + ".joinUser", vo);
-		System.out.println("DAO: 회원가입 완료!");
 	}
 
 	// 아이디 중복검사
@@ -217,7 +207,6 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public int sendEmailMethod(EmailVO evo) {
-		System.out.println("DAO: 이메일 보내기 들어옴");
 		int result = 0;
 		SimpleMailMessage msg = new SimpleMailMessage();
 		
@@ -232,7 +221,6 @@ public class UserDAOImpl implements UserDAO {
 		} catch(Exception e) {
 			
 		}
-		System.out.println("DAO: 이메일 보내기 완료~~~");
 		
 		return result;
 	}

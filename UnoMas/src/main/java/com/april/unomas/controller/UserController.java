@@ -132,13 +132,12 @@ public class UserController {
 		return "/user/myPage";
 	}
 
+	
 	// 회원정보 조회	
 	@RequestMapping(value = "/myInfo")
 	public String myInfo(HttpSession session, Model model) {
-		System.out.println("일단 들어오긴하지??");
 		String saveID = (String) session.getAttribute("saveID");
-		System.out.println("세션아이디: " + saveID);
-		UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
+		UserVO userInfoVO = service.getUserInfo(saveID);
 		model.addAttribute("userInfoVO", userInfoVO);
 		return "/user/myInfo";
 	}
@@ -148,13 +147,9 @@ public class UserController {
 	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
-
 		String saveID = (String) session.getAttribute("saveID");
-
 		UserVO userInfoVO = service.getUserInfo(saveID);
-
 		model.addAttribute("userInfoVO", userInfoVO);
-
 		return "/user/updateMyInfo";
 	}
 
@@ -162,12 +157,7 @@ public class UserController {
 	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
 	public String myInfoUpdatePOST(UserVO vo) {
-
-		log.info("수정한 데이터 : " + vo);
-
 		service.updateUser(vo);
-//		service.updateAddr(vo);
-
 		return "redirect:/user/myInfo";
 	}
 
@@ -183,7 +173,6 @@ public class UserController {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
 		int totalReviewCnt = service.getMyReviewCnt(saveNUM);
-
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
@@ -202,6 +191,7 @@ public class UserController {
 		return "/user/myReview";
 	}
 	
+	
 	// 마이페이지 - 상품 문의 내역
 	@RequestMapping(value = "/my_prod_qa")
 	public String myProdQa(HttpSession session, Model model, 
@@ -210,7 +200,6 @@ public class UserController {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
 		int totalReviewCnt = service.getMyReviewCnt(saveNUM);
-
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
@@ -263,18 +252,15 @@ public class UserController {
 	@RequestMapping(value = "/delete_user",method=RequestMethod.POST)
 	@ResponseBody
 	public String deleteUserPOST(UserVO vo, HttpSession session) {
-		System.out.println("탈퇴 컨트롤러!!");
 		String totalResult = "0";
 		int pwResult = service.checkPW(vo);
-		
-		if(pwResult == 1) {	// 비번맞음
+		if(pwResult == 1) {	
 			String delResult = Integer.toString(service.deleteUser(vo));
 			if(delResult.equals("1")) { 
 				session.invalidate(); 
 				totalResult = delResult;
 			} 
 		} 
-		System.out.println("최종 탈퇴 결과:" + totalResult);
 		return totalResult;
 	}
 	

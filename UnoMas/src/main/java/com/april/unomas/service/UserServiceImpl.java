@@ -25,14 +25,6 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserDAO dao;
 	
-	// 시간정보
-	@Override
-	public String getTimeS() {
-		
-		String time = dao.getTime();
-		
-		return time;
-	}
 	
 	// 회원가입
 	@Override
@@ -57,16 +49,13 @@ public class UserServiceImpl implements UserService {
 	// 아이디 찾기
 	@Override
 	public int findIdProcess(UserVO vo) {
-		// DAO를 호출하여 아이디가 있는지 판단.
-		int result = dao.findIdProcess(vo);
-		return result;
+		return dao.findIdProcess(vo);
 	}
 
 	// 비번찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
 		HashMap<String, String> findpw_map = dao.findPwProcess(vo);
-		
 		return findpw_map;
 	}
 	
@@ -82,7 +71,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = dao.getUserInfo(id);
-		
 		return userInfoVO;
 	}
 	
@@ -94,8 +82,6 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
-
-	
 	// 비번 체크
 	@Override
 	public Integer checkPW(UserVO vo) {
@@ -126,7 +112,7 @@ public class UserServiceImpl implements UserService {
 	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
 		return dao.getMyReview(id, cri);
 	}
-	
+
 
 	
 	
