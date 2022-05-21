@@ -75,7 +75,8 @@
   
   <update id="updatePlusAddr">
   	update order_addr
-  	set 
+  	set addr_name=#{addr_name}, addr_postalcode=#{addr_postalcode}, addr_roadaddr=#{addr_roadaddr}, addr_detailaddr=#{addr_detailaddr}
+  	where user_num=#{user_num}
   </update>
   
   <!-- 회원탈퇴 -->

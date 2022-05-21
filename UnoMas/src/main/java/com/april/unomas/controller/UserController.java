@@ -147,17 +147,20 @@ public class UserController {
 	// 회원정보 조회
 	@RequestMapping(value = "/myInfo")
 	   public String myInfo(HttpSession session, Model model) {
+		
 	      String saveID = (String) session.getAttribute("saveID");
 	      UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
 	      model.addAttribute("userInfoVO", userInfoVO);
+	      
 	      return "/user/myInfo";
 	   }
 
 	//회원정보수정(GET)
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
-	public String myInfoUpdateGET(HttpSession session, Model model) {
+	public String myInfoUpdateGET(UserVO vo,HttpSession session, Model model) {
 
 		String userInfo = (String) session.getAttribute("saveID");
+	    session.setAttribute("savePAddr", vo.getUser_num());
 
 		UserVO userInfoVO = service.getUserInfo(userInfo);
 

@@ -166,16 +166,16 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
-//	// 추가 배송지(orderAddr)
-//	@Override
-//	public Integer updateAddr(UserVO vo) {
-//		
-//		Integer result =sqlSession.update(NAMESPACE+".updateAddr",vo);
-//
-//		log.info("회원정보수정-추가배송지 완료");
-//		
-//		return result;
-//	}
+	// 추가 배송지(orderAddr)
+	@Override
+	public Integer updateAddr(UserVO vo) {
+		
+		Integer result =sqlSession.update(NAMESPACE+".updateAddr",vo);
+
+		log.info("회원정보수정-추가배송지 완료");
+		
+		return result;
+	}
 
 	// 회원탈퇴
 	@Override
