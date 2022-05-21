@@ -69,7 +69,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AdminVO adminLogin(AdminVO vo) {
+	public Integer adminLogin(AdminVO vo) {
 		// 관리자 로그인
 		return dao.adminLogin(vo);
 	}

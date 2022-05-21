@@ -13,7 +13,7 @@ import com.april.unomas.domain.UserVO;
 public interface AdminDAO {
 	
 	// 관리자 로그인
-	public AdminVO adminLogin(AdminVO vo);
+	public Integer adminLogin(AdminVO vo);
 	
 	// 관리자 목록
 	public List<AdminVO> adminList(Criter cri);

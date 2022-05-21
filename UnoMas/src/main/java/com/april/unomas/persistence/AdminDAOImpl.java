@@ -68,9 +68,32 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public AdminVO adminLogin(AdminVO vo) {
+	public Integer adminLogin(AdminVO vo) {
 		// 관리자 로그인
-		return sqlSession.selectOne(NAMESPACE+".adminLogin",vo);
+		
+		int result = 0;
+
+		AdminVO adminLoginVO = sqlSession.selectOne(NAMESPACE + ".adminLogin", vo);
+
+		// 로그인 실패
+		if (adminLoginVO == null) {
+			result = 0;
+		} else {
+			if (adminLoginVO.getAdmin_permit() != 1) {
+				result = -1;
+			} else {
+				if (vo.getAdmin_id().equals(adminLoginVO.getAdmin_id())) {
+					if (vo.getAdmin_pass().equals(adminLoginVO.getAdmin_pass())) {
+						result = 1;
+					} else {
+						result = 0;
+					}
+				}
+			}
+		}
+
+		// 로그인 성공 및 정보 저장
+		return result;
 	}
 
 	@Override
