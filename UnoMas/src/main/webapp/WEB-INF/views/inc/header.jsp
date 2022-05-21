@@ -11,19 +11,19 @@
      <!-- Header Section Begin -->
     <header class="headerSection">
     <%
-    	UserVO vo = (UserVO)session.getAttribute("saveID");
+    	String vo = (String)session.getAttribute("saveID");
     	if(vo == null){ // 로그인 안 했을 때 링크
     %>
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="/user/login" class="linkMenu">로그인</a>
+    				<a href="../user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
     				<a href="/user/register_agree" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/board/qni_paging" class="linkMenu">고객센터</a>
+    				<a href="/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -33,13 +33,13 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="/user/mypage" class="linkMenu">마이페이지</a>
+    				<a href="../user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="/user/logout" class="linkMenu">로그아웃</a>
+    				<a href="../user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/board/qni_paging" class="linkMenu">고객센터</a>
+    				<a href="/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -68,12 +68,12 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="/product/wishlist/list">
+                                <a href="/product/wishlist">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>
                             <li class="cart-icon">
-                                <a href="/product/cart/list">
+                                <a href="/product/shopping-cart">
                                     <i class="icon_bag_alt"></i>
                                 </a>
                             </li>
@@ -89,42 +89,42 @@
                         <i class="ti-menu"></i>
                         <span>전체 카테고리</span>
                         <ul class="depart-hover firstMenu">
-                            <li><a href="/product/product_list?topcate_num=1&pageNum=1&dcate_num=0">채소</a>
+                            <li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=0">채소</a>
                             	<ul class="secondMenu">
-                            		<li><a href="/product/product_list?topcate_num=1&pageNum=1&dcate_num=1">고구마 · 감자 · 당근</a></li>
-                            		<li><a href="/product/product_list?topcate_num=1&pageNum=1&dcate_num=2">양파 · 대파 · 마늘 · 배추</a></li>
-                            		<li><a href="/product/product_list?topcate_num=1&pageNum=1&dcate_num=3">냉동 · 이색 · 간편채소</a></li>
+                            		<li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=1">고구마 · 감자 · 당근</a></li>
+                            		<li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=2">양파 · 대파 · 마늘 · 배추</a></li>
+                            		<li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=3">냉동 · 이색 · 간편채소</a></li>
                             	</ul>
                             </li>
-                            <li><a href="/product/product_list?topcate_num=2&pageNum=1&dcate_num=0">과일 · 견과류 · 쌀</a>
+                            <li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=0">과일 · 견과류 · 쌀</a>
                             	<ul class="secondMenu">
-                            		<li><a href="/product/product_list?topcate_num=2&pageNum=1&dcate_num=4">제철과일</a></li>
-                            		<li><a href="/product/product_list?topcate_num=2&pageNum=1&dcate_num=5">견과류</a></li>
-                            		<li><a href="/product/product_list?topcate_num=2&pageNum=1&dcate_num=6">쌀</a></li>
+                            		<li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=4">제철과일</a></li>
+                            		<li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=5">견과류</a></li>
+                            		<li><a href="/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=6">쌀</a></li>
                             	</ul>
                             </li>
-                            <li><a href="/product/product_list?topcate_num=3&pageNum=1&dcate_num=0">수산 · 해산 · 건어물</a>
+                            <li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=0">수산 · 해산 · 건어물</a>
                            		<ul class="secondMenu">
-                            		<li><a href="/product/product_list?topcate_num=3&pageNum=1&dcate_num=7">해산물</a></li>
-                            		<li><a href="/product/product_list?topcate_num=3&pageNum=1&dcate_num=8">수산가공품</a></li>
-                            		<li><a href="/product/product_list?topcate_num=3&pageNum=1&dcate_num=9">김 · 미역</a></li>
-                            		<li><a href="/product/product_list?topcate_num=3&pageNum=1&dcate_num=10">건어물</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=7">해산물</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=8">수산가공품</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=9">김 · 미역</a></li>
+                            		<li><a href="/product/product_list?cateStart=7&cateEnd=10&topcate_num=3&pageNum=1&dcate_num=10">건어물</a></li>
                             	</ul>
                             </li>
-                            <li><a href="/product/product_list?topcate_num=4&pageNum=1&dcate_num=0">정육 · 계란</a>
+                            <li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=0">정육 · 계란</a>
                            		<ul class="secondMenu">
-                            		<li><a href="/product/product_list?topcate_num=4&pageNum=1&dcate_num=11">국내산 소고기</a></li>
-                            		<li><a href="/product/product_list?topcate_num=4&pageNum=1&dcate_num=12">수입산 소고기</a></li>
-                            		<li><a href="/product/product_list?topcate_num=4&pageNum=1&dcate_num=13">돼지고기</a></li>
-                            		<li><a href="/product/product_list?topcate_num=4&pageNum=1&dcate_num=14">닭 · 오리고기</a></li>
-                            		<li><a href="/product/product_list?topcate_num=4&pageNum=1&dcate_num=15">계란류</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=11">국내산 소고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=12">수입산 소고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=13">돼지고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=14">닭 · 오리고기</a></li>
+                            		<li><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=15">계란류</a></li>
                             	</ul>
                            	</li>
-                            <li><a href="/product/product_list?topcate_num=5&pageNum=1&dcate_num=0">생수 · 우유 · 커피 · 차</a>
+                            <li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=0">생수 · 우유 · 커피 · 차</a>
                             	<ul class="secondMenu">
-                            		<li><a href="/product/product_list?topcate_num=5&pageNum=1&dcate_num=16">생수</a></li>
-                            		<li><a href="/product/product_list?topcate_num=5&pageNum=1&dcate_num=17">우유</a></li>
-                            		<li><a href="/product/product_list?topcate_num=5&pageNum=1&dcate_num=18">커피 · 차</a></li>
+                            		<li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=16">생수</a></li>
+                            		<li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=17">우유</a></li>
+                            		<li><a href="/product/product_list?cateStart=16&cateEnd=18&topcate_num=5&pageNum=1&dcate_num=18">커피 · 차</a></li>
                             	</ul>
                             </li>
                         </ul>

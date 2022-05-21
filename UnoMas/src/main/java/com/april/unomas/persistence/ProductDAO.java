@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
@@ -74,6 +75,12 @@ public interface ProductDAO {
 	
 	// 장바구니에 상품 넣는 메서드
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
+	
+	// 회원 장바구니에 상품 존재 여부 확인
+	public CartVO getProdInCart(int user_num, int prod_num) throws Exception;
+	
+	// 회원 장바구니 수량 증가
+	public void updateCartAmount(int user_num, int prod_num, int prod_amount) throws Exception;
 	
 	// 신상품 목록 가져오는 메서드
 	public List<ProductVO> getNewProductList(ProdCriteria pc) throws Exception;

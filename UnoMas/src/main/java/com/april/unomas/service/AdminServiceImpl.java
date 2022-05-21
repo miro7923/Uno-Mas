@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 
-import com.april.unomas.domain.CommonCriteria;
+import com.april.unomas.domain.UserCriteria;
 
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardVO;
@@ -31,16 +31,17 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Override
 	public Integer allUserCount(String standard) {
+		System.out.println("Service: DAO결과!!" + dao.allUserCount(standard));
 		return dao.allUserCount(standard);
 	}
 
 	@Override
-	public List<UserVO> getAllUser(String standard, CommonCriteria cri) throws Exception{
+	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception{
 		return dao.getAllUser(standard, cri);
 	}
 
 	@Override
-	public List<UserVO> getDropUser(CommonCriteria cri) throws Exception {
+	public List<UserVO> getDropUser(UserCriteria cri) throws Exception {
 		return dao.getDropUser(cri);
 	}
 	

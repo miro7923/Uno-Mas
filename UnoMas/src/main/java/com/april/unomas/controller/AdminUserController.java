@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.april.unomas.domain.CommonCriteria;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserPageMaker;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.AdminService;
@@ -31,7 +31,6 @@ public class AdminUserController {
 	
 	@RequestMapping(value = "/main")
 	public ModelAndView adminHome(Model model) throws Exception {
-		
 		ModelAndView mav = new ModelAndView("admin/adminMain");
 		return mav;
 	}
@@ -44,15 +43,13 @@ public class AdminUserController {
 			@RequestParam(value="pagingNum", required=false, defaultValue="1") String pagingNum, 
 			Model model) throws Exception {
 		List<UserVO> userList;
+		if(standard == null) { standard = "desc"; }
 		
 		int totalUserCnt = service.allUserCount(standard);
 		
-		
-		CommonCriteria cri = new CommonCriteria();
+		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
 		cri.setPerPageNum(2);
-		
-		if(standard == null) { standard = "desc"; }
 		
 		if(standard.equals("drop")) {
 			userList = service.getDropUser(cri);

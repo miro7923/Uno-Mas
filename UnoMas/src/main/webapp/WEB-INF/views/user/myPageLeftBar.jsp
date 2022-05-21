@@ -9,7 +9,7 @@
 
 
 <div class="left-bar">
-	<div class="page_name">마이페이지</div>
+	<div class="page_name"><a href="mypage">마이페이지</a></div>
 	
 	<div class="mypage-cate">
 		<h4>My 쇼핑</h4>
@@ -24,9 +24,9 @@
 		<br>
 		
 		<h4>My 활동</h4>
-		<a href="">리뷰관리</a>
+		<a href="my_review">리뷰관리</a>
 		<a href="">상품 문의 내역</a>
-		<a href="qni_paging">1:1 문의</a>
+		<a href="board/inquiry_paging">1:1 문의</a>
 		<br>
 		
 		<h4>My 정보</h4>
@@ -35,6 +35,5 @@
 
 	</div>
 		<a href="return_guide"><div class="mypage-cate-info">취소/환불 안내</div></a>
-		<div class="mypage-cate-info">공동구매 안내</div>
 </div>
 </html>

@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -9,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
 
@@ -37,7 +40,7 @@ public class UserServiceImpl implements UserService {
 		dao.joinUser(vo);
 	}
 
-	// 로그인 중복체크
+	// 아이디 중복체크
 	@Override
 	public int idCheck(UserVO vo) {
 		int result = dao.idCheck(vo);
@@ -47,13 +50,8 @@ public class UserServiceImpl implements UserService {
 
 	// 로그인
 	@Override
-	public UserVO loginUser(UserVO vo) {
-
-		log.info(" 컨트롤러 -> loginUser(UserVO vo) POST호출 -> dao - loginUser(vo) POST");
-		
-		UserVO loginVO = dao.loginUser(vo);
-		
-		return loginVO;
+	public HashMap loginUser(UserVO vo) {
+		return dao.loginUser(vo);
 	}
 	
 	// 아이디 찾기
@@ -96,17 +94,37 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
+
 	
 	// 비번 체크
 	@Override
-	public Integer checkPw(UserVO vo) {
-		return dao.checkPw(vo);
+	public Integer checkPW(UserVO vo) {
+		return dao.checkPW(vo);
 	}
+
+//	@Override
+//	public void updateAddr(UserVO vo) {
+//		dao.updateAddr(vo);
+//	}
+
 
 	// 회원 탈퇴
 	@Override
 	public Integer deleteUser(UserVO vo) {
 		return dao.deleteUser(vo);
+	}
+
+	// 내 리뷰 개수
+	@Override
+	public Integer getMyReviewCnt(String num) {
+		System.out.println("서비스에서 받은 유저번호: " + num);
+		return dao.getMyReviewCnt(num);
+	}
+
+	// 내 리뷰
+	@Override
+	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
+		return dao.getMyReview(id, cri);
 	}
 	
 

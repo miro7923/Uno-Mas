@@ -116,10 +116,11 @@
 	    <a href="all_user?standard=${standard }&pagingNum=${pm.startPage + 1}" class="paging_a">다음</a>
 	  </c:if>
 	</div>
+	
   </div>
   
   <jsp:include page="../user/basicModal.jsp">
-  	<jsp:param name="targetID" value="${vo.user_id }" />
+  	<jsp:param name="targetID" value="user1" />
   </jsp:include>
 	
 

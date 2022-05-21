@@ -18,7 +18,7 @@
          	<p class="x-box" onClick="close_pop();"><span>X</span></p>
 
          	<p class="pw-text" name="modal-text">비밀번호 입력</p>
-         	<input type="text" name="id" value="${saveID.getUser_id() }" hidden>
+         	<input type="text" name="id" value="${saveID }" hidden>
          	<input type="password" class="modal-pw" name="pw"><br>
          	<p style="color: red; font-size: 11pt;" name="warn-text"></p>
             

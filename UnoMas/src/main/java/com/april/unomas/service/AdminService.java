@@ -3,7 +3,7 @@ package com.april.unomas.service;
 import java.util.List;
 
 
-import com.april.unomas.domain.CommonCriteria;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardVO;
@@ -18,9 +18,9 @@ public interface AdminService {
 	
 	public Integer allUserCount(String standard);
 
-	public List<UserVO> getAllUser(String standard, CommonCriteria cri) throws Exception;
+	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception;
 	
-	public List<UserVO> getDropUser(CommonCriteria cri) throws Exception;
+	public List<UserVO> getDropUser(UserCriteria cri) throws Exception;
 
 
 

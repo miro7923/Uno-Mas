@@ -1,5 +1,7 @@
+let url_pagingNum = 1;
 let current_url = new URL(window.location.href);
-let url_pagingNum = current_url.searchParams.get("pagingNum"); 
+url_pagingNum = current_url.searchParams.get("pagingNum"); 
+
 
 function showModal(targetID){
 	$('#myModal').show();
@@ -14,7 +16,7 @@ function showModal(targetID){
 			async: true,
 			type: 'POST',
 			data: {
-				'user_id': targetID,
+				'user_id': targetID, 
 				'user_pass': $('[name=pw]').val()
 			},
 			url: "/user/delete_user",

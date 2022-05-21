@@ -65,20 +65,23 @@ public class UserDAOTest {
 		dao.deleteUser(vo);
 	}
 	
-	@Test
+	//@Test
 	public void 로그인테스트() {
 		UserVO vo = new UserVO();
-		vo.setUser_id("user5");
-		vo.setUser_pass("123123");
+		vo.setUser_id("user6");
+		vo.setUser_pass("111111");
 		dao.loginUser(vo);
 	}
 	
-	//@Test
-	public void 회원정보수정테스트() {
-		UserVO vo = new UserVO();
-		vo.setUser_id("user5");
-		vo.setUser_pass("123123");
-		dao.updateUser(vo);
-		
-	}
+//	@Test
+//	public void 회원정보수정테스트() {
+//		UserVO vo = new UserVO();
+//		vo.setUser_name("육");
+//		vo.setUser_email("user6@naver.com");
+//		vo.setUser_birth("2003-05-26");
+//		vo.setUser_phone("01020020202");
+//		dao.updateUser(vo);
+//		
+//	}
+	
 }

@@ -14,13 +14,13 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 
-public class CommonCriteria {
+public class UserCriteria {
 	private int page;
 	private int perPageNum;
 	
-	public CommonCriteria() {
+	public UserCriteria() {
 		this.page = 1;
-		this.perPageNum = 2;
+		this.perPageNum = 10;
 	}
 
 	public int getPageStart() {

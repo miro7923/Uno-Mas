@@ -3,7 +3,7 @@ package com.april.unomas.persistence;
 import java.util.List;
 
 
-import com.april.unomas.domain.CommonCriteria;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
@@ -31,9 +31,9 @@ public interface AdminDAO {
 	
 	public Integer allUserCount(String standard);
 
-	public List<UserVO> getAllUser(String standard, CommonCriteria cri) throws Exception;
+	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception;
 	
-	public List<UserVO> getDropUser(CommonCriteria cri) throws Exception;
+	public List<UserVO> getDropUser(UserCriteria cri) throws Exception;
 	
 	
 	// 공지사항 글 목록

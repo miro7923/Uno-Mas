@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.april.unomas.domain.CommonCriteria;
+import com.april.unomas.domain.UserCriteria;
 
 import org.springframework.stereotype.Repository;
 
@@ -52,6 +52,7 @@ public class AdminDAOImpl implements AdminDAO {
 	// 관리자 - User파트
 	@Override
 	public Integer allUserCount(String standard) {	
+		System.out.println(" AdminDAO : 여기서 문제?" + standard);
 		if(standard.equals("drop")) {
 			return Integer.parseInt(sqlSession.selectOne(NAMESPACE+".allDropUserCount"));
 		} else {
@@ -60,7 +61,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public List<UserVO> getAllUser(String standard, CommonCriteria cri) throws Exception{
+	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception{
 		Map<String, Object> map = new HashMap();
 		map.put("standard", standard);
 		map.put("cri", cri);
@@ -69,7 +70,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	
 	@Override
-	public List<UserVO> getDropUser(CommonCriteria cri) throws Exception {
+	public List<UserVO> getDropUser(UserCriteria cri) throws Exception {
 		System.out.println("DAO: 탈퇴조회 여기까지 들어와??");
 		return sqlSession.selectList(NAMESPACE+".getDropUser");
 	}

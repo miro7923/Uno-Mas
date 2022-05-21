@@ -22,11 +22,11 @@ public class UserPageMaker {
 	private boolean prev;
 	private boolean next;
 	private int pageBlock = 10;
-	private CommonCriteria cri;
+	private UserCriteria cri;
 	
 	
 	
-	public void setCri(CommonCriteria cri) {
+	public void setCri(UserCriteria cri) {
 		this.cri = cri;
 	}
 	
@@ -47,6 +47,7 @@ public class UserPageMaker {
 		// 이전과 다음
 		prev = startPage == 1 ? false :  true;
 		next = endPage * cri.getPerPageNum() >= totalCount? false : true;
+		System.out.println("페이지메이커: " + endPage);
 	}
 	
 }

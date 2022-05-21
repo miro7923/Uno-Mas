@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.ProductVO;
@@ -126,6 +127,16 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
 		dao.insertCart(user_num, prod_num, prod_amount);
+	}
+
+	@Override
+	public CartVO getProdInCart(int user_num, int prod_num) throws Exception {
+		return dao.getProdInCart(user_num, prod_num);
+	}
+
+	@Override
+	public void modifyCartAmount(int user_num, int prod_num, int prod_amount) throws Exception {
+		dao.updateCartAmount(user_num, prod_num, prod_amount);
 	}
 
 	@Override

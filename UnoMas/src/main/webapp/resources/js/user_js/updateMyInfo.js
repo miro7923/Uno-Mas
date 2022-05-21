@@ -111,6 +111,13 @@ function birthCheck() {
 	} 
 }
 
+function combineBirth() {
+	if($("select[name=birth-day]").val() != "") {
+		let combine = $("select[name=birth-year]").val()+"-"+$("select[name=birth-month]").val()+"-"+$("select[name=birth-day]").val();  
+		$("[name=user_birth]").val(combine);
+	}
+}
+
 // 핸드폰 인증번호
 function phoneCheckFunc() {
 	$('[name=phone]').css('margin-bottom', '0px');

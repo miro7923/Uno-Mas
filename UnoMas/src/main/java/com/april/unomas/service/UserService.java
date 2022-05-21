@@ -1,8 +1,11 @@
 package com.april.unomas.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 public interface UserService {
@@ -17,7 +20,7 @@ public interface UserService {
 	public int idCheck(UserVO vo);
 	
 	// 로그인
-	public UserVO loginUser(UserVO vo);
+	public HashMap loginUser(UserVO vo);
 	
 	// 아이디 찾기
 	public int findIdProcess(UserVO vo);
@@ -33,10 +36,17 @@ public interface UserService {
 		
 	// 회원정보수정
 	public void updateUser(UserVO vo);
+
 	
 	// 비번체크
-	public Integer checkPw(UserVO vo);
+	public Integer checkPW(UserVO vo);
 	
 	// 회원탈퇴
 	public Integer deleteUser(UserVO vo);
+	
+	// 내 리뷰 개수
+	public Integer getMyReviewCnt(String id);
+	
+	// 내 리뷰
+	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri);
 }

@@ -16,7 +16,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 // @Repository : 해당 클래스가 DAO 역할을 하는 객체로 스프링이 인식
@@ -70,12 +72,25 @@ public class UserDAOImpl implements UserDAO {
 
 	// 로그인
 	@Override
-	public UserVO loginUser(UserVO vo) {
-		System.out.println(" DAO : 로그인 동작 포스트" );
-		
-		UserVO loginVO = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
-		
-		return loginVO;
+	public HashMap<String, Integer> loginUser(UserVO vo) {
+		HashMap<String, Integer> loginMap = new HashMap<String, Integer>() { 
+			{ put("result", 0); put("num", null); }
+		};
+		int result = 0;
+		UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
+
+		if (loginVO == null) {
+			result = 0;
+		} else {
+			if (loginVO.getUser_status() != 1) {
+				result = -1;
+			} else {
+				result = 1;
+				loginMap.put("num", loginVO.getUser_num());
+			}
+		}
+		loginMap.put("result", result);
+		return loginMap;
 	}
 	
 	
@@ -140,9 +155,7 @@ public class UserDAOImpl implements UserDAO {
 	// 비번 변경
 	@Override
 	public int changePW(UserVO vo) {	
-		int result = sqlSession.update(NAMESPACE + ".changePW_sql", vo);
-
-		return result;
+		return sqlSession.update(NAMESPACE + ".changePW_sql", vo);
 	}
 
 	
@@ -153,33 +166,55 @@ public class UserDAOImpl implements UserDAO {
 		return userInfoVO;
 	}
 	
+	
 	// 회원정보수정
 	@Override
 	public Integer updateUser(UserVO vo) {
-		
-		Integer result =sqlSession.update(NAMESPACE+".updateUser",vo);
-
-		log.info("회원정보수정 완료");
-		
+		Integer result = sqlSession.update(NAMESPACE+".updateUser",vo);
 		return result;
 	}
 
-	
-	
+	// 추가 배송지(orderAddr)
+//	@Override
+//	public Integer updateAddr(UserVO vo) {
+//		
+//		Integer result =sqlSession.update(NAMESPACE+".updateAddr",vo);
+//
+//		log.info("회원정보수정-추가배송지 완료");
+//		
+//		return result;
+//	}
+
+	// 비번체크
 	@Override
-	public Integer checkPw(UserVO vo) {
-		return sqlSession.selectOne(NAMESPACE+".checkPw",vo);
+	public Integer checkPW(UserVO vo) {
+		return sqlSession.selectOne(NAMESPACE+".checkPW",vo);
 	}
 
 	// 회원탈퇴
 	@Override
 	public Integer deleteUser(UserVO vo) {
-		return sqlSession.delete(NAMESPACE+".deleteUser",vo);
+		return sqlSession.delete(NAMESPACE+".deleteUser",vo); 
 	}
 	
+	
+	// 내 리뷰 개수
+	@Override
+	public Integer getMyReviewCnt(String num) {
+		return sqlSession.selectOne(NAMESPACE+".myReviewCnt", num);
+	}
 
-	
-	
+	// 내 리뷰
+	@Override
+	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
+		System.out.println("DAO: 잘 들어옴?" + id + "" + cri);
+		Map<String, Object> map = new HashMap();
+		map.put("id", id);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(NAMESPACE+".getMyReview", map);
+	}
+
 	@Override
 	public int sendEmailMethod(EmailVO evo) {
 		System.out.println("DAO: 이메일 보내기 들어옴");
