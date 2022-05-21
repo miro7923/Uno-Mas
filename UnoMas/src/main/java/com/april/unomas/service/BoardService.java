@@ -14,7 +14,7 @@ public interface BoardService {
 	public List<BoardVO> listAll() throws Exception;
 	
 	// 카테고리 정렬
-	public List<BoardVO> sortCate(String faq_cate, Criter cri) throws Exception;
+	public List<BoardVO> sortCate(Integer qnacate_num, Criter cri) throws Exception;
 	
 	// 페이징
 	public List<BoardVO> selectBoardList(Criter cri) throws Exception;
@@ -35,5 +35,5 @@ public interface BoardService {
 	public void deleteBoard(Integer faq_num) throws Exception;
 	
 	// 전체 정렬 글 갯수
-	public Integer sortCateCount(String faq_cate) throws Exception;
+	public Integer sortCateCount(Integer qnacate_num) throws Exception;
 }

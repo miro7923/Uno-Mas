@@ -51,13 +51,18 @@ public class ProductAjaxController {
 	
 	// ajax로 장바구니에 물건 담기
 	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
-	public void insertCartPOST(HttpServletRequest request) throws Exception {
+	public void insertCartPOST(@RequestParam("user_num") int user_num, 
+			@RequestParam("prod_num") int prod_num, @RequestParam("prod_amount") int prod_amount) throws Exception {
 		log.info("insertCartPOST() 호출");
-		int user_num = Integer.parseInt(request.getParameter("user_num"));
-		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
-		int prod_amount = Integer.parseInt(request.getParameter("prod_amount"));
 
-		service.insertCart(user_num, prod_num, prod_amount);
+		if (service.getProdInCart(user_num, prod_num) == null) {
+			// 없는 상품이면 필드 새로 생성
+			service.insertCart(user_num, prod_num, prod_amount);
+		}
+		else {
+			// 장바구니에 있는 상품이면 수량 증가
+			service.modifyCartAmount(user_num, prod_num, prod_amount);
+		}
 	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)

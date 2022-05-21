@@ -14,7 +14,7 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/productDetail.css?after2">
+	href="${path}/resources/css/product_css/productDetail.css?after2">
 <!-- Header end -->
 
 <body>
@@ -31,8 +31,7 @@
 						<div class="col-lg-6">
 							<div class="product-pic-zoom">
 								<img class="product-big-img"
-									src="${path}/resources/img/product-single/product_vegi01.jpeg"
-									alt="">
+									src='<spring:url value="/resources/upload/images/products/top/${vo.prod_image1 }"></spring:url>' alt="">
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -117,7 +116,16 @@
 								</div>
 								<div class="pd-desc">
 									<h5 class="priceText">
-										총 상품금액 : <span id="totalPrice"></span> 원
+									    총 상품금액 : 
+									    <c:choose>
+									        <c:when test="${vo.prod_stock > 0 }">
+												<span id="totalPrice"></span>
+									        </c:when>
+									        <c:otherwise>
+									            <span><fmt:formatNumber value="${vo.prod_price }" type="number"/></span>
+									        </c:otherwise>
+									    </c:choose>
+									     원
 									</h5>
 								</div>
 								<div class="quantity justify-content-end">
@@ -182,17 +190,14 @@
 								<div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
 									<div class="product-content">
 										<div class="col-lg-12">
-											<img
-												src="${path}/resources/img/product-single/product_vegi02.webp"
-												alt="">
+											<img src='<spring:url value="/resources/upload/images/products/detail/${vo.prod_image2 }"></spring:url>' alt="">
 										</div>
 										<br> <br>
 										<div class="row">
 											<div class="text-center col-lg-12">
 												<!-- id 선택자 지정된 부분만 디비에서 불러와서 채우면 됨 -->
-												<h3 class="detailSubTitle" id="detailSubTitle">아삭하고
-													부드러운</h3>
-												<h1 class="detailTitle" id="detailTitle">청경채</h1>
+												<h3 class="detailSubTitle" id="detailSubTitle">${vo.prod_explain }</h3>
+												<h1 class="detailTitle" id="detailTitle">${vo.prod_name }</h1>
 												<br>
 												<hr>
 												<p class="detailMainContent" id="detailMainContent">청경채는
@@ -518,7 +523,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/productDetail.js"></script>
+	<script src="${path}/resources/js/product_js/productDetail.js"></script>
 </body>
 
 </html>

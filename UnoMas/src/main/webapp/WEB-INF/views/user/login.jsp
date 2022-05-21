@@ -22,7 +22,7 @@
 		<article>
 			<h3 class="login_name">로그인</h3>
 			<hr>
-			<form action="login" id="join" method="post" onsubmit="return memberCk();">
+			<form id="join" method="post">
 				<div class="input_box">
 				<input type="text" id="id" name="user_id" placeholder="아이디를 입력하세요.">
 				<input type="password" id="pass" name="user_pass" placeholder="비밀번호를 입력하세요.">
@@ -39,7 +39,7 @@
 				</div>
 				
 				<div id="buttons">
-					<input type="submit" value="로그인" id="loginus" onclick="memberCk()">
+					<input type="button" value="로그인" id="loginus"  onclick="memberCk()">
 					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/user/register';">
 				</div>
 			</form>

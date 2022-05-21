@@ -78,17 +78,21 @@ function remaindTime() {
  
 /* 체크박스 전체 선택 해체 */
 $(document).ready(function() {
-	$("#cbx_checkAll").click(function() {
-	if($("#cbx_checkAll").is(":checked")) $("input[name=check]").prop("checked", true);
-	else $("input[name=check]").prop("checked", false);
+	$("#allCheck").click(function() {
+	if($("#allCheck").is(":checked")) {
+		$("input[name=chBox]").prop("checked", true);
+		
+	} else $("input[name=chBox]").prop("checked", false);
+	
 	});
 			
-	$("input[name=check]").click(function() {
-		var total = $("input[name=check]").length;
-		var checked = $("input[name=check]:checked").length;
+	$("input[name=chBox]").click(function() {
+		var total = $("input[name=chBox]").length;
+		var checked = $("input[name=chBox]:checked").length;
 		
-		if(total != checked) $("#cbx_checkAll").prop("checked", false);
-		else $("#cbx_checkAll").prop("checked", true); 
+		if(total != checked) {
+			$("#allCheck").prop("checked", false);
+		} else $("#allCheck").prop("checked", true); 
 	});
 });
 		
@@ -130,16 +134,10 @@ $(".date").html(date);
 //});
 
 /* 재고 상태 라디오버튼 제어 */
-//function stockBtn(){
-//	var stock = $('prod_stock');
-//	if(stock = 0){
-//		$('input:radio[name=stock_state]:input[value=' + sold + ']').attr("checked", true);
-//	}
-//}
+$("input:radio[name=stock_state]").attr("disabled", true); //비활성화 
 
-/* */
+/* 대분류 선택에 따른 소분류 카테고리 */
 var cates = false;
-
 function update_categories() {
 	$("#details").val(0);
 	$("#details").find("option[value!=0]").detach();
@@ -154,6 +152,7 @@ $(function(){
 	$("#categories").trigger("change");
 })
 
+/* 파일업로드 */
 function checkFileName(num, type) {
     var regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)");
     var maxSize = 10 * 1024 * 1024;
@@ -189,7 +188,6 @@ function crossBrowsing(num) {
 }
 
 function uploadImg(num, type) {
-	alert('uploadDeImg() 호출 type: '+type+'num: '+num);
 	var reader = new FileReader();
 	
 	reader.onload = e => {
@@ -227,11 +225,31 @@ function uploadImg(num, type) {
 			if (data != null) {
 				alert('이미지 업로드 성공' + data);
 				$('#prod_image' + num).val(data);
-				alert('#prod_image'+num+': '+$('#prod_image'+num).val());
 			}
 		},
 		error: function() {
 			alert('서버 오류로 지연되고 있습니다. 잠시 후 다시 시도해 주세요.');
 		}
 	});
+}
+
+function showFileName(num) {
+	
+    var fileTarget = $('#uploadImg' + num);
+    
+    fileTarget.on('change', function() {
+        if (window.FileReader) { // modern browser
+            var fileName = $('#uploadImg'+ num)[0].files[0].name;
+        }
+        else { // IE
+            var fileName = $('#uploadImg' + num).val().split('/').pop().split('\\').pop();
+        }
+        
+        $('#uploadImgName'+num).val(fileName);
+    });
+}
+
+function removeImg(num) {
+	$('#uploadImg'+num).val(null);
+	$('#uploadImgName'+num).val('이미지 선택');
 }

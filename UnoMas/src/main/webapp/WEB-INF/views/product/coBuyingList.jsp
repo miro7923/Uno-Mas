@@ -7,7 +7,7 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/productAdmin.css">
+<link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css">
 <!-- Start Header -->
 
 <body>
@@ -141,7 +141,7 @@
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 	<script src="${path}/resources/js/productList.js"></script>
-	<script src="${path}/resources/js/productAdmin.js"></script>
+	<script src="${path}/resources/js/product_js/productAdmin.js"></script>
 </body>
 
 </html>

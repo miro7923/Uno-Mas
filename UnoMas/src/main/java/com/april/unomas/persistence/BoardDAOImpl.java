@@ -66,7 +66,7 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public BoardVO getBoard(Integer faq_num) throws Exception {
+	public BoardVO getBoard(Integer faq_num) {
 		return sqlSession.selectOne(NAMESPACE+".getBoard",faq_num);
 	}
 
@@ -77,19 +77,19 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public Integer sortCateCount(String faq_cate) {
+	public Integer sortCateCount(Integer qnacate_num) {
 		
-		return sqlSession.selectOne(NAMESPACE+".sortCateCount",faq_cate);
+		return sqlSession.selectOne(NAMESPACE+".sortCateCount",qnacate_num);
 	}
 	
 	@Override
-	public List<BoardVO> sortCate(String faq_cate, Criter cri) {
+	public List<BoardVO> sortCate(Integer qnacate_num, Criter cri) {
 		log.info("sortCate");
-		log.info(faq_cate);
+		log.info(qnacate_num+"");
 		log.info(cri+"@@@@@@@@@@@@");
-		Map<String,Object> paramMap = new HashMap<String,Object>();
-		paramMap.put("faq_cate",faq_cate);
-		paramMap.put("pageStart",cri.getPage());
+		Map<String,Integer> paramMap = new HashMap<String,Integer>();
+		paramMap.put("qnacate_num",qnacate_num);
+		paramMap.put("pageStart",cri.getPage()-1);
 		paramMap.put("perPageNum",cri.getPerPageNum());
 		log.info(paramMap+"##########");
 		return sqlSession.selectList(NAMESPACE+".sortCategory",paramMap);
