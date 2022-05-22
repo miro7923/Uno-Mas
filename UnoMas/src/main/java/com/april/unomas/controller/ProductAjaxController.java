@@ -88,7 +88,6 @@ public class ProductAjaxController {
 	
 	@RequestMapping(value = "/upload_topImg", method = RequestMethod.POST)
 	public String uploadTopImgPOST(@RequestParam("uploadImg1") MultipartFile file) throws Exception {
-		log.info("@@@@@@@@@@@@@@@@@@@ 상세이미지 등록 컨트롤러 이동");
 		String fileName = null;
 		if (!file.isEmpty()) {
 			fileName = Commons.convertImgName(file.getOriginalFilename(), service.getLastProdNum() + 1, ImgType.TOP);
