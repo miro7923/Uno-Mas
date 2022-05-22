@@ -160,7 +160,6 @@ public class UserController {
 	public String myInfoUpdateGET(UserVO vo,HttpSession session, Model model) {
 
 		String userInfo = (String) session.getAttribute("saveID");
-	    session.setAttribute("savePAddr", vo.getUser_num());
 
 		UserVO userInfoVO = service.getUserInfo(userInfo);
 
