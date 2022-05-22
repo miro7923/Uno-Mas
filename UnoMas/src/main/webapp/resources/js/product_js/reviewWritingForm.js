@@ -37,11 +37,12 @@ function showFileName() {
     var fileTarget = $('#uploadImg');
     
     fileTarget.on('change', function() {
+		var fileName = '';
         if (window.FileReader) { // modern browser
-            var fileName = $('#uploadImg')[0].files[0].name;
+            fileName = $('#uploadImg')[0].files[0].name;
         }
         else { // IE
-            var filename = $('#uploadImg').val().split('/').pop().split('\\').pop();
+            filename = $('#uploadImg').val().split('/').pop().split('\\').pop();
         }
         
         $('#uploadImgName').val(fileName);
