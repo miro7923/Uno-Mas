@@ -59,30 +59,25 @@ public class UserDAOImpl implements UserDAO {
 
 	// 로그인
 	@Override
-	public Integer loginUser(UserVO vo) {
+	public HashMap<String, Integer> loginUser(UserVO vo) {
+		HashMap<String, Integer> loginMap = new HashMap<String, Integer>() { 
+			{ put("result", 0); put("num", null); }
+		};
 		int result = 0;
-
 		UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
 
-		// 로그인 실패
 		if (loginVO == null) {
 			result = 0;
 		} else {
 			if (loginVO.getUser_status() != 1) {
 				result = -1;
 			} else {
-				if (vo.getUser_id().equals(loginVO.getUser_id())) {
-					if (vo.getUser_pass().equals(loginVO.getUser_pass())) {
-						result = 1;
-					} else {
-						result = 0;
-					}
-				}
+				result = 1;
+				loginMap.put("num", loginVO.getUser_num());
 			}
 		}
-
-		// 로그인 성공 및 정보 저장
-		return result;
+		loginMap.put("result", result);
+		return loginMap;
 	}
 
 	// 회원 아이디 찾기

@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
 	// 로그인
 	@Override
-	public Integer loginUser(UserVO vo) {
+	public HashMap loginUser(UserVO vo) {
 		return dao.loginUser(vo);
 	}
 	

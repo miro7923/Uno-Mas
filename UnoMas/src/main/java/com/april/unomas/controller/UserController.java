@@ -63,14 +63,17 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
-		Integer result = service.loginUser(vo);
-
-		if(result == 1) {
-			session.setAttribute("saveID", vo.getUser_id());
-		}
 		
-		return Integer.toString(result);
+		HashMap loginMap = service.loginUser(vo);
+		
+		String result = String.valueOf(loginMap.get("result"));
+		if(result.equals("1")) {
+			session.setAttribute("saveID", vo.getUser_id());
+			session.setAttribute("saveNUM", loginMap.get("num"));
+		}
+		return result;
 	}
+
 
 	// 로그아웃 구현
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)

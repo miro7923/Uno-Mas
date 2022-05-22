@@ -17,7 +17,7 @@ public interface UserService {
 	public int idCheck(UserVO vo);
 	
 	// 로그인
-	public Integer loginUser(UserVO vo);
+	public HashMap loginUser(UserVO vo);
 	
 	// 아이디 찾기
 	public int findIdProcess(UserVO vo);
