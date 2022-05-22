@@ -57,13 +57,6 @@
 	    <beans:constructor-arg value="D:\\work_spring\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\images\\board\\review" />
 	</beans:bean>
 
-<<<<<<< HEAD
-=======
-	<beans:bean id="reviewImgUploadPath" class="java.lang.String">
-	    <beans:constructor-arg value="D:\\IT\\Spring\\workspace-unomas2\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\board\\review"/>
-    </beans:bean>
->>>>>>> e0b88cd26ca7d20c6833bd1f58f85a0ee79d9ce5
-    
     <!-- 상품 상세이미지 업로드 경로 -->
     <beans:bean id="prodDimgUploadPath" class="java.lang.String">
         <beans:constructor-arg value="D:\\IT\\Spring\\workspace-unomas2\\Uno-Mas\\UnoMas\\src\\main\\webapp\\resources\\upload\\images\\products\\detail"/>
@@ -85,11 +78,6 @@
     </beans:bean>
 	
 
-<<<<<<< HEAD
-	
-
-=======
->>>>>>> e0b88cd26ca7d20c6833bd1f58f85a0ee79d9ce5
 	<!-- 인터셉터 적용 -->
 	<interceptors>
 		<interceptor>
