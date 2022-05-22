@@ -89,11 +89,4 @@
   	where user_id=#{user_id}
   </update>
   
-  <!-- 아이디로 회원번호 가져오기 -->
-  <select id="getUserNum" resultType="int">
-      SELECT user_num
-      FROM users
-      WHERE user_id = #{user_id}
-  </select>
-  
 </mapper>

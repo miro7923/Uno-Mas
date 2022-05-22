@@ -126,8 +126,6 @@ public class ProductController {
 		
 		// 세션 로그인 정보가 있으면 회원 번호 저장
 		String user_id = (String)session.getAttribute("saveID");
-		if (user_id != null)
-			map.put("user_num", userService.getUserNum(user_id));
 		
 		model.addAllAttributes(map);
 		
@@ -171,9 +169,8 @@ public class ProductController {
 		
 		String user_id = (String) session.getAttribute("saveID");
 		if (user_id != null) {
-			int user_num = userService.getUserNum(user_id);
-			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
-			model.addAttribute("user_num", user_num);
+//			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
+//			model.addAttribute("user_num", user_num);
 		}
 		else
 			model.addAttribute("isInWishlist", false);
@@ -364,7 +361,7 @@ public class ProductController {
 		
 		model.addAttribute("prod_name", service.getProduct(reviewVO.getProd_num()).getProd_name());
 		model.addAttribute("vo", reviewVO);
-		model.addAttribute("user_num", userService.getUserNum((String)session.getAttribute("saveID")));
+//		model.addAttribute("user_num", userService.getUserNum((String)session.getAttribute("saveID")));
 		
 		return "product/reviewModifyForm";
 	}
