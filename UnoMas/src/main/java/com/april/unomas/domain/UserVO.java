@@ -34,6 +34,7 @@ public class UserVO {
 	private String user_bank;
 	private String user_account;
 	private String user_account_holder;
+	private Timestamp user_deldate;
 
 }
 

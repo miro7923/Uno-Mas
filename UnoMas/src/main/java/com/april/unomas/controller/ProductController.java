@@ -112,7 +112,7 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
-
+		
 		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
