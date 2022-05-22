@@ -3,7 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.unomas.mapper.AdminMapper">
+  
+<mapper namespace="com.unomas.mapper.adminMapper">
+
+  <!-- 전체 회원 수 -->
+  <select id="allUserCount" resultType="String">
+  	SELECT count(*) FROM users
+  </select>
+  
+  <!-- 탈퇴 회원 수 -->
+  <select id="allDropUserCount" resultType="String">
+  	SELECT count(*) FROM users where user_status = -1
+  </select>
+  
+  <!-- 회원 전체 조회 -->
+  <select id="getAllUser" parameterType="Map" resultType="com.april.unomas.domain.UserVO">
+  	SELECT * FROM users ORDER BY user_regdate ${standard} LIMIT #{cri.pageStart},#{cri.perPageNum}
+  </select>
+  
+  <!-- 탈퇴 회원 조회 -->
+  <select id="getDropUser" resultType="com.april.unomas.domain.UserVO">
+  	SELECT * FROM users WHERE user_status=-1
+  </select>
+
+
+
+
 
 <resultMap type="NoticeVO" id="noticeMap">
 	<id column="NOTICE_NUM" property="notice_num"/>
@@ -323,3 +348,4 @@
 	</sql>
 
 </mapper>
+

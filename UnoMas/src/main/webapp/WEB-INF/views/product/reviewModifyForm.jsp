@@ -28,7 +28,7 @@
 									<!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
 									<input type="hidden" value="${vo.review_num }" name="review_num">
 									<input type="hidden" value="${vo.prod_num }" name="prod_num">
-									<input type="hidden" value="${user_num }" name="user_num">
+									<input type="hidden" value="${sessionScope.saveNUM}" name="user_num">
 									<p class="productName">
 										상품명 : ${prod_name } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 										평가 : 

@@ -52,7 +52,7 @@
   
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
-  	select user_id, user_pass, user_status
+  	select user_num, user_id, user_pass, user_status
   	from users 
   	where user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
@@ -60,16 +60,9 @@
   <!-- 회원 정보 가져오기 -->
   <select id="getUserInfo" parameterType="String" resultType="com.april.unomas.domain.UserVO">
 	select user_id, user_name, user_birth, user_phone, user_email, 
-	user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point
+	user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point, user_bank, user_account, user_account_holder
 	from users 
 	where user_id = #{user_id}
-  </select>
-  
-    <!-- 비밀번호 체크 -->
-  <select id="checkPw" resultType="int">
-  	select count(*)
-  	from users
-  	where user_id=#{user_id} and user_pass=#{user_pass}
   </select>
   
   <!-- 회원정보 수정 -->
@@ -81,12 +74,49 @@
   	where user_id=#{user_id}
   </update>
   
+
+  <!-- 비밀번호 체크 -->
+  <select id="checkPW" resultType="int">
+  	SELECT count(*)
+  	FROM users
+  	WHERE user_id=#{user_id} and (user_pass=#{user_pass} OR 
+  	(SELECT count(*) FROM admin WHERE admin_pass=#{user_pass}))
+  </select>
+
   
   <!-- 회원탈퇴 -->
   <update id="deleteUser">
-  	update users 
-  	set user_status=-1
-  	where user_id=#{user_id}
+  	UPDATE users 
+  	SET user_status=-1, user_deldate=now()
+  	WHERE user_id=#{user_id}
   </update>
+  
+  <select id="myReviewCnt" parameterType="String" resultType="int">
+  	SELECT count(review_num)
+  	FROM board_review 
+  	WHERE user_num=${value}
+  </select>
+  
+  <select id="getMyReview" parameterType="Map" resultType="com.april.unomas.domain.BoardReviewVO">
+  	SELECT * 
+  	FROM board_review 
+  	WHERE user_num=${id}
+  	ORDER BY review_regdate DESC 
+  	LIMIT #{cri.pageStart},#{cri.perPageNum}
+  </select>
+  
+  <select id="myPQcnt" parameterType="String" resultType="int">
+  	SELECT count(p_inquiry_num)
+  	FROM prod_inquiry
+  	WHERE user_num=${value}
+  </select>
+  
+  <select id="getMyPQ" parameterType="Map" resultType="com.april.unomas.domain.BoardReviewVO">
+  	SELECT * 
+  	FROM prod_inquiry 
+  	WHERE user_num=${id}
+  	ORDER BY review_regdate DESC 
+  	LIMIT #{cri.pageStart},#{cri.perPageNum}
+  </select>
   
 </mapper>

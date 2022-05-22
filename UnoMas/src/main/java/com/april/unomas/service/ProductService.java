@@ -53,7 +53,7 @@ public interface ProductService {
 	public List<String> getDcateNames(int topcate_num) throws Exception;
 	
 	// 상품별 카테고리 가져오기
-	public List<CategoryVO> getCategory(int dcate_num) throws Exception;
+	public List<CategoryVO> getCategory(int prod_num) throws Exception;
 	
 	// 소분류별로 분류해서 가져오기
 	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception;
