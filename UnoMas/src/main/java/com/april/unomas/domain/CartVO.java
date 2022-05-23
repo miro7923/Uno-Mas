@@ -14,6 +14,7 @@ public class CartVO {
     private int prod_price;		// 상품 단가
     private int money;			// 상품 가격(단가*수량)
     private int prod_amount;	// 구매 수량
+    private String prod_image3;  // 상품 썸네일
     
     public int getTotalPrice() {
     	return prod_amount * money;

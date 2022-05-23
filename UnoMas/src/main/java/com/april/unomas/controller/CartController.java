@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,27 +50,21 @@ public class CartController {
 	
 	// 장바구니 목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView list(HttpSession session, ModelAndView mav) {
-		Map<String, Object> map=new HashMap<String, Object>();
-	 
+	public String listGET(HttpSession session, Model model) {
 	    int user_num = (int) session.getAttribute("saveNUM");
 	        	
         List<CartVO> list = cartService.listCart(user_num);  // 장바구니 목록
         int sumMoney = cartService.sumMoney(user_num);  // 총 상품가격
         int fee = sumMoney >= 50000 ? 0 : 2500; // 배송비 계산
  
-        map.put("list", list); // 장바구니 정보를 map에 저장
-        map.put("sumMoney", sumMoney); // 장바구니 전체 금액
-        map.put("fee", fee); // 배송료
-        map.put("sum", sumMoney+fee); // 총 결제 예상금액(장바구니+배송비)
+        model.addAttribute("list", list); // 장바구니 정보를 map에 저장
+        model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액
+        model.addAttribute("fee", fee); // 배송료
+        model.addAttribute("sum", sumMoney+fee); // 총 결제 예상금액(장바구니+배송비)
+        
+        log.info("@@@@@@@@@@@@@@@ cart list: "+list);
  
-        // ModelAndView mav에 이동할 페이지의 이름과 데이터를 저장한다.
-        mav.setViewName("product/shopping-cart"); // 이동할 페이지의 이름
-        mav.addObject("map", map); // map변수 저장
- 
-        return mav; // 화면 이동
-	 
-	        
+        return "product/shopping-cart"; // 화면 이동
 	 }
 	
 	 // 장바구니 단품 삭제

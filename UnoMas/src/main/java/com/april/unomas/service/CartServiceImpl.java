@@ -58,4 +58,9 @@ public class CartServiceImpl implements CartService{
 		return cartDao.sumMoney(user_num);
 	}
 
+	@Override
+	public CartVO getSelectedItem(int user_num, int prod_num) {
+		return cartDao.getSelectedItem(user_num, prod_num);
+	}
+
 }

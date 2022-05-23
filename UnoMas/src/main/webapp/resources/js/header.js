@@ -2,7 +2,7 @@ function checkLogin(type, login) {
 	switch (type) {
 		case 'cart':
 			if (login) {
-				location.href = '/product/shopping-cart';
+				location.href = '/product/cart/list';
 			}
 			else {
 				if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')) {
