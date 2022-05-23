@@ -50,6 +50,5 @@ public class CartDAOTest {
 		int prod_num = 109;
 		int user_num = 4;
 		
-		log.info("@@@@@@@@@ 선택된 상품: "+ dao.getSelectedItem(user_num, prod_num));
 	}
 }
