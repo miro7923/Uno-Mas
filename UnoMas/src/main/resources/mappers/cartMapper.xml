@@ -23,9 +23,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 회원의 장바구니 목록에서 선택된 상품만 가져오기 -->
     <select id="getSelectedItems" resultType="CartVO">
-        SELECT cart_num, p.prod_num, c.user_num, prod_name, prod_amount, prod_price, (prod_price * prod_amount) money
-        FROM users m, cart c, products p
-        WHERE c.prod_num = #{prod_num} and c.user_num = #{user_num}
+        SELECT c.cart_num, p.prod_num, c.user_num, prod_name, prod_amount, prod_price, (prod_price * prod_amount) money
+		FROM cart c 
+		JOIN products p ON c.prod_num = p.prod_num
+		WHERE c.cart_num = #{cart_num};
     </select>
     <!-- 장바구니 개별 상품 삭제 -->
     <delete id="delete">

@@ -65,7 +65,7 @@
 
 							<c:otherwise>
 								<form id="cartForm" name="cartForm" method="post"
-									action="/order/">
+									action="/order/order">
 									<table>
 										<thead>
 											<tr>
@@ -87,7 +87,7 @@
 													<td class="cartCheck"><input type="checkbox"
 														name="cartCheck" value="1" onclick='checkSelectAll()'
 														data-wishNum="${row.cart_num}" /> 
-														<input type="hidden" id="cartNum${i.count }" value="${row.cart_num }">
+														<input type="hidden" id="cartNum${i.index }" value="${row.cart_num }">
 													</td>
 													<td class="cart-pic first-row"><img
 														src='<spring:url value="/resources/upload/images/products/thumbnail/${row.prod_image3 }"></spring:url>' alt=""

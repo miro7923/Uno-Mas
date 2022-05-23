@@ -41,7 +41,7 @@ function goOrder(){ // 체크박스에 체크한 상품을 가지고 주문 폼�
 		if($(ch).is(":checked")){
 			cnt++;
 			$('#amount'+(i+1)).prop('disabled',false);
-			checked += $('#cartNum'+(i+1)).val() + ' ';
+			checked += $('#cartNum'+i).val() + ' ';
 		}else{
 			// 체크 안된 상품의 주문 수량 비활성화 
 			$('#amount'+(i+1)).prop('disabled',true);

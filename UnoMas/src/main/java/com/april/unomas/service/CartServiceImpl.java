@@ -59,8 +59,8 @@ public class CartServiceImpl implements CartService{
 	}
 
 	@Override
-	public CartVO getSelectedItem(int user_num, int prod_num) {
-		return cartDao.getSelectedItem(user_num, prod_num);
+	public CartVO getSelectedItem(int user_num, int cart_num) {
+		return cartDao.getSelectedItem(user_num, cart_num);
 	}
 
 }

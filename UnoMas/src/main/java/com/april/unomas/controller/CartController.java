@@ -1,8 +1,6 @@
 package com.april.unomas.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.UserVO;
@@ -26,7 +23,7 @@ import com.april.unomas.service.CartService;
 public class CartController {
 	
 	@Inject
-	CartService cartService;
+	private CartService cartService;
 	
 	private static final Logger log = LoggerFactory.getLogger(CartController.class);
 	

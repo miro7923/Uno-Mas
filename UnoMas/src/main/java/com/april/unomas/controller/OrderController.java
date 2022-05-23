@@ -1,6 +1,9 @@
 package com.april.unomas.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.april.unomas.domain.CartVO;
 import com.april.unomas.service.CartService;
 
 @Controller
@@ -23,15 +27,23 @@ public class OrderController {
 	@Inject
 	private CartService cartService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public String orderGET() {
 		return "order/order";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/order", method = RequestMethod.POST)
 	public String orderPOST(HttpServletRequest request, HttpSession session, Model model) {
 		String[] selectedItems = request.getParameter("selectedItems").split(" ");
-		cartService.listCart((int)session.getAttribute("saveNUM"));
+		List<CartVO> orderList = new ArrayList<CartVO>();
+		for (int i = 0; i < selectedItems.length; i++) {
+			log.info("cartNumber: " + selectedItems[i]);
+			orderList.add(cartService.getSelectedItem((int)session.getAttribute("saveNUM"), 
+					Integer.parseInt(selectedItems[i])));
+		}
+		
+		log.info("Order: "+orderList);
+		model.addAttribute("orderList", orderList);
 		
 		return "order/order";
 	}
