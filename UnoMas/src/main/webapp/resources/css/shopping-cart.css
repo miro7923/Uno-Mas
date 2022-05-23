@@ -29,3 +29,33 @@
 .close-td a:link, a:visited {
     color: #333;
 }
+
+.quantity .pro-qty-cart {
+	width: 123px;
+    height: 30px;
+    border: 2px solid #ebebeb;
+    padding: 0 15px;
+    float: left;
+    margin-right: 14px;
+}
+
+.quantity .pro-qty-cart input {
+	text-align: center;
+    width: 52px;
+    height: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    color: #4c4c4c;
+    line-height: 40px;
+    float: left;
+}
+
+.quantity .pro-qty-cart .qtybtn {
+	font-size: 20px;
+    color: #b2b2b2;
+    float: left;
+    line-height: 28px;
+    cursor: pointer;
+    width: 18px;
+}

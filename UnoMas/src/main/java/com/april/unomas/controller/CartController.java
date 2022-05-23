@@ -52,6 +52,7 @@ public class CartController {
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String listGET(HttpSession session, Model model) {
 	    int user_num = (int) session.getAttribute("saveNUM");
+	    log.info("@@@@@@@@@@@@@@@@@ user_num: " + user_num);
 	        	
         List<CartVO> list = cartService.listCart(user_num);  // 장바구니 목록
         int sumMoney = cartService.sumMoney(user_num);  // 총 상품가격

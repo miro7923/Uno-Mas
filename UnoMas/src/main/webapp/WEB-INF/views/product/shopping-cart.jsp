@@ -81,32 +81,41 @@
 											</tr>
 										</thead>
 										<tbody>
+										    <input type="hidden" value="${fn:length(list) }" id="listLen">
 											<c:forEach var="row" items="${list}" varStatus="i">
 												<tr>
 													<td class="cartCheck"><input type="checkbox"
 														name="cartCheck" value="1" onclick='checkSelectAll()'
-														data-wishNum="${row.cart_num}" /> <input type="hidden"
-														id="cartNum${i.count }" value="${row.cart_num }">
+														data-wishNum="${row.cart_num}" /> 
+														<input type="hidden" id="cartNum${i.count }" value="${row.cart_num }">
 													</td>
 													<td class="cart-pic first-row"><img
 														src='<spring:url value="/resources/upload/images/products/thumbnail/${row.prod_image3 }"></spring:url>' alt=""
 														width="80" height="80"></td>
 													<td class="cart-title first-row">${row.prod_name}</td>
-													<td class="p-price first-row"><fmt:formatNumber
-															value="${row.prod_price}" pattern="#,###,###" />원</td>
+													<td class="p-price first-row">
+													<%-- <fmt:formatNumber value="${row.prod_price}" pattern="#,###,###" /> --%>
+													<span id="prodPrice${i.index }">${row.prod_price }</span>
+													<input type="hidden" id="prodOriginPrice${i.index }" value="${row.prod_price }">
+													원</td>
 													<td class="qua-col first-row">
 														<div class="quantity">
-															<div class="pro-qty">
-																<input type="number" name="amount" id="amount${i.count}"
+															<div class="pro-qty-cart">
+															    <span class="dec qtybtn" onclick="calcTotalPrice(${i.index}, 'dec');">-</span>
+																<input type="text" name="amount" id="amount${i.count}"
 																	value="${row.prod_amount}" min="1">
+															    <span class="inc qtybtn" onclick="calcTotalPrice(${i.index}, 'inc');">+</span>
 															</div>
 														</div> <input type="hidden" name="cartNum"
 														value="${row.cart_num}"> <input type="hidden"
 														value="${row.prod_num }" id="prod_num${i.count }">
 													</td>
-													<td class="total-price first-row"><fmt:formatNumber
+													<td class="total-price first-row">
+													<%-- <fmt:formatNumber
 															value="${row.prod_price*row.prod_amount}"
-															pattern="#,###,###" />원</td>
+															pattern="#,###,###" /> --%>
+													<span id="prodTotalPrice${i.index }">${row.prod_price*row.prod_amount}</span>
+													원</td>
 													<td class="close-td first-row"><a
 														href="${path}/product/cart/delete?cart_num=${row.cart_num}"><i
 															class="ti-close"></i></a></td>
@@ -129,15 +138,23 @@
 											<!--                         	</div> -->
 											<div class="proceed-checkout">
 												<ul>
-													<li class="subtotal">총 상품가격 <span><fmt:formatNumber
-																value="${sumMoney}" pattern="#,###,###" />원</span></li>
-													<li class="shipping">배송비 <span>${fee}원</span></li>
-													<li class="cart-total">총 결제 예상금액 <span><fmt:formatNumber
-																value="${sum}" pattern="#,###,###" />원</span></li>
+													<li class="subtotal">총 상품가격 <span id="subTotal">
+													<%-- <fmt:formatNumber
+																value="${sumMoney}" pattern="#,###,###" /> --%>
+													${sumMoney} 원</span>
+													<input type="hidden" name="subTotal" id="inputSubTotal" value="${sumMoney }">
+													</li>
+													<li class="shipping">배송비 <span><fmt:formatNumber value="${fee}" type="number"/> 원</span>
+													<input type="hidden" value="${fee }" name="shippingFee" id="shippingFee">
+													</li>
+													<li class="cart-total">총 결제 예상금액 <span id="total">
+													<%-- <fmt:formatNumber value="${sum}" pattern="#,###,###" /> --%>
+													${sum} 원</span>
+													<input type="hidden" value="${sum }" name="total" id="inputTotal">
+													</li>
 												</ul>
 												<input type="hidden" name="selectedItems" id="selectedItems">
-												<button type="button" class="proceed-btn"
-													onclick="goOrder();">주문하기</button>
+												<button type="button" class="proceed-btn" onclick="goOrder();">주문하기</button>
 											</div>
 										</div>
 									</div>

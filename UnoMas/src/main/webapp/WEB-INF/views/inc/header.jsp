@@ -36,7 +36,7 @@
     				<a href="../user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="../user/logout" class="linkMenu">로그아웃</a>
+    				<a href="/user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
     				<a href="/faq_paging" class="linkMenu">고객센터</a>
