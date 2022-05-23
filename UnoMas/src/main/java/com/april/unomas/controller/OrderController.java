@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.service.CartService;
+import com.april.unomas.service.UserService;
 
 @Controller
 @RequestMapping("/order/*")
@@ -26,6 +27,9 @@ public class OrderController {
 	
 	@Inject
 	private CartService cartService;
+	
+	@Inject
+	private UserService userService;
 	
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public String orderGET() {
@@ -41,8 +45,15 @@ public class OrderController {
 			orderList.add(cartService.getSelectedItem(Integer.parseInt(selectedItems[i])));
 		}
 		
+		// 주문 상품 목록
 		log.info("Order: "+orderList);
 		model.addAttribute("orderList", orderList);
+		
+		// 회원 정보
+		model.addAttribute("userVO", userService.getUserInfo((String)session.getAttribute("saveID")));
+		
+		// 회원의 주소북 목록
+		
 		
 		return "order/order";
 	}

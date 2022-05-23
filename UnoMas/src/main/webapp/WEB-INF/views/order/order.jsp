@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
@@ -38,15 +39,15 @@ int deliveryFee = 3000;
                         <h4>주문자 정보</h4>
                         <div class="row">
                             <div class="col-lg-12">
-                                <label for="fir"><%=name %></label>
+                                <label for="fir">${userVO.user_name }</label>
                             </div>
                             <div class="col-lg-12">
-                                <label for="cun-name"><%=phoneNum.substring(0, 3) %> 
-                                - <%=phoneNum.substring(3, 7) %> 
-                                - <%=phoneNum.substring(7, 11) %></label>
+                                <label for="cun-name">${fn:substring(userVO.user_phone, 0, 3) } 
+                                - ${fn:substring(userVO.user_phone, 3, 7) } 
+                                - ${fn:substring(userVO.user_phone, 7, 11) }</label>
                             </div>
                             <div class="col-lg-12">
-                                <label for="cun"><%=email %></label>
+                                <label for="cun">${userVO.user_email }</label>
                             </div>
                         </div>
                         <br><hr><br>
