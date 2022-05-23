@@ -35,7 +35,6 @@
     <!-- Faq Section Begin -->
     <div class="faq-section spad">
     
-    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
     
         <div class="container">
             <div class="row">
@@ -45,14 +44,13 @@
                     <div class="faq-accordin">
                         
                         <div class="page_aticle">
+    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
+            <div class="page_section">
     <div class="head_aticle">
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
 
-
-
         <form name="frmList" id="form" method="get" action="?">
-            <div class="page_section">
                 
                 <div class="search_date">
                     <select class="btn_layer" id="qni_category">
@@ -68,13 +66,13 @@
                 </div>
                 
                 <div class="xans-element- xans-myshop xans-myshop-couponserial ">
-                    <table width="100%" class="xans-board-listheader">
+                    <table class="xans-board-listheader">
                         <tbody>
                             <tr>
-                                <th width="70" class="input_txt">번호</th>
-                                <th width="135" class="input_txt">카테고리</th>
-                                <th style="width: 500px; text-align: center;" class="input_txt">제목</th>
-                                <th style="width: 100px; text-align: center;" class="input_txt">작성자</th>
+                                <th class="input_txt_qni_sort_num">번호</th>
+                                <th class="input_txt_qni_sort_cate">카테고리</th>
+                                <th class="input_txt_qni_sort_title">제목</th>
+                                <th class="input_txt_qni_sort_writer">작성자</th>
                             </tr>
                         </tbody>
                     </table>
@@ -85,16 +83,16 @@
                                 <tbody>
     
                                     <tr>
-                                        <td width="70" align="center">${fn:length(pList)-i.index }</td>
-                                        <td width="135" align="center">${vo.qnaCateVO.qnacate_name }</td>
-                                        <td style="cursor:pointer">${vo.faq_title }</td>
-                                        <td style="cursor:pointer">${vo.adminVO.admin_id }</td>
+                                        <td class="input_txt_qni_sort_num">${fn:length(pList)-i.index }</td>
+                                        <td class="input_txt_qni_sort_cate">${vo.qnaCateVO.qnacate_name }</td>
+                                        <td class="input_txt_qni_sort_title">${vo.faq_title }</td>
+                                        <td class="input_txt_qni_sort_writer">${vo.adminVO.admin_id }</td>
                                     </tr>
                                 </tbody>
                             </table>
                                 
                             <div style="display:none;padding:30px; border-top:1px solid #e6e6e6">
-                                <table cellpadding="0" cellspacing="0" border="0">
+                                <table>
                                     <tbody>
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
@@ -116,19 +114,23 @@
 <div class="row justify-content-center">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -145,15 +147,10 @@
                     </table>
                 </div>
 
-            </div>
-        </form>
-    
-    
-    
-    
+        </form>   
+            </div><!-- page_section -->
 </div>
-                        
-                        
+                            
                     </div>
                 </div>
             </div>

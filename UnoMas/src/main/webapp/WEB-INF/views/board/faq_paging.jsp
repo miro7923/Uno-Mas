@@ -44,6 +44,7 @@
                         
                         <div class="page_aticle">
     <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
+    <div class="page_section">
     <div class="head_aticle">
         <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
     </div>
@@ -96,19 +97,23 @@
  <div class="row justify-content-center" style="justify-content: center!important;">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -139,6 +144,7 @@
         </table>
         </div><!-- paging 검색 div -->
     </form>
+    </div>
 </div>
                         
                         

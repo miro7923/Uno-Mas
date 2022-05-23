@@ -42,10 +42,6 @@
 		<collection property="adminVO" resultMap="adminMap"></collection>
 	</resultMap>
 	
-<!-- 	<insert id="createQna"> -->
-<!-- 		INSERT INTO board_qna(user_num,qna_title,qna_content,qnacate_num,qna_image1,qna_image2) -->
-<!-- 		VALUES (#{user_num},#{qna_title},#{qna_content},#{qnacate_num},#{qna_image1},#{qna_image2}) -->
-<!-- 	</insert> -->
 	<insert id="createQna">
 		INSERT INTO board_qna(user_num,qna_title,qna_content,qnacate_num,qna_image1,qna_image2)
 		VALUES (
@@ -55,22 +51,14 @@
 		),#{qna_title},#{qna_content},#{qnacate_num},#{qna_image1},#{qna_image2})
 	</insert>
 		
-	<select id="qnaList" resultMap="qnaMap">
-		<![CDATA[
-		SELECT Q.QNA_IMG,Q.QNA_NUM, Q.QNA_TITLE, Q.QNA_CONTENT, Q.QNA_REGDATE,Q.QNA_PROCESS,Q.QNACATE2,Q.QNACATE_NUM,C.QNACATE_NUM,C.QNACATE_NAME
-		FROM board_qna q JOIN qna_category c
-		WHERE Q.QNACATE_NUM = C.QNACATE_NUM
-		]]>
-	</select>
-		
 	<select id="pagingQna1" resultMap="qnaMap">
 		<![CDATA[
 		SELECT qna_num, qna_title, qna_content, qna_regdate,qna_process,qna_image1,qna_image2,q.qnacate_num,c.qnacate_name
 		FROM board_qna q JOIN users u
-        on q.user_num = u.user_num
-        join qna_category c
-        on q.qnacate_num = c.qnacate_num
-        where user_id = #{user_id}
+        ON q.user_num = u.user_num
+        JOIN qna_category c
+        ON q.qnacate_num = c.qnacate_num
+        WHERE user_id = #{user_id}
 		]]>
 		ORDER BY qna_num desc
 		LIMIT #{pageStart}, #{perPageNum}
@@ -78,8 +66,8 @@
 		
 	<select id="qnaCnt" resultType="Integer">
 		SELECT count(*) 
-		FROM board_qna b join users u
-        on b.user_num = u.user_num
+		FROM board_qna b JOIN users u
+        ON b.user_num = u.user_num
 		WHERE user_id = #{user_id}
 	</select>
 		

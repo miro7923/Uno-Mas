@@ -98,19 +98,23 @@
 <div class="row justify-content-center">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </div>
