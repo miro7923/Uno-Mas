@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
@@ -13,9 +14,6 @@
 <!-- Start Header -->
 
 <body>
-	<%
-	UserVO vo = (UserVO)session.getAttribute("saveID");
-	%>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
@@ -41,7 +39,7 @@
             	<div class="col-lg-12">
                 	<div class="cart-table">
 						<c:choose>
-					    	<c:when test="${map.count == 0}">
+					    	<c:when test="${fn:length(map.list) == 0}">
 					    		<table>
 		                        	<thead>
 		                            	<tr>
@@ -91,6 +89,7 @@
 			                                            </div>
 			                                        </div>
 			                                        <input type="hidden" name="cartNum" value="${row.cart_num}">
+			                                        <input type="hidden" value="${row.prod_num }" id="prod_num${i.index }">
 			                                    </td>
 			                                    <td class="total-price first-row"><fmt:formatNumber value="${row.prod_price*row.prod_amount}" pattern="#,###,###" />원</td>
 			                                    <td class="close-td first-row"><a href="${path}/product/cart/delete?cart_num=${row.cart_num}"><i class="ti-close"></i></a></td>

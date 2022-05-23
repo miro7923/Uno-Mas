@@ -67,16 +67,30 @@
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
+                        	<%if (vo != null) { %>
                         	<li class="heart-icon">
-                                <a href="/product/wishlist">
+                                <a href="javascript:void(0)" onclick="checkLogin('wish', true);">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>
                             <li class="cart-icon">
-                                <a href="/product/shopping-cart">
+                                <a href="javascript:void(0)" onclick="checkLogin('cart', true);">
                                     <i class="icon_bag_alt"></i>
                                 </a>
                             </li>
+                            <% }
+                        	else { %>
+                            <li class="heart-icon">
+                                <a href="javascript:void(0)" onclick="checkLogin('wish', false);">
+                                    <i class="icon_heart_alt"></i>
+                                </a>
+                            </li>
+                            <li class="cart-icon">
+                                <a href="javascript:void(0)" onclick="checkLogin('cart', false);">
+                                    <i class="icon_bag_alt"></i>
+                                </a>
+                            </li>
+                        	<% } %>
                         </ul>
                     </div>
                 </div>
@@ -141,3 +155,4 @@
             </div>
         </div>
     </header>
+    <script src="${path}/resources/js/header.js"></script>

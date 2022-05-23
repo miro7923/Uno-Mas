@@ -30,6 +30,7 @@ function goOrder(){ // 체크박스에 체크한 상품을 가지고 주문 폼�
 	// 1. 장바구니에 담긴 상품이 없는 경우
 	var chk = $('input[name="cartCheck"]');
 	if(chk.length==0){
+		alert('장바구니에 담긴 상품이 없습니다!');
 		return;
 	}
 	
