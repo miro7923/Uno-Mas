@@ -98,12 +98,19 @@
 		                                    </c:choose>
 		                                    <td class="cartInFirst">
 		                                        <div class="cartIn">
-		                                        	<input type="hidden" id="user_num" value="${sessionScope.saveID.user_num}">
+		                                        	<input type="hidden" id="user_num" value="${sessionScope.saveNUM}">
 		                                        	<input type="hidden" id="prod_num${i.index}" value="${list.prod_num}">
 		                                        	<input type="hidden" id="prod_amount" value="1">
 		                                        	<c:choose>
 		                                        		<c:when test="${list.prod_stock > 0}">
-					                                    	<button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn" onclick="wishToCart(${i.index});">장바구니 담기</button>
+		                                        			<c:choose>
+		                                        				<c:when test="${list.prod_amount > 0}">
+		                                        					<h6>이미 장바구니에 상품이 있습니다.</h6>
+		                                        				</c:when>
+		                                        				<c:otherwise>
+					                                    			<button type="button" class="btn btn-outline-secondary btn-lg px-4 cartBtn" onclick="wishToCart(${i.index});">장바구니 담기</button>
+		                                        				</c:otherwise>
+		                                        			</c:choose>
 		                                        		</c:when>
 		                                        		<c:otherwise>
 		                                        			<h6>품절된 상품입니다.</h6>

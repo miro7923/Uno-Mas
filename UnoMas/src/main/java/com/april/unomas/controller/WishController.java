@@ -8,8 +8,6 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.april.unomas.domain.UserVO;
 import com.april.unomas.domain.WishVO;
 import com.april.unomas.service.WishService;
 
@@ -35,21 +32,16 @@ public class WishController {
 	 
 	    int user_num = (int) session.getAttribute("saveNUM");
 	        	
-	        List<WishVO> list=service.list(user_num);  // 장바구니 목록
+	        List<WishVO> list=service.list(user_num);  // 위시리스트 목록
 	 
-	        map.put("list", list); // 장바구니 정보를 map에 저장
-	        map.put("count", list.size()); // 장바구니 상품의 유무
+	        map.put("list", list); // 위시리스트 정보를 map에 저장
+	        map.put("count", list.size()); // 위시리스트 상품의 유무
 	 
 	        // ModelAndView mav에 이동할 페이지의 이름과 데이터를 저장한다.
 	        mav.setViewName("product/wishlist"); // 이동할 페이지의 이름
 	        mav.addObject("map", map); // map변수 저장
 	 
 	        return mav; // 화면 이동
-	}
-	// 찜 추가
-	@RequestMapping(value = "/insertwish", method = RequestMethod.GET)
-	public void getInsertWish() throws Exception {
-		
 	}
 	
 	// 찜 X삭제 버튼
@@ -60,6 +52,7 @@ public class WishController {
 
 		return "redirect:/product/wishlist/list";
 	}
+	
 	// 찜 선택 삭제
 	@ResponseBody
 	@RequestMapping(value = "/deleteCheckWish", method = RequestMethod.POST)
@@ -111,7 +104,6 @@ public class WishController {
 		}  
 		return result;  
 	}
-	
 		
 	// 찜 전체 삭제
 	@RequestMapping(value = "/deleteAllWish", method = RequestMethod.GET)

@@ -7,17 +7,12 @@
 
 	<!-- 찜 목록 -->
 	<select id="list" resultType="com.april.unomas.domain.WishVO">
-		SELECT w.wish_num, w.prod_num, w.user_num, p.prod_name, p.prod_price, p.prod_discntrate, p.prod_image3, p.prod_stock
+		SELECT w.wish_num, w.prod_num, w.user_num, p.prod_name, p.prod_price, p.prod_discntrate, p.prod_image3, p.prod_stock, c.prod_amount
 	    FROM products p, wishlist w
-	    WHERE w.prod_num = p.prod_num and w.user_num = 1
+		LEFT JOIN cart c ON w.user_num = c.user_num AND w.prod_num = c.prod_num
+	    WHERE w.user_num = #{user_num} AND w.prod_num = p.prod_num
 	    ORDER BY wish_num;
 	</select>
-	
-	<!-- 찜 추가 -->
-	<insert id="insertWish">
-		INSERT INTO unomasdb.wishlist(user_num, prod_num)
-		VALUES (#{user_num}, #{prod_num})
-	</insert>
 	
 	<!-- 찜 X 삭제 버튼 -->
 	<delete id="deleteWish" parameterType="int">
@@ -30,7 +25,7 @@
 	<delete id="deleteCheckWish">
 		DELETE
 		FROM unomasdb.wishlist
-		WHERE wish_num = #{wish_num} and user_num = #{user_num}
+		WHERE wish_num = #{wish_num} AND user_num = #{user_num}
 	</delete>
 	
 	<!-- 장바구니 선택 추가 -->

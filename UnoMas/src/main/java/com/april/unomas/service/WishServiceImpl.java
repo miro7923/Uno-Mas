@@ -26,11 +26,6 @@ public class WishServiceImpl implements WishService {
 	}
 
 	@Override
-	public void insertWish(WishVO vo) throws Exception {
-		dao.insertWish(vo);
-	}
-
-	@Override
 	public void deleteAllWish(int user_num) throws Exception {
 		dao.deleteAllWish(user_num);
 	}

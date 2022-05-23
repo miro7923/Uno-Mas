@@ -64,8 +64,11 @@ $("#selectInsertWish_btn").click(function(){ // 장바구니 선택 담기
 		data : { chbox : checkArr },
 		success : function(result){
 			if(result == 1){
-				if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?'))
-	        	location.href = '/product/cart/list';
+				if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?')){
+		        	location.href = '/product/cart/list';
+				} else {
+					location.href = '/product/wishlist/list';
+				}
 			} else {
 				alert("장바구니 담기를 실패했습니다.");
 			} 
@@ -83,8 +86,11 @@ function wishToCart(number) { // 장바구니 단품 담기
 	        'prod_amount': $('#prod_amount').val()
 	          },
 	    success: function() {
-	        if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?'))
+	        if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?')){
 	        	location.href = '/product/cart/list';
+			} else {
+				location.href = '/product/wishlist/list';
+			}	        
 	    }
     });
 }

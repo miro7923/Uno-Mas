@@ -8,10 +8,7 @@ public interface WishDAO {
 
 	// 찜 목록
 	public List<WishVO> list(int user_num) throws Exception;
-	
-	// 찜 추가
-	public void insertWish(WishVO vo) throws Exception;
-		
+
 	// 찜 X삭제 버튼
 	public void deleteWish(int wish_num) throws Exception;
 	
