@@ -1,0 +1,25 @@
+.paging_container {
+	min-width: 250px;
+/* 	border: 1px solid black; */
+	margin: 70px auto;
+	text-align: center;
+
+}
+.paging_num {
+	color: black !important;
+	margin: 0px 10px;
+}
+.paging_num_yes {
+	color: #B9CE45 !important;
+	font-weight: bold !important;
+	margin: 0px 10px;
+}
+.paging_a {
+	color: black !important;
+    border: 1px solid black;
+    padding: 3px 4px;
+}
+.paging_a:hover {
+	color: #B9CE45 !important;
+	font-weight: bold !important;
+}

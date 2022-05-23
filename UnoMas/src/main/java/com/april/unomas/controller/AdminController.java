@@ -36,8 +36,7 @@ import com.april.unomas.service.AdminService;
 @RequestMapping("/admin/*")
 public class AdminController {
 	
-	private static final Logger log 
-	= LoggerFactory.getLogger(AdminController.class);
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
 	
 	@Inject
 	private AdminService service;
