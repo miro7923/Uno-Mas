@@ -28,6 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		JOIN products p ON c.prod_num = p.prod_num
 		WHERE c.cart_num = #{cart_num};
     </select>
+    
     <!-- 장바구니 개별 상품 삭제 -->
     <delete id="delete">
         DELETE

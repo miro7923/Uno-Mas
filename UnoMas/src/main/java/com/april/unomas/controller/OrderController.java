@@ -38,8 +38,7 @@ public class OrderController {
 		List<CartVO> orderList = new ArrayList<CartVO>();
 		for (int i = 0; i < selectedItems.length; i++) {
 			log.info("cartNumber: " + selectedItems[i]);
-			orderList.add(cartService.getSelectedItem((int)session.getAttribute("saveNUM"), 
-					Integer.parseInt(selectedItems[i])));
+			orderList.add(cartService.getSelectedItem(Integer.parseInt(selectedItems[i])));
 		}
 		
 		log.info("Order: "+orderList);

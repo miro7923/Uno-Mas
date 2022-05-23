@@ -52,13 +52,11 @@ public class CartDAOImpl implements CartDAO{
 	@Override
 	public int updateCart(CartVO vo) {
 		return sqlSession.update("updateCart", vo);
-		
 	}
 
 	@Override
 	public void modifyCart(CartVO vo) {
 		sqlSession.update("modifyCart", vo);
-		
 	}
 
 	@Override
@@ -68,11 +66,7 @@ public class CartDAOImpl implements CartDAO{
 	}
 
 	@Override
-	public CartVO getSelectedItem(int user_num, int cart_num) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("user_num", user_num);
-		map.put("prod_num", cart_num);
-		
-		return sqlSession.selectOne(NAMESPACE + ".getSelectedItems", map);
+	public CartVO getSelectedItem(int cart_num) {
+		return sqlSession.selectOne(NAMESPACE + ".getSelectedItems", cart_num);
 	}
 }

@@ -106,9 +106,9 @@
 																	value="${row.prod_amount}" min="1">
 															    <span class="inc qtybtn" onclick="calcTotalPrice(${i.index}, 'inc');">+</span>
 															</div>
-														</div> <input type="hidden" name="cartNum"
-														value="${row.cart_num}"> <input type="hidden"
-														value="${row.prod_num }" id="prod_num${i.count }">
+														</div> 
+														<input type="hidden" name="cartNum" value="${row.cart_num}"> 
+														<input type="hidden" value="${row.prod_num }" id="prod_num${i.count }">
 													</td>
 													<td class="total-price first-row">
 													<%-- <fmt:formatNumber

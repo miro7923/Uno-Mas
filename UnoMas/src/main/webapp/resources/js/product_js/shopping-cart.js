@@ -85,13 +85,31 @@ function calcTotalPrice(idx, type) {
         $('#prodTotalPrice'+idx).text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
         
         $('#amount'+(idx+1)).attr('value', q);
+        
+        // DB의 상품 개수 갱신
+        $.ajax({
+			type: 'get',
+			url: '/product/cart/quantity',
+			data: {
+				'prod_amount': q,
+				'prod_num': $('#prod_num'+(idx+1)).val(),
+				'cart_num': $('#cartNum'+idx).val()
+			},
+			success: function(data) {
+				if (data == 'complete') {
+					alert('장바구니 수량 변경 완료');
+				}
+			},
+			error: function() {
+				alert('서버 통신 실패');
+			}
+		});
 		
 		// 상품 금액 합계 계산
 		// 파라미터로 넘길 input hidden 태그에 넣을 값
         var subTotalVal = $('#inputSubTotal').val();
         var subTotal = Number(subTotalVal) + Number(price);
         $('#inputSubTotal').attr('value', subTotal);
-        alert('상품 합계: '+subTotal);
         // 통화에 , 찍어서 화면에 보여줄 값
         $('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
         
@@ -99,7 +117,6 @@ function calcTotalPrice(idx, type) {
         // 파라미터로 넘길 input hidden 태그에 넣을 값
         var total = subTotal + Number($('#shippingFee').val());
         $('#inputTotal').val(total);
-        alert('상품 합계: '+total);
         // 통화에 , 찍어서 화면에 보여줄 값
         $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
     }
@@ -118,7 +135,6 @@ function calcTotalPrice(idx, type) {
 	        var subTotalVal = $('#inputSubTotal').val();
 	        var subTotal = Number(subTotalVal) - Number(price);
 	        $('#inputSubTotal').attr('value', subTotal);
-	        alert('상품 합계: '+subTotal);
 	        // 통화에 , 찍어서 화면에 보여줄 값
 	        $('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 	        
@@ -126,7 +142,6 @@ function calcTotalPrice(idx, type) {
 	        // 파라미터로 넘길 input hidden 태그에 넣을 값
 	        var total = subTotal + Number($('#shippingFee').val());
 	        $('#inputTotal').val(total);
-	        alert('상품 합계: '+total);
 	        // 통화에 , 찍어서 화면에 보여줄 값
 	        $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 		}
