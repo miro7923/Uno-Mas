@@ -28,15 +28,12 @@ public class WishController {
 	@Inject
 	private WishService service;
 
-	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
-	
 	// 찜 목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
 		Map<String, Object> map=new HashMap<String, Object>();
 	 
-		UserVO vo = (UserVO)session.getAttribute("saveID");
-	    int user_num= vo.getUser_num();
+	    int user_num = (int) session.getAttribute("saveNUM");
 	        	
 	        List<WishVO> list=service.list(user_num);  // 장바구니 목록
 	 
@@ -68,14 +65,15 @@ public class WishController {
 	@RequestMapping(value = "/deleteCheckWish", method = RequestMethod.POST)
 	public int postDeleteCheckWish(HttpSession session,
 	    @RequestParam(value = "chbox[]") List<String> chArr, WishVO wish) throws Exception {
-	 UserVO user = (UserVO)session.getAttribute("saveID");
-	 int user_num = user.getUser_num();
+		
+	 int user_num = 0;
+	 user_num = (int) session.getAttribute("saveNUM");
 	 
 	 int result = 0;
 	 int wish_num = 0;
 	 
 	 
-	 if(user != null) {
+	 if(user_num != 0) {
 	 wish.setUser_num(user_num);
 	  
 		 for(String i : chArr) {   
@@ -93,14 +91,15 @@ public class WishController {
 	@RequestMapping(value = "/insertCheckWish", method = RequestMethod.POST)
 	public int postInsertCheckWish(HttpSession session,
 			@RequestParam(value = "chbox[]") List<String> chArr, WishVO wish) throws Exception {
-		UserVO user = (UserVO)session.getAttribute("saveID");
-		int user_num = user.getUser_num();
+			
+		int user_num = 0;
+		user_num = (int) session.getAttribute("saveNUM");
 		
 		int result = 0;
 		int prod_num = 0;
 		
 		
-		if(user != null) {
+		if(user_num != 0) {
 			wish.setUser_num(user_num);
 			
 			for(String i : chArr) {   
@@ -117,8 +116,8 @@ public class WishController {
 	// 찜 전체 삭제
 	@RequestMapping(value = "/deleteAllWish", method = RequestMethod.GET)
 	public String deleteAll(HttpSession session) throws Exception {
-		UserVO vo = (UserVO)session.getAttribute("saveID");
-	    int user_num= vo.getUser_num();
+
+		int user_num= (int) session.getAttribute("saveNUM");
 		if(user_num!=0) {
 			service.deleteAllWish(user_num);
 		}
