@@ -92,6 +92,8 @@
 											<label></label>
 		                                        <button type="button" class="cancel-button" >취소</button>
 		                                        <button type="button" class="selectDel-button" >선택삭제</button>
+		                                     </div>
+		                                     <div class="col-lg-12">
 												<div class="cart-table">
 													<table>
 														<thead>
@@ -114,10 +116,8 @@
 																			<td class="cart-pic first-row">
 																				<input type="checkbox" class="chBox" name="chBox" prod_num="${vo.prod_num }">
 																			<td class="normal-row"><span class="sold">${vo.prod_num }</span></td>
-			<!-- 															<td class="cart-title first-row"> -->
 																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }"><span class="sold">${vo.prod_name }</span></a></td>
 																			<td class="normal-row"><span class="sold">${vo.prod_price }</span></td>
-			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row"><span class="sold">품절</span></td>
 																			<td class="normal-row"><span class="sold">${vo.prod_readcnt }</span></td> <!-- 조회수 -->
 																			<td class="normal-row"><span class="sold">-</span></td> <!-- 주문량 -->
@@ -128,10 +128,8 @@
 																				<input type="checkbox" class="chBox" name="chBox" prod_num="${vo.prod_num }">
 																			</td>
 																			<td class="normal-row">${vo.prod_num }</td>
-			<!-- 															<td class="cart-title first-row"> -->
 																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }">${vo.prod_name }</a></td>
 																			<td class="normal-row">${vo.prod_price }</td>
-			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row">정상</td>
 																			<td class="normal-row">${vo.prod_readcnt }</td> <!-- 조회수 -->
 																			<td class="normal-row">-</td> <!-- 주문량 -->

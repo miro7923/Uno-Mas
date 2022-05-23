@@ -220,28 +220,19 @@ function changePageNum(num, maxNum, boardType) {
 	    
 	    $.ajax({
 			type: 'get',
-			url: '/product/review_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			url: '/product/list_review?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				for (var i = 0; i < data.length; i++) {
-					$('#reviewTitle'+i).text(data[i].review_title);
-					$('#reviewNum'+i).text(data[i].review_num);
-					$('#reviewUserid'+i).text(data[i].user_id);
-					
-					// Timestamp 변환
-					var regdate = new Date(data[i].review_regdate);
-					var year = regdate.getFullYear();
-					var month = regdate.getMonth() + 1;
-					var day = regdate.getDate();
-					$('#reviewRegdate'+i).text(year + '. ' + month + '. ' + day);
-					
-					$('#reviewReadcnt'+i).text(data[i].review_readcnt);
-					$('#reviewRating'+i).text(data[i].review_rating + ' / 5.0');
-					$('#reviewContent'+i).text(data[i].review_content);
-				}
+				console.log('결과: '+data);
+				var html = jQuery('<div>').html(data);
+				var contents = html.find('div#reviewListAjax').html();
+				$('#reviewListAjax').html(contents);
+				
+				getPageNum();
+			},
+			error: function() {
+				alert('통신 실패');
 			}
 		});
-		
-		$('#curReviewPage').val(num);
 	}
 	else {
 		initQna();
@@ -261,27 +252,22 @@ function changePageNum(num, maxNum, boardType) {
 	    
 		$.ajax({
 			type: 'get',
-			url: '/product/inquiry_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			url: '/product/list_inquiry?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				for (var i = 0; i < data.length; i++) {
-					$('#inquiryNum'+i).text(data[i].p_inquiry_num);
-					$('#inquiryTitle'+i).text(data[i].p_inquiry_title);
-					$('#inquiryUserid'+i).text(data[i].user_id);
-					
-					// Timestamp 변환
-					var regdate = new Date(data[i].p_inquiry_regdate);
-					var year = regdate.getFullYear();
-					var month = regdate.getMonth() + 1;
-					var day = regdate.getDate();
-					$('#inquiryRegdate'+i).text(year + '. ' + month + '. ' + day);
-					
-					$('#inquiryContent'+i).text(data[i].p_inquiry_content);
-				}
+				console.log('결과: '+data);
+				var html = jQuery('<div>').html(data);
+				var contents = html.find('div#inqDiv').html();
+				$('#inqDiv').html(contents);
+
+				getPageNum();
+			},
+			error: function() {
+				alert('통신 실패');
 			}
 		});
 		
-		$('#curInquiryPage').val(num);
 	}
+	
 }
 
 function confirmToRemove(type, postNum, prodNum) {
