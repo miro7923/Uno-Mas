@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserPageMaker;
 import com.april.unomas.domain.UserVO;
@@ -172,7 +174,7 @@ public class UserController {
 			) {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
-		int totalReviewCnt = service.getMyReviewCnt(saveNUM);
+		int totalReviewCnt = service.myReviewCnt(saveNUM);
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
@@ -199,23 +201,49 @@ public class UserController {
 			) {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
-		int totalReviewCnt = service.getMyReviewCnt(saveNUM);
+		int totalCount = service.myPqaCnt(saveNUM);
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
 		cri.setPerPageNum(5);
 		
-		List<BoardReviewVO> reviewList = service.getMyReview(saveNUM, cri);
+		List<ProdInquiryVO> pqnaList = service.getMyPquestion(saveNUM, cri);
 		
 		UserPageMaker pm = new UserPageMaker();
 		pm.setCri(cri);
-		pm.setTotalCount(totalReviewCnt);
+		pm.setTotalCount(totalCount);
 		
-		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pqnaList", pqnaList);
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 		
 		return "/user/myProdQuestion";
+	}
+	
+	
+	// 마이페이지 - 1:1 문의
+	@RequestMapping(value = "/my_quesiton")
+	public String myQuestion(HttpSession session, Model model,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) {
+
+		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
+		int totalCount = service.MyQuestionCount(saveNUM);
+
+		UserCriteria cri = new UserCriteria();
+		cri.setPage(Integer.parseInt(pagingNum));
+		cri.setPerPageNum(5);
+
+		List<QnaVO> qnaList = service.getMyQuestion(saveNUM, cri);
+
+		UserPageMaker pm = new UserPageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(totalCount);
+
+		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("pagingNum", pagingNum);
+		model.addAttribute("pm", pm);
+
+		return "/user/myQuestion";
 	}
 	
 	

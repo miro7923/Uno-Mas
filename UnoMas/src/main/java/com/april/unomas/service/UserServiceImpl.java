@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
@@ -102,7 +104,7 @@ public class UserServiceImpl implements UserService {
 
 	// 내 리뷰 개수
 	@Override
-	public Integer getMyReviewCnt(String num) {
+	public Integer myReviewCnt(String num) {
 		System.out.println("서비스에서 받은 유저번호: " + num);
 		return dao.getMyReviewCnt(num);
 	}
@@ -113,7 +115,30 @@ public class UserServiceImpl implements UserService {
 		return dao.getMyReview(id, cri);
 	}
 
+	// 내 상품문의 개수
+	@Override
+	public Integer myPqaCnt(String num) {
+		return dao.MyPquestionCount(num);
+	}
 
+	// 내 상품 문의 
+	@Override
+	public List<ProdInquiryVO> getMyPquestion(String num, UserCriteria cri) {
+		return dao.getMyPquestion(num, cri);
+	}
+
+	// 내 1:1 개수
+	@Override
+	public Integer MyQuestionCount(String num) {
+		return dao.MyQuestionCount(num);
+	}
+
+	// 내 1:1 목록
+	@Override
+	public List<QnaVO> getMyQuestion(String num, UserCriteria cri) {
+		return dao.getMyQuestion(num, cri);
+	}
+	
 	
 	
 	

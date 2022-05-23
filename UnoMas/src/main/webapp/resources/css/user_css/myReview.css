@@ -26,6 +26,14 @@
 	font-size: 18px !important;
     font-weight: bold;
 }
+
+.null_text {
+	font-size: 20px;
+    text-align: center;
+    margin: 200px;
+}
+
+
 .point_table {
 	width: 100%;
 	font-size: 12px;

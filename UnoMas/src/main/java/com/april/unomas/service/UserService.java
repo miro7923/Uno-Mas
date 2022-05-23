@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
@@ -42,8 +44,20 @@ public interface UserService {
 	public Integer deleteUser(UserVO vo);
 	
 	// 내 리뷰 개수
-	public Integer getMyReviewCnt(String id);
+	public Integer myReviewCnt(String id);
 	
 	// 내 리뷰
-	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri);
+	public List<BoardReviewVO> getMyReview(String num, UserCriteria cri);
+	
+	// 내 상품 리뷰 개수
+	public Integer myPqaCnt(String num);
+	
+	// 내 1:1 개수
+	public Integer MyQuestionCount(String num);
+
+	// 내 1:1 목록
+	public List<QnaVO> getMyQuestion(String num, UserCriteria cri);
+		
+	// 내 상품 리뷰
+	public List<ProdInquiryVO> getMyPquestion(String num, UserCriteria cri);
 }

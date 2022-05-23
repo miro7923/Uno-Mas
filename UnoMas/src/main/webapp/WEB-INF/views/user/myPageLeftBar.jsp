@@ -25,8 +25,8 @@
 		
 		<h4>My 활동</h4>
 		<a href="my_review">리뷰관리</a>
-		<a href="">상품 문의 내역</a>
-		<a href="board/inquiry_paging">1:1 문의</a>
+		<a href="my_prod_qa">상품 문의 내역</a>
+		<a href="my_quesiton">1:1 문의</a>
 		<br>
 		
 		<h4>My 정보</h4>
