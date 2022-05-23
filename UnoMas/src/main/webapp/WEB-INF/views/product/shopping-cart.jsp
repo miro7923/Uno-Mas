@@ -69,7 +69,8 @@
 									<table>
 										<thead>
 											<tr>
-												<th class="cartCheck"><input type="checkbox"
+												<th class="cartCheck">
+												<input type="checkbox" checked="checked"
 													name="selectall" value="selectall"
 													onclick='selectAll(this)' /></th>
 												<th>이미지</th>
@@ -84,7 +85,8 @@
 										    <input type="hidden" value="${fn:length(list) }" id="listLen">
 											<c:forEach var="row" items="${list}" varStatus="i">
 												<tr>
-													<td class="cartCheck"><input type="checkbox"
+													<td class="cartCheck">
+													<input type="checkbox" id="checkbox${i.index }"
 														name="cartCheck" value="1" onclick='checkSelectAll()'
 														data-wishNum="${row.cart_num}" /> 
 														<input type="hidden" id="cartNum${i.index }" value="${row.cart_num }">
@@ -144,7 +146,7 @@
 													${sumMoney} 원</span>
 													<input type="hidden" name="subTotal" id="inputSubTotal" value="${sumMoney }">
 													</li>
-													<li class="shipping">배송비 <span><fmt:formatNumber value="${fee}" type="number"/> 원</span>
+													<li class="shipping">배송비 <span id="spanShippingFee"><fmt:formatNumber value="${fee}" type="number"/> 원</span>
 													<input type="hidden" value="${fee }" name="shippingFee" id="shippingFee">
 													</li>
 													<li class="cart-total">총 결제 예상금액 <span id="total">

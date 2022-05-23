@@ -9,6 +9,42 @@ function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 s
 	} else {
 		selectAll.checked = false;
 	}
+	
+	var subTotal = 0;
+	alert('checked len: '+checked.length);
+	for (var i = 0; i < checkboxes.length; i++) {
+		if ($('#checkbox'+i).is(':checked')) {
+			var tmp = Number($('#prodOriginPrice'+i).val()) * Number($('#amount'+(i+1)).val());
+			alert('상품 하나 합계: '+tmp);
+			subTotal += tmp;
+		}
+	}
+	
+	// 상품 합계 계산
+	$('#inputSubTotal').attr('value', subTotal);
+	$('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+	
+	if (checked.length <= 0) {
+		$('#spanShippingFee').text(0 + ' 원');
+		$('#shippingFee').attr('value', 0);
+	}
+	else {
+		if (subTotal >= 50000) {
+			$('#spanShippingFee').text(0 + ' 원');
+			$('#shippingFee').attr('value', 0);
+		}
+		else {
+			$('#spanShippingFee').text(2500 + ' 원');
+			$('#shippingFee').attr('value', 2500);
+		}
+	}
+	
+    // 배송비까지 합친 합계 계산
+    // 파라미터로 넘길 input hidden 태그에 넣을 값
+    var total = subTotal + Number($('#shippingFee').val());
+    $('#inputTotal').val(total);
+    // 통화에 , 찍어서 화면에 보여줄 값
+    $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 }
 
 function selectAll(selectAll)  { // selectall 체크박스로 on/off
@@ -19,6 +55,9 @@ function selectAll(selectAll)  { // selectall 체크박스로 on/off
 }
 
 $(function(){ // 장바구니 비우기
+	const selectall = document.querySelector('input[name="selectall"]');
+	selectAll(selectall);
+	
 	$("#btnDelete").click(function(){
 		if(confirm("장바구니를 비우시겠습니까?")){
 			location.href="/product/cart/deleteAll";
@@ -105,35 +144,12 @@ function calcTotalPrice(idx, type) {
 			}
 		});
 		
-		// 상품 금액 합계 계산
-		// 파라미터로 넘길 input hidden 태그에 넣을 값
-        var subTotalVal = $('#inputSubTotal').val();
-        var subTotal = Number(subTotalVal) + Number(price);
-        $('#inputSubTotal').attr('value', subTotal);
-        // 통화에 , 찍어서 화면에 보여줄 값
-        $('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
-        
-        // 배송비까지 합친 합계 계산
-        // 파라미터로 넘길 input hidden 태그에 넣을 값
-        var total = subTotal + Number($('#shippingFee').val());
-        $('#inputTotal').val(total);
-        // 통화에 , 찍어서 화면에 보여줄 값
-        $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
-    }
-    else {
-        var q = $('#amount'+(idx+1)).val();
-        q--;
-        if (q >= 1) {
-	        var price = $('#prodOriginPrice'+idx).val();
-	        var total = q * price;
-	        $('#prodTotalPrice'+idx).text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
-            
-            $('#amount'+(idx+1)).attr('value', q);
-		
+		// 선택된 상품인 경우에만 총합 계산
+		if ($('#checkbox'+idx).is(':checked')) {
 			// 상품 금액 합계 계산
 			// 파라미터로 넘길 input hidden 태그에 넣을 값
 	        var subTotalVal = $('#inputSubTotal').val();
-	        var subTotal = Number(subTotalVal) - Number(price);
+	        var subTotal = Number(subTotalVal) + Number(price);
 	        $('#inputSubTotal').attr('value', subTotal);
 	        // 통화에 , 찍어서 화면에 보여줄 값
 	        $('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
@@ -144,6 +160,35 @@ function calcTotalPrice(idx, type) {
 	        $('#inputTotal').val(total);
 	        // 통화에 , 찍어서 화면에 보여줄 값
 	        $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+		}
+    }
+    else {
+        var q = $('#amount'+(idx+1)).val();
+        q--;
+        if (q >= 1) {
+	        var price = $('#prodOriginPrice'+idx).val();
+	        var total = q * price;
+	        $('#prodTotalPrice'+idx).text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            
+            $('#amount'+(idx+1)).attr('value', q);
+			
+			// 체크된 상품만 합계 계산
+			if ($('#checkbox'+idx).is(':checked')) {
+				// 상품 금액 합계 계산
+				// 파라미터로 넘길 input hidden 태그에 넣을 값
+		        var subTotalVal = $('#inputSubTotal').val();
+		        var subTotal = Number(subTotalVal) - Number(price);
+		        $('#inputSubTotal').attr('value', subTotal);
+		        // 통화에 , 찍어서 화면에 보여줄 값
+		        $('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+		        
+		        // 배송비까지 합친 합계 계산
+		        // 파라미터로 넘길 input hidden 태그에 넣을 값
+		        var total = subTotal + Number($('#shippingFee').val());
+		        $('#inputTotal').val(total);
+		        // 통화에 , 찍어서 화면에 보여줄 값
+		        $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+			}
 		}
 	}
 }
