@@ -34,7 +34,6 @@
     <!-- Faq Section Begin -->
     <div class="faq-section spad">
     
-    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
     
         <div class="container">
             <div class="row">
@@ -44,6 +43,7 @@
                     <div class="faq-accordin">
                         
                         <div class="page_aticle">
+    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
     <div class="head_aticle">
         <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
     </div>
@@ -63,7 +63,7 @@
         
 
 
-        <table class="xans-board-listheader jh" style="width: 100%;">
+        <table class="xans-board-listheader jh" >
             <thead>
                 <tr>
                     <th>번호</th>

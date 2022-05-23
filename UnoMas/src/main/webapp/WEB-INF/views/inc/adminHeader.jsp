@@ -39,15 +39,11 @@
     <style type="text/css">
     
     </style>
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_paging.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_sort.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_update.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_write.css?after" type="text/css">
+    
     <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_detail.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_insert.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_update.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after" type="text/css">
+    
   </head>
       <!-- jQuery 2.1.4 -->
     <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
