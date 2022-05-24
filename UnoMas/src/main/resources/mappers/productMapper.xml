@@ -201,7 +201,7 @@
     
     <!-- 특가 상품 목록 가져오기 -->
     <select id="getSaleProducts" resultType="ProductVO">
-        SELECT *
+        SELECT * 
         FROM products
         WHERE prod_discntrate > 0
         ORDER BY prod_regdate DESC

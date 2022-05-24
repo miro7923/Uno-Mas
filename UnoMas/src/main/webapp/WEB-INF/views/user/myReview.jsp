@@ -30,7 +30,7 @@
 			    <fmt:formatDate var="regdate" value="${vo.review_regdate}" pattern="yyyy-MM-dd"/>
 				<table class="point_table">
 					<tr>
-						<th scope="col">번호</th>
+<!-- 						<th scope="col">번호</th> -->
 						<td>${vo.review_num }</td>
 					
 						<th scope="col">아이디</th>
@@ -46,19 +46,24 @@
 						<td>${vo.review_readcnt }</td>
 					
 						<td style="width: 180px;">
-							<a href="/product/modify_review?review_num=${vo.review_num }">
+							<a href="/product/modify_review?review_num=${vo.review_num }&pageInfo=pReview&pagingNum=${pagingNum}">
 							  <input type="button" value="수정하기" class="review_btn" style="border-color: #B9CE45;">
 							</a>
-							<a href="/product/modify_review">
+							<a href="/product/remove_review?pageInfo=pReview&review_num=${vo.review_num }&prod_num=${vo.prod_num}&pagingNum=${pagingNum}">
 							  <input type="button" value="삭제하기" onclick="" class="review_btn" style="border-color: red;">
 							</a>
 						</td>
 					</tr>
 					
 					<tr>
+					  <th colspan="2">상품명</th>
+					  <td colspan="8" style="text-align: left; padding-left: 20px">${vo.prod_name }</td>
+					</tr>
+					
+					<tr>
 					  <c:choose>
 					    <c:when test="${empty vo.review_image }">
-					      <td colspan=11s" class="content_tr">
+					      <td colspan=10" class="content_tr">
 							  <p>${vo.review_title }</p>
 							  ${vo.review_content }
 						  </td>

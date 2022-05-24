@@ -100,13 +100,14 @@
   
   <select id="getMyReview" parameterType="Map" resultType="com.april.unomas.domain.BoardReviewVO">
   	SELECT * 
-  	FROM board_review 
+  	FROM board_review AS r
+  	JOIN products AS p ON p.prod_num = r.prod_num
   	WHERE user_num=${num}
   	ORDER BY review_regdate DESC 
   	LIMIT #{cri.pageStart},#{cri.perPageNum}
   </select>
   
-  <!-- 내 상품 리뷰 -->
+  <!-- 내 상품 문의 -->
   <select id="myPQcnt" parameterType="String" resultType="int">
   	SELECT count(p_inquiry_num)
   	FROM prod_inquiry
@@ -115,7 +116,8 @@
   
   <select id="getMyPQ" parameterType="Map" resultType="com.april.unomas.domain.ProdInquiryVO">
   	SELECT * 
-  	FROM prod_inquiry 
+  	FROM prod_inquiry AS pi
+  	JOIN products AS p ON p.prod_num = pi.prod_num
   	WHERE user_num=${num}
   	ORDER BY p_inquiry_regdate DESC 
   	LIMIT #{cri.pageStart},#{cri.perPageNum}
@@ -123,14 +125,15 @@
   
   <!-- 1:1 문의 -->
   <select id="myQuestioncnt" parameterType="String" resultType="int">
-  	SELECT count(qna_num)
+  	SELECT count(*)
   	FROM board_qna
   	WHERE user_num=${value}
   </select>
   
   <select id="getMyQuestion" parameterType="Map" resultType="com.april.unomas.domain.QnaVO">
   	SELECT * 
-  	FROM board_qna 
+  	FROM board_qna AS bq
+  	JOIN qna_category AS qc ON qc.qnacate_num = bq.qnacate_num
   	WHERE user_num=${num}
   	ORDER BY qna_regdate DESC 
   	LIMIT #{cri.pageStart},#{cri.perPageNum}

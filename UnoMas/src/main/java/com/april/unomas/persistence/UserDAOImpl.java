@@ -234,11 +234,11 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<QnaVO> getMyQuestion(String num, UserCriteria cri) {
 		Map<String, Object> map = new HashMap();
-		map.put("user_num", num);
-		map.put("pageStart", cri.getPageStart());
-		map.put("perPageNum", cri.getPerPageNum());
-
-		return sqlSession.selectList(NAMESPACE_QNA + ".pagingQna1", map);
+		map.put("num", num);
+		map.put("cri", cri);
+		List ya = sqlSession.selectList(NAMESPACE + ".getMyQuestion", map);
+		System.out.println("ya는? " + ya.get(0));
+		return sqlSession.selectList(NAMESPACE + ".getMyQuestion", map);
 	}
 
 	

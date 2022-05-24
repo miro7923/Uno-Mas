@@ -10,6 +10,7 @@ public class QnaVO {
 	private String qna_content;
 	private Date qna_regdate;
 	private int qnacate_num;
+	private String qnacate_name;
 	private int qna_process;
 	private String qnacate2;
 	private String qna_image1;
@@ -91,6 +92,15 @@ public class QnaVO {
 	}
 	public void setQnacate2(String qnacate2) {
 		this.qnacate2 = qnacate2;
+	}
+	
+	
+	
+	public String getQnacate_name() {
+		return qnacate_name;
+	}
+	public void setQnacate_name(String qnacate_name) {
+		this.qnacate_name = qnacate_name;
 	}
 	@Override
 	public String toString() {

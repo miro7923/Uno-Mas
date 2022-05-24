@@ -353,11 +353,14 @@ public class ProductController {
 	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.GET)
 	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model,
-			HttpSession session) throws Exception {
+			HttpSession session,
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
 		BoardReviewVO reviewVO = service.getReview(review_num);
 		
 		model.addAttribute("prod_name", service.getProduct(reviewVO.getProd_num()).getProd_name());
 		model.addAttribute("vo", reviewVO);
+		model.addAttribute("pageInfo", pageInfo);
+		
 //		model.addAttribute("user_num", userService.getUserNum((String)session.getAttribute("saveID")));
 		
 		return "product/reviewModifyForm";
@@ -365,7 +368,9 @@ public class ProductController {
 	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.POST)
 	public String modifyReviewPOST(HttpServletRequest request, 
-			@RequestParam(value = "review_image", required = false) MultipartFile file) throws Exception {
+			@RequestParam(value = "review_image", required = false) MultipartFile file,
+			@RequestParam(value="pageInfo", required = false) String pageInfo,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) throws Exception {
 		BoardReviewVO vo = new BoardReviewVO();
 		vo.setReview_num(Integer.parseInt(request.getParameter("review_num")));
 		vo.setProd_num(Integer.parseInt(request.getParameter("prod_num")));
@@ -409,12 +414,19 @@ public class ProductController {
 		
 		service.modifyReview(vo);
 		
-		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		if(pageInfo.equals("pReview")) {
+			return "redirect:/user/my_review?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		}
+		
 	}
 	
 	@RequestMapping(value = "/remove_review", method = RequestMethod.GET)
 	public String removeReviewGET(@RequestParam("review_num") int review_num, 
-			@RequestParam("prod_num") int prod_num) throws Exception {
+			@RequestParam(value = "prod_num", required = false) int prod_num, 
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum, 
+			@RequestParam(value="pageInfo", required = false) String pageInfo) throws Exception {
 		// 리뷰와 함께 업로드 된 이미지파일 서버에서 삭제
 		File f = new File(reviewImgUploatPath + File.separator + service.getReviewImg(review_num));
 		if (f.exists()) 
@@ -422,8 +434,13 @@ public class ProductController {
 		
 		service.removeReview(review_num);
 		
-		return "redirect:/product/product_detail?prod_num=" + prod_num;
+		if(pageInfo.equals("pReview")) {
+			return "redirect:/user/my_review?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + prod_num;
+		}
 	}
+	
 	
 	@RequestMapping(value = "/write_inquiry", method = RequestMethod.GET)
 	public String writeInquiryGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
