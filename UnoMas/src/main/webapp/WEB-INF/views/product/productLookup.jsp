@@ -35,9 +35,17 @@
 			}
 		});
 		
+
+	document.getElementById("searchBtn").onclick = function() {
+		var searchType = document.getElementsByName("searchType")[0].value;
+		var keyword = document.getElementsByName("keyword")[0].value;
+		
+		console.log(searchType);
+		console.log(keyword);
+		location.href = "/product/product_lookup?page=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+	
 	});
-
-
 </script>
 
 <!-- Start Header -->
@@ -75,19 +83,19 @@
 									<div class="col-lg-12">
 										<br>
 										<div class="row">
-											<div class="col-lg-3">
-												<select class="selectBox">
-												<option>상품명</option>
-												<option>품번</option>
-												<option>상태</option>
-											</select>
-											</div>
-											<div class="col-lg-9">
-												<div class="input-search">
-													<input type="text" placeholder="검색어를 입력해주세요.">
-													<button type="button"><i class="ti-search"></i></button>
+												<div class="col-lg-3">
+													<select class="selectBox" name="searchType">
+													<option>상품명</option>
+													<option>품번</option>
+													<option>상태</option>
+												</select>
 												</div>
-											</div>
+												<div class="col-lg-9">
+													<div class="input-search">
+														<input type="text" name="keyword" placeholder="검색어를 입력해주세요.">
+														<button type="button" id="searchBtn"><i class="ti-search"></i></button>
+													</div>
+												</div>
 											<div class="col-lg-12">
 											<label></label>
 		                                        <button type="button" class="cancel-button" >취소</button>
@@ -147,15 +155,15 @@
 													<div class="col-lg-12 text-center">
 <!-- 													<ul class="pagination pagination-sm no-margin"> -->
 														<c:if test="${pm.prev }">
-															<span><a href="product_lookup?page=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a></span>
+															<span><a href="/product/product_lookup?page=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a></span>
 														</c:if>
 														
 														<c:forEach var="i" begin="${pm.startPage }" end="${pm.endPage }">
-															<span><a href="product_lookup?page=${i }" class="pagingBtn" style="color: black; font-weight: bold;"  >${i } </a></span>
+															<span><a href="/product/product_lookup?page=${page }" class="pagingBtn" style="color: black; font-weight: bold;"  >${i } </a></span>
 														</c:forEach>
 														
 														<c:if test="${pm.next && pm.endPage > 0 }">
-															<span><a href="product_lookup?page=${pm.endPage+1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a></span>
+															<span><a href="/product/product_lookup?page=${pm.endPage+1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a></span>
 														</c:if>
 <!-- 													</ul> -->
 												</div>

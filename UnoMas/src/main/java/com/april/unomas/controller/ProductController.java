@@ -206,11 +206,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
-	public String productLookup(/*@RequestParam("prod_num") int prod_num,*/ 
+	public String productLookup(@RequestParam("page") int page, 
 			@RequestParam("searchType") String searchType, 
 			@RequestParam("keyword") String keyword, Model model) throws Exception {
 		
-		
+		log.info("페이지 :"+page);
 		// 하단 페이지 처리
 		ProdPageMaker pm = new ProdPageMaker();
 		ProdCriteria pc = new ProdCriteria();
