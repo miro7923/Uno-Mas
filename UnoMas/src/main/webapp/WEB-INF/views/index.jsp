@@ -8,7 +8,7 @@
 <html>
 <!-- Start header -->
 <jsp:include page="inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/index.css?after" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/index_css/index.css?after" type="text/css">
 <!-- Start header -->
 
 <body>
