@@ -322,6 +322,8 @@ div, th, td, li, dt, dd, p {
 }
 .company a:link{
     color: white;
-    line-height: 18px;
+}
+.company a:visited{
+	color: white;
 }
 /* 푸터주석 끝 */
