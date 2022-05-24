@@ -196,7 +196,18 @@
                                     <i class="icon_heart_alt"></i>
                                 </div>
                                 <ul>
-                                    <li class="w-icon active"><a href=""><i class="icon_bag_alt"></i></a></li>
+                                	<c:if test="${rl.prod_stock > 0 }">
+									    <c:choose>
+									        <c:when test="${sessionScope.saveID != null }">
+												<li class="w-icon active"><a href="javascript:void(0);" onclick="insertCart(${sessionScope.saveNUM}, ${rl.prod_num });">
+												<i class="icon_bag_alt"></i></a></li>
+									        </c:when>
+									        <c:otherwise>
+									        	<li class="w-icon active"><a href="javascript:void(0);" onclick="askLogin();">
+									        	<i class="icon_bag_alt"></i></a></li>
+									        </c:otherwise>
+									    </c:choose>
+								    </c:if>
                                 </ul>
                             </div>
                             <div class="pi-text">
@@ -445,5 +456,6 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/index_js/index.js"></script>
 </body>
 </html>

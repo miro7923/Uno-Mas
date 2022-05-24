@@ -44,4 +44,7 @@ public class SelectVO {
 	
 	/* 상품 이미지 */
 	private String prod_image3;
+	
+	/* 상품 재고량 */
+	private int prod_stock;
 }
