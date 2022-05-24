@@ -5,6 +5,12 @@
 * a:visited{
 	color: #333;
 }
+.hero a:link{
+	color: #333;
+}
+.hero a:visited{
+	color: #333;
+}
 .hotList {
     margin-top: 30px;
 }

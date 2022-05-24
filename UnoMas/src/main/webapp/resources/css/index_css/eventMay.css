@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.eventImg{
+	padding-top:100px;
+	padding-bottom:70px;
+}
+.moreView a{
+	color: #636363;
+	text-align: right;
+}

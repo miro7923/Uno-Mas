@@ -22,10 +22,10 @@
             <div class="single-hero-items set-bg firstHero" data-setbg="${path}/resources/img/hero-1.jpg">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 hero">
                             <h1>가정의 달</h1>
                             <p>어린이날, 어버이날까지 가정의 달 선물 최대 30% 할인</p>
-                            <a href="#" class="primary-btn">자세히 보기</a>
+                            <a href="/event/may" class="primary-btn">자세히 보기</a>
                         </div>
                     </div>
                     <div class="off-card">
@@ -36,7 +36,7 @@
             <div class="single-hero-items set-bg secondHero" data-setbg="${path}/resources/img/hero-2.jpg">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 hero">
                             <h1>제철 음식</h1>
                             <p>5월에 꼭 먹어야 할 제철 음식 7가지를 확인해보세요.</p>
                             <a href="#" class="primary-btn">자세히 보기</a>
