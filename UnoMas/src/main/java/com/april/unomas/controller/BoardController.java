@@ -249,18 +249,16 @@ public class BoardController {
 		if(session.getAttribute("saveID") == null) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>if(confirm('로그인 하시겠습니까?')){ location.href='/user/login';} else { location.href='/index';}</script>");
+			out.println("<script>if(confirm('로그인 하시겠습니까?')){ location.href='/user/login';} else { history.back();}</script>");
 			out.flush();
 		}
 		String saveID = (String) session.getAttribute("saveID");
 		List<QnaVO> pList = qService.pagingQnaList(saveID,cri);
-		log.info(pList+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
 		model.addAttribute("pList",pList);
 		
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(qService.getQnaCnt(saveID));
 		model.addAttribute("pagingVO",pagingVO);
-		log.info(pList+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return "/board/inquiry_paging";
 	}
 	
