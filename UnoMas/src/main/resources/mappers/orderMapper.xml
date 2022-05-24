@@ -10,4 +10,24 @@
         FROM order_addr
         WHERE user_num = #{user_num}
     </select>
+    
+    <!-- 가장 마지막 주문번호 찾기 -->
+    <select id="getLastOrderNum" resultType="int">
+        SELECT MAX(order_code)
+        FROM orders
+    </select>
+    
+    <!-- 주문정보 생성 -->
+    <insert id="createOrder">
+        INSERT INTO orders(order_code, user_num, prod_num, order_total, order_quantity, order_postalcode, 
+        order_roadaddr, order_detailaddr)
+        VALUES(#{order_code}, #{user_num}, #{prod_num}, #{order_total}, #{order_quantity}, #{order_postalcode}, 
+        #{order_roadaddr}, #{order_detailaddr})
+    </insert>
+    
+    <!-- 결제정보 생성 -->
+    <insert id="createPay">
+        INSERT INTO pay(user_num, order_code, pay_method, pay_card_company, pay_card_num, pay_total_price)
+        VALUES(#{user_num}, #{order_code}, #{pay_method}, #{pay_card_company}, #{pay_card_num}, #{pay_total_price})
+    </insert>
 </mapper>

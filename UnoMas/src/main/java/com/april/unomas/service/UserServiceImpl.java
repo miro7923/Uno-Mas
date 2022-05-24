@@ -113,9 +113,8 @@ public class UserServiceImpl implements UserService {
 		return dao.getMyReview(id, cri);
 	}
 
-
-	
-	
-	
-	
+	@Override
+	public void updatePoint(int user_point) {
+		dao.updatePoint(user_point);
+	}
 }

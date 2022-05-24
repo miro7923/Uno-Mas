@@ -46,4 +46,7 @@ public interface UserService {
 	
 	// 내 리뷰
 	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri);
+	
+	// 결제완료 후 적립금 업데이트
+	public void updatePoint(int user_point);
 }

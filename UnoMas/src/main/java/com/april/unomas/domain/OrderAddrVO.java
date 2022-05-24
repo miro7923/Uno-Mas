@@ -11,4 +11,6 @@ public class OrderAddrVO {
 	private String addr_postalcode;
 	private String addr_roadaddr;
 	private String addr_detailaddr;
+	private boolean addr_primary;
+	private String addr_recipient;
 }

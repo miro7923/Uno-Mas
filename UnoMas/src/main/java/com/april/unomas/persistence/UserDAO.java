@@ -58,4 +58,6 @@ public interface UserDAO {
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);
 	
+	// 결제완료 후 적립금
+	public void updatePoint(int user_point);
 }

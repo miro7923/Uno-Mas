@@ -18,7 +18,7 @@ import com.april.unomas.persistence.ProductDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
-		locations = {"file:Src/main/webapp/WEB-INF/spring/root-context.xml"}
+		locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"}
 		)
 
 public class ProductDAOTest {

@@ -119,4 +119,11 @@
   	LIMIT #{cri.pageStart},#{cri.perPageNum}
   </select>
   
+  <!-- 결제완료 후 적립금 업데이트 -->
+  <update id="updatePoint">
+    UPDATE users
+    SET user_point = user_point + #{user_point}
+    WHERE user_num = #{user_num}
+  </update>
+  
 </mapper>

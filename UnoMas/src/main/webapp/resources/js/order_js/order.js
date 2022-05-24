@@ -1,3 +1,5 @@
+var IMP = window.IMP; // 생략 가능
+
 $(document).ready(function() {
     $('#normalAddr').show();
     $('#newAddr').hide();
@@ -13,7 +15,56 @@ $(document).ready(function() {
     changeIndividualCashReciptType();
     changeCashReciptType();
     convertCurrency(5);
+	
+	IMP.init("imp02942199"); // 예: imp00000000
 });
+
+// 아임포트 결제 API 사용
+function requestPay() {
+      // IMP.request_pay(param, callback) 결제창 호출
+      IMP.request_pay({ // param
+          pg: "html5_inicis",
+          pay_method: "card",
+          merchant_uid: $('#orderCode').val(),
+          name: $('#userName').text() + "의 주문",
+          amount: $('#total').val(),
+          buyer_email: $('#userEmail').text(),
+          buyer_name: $('#userName').text(),
+          buyer_tel: $('#phone').val(),
+          buyer_addr: $('#roadAddr').val() + $('#detailAddr').val(),
+          buyer_postcode: $('#postalcode').val()
+      }, function (rsp) { // callback
+          if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+	        // jQuery로 HTTP 요청
+	        // @@ 상품 개수만큼 반복문 돌리기... order code는 모두 같아야 한다.
+	        for (var i = 0; i < $('#prodCnt').val(); i++) {
+		        jQuery.ajax({
+		            url: "/order/complete", // 예: https://www.myservice.com/payments/complete
+		            method: "POST",
+		            headers: { "Content-Type": "application/json" },
+		            data: {
+		                imp_uid: rsp.imp_uid,
+		                order_code: rsp.merchant_uid,
+		                order_postalcode: rsp.buyer_postcode,
+		                order_roadaddr: $('#roadAddr').val(),
+		                order_detailaddr: $('#detailAddr').val(),
+		                user_num: $('#userNum').val(),
+		                prod_num: $('#prodNum'+i).val(),
+		                order_quantity: $('#prodQuantity'+i).val(),
+		                order_total: $('#orderTotal'+i).val(),
+		                user_point: $('#userPoint').val()
+		            }
+		        	}).done(function (data) {
+		          		// 가맹점 서버 결제 API 성공시 로직
+		          		alert('결제가 완료 되었습니다.');
+		          		location.href = '/order/complete';
+	        		})
+        	}
+	      } else {
+	        	alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+	      }
+      });
+    }
 
 function toggleAddrBox() {
     $('input:radio[name=deliverSpot]').change(function() {
