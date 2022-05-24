@@ -48,9 +48,17 @@
     </select>
     
     <!-- 전체 상품 목록 가져오기 -->
-    <select id="getAllProductList" resultType="ProductVO">
+    <select id="getAllProductList" parameterType="hashMap" resultType="ProductVO">
 		SELECT *
 		FROM products
+		
+		<if test="searchType.equals('prod_name')">
+			WHERE prod_name LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('prod_num')">
+			WHERE prod_num LIKE concat('%', #{keyword}, '%')
+		</if>
+		
 		ORDER BY prod_num DESC, prod_regdate DESC
 		LIMIT #{pageStart}, #{perPageNum}
     </select>

@@ -206,17 +206,22 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
-	public String productLookup(ProdCriteria pc, Model model) throws Exception {
+	public String productLookup(/*@RequestParam("prod_num") int prod_num,*/ 
+			@RequestParam("searchType") String searchType, 
+			@RequestParam("keyword") String keyword, Model model) throws Exception {
 		
-		// 상품 데이터 조회
-		List<ProductVO> productList = service.getAllProductList(pc);
-		model.addAttribute("productList", productList);
 		
 		// 하단 페이지 처리
 		ProdPageMaker pm = new ProdPageMaker();
+		ProdCriteria pc = new ProdCriteria();
 		pm.setCri(pc);
 		pm.setTotalCnt(service.getAllCnt());
 		model.addAttribute("pm", pm);
+		
+		// 상품 데이터 조회
+		List<ProductVO> productList 
+			= service.getAllProductList(pc.getPageStart(), pc.getPerPageNum(), searchType, keyword);
+		model.addAttribute("productList", productList);
 		
 		return "product/productLookup";
 	}

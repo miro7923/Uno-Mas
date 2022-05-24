@@ -32,7 +32,7 @@ public interface ProductService {
 	public List<Integer> getTopcateCnt(int topcate_num) throws Exception;
 
 	// 전체 상품 목록 가져오기
-	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception;
+	public List<ProductVO> getAllProductList(int pagestart, int perPageNum, String searchType, String keyword) throws Exception;
 	
 	// 전체 상품 개수 가져오기
 	public Integer getAllCnt() throws Exception;

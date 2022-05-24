@@ -50,8 +50,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
-		return dao.getAllProductList(pc);
+	public List<ProductVO> getAllProductList(int pagestart, int perPageNum, String searchType, String keyword) throws Exception {
+		return dao.getAllProductList(pagestart, perPageNum, searchType, keyword);
 	}
 
 	@Override
