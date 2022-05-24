@@ -1,6 +1,7 @@
 ﻿package com.april.unomas.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -243,10 +244,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/inquiry_paging",method = RequestMethod.GET)
-	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
+	public String inquiryPagingGET(HttpServletResponse response, HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
 		log.info("session"+session.getAttribute("saveID")+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$$$$$$$$$$$$$$$$$$$$$$$$$$");
 		if(session.getAttribute("saveID") == null) {
-			return "redirect:/user/login";
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>if(confirm('로그인 하시겠습니까?')){ location.href='/user/login';} else { location.href='/index';}</script>");
+			out.flush();
 		}
 		String saveID = (String) session.getAttribute("saveID");
 		List<QnaVO> pList = qService.pagingQnaList(saveID,cri);
@@ -333,7 +337,7 @@ public class BoardController {
 		response.getOutputStream().close();
 	}
 	
-	@RequestMapping(value = "/qna_delete",method = RequestMethod.GET)
+	@RequestMapping(value = "/inquiry_delete",method = RequestMethod.GET)
 	public String inquiryDelete(@RequestParam("qna_num") Integer qna_num) throws Exception {
 		qService.deleteInquiry(qna_num);
 		

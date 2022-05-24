@@ -124,8 +124,9 @@
 .boardView th {
     width: 130px;
     padding: 13px 0 13px 20px;
-    background-color: #f7f5f8;
+    background-color: #B9CE45;
     border-top: 1px solid #f4f4f4;
+    color: white;
     text-align: left;
 }
 
@@ -145,7 +146,7 @@
     z-index: 1;
     overflow: hidden;
     width: 100%;
-    border-top: 1px solid #f4f4f4;
+    border-top: 1px solid #f7f5f8;
 }
 
 .boardView tr.etcArea ul li {
@@ -156,7 +157,8 @@
     float: left;
     padding: 13px 0 13px 20px;
     width: 130px;
-    background-color: #f7f5f8;
+    background-color: #B9CE45;
+    color: white;
 }
 
 .boardView tr.etcArea ul .td {
@@ -165,12 +167,13 @@
     width: 180px;
 }
 .bhs_button.yb:hover {
-    background-color: #5f0080;
+    background-color: #B9CE45;
     color: #fff;
 }
 .bhs_button.yb {
-    background-color: #795b8f;
+    background-color: #B9CE45;
     color: #fff;
+    border-color: white;
 }
 .bhs_button {
     width: 150px;
@@ -184,6 +187,12 @@
     float: right;
     margin-left: 2px;
     font-size: 13px;
+}
+#search_btn{
+	background-color: #B9CE45;
+	color: white;
+	width: 40px;
+	border-color: white;
 }
 .nfile:hover {
 	color:red;
@@ -622,4 +631,19 @@ ul {
 .input_txt_qni_sort_writer{
 	width: 100px;
 	text-align: center;
+}
+.text-dark:hover{
+	-webkit-text-fill-color:white;
+}
+.td_delete_btn{
+	background-color: #B9CE45;
+	border-color: #B9CE45;
+	color: white;
+	width: 40px;
+	height: 30px;
+}
+.inquiry_write_btn{
+	background-color: #B9CE45;
+	border-color: #B9CE45;
+	color: white;
 }

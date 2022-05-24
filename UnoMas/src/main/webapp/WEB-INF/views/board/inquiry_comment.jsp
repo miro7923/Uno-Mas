@@ -47,7 +47,7 @@
                         
                         <div class="page_aticle">
     <div class="head_aticle">
-        <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
+        <h2 class="tit">1:1문의 답변<span class="tit_sub"></span></h2>
     </div>
     
     
