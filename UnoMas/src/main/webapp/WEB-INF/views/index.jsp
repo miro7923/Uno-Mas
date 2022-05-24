@@ -156,23 +156,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/products/women-large.jpg">
+                    <div class="product-large set-bg" id="highView" data-setbg="${path}/resources/img/index/highview.jpg">
                         <h2>조회수 높은 상품</h2>
-                        <a href="#">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
                     	<c:forEach items="${readcntList}" var="rl">
-<%--                    	<% 
-                    		int ttn = 0;
+                    	<c:set var="topcate_num1" value="${rl.topcate_num}" />
+                   		<% 
+                    		int tcn = 0;
                     		int cateStart = 0;
                     		int cateEnd = 0;
-                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
-                    		switch(ttn){
+                    		tcn = (int) pageContext.getAttribute("topcate_num1");
+                    		switch(tcn){
                     			case 1: cateStart = 1; cateEnd = 3;
                     				break;
-                    			case 2: cateStart = 4; cateEnd = 7;
+                    			case 2: cateStart = 4; cateEnd = 6;
                     				break;
                     			case 3: cateStart = 7; cateEnd = 10;
                     				break;
@@ -181,11 +181,11 @@
                     			case 5:	cateStart = 16; cateEnd = 18;
                     				break;
                     		}
-                    	%> --%>
+                    	%>
                         <div class="product-item">
                             <div class="pi-pic">
                             	<a href="/product/product_detail?prod_num=${rl.prod_num}">
-                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${rl.prod_image3 }"></spring:url>" alt="hot이미지1">
+                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${rl.prod_image3 }"></spring:url>" alt="조회수이미지">
                             	</a>
                             	<c:choose>
                             		<c:when test="${rl.prod_discntrate>0}">
@@ -200,11 +200,13 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
-                                <div class="catagory-name">${rl.dcate_name}</div>
-                                <a href="/product/product_detail?prod_num=${rl.prod_num}">
-                                    <h5>${rl.prod_name}</h5>
-                                </a>
+                                <div class="catagory-name">
+	                                <a class="cateName" href="/product/product_list?topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=${rl.dcate_num}">
+	                            		${rl.dcate_name}</a>
+	                                <a href="/product/product_detail?prod_num=${rl.prod_num}">
+	                                    <h5>${rl.prod_name}</h5>
+	                                </a>
+                                </div>
                                 <c:choose>
                                 	<c:when test="${rl.prod_discntrate eq 0}">
 		                                <div class="product-price">
@@ -233,23 +235,23 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" id="highSold" data-setbg="${path}/resources/img/products/women-large.jpg">
-                        <h2>판매량 높은 상품</h2>
-                        <a href="#">Discover More</a>
+                    <div class="product-large set-bg" id="highSold" data-setbg="${path}/resources/img/index/highsold.jpg">
+                        <h2>많이 팔린 상품</h2>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
                     	<c:forEach items="${sellcntList}" var="sl">
-<%--                    	<% 
-                    		int ttn = 0;
+                    	<c:set var="topcate_num2" value="${sl.topcate_num}" />
+                   		<% 
+                    		int tcn = 0;
                     		int cateStart = 0;
                     		int cateEnd = 0;
-                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
-                    		switch(ttn){
+                    		tcn = (int) pageContext.getAttribute("topcate_num2");
+                    		switch(tcn){
                     			case 1: cateStart = 1; cateEnd = 3;
                     				break;
-                    			case 2: cateStart = 4; cateEnd = 7;
+                    			case 2: cateStart = 4; cateEnd = 6;
                     				break;
                     			case 3: cateStart = 7; cateEnd = 10;
                     				break;
@@ -258,11 +260,11 @@
                     			case 5:	cateStart = 16; cateEnd = 18;
                     				break;
                     		}
-                    	%> --%>
+                    	%>
                         <div class="product-item">
                             <div class="pi-pic">
                             	<a href="/product/product_detail?prod_num=${sl.prod_num}">
-                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${sl.prod_image3 }"></spring:url>" alt="hot이미지1">
+                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${sl.prod_image3 }"></spring:url>" alt="판매량이미지">
                             	</a>
                             	<c:choose>
                             		<c:when test="${sl.prod_discntrate>0}">
@@ -277,11 +279,13 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
-                                <div class="catagory-name">${sl.dcate_name}</div>
-                                <a href="/product/product_detail?prod_num=${sl.prod_num}">
-                                    <h5>${sl.prod_name}</h5>
-                                </a>
+                                <div class="catagory-name">
+	                            	<a class="cateName" href="/product/product_list?topcate_num=${sl.topcate_num}&pageNum=1&dcate_num=${sl.dcate_num}">
+	                            		${sl.dcate_name}</a>
+	                                <a class="prodName" href="/product/product_detail?prod_num=${sl.prod_num}">
+	                                    <h5>${sl.prod_name}</h5>
+	                                </a>
+                                </div>
                                 <c:choose>
                                 	<c:when test="${sl.prod_discntrate eq 0}">
 		                                <div class="product-price">
@@ -310,23 +314,24 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="product-large set-bg" id="highSold" data-setbg="${path}/resources/img/products/women-large.jpg">
+                    <div class="product-large set-bg" id="newarrival" data-setbg="${path}/resources/img/index/newarrival.jpg">
                         <h2>신상품</h2>
-                        <a href="/product/new_list">Discover More</a>
+                        <a class="newarrival" href="/product/new_list">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
                     <div class="product-slider owl-carousel">
                     	<c:forEach items="${brandnewList}" var="bl">
-<%--                    	<% 
-                    		int ttn = 0;
+                    	<c:set var="topcate_num3" value="${bl.topcate_num}" />
+                   		<% 
+                    		int tcn = 0;
                     		int cateStart = 0;
                     		int cateEnd = 0;
-                    		ttn =Integer.parseInt(%>${rl.topcate_num}<%);
-                    		switch(ttn){
+                    		tcn = (int) pageContext.getAttribute("topcate_num3");
+                    		switch(tcn){
                     			case 1: cateStart = 1; cateEnd = 3;
                     				break;
-                    			case 2: cateStart = 4; cateEnd = 7;
+                    			case 2: cateStart = 4; cateEnd = 6;
                     				break;
                     			case 3: cateStart = 7; cateEnd = 10;
                     				break;
@@ -335,11 +340,11 @@
                     			case 5:	cateStart = 16; cateEnd = 18;
                     				break;
                     		}
-                    	%> --%>
+                    	%>
                         <div class="product-item">
                             <div class="pi-pic">
                             	<a href="/product/product_detail?prod_num=${bl.prod_num}">
-                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${bl.prod_image3 }"></spring:url>" alt="hot이미지1">
+                                	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${bl.prod_image3 }"></spring:url>" alt="신상품이미지">
                             	</a>
                             	<c:choose>
                             		<c:when test="${bl.prod_discntrate>0}">
@@ -354,11 +359,13 @@
                                 </ul>
                             </div>
                             <div class="pi-text">
-<%--                             	<a href="/product/product_list?cateStart=<%=cateStart%>&cateEnd=<%=cateEnd %>&topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=0"></a> --%>
-                                <div class="catagory-name">${bl.dcate_name}</div>
-                                <a href="/product/product_detail?prod_num=${bl.prod_num}">
-                                    <h5>${bl.prod_name}</h5>
-                                </a>
+                                <div class="catagory-name">
+                                	<a class="cateName" href="/product/product_list?topcate_num=${bl.topcate_num}&pageNum=1&dcate_num=${bl.dcate_num}">
+	                            		${bl.dcate_name}</a>
+	                                <a class="prodName" href="/product/product_detail?prod_num=${bl.prod_num}">
+	                                    <h5>${bl.prod_name}</h5>
+	                                </a>
+                                </div>
                                 <c:choose>
                                 	<c:when test="${bl.prod_discntrate eq 0}">
 		                                <div class="product-price">

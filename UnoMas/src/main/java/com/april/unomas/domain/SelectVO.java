@@ -15,10 +15,16 @@ public class SelectVO {
 	/* 상품 이름 */
 	private String prod_name;
 	
-	/* 상위 카테고리 */
+	/* 상위 카테고리 번호 */
+	private int topcate_num;
+	
+	/* 상위 카테고리 이름 */
 	private String topcate_name;
 	
-	/* 하위 카테고리 */
+	/* 하위 카테고리 번호 */
+	private int dcate_num;
+	
+	/* 하위 카테고리 이름 */
 	private String dcate_name;
 	
 	/* 상품 가격 */

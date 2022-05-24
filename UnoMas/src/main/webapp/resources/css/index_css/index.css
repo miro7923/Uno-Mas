@@ -1,13 +1,19 @@
 @charset "UTF-8";
-
+* a:link{
+	color: #333;
+}
+* a:visited{
+	color: #333;
+}
 .hotList {
     margin-top: 30px;
 }
 .hotList h3 {
-    font-size: 17px;
+    font-size: 28px;
     font-weight: 700;
     text-align: center;
     font-family: 'Noto Sans KR';
+    letter-spacing: -0.26px
 }
 .hotList .sub-title {
     color: #999;
@@ -32,8 +38,7 @@
 }
 .thumb{
     position: relative;
-    width: 200px;
-    height: 210px;
+    width: 247px;
 }
 .thumb > a {
     display: block;
@@ -49,27 +54,46 @@
 .itemList dd {
     padding-top: 10px;
     position: relative;
+    width: 200px;
 }
 .prdName {
     margin: 0 0 10px;
-    font-size: 12px;
-    line-height: 15px;
-    height: 45px;
+    font-size: 16px;
+    font-weight : 400;
+    line-height: 20px;
+    height: 30px;
 }
-.prdName a:visited {
-	color: black;
+.prdName a{
+	word-break: normal;
 }
 .prdPrice {
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 800;
     margin: 0 0 10px;
     position: relative;
 }
-.prd-price del {
+.prdPrice del {
     color: #8e8d8d;
     font-weight: normal;
-    display: block;
 }
 .product-slider {
     display: block;
-    top: 50px;
+    top: 10px;
+}
+.cateName {
+	font-size: 15px;
+    color: #b2b2b2 !important;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.catagory-name h5{
+	letter-spacing: 0;
+	word-break: keep-all;
+}
+.set-bg a:link{
+	color: yellowgreen;
+}
+.set-bg a:visited{
+	color: yellowgreen;
 }
