@@ -20,7 +20,7 @@
 			<div class="checkPW_content">
 				<h2>비밀번호 재확인</h2>
 				<hr>
-				<input type="hidden" id="id" name="user_id"  value="${saveID }" >
+				<input type="hidden" id="id" name="user_id"  value="${userInfoVO.user_id }" >
 				<input type="password" id="pass" name="user_pass" placeholder="비밀번호를 입력하세요">
 				<input type="button" value="확인" id="reBtn" onclick="passCk()"><br>
 				<p id="cir_text"></p>

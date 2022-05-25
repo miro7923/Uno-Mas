@@ -88,8 +88,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserVO> getAddAddr(int user_num) {
 		List<UserVO> addAddrVO = dao.getAddAddr(user_num);
-		
-		log.info("서비스까지");
 		return addAddrVO;
 	}
 

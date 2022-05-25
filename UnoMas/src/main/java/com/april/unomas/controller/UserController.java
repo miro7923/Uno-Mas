@@ -165,13 +165,14 @@ public class UserController {
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 
 		String saveID = (String) session.getAttribute("saveID");
+		System.out.println("update_myInfo : "+ saveID);
 		UserVO userInfoVO = service.getUserInfo(saveID);
 		model.addAttribute("userInfoVO", userInfoVO);
 		
-		
 		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
 		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
-		model.addAttribute("addAddrVO", addAddrList);
+		System.out.println("addAddrList: "+addAddrList.size());
+		model.addAttribute("addAddrList", addAddrList);
 		
 		return "/user/updateMyInfo";
 	}
@@ -209,7 +210,14 @@ public class UserController {
 
 	// 비번체크
 	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
-	public String pwCheck() {
+	public String pwCheck(HttpSession session, Model model) {
+		System.out.println("check_pw GET");
+		
+		String saveID = (String) session.getAttribute("saveID");
+		System.out.println("update_myInfo : "+ saveID);
+		UserVO userInfoVO = service.getUserInfo(saveID);
+		model.addAttribute("userInfoVO", userInfoVO);
+		
 		return "/user/checkPW";
 	}
 
