@@ -16,6 +16,12 @@
     margin-left: 20px;
 }
 
+@media only screen and (min-width: 1200px) {
+	.col-lg-2 {
+	    bottom: 0;
+	}	
+}
+
 .emph {
     color: red;
 }

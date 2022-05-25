@@ -13,6 +13,12 @@
 	href="${path}/resources/css/order_css/order.css?after22">
 <!-- Header end -->
 
+<%
+    if (session.getAttribute("saveID") == null) {
+    	response.sendRedirect("/index");
+    }
+%>
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>

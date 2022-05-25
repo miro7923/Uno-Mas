@@ -13,6 +13,11 @@
 <link rel="stylesheet" href="${path}/resources/css/order_css/order.css?after22">
 <!-- Header end -->
 
+<%
+    if (session.getAttribute("saveID") == null) {
+    	response.sendRedirect("/index");
+    }
+%>
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -62,9 +67,11 @@
 												<td class="product">
 													<div class="row">
 														<div class="col-lg-2 text-center">
+															<div class="img_center">
 															    <a href="/product/product_detail?prod_num=${order.prod_num }" target="_blank">
 															    <img src="<spring:url value="/resources/upload/images/products/thumbnail/${prodThumbList[i.index] }"></spring:url>" width="80" height="80"></a>
 																<!--N=a:odd.product-->
+															</div>
 														</div>
 														<div class="col-lg-10 align-self-center">
 															<a href="/product/product_detail?prod_num=${order.prod_num }"
@@ -210,7 +217,7 @@
 				<div class="row text-center">
 					<div class="col-lg-12 mt-5">
 					    <button type="button" class="site-btn" onclick="location.href='/';">홈</button>
-						<button type="button" class="site-btn" onclick="location.href='/mypage/order_list';">마이페이지</button>
+						<button type="button" class="site-btn" onclick="location.href='../user/mypage/order_list';">마이페이지</button>
 					</div>
 				</div>
 			</form>
