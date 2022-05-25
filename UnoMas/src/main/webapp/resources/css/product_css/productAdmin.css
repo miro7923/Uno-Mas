@@ -76,9 +76,21 @@ input:focus {
 
 select:focus{
 	outline: none !important;
+
 	border-color: #f67555;
 	box-shadow: 0 0 5px #f67555;
 }
+/* .search input:focus { */
+/* 	outline: none !important; */
+/* 	border-color: none; */
+/* 	box-shadow: none; */
+/* } */
+
+/* .search select:focus{ */
+/* 	outline: none !important; */
+/* 	border-color: none; */
+/* 	box-shadow: none; */
+/* } */
 
 /* .cart-table table tr td.cart-pic { */
 /* 	width: 4%; */

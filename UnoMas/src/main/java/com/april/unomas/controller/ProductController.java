@@ -196,17 +196,35 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
-	public String productLookup(ProdCriteria pc, Model model) throws Exception {
+	public String productLookup(HttpServletRequest request, Model model) throws Exception {
 		
-		// 상품 데이터 조회
-		List<ProductVO> productList = service.getAllProductList(pc);
-		model.addAttribute("productList", productList);
+		String page = request.getParameter("page");
+		String searchType = request.getParameter("searchType");
+		String keyword = request.getParameter("keyword");
 		
+		if(page == null ) { page = "1";}
+		if(searchType == null ) { searchType = "1";}
+		if(keyword == null ) { keyword = "";}
+		
+		log.info("페이지 :"+page);
 		// 하단 페이지 처리
 		ProdPageMaker pm = new ProdPageMaker();
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(Integer.parseInt(page));
 		pm.setCri(pc);
-		pm.setTotalCnt(service.getAllCnt());
+		pm.setTotalCnt(service.getAllCnt(searchType, keyword));
+//		pm.setSrchTypeKyw(searchType, keyword);
+		pm.setSearchType(searchType);
+		pm.setKeyword(keyword);
 		model.addAttribute("pm", pm);
+		
+		// 상품 데이터 조회
+		List<ProductVO> productList 
+			= service.getAllProductList(pc.getPageStart(), pc.getPerPageNum(), searchType, keyword);
+		model.addAttribute("productList", productList);
+//		model.addAttribute("select", page);
+//		model.addAttribute("searchType",searchType);
+//		model.addAttribute("keyword",keyword);
 		
 		return "product/productLookup";
 	}
