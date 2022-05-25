@@ -66,11 +66,7 @@ function requestPay() {
 			            type: "POST",
 			            dataType: 'json',
 			            contentType: "application/json",
-			            data: orderVO,
-			            success: function() {
-						},
-						error: function() {
-						}
+			            data: orderVO
 			        });
 	        	}
 	        	
@@ -96,6 +92,7 @@ function createPayInfo(uid) {
 			'ship': $('#shippingFee').val()
 		},
 		success: function(data) {
+			alert('결제가 완료 되었습니다.');
       		// 결제완료 페이지로 이동
       		location.replace('/order/complete?pay_num='+data);
 		},
@@ -267,4 +264,13 @@ function convertCurrency(cnt) {
     
     var point = $('#point').text();
     $('#point').text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+}
+
+function checkCard() {
+	if ($('[name=cardSelect] > option:selected').val() == $('#first').val()) {
+		alert('카드 종류를 선택하세요!');
+	}
+	else {
+		requestPay();
+	}
 }

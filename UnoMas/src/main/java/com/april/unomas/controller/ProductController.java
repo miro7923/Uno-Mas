@@ -168,9 +168,10 @@ public class ProductController {
 		model.addAttribute("reviewPm", reviewPm);
 		model.addAttribute("inquiryPm", inquiryPm);
 		
-		String user_num = (String) session.getAttribute("saveNUM");
-		if (user_num != null) {
-			model.addAttribute("isInWishlist", service.isInWishlist(Integer.parseInt(user_num), prod_num));
+		String user_id = (String) session.getAttribute("saveID");
+		if (user_id != null) {
+			int user_num = (int) session.getAttribute("saveNUM");
+			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
 		}
 		else
 			model.addAttribute("isInWishlist", false);

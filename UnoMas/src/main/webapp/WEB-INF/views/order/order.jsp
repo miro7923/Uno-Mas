@@ -164,7 +164,7 @@
                                 <p class="pointTitle">적립금 사용</p>
                                 <div class="pl-3 row">
                                     <div class="col-lg-2">
-	                                    <label style="margin-top: 29px;">보유</label>
+	                                    <label>보유</label>
                                     </div>
                                     <div class="col-lg-10">
                                         <div class="row">
@@ -179,7 +179,7 @@
                             <div class="col-lg-12">
                                 <div class="pl-3 row">
                                     <div class="col-lg-2">
-	                                    <label style="margin-top: 30px;">사용</label>
+	                                    <label>사용</label>
                                     </div>
                                     <div class="col-lg-10">
                                         <div class="row">
@@ -204,7 +204,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <input type="radio" name="purchaseMethod" value="1" checked><label>신용카드</label>
-                                <input type="radio" name="purchaseMethod" value="2"><label>무통장입금</label>
+                                <!-- <input type="radio" name="purchaseMethod" value="2"><label>무통장입금</label> -->
                             </div>
                         </div>
                         <div class="row" id="method_creditCard">
@@ -221,8 +221,8 @@
 	                                    <label>카드선택</label>
 	                                </div>
 	                                <div class="col-lg-9">
-	                                    <select class="selectBox" name="cardSelect">
-	                                        <option>선택해주세요.</option>
+	                                    <select class="selectBox" name="cardSelect" id="cardSelect">
+	                                        <option id="first">선택해주세요.</option>
 	                                        <option>KB Pay (국민)</option>
 	                                        <option>비씨</option>
 	                                        <option>신한</option>
@@ -448,7 +448,7 @@
                 <div class="row text-center">
                     <div class="col-lg-12">
                         <div class="order-btn mt-5">
-                            <button type="submit" class="site-btn place-btn" onclick="requestPay();">결제하기</button>
+                            <button type="submit" class="site-btn place-btn" onclick="checkCard();">결제하기</button>
                         </div>
                     </div>
                 </div>

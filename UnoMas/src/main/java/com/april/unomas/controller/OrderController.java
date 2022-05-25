@@ -147,11 +147,8 @@ public class OrderController {
 	@ResponseBody
 	@RequestMapping(value = "/complete", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public String completePOST(@RequestBody OrderVO vo) throws Exception {
-		log.info("@@@@@@@@@@@@@ completePOST() 호출");
-		
 		// 결제 완료된 주문정보 DB에 저장
 		orderService.createOrder(vo);
-		log.info("@@@@@@@@@@@@@ 주문정보 생성 완료"+vo);
 		
 		// 적립금 업데이트
 //		userService.updatePoint((int)Math.floor(vo.getUser_point()));
@@ -208,12 +205,10 @@ public class OrderController {
 			HttpServletRequest request, HttpServletResponse response,
 			@RequestParam String imp_uid, @RequestParam int amount,
 			@RequestParam int ship, HttpSession session) throws Exception {
-		log.info("@@@@@@@@@@@@@2 payInfoPOST() 호출");
 		
 		IamportResponse<Payment> result = client.paymentByImpUid(imp_uid);
 			
 		// 결제 정보 저장
-		log.info("@@@@@@@@@@ imp_uid: "+imp_uid);
 		PayVO payVO = new PayVO();
 		payVO.setOrder_code(Integer.parseInt(result.getResponse().getMerchantUid()));
 		payVO.setPay_card_company(result.getResponse().getCardName());
@@ -230,9 +225,7 @@ public class OrderController {
 		// 방금 생성된 결제 정보의 인덱스 번호 가져옴 
 		payVO = orderService.getLastPay();
 		model.addAttribute("payVO", payVO);
-		log.info("@@@@@@@@@@@@@@@@2 새 결제 정보: "+payVO);
 		
-		log.info("@@@@@@@@@@@@@@ 결제번호 리턴값: "+payVO.getPay_num());
 		return new ResponseEntity<Integer>(payVO.getPay_num(), HttpStatus.OK);
 	}
 	
