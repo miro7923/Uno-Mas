@@ -67,8 +67,15 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
-	public Integer getAllCnt() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+".getAllCnt");
+	public Integer getAllCnt(String searchType, String keyword) throws Exception {
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+			
+		
+		return sqlSession.selectOne(NAMESPACE+".getAllCnt", data);
 	}
 
 	@Override

@@ -215,13 +215,19 @@ public class ProductController {
 		ProdPageMaker pm = new ProdPageMaker();
 		ProdCriteria pc = new ProdCriteria();
 		pm.setCri(pc);
-		pm.setTotalCnt(service.getAllCnt());
+		pm.setTotalCnt(service.getAllCnt(searchType, keyword));
+//		pm.setSrchTypeKyw(searchType, keyword);
+		pm.setSearchType(searchType);
+		pm.setKeyword(keyword);
 		model.addAttribute("pm", pm);
 		
 		// 상품 데이터 조회
 		List<ProductVO> productList 
 			= service.getAllProductList(pc.getPageStart(), pc.getPerPageNum(), searchType, keyword);
 		model.addAttribute("productList", productList);
+//		model.addAttribute("select", page);
+//		model.addAttribute("searchType",searchType);
+//		model.addAttribute("keyword",keyword);
 		
 		return "product/productLookup";
 	}

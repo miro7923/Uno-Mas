@@ -55,8 +55,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Integer getAllCnt() throws Exception {
-		return dao.getAllCnt();
+	public Integer getAllCnt(String searchType, String keyword) throws Exception {
+		return dao.getAllCnt(searchType, keyword);
 	}
 
 	@Override

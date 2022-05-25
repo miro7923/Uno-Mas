@@ -35,7 +35,7 @@ public interface ProductService {
 	public List<ProductVO> getAllProductList(int pagestart, int perPageNum, String searchType, String keyword) throws Exception;
 	
 	// 전체 상품 개수 가져오기
-	public Integer getAllCnt() throws Exception;
+	public Integer getAllCnt(String searchType, String keyword) throws Exception;
 	
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;
