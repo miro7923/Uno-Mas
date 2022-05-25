@@ -14,13 +14,12 @@ import com.april.unomas.persistence.QnaDAO;
 @Service
 public class QnaServiceImpl implements QnaService {
 
-	
 	@Inject
 	private QnaDAO dao;
 	
 	@Override
-	public void qnaWrite(QnaVO vo) throws Exception {
-		dao.qnaWrite(vo);
+	public void qnaWrite(String saveID,QnaVO vo) throws Exception {
+		dao.qnaWrite(saveID,vo);
 	}
 
 	@Override
@@ -29,13 +28,13 @@ public class QnaServiceImpl implements QnaService {
 	}
 
 	@Override
-	public Integer getQnaCnt(Integer user_num) throws Exception {
-		return dao.getQnaCount(user_num);
+	public Integer getQnaCnt(String user_id) throws Exception {
+		return dao.getQnaCount(user_id);
 	}
 
 	@Override
-	public List<QnaVO> pagingQnaList(Integer user_num,Criter cri) throws Exception {
-		return dao.pagingQna(user_num,cri);
+	public List<QnaVO> pagingQnaList(String user_id,Criter cri) throws Exception {
+		return dao.pagingQna(user_id,cri);
 	}
 
 	@Override
@@ -46,7 +45,6 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public Qna_ComVO getComment(Integer qna_num) {
 		return dao.getComment(qna_num);
-	}
-	
+	}	
 	
 }

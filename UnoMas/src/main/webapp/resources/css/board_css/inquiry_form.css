@@ -10,3 +10,7 @@
 button[disabled]{
     cursor: default;
 }
+.btn-primary{
+    background-color:#B9CE45;
+    border-color:#B9CE45;
+}

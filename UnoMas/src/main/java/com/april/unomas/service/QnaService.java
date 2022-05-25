@@ -9,13 +9,13 @@ import com.april.unomas.domain.Qna_ComVO;
 
 public interface QnaService {
 	
-	public void qnaWrite(QnaVO vo) throws Exception;
+	public void qnaWrite(String saveID,QnaVO vo) throws Exception;
 	
 	public List<QnaVO> qnaList() throws Exception;
 	
-	public Integer getQnaCnt(Integer user_num) throws Exception;
+	public Integer getQnaCnt(String user_id) throws Exception;
 	
-	public List<QnaVO> pagingQnaList(Integer user_num,Criter cri) throws Exception;
+	public List<QnaVO> pagingQnaList(String user_id,Criter cri) throws Exception;
 	
 	public void deleteInquiry(Integer qna_num);
 	

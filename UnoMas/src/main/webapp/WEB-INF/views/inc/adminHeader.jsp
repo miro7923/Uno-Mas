@@ -39,15 +39,11 @@
     <style type="text/css">
     
     </style>
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_paging.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_sort.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_update.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_write.css?after" type="text/css">
+    
     <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_detail.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_insert.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_update.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after" type="text/css">
+    
   </head>
       <!-- jQuery 2.1.4 -->
     <script src="/resources/plugins/jQuery/jQuery-2.1.4.min.js"></script>
@@ -263,6 +259,7 @@
               </li>
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
+              <a href="/admin/admin_logout">로그아웃</a>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                   <span class="hidden-xs">
@@ -271,6 +268,7 @@
                   <%} %>
                   </span>
                 </a>
+                
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">

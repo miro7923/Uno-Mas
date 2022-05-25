@@ -27,13 +27,9 @@
     <link rel="stylesheet" href="${path}/resources/css/slicknav.min.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/style.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/headerFooter.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_paging.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_sort.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_update.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/qni_write.css?after" type="text/css">
+    
     <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_detail.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_insert.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/faq_update.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after" type="text/css">
 </head>

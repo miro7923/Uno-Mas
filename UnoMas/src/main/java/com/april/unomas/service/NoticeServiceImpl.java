@@ -23,31 +23,12 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public void noticeWrite(NoticeVO vo) throws Exception {
-		// dao(주입객체)를 사용하여 mapper에 접근
 		dao.noticeWrite(vo);
-	
-		log.info("DAO동작 수행 완료");
-
-	}
-
-	@Override
-	public List<NoticeVO> listAll() throws Exception {
-		log.info("listAll() -> DAO 동작 호출");
-		
-		log.info("DAO 동작 -> 컨트롤러 호출");
-	
-		return dao.listAll();
 	}
 
 	@Override
 	public NoticeVO getNotice(Integer notice_num) throws Exception {
-		
-		NoticeVO vo = dao.getNotice(notice_num);
-		
-		log.info("조회결과 : " + vo);
-		
-		return vo;
-		
+		return dao.getNotice(notice_num);
 	}
 
 	@Override
@@ -79,8 +60,5 @@ public class NoticeServiceImpl implements NoticeService {
 	public void noticeInsert(NoticeVO vo) throws Exception {
 		dao.noticeInsert(vo);
 	}
-	
-	
-	
 
 }
