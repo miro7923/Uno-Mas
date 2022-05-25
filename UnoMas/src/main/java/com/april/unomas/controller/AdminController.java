@@ -95,7 +95,6 @@ public class AdminController {
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(service.noticeCount());
 		List<NoticeVO> noticeList = service.noticeView(cri);
-		log.info(noticeList + "$$*****************************************");
 
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("pagingVO", pagingVO);
