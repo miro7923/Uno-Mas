@@ -62,7 +62,7 @@
 									    </c:choose>
 									</h5>
 									<c:if test="${sessionScope.saveID == null }">
-										<p class="memberInfo" style="color: #9db329;">로그인 후, 적립혜택이 제공됩니다.</p>
+										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
 									</c:if>									
 								</div>
 								<div class="pd-tags">
@@ -141,11 +141,11 @@
 		                                    <c:choose>
 		                                        <c:when test="${isInWishlist == true }">
 												    <button class="icon_heart" id="wishlistBtn" 
-												        onclick="toggleWishlistBtn(${user_num}, ${vo.prod_num });"></button>
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
 		                                        </c:when>
 		                                        <c:otherwise>
 												    <button class="icon_heart_alt" id="wishlistBtn" 
-												        onclick="toggleWishlistBtn(${user_num}, ${vo.prod_num });"></button>
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
 		                                        </c:otherwise>
 		                                    </c:choose>
                                         </c:otherwise>
@@ -157,7 +157,7 @@
 								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
 								           </c:when>
 									       <c:when test="${sessionScope.saveID != null }">
-										       <input type="hidden" id="user_num" value="${user_num }">
+										       <input type="hidden" id="user_num" value="${sessionScope.saveID.user_num }">
 										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 										       <input type="hidden" id="prod_amount" value="1">
 											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 
@@ -175,14 +175,14 @@
 					<div class="product-tab">
 						<div class="tab-item">
 							<ul class="nav" role="tablist">
-								<li style="border-left: 1px solid #ebebeb;"><a class="active" data-toggle="tab" href="#tab-1"
+								<li><a class="active" data-toggle="tab" href="#tab-1"
 									role="tab">상품설명</a></li>
 								<li><a data-toggle="tab" href="#tab-2" role="tab">상세정보</a>
 								</li>
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
 								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
 										(${reviewCnt })</a></li>
-								<li style="border-right: 1px solid #ebebeb;"><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();" style="border-right: 1px solid #ebebeb;">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -344,7 +344,7 @@
 															<p id="reviewContent${it.index }">${reviewVo.review_content }</p>
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
-															<c:if test="${sessionScope.saveID != null && user_num == reviewVo.user_num }">
+															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == reviewVo.user_num }">
 																<p class="text-right">
 																    <a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
 																    <a href="javascript:void(0)" onclick="confirmToRemove('review', ${reviewVo.review_num}, ${vo.prod_num })" 
@@ -407,7 +407,7 @@
 												onclick="window.parent.location.href = '/mypage/my_QnA'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
-										<div class="comment-option" id="inqDiv">
+										<div class="comment-option">
 											<table class="reviewTable" width="100%" border="0"
 												cellpadding="0" cellspacing="0">
 												<caption style="display: none">문의 제목</caption>
@@ -456,7 +456,7 @@
 															<p id="inquiryContent${it.index }">${inquiryVo.p_inquiry_content }</p>
 															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
 															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
-															<c:if test="${sessionScope.saveID != null && user_num == inquiryVo.user_num }">
+															<c:if test="${sessionScope.saveID != null && sessionScope.saveID.user_num == inquiryVo.user_num }">
 																<p class="text-right">
 																    <a href="/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
 																    <a href="javascript:void(0)" 
@@ -523,7 +523,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/product_js/productDetail.js?as12"></script>
+	<script src="${path}/resources/js/product_js/productDetail.js"></script>
 </body>
 
 </html>

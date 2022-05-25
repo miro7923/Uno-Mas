@@ -9,14 +9,14 @@
 
 
 <div class="left-bar">
-	<div class="page_name"><a href="mypage">마이페이지</a></div>
+	<div class="page_name">마이페이지</div>
 	
 	<div class="mypage-cate">
 		<h4>My 쇼핑</h4>
 		<a href="">주문목록/배송조회</a>
 		<a href="">취소/교환/환불</a>
-		<a href="/product/wishlist">찜한 상품</a>
-		<a href="/product/shopping-cart">장바구니</a>
+		<a href="">찜한 상품</a>
+		<a href="">장바구니</a>
 		<br>
 		
 		<h4>My 공동구매</h4>
@@ -24,14 +24,13 @@
 		<br>
 		
 		<h4>My 활동</h4>
-		<a href="my_review">리뷰관리</a>
+		<a href="">리뷰관리</a>
 		<a href="">상품 문의 내역</a>
-		<a href="board/inquiry_paging">1:1 문의</a>
+		<a href="">1:1 문의</a>
 		<br>
 		
 		<h4>My 정보</h4>
-		<a href="myInfo">개인정보확인/수정</a>
-		<a href="mypoint">포인트 내역</a>
+		<a href="./myInfo">개인정보확인/수정</a>
 
 	</div>
 		<a href="return_guide"><div class="mypage-cate-info">취소/환불 안내</div></a>

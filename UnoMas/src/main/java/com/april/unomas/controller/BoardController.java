@@ -1,6 +1,7 @@
 ﻿package com.april.unomas.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -66,9 +67,7 @@ public class BoardController {
 	@Resource(name="noticeImageUploadPath")
 	private String noticeImageUploadPath;
 	
-	
-	
-	@GetMapping(value = "/qni_write")
+	@RequestMapping(value = "/qni_write",method = RequestMethod.GET)
 	public String boardWriteGET() throws Exception{
 		log.info("registGET() 호출 -> /board/qni_write.jsp 이동");
 		
@@ -76,7 +75,7 @@ public class BoardController {
 	}
 	
 	// 글쓰기  /board/regist  (post)
-	@PostMapping(value = "/qni_write")
+	@RequestMapping(value = "/qni_write",method = RequestMethod.POST)
 	public String boardWritePOST(BoardVO vo, HttpServletRequest request,RedirectAttributes rttr) throws Exception{
 		log.info("boardWritePOST() 호출");
 		
@@ -89,25 +88,13 @@ public class BoardController {
 		return "redirect:/board/qni_paging";
 	}
 	
-	@GetMapping(value = "/faq_insert")
+	@RequestMapping(value = "/faq_insert",method = RequestMethod.GET)
 	public String noticeWriteGET() throws Exception{
 		
 		return "/board/faq_insert";
 	}
 	
-	/*
-	 * @PostMapping(value = "/faq_insert") public String noticeWritePOST(NoticeVO
-	 * vo, HttpServletRequest request,RedirectAttributes rttr) throws Exception{
-	 * log.info("noticeWritePOST() 호출");
-	 * 
-	 * // 전달된 정보를 저장
-	 * 
-	 * // 서비스 - 글쓰기 동작 수행 nService.noticeWrite(vo);
-	 * 
-	 * // 페이지 이동(/board/list) return "redirect:/faq_paging"; }
-	 */
-	
-	@GetMapping(value = "/faq_detail")
+	@RequestMapping(value = "/faq_detail",method = RequestMethod.GET)
 	public String noticeInfoGET(@RequestParam("notice_num") int notice_num,Model model) throws Exception{
 		log.info(notice_num+"");
 		
@@ -117,7 +104,7 @@ public class BoardController {
 		return "/board/faq_detail";
 	}
 	
-	@GetMapping(value = "/qni_sort")
+	@RequestMapping(value = "/qni_sort",method = RequestMethod.GET)
 	public String sortListGET(@RequestParam("qnacate_num") Integer qnacate_num,Criter cri, Model model) throws Exception { 
 		
 //		Map<String,Object> map = new HashMap<String,Object>();
@@ -137,15 +124,14 @@ public class BoardController {
 		return "/board/qni_sort";
 	}
 	
-	@GetMapping(value="/qni_paging")
-//	@RequestMapping(value = "/qni_paging",method = RequestMethod.GET)
+	@RequestMapping(value="/qni_paging",method = RequestMethod.GET)
 	public String pagingListGET(Criter cri,Model model) throws Exception {
 //	    PagingVO pagingVO = new PagingVO(); 
 //	    pagingVO.setCri(cri);
 	    PagingVO pagingVO = new PagingVO(cri);
 	    log.info(pagingVO+"");
 //	    pagingVO.setTotalCount(100);
-	    pagingVO.setTotalCount(service.countBoardTotal(cri));
+	    pagingVO.setTotalCount(service.countBoardTotal());
 	    List<BoardVO> pList = service.selectBoardList(cri);
 	    log.info(pList+"!@#$!@#$!@#$!@#$!@#$!@#$!@#$!@#$");
 	    model.addAttribute("pList", pList);
@@ -155,7 +141,7 @@ public class BoardController {
 	        
 	}
 	
-	@GetMapping(value="/qni_update")
+	@RequestMapping(value="/qni_update",method = RequestMethod.GET)
 	public String updateBoardGET(@RequestParam("faq_num") int faq_num, Model model) throws Exception {
 		
 		BoardVO vo = service.getBoard(faq_num);
@@ -165,7 +151,7 @@ public class BoardController {
 		return "/board/qni_update";
 	}
 	
-	@PostMapping(value="/qni_update")
+	@RequestMapping(value="/qni_update",method = RequestMethod.POST)
 	public String updateBoardPOST(BoardVO vo) throws Exception {
 		log.info("수정할 정보 : " + vo);
 		service.updateBoard(vo);
@@ -175,7 +161,7 @@ public class BoardController {
 		return "redirect:/board/qni_paging";
 	}
 	
-	@GetMapping(value="/qni_delete")
+	@RequestMapping(value="/qni_delete",method = RequestMethod.GET)
 	public String deleteBoard(@RequestParam("faq_num") int faq_num) throws Exception {
 		
 		service.deleteBoard(faq_num);
@@ -183,7 +169,7 @@ public class BoardController {
 		return "redirect:/board/qni_paging";
 	}
 	
-	@GetMapping(value="/faq_paging")
+	@RequestMapping(value="/faq_paging",method = RequestMethod.GET)
 	public String pagingNoticeGET(Criter cri, Model model) throws Exception {
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(nService.noticeCnt(cri));
@@ -196,7 +182,7 @@ public class BoardController {
 		return "/board/faq_paging";
 	}
 	
-	@GetMapping(value="/faq_update")
+	@RequestMapping(value="/faq_update",method = RequestMethod.GET)
 	public String updateNoticeGET(@RequestParam("notice_num") int notice_num, Model model) throws Exception {
 		log.info("notice_num @@@@@@@@@@@@@====" + notice_num);
 		NoticeVO vo = nService.getNotice(notice_num);
@@ -206,7 +192,7 @@ public class BoardController {
 		return "/board/faq_update";
 	}
 	
-	@PostMapping(value="/faq_update")
+	@RequestMapping(value="/faq_update",method = RequestMethod.POST)
 	public String updateNoticePOST(NoticeVO vo) throws Exception {
 		log.info("수정할 정보 : " + vo);
 		
@@ -215,7 +201,7 @@ public class BoardController {
 		return "redirect:/board/faq_paging";
 	}
 	
-	@GetMapping(value="/faq_delete")
+	@RequestMapping(value="/faq_delete",method = RequestMethod.GET)
 	public String deleteNoticeGET(@RequestParam("notice_num") int notice_num) throws Exception {
 		
 		nService.deleteNotice(notice_num);
@@ -224,17 +210,16 @@ public class BoardController {
 	}
 	
 
-	@GetMapping(value="/inquiry_form")
+	@RequestMapping(value="/inquiry_form",method = RequestMethod.GET)
 	public String inquiryWriteGET() throws Exception {
 		return "/board/inquiry_form";
 	}
 	
-	@PostMapping(value = "/inquiry_form")
+	@RequestMapping(value = "/inquiry_form",method = RequestMethod.POST)
 	public String inquiryWritePOST(HttpServletRequest request,RedirectAttributes rttr, MultipartFile qna_image1,MultipartFile qna_image2,HttpSession session) throws Exception {
 		QnaVO vo = new QnaVO();
-		UserVO userVO = (UserVO) session.getAttribute("saveID");
+		String saveID = (String) session.getAttribute("saveID");
 		log.info(vo+"@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		vo.setUser_num(userVO.getUser_num());
 		vo.setQnacate_num(Integer.parseInt(request.getParameter("qnacate_num")));
 		vo.setQnacate2(request.getParameter("qnacate2"));
 		vo.setQna_title(request.getParameter("qna_title"));
@@ -253,31 +238,32 @@ public class BoardController {
 		FileCopyUtils.copy(qna_image2.getBytes(), targetFile2);
 		vo.setQna_image2(fileName2);
 		log.info(vo+"###########################");
-		qService.qnaWrite(vo);
+		qService.qnaWrite(saveID,vo);
 		
 		return "redirect:/board/inquiry_paging";
 	}
 	
-	@GetMapping(value = "/inquiry_paging")
-	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
-		
-		UserVO userVO = (UserVO) session.getAttribute("saveID");
-		if(userVO == null) {
-			return "redirect:/user/login";
+	@RequestMapping(value = "/inquiry_paging",method = RequestMethod.GET)
+	public String inquiryPagingGET(HttpServletResponse response, HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
+		log.info("session"+session.getAttribute("saveID")+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@$$$$$$$$$$$$$$$$$$$$$$$$$$");
+		if(session.getAttribute("saveID") == null) {
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>if(confirm('로그인 하시겠습니까?')){ location.href='/user/login';} else { history.back();}</script>");
+			out.flush();
 		}
-		List<QnaVO> pList = qService.pagingQnaList(userVO.getUser_num(),cri);
-		log.info(pList+"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		String saveID = (String) session.getAttribute("saveID");
+		List<QnaVO> pList = qService.pagingQnaList(saveID,cri);
 		model.addAttribute("pList",pList);
 		
 		PagingVO pagingVO = new PagingVO(cri);
-		pagingVO.setTotalCount(qService.getQnaCnt(userVO.getUser_num()));
+		pagingVO.setTotalCount(qService.getQnaCnt(saveID));
 		model.addAttribute("pagingVO",pagingVO);
-		log.info(pList+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return "/board/inquiry_paging";
 	}
 	
 	
-	@PostMapping(value = "/faq_insert")
+	@RequestMapping(value = "/faq_insert",method = RequestMethod.POST)
 	public String noticeInsertPOST(/*NoticeVO vo,*/ HttpServletRequest request,RedirectAttributes rttr,MultipartFile notice_file,MultipartFile notice_img ) throws Exception{
 		log.info("noticeWritePOST() 호출");
 		
@@ -309,7 +295,7 @@ public class BoardController {
 		return "redirect:/board/faq_paging";
 	}
 	
-	@GetMapping(value = "/nFileDown")
+	@RequestMapping(value = "/nFileDown",method = RequestMethod.GET)
 	public void noticeFileDownload(HttpServletResponse response,@RequestParam("notice_file") String notice_file) throws Exception{
 		byte[] fileByte = FileUtils.readFileToByteArray(new File(noticeFileUploadPath+"\\"+notice_file));
 		
@@ -323,7 +309,7 @@ public class BoardController {
 		
 	}
 	
-	@GetMapping(value = "/image1Down")
+	@RequestMapping(value = "/image1Down",method = RequestMethod.GET)
 	public void inquiryImage1Download(HttpServletResponse response,@RequestParam("qna_image1") String qna_image1) throws Exception {
 		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+"\\"+qna_image1));
 		
@@ -336,7 +322,7 @@ public class BoardController {
 		response.getOutputStream().close();
 	}
 	
-	@GetMapping(value = "/image2Down")
+	@RequestMapping(value = "/image2Down",method = RequestMethod.GET)
 	public void inquiryImage2Download(HttpServletResponse response,@RequestParam("qna_image2") String qna_image2) throws Exception {
 		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+"\\"+qna_image2));
 		
@@ -349,14 +335,14 @@ public class BoardController {
 		response.getOutputStream().close();
 	}
 	
-	@GetMapping(value = "/qna_delete")
+	@RequestMapping(value = "/inquiry_delete",method = RequestMethod.GET)
 	public String inquiryDelete(@RequestParam("qna_num") Integer qna_num) throws Exception {
 		qService.deleteInquiry(qna_num);
 		
 		return "redirect:/board/inquiry_paging";
 	}
 	
-	@GetMapping(value = "/inquiry_comment")
+	@RequestMapping(value = "/inquiry_comment",method = RequestMethod.GET)
 	public String inquiryCommentGET(@RequestParam("qna_num") Integer qna_num, Model model) throws Exception {
 		model.addAttribute("commentList",qService.getComment(qna_num));
 		

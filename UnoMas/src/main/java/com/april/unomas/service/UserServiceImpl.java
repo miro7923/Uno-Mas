@@ -1,7 +1,6 @@
 package com.april.unomas.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.april.unomas.domain.BoardReviewVO;
-import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
 
@@ -25,6 +22,14 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserDAO dao;
 	
+	// 시간정보
+	@Override
+	public String getTimeS() {
+		
+		String time = dao.getTime();
+		
+		return time;
+	}
 	
 	// 회원가입
 	@Override
@@ -42,20 +47,23 @@ public class UserServiceImpl implements UserService {
 
 	// 로그인
 	@Override
-	public HashMap loginUser(UserVO vo) {
+	public Integer loginUser(UserVO vo) {
 		return dao.loginUser(vo);
 	}
 	
 	// 아이디 찾기
 	@Override
 	public int findIdProcess(UserVO vo) {
-		return dao.findIdProcess(vo);
+		// DAO를 호출하여 아이디가 있는지 판단.
+		int result = dao.findIdProcess(vo);
+		return result;
 	}
 
 	// 비번찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
 		HashMap<String, String> findpw_map = dao.findPwProcess(vo);
+		
 		return findpw_map;
 	}
 	
@@ -66,11 +74,17 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
+	// 회원 정보 수정위한 비밀번호 재확인
+	@Override
+	public boolean checkPw(UserVO vo) {
+		return dao.checkPw(vo);
+	}
 	
 	// 회원 정보 조회
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = dao.getUserInfo(id);
+		
 		return userInfoVO;
 	}
 	
@@ -82,37 +96,18 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
-	// 비번 체크
-	@Override
-	public Integer checkPW(UserVO vo) {
-		return dao.checkPW(vo);
-	}
-
 //	@Override
 //	public void updateAddr(UserVO vo) {
 //		dao.updateAddr(vo);
 //	}
 
-
 	// 회원 탈퇴
 	@Override
-	public Integer deleteUser(UserVO vo) {
-		return dao.deleteUser(vo);
-	}
+	public void deleteUser(UserVO vo) {
 
-	// 내 리뷰 개수
-	@Override
-	public Integer getMyReviewCnt(String num) {
-		System.out.println("서비스에서 받은 유저번호: " + num);
-		return dao.getMyReviewCnt(num);
+		dao.deleteUser(vo);
 	}
-
-	// 내 리뷰
-	@Override
-	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
-		return dao.getMyReview(id, cri);
-	}
-
+	
 
 	
 	

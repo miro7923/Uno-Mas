@@ -12,9 +12,6 @@ public interface NoticeDAO {
 	
 	// 글쓰기(첨부파일)
 	public void noticeInsert(NoticeVO vo);
-		
-	// 글 목록 가져오기
-	public List<NoticeVO> listAll();
 	
 	// 글 조회
 	public NoticeVO getNotice(Integer notice_num);

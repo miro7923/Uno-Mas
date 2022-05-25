@@ -54,9 +54,8 @@ a{
     width: 165px;
 }
 .table_info th, .table_info td {
-    padding: 20px;
+        padding: 10px 0px 10px 20px;
     border-top: 1px solid #ededed;
-    height: 50px;
 }
 
 .myinfo_content > th, td {
@@ -113,7 +112,7 @@ select {
     border-radius: 3px;
     display: inline-block;
     width: 3cm;
-    margin: -15px 10px 0px 0px;
+    margin: -10px 10px 10px;
     padding: 0 10px;
     border: 1px solid #c3c3c3;
     color: #666;

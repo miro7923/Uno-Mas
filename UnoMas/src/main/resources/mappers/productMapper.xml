@@ -125,7 +125,7 @@
 		SELECT t.topcate_name, d.dcate_name
 		FROM top_category t JOIN detail_category d
 		ON (t.topcate_num = d.topcate_num)
-		WHERE dcate_num = (SELECT prod_category FROM products WHERE prod_category = #{prod_category})
+		WHERE dcate_num = #{dcate_num}
     </select>
     
     <!-- 소분류별로 상품 가져오기 -->

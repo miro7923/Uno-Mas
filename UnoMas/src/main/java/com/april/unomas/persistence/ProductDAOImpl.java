@@ -109,8 +109,8 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Override
-	public List<CategoryVO> getCategory(int prod_num) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getCategory", prod_num);
+	public List<CategoryVO> getCategory(int dcate_num) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getCategory", dcate_num);
 	}
 
 	@Override

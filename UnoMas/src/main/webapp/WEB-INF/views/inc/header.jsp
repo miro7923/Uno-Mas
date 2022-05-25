@@ -20,10 +20,10 @@
     				<a href="../user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="/user/register_agree" class="linkMenu">회원가입</a>
+    				<a href="../user/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="../board/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -39,7 +39,7 @@
     				<a href="../user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="../board/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>

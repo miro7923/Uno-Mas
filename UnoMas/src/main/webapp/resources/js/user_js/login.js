@@ -10,8 +10,8 @@ function memberCk(){
 		$("#pass").focus();
 		return false;
 	};
+	
 	$.ajax({
-		
 		async: true,
 		type: "POST",
 		url: "login",

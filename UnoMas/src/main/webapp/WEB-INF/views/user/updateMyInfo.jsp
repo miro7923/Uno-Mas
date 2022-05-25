@@ -32,12 +32,7 @@
 					style="margin-bottom: 60px; height: 330px;">
 					<tr>
 						<th>아이디</th>
-<<<<<<< HEAD
-						<td>${sessionScope.saveID.user_id }</td>
-<%-- 						<td><input type="text" class="input_field" name="id" value="${sessionScope.saveID.user_id }" disabled></td> --%>
-=======
 						<td><input type="text" class="input_field" name="user_id" value="${userInfoVO.user_id }" disabled></td>
->>>>>>> 96ea332375a70b17e7d4d829d8d344bedb1cde27
 					</tr>
 
 					<tr>

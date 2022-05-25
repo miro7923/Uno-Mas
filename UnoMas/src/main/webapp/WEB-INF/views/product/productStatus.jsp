@@ -57,10 +57,10 @@
 													<c:choose>
 														<c:when test="${vo.prod_stock eq 0}">
 															<div class="sc-item">
-																<input type="radio" name="stock_state" value="normal"> <label for= "normal" >정상</label>
+																<input type="radio" name="stock_state" value="normal" onclick="return(false);"> <label for= "normal" >정상</label>
 															</div>
 															<div class="sc-item">
-																<input type="radio" name="stock_state" value="sold"> <label for="sold" class="active">품절</label>
+																<input type="radio" name="stock_state" value="sold" checked onclick="return(false);"> <label for="sold" class="active">품절</label>
 															</div>
 															<div class="sc-item">
 																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
@@ -91,31 +91,32 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" id="categories" disabled>
+											<select class="selectBox" id="categories">
 												<option value="0" selected="selected">대분류</option>
 												<c:forEach var="cvo" items="${categories }">
-<%-- 												<option value="${cvo.topcate_num }" --%>
-<%-- 													>${cvo.topcate_num }. ${cvo.topcate_name }</option> --%>
+												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
 												</c:forEach>
-												<option value="1" <c:if test="${vo.prod_category > 0 }">selected</c:if>>채소</option>
-												<option value="2" <c:if test="${vo.prod_category > 3 }">selected</c:if>>과일 · 견과류 · 쌀</option>
-												<option value="3" <c:if test="${vo.prod_category > 6 }">selected</c:if>>수산 · 해산 · 건어물</option>
-												<option value="4" <c:if test="${vo.prod_category > 10 }">selected</c:if>>정육 · 계란</option>
-												<option value="5" <c:if test="${vo.prod_category > 15 }">selected</c:if>>생수 · 우유 · 음료</option>
-												<option value="6" <c:if test="${vo.prod_category > 18 }">selected</c:if>>신상품</option>
-												<option value="7" <c:if test="${vo.prod_category > 19 }">selected</c:if>>특가</option>
 											</select>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" name="prod_category" id="details" disabled>
+											<select class="selectBox" name="prod_category" id="details">
 												<option value="0" selected>소분류</option>
 												<c:forEach var="dvo" items="${details }">
+													<c:set var="dcateNum" value="${dvo.dcate_num }"></c:set>
+													<option value="${dvo.dcate_num }" class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
 													<option value="${dvo.dcate_num }" 
-														<c:if test="${vo.prod_category eq dvo.dcate_num }">selected="selected"</c:if>class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
+														<c:if test="${vo.prod_category == dcateNum }">selected</c:if>class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
 												</c:forEach>
 											</select>
 											<label></label>
 										</div>
+<!-- 											<select class="selectBox" > -->
+<!-- 												<option selected>대분류</option> -->
+<%-- 												<option value="1봉" <c:if test="${vo.prod_sellunit == '1봉'}">selected</c:if>>1봉</option> --%>
+<!-- 											</select> -->
+											
+											<input type="text" name="prod_category" value="${vo.prod_category }" readonly>
+											<label></label>
 										<div class="col-lg-12">
 											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain" value="${vo.prod_explain }" readonly>
 										</div>
