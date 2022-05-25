@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,8 +53,8 @@ public class AdminController {
 	@Resource(name = "noticeImageUploadPath")
 	private String noticeImageUploadPath;
 
-	@GetMapping(value = "/main")
-	public String adminMainGET(Criter cri, Model model) throws Exception {
+	@RequestMapping(value = "/main",method = RequestMethod.GET)
+	public String adminMainGET(Criter cri,Model model) throws Exception{
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(service.userCount());
 		List<UserVO> userList = service.userView(cri);
@@ -64,19 +65,18 @@ public class AdminController {
 		return "/admin/main";
 	}
 
-	@GetMapping(value = "/admin_login")
+	@RequestMapping(value = "/admin_login",method = RequestMethod.GET)
 	public String adminLoginGET() {
 		return "/admin/admin_login";
 	}
 
-	@PostMapping(value = "/admin_login")
-	@ResponseBody
-	public String adminLoginPOST(AdminVO vo, HttpSession session) throws Exception {
+	@RequestMapping(value = "/admin_login",method = RequestMethod.POST)
+	public String adminLoginPOST(AdminVO vo,HttpSession session) throws Exception{
 
 		Integer result = service.adminLogin(vo);
 
 		if (result == 1) {
-			session.setAttribute("saveAID", vo.getAdmin_id());
+			session.setAttribute("saveAdmin", vo);
 		}
 
 		return Integer.toString(result);
@@ -89,8 +89,8 @@ public class AdminController {
 		return "redirect:/index";
 	}
 
-	@GetMapping(value = "/notice_board")
-	public String noticeBoardGET(Criter cri, Model model) throws Exception {
+	@RequestMapping(value = "/notice_board",method = RequestMethod.GET)
+	public String noticeBoardGET(Criter cri,Model model) throws Exception{
 
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(service.noticeCount());
@@ -102,15 +102,15 @@ public class AdminController {
 		return "/admin/notice_board";
 	}
 
-	@GetMapping(value = "/notice_write")
-	public String noticeWriteGET(Model model, HttpSession session) throws Exception {
+	@RequestMapping(value = "/notice_write",method = RequestMethod.GET)
+	public String noticeWriteGET(Model model,HttpSession session) throws Exception{
 		AdminVO vo = (AdminVO) session.getAttribute("saveID");
 		model.addAttribute("vo", vo);
 
 		return "/admin/notice_write";
 	}
 
-	@PostMapping(value = "/notice_write")
+	@RequestMapping(value = "/notice_write",method = RequestMethod.POST)
 	public String noticeWritePOST(HttpServletRequest request, RedirectAttributes rttr, MultipartFile notice_file,
 			MultipartFile notice_img) throws Exception {
 
@@ -139,7 +139,7 @@ public class AdminController {
 		return "redirect:/admin/notice_board";
 	}
 
-	@GetMapping(value = "/notice_read")
+	@RequestMapping(value = "/notice_read",method = RequestMethod.GET)
 	public String noticeInfoGET(@RequestParam("notice_num") int notice_num, Model model) throws Exception {
 		log.info(notice_num + "");
 
@@ -149,7 +149,7 @@ public class AdminController {
 		return "/admin/notice_read";
 	}
 
-	@GetMapping(value = "/notice_update")
+	@RequestMapping(value="/notice_update",method = RequestMethod.GET)
 	public String noticeUpdateGET(@RequestParam("notice_num") int notice_num, Model model) throws Exception {
 		log.info("notice_num @@@@@@@@@@@@@====" + notice_num);
 		NoticeVO vo = service.getNotice(notice_num);
@@ -159,7 +159,7 @@ public class AdminController {
 		return "/admin/notice_update";
 	}
 
-	@PostMapping(value = "/notice_update")
+	@RequestMapping(value="/notice_update",method = RequestMethod.POST)
 	public String noticeUpdatePOST(NoticeVO vo) throws Exception {
 		log.info("수정할 정보 : " + vo);
 
@@ -168,7 +168,7 @@ public class AdminController {
 		return "redirect:/admin/notice_board";
 	}
 
-	@GetMapping(value = "/notice_delete")
+	@RequestMapping(value="/notice_delete",method = RequestMethod.GET)
 	public String noticeDeleteGET(@RequestParam("notice_num") int notice_num) throws Exception {
 
 		service.noticeDelete(notice_num);
@@ -176,7 +176,7 @@ public class AdminController {
 		return "redirect:/admin/notice_board";
 	}
 
-	@GetMapping(value = "/faq_write")
+	@RequestMapping(value = "/faq_write",method = RequestMethod.GET)
 	public String boardWriteGET() throws Exception {
 		log.info("registGET() 호출 -> /board/qni_write.jsp 이동");
 
@@ -184,7 +184,7 @@ public class AdminController {
 	}
 
 	// 글쓰기 /board/regist (post)
-	@PostMapping(value = "/faq_write")
+	@RequestMapping(value = "/faq_write",method = RequestMethod.POST)
 	public String boardWritePOST(BoardVO vo, HttpServletRequest request, RedirectAttributes rttr) throws Exception {
 		log.info("boardWritePOST() 호출");
 
@@ -197,7 +197,7 @@ public class AdminController {
 		return "redirect:/admin/faq_board";
 	}
 
-	@GetMapping(value = "/faq_sort")
+	@RequestMapping(value = "/faq_sort",method = RequestMethod.GET)
 	public String sortListGET(@RequestParam("qnacate_num") Integer qnacate_num, Criter cri, Model model)
 			throws Exception {
 
@@ -218,17 +218,14 @@ public class AdminController {
 		return "/admin/faq_sort";
 	}
 
-	@GetMapping(value = "/faq_board")
-//	@RequestMapping(value = "/qni_paging",method = RequestMethod.GET)
+	@RequestMapping(value="/faq_board",method = RequestMethod.GET)
 	public String pagingListGET(Criter cri, Model model) throws Exception {
 //	    PagingVO pagingVO = new PagingVO(); 
 //	    pagingVO.setCri(cri);
 		PagingVO pagingVO = new PagingVO(cri);
-		log.info(pagingVO + "");
 //	    pagingVO.setTotalCount(100);
 		pagingVO.setTotalCount(service.faqCount());
 		List<BoardVO> pList = service.faqView(cri);
-		log.info(pList + "!@#$!@#$!@#$!@#$!@#$!@#$!@#$!@#$");
 		model.addAttribute("pList", pList);
 		model.addAttribute("pagingVO", pagingVO);
 
@@ -236,7 +233,7 @@ public class AdminController {
 
 	}
 
-	@GetMapping(value = "/faq_update")
+	@RequestMapping(value="/faq_update",method = RequestMethod.GET)
 	public String updateBoardGET(@RequestParam("faq_num") int faq_num, Model model) throws Exception {
 
 		BoardVO vo = service.getFaq(faq_num);
@@ -246,7 +243,7 @@ public class AdminController {
 		return "/admin/faq_update";
 	}
 
-	@PostMapping(value = "/faq_update")
+	@RequestMapping(value="/faq_update",method = RequestMethod.POST)
 	public String updateBoardPOST(BoardVO vo) throws Exception {
 		log.info("수정할 정보 : " + vo);
 		service.faqUpdate(vo);
@@ -254,7 +251,7 @@ public class AdminController {
 		return "redirect:/admin/faq_board";
 	}
 
-	@GetMapping(value = "/faq_delete")
+	@RequestMapping(value="/faq_delete",method = RequestMethod.GET)
 	public String deleteBoard(@RequestParam("faq_num") int faq_num) throws Exception {
 
 		service.faqDelete(faq_num);
@@ -262,7 +259,7 @@ public class AdminController {
 		return "redirect:/admin/faq_board";
 	}
 
-	@GetMapping(value = "/qna_board")
+	@RequestMapping(value = "/qna_board",method = RequestMethod.GET)
 	public String inquiryPagingGET(HttpServletRequest request, Criter cri, Model model, HttpSession session)
 			throws Exception {
 
@@ -281,7 +278,7 @@ public class AdminController {
 		return "/admin/qna_board";
 	}
 
-	@GetMapping(value = "/qna_comment")
+	@RequestMapping(value = "/qna_comment",method = RequestMethod.GET)
 	public String qnaCommentWriteGET(@RequestParam("qna_num") Integer qna_num, Model model, HttpSession session)
 			throws Exception {
 		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
@@ -292,7 +289,7 @@ public class AdminController {
 		return "/admin/qna_comment";
 	}
 
-	@PostMapping(value = "/qna_comment")
+	@RequestMapping(value = "/qna_comment",method = RequestMethod.POST)
 	public String qnaCommentWritePOST(Qna_ComVO qna_comVO, HttpServletRequest request) throws Exception {
 		service.qnaCommentWrite(qna_comVO);
 		service.qnaProcessUp(Integer.parseInt(request.getParameter("qna_num")));
