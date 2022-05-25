@@ -37,19 +37,12 @@ function requestPay() {
   }, function (rsp) { // callback
       if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 		uid = rsp.imp_uid;
-		console.log('결제 성공 직후 uid: '+uid);
       	// 결제검증
       	$.ajax({
 			url: '/order/verify_iamport/' + rsp.imp_uid,
 			type: 'post'
 		}).done(function(data) {
-			//uid = data.response.imp_uid;
-			//console.log('조건문 들어가기 전 uid: '+uid);
 			if ($('#total').val() == data.response.amount) {
-          		alert('결제가 완료 되었습니다.');
-          		//uid = data.response.imp_uid;
-				//console.log('조건문 들어간 후 uid: '+uid);
-
 		        // jQuery로 HTTP 요청
 		        // @@ 상품 개수만큼 반복문 돌리기... order code는 모두 같아야 한다.
 		        for (var i = 0; i < $('#prodCnt').val(); i++) {
@@ -74,20 +67,13 @@ function requestPay() {
 			            dataType: 'json',
 			            contentType: "application/json",
 			            data: orderVO,
-			            success: function(data) {
-							alert(data+i);
-							alert('상품정보 '+i+' 주문정보 생성 완료');
+			            success: function() {
 						},
 						error: function() {
-							alert('상품정보 '+i+' 주문정보 생성 실패');
 						}
 			        });
 	        	}
 	        	
-				const payData = data;
-				console.log('payData: '+payData);
-				//uid = payData.response.imp_uid;
-				//console.log('결제정보 저장 메서드 호출 전 uid: '+uid);
 	        	createPayInfo(uid);
 			}
 			else {
@@ -101,7 +87,6 @@ function requestPay() {
 }
 
 function createPayInfo(uid) {
-	console.log('결제정보 저장 메서드 호출 후 uid: '+uid);
 	$.ajax({
 		type: 'get',
 		url: '/order/pay_info',
@@ -111,10 +96,7 @@ function createPayInfo(uid) {
 			'ship': $('#shippingFee').val()
 		},
 		success: function(data) {
-			alert('결제정보 저장 완료');
-
       		// 결제완료 페이지로 이동
-      		alert('모든 정보 저장 후 결제완료 페이지로 이동. 결제번호: '+data);
       		location.replace('/order/complete?pay_num='+data);
 		},
 		error: function() {

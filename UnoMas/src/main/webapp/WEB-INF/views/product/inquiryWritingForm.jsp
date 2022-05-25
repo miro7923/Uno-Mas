@@ -39,7 +39,7 @@
 							<div class="row">
 								<div class="col-lg-2">내용</div>
 								<div class="col-lg-10">
-									<textarea class="reviewTextarea" name="p_inquiry_content"
+									<textarea class="reviewTextarea" name="p_inquiry_content" id="textArea"
 										placeholder="상품에 대한 문의 내용을 입력해 주세요.
 반품/환불 문의는 1:1문의로 가능합니다."></textarea>
 								</div>

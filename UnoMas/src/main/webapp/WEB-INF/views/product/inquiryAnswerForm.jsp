@@ -40,8 +40,8 @@
 							<div class="row">
 								<div class="col-lg-2">답변</div>
 								<div class="col-lg-10">
-									<textarea class="reviewTextarea" name="com_content"
-										placeholder="문의글에 대한 답변을 작성해 주세요."></textarea>
+									<textarea class="reviewTextarea" name="com_content" id="textArea"
+										placeholder="문의글에 대한 답변을 작성해 주세요." onchange="insertNewline();"></textarea>
 								</div>
 							</div>
 							<br>
