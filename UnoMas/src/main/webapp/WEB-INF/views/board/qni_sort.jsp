@@ -50,11 +50,21 @@
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
 
+	<select id="search_type" name="search_type">
+    	<option value="" disabled selected>검색조건</option>
+    	<option value="title">제목</option>
+    	<option value="cate">카테고리</option>
+    	<option value="content">내용</option>
+    </select>
+    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
+<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
+    <button id="search_btn" onclick="search_qni()">검색</button>
+
         <form name="frmList" id="form" method="get" action="?">
                 
                 <div class="search_date">
                     <select class="btn_layer" id="qni_category">
-                       			<option>카테고리 선택</option>
+                       			<option disabled selected>카테고리 선택</option>
                        			<option value="1">배송/포장</option>
                             	<option value="2">취소/교환/환불</option>
                             	<option value="3">이벤트/적립금</option>

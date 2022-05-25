@@ -51,9 +51,8 @@
     <div class="head_aticle">
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
-    
-    <select id="search_type" name="search_type">
-    	<option value="">검색조건</option>
+    <select id="search_type" name="search_type" class="search_select">
+    	<option value="" disabled selected>검색조건</option>
     	<option value="title">제목</option>
     	<option value="cate">카테고리</option>
     	<option value="content">내용</option>
@@ -66,7 +65,7 @@
                 
                 <div class="search_date">
                     <select class="btn_layer" id="qni_category" >
-                       			<option>카테고리 선택</option>
+                       			<option disabled selected>카테고리 선택</option>
                        			<option value="1">배송/포장</option>
                             	<option value="2">취소/교환/환불</option>
                             	<option value="3">이벤트/적립금</option>

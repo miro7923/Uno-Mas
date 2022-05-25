@@ -83,9 +83,9 @@
                                     <tbody>
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
-                                            <td><span class="px-3">1차 카테고리 ${vo.qnaCateVO.qnacate_name }</span>
+                                            <td><span class="px-3">1차 카테고리</span>
 			            <span> > </span><br>
-			            <span> 2차 카테고리 ${vo.qnacate2 }</span>
+			            <span>${vo.qnaCateVO.qnacate_name }</span>
 			            <div class="question mt-3 pb-5 px-3">
 <%-- 			            <img src="${path}/resources/img/question.svg" class="questionicon">  --%>
 			            <a href="/board/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="../resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
