@@ -206,14 +206,21 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
-	public String productLookup(@RequestParam("page") int page, 
-			@RequestParam("searchType") String searchType, 
-			@RequestParam("keyword") String keyword, Model model) throws Exception {
+	public String productLookup(HttpServletRequest request, Model model) throws Exception {
+		
+		String page = request.getParameter("page");
+		String searchType = request.getParameter("searchType");
+		String keyword = request.getParameter("keyword");
+		
+		if(page == null ) { page = "1";}
+		if(searchType == null ) { searchType = "1";}
+		if(keyword == null ) { keyword = "1";}
 		
 		log.info("페이지 :"+page);
 		// 하단 페이지 처리
 		ProdPageMaker pm = new ProdPageMaker();
 		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(Integer.parseInt(page));
 		pm.setCri(pc);
 		pm.setTotalCnt(service.getAllCnt(searchType, keyword));
 //		pm.setSrchTypeKyw(searchType, keyword);
