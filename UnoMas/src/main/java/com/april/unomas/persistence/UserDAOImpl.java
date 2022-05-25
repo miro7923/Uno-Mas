@@ -64,6 +64,9 @@ public class UserDAOImpl implements UserDAO {
 			{ put("result", 0); put("num", null); }
 		};
 		int result = 0;
+		
+//		if (vo.getUser_id().contains("admin")) {
+//		}
 		UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
 
 		if (loginVO == null) {
@@ -76,6 +79,7 @@ public class UserDAOImpl implements UserDAO {
 				loginMap.put("num", loginVO.getUser_num());
 			}
 		}
+		
 		loginMap.put("result", result);
 		return loginMap;
 	}
