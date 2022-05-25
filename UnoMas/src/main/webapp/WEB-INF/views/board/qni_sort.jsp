@@ -11,6 +11,7 @@
 <html lang="zxx">
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/board_css/qni_sort.css?after" type="text/css">
 <!-- Head end -->
 
 <body>

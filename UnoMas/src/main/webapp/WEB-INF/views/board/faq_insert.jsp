@@ -10,6 +10,7 @@
 </head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/board_css/faq_insert.css?after" type="text/css">
 <!-- Head end -->
 
 <body>

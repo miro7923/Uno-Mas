@@ -21,105 +21,107 @@ $(document).ready(function() {
 
 // 아임포트 결제 API 사용
 function requestPay() {
-      // IMP.request_pay(param, callback) 결제창 호출
-      IMP.request_pay({ // param
-          pg: "html5_inicis",
-          pay_method: "card",
-          merchant_uid: $('#orderCode').val(),
-          name: $('#prodName0').val(),
-          amount: $('#total').val(),
-          buyer_email: $('#userEmail').text(),
-          buyer_name: $('#userName').text(),
-          buyer_tel: $('#phone').val(),
-          buyer_addr: $('#roadAddr').val() + $('#detailAddr').val(),
-          buyer_postcode: $('#postalcode').val()
-      }, function (rsp) { // callback
-          if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-          	// 결제검증
-          	$.ajax({
-				url: '/order/verify_iamport/' + rsp.imp_uid,
-				type: 'post'
-			}).done(function(data) {
-				console.log(data.response.amount);
-				console.log(rsp.paid.amount);
-				if ($('#total').val() == data.response.amount) {
-	          		alert('결제가 완료 되었습니다.');
+  var uid = '';
+  // IMP.request_pay(param, callback) 결제창 호출
+  IMP.request_pay({ // param
+      pg: "html5_inicis",
+      pay_method: "card",
+      merchant_uid: $('#orderCode').val(),
+      name: $('#prodName0').val(),
+      amount: $('#total').val(),
+      buyer_email: $('#userEmail').text(),
+      buyer_name: $('#userName').text(),
+      buyer_tel: $('#phone').val(),
+      buyer_addr: $('#roadAddr').val() + $('#detailAddr').val(),
+      buyer_postcode: $('#postalcode').val()
+  }, function (rsp) { // callback
+      if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+		uid = rsp.imp_uid;
+		console.log('결제 성공 직후 uid: '+uid);
+      	// 결제검증
+      	$.ajax({
+			url: '/order/verify_iamport/' + rsp.imp_uid,
+			type: 'post'
+		}).done(function(data) {
+			//uid = data.response.imp_uid;
+			//console.log('조건문 들어가기 전 uid: '+uid);
+			if ($('#total').val() == data.response.amount) {
+          		alert('결제가 완료 되었습니다.');
+          		//uid = data.response.imp_uid;
+				//console.log('조건문 들어간 후 uid: '+uid);
 
-			        // jQuery로 HTTP 요청
-			        // @@ 상품 개수만큼 반복문 돌리기... order code는 모두 같아야 한다.
-			        for (var i = 0; i < $('#prodCnt').val(); i++) {
-				        jQuery.ajax({
-				            url: "/order/complete", // 예: https://www.myservice.com/payments/complete
-				            type: "POST",
-				            headers: { "Content-Type": "application/json" },
-				            data: {
-				                order_code: data.response.merchant_uid,
-				                cart_num: $('#cartNum'+i).val(),
-				                order_postalcode: $('#postalcode').val(),
-				                order_roadaddr: $('#roadAddr').val(),
-				                order_detailaddr: $('#detailAddr').val(),
-				                user_num: $('#userNum').val(),
-				                prod_num: $('#prodNum'+i).val(),
-				                order_quantity: $('#prodQuantity'+i).val(),
-				                order_total: $('#orderTotal'+i).val(),
-				                user_point: $('#userPoint').val(),
-				                order_recipient: $('#name').val(),
-				                order_memo: $('#ask').val()
-				            },
-				            success: function() {
-								alert('상품정보 '+i+' 주문정보 생성 완료');
-							},
-							error: function() {
-								alert('상품정보 '+i+' 주문정보 생성 실패');
-							}
-				        });
-		        	}
-		        	
-	          		// 결제정보 생성
-	          		var methodVal = $('input[name=purchaseMethod]:checked').val();
-	          		var method = '';
-	          		if (methodVal == '1')
-	          			method = '카드결제';
-	          		else 
-	          			method = '무통장입금';
-	          			
-	          		$.ajax({
-						type: 'post',
-						url: '/order/pay_info',
-						headers: { "Content-Type": 'application/json' },
-						data: {
-							user_num: $('#userNum').val(),
-							order_code: data.response.merchant_uid,
-							pay_method: method,
-							pay_card_company: data.response.card_name,
-							pay_card_num: data.response.card_number,
-							pay_total_price: data.response.amount,
-							pay_installment: data.response.card_quota,
-							pay_shippingfee: $('#shippingFee').val(),
-							pay_point: $('#usingPoint').val()
-						},
-						success: function(data) {
-							alert('결제정보 저장 완료');
-
-			          		// 결제완료 페이지로 이동
-			          		alert('모든 정보 저장 후 결제완료 페이지로 이동. 결제번호: '+data);
-			          		location.replace('/order/complete?pay_num='+data);
+		        // jQuery로 HTTP 요청
+		        // @@ 상품 개수만큼 반복문 돌리기... order code는 모두 같아야 한다.
+		        for (var i = 0; i < $('#prodCnt').val(); i++) {
+					var orderVO = JSON.stringify({
+		                order_code: $('#orderCode').val(),
+		                cart_num: $('#cartNum'+i).val(),
+		                order_postalcode: $('#postalcode').val(),
+		                order_roadaddr: $('#roadAddr').val(),
+		                order_detailaddr: $('#detailAddr').val(),
+		                user_num: $('#userNum').val(),
+		                prod_num: $('#prodNum'+i).val(),
+		                order_quantity: $('#prodQuantity'+i).val(),
+		                order_total: $('#orderTotal'+i).val(),
+		                user_point: $('#userPoint').val(),
+		                order_recipient: $('#name').val(),
+		                order_memo: $('#ask').val()
+					});
+					
+			        jQuery.ajax({
+			            url: "/order/complete", // 예: https://www.myservice.com/payments/complete
+			            type: "POST",
+			            dataType: 'json',
+			            contentType: "application/json",
+			            data: orderVO,
+			            success: function(data) {
+							alert(data+i);
+							alert('상품정보 '+i+' 주문정보 생성 완료');
 						},
 						error: function() {
-							alert('결제정보 저장 통신 실패');
+							alert('상품정보 '+i+' 주문정보 생성 실패');
 						}
-					});
-	          		
-				}
-				else {
-					alert('결제 실패');
-				}
-			})
-	      } else {
-	        	alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-	      }
-      });
-    }
+			        });
+	        	}
+	        	
+				const payData = data;
+				console.log('payData: '+payData);
+				//uid = payData.response.imp_uid;
+				//console.log('결제정보 저장 메서드 호출 전 uid: '+uid);
+	        	createPayInfo(uid);
+			}
+			else {
+				alert('결제 실패');
+			}
+		})
+      } else {
+        	alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+      }
+  });
+}
+
+function createPayInfo(uid) {
+	console.log('결제정보 저장 메서드 호출 후 uid: '+uid);
+	$.ajax({
+		type: 'get',
+		url: '/order/pay_info',
+		data: {
+			'imp_uid': uid,
+			'amount': $('#total').val(),
+			'ship': $('#shippingFee').val()
+		},
+		success: function(data) {
+			alert('결제정보 저장 완료');
+
+      		// 결제완료 페이지로 이동
+      		alert('모든 정보 저장 후 결제완료 페이지로 이동. 결제번호: '+data);
+      		location.replace('/order/complete?pay_num='+data);
+		},
+		error: function() {
+			alert('결제정보 저장 통신 실패');
+		}
+	});
+}
 
 function toggleAddrBox() {
     $('input:radio[name=deliverSpot]').change(function() {

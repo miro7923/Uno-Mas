@@ -69,4 +69,13 @@ public class CartDAOImpl implements CartDAO{
 	public CartVO getSelectedItem(int cart_num) {
 		return sqlSession.selectOne(NAMESPACE + ".getSelectedItems", cart_num);
 	}
+
+	@Override
+	public void deleteByUserNum(int user_num, int prod_num) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("prod_num", prod_num);
+		
+		sqlSession.delete(NAMESPACE + ".deleteByUserNum", map);
+	}
 }

@@ -324,4 +324,13 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<SelectVO> brandnewSelect2() throws Exception {
 		return sqlSession.selectList("com.april.unomas.mappers.indexMapper" + ".brandnewSelect2");
 	}
+
+	@Override
+	public void decreaseStock(int sell, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("sell", sell);
+		map.put("prod_num", prod_num);
+		
+		sqlSession.update(NAMESPACE + ".decreaseStock", map);
+	}
 }

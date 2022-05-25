@@ -117,11 +117,16 @@ public class ProductDAOTest {
 		log.info("Is in wishlist? " + dao.isInWishlist(1, 9));
 	}
 	
-	@Test
+//	@Test
 	public void 상품별리뷰글개수() throws Exception {
 		ProdCriteria pc = new ProdCriteria();
 		pc.setProd_num(84);
 		pc.setPerPageNum(7);
 		log.info("글목록: " + dao.getReviewList(pc));
+	}
+	
+	@Test
+	public void 재고감소() throws Exception {
+		dao.decreaseStock(2, 20);
 	}
 }

@@ -7,8 +7,8 @@
 
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/order.css?after22">
-<link rel="stylesheet" href="${path}/resources/css/inquiry_form.css?after22">
+<link rel="stylesheet" href="${path}/resources/css/order_css/order.css?after22">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after" type="text/css">
 <!-- Header end -->
 <body>
 	<!-- Header Section Begin -->

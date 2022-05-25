@@ -115,22 +115,49 @@ public class OrderController {
 		PayVO payVO = orderService.getPay(pay_num);
 		model.addAttribute("payVO", payVO);
 		
-		userService.updatePoint(payVO.getPay_point());
+		// 주문정보 가져오기
+		List<OrderVO> orderList = orderService.getOrderInfos(payVO.getOrder_code());
+		model.addAttribute("orderList", orderList);
+		log.info("@@@@@@@@@ orderList: "+orderList);
+		
+		// 장바구니에서 결제 완료된 상품 삭제 & 재고감소
+		for (int i = 0; i < orderList.size(); i++) {
+			cartService.deleteByUserNum(orderList.get(i).getUser_num(), orderList.get(i).getProd_num());
+			productService.decreaseStock(orderList.get(i).getOrder_quantity(), orderList.get(i).getProd_num());
+		}
+		
+		// 썸네일 목록 가져오기
+		List<String> prodThumbList = new ArrayList<String>();
+		for (int i = 0; i < orderList.size(); i++) {
+			ProductVO product = productService.getProduct(orderList.get(i).getProd_num());
+			prodThumbList.add(product.getProd_image3());
+		}
+		
+		model.addAttribute("prodThumbList", prodThumbList);
+		
+		// 회원정보 저장
+		UserVO userVO = userService.getUserInfoByNum(payVO.getUser_num());
+		model.addAttribute("userVO", userVO);
+		log.info("@@@@@@@@@@@@@ userVO: "+userVO);
 		
 		// 결제완료 페이지로 이동
 		return "order/complete";
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/complete", method = RequestMethod.POST)
-	public ResponseEntity completePOST(@RequestBody OrderVO vo) throws Exception {
+	@RequestMapping(value = "/complete", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	public String completePOST(@RequestBody OrderVO vo) throws Exception {
+		log.info("@@@@@@@@@@@@@ completePOST() 호출");
+		
 		// 결제 완료된 주문정보 DB에 저장
 		orderService.createOrder(vo);
+		log.info("@@@@@@@@@@@@@ 주문정보 생성 완료"+vo);
 		
 		// 적립금 업데이트
-		userService.updatePoint((int)Math.floor(vo.getUser_point()));
+//		userService.updatePoint((int)Math.floor(vo.getUser_point()));
+//		log.info("@@@@@@@@@@@@@ 적립금 업데이트 완료");
 		
-		return new ResponseEntity(HttpStatus.OK);
+		return "create order success";
 	}
 	
 	@RequestMapping(value = "/mobile_complete", method = RequestMethod.GET)
@@ -140,7 +167,7 @@ public class OrderController {
 //		IamportResponse<AccessToken> token = client.getAuth();
 		IamportResponse<Payment> result = client.paymentByImpUid(imp_uid);
 		if (result.getResponse().getAmount().compareTo(BigDecimal.valueOf(amount)) == 0) {
-			log.info("검증 완료 - 금액 같음");
+			log.info("@@@@@@@@@@ 검증 완료 - 금액 같음");
 			
 			// 결제 정보 저장
 			PayVO payVO = new PayVO();
@@ -171,42 +198,41 @@ public class OrderController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/verify_iamport/{imp_uid}")
+	@RequestMapping(value = "/verify_iamport/{imp_uid}", method = RequestMethod.POST)
 	public IamportResponse<Payment> verifyIamportPOST(@PathVariable(value = "imp_uid") String imp_uid) throws IamportResponseException, IOException {
 		 return client.paymentByImpUid(imp_uid);
 	}
 	
-	@RequestMapping(value = "/pay_info", method = RequestMethod.POST)
-	public ResponseEntity<Integer> payInfoPOST(@RequestBody PayVO vo, Model model,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// 새 결제 정보 생성
-		orderService.createPay(vo);
+	@RequestMapping(value = "/pay_info", method = RequestMethod.GET)
+	public ResponseEntity<Integer> payInfoPOST(Model model,
+			HttpServletRequest request, HttpServletResponse response,
+			@RequestParam String imp_uid, @RequestParam int amount,
+			@RequestParam int ship, HttpSession session) throws Exception {
+		log.info("@@@@@@@@@@@@@2 payInfoPOST() 호출");
+		
+		IamportResponse<Payment> result = client.paymentByImpUid(imp_uid);
+			
+		// 결제 정보 저장
+		log.info("@@@@@@@@@@ imp_uid: "+imp_uid);
+		PayVO payVO = new PayVO();
+		payVO.setOrder_code(Integer.parseInt(result.getResponse().getMerchantUid()));
+		payVO.setPay_card_company(result.getResponse().getCardName());
+		payVO.setPay_card_num(result.getResponse().getCardNumber());
+		payVO.setPay_installment(result.getResponse().getCardQuota());
+		payVO.setPay_method(result.getResponse().getPayMethod());
+		payVO.setPay_num(Integer.parseInt(result.getResponse().getMerchantUid()));
+		payVO.setPay_shippingfee(ship);
+		payVO.setPay_total_price(result.getResponse().getAmount().intValue());
+		payVO.setUser_num((int) session.getAttribute("saveNUM"));
+		
+		orderService.createPay(payVO);
+		
 		// 방금 생성된 결제 정보의 인덱스 번호 가져옴 
-		PayVO payVO = orderService.getLastPay();
+		payVO = orderService.getLastPay();
 		model.addAttribute("payVO", payVO);
+		log.info("@@@@@@@@@@@@@@@@2 새 결제 정보: "+payVO);
 		
-		// 주문정보 가져오기
-		List<OrderVO> orderList = orderService.getOrderInfos(vo.getOrder_code());
-		model.addAttribute("orderList", orderList);
-		
-		// 장바구니에서 결제 완료된 상품 삭제
-		for (int i = 0; i < orderList.size(); i++) {
-			CartVO cartVO = cartService.getSelectedItem(orderList.get(i).getCart_num());
-			cartService.delete(cartVO.getCart_num());
-		}
-		
-		// 썸네일 목록 가져오기
-		List<String> prodThumbList = new ArrayList<String>();
-		for (int i = 0; i < orderList.size(); i++) {
-			ProductVO product = productService.getProduct(orderList.get(i).getProd_num());
-			prodThumbList.add(product.getProd_image3());
-		}
-		
-		model.addAttribute("prodThumbList", prodThumbList);
-		
-		// 회원정보 저장
-		model.addAttribute("userVO", userService.getUserInfoByNum(vo.getUser_num()));
-		
+		log.info("@@@@@@@@@@@@@@ 결제번호 리턴값: "+payVO.getPay_num());
 		return new ResponseEntity<Integer>(payVO.getPay_num(), HttpStatus.OK);
 	}
 	

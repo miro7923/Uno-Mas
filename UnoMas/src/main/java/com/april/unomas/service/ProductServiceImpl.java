@@ -293,4 +293,9 @@ public class ProductServiceImpl implements ProductService{
 		List<SelectVO> newlist2 = dao.brandnewSelect2();
 		return newlist2;
 	}
+
+	@Override
+	public void decreaseStock(int sell, int prod_num) throws Exception {
+		dao.decreaseStock(sell, prod_num);
+	}
 }

@@ -358,4 +358,11 @@
         DELETE FROM wishlist
         WHERE user_num = #{user_num} and prod_num = #{prod_num}
     </delete>
+    
+    <!-- 상품 재고 감소 -->
+    <update id="decreaseStock">
+        UPDATE products
+        SET prod_stock = prod_stock - #{sell}
+        WHERE prod_num = #{prod_num}
+    </update>
 </mapper>

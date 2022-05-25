@@ -35,6 +35,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM unomasdb.cart
         WHERE cart_num = #{cart_num}
     </delete>
+    
+    <!-- 회원번호랑 상품번호로 장바구니 개별 상품 삭제 -->
+    <delete id="deleteByUserNum">
+        DELETE FROM cart
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
+    </delete>
 	
     <!-- 장바구니 수정 -->
 	<update id="modifyCart">

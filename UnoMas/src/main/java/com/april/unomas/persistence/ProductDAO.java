@@ -174,4 +174,7 @@ public interface ProductDAO {
 	
 	// 신상품별 상품 정보(메인페이지)
 	public List<SelectVO> brandnewSelect2() throws Exception;
+	
+	// 상품 재고 감소
+	public void decreaseStock(int sell, int prod_num) throws Exception;
 }

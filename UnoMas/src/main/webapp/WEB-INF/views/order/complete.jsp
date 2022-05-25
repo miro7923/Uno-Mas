@@ -10,7 +10,7 @@
 
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/order.css?after22">
+<link rel="stylesheet" href="${path}/resources/css/order_css/order.css?after22">
 <!-- Header end -->
 
 <body>
@@ -57,28 +57,19 @@
 										</tr>
 									</thead>
 									<tbody>
-									    <c:forEach var="order" items="${orderList }">
+									    <c:forEach var="order" items="${orderList }" varStatus="i">
 											<tr class="group">
 												<td class="product">
 													<div class="row">
 														<div class="col-lg-2 text-center">
-															<div class="img_center">
 															    <a href="/product/product_detail?prod_num=${order.prod_num }" target="_blank">
-															    <img src='<spring:url value="/resources/upload/images/products/thumbnail/thumbnail_${order.prod_num }"></spring:url>' 
-															    alt=""></a>
+															    <img src="<spring:url value="/resources/upload/images/products/thumbnail/${prodThumbList[i.index] }"></spring:url>" width="80" height="80"></a>
 																<!--N=a:odd.product-->
-															</div>
 														</div>
 														<div class="col-lg-10 align-self-center">
-															<dl>
-																<!-- NV_MID:82456051288 -->
-																<dt>
-																	<a href="/product/product_detail?prod_num=${order.prod_num }"
-																		target="_blank">${order.prod_name }</a>
-																	<!--N=a:odd.product-->
-																</dt>
-																<!-- <dd>수량 : 1개</dd> -->
-															</dl>
+															<a href="/product/product_detail?prod_num=${order.prod_num }"
+																target="_blank">${order.prod_name }</a>
+															<!--N=a:odd.product-->
 														</div>
 													</div>
 												</td>
@@ -109,9 +100,9 @@
 									            <strong>연락처</strong>
 									        </div>
 									        <div class="col-lg-3 text-left">
-												<label>${fn:length(userVO.user_phone, 0, 3) } - 
-												${fn:length(userVO.user_phone, 3, 7) } - 
-												${fn:length(userVO.user_phone, 7, 11) }</label> 
+												<label>${fn:substring(userVO.user_phone, 0, 3) } - 
+												${fn:substring(userVO.user_phone, 3, 7) } - 
+												${fn:substring(userVO.user_phone, 7, 11) }</label> 
 												<input type="hidden" id="phone" name="phone" value="${userVO.user_phone }">
 									        </div>
 									    </div>
@@ -157,7 +148,7 @@
 												<label>상품금액</label>
 											</div>
 											<div class="col-lg-5 text-right">
-											    <strong id="total"><fmt:formatNumber value="${payVO.pay_total_price + payVO.pay_point }" type="number"/></strong> 원
+											    <strong id="total"><fmt:formatNumber value="${payVO.pay_total_price + payVO.pay_point - payVO.pay_shippingfee }" type="number"/></strong> 원
 											</div>
 										</div>
 									</div>
@@ -205,7 +196,7 @@
 						                <label>결제금액</label>
 						            </div>
 						            <div class="col-lg-5 text-right">
-						                <strong id="orderTotal">${payVO.pay_total_price + payVO.pay_shippingfee - payVO.pay_point }</strong> 원
+						                <strong id="orderTotal"><fmt:formatNumber value="${payVO.pay_total_price }" type="number"/></strong> 원
 						            </div>
 						        </div>
 						    </div>
@@ -242,7 +233,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/complete.js"></script>
+	<script src="${path}/resources/js/order_js/complete.js"></script>
 
 
 </body>

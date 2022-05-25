@@ -60,4 +60,9 @@ public class CartServiceImpl implements CartService{
 		return cartDao.getSelectedItem(cart_num);
 	}
 
+	@Override
+	public void deleteByUserNum(int user_num, int prod_num) {
+		cartDao.deleteByUserNum(user_num, prod_num);
+	}
+
 }

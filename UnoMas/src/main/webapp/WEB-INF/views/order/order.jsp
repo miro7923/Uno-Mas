@@ -417,7 +417,7 @@
 	                                        <fmt:formatNumber value="${prodPrice }" type="number"/>원</span>
 	                                        <input type="hidden" value="${prod.prod_name }" id="prodName${i.index }">
 	                                        <input type="hidden" value="${prod.prod_num }" id="prodNum${i.index }">
-	                                        <input type="hidden" value="${prod.prod_amount }" id="prodQunatity${i.index }">
+	                                        <input type="hidden" value="${prod.prod_amount }" id="prodQuantity${i.index }">
 	                                        <input type="hidden" value="${prodPrice }" name="order_total" id="orderTotal${i.index }">
 	                                        <input type="hidden" value="${prod.cart_num }" name="cart_num" id="cartNum${i.index }">
 	                                    </li>
