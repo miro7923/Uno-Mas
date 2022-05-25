@@ -26,11 +26,6 @@ public class WishServiceImpl implements WishService {
 	}
 
 	@Override
-	public void insertWish(WishVO vo) throws Exception {
-		dao.insertWish(vo);
-	}
-
-	@Override
 	public void deleteAllWish(int user_num) throws Exception {
 		dao.deleteAllWish(user_num);
 	}
@@ -43,6 +38,11 @@ public class WishServiceImpl implements WishService {
 	@Override
 	public void insertCheckWish(WishVO wish) throws Exception {
 		dao.insertCheckWish(wish);
+	}
+
+	@Override
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception {
+		dao.insertCart(user_num, prod_num, prod_amount);
 	}
 
 }

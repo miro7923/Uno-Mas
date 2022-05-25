@@ -7,17 +7,6 @@ import lombok.ToString;
 @Getter @Setter @ToString
 public class WishVO {
 
-	/*
-	CREATE TABLE WISHLIST(
-		WISH_NUM INT NOT NULL, 
-		USER_NUM INT NOT NULL,
-		PROD_NUM INT NOT NULL,
-		PROD_NAME VARCHAR(15),
-		PROD_PRICE INT,
-		PRIMARY KEY(WISH_NUM)
-	);
-	*/
-	
 	/* 찜 목록 번호 */
 	private int wish_num;
 	/* 유저 번호 */
@@ -28,4 +17,12 @@ public class WishVO {
 	private String prod_name;
 	/* 상품 가격 */
 	private int prod_price;
+	/* 상품 할인률 */
+	private int prod_discntrate;
+	/* 썸네일 이미지 */
+	private String prod_image3;
+	/* 상품 재고량 */
+	private int prod_stock;
+	/* 장바구니 상품 수량 */
+	private int prod_amount;
 }
