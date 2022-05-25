@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.Commons;
 import com.april.unomas.domain.ImgType;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -167,13 +168,21 @@ public class ProductController {
 		model.addAttribute("reviewPm", reviewPm);
 		model.addAttribute("inquiryPm", inquiryPm);
 		
-		String user_id = (String) session.getAttribute("saveID");
-		if (user_id != null) {
-//			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
-//			model.addAttribute("user_num", user_num);
+		String user_num = (String) session.getAttribute("saveNUM");
+		if (user_num != null) {
+			model.addAttribute("isInWishlist", service.isInWishlist(Integer.parseInt(user_num), prod_num));
 		}
 		else
 			model.addAttribute("isInWishlist", false);
+		
+		// 문의글 댓글 정보 저장
+		List<ProdCommentVO> inqComList = new ArrayList<ProdCommentVO>();
+		for (int i = 0; i < inquiryList.size(); i++) {
+			ProdCommentVO comVO = service.getInqComment(inquiryList.get(i).getP_inquiry_num());
+			inqComList.add(comVO);
+		}
+		model.addAttribute("inqComList", inqComList);
+		log.info("inqComList: "+inqComList);
 		
 		return "product/productDetail";
 	}
@@ -486,6 +495,25 @@ public class ProductController {
 	public String removeInquiryGET(@RequestParam("inquiry_num") int inquiry_num, 
 			@RequestParam("prod_num") int prod_num) throws Exception {
 		service.removeInquiry(inquiry_num);
+		
+		return "redirect:/product/product_detail?prod_num=" + prod_num;
+	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.GET)
+	public String writeInqCommentGET(@RequestParam int prod_num, @RequestParam int p_inquiry_num,
+			Model model) throws Exception {
+		model.addAttribute("prod", service.getProduct(prod_num));
+		model.addAttribute("inq", service.getInquiry(p_inquiry_num));
+		
+		return "product/inquiryAnswerForm";
+	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.POST)
+	public String writeInqCommentPOST(ProdCommentVO vo, HttpServletRequest request) throws Exception {
+		service.writeInqComment(vo);
+		log.info("ProdCommentVO: "+vo);
+		
+		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
 		
 		return "redirect:/product/product_detail?prod_num=" + prod_num;
 	}

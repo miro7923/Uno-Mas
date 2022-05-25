@@ -16,7 +16,9 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/product_css/productDetail.css?after2">
 <!-- Header end -->
-
+<%
+    session.setAttribute("saveANUM", 1);
+%>
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -279,7 +281,7 @@
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
 												문의 및 요청사항은 마이페이지 내  
-												<span onclick="window.parent.location.href = '/mypage/my_QnA'"
+												<span onclick="window.parent.location.href = '/user/mypage'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
 										<div class="comment-option" id="reviewListAjax">
@@ -404,7 +406,7 @@
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
 												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
-												onclick="window.parent.location.href = '/mypage/my_QnA'"
+												onclick="window.parent.location.href = '/user/mypage'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
 										<div class="comment-option" id="inqDiv">
@@ -463,7 +465,13 @@
 																    onclick="confirmToRemove('inquiry', ${inquiryVo.p_inquiry_num}, ${vo.prod_num })" style="color: #5179a5;">삭제</a>
 																</p>
 															</c:if>
-															<p class="text-right"><a href="#">답변하기</a></p>
+															<c:if test="${sessionScope.saveANUM != null && inqComList != null && inqComList[it.index] == null }">
+																<p class="text-right"><a href="/product/write_inq_comment?prod_num=${vo.prod_num }&p_inquiry_num=${inquiryVo.p_inquiry_num}">답변하기</a></p>
+															</c:if>
+															
+															<c:if test="${inqComList != null && inqComList[it.index] != null }">
+															    <p><br><br>${inqComList[it.index].com_content }</p>
+															</c:if>
 														</div>
 													</c:forEach>
 											    </c:otherwise>

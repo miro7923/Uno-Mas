@@ -3,6 +3,7 @@ package com.april.unomas.service;
 import java.util.List;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -177,4 +178,10 @@ public interface ProductService {
 	
 	// 상품 재고 감소
 	public void decreaseStock(int sell, int prod_num) throws Exception;
+	
+	// 상품 문의 댓글 작성
+	public void writeInqComment(ProdCommentVO vo) throws Exception;
+	
+	// 상품 문의 댓글 가져오기
+	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception;
 }

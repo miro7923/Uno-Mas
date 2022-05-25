@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -332,5 +333,15 @@ public class ProductDAOImpl implements ProductDAO {
 		map.put("prod_num", prod_num);
 		
 		sqlSession.update(NAMESPACE + ".decreaseStock", map);
+	}
+
+	@Override
+	public void insertInqComment(ProdCommentVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertInqComment", vo);
+	}
+
+	@Override
+	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getInqComment", p_inquiry_num);
 	}
 }

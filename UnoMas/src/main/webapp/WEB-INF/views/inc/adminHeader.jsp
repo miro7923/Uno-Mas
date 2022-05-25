@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    	AdminVO vo = (AdminVO)session.getAttribute("saveID");
+    	AdminVO vo = (AdminVO)session.getAttribute("saveAdmin");
 		if(vo == null) {
 %>
 		<script>location.href="/admin/admin_login";</script>
