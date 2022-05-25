@@ -12,6 +12,9 @@ public class ProdPageMaker {
 	private boolean next;
 	private int pageBlock = 10;
 	private ProdCriteria cri;
+	private String searchType;
+	private String keyword;
+//	private String srchTypeKyw;
 	
 	public void setCri(ProdCriteria cri) {
 		this.cri = cri;
@@ -33,4 +36,24 @@ public class ProdPageMaker {
 		prev = (startPage == 1) ? false : true;
 		next = (endPage * cri.getPerPageNum() >= totalCnt) ? false : true;
 	}
+	
+//	public void setSrchTypeKyw(String searchType, String keyword) {
+//		 
+//		 if(searchType.equals("") || keyword.equals("")) {
+//			 srchTypeKyw = ""; 
+//		 } else {
+//			 srchTypeKyw = "&searchType=" + searchType + "&keyword=" + keyword; 
+//		 }  
+//	}
+	
+	public String getSrchTypeKyw() {
+		
+		if(searchType.equals("") || keyword.equals("")) {
+			return "";
+		} else {
+			return "&searchType=" + searchType + "&keyword=" + keyword;
+		}
+	}
+	
+	
 }

@@ -57,14 +57,25 @@ input[type="checkbox"]:checked::before {
 input:focus {
 	outline: none !important;
 	border-color: #b9ce45;
-	box-shadow: 0 0 5px #b9ce45;
+/* 	box-shadow: 0 0 5px #b9ce45; */
 }
 
 select:focus{
 	outline: none !important;
-	border-color: #b9ce45;
-	box-shadow: 0 0 5px #b9ce45;
+	border-color:#b9ce45;
+/* 	box-shadow: 0 0 5px #b9ce45; */
 }
+/* .search input:focus { */
+/* 	outline: none !important; */
+/* 	border-color: none; */
+/* 	box-shadow: none; */
+/* } */
+
+/* .search select:focus{ */
+/* 	outline: none !important; */
+/* 	border-color: none; */
+/* 	box-shadow: none; */
+/* } */
 
 .cart-table table tr td.cart-pic {
 	width: 5%;

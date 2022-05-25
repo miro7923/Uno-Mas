@@ -54,13 +54,28 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Override
-	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
-		return sqlSession.selectList(NAMESPACE+".getAllProductList" ,pc);
+	public List<ProductVO> getAllProductList(int pageStart, int perPageNum, String searchType, String keyword) throws Exception {
+	
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("pageStart", pageStart);
+		data.put("perPageNum", perPageNum);
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		
+		return sqlSession.selectList(NAMESPACE+".getAllProductList", data);
 	}
 
 	@Override
-	public Integer getAllCnt() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+".getAllCnt");
+	public Integer getAllCnt(String searchType, String keyword) throws Exception {
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+			
+		
+		return sqlSession.selectOne(NAMESPACE+".getAllCnt", data);
 	}
 
 	@Override
