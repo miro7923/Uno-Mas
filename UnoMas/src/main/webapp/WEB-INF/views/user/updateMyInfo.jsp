@@ -101,6 +101,7 @@
 					<tr>
 						<th>추가 배송지</th>
 						<td style="line-height: 25px;">
+<%-- 						<c:forEach var="vo"></c:forEach> --%>
 							<input type="text" id="addr_num" name="addr_num" value="${addAddrVO.addr_name }" placeholder="배송지 별명"><br>
 							<input type="text" id="postalcode1" name="addr_postalcode" value="${addAddrVO.addr_postalcode }" placeholder="우편번호">
 							<input type="text" id="roadaddr1" name="addr_roadaddr" value="${addAddrVO.addr_roadaddr }" placeholder="도로명주소">

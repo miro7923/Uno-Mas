@@ -170,10 +170,9 @@ public class UserController {
 		
 		
 		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
-		System.out.println("세션값: " + saveNUM);
-		List<UserVO> addAddrVO = service.getAddAddr(saveNUM);
-		model.addAttribute("addAddrVO", addAddrVO);
-
+		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
+		model.addAttribute("addAddrVO", addAddrList);
+		
 		return "/user/updateMyInfo";
 	}
 
