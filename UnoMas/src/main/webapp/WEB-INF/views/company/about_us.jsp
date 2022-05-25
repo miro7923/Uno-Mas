@@ -240,90 +240,59 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/1.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/yj.png" alt="yj" />
                             <h4>황유진</h4>
                             <p class="text-muted">팀장, 상품파트</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/2.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/se.jpg" alt="se" />
                             <h4>오성은</h4>
                             <p class="text-muted">부팀장, 회원파트</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/3.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/jy.png" alt="jy" />
                             <h4>김진영</h4>
                             <p class="text-muted">게시판파트</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/1.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/sj.jpg" alt="sj" />
                             <h4>박승지</h4>
                             <p class="text-muted">상품파트, 메인페이지파트</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/2.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/hb.png" alt="hb" />
                             <h4>반현빈</h4>
                             <p class="text-muted">메인페이지 파트</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/3.jpg" alt="..." />
+                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/eh.jpg" alt="eh" />
                             <h4>오은현</h4>
                             <p class="text-muted">회원파트</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 lastRow">
-                        <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/1.jpg" alt="..." />
-                            <h4>윤정환</h4>
-                            <p class="text-muted">게시판파트</p>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-<!--                 <div class="row"> -->
-<!--                     <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">팀원소개 추가설명</p></div> -->
-<!--                 </div> -->
             </div>
         </section>
+<!--                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a> -->
+<!--                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a> -->
+<!--                             <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a> -->
         <!-- Contact-->
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contact Us</h2>
-<!--                     <h3 class="section-subheading text-muted">contactus 설명.</h3> -->
                 </div>
                 <form id="contactForm" data-sb-form-api-token="f1e01f3d-dfc2-496d-b5e2-9faeefa25c9a">
                     <div class="row align-items-stretch mb-5">
@@ -374,9 +343,6 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright &copy; uno más 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="col-lg-4 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
