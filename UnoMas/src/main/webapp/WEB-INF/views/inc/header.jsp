@@ -60,8 +60,9 @@
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All Categories</button>
                             <div class="input-group">
-                                <input type="text" placeholder="검색어를 입력해주세요.">
-                                <button type="button"><i class="ti-search"></i></button>
+                            	<input type="hidden" value="prod_name" name="search_type" id="search_type_prod">
+                                <input type="text" id="keyword_prod" name="keyword" value="" placeholder="검색어를 입력해주세요.">
+                                <button type="button" onclick="search_prod()"><i class="ti-search"></i></button>
                             </div>
                         </div>
                     </div>

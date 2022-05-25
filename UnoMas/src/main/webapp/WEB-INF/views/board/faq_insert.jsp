@@ -10,6 +10,11 @@
 </head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
+
 <!-- Head end -->
 
 <body>
