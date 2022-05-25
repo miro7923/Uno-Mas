@@ -214,7 +214,7 @@ public class ProductController {
 		
 		if(page == null ) { page = "1";}
 		if(searchType == null ) { searchType = "1";}
-		if(keyword == null ) { keyword = "1";}
+		if(keyword == null ) { keyword = "";}
 		
 		log.info("페이지 :"+page);
 		// 하단 페이지 처리

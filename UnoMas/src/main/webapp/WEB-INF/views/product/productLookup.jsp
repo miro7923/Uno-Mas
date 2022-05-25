@@ -159,8 +159,7 @@
 														</c:if>
 														
 														<c:forEach var="page" begin="${pm.startPage }" end="${pm.endPage }">
-<%-- 															<span><a href="/product/product_lookup?page=${page }${pm.srchTypeKyw}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span> --%>
-															<span><a href="/product/product_lookup?page=${page }&searchType=${pm.searchType}&keyword=${pm.keyword}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span>
+															<span><a href="/product/product_lookup?page=${page }${pm.srchTypeKyw}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span>
 														</c:forEach>
 														
 														<c:if test="${pm.next && pm.endPage > 0 }">
