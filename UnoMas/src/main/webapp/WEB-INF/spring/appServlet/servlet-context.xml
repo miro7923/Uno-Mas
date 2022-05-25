@@ -58,30 +58,22 @@
     
     <!-- 상품 상세이미지 업로드 경로 -->
     <beans:bean id="prodDimgUploadPath" class="java.lang.String">
-
         <beans:constructor-arg value="D:\Uno-Mas\UnoMas\src\main\webapp\resources\upload\images\products\detail"/>
-
     </beans:bean>
     
     <!-- 상품 썸네일 업로드 경로 -->
     <beans:bean id="prodThumbUploadPath" class="java.lang.String">
-
         <beans:constructor-arg value="D:\Uno-Mas\UnoMas\src\main\webapp\resources\upload\images\products\thumbnail"/>
-
     </beans:bean>
     
     <!-- 상품 상단 이미지 업로드 경로 -->
     <beans:bean id="prodTopImgUploadPath" class="java.lang.String">
-
         <beans:constructor-arg value="D:\Uno-Mas\UnoMas\src\main\webapp\resources\upload\images\products\top"/>
-
     </beans:bean>
     
     <!-- 상품 품절 이미지 업로드 경로 -->
     <beans:bean id="prodSoldoutImgUploadPath" class="java.lang.String">
-
         <beans:constructor-arg value="D:\Uno-Mas\UnoMas\src\main\webapp\resources\upload\images\products\soldout"/>
-
     </beans:bean>
 	
 	<!-- 인터셉터 적용 -->

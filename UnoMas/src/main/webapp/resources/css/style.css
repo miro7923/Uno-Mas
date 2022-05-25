@@ -1033,7 +1033,6 @@ ol {
 .women-banner {
 	padding-right: 65px;
 	padding-left: 65px;
-	padding-top: 0;
 	padding-bottom: 80px;
 }
 
@@ -1042,7 +1041,7 @@ ol {
 	margin-left: -15px;
 	margin-right: -15px;
 	text-align: center;
-	padding-top: 285px;
+	padding-top: 400px;
 }
 
 .product-large h2 {
@@ -1233,7 +1232,7 @@ ol {
 
 .product-item .pi-text {
 	text-align: center;
-	padding-top: 26px;
+	padding-top: 15px;
 }
 
 .product-item .pi-text .catagory-name {

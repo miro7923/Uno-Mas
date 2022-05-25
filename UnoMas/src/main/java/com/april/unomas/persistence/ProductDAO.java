@@ -174,4 +174,7 @@ public interface ProductDAO {
 	
 	// 신상품별 상품 정보(메인페이지)
 	public List<SelectVO> brandnewSelect2() throws Exception;
+	
+	// 가정의달 소고기 상품 정보
+	public List<SelectVO> mayEvent() throws Exception;
 }
