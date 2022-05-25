@@ -293,4 +293,10 @@ public class ProductServiceImpl implements ProductService{
 		List<SelectVO> newlist2 = dao.brandnewSelect2();
 		return newlist2;
 	}
+
+	@Override
+	public List<SelectVO> mayEvent() throws Exception {
+		List<SelectVO> beefList = dao.mayEvent();
+		return beefList;
+	}
 }
