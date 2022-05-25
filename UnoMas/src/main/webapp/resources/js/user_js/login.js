@@ -24,7 +24,6 @@ function memberCk(){
 				$("#cir_text").html("잘못된 아이디 혹은 비밀번호입니다.");
 			} else {
 				window.location.replace(document.referrer);
-//				window.location.href="http://localhost:8088/index" // 위 코드 안될경우
 			}
 		},
 		error: function(error) {

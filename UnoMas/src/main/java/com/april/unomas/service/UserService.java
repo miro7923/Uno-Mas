@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.april.unomas.domain.UserVO;
@@ -17,7 +18,7 @@ public interface UserService {
 	public int idCheck(UserVO vo);
 	
 	// 로그인
-	public Integer loginUser(UserVO vo);
+	public HashMap loginUser(UserVO vo);
 	
 	// 아이디 찾기
 	public int findIdProcess(UserVO vo);
@@ -28,16 +29,22 @@ public interface UserService {
 	// 비번 변경
 	public int changePW(UserVO vo);
 	
-	// 회원 정보 가져오기
+	// 회원정보 가져오기
 	public UserVO getUserInfo(String id);
 	
-	// 회원정보 수정을 위한 비밀번호 재확인
-	public boolean checkPw(UserVO vo);
-		
 	// 회원정보수정
 	public void updateUser(UserVO vo);
-//	public void updateAddr(UserVO vo);
+
+	// 추가 배송지 조회
+	public List<UserVO> getAddAddr(int user_num);
+	
+	// 추가 배송지 수정
+	public void updateAddAddr(UserVO vo);
 	
 	// 회원탈퇴
 	public void deleteUser(UserVO vo);
+	
+	// 비번 체크
+	public Integer checkPW(UserVO vo);
+	
 }

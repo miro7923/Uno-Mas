@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -25,9 +26,7 @@ public class UserServiceImpl implements UserService {
 	// 시간정보
 	@Override
 	public String getTimeS() {
-		
 		String time = dao.getTime();
-		
 		return time;
 	}
 	
@@ -44,10 +43,9 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
-
 	// 로그인
 	@Override
-	public Integer loginUser(UserVO vo) {
+	public HashMap loginUser(UserVO vo) {
 		return dao.loginUser(vo);
 	}
 	
@@ -59,11 +57,10 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
-	// 비번찾기
+	// 비번 찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
 		HashMap<String, String> findpw_map = dao.findPwProcess(vo);
-		
 		return findpw_map;
 	}
 	
@@ -74,21 +71,12 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
-	// 회원 정보 수정위한 비밀번호 재확인
-	@Override
-	public boolean checkPw(UserVO vo) {
-		return dao.checkPw(vo);
-	}
-	
 	// 회원 정보 조회
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = dao.getUserInfo(id);
-		
 		return userInfoVO;
 	}
-	
-	
 
 	// 회원정보수정
 	@Override
@@ -96,21 +84,29 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
-//	@Override
-//	public void updateAddr(UserVO vo) {
-//		dao.updateAddr(vo);
-//	}
+	// 추가 배송지 조회
+	@Override
+	public List<UserVO> getAddAddr(int user_num) {
+		List<UserVO> addAddrVO = dao.getAddAddr(user_num);
+		return addAddrVO;
+	}
+
+	// 추가 배송지 수정
+	@Override
+	public void updateAddAddr(UserVO vo) {
+		dao.updateAddAddr(vo);
+	}
 
 	// 회원 탈퇴
 	@Override
 	public void deleteUser(UserVO vo) {
-
 		dao.deleteUser(vo);
 	}
-	
 
-	
-	
-	
+// 비번 체크
+   @Override
+   public Integer checkPW(UserVO vo) {
+      return dao.checkPW(vo);
+   }
 	
 }

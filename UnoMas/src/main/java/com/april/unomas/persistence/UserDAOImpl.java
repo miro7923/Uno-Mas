@@ -1,4 +1,4 @@
-package com.april.unomas.persistence;
+	package com.april.unomas.persistence;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,36 +29,25 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSession sqlSession;
 	private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 	private static final String NAMESPACE = "com.unomas.mapper.userMapper";
-	
+
 	@Autowired
 	JavaMailSender mailSender;
-	
+
 	@Override
 	public String getTime() {
-		log.info("DAO : 시간정보 확인 메서드 실행");
 		String time = sqlSession.selectOne(NAMESPACE + ".getTime");
-		log.info("DAO : time - " + time);
 		return time;
 	}
 
 	@Override
 	public void joinAdmin(AdminVO vo) {
-		
-		log.info("DAO : 관리자 등록 메서드 실행");
-		
 		sqlSession.insert(NAMESPACE + ".joinAdmin", vo);
-		
-		log.info("DAO : SQL 실행 완료");
-		log.info("DAO : admin - " + vo.toString());
 	}
-	
-	
+
 	// 회원가입
 	@Override
 	public void joinUser(UserVO vo) {
-		System.out.println("DAO: insertMember(vo)실행");
 		sqlSession.insert(NAMESPACE + ".joinUser", vo);
-		System.out.println("DAO: 회원가입 완료!");
 	}
 
 	// 아이디 중복검사
@@ -68,35 +57,29 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-	   // 로그인
-	   @Override
-	   public Integer loginUser(UserVO vo) {
-	      int result = 0;
-	      
-	      UserVO loginVO = sqlSession.selectOne(NAMESPACE+".loginUser", vo);
-	      
-	      // 로그인 실패
-	      if(loginVO == null) {
-	         result=0;
-	      } else {
-	         if (loginVO.getUser_status() != 1) {
-	            result = -1;
-	         } else {
-	            if (vo.getUser_id().equals(loginVO.getUser_id())) {
-	               if(vo.getUser_pass().equals(loginVO.getUser_pass())) {
-	                  result=1;
-	               } else {
-	                  result = 0;
-	               }   
-	            }
-	         }
-	      }
-	      
-	      // 로그인 성공 및 정보 저장
-	      return result;
-	   }
-	
-	
+	// 로그인
+	@Override
+	public HashMap<String, Integer> loginUser(UserVO vo) {
+		HashMap<String, Integer> loginMap = new HashMap<String, Integer>() { 
+			{ put("result", 0); put("num", null); }
+		};
+		int result = 0;
+		UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
+
+		if (loginVO == null) {
+			result = 0;
+		} else {
+			if (loginVO.getUser_status() != 1) {
+				result = -1;
+			} else {
+				result = 1;
+				loginMap.put("num", loginVO.getUser_num());
+			}
+		}
+		loginMap.put("result", result);
+		return loginMap;
+	}
+
 	// 회원 아이디 찾기
 	@Override
 	public int findIdProcess(UserVO vo) {
@@ -119,7 +102,6 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-	
 	// 회원 비밀번호 찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
@@ -150,111 +132,90 @@ public class UserDAOImpl implements UserDAO {
 		}
 		findpw_map.put("find_pw", Integer.toString(result));
 		findpw_map.put("pwCode", pwCode);
-		
+
 		return findpw_map;
 	}
-	
-	
+
 	// 비번 변경
 	@Override
-	public int changePW(UserVO vo) {	
+	public int changePW(UserVO vo) {
 		int result = sqlSession.update(NAMESPACE + ".changePW_sql", vo);
 
 		return result;
 	}
 
-	
-	// 회원 정보 조회
+	// 회원정보 조회
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = sqlSession.selectOne(NAMESPACE + ".getUserInfo", id);
 
 		return userInfoVO;
 	}
-	
-	// 회원정보수정을 위한 비밀번호 재확인
-	@Override
-	public boolean checkPw(UserVO vo) {
 
-		boolean result = false;
-		String user_id = null;
-		String user_pass = null;
-		
-		Map<String,String> map = new HashMap<String, String>();
-		map.put("user_id", user_id);
-		map.put("user_pass", user_pass);
-		int count = sqlSession.selectOne(NAMESPACE+".checkPw", map);
-		if(count == 1)
-			result = true;
-		
-		return result;
-	}
-	
-	// 회원정보수정
+	// 회원정보 수정
 	@Override
 	public Integer updateUser(UserVO vo) {
-		
-		Integer result = sqlSession.update(NAMESPACE+".updateUser",vo);
+		Integer result = sqlSession.update(NAMESPACE + ".updateUser", vo);
 
-		log.info("회원정보수정 완료");
-		
 		return result;
-		
+
 	}
 	
-	// 추가 배송지(orderAddr)
-//	@Override
-//	public Integer updateAddr(UserVO vo) {
-//		
-//		Integer result =sqlSession.update(NAMESPACE+".updateAddr",vo);
-//
-//		log.info("회원정보수정-추가배송지 완료");
-//		
-//		return result;
-//	}
+	// 추가 배송지 조회
+	@Override
+	public List<UserVO> getAddAddr(int user_num) {
+		List<UserVO> addAddrVO = sqlSession.selectList(NAMESPACE+".getAddAddr", user_num);
+		
+		log.info("user_num: " +user_num);
+		log.info("DAO 조회");
+
+		return addAddrVO;
+	}
+
+	// 추가 배송지 수정
+	@Override
+	public Integer updateAddAddr(UserVO vo) {
+		Integer result = sqlSession.update(NAMESPACE+".updateAddAddr", vo);
+		log.info("DAO 수정");
+
+		return result;
+	}
+	
 
 	// 회원탈퇴
 	@Override
 	public void deleteUser(UserVO vo) {
+  		sqlSession.delete(NAMESPACE + ".deleteUser", vo);
 
-		log.info("DAOImpl-deleteUser(vo) 실행");
-		
-		sqlSession.delete(NAMESPACE+".deleteUser",vo);
-		
-		log.info("회원탈퇴 완료");
-		
-		
 	}
-	
 
-	
-	
+
+	// 비번 체크
+	@Override
+	public Integer checkPW(UserVO vo) {
+		return sqlSession.selectOne(NAMESPACE + ".checkPW", vo);
+	}
+
+	// 이메일
 	@Override
 	public int sendEmailMethod(EmailVO evo) {
-		System.out.println("DAO: 이메일 보내기 들어옴");
 		int result = 0;
 		SimpleMailMessage msg = new SimpleMailMessage();
-		
+
 		try {
 			msg.setFrom(evo.getSender());
 //			msg.setTo(evo.getRecipients());
 			msg.setTo("tksop59@naver.com");
-			msg.setSubject(evo.getSubject());	// 제목 셋팅
-			msg.setText(evo.getContent());	// 내용 셋팅
-		
+			msg.setSubject(evo.getSubject()); // 제목 셋팅
+			msg.setText(evo.getContent()); // 내용 셋팅
+
 			mailSender.send(msg);
 			result = 1;
-		} catch(Exception e) {
-			
+		} catch (Exception e) {
+
 		}
-		System.out.println("DAO: 이메일 보내기 완료~~~");
-		
+
 		return result;
 	}
-	
-	
-	
-	
-	
-	
+
 }
