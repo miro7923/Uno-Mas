@@ -76,7 +76,8 @@ public class AdminController {
 		Integer result = service.adminLogin(vo);
 
 		if (result == 1) {
-			session.setAttribute("saveAdmin", vo);
+			session.setAttribute("saveAID", vo.getAdmin_id());
+			session.setAttribute("saveANUM",vo.getAdmin_num());
 		}
 
 		return Integer.toString(result);
