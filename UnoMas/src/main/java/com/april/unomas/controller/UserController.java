@@ -1,6 +1,7 @@
 package com.april.unomas.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -63,17 +64,17 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
-		
+
 		HashMap loginMap = service.loginUser(vo);
-		
+
 		String result = String.valueOf(loginMap.get("result"));
-		if(result.equals("1")) {
+		if (result.equals("1")) {
 			session.setAttribute("saveID", vo.getUser_id());
 			session.setAttribute("saveNUM", loginMap.get("num"));
 		}
+
 		return result;
 	}
-
 
 	// 로그아웃 구현
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -149,24 +150,29 @@ public class UserController {
 
 	// 회원정보 조회
 	@RequestMapping(value = "/myInfo")
-	   public String myInfo(HttpSession session, Model model) {
-		
-	      String saveID = (String) session.getAttribute("saveID");
-	      UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
-	      model.addAttribute("userInfoVO", userInfoVO);
-	      
-	      return "/user/myInfo";
-	   }
+	public String myInfo(HttpSession session, Model model) {
 
-	//회원정보수정(GET)
-	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
-	public String myInfoUpdateGET(UserVO vo,HttpSession session, Model model) {
-
-		String userInfo = (String) session.getAttribute("saveID");
-
-		UserVO userInfoVO = service.getUserInfo(userInfo);
+		String saveID = (String) session.getAttribute("saveID");
+		UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
 
 		model.addAttribute("userInfoVO", userInfoVO);
+
+		return "/user/myInfo";
+	}
+
+	// 회원정보수정(GET)
+	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
+	public String myInfoUpdateGET(HttpSession session, Model model) {
+
+		String saveID = (String) session.getAttribute("saveID");
+		UserVO userInfoVO = service.getUserInfo(saveID);
+		model.addAttribute("userInfoVO", userInfoVO);
+		
+		
+		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
+		System.out.println("세션값: " + saveNUM);
+		List<UserVO> addAddrVO = service.getAddAddr(saveNUM);
+		model.addAttribute("addAddrVO", addAddrVO);
 
 		return "/user/updateMyInfo";
 	}
@@ -176,9 +182,12 @@ public class UserController {
 	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
 		if (eAgree.equals("1")) {
 			vo.setUser_emailagree(1);
-		}
-		
+		} 
+
 		service.updateUser(vo);
+		service.updateAddAddr(vo);
+
+		log.info("수정완료");
 
 		return "redirect:/user/myInfo";
 	}
@@ -204,12 +213,12 @@ public class UserController {
 	public String pwCheck() {
 		return "/user/checkPW";
 	}
-	   
+
 	// 비번체크
-   @RequestMapping(value = "/check_pw", method = RequestMethod.POST)
-   @ResponseBody
-   public String pwCheck(UserVO vo) {
-      return Integer.toString(service.checkPW(vo));
-   }
+	@RequestMapping(value = "/check_pw", method = RequestMethod.POST)
+	@ResponseBody
+	public String pwCheck(UserVO vo) {
+		return Integer.toString(service.checkPW(vo));
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -83,9 +84,19 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
+	// 추가 배송지 조회
 	@Override
-	public void updateAddr(UserVO vo) {
-		dao.updateAddr(vo);
+	public List<UserVO> getAddAddr(int user_num) {
+		List<UserVO> addAddrVO = dao.getAddAddr(user_num);
+		
+		log.info("서비스까지");
+		return addAddrVO;
+	}
+
+	// 추가 배송지 수정
+	@Override
+	public void updateAddAddr(UserVO vo) {
+		dao.updateAddAddr(vo);
 	}
 
 	// 회원 탈퇴

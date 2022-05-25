@@ -1,6 +1,7 @@
 package com.april.unomas.persistence;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.april.unomas.domain.AdminVO;
@@ -35,7 +36,12 @@ public interface UserDAO {
 
 	// 회원정보수정
 	public Integer updateUser(UserVO vo);
-	public Integer updateAddr(UserVO vo);
+	
+	// 추가 배송지 조회
+	public List<UserVO> getAddAddr(int user_num);
+	
+	// 추가 배송지 수정
+	public Integer updateAddAddr(UserVO vo); 
 
 	// 회원탈퇴
 	public void deleteUser(UserVO vo);

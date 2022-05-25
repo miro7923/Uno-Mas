@@ -52,7 +52,7 @@
   
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
-  	SELECT user_id, user_pass, user_status
+  	SELECT user_id, user_pass, user_status, user_num
   	FROM users 
   	WHERE user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
@@ -73,7 +73,15 @@
   	where user_id=#{user_id}
   </update>
   
-  <update id="updatePlusAddr">
+  <!-- 회원 추가 배송지 조회 -->
+  <select id="getAddAddr" parameterType="Int" resultType="com.april.unomas.domain.UserVO">
+  	select addr_num, user_num, addr_name, addr_postalcode, addr_roadaddr, addr_detailaddr
+  	from order_addr
+  	where user_num=#{user_num}
+  </select>
+  
+  <!-- 회원 추가 배송지 설정 -->
+  <update id="updateAddAddr">
   	update order_addr
   	set addr_name=#{addr_name}, addr_postalcode=#{addr_postalcode}, addr_roadaddr=#{addr_roadaddr}, addr_detailaddr=#{addr_detailaddr}
   	where user_num=#{user_num}

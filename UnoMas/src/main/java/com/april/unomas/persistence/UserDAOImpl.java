@@ -160,17 +160,27 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 
 	}
-
-	// 추가 배송지(orderAddr)
+	
+	// 추가 배송지 조회
 	@Override
-	public Integer updateAddr(UserVO vo) {
+	public List<UserVO> getAddAddr(int user_num) {
+		List<UserVO> addAddrVO = sqlSession.selectList(NAMESPACE+".getAddAddr", user_num);
 		
-		Integer result =sqlSession.update(NAMESPACE+".updateAddr",vo);
+		log.info("user_num: " +user_num);
+		log.info("DAO 조회");
 
-		log.info("회원정보수정-추가배송지 완료");
-		
+		return addAddrVO;
+	}
+
+	// 추가 배송지 수정
+	@Override
+	public Integer updateAddAddr(UserVO vo) {
+		Integer result = sqlSession.update(NAMESPACE+".updateAddAddr", vo);
+		log.info("DAO 수정");
+
 		return result;
 	}
+	
 
 	// 회원탈퇴
 	@Override
@@ -178,6 +188,7 @@ public class UserDAOImpl implements UserDAO {
   		sqlSession.delete(NAMESPACE + ".deleteUser", vo);
 
 	}
+
 
 	// 비번 체크
 	@Override
