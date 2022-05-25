@@ -16,6 +16,20 @@
 	max-width: 60%;
 }
 
+/* input[type="checkbox"] { */
+/* 	display: none; */
+/* } */
+
+/* input[type="checkbox"] { */
+/* 	width: 18px;	 */
+/* 	height: 18px; */
+/* } */
+/* input[type="checkbox"]:checked { */
+/* 	background: #b9ce45; */
+/*     border-color: #b9ce45; */
+/* 	color: #ffffff; */
+/* } */
+
 input[type="checkbox"] {
     -webkit-appearance: none;
     position: relative;
@@ -56,16 +70,31 @@ input[type="checkbox"]:checked::before {
 
 input:focus {
 	outline: none !important;
-	border-color: #b9ce45;
-	box-shadow: 0 0 5px #b9ce45;
+	border-color: #f67555;
+	box-shadow: 0 0 5px #f67555;
 }
 
 select:focus{
 	outline: none !important;
-	border-color: #b9ce45;
-	box-shadow: 0 0 5px #b9ce45;
-}
 
+	border-color: #f67555;
+	box-shadow: 0 0 5px #f67555;
+}
+/* .search input:focus { */
+/* 	outline: none !important; */
+/* 	border-color: none; */
+/* 	box-shadow: none; */
+/* } */
+
+/* .search select:focus{ */
+/* 	outline: none !important; */
+/* 	border-color: none; */
+/* 	box-shadow: none; */
+/* } */
+
+/* .cart-table table tr td.cart-pic { */
+/* 	width: 4%; */
+/* } */
 .cart-table table tr td.cart-pic {
 	width: 5%;
 }
@@ -138,6 +167,11 @@ select:focus{
 	word-wrap: normal;
     width: 100%;
     border-radius: 0;
+/*     border: 2px solid #ECEDEE; */
+/*     height: 46px; */
+/*     line-height: 35px; */
+/*     margin: 0px 0px 2px; */
+    
 }
 
 .selectBox {
@@ -145,11 +179,6 @@ select:focus{
     border: 2px solid #ebebeb;
     margin-bottom: 10px;
     padding-left: 15px;
-}
-
-.selectBox disabled {
-	font-weight: normal;
-	color: black;
 }
 
 .title {
@@ -174,11 +203,14 @@ select:focus{
 .subtitle-box .span {
 	color: #b9ce45;
 }
-
 .subtitle-box h5 {
 	margin-top: 20px;
     margin-bottom: 20px;
 }
+
+/* .categoryList.on { */
+/*     display: block; */
+/* } */
 
 .subtitle-box {
     overflow: hidden;

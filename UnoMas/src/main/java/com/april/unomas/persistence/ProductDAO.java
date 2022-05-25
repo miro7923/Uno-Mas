@@ -32,10 +32,10 @@ public interface ProductDAO {
 	public List<Integer> getTopcateCnt(int topcate_num) throws Exception;
   
 	// 전체 상품 목록 가져오기
-	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception;
+	public List<ProductVO> getAllProductList(int pagestart, int perPageNum, String searchType, String keyword) throws Exception;
 	
 	// 전체 상품 개수 가져오기
-	public Integer getAllCnt() throws Exception;
+	public Integer getAllCnt(String searchType, String keyword) throws Exception;
 	
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;
@@ -53,7 +53,7 @@ public interface ProductDAO {
 	public List<String> getDcateNames(int topcate_num) throws Exception;
 	
 	// 상품별 카테고리 가져오기
-	public List<CategoryVO> getCategory(int prod_num) throws Exception;
+	public List<CategoryVO> getCategory(int dcate_num) throws Exception;
 	
 	// 소분류별로 분류해서 가져오기
 	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception;

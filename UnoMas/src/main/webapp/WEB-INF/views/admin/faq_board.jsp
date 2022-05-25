@@ -36,51 +36,8 @@
     </select>
     <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
+    <button id="search_btn" onclick="search_admin_faq()">검색</button>
     
-    <script type="text/javascript">
-    	function search() {
-    		var search_type_val = document.getElementById("search_type");
-    		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
-    		var keyword_val = document.getElementById("keyword").value;
-    		var url = "/admin/faq_board?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
-    		
-    		location.href=url;
-    	}
-    </script>
-    
-    <script>
-  var preContent;
-
-  function view_content(obj)
-  {
-    var div = obj.parentNode;
-
-    for (var i=1, m=div.childNodes.length;i<m;i++) {
-      if (div.childNodes[i].nodeType != 1) continue;    // text node.
-      else if (obj == div.childNodes[ i ]) continue;
-
-      obj = div.childNodes[ i ];
-      break;
-    }
-
-    if (preContent && obj!=preContent){
-      obj.style.display = "block";
-      preContent.style.display = "none";
-    }
-    else if (preContent && obj==preContent) preContent.style.display = ( preContent.style.display == "none" ? "block" : "none" );
-    else if (preContent == null ) obj.style.display = "block";
-
-    preContent = obj;
-  }
-
-  { // 초기출력
-    var no = "faq_";
-    if ( document.getElementById( no ) ) view_content( document.getElementById( no ) );
-  }
-
- 
-</script>
 
 
         <form name="frmList" id="form" method="get" action="?">
@@ -153,19 +110,23 @@
                         <div class="row justify-content-center">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -184,7 +145,7 @@
     </select>
     <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
+    <button id="search_btn" onclick="search_admin_faq()">검색</button>
                                 
                                 </td>
                                 
@@ -208,15 +169,8 @@
             </div>
         </div>
         
-        <script type="text/javascript">
-		$(document).ready(function() {
-			$("#qni_category").change(function() {
-// 				alert($(this).val());
-				var changeVal = $(this).val();
-				location.href="/admin/faq_sort${pagingVO.makeQuery(pageNum) }&qnacate_num="+changeVal;
-			});
-		});
-	</script>
+     
+	<jsp:include page="../inc/adminScript.jsp"></jsp:include>
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <jsp:include page="../inc/adminFooter.jsp"></jsp:include>

@@ -35,15 +35,6 @@ public class WishDAOTest {
 	public void 찜목록출력테스트() throws Exception {
 		log.info(dao.list(1)+"");
 	}
-
-//	@Test
-	public void 찜추가테스트() throws Exception {
-		WishVO vo = new WishVO();
-		vo.setUser_num(1);
-		vo.setProd_num(11);
-		dao.insertWish(vo);
-		log.info("찜추가 완료!");
-	}
 	
 //	@Test
 	public void 찜X삭제버튼테스트() throws Exception {

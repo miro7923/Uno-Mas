@@ -47,7 +47,7 @@
                         
                         <div class="page_aticle">
     <div class="head_aticle">
-        <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
+        <h2 class="tit">1:1문의 답변<span class="tit_sub"></span></h2>
     </div>
     
     
@@ -108,15 +108,7 @@
 </td>
 </tr>
 </tbody></table>
-<!-- <div class="xans-element- xans-board xans-board-movement-1002 xans-board-movement xans-board-1002 "><ul>
-<li class="prev ">
-<strong>이전글</strong><a href="/board/free/read.html?no=27121&amp;board_no=1&amp;page="></a><a href="view.php?id=notice&amp;no=930">[가격인상공지] [아베나] 니트릴 장갑 다목적용 XS 외 3건 (2021 5. 21 ~)</a>
-</li>
-<li class="next ">
-<strong>다음글</strong><a href="/board/free/read.html?no=22443&amp;board_no=1&amp;page="></a><a href="view.php?id=notice&amp;no=932">[가격인상공지] [카구라노사토] 유즈코쇼 (2021 6. 22 ~)</a>
-</li>
-</ul>
-</div> -->
+
 <br><table width="100%" cellpadding="5" cellspacing="0">
 <colgroup><col width="100" align="right" bgcolor="#f7f7f7" style="padding-right:10px">
 <col style="padding-left:10px">
@@ -150,6 +142,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 
 </html>

@@ -58,7 +58,6 @@
                         <div class="css-1waqr6j e1uzxhvi4">
                             <div height="44" class="css-t7kbxx e1uzxhvi1">
                             
-<!--                             <input data-testid="input-box" placeholder="카테고리를 적으세요" type="text"   > -->
                             <select id="inquiry-subject" name="faq_cate" class="css-1fapsij e1uzxhvi0">
                             	<option value="">카테고리를 선택하세요</option>
                             	<option value="배송/포장">배송/포장</option>
@@ -120,7 +119,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    
+    <script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 
 </html>

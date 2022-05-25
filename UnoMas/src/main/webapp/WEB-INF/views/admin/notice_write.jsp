@@ -89,7 +89,7 @@
             </div>
         </div>
         
-        
+        <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <jsp:include page="../inc/adminFooter.jsp"></jsp:include>

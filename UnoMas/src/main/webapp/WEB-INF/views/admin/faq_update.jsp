@@ -84,15 +84,8 @@
             </div>
         </div>  
         
-        <script type="text/javascript">
-		$(document).ready(function() {
-			$("#qni_category").change(function() {
-// 				alert($(this).val());
-				var changeVal = $(this).val();
-				location.href="/admin/faq_sort${pagingVO.makeQuery(pageNum) }&qnacate_num="+changeVal;
-			});
-		});
-	</script>
+        
+	<jsp:include page="../inc/adminScript.jsp"></jsp:include>
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <jsp:include page="../inc/adminFooter.jsp"></jsp:include>

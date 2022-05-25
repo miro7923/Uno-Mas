@@ -31,18 +31,8 @@
     </select>
     <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
+    <button id="search_btn" onclick="search_admin_notice()">검색</button>
     
-    <script type="text/javascript">
-    	function search() {
-    		var search_type_val = document.getElementById("search_type");
-    		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
-    		var keyword_val = document.getElementById("keyword").value;
-    		var url = "/admin/notice_board?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
-    		
-    		location.href=url;
-    	}
-    </script>
     
     <form name="frmList" onsubmit="return chkFormList(this)">
         <input type="hidden" name="id" value="notice">
@@ -82,19 +72,23 @@
  <div class="row justify-content-center" style="justify-content: center!important;">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/notice_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/notice_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/notice_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -115,7 +109,7 @@
     </select>
     <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
+    <button id="search_btn" onclick="search_admin_notice()">검색</button>
                                         
                    
                     
@@ -132,7 +126,7 @@
                 </div>
             </div>
         </div>
-        
+        <jsp:include page="../inc/adminScript.jsp"></jsp:include>
         
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
