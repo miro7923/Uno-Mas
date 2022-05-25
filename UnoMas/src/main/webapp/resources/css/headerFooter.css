@@ -239,7 +239,10 @@ div, th, td, li, dt, dd, p {
     width: 140px;
     margin-right:16px;
 }
-.number a:link, a:visited{
+.number a{
+	color:white;
+}
+.number a:visited{
 	color:white;
 }
 .number a:hover{
@@ -254,7 +257,10 @@ div, th, td, li, dt, dd, p {
 .numberExpln dt{
 	display: block;
 }
-.numberExpln dt a:link, a:visited{
+.numberExpln dt a:visited{
+	color: white;
+}
+.numberExpln dt a{
 	color: white;
 }
 .numberExpln dd{
@@ -265,8 +271,11 @@ div, th, td, li, dt, dd, p {
 	overflow-y: hidden;
 	padding-top: 16px;
 }
-.footerInquiry a:link, a:visited{
+.footerInquiry a{
 	color:white;
+}
+.footerInquiry a:visited{
+	color:white !important;
 }
 .footerInquiry a:hover{
 	color:grey;

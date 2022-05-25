@@ -38,8 +38,8 @@
                     <div class="row">
                         <div class="col-lg-5 hero">
                             <h1>제철 음식</h1>
-                            <p>5월에 꼭 먹어야 할 제철 음식 7가지를 확인해보세요.</p>
-                            <a href="#" class="primary-btn">자세히 보기</a>
+                            <p>5월에 꼭 먹어야 할 제철 과일을 확인해보세요.</p>
+                            <a href="product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=4" class="primary-btn">자세히 보기</a>
                         </div>
                     </div>
                 </div>
@@ -192,9 +192,6 @@
 		                                <div class="sale">Sale</div>
                             		</c:when>
                             	</c:choose>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
                                 <ul>
                                 	<c:if test="${rl.prod_stock > 0 }">
 									    <c:choose>
@@ -282,12 +279,20 @@
 		                                <div class="sale">Sale</div>
                             		</c:when>
                             	</c:choose>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
                                 <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
+									<c:if test="${sl.prod_stock > 0 }">
+										<c:choose>
+											<c:when test="${sessionScope.saveID != null }">
+												<li class="w-icon active"><a href="javascript:void(0);" onclick="insertCart(${sessionScope.saveNUM}, ${sl.prod_num });">
+												<i class="icon_bag_alt"></i></a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="w-icon active"><a href="javascript:void(0);" onclick="askLogin();">
+												<i class="icon_bag_alt"></i></a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</ul>
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name">
@@ -362,12 +367,20 @@
 		                                <div class="sale">Sale</div>
                             		</c:when>
                             	</c:choose>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                </ul>
+								<ul>
+									<c:if test="${bl.prod_stock > 0 }">
+										<c:choose>
+											<c:when test="${sessionScope.saveID != null }">
+												<li class="w-icon active"><a href="javascript:void(0);" onclick="insertCart(${sessionScope.saveNUM}, ${bl.prod_num });">
+												<i class="icon_bag_alt"></i></a></li>
+											</c:when>
+											<c:otherwise>
+												<li class="w-icon active"><a href="javascript:void(0);" onclick="askLogin();">
+												<i class="icon_bag_alt"></i></a></li>
+											</c:otherwise>
+										</c:choose>
+									</c:if>
+								</ul>
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name">

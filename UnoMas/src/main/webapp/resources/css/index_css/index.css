@@ -1,15 +1,15 @@
 @charset "UTF-8";
-* a:link{
+* a{
 	color: #333;
 }
 * a:visited{
 	color: #333;
 }
-.hero a:link{
-	color: #333;
+.hero a{
+	color: white;
 }
 .hero a:visited{
-	color: #333;
+	color: white;
 }
 .hotList {
     margin-top: 30px;
@@ -69,7 +69,8 @@
     line-height: 20px;
     height: 30px;
 }
-.prdName a{
+.hotList a{
+	color: #333;
 	word-break: normal;
 }
 .prdPrice {
@@ -97,9 +98,9 @@
 	letter-spacing: 0;
 	word-break: keep-all;
 }
-.set-bg a:link{
+#newarrival a{
 	color: yellowgreen;
 }
-.set-bg a:visited{
+#newarrival a:visited{
 	color: yellowgreen;
 }
