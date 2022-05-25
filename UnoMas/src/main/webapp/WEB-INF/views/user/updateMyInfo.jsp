@@ -97,7 +97,7 @@
 				</table>
 				<table class="table_info">
 					<tr>
-						<th>추가 배송지${addAddrList }</th>
+<%-- 						<th>추가 배송지${addAddrList }</th> --%>
 <%-- 						<c:forEach var="vo" items="${addAddrList }" varStatus="status"> --%>
 <!-- 						<td style="line-height: 25px;"> -->
 <%-- 							<input type="text" id="addr_num" name="addr_num" value="${addAddrList.addr_name }" placeholder="배송지 별명"><br> --%>
