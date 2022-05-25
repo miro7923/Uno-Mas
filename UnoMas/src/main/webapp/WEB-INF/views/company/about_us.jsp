@@ -240,7 +240,7 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="team-member">
-                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/yj.png" alt="yj" />
+                            <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/yj.jpg" alt="yj" />
                             <h4>황유진</h4>
                             <p class="text-muted">팀장, 상품파트</p>
                         </div>
