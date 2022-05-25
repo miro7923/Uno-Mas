@@ -14,7 +14,6 @@ import com.april.unomas.domain.NoticeVO;
 
 @Repository
 public class NoticeDAOImpl implements NoticeDAO {
-
 	
 	private static final Logger log
 		= LoggerFactory.getLogger(BoardDAOImpl.class);
@@ -26,37 +25,17 @@ public class NoticeDAOImpl implements NoticeDAO {
 
 	@Override
 	public void noticeWrite(NoticeVO vo) {
-		sqlSession.insert(NAMESPACE+".create",vo);
-		
-		log.info("mapper(실행완료) -> DAO -> service");
-		
-	}
-
-	@Override
-	public List<NoticeVO> listAll() {
-		log.info("listAll() -> mapper");
-	
-		log.info("mapper완료 -> service 이동");
-	
-		return sqlSession.selectList(NAMESPACE+".listAll");
-		
+		sqlSession.insert(NAMESPACE+".create",vo);		
 	}
 
 	@Override
 	public NoticeVO getNotice(Integer notice_num) {
-		NoticeVO vo = sqlSession.selectOne(NAMESPACE+".getNotice", notice_num);
-		
-		log.info("sql 처리 결과를 리턴");
-		log.info(vo.toString());
-		
-		return vo;
-		
+		return sqlSession.selectOne(NAMESPACE+".getNotice", notice_num);
 	}
 
 	@Override
 	public void rCountUp(Integer notice_num) {
 		sqlSession.update(NAMESPACE+".rCountUp",notice_num);
-		
 	}
 
 	@Override
@@ -83,7 +62,4 @@ public class NoticeDAOImpl implements NoticeDAO {
 	public void noticeInsert(NoticeVO vo) {
 		sqlSession.insert(NAMESPACE+".insert",vo);
 	}
-	
-	
-	
 }

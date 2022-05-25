@@ -28,15 +28,6 @@ public class WishServiceTest {
 		log.info(service.list(1)+"");
 	}
 	
-	@Test
-	public void 찜추가테스트() throws Exception {
-		WishVO vo = new WishVO();
-		vo.setUser_num(2);
-		vo.setProd_num(13);
-		service.insertWish(vo);
-		log.info("찜추가 완료!");
-	}
-	
 //	@Test
 	public void 찜X버튼삭제테스트() throws Exception {
 		service.deleteWish(10);

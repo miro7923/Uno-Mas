@@ -2,6 +2,8 @@
   const select1 = document.querySelector("#select1");
   const select2 = document.querySelector("#select2");
   const submitButton = document.querySelector("#submitButton");
+  const subjectVal = document.querySelector("#subject").value;
+  const contentVal = document.querySelector("#content").value;
   
   function checkAll() { // 유효성 검사 함수
     
