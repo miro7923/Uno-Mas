@@ -141,7 +141,6 @@ public class AdminController {
 
 	@RequestMapping(value = "/notice_read",method = RequestMethod.GET)
 	public String noticeInfoGET(@RequestParam("notice_num") int notice_num, Model model) throws Exception {
-		log.info(notice_num + "");
 
 		service.rCountUp(notice_num);
 		model.addAttribute("vo", service.getNotice(notice_num));
