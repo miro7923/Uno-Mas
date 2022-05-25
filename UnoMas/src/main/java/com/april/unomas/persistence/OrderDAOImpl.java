@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
+import com.april.unomas.domain.PayVO;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -37,5 +38,25 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public void createOrder(OrderVO vo) throws Exception {
 		sqlSession.insert(NAMESPACE + ".createOrder", vo);
+	}
+
+	@Override
+	public void createPay(PayVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".createPay", vo);
+	}
+
+	@Override
+	public List<OrderVO> getOrderInfos(int order_code) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getOrderInfos", order_code);
+	}
+
+	@Override
+	public PayVO getPay(int pay_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getPay", pay_num);
+	}
+
+	@Override
+	public PayVO getLastPay() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getLastPay");
 	}
 }

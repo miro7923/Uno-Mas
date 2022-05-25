@@ -12,6 +12,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.april.unomas.domain.OrderVO;
+import com.april.unomas.domain.PayVO;
 import com.april.unomas.persistence.OrderDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,19 +38,41 @@ public class OrderDAOTest {
 		log.info("@@@@@@@@@@@@@@@@ last num: "+dao.getLastOrderNum());
 	}
 	
-	@Test
+//	@Test
 //	@Transactional(rollbackFor = Exception.class)
 	public void 주문정보생성테스트() throws Exception {
 		OrderVO vo = new OrderVO();
 		vo.setOrder_code(1);
 		vo.setOrder_detailaddr("10번길");
 		vo.setOrder_postalcode("12345");
-		vo.setOrder_quantity(5);
+		vo.setOrder_quantity(3);
 		vo.setOrder_roadaddr("금천구로");
-		vo.setOrder_total(5000);
-		vo.setProd_num(23);
-		vo.setUser_num(7);
+		vo.setOrder_total(3000);
+		vo.setProd_num(20);
+		vo.setUser_num(1);
 		
 		dao.createOrder(vo);
+	}
+	
+//	@Test
+	public void 결제정보생성테스트() throws Exception {
+		PayVO vo = new PayVO();
+		vo.setOrder_code(6);
+		vo.setPay_card_company("KB Pay (국민)");
+		vo.setPay_card_num("11112222****4444");
+		vo.setPay_installment(0);
+		vo.setPay_method("카드결제");
+		vo.setPay_total_price(50000);
+		vo.setUser_num(1);
+		vo.setPay_point(5);
+		vo.setPay_shippingfee(2500);
+		
+		dao.createPay(vo);
+	}
+	
+	@Test
+	public void 주문정보가져오기() throws Exception {
+		log.info("@@@@@@@@@ order infos: "+dao.getOrderInfos(1));
+		log.info("@@@@@@@@ last pay: "+dao.getLastPay());
 	}
 }

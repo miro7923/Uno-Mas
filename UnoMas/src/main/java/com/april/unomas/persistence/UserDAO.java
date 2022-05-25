@@ -38,6 +38,9 @@ public interface UserDAO {
 	
 	// 회원정보 조회
 	public UserVO getUserInfo(String id);
+	
+	// 회원번호로 회원정보 가져오기
+	public UserVO getUserInfoByNum(int user_num);
 
 	// 회원정보수정
 	public Integer updateUser(UserVO vo);

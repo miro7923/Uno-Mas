@@ -20,14 +20,40 @@
     <!-- 주문정보 생성 -->
     <insert id="createOrder">
         INSERT INTO orders(order_code, user_num, prod_num, order_total, order_quantity, order_postalcode, 
-        order_roadaddr, order_detailaddr)
+        order_roadaddr, order_detailaddr, order_recipient, order_memo)
         VALUES(#{order_code}, #{user_num}, #{prod_num}, #{order_total}, #{order_quantity}, #{order_postalcode}, 
-        #{order_roadaddr}, #{order_detailaddr})
+        #{order_roadaddr}, #{order_detailaddr}, #{order_recipient}, #{order_memo})
     </insert>
     
     <!-- 결제정보 생성 -->
     <insert id="createPay">
-        INSERT INTO pay(user_num, order_code, pay_method, pay_card_company, pay_card_num, pay_total_price)
-        VALUES(#{user_num}, #{order_code}, #{pay_method}, #{pay_card_company}, #{pay_card_num}, #{pay_total_price})
+        INSERT INTO pay(user_num, order_code, pay_method, pay_card_company, pay_card_num, pay_total_price, 
+        pay_installment, pay_shippingfee, pay_point)
+        VALUES(#{user_num}, #{order_code}, #{pay_method}, #{pay_card_company}, #{pay_card_num}, #{pay_total_price}, 
+        #{pay_installment}, #{pay_shippingfee}, #{pay_point})
     </insert>
+    
+    <!-- 주문정보 가져오기 -->
+    <select id="getOrderInfos" resultType="OrderVO">
+        SELECT o.order_code, o.user_num, o.prod_num, o.order_date, o.order_total, o.order_status, o.order_quantity,
+        o.order_postalcode, o.order_roadaddr, o.order_detailaddr, o.order_recipient, o.order_memo, p.prod_name
+        FROM orders o JOIN products p 
+        ON o.prod_num = p.prod_num
+        WHERE order_code = #{order_code}
+    </select>
+    
+    <!-- 결제정보 가져오기 -->
+    <select id="getPay" resultType="PayVO">
+        SELECT *
+        FROM pay
+        WHERE pay_num = #{pay_num}
+    </select>
+    
+    <!-- 직전에 생성된 주문정보 가져오기 -->
+    <select id="getLastPay" resultType="PayVO">
+        SELECT *
+        FROM pay
+        WHERE pay_num = (SELECT MAX(pay_num)
+						 FROM pay)
+    </select>
 </mapper>

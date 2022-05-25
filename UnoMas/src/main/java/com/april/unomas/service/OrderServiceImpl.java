@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
+import com.april.unomas.domain.PayVO;
 import com.april.unomas.persistence.OrderDAO;
 
 @Service
@@ -32,5 +33,25 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void createOrder(OrderVO vo) throws Exception {
 		dao.createOrder(vo);
+	}
+
+	@Override
+	public void createPay(PayVO vo) throws Exception {
+		dao.createPay(vo);
+	}
+
+	@Override
+	public List<OrderVO> getOrderInfos(int order_code) throws Exception {
+		return dao.getOrderInfos(order_code);
+	}
+
+	@Override
+	public PayVO getPay(int pay_num) throws Exception {
+		return dao.getPay(pay_num);
+	}
+
+	@Override
+	public PayVO getLastPay() throws Exception {
+		return dao.getLastPay();
 	}
 }

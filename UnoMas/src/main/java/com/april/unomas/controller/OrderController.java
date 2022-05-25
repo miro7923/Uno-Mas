@@ -1,11 +1,14 @@
 package com.april.unomas.controller;
 
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,17 +17,28 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
+import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.ProductVO;
+import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.CartService;
 import com.april.unomas.service.OrderService;
+import com.april.unomas.service.ProductService;
 import com.april.unomas.service.UserService;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 @RequestMapping("/order/*")
@@ -40,6 +54,11 @@ public class OrderController {
 	
 	@Inject
 	private OrderService orderService;
+	
+	@Inject
+	private ProductService productService;
+	
+	private IamportClient client = new IamportClient("5728685660422556", "cc59f3e8d3e9a6cbdfcd57686e110f426580a7d15a5319465a36203e98e5a045b3303f3b0c42b156");
 	
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public String orderGET() {
@@ -92,7 +111,12 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value = "/complete", method = RequestMethod.GET)
-	public String completeGET() {
+	public String completeGET(@RequestParam int pay_num, Model model) throws Exception {
+		PayVO payVO = orderService.getPay(pay_num);
+		model.addAttribute("payVO", payVO);
+		
+		userService.updatePoint(payVO.getPay_point());
+		
 		// 결제완료 페이지로 이동
 		return "order/complete";
 	}
@@ -107,6 +131,83 @@ public class OrderController {
 		userService.updatePoint((int)Math.floor(vo.getUser_point()));
 		
 		return new ResponseEntity(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/mobile_complete", method = RequestMethod.GET)
+	public String completeMobileGET(@RequestParam double amount, @RequestParam int ship,
+			@RequestParam(required = false) String imp_uid, 
+			@RequestParam(required = false) String merchant_uid, Model model, HttpSession session) throws Exception {
+//		IamportResponse<AccessToken> token = client.getAuth();
+		IamportResponse<Payment> result = client.paymentByImpUid(imp_uid);
+		if (result.getResponse().getAmount().compareTo(BigDecimal.valueOf(amount)) == 0) {
+			log.info("검증 완료 - 금액 같음");
+			
+			// 결제 정보 저장
+			PayVO payVO = new PayVO();
+			payVO.setOrder_code(Integer.parseInt(result.getResponse().getMerchantUid()));
+			payVO.setPay_card_company(result.getResponse().getCardName());
+			payVO.setPay_card_num(result.getResponse().getCardNumber());
+			payVO.setPay_installment(result.getResponse().getCardQuota());
+			payVO.setPay_method(result.getResponse().getPayMethod());
+			payVO.setPay_num(Integer.parseInt(result.getResponse().getMerchantUid()));
+			payVO.setPay_shippingfee(ship);
+			payVO.setPay_total_price(result.getResponse().getAmount().intValue());
+			payVO.setUser_num((int) session.getAttribute("saveNUM"));
+			
+			orderService.createPay(payVO);
+			
+			model.addAttribute("payVO", payVO);
+			
+			// 장바구니에서 결제 완료된 상품 삭제하기 위해 주문정보 가져오기
+			List<OrderVO> orderVO = orderService.getOrderInfos(payVO.getOrder_code());
+			// 가져온 주문정보로 카트번호 가져와서 삭제
+			for (int i = 0; i < orderVO.size(); i++) {
+				CartVO cartVO = cartService.getSelectedItem(orderVO.get(i).getCart_num());
+				cartService.delete(cartVO.getCart_num());
+			}
+		}
+
+		return "order/complete";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/verify_iamport/{imp_uid}")
+	public IamportResponse<Payment> verifyIamportPOST(@PathVariable(value = "imp_uid") String imp_uid) throws IamportResponseException, IOException {
+		 return client.paymentByImpUid(imp_uid);
+	}
+	
+	@RequestMapping(value = "/pay_info", method = RequestMethod.POST)
+	public ResponseEntity<Integer> payInfoPOST(@RequestBody PayVO vo, Model model,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 새 결제 정보 생성
+		orderService.createPay(vo);
+		// 방금 생성된 결제 정보의 인덱스 번호 가져옴 
+		PayVO payVO = orderService.getLastPay();
+		model.addAttribute("payVO", payVO);
+		
+		// 주문정보 가져오기
+		List<OrderVO> orderList = orderService.getOrderInfos(vo.getOrder_code());
+		model.addAttribute("orderList", orderList);
+		
+		// 장바구니에서 결제 완료된 상품 삭제
+		for (int i = 0; i < orderList.size(); i++) {
+			CartVO cartVO = cartService.getSelectedItem(orderList.get(i).getCart_num());
+			cartService.delete(cartVO.getCart_num());
+		}
+		
+		// 썸네일 목록 가져오기
+		List<String> prodThumbList = new ArrayList<String>();
+		for (int i = 0; i < orderList.size(); i++) {
+			ProductVO product = productService.getProduct(orderList.get(i).getProd_num());
+			prodThumbList.add(product.getProd_image3());
+		}
+		
+		model.addAttribute("prodThumbList", prodThumbList);
+		
+		// 회원정보 저장
+		model.addAttribute("userVO", userService.getUserInfoByNum(vo.getUser_num()));
+		
+		return new ResponseEntity<Integer>(payVO.getPay_num(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/check", method = RequestMethod.GET)

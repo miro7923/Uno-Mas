@@ -146,7 +146,7 @@
 													${sumMoney} 원</span>
 													<input type="hidden" name="subTotal" id="inputSubTotal" value="${sumMoney }">
 													</li>
-													<li class="shipping">배송비 <span id="spanShippingFee"><fmt:formatNumber value="${fee}" type="number"/> 원</span>
+													<li class="shipping">배송비 <span id="spanShippingFee">${fee} 원</span>
 													<input type="hidden" value="${fee }" name="shippingFee" id="shippingFee">
 													</li>
 													<li class="cart-total">총 결제 예상금액 <span id="total">

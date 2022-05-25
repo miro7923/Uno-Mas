@@ -157,6 +157,11 @@ public class UserDAOImpl implements UserDAO {
 	}
 	
 	
+	@Override
+	public UserVO getUserInfoByNum(int user_num) {
+		return sqlSession.selectOne(NAMESPACE + ".getUserInfoByNum", user_num);
+	}
+
 	// 회원정보수정
 	@Override
 	public Integer updateUser(UserVO vo) {

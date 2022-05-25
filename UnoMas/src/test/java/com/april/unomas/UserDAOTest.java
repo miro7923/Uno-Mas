@@ -84,4 +84,8 @@ public class UserDAOTest {
 //		
 //	}
 	
+	@Test
+	public void 회원번호로정보가져오기() {
+		log.info("@@@@@@@@@@@ vo: "+dao.getUserInfoByNum(1));
+	}
 }

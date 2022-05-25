@@ -67,8 +67,8 @@
 		                                <input type="hidden" id="name" name="addr_recipient" value="${primaryAddr.addr_recipient }">
 		                            </div>
 		                            <div class="col-lg-12">
-		                                <label>${fn:substring(userVO.user_phone, 0, 3) } - ${fn:substring(userVO.user_phone, 3, 7) } - ${fn:substring(userVO.user_phone, 7, 11) }</label>
-		                                <input type="hidden" id="phone" name="user_phone" value="${userVO.user_phone }">
+		                                <label>${fn:substring(primaryAddr.addr_phone, 0, 3) } - ${fn:substring(primaryAddr.addr_phone, 3, 7) } - ${fn:substring(primaryAddr.addr_phone, 7, 11) }</label>
+		                                <input type="hidden" id="phone" name="user_phone" value="${primaryAddr.addr_phone }">
 		                            </div>
 		                            <div class="col-lg-12">
 		                                <label>${primaryAddr.addr_postalcode }</label>
@@ -215,7 +215,7 @@
 	                                    <label>카드선택</label>
 	                                </div>
 	                                <div class="col-lg-9">
-	                                    <select class="selectBox">
+	                                    <select class="selectBox" name="cardSelect">
 	                                        <option>선택해주세요.</option>
 	                                        <option>KB Pay (국민)</option>
 	                                        <option>비씨</option>
@@ -415,13 +415,15 @@
 	                                        <span id="prodPrice${i.index }">
 	                                        <c:set var="prodPrice" value="${prod.prod_price * prod.prod_amount }"/>
 	                                        <fmt:formatNumber value="${prodPrice }" type="number"/>원</span>
+	                                        <input type="hidden" value="${prod.prod_name }" id="prodName${i.index }">
 	                                        <input type="hidden" value="${prod.prod_num }" id="prodNum${i.index }">
 	                                        <input type="hidden" value="${prod.prod_amount }" id="prodQunatity${i.index }">
 	                                        <input type="hidden" value="${prodPrice }" name="order_total" id="orderTotal${i.index }">
+	                                        <input type="hidden" value="${prod.cart_num }" name="cart_num" id="cartNum${i.index }">
 	                                    </li>
                                     </c:forEach>
                                     <li class="total-price">배송비 <span id="deliveryFee">${shippingFee }원</span>
-                                        <input type="hidden" value="${shippingFee }" name="shippingFee">
+                                        <input type="hidden" value="${shippingFee }" name="shippingFee" id="shippingFee">
                                     </li>
                                     <li class="total-price">합계 <span id="totalPrice"><fmt:formatNumber value="${total }" type="number"/>원</span>
                                         <input type="hidden" value="${total }" name="total" id="total">

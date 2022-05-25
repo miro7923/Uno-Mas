@@ -74,7 +74,10 @@ public class UserServiceImpl implements UserService {
 		return userInfoVO;
 	}
 	
-	
+	@Override
+	public UserVO getUserInfoByNum(int user_num) {
+		return dao.getUserInfoByNum(user_num);
+	}
 
 	// 회원정보수정
 	@Override
