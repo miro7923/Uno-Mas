@@ -358,4 +358,33 @@
         DELETE FROM wishlist
         WHERE user_num = #{user_num} and prod_num = #{prod_num}
     </delete>
+    
+    <!-- 상품 검색 -->
+    <select id="searchProd" resultType="ProductVO">
+    	<![CDATA[
+    	SELECT * 
+    	FROM products
+    	WHERE prod_num > 0
+    	]]>
+    	<include refid="search_condition"></include>
+    	ORDER BY prod_num DESC, prod_regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 검색 상품 갯수 -->
+    <select id="searchCnt" resultType="int">
+    	<![CDATA[
+    	SELECT COUNT(*) 
+    	FROM products
+    	WHERE prod_num > 0
+    	]]>
+    	<include refid="search_condition"></include>
+    </select>
+    <sql id="search_condition">
+	<if test="search_type != null">
+		<if test="search_type == 'prod_name'.toString()">
+			AND prod_name LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+	</if>
+	</sql>
 </mapper>

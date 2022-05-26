@@ -19,7 +19,7 @@ function search_qni() {
 function search_prod() {
 	var type_val = document.getElementById("search_type_prod").value;
 	var keyword_val = document.getElementById("keyword_prod").value;
-    var url = "/board/faq_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
+    var url = "/product/product_search?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
     		
     location.href=url;
 }

@@ -88,7 +88,7 @@
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
                                             <td><span class="px-3">1차 카테고리</span>
-			            <span> > </span><br>
+			            <span> > </span>
 			            <span>${vo.qnaCateVO.qnacate_name }</span>
 			            <div class="question mt-3 pb-5 px-3">
 <%-- 			            <img src="${path}/resources/img/question.svg" class="questionicon">  --%>
@@ -118,7 +118,6 @@
                     <div class="layout-pagination">
                         <div class="pagediv">
                         <div class="row justify-content-center">
-              <div class="col-1 justify-content-center ">
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
                   <li class="page-item">
@@ -138,7 +137,6 @@
                   </li>
                   </c:if>
                 </ul>
-              </div>
             </div>
                     </div> <!-- paging div -->
                     

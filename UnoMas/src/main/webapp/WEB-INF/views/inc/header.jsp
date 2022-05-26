@@ -142,3 +142,4 @@
             </div>
         </div>
     </header>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>

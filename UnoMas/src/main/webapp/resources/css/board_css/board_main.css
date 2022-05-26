@@ -256,18 +256,24 @@ ul {
 }
 
 .search_date {
-    position: relative;
+    position: absolute;
+    display: inline-flex;
     z-index: 1;
     border-radius: .25em;
-    
+    width: 10em;
+    height: 2em;
+    line-height: 2;
+    overflow: hidden;
+    margin-left: 46em;
+    margin-top: -70px;
 }
 .search_date::after {
 		content: '\25BC';
 		position: absolute;
-		top: -74px;
+		top: 0;
 		right: 0;
-		bottom: 39px;
-		padding: 0;
+		bottom: -2px;
+		padding: 0 1em;
 		background: #34495E;
 		pointer-events: none;
 	}
@@ -279,10 +285,10 @@ ul {
     overflow: hidden;
     position: absolute;
     right: 0;
-    top: -74px;
-    width: 120px;
+    top: 0;
+    width: 160px;
     height: 35px;
-    padding: 4px 0 0 15px;
+    padding: 1px 0 0 15px;
     border: 1px solid #ddd;
     font-size: 14px;
     color: #ffffff;
@@ -708,6 +714,10 @@ select{
 	}
 	.search_btn{
 	display: inline-flex;
+	}
+	
+	.page-item{
+		white-space: nowrap;
 	}
 	
 	

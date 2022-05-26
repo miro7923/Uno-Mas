@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -174,4 +175,8 @@ public interface ProductDAO {
 	
 	// 신상품별 상품 정보(메인페이지)
 	public List<SelectVO> brandnewSelect2() throws Exception;
+	
+	public List<ProductVO> searchProd(Criter pc) throws Exception;
+	
+	public int getSearchProdCnt(Criter pc) throws Exception;
 }
