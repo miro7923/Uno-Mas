@@ -210,13 +210,13 @@ public class UserController {
 
 	// 비번체크
 	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
-	public String pwCheck(HttpSession session, Model model) {
+	public String pwCheck() {
 		System.out.println("check_pw GET");
-		
-		String saveID = (String) session.getAttribute("saveID");
-		System.out.println("update_myInfo : "+ saveID);
-		UserVO userInfoVO = service.getUserInfo(saveID);
-		model.addAttribute("userInfoVO", userInfoVO);
+//		HttpSession session, Model model
+//		String saveID = (String) session.getAttribute("saveID");
+//		System.out.println("update_myInfo : "+ saveID);
+//		UserVO userInfoVO = service.getUserInfo(saveID);
+//		model.addAttribute("userInfoVO", userInfoVO);
 		
 		return "/user/checkPW";
 	}
