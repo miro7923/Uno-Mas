@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -151,16 +152,14 @@ public class OrderController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/complete", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/complete", method = RequestMethod.POST, 
+	consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+	produces = MediaType.TEXT_PLAIN_VALUE)
 	public String completePOST(@RequestBody OrderVO vo) throws Exception {
 		// 결제 완료된 주문정보 DB에 저장
 		orderService.createOrder(vo);
 		
-		// 적립금 업데이트
-//		userService.updatePoint((int)Math.floor(vo.getUser_point()));
-//		log.info("@@@@@@@@@@@@@ 적립금 업데이트 완료");
-		
-		return "create order success";
+		return "주문정보 생성 완료";
 	}
 	
 	@RequestMapping(value = "/mobile_complete", method = RequestMethod.GET)
@@ -170,7 +169,6 @@ public class OrderController {
 //		IamportResponse<AccessToken> token = client.getAuth();
 		IamportResponse<Payment> result = client.paymentByImpUid(imp_uid);
 		if (result.getResponse().getAmount().compareTo(BigDecimal.valueOf(amount)) == 0) {
-			log.info("@@@@@@@@@@ 검증 완료 - 금액 같음");
 			
 			// 결제 정보 저장
 			PayVO payVO = new PayVO();
@@ -210,7 +208,7 @@ public class OrderController {
 	public ResponseEntity<Integer> payInfoPOST(Model model,
 			HttpServletRequest request, HttpServletResponse response,
 			@RequestParam String imp_uid, @RequestParam int amount,
-			@RequestParam int ship, HttpSession session) throws Exception {
+			@RequestParam int ship, @RequestParam double point, HttpSession session) throws Exception {
 		
 		IamportResponse<Payment> result = client.paymentByImpUid(imp_uid);
 			
@@ -232,6 +230,9 @@ public class OrderController {
 		payVO = orderService.getLastPay();
 		model.addAttribute("payVO", payVO);
 		
+		// 회원 적립금 추가
+		userService.updatePoint((int)session.getAttribute("saveNUM"), (int)point);
+		
 		return new ResponseEntity<Integer>(payVO.getPay_num(), HttpStatus.OK);
 	}
 	
@@ -252,9 +253,12 @@ public class OrderController {
 		if (pageNum == 1) {
 			for (int i = 0; i < orderAddrList.size(); i++) {
 				// 회원의 기본 배송지 따로 저장
-				if (orderAddrList.get(i).isAddr_primary()) 
+				if (orderAddrList.get(i).isAddr_primary()) {
 					model.addAttribute("primaryAddr", orderAddrList.get(i));
+					orderAddrList.remove(i);
+				}
 			}
+			log.info("@@@@@@@@@@@ orderAddrList: "+orderAddrList);
 		}
 
 		// 배송지 목록 페이지처리 정보 저장
@@ -264,7 +268,6 @@ public class OrderController {
 		
 		model.addAttribute("pm", pm);
 		model.addAttribute("curPage", pageNum);
-		log.info("@@@@@@@@@ curPage: " +pageNum);
 		
 		// 회원의 전체 배송지 목록 저장
 		model.addAttribute("orderAddrList", orderAddrList);
@@ -273,12 +276,10 @@ public class OrderController {
 		// 새 목록을 임시페이지로 내보낸 뒤 임시페이지의 주소를 리턴한다.
 		// ajax에서 임시페이지에 출력되어 있는 새 게시판 목록을 원본 페이지로 가져와서 바꾼다.
 		if (pageNum > 1) {
-			log.info("@@@@@@@@@ 임시페이지 리턴");
 			return "order/shippingLocationAjax";
 		}
 		else {
 			// 페이지 번호가 1이면 첫번째 페이지를 보여주면 되니까 원본 페이지로 이동
-			log.info("@@@@@@@@@ 원본 페이지 리턴");
 			return "order/shippingLocation";
 		}
 	}

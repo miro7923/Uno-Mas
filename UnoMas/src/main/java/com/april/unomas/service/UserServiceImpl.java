@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updatePoint(int user_point) {
-		dao.updatePoint(user_point);
+	public void updatePoint(int user_num, int user_point) {
+		dao.updatePoint(user_num, user_point);
 	}
 }

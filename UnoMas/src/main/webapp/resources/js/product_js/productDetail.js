@@ -222,9 +222,7 @@ function changePageNum(num, maxNum, boardType) {
 			type: 'get',
 			url: '/product/list_review?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				var html = jQuery('<div>').html(data);
-				var contents = html.find('div#reviewListAjax').html();
-				$('#reviewListAjax').html(contents);
+				$('#reviewListAjax').html(data);
 				
 				getPageNum();
 			},
@@ -253,9 +251,7 @@ function changePageNum(num, maxNum, boardType) {
 			type: 'get',
 			url: '/product/list_inquiry?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				var html = jQuery('<div>').html(data);
-				var contents = html.find('div#inqDiv').html();
-				$('#inqDiv').html(contents);
+				$('#inqDiv').html(data);
 
 				getPageNum();
 			},

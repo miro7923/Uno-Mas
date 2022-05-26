@@ -144,7 +144,6 @@ function calcTotalPrice(idx, type) {
 			},
 			success: function(data) {
 				if (data == 'complete') {
-					alert('장바구니 수량 변경 완료');
 				}
 			},
 			error: function() {
@@ -194,7 +193,19 @@ function calcTotalPrice(idx, type) {
 function calcTotalWithShipFee(subTotal) {
     // 배송비까지 합친 합계 계산
     // 파라미터로 넘길 input hidden 태그에 넣을 값
-    var total = subTotal + Number($('#shippingFee').val());
+    // 5만원 이상 배송비 면제
+    var total = 0;
+    if (subTotal >= 50000) {
+		$('#shippingFee').val(0);
+		$('#spanShippingFee').text('0 원');
+		total = subTotal;
+	}
+	else {
+		$('#shippingFee').val(2500);
+		$('#spanShippingFee').text('2,500 원');
+	    total = subTotal + Number($('#shippingFee').val());
+	}
+	
     $('#inputTotal').val(total);
     // 통화에 , 찍어서 화면에 보여줄 값
     $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');

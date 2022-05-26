@@ -98,7 +98,7 @@
 			                                <label>수령인</label><span class="emph"> *</span>
 	                                    </div>
 	                                    <div class="col-lg-5">
-				                            <input type="text" id="name" name="name">
+				                            <input type="text" id="newName" name="name">
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -110,16 +110,17 @@
 	                                    <div class="col-lg-9">
 	                                        <div class="row">
 	                                            <div class="col-lg-3">
-							                        <input type="tel" class="phone" id="phone" name="phone" maxlength="3">
+							                        <input type="tel" class="phone" id="newPhone1" name="phone" maxlength="3">
 	                                            </div>
 	                                            -
 	                                            <div class="col-lg-3">
-							                        <input type="tel" class="phone" id="phone" name="phone" maxlength="4">
+							                        <input type="tel" class="phone" id="newPhone2" name="phone" maxlength="4">
 	                                            </div>
 	                                            -
 	                                            <div class="col-lg-3">
-							                        <input type="tel" class="phone" id="phone" name="phone" maxlength="4">
+							                        <input type="tel" class="phone" id="newPhone3" name="phone" maxlength="4">
 	                                            </div>
+	                                            <input type="hidden" id="newPhone">
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -132,7 +133,7 @@
 	                                    <div class="col-lg-9">
 	                                        <div class="row">
 			                                    <div class="col-lg-4">
-						                            <input type="text" id="postalcode" name="postalcode">
+						                            <input type="text" id="newPostalcode" name="postalcode">
 			                                    </div>
 			                                    <div class="col-lg-3" style="padding: 0;">
 			                                        <button type="button" class="site-btn deliverListBtn postalBtn"
@@ -141,10 +142,10 @@
 	                                        </div>
 	                                        <div class="row">
 	                                            <div class="col-lg-6" style="padding-right: 3px;">
-	                                                <input type="text" id="roadAddress">
+	                                                <input type="text" id="newRoadAddress">
 	                                            </div>
 	                                            <div class="col-lg-6" style="padding-left: 3px;">
-	                                                <input type="text" id="detailAddress">
+	                                                <input type="text" id="newDetailAddress">
 	                                            </div>
 	                                            <span id="guide" style="color:#999;display:none"></span>
 	                                        </div>

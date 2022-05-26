@@ -9,6 +9,14 @@
 .proceed-checkout ul li.shipping span {
     font-weight: 700;
 }
+.cart-table table tr td.p-price, .cart-table table tr td.total-price {
+    color: #B9CE45;
+    font-size: 16px;
+    font-weight: 700;
+}
+.proceed-checkout ul li.cart-total span {
+    color: #B9CE45;
+}
 .cartCheck{
 	width: 60px;
 }

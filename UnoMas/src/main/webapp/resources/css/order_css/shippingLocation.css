@@ -933,7 +933,8 @@ input:-moz-placeholder{font-size:11px;color:#b3b3b3}
     color: #666;
 }
 
-.tbl_delivery_list tbody td .setting_btn {border: 1px solid #B9CE45;
+.tbl_delivery_list tbody td .setting_btn {
+	border: 1px solid #B9CE45;
     background-color: #B9CE45;
     height: 40px;
     color: white;
@@ -941,6 +942,7 @@ input:-moz-placeholder{font-size:11px;color:#b3b3b3}
     width: 70px;
     padding: 0;
     font-size: 13px;
+    cursor: pointer;
 }
 
 .tbl_delivery_list tbody td .setting_btn + .setting_btn {

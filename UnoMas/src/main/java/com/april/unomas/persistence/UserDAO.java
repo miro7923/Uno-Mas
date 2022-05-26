@@ -62,5 +62,5 @@ public interface UserDAO {
 	public int sendEmailMethod(EmailVO evo);
 	
 	// 결제완료 후 적립금
-	public void updatePoint(int user_point);
+	public void updatePoint(int user_num, int user_point);
 }

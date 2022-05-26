@@ -51,5 +51,5 @@ public interface UserService {
 	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri);
 	
 	// 결제완료 후 적립금 업데이트
-	public void updatePoint(int user_point);
+	public void updatePoint(int user_num, int user_point);
 }

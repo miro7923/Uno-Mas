@@ -51,41 +51,45 @@
                             <c:if test="${primaryAddr != null }">
 	                            <tr page="1" class="_address default" style="display: table-row;">
 	                                <td class="cell_delivery">
-	                                    <span class="_addressName nick">${primaryAddr.addr_name }</span>
-	                                    <strong class="_receiverName name">${primaryAddr.addr_recipient }</strong>
+	                                    <span class="_addressName nick" id="addr_nameP">${primaryAddr.addr_name }</span>
+	                                    <strong class="_receiverName name" id="addr_recipientP">${primaryAddr.addr_recipient }</strong>
 	                                    <span class="mark_default">기본배송지</span>
 	                                </td>
 	                                <td>
-	                                    <span class="_zipCode zipcode">${primaryAddr.addr_postalcode }</span>
-	                                    <span class="_baseAddress">${primaryAddr.addr_roadaddr }</span><br>
-	                                    <span class="_detailAddress">${primaryAddr.addr_detailaddr }</span>
+	                                    <span class="_zipCode zipcode" id="addr_postalcodeP">${primaryAddr.addr_postalcode }</span>
+	                                    <span class="_baseAddress" id="addr_roadaddrP">${primaryAddr.addr_roadaddr }</span><br>
+	                                    <span class="_detailAddress" id="addr_detailaddrP">${primaryAddr.addr_detailaddr }</span>
 	                                    <span class="_roadNameYn" style="display:none;">Y</span>
 	                                </td>
-	                                <td class="cell_tel"><span class="_telNo1">${fn:substring(primaryAddr.addr_phone, 0, 3) } - ${fn:substring(primaryAddr.addr_phone, 3, 7) } - ${fn:substring(primaryAddr.addr_phone, 7, 11) }</span><br><span class="_telNo2"></span></td>
+	                                <td class="cell_tel">
+	                                    <span class="_telNo1">${fn:substring(primaryAddr.addr_phone, 0, 3) } - ${fn:substring(primaryAddr.addr_phone, 3, 7) } - ${fn:substring(primaryAddr.addr_phone, 7, 11) }</span><br><span class="_telNo2"></span>
+	                                    <input type="hidden" value="${primaryAddr.addr_phone }" id="addr_phoneP">
+	                                </td>
 	                                <td class="cell_btn">
-	                                    <button type="button" class="_select setting_btn type_h green">선택</button>
+	                                    <button type="button" class="_select setting_btn type_h green" onclick="chooseLocation('P')">선택</button>
 	                                </td>
 	                            </tr>
                             </c:if>
-                            <c:forEach var="addrVO" items="${orderAddrList }">
-                                <c:if test="${addrVO.addr_primary == false }">
-	                                <tr page="1" class="_address default" style="display: table-row;">
-		                                <td class="cell_delivery">
-		                                    <span class="_addressName nick">${addrVO.addr_name }</span>
-		                                    <strong class="_receiverName name">${addrVO.addr_recipient }</strong>
-		                                </td>
-		                                <td>
-		                                    <span class="_zipCode zipcode">${addrVO.addr_postalcode }</span>
-		                                    <span class="_baseAddress">${addrVO.addr_roadaddr }</span><br>
-		                                    <span class="_detailAddress">${addrVO.addr_detailaddr }</span>
-		                                    <span class="_roadNameYn" style="display:none;">Y</span>
-		                                </td>
-		                                <td class="cell_tel"><span class="_telNo1">${fn:substring(addrVO.addr_phone, 0, 3) } - ${fn:substring(addrVO.addr_phone, 3, 7) } - ${fn:substring(addrVO.addr_phone, 7, 11) }</span><br><span class="_telNo2"></span></td>
-		                                <td class="cell_btn">
-		                                    <button type="button" class="_select setting_btn type_h green">선택</button>
-		                                </td>
-		                            </tr>
-                                </c:if>
+                            <c:forEach var="addrVO" items="${orderAddrList }" varStatus="i">
+                                <tr page="1" class="_address default" style="display: table-row;">
+	                                <td class="cell_delivery">
+	                                    <span class="_addressName nick" id="addr_name${i.index }">${addrVO.addr_name }</span>
+	                                    <strong class="_receiverName name" id="addr_recipient${i.index }">${addrVO.addr_recipient }</strong>
+	                                </td>
+	                                <td>
+	                                    <span class="_zipCode zipcode" id="addr_postalcode${i.index }">${addrVO.addr_postalcode }</span>
+	                                    <span class="_baseAddress" id="addr_roadaddr${i.index }">${addrVO.addr_roadaddr }</span><br>
+	                                    <span class="_detailAddress" id="addr_detailaddr${i.index }">${addrVO.addr_detailaddr }</span>
+	                                    <span class="_roadNameYn" style="display:none;">Y</span>
+	                                </td>
+	                                <td class="cell_tel">
+	                                    <span class="_telNo1">${fn:substring(addrVO.addr_phone, 0, 3) } - ${fn:substring(addrVO.addr_phone, 3, 7) } - ${fn:substring(addrVO.addr_phone, 7, 11) }</span><br><span class="_telNo2"></span>
+	                                    <input type="hidden" value="${addrVO.addr_phone }" id="addr_phone${i.index }">
+	                                </td>
+	                                <td class="cell_btn">
+	                                    <button type="button" class="_select setting_btn type_h green" onclick="chooseLocation(${i.index})">선택</button>
+	                                </td>
+	                            </tr>
                             </c:forEach>
                         </tbody>
                     </table>
