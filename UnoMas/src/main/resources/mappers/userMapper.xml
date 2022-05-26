@@ -56,6 +56,13 @@
   	FROM users 
   	WHERE user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
+  
+  <!-- 관리자 로그인 -->
+  <select id="adminLogin" resultType="AdminVO">
+		SELECT * 
+	  	FROM admin 
+	  	WHERE admin_id=#{admin_id} AND admin_pass=#{admin_pass}
+	</select>
 
   <!-- 회원 정보 가져오기 -->
   <select id="getUserInfo" parameterType="String" resultType="com.april.unomas.domain.UserVO">

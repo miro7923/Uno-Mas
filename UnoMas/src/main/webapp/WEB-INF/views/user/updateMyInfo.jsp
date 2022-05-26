@@ -98,7 +98,7 @@
 				<table class="table_info">
 					<tr>
 						<th>추가 배송지${addAddrList }</th>
-<%-- 						<c:forEach var="vo" items="${addAddrList }" varStatus="status"> --%>
+						<c:forEach var="vo" items="${addAddrList }" varStatus="status">
 						<td style="line-height: 25px;">
 							<input type="text" id="addr_num" name="addr_num" value="${addAddrList.addr_name }" placeholder="배송지 별명"><br>
 							<input type="text" id="postalcode1" name="addr_postalcode" value="${addAddrList.addr_postalcode }" placeholder="우편번호">
@@ -114,7 +114,7 @@
 							<input type="text" id="detailaddr" name="addr_detailaddr" value="${addAddrList.addr_detailaddr }" placeholder="상세주소">
 							<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('2')">
 						</td>
-<%-- 						</c:forEach> --%>
+						</c:forEach>
 					</tr>
 				</table>
 				

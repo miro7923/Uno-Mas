@@ -67,26 +67,44 @@ public class UserDAOImpl implements UserDAO {
 			}
 		};
 		int result = 0;
-
-//		if (vo.getUser_id().contains("admin")) {
-//			AdminVO loginVO = sqlSession.selectOne(NAMESPACE + ".adminLogin", vo);
-//		} else {
-			UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
 		
+		if (vo.getUser_id().contains("admin")) {
+			AdminVO loginVO = sqlSession.selectOne(NAMESPACE + ".adminLogin", vo);
+			
+			System.out.println("loginVO" +loginVO);
 			if (loginVO == null) {
 				result = 0;
 			} else {
-				if (loginVO.getUser_status() != 1) {
+				if (loginVO.getAdmin_permit() != 1 || loginVO.getAdmin_permit() != 2) {
 					result = -1;
 				} else {
 					result = 1;
-					loginMap.put("num", loginVO.getUser_num());
+					loginMap.put("num", loginVO.getAdmin_num());
 				}
 			}
 
 			loginMap.put("result", result);
 			return loginMap;
-//		}
+			
+		} else {
+			UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
+		
+			System.out.println("loginVO" +loginVO);
+//			if (loginVO == null) {
+//				result = 0;
+//			} else {
+//				if (loginVO.getUser_status() != 1) {
+//					result = -1;
+//				} else {
+//					result = 1;
+//					loginMap.put("num", loginVO.getUser_num());
+//				}
+//			}
+//
+//			loginMap.put("result", result);
+			return loginMap;
+		}
+		
 	}
 
 	// 회원 아이디 찾기

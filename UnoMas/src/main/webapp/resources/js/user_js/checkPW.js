@@ -1,5 +1,4 @@
 function passCk(){
-	alert("passcheck");
 	$.ajax({
 			async: true,
 			type: "POST",

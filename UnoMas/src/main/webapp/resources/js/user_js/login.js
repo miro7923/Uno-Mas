@@ -17,7 +17,7 @@ function memberCk(){
 		url: "login",
 		data: {
 			'user_id': $("#id").val(), 
-			'user_pass': $("#pass").val() 
+			'user_pass': $("#pass").val()
 		},
 		success: function(result) {
 			if(result != "1") {

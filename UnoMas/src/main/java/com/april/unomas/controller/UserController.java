@@ -69,8 +69,13 @@ public class UserController {
 
 		String result = String.valueOf(loginMap.get("result"));
 		if (result.equals("1")) {
-			session.setAttribute("saveID", vo.getUser_id());
-			session.setAttribute("saveNUM", loginMap.get("num"));
+			if (vo.getUser_id().contains("admin")) {
+				session.setAttribute("saveAID", vo.getUser_id());
+				session.setAttribute("saveANUM", loginMap.get("num"));
+			} else {
+				session.setAttribute("saveID", vo.getUser_id());
+				session.setAttribute("saveNUM", loginMap.get("num"));
+			}
 		}
 
 		return result;
@@ -165,15 +170,15 @@ public class UserController {
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 
 		String saveID = (String) session.getAttribute("saveID");
-		System.out.println("update_myInfo : "+ saveID);
+		System.out.println("update_myInfo : " + saveID);
 		UserVO userInfoVO = service.getUserInfo(saveID);
 		model.addAttribute("userInfoVO", userInfoVO);
-		
+
 		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
 		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
-		System.out.println("addAddrList: "+addAddrList.size());
+		System.out.println("addAddrList: " + addAddrList.size());
 		model.addAttribute("addAddrList", addAddrList);
-		
+
 		return "/user/updateMyInfo";
 	}
 
@@ -182,7 +187,7 @@ public class UserController {
 	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
 		if (eAgree.equals("1")) {
 			vo.setUser_emailagree(1);
-		} 
+		}
 
 		service.updateUser(vo);
 		service.updateAddAddr(vo);
@@ -211,13 +216,6 @@ public class UserController {
 	// 비번체크
 	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
 	public String pwCheck() {
-		System.out.println("check_pw GET");
-//		HttpSession session, Model model
-//		String saveID = (String) session.getAttribute("saveID");
-//		System.out.println("update_myInfo : "+ saveID);
-//		UserVO userInfoVO = service.getUserInfo(saveID);
-//		model.addAttribute("userInfoVO", userInfoVO);
-		
 		return "/user/checkPW";
 	}
 
