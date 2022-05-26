@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${path}/resources/css/user_css/myReview.css">
+<link rel="stylesheet" href="${path}/resources/css/user_css/myOrderList.css">
 <link rel="stylesheet" href="${path}/resources/css/user_css/pagingCommon.css">
 <title>마이페이지</title>
 </head>
@@ -17,60 +17,62 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <jsp:include page="../inc/header.jsp"></jsp:include>
 	
-  <div class="myReview_container">
-	<jsp:include page="myPageLeftBar.jsp"></jsp:include>
+  <div class="myOrderLsit_container">
+	<jsp:include page="../user/myPageLeftBar.jsp"></jsp:include>
 	
 	<div class="point_right_container">	
 	
         <div class="review_container">
-			<h3>상품 문의 내역</h3>
+			<h3>전체 주문 내역</h3>
 
 			<div class="point_list_box">
 			  <c:choose> 
-			    <c:when test="${empty pqnaList }">
+			    <c:when test="${false }">
 			    	<div class="null_text">상품 문의 내역이 없습니다.</div>
 			    </c:when>
 			    <c:otherwise>
-				    <c:forEach var="vo" items="${pqnaList }" varStatus="it">
-				    <fmt:formatDate var="regdate" value="${vo.p_inquiry_regdate}" pattern="yyyy-MM-dd"/>
 					<table class="point_table">
+						<colgroup>
+						  <col style="width: 15%"><col style="width: 55%;"><col style="width: 15%"><col style="width: 15%">
+						</colgroup>
 						<tr>
-							<th scope="col">번호</th>
-							<td>${vo.p_inquiry_num }</td>
-							
-							<th scope="col">아이디</th>
-							<td>${saveID }</td>
-						
-							<th scope="col">등록일</th>
-							<td>${regdate }</td>
-							
-							<th scope="col">상태</th>
-							<td>${vo.prod_name }</td>
-						
-							
-							<td style="width: 180px;">
-								<a href="/product/modify_inquiry?inquiry_num=${vo.p_inquiry_num }&pageInfo=my&pagingNum=${pagingNum}">
-								  <input type="button" value="수정하기" class="review_btn" style="border-color: #B9CE45;">
-								</a>
-								<a href="/product/remove_inquiry?inquiry_num=${vo.p_inquiry_num }&pageInfo=my&pagingNum=${pagingNum}&prod_num=${vo.prod_num}">
-								  <input type="button" value="삭제하기" onclick="" class="review_btn" style="border-color: red;">
-								</a>
-							</td>
+						  <td>주문일/주문번호</td><td>상품정보</td><td>상태</td><td>신청</td>
 						</tr>
 						
-						<th colspan="2">상품명</th>
-						<td colspan="9" style="text-align: left; padding-left: 20px">${vo.prod_name }</td>
-						
-						<tr>
-						  
-						      <td colspan=11" class="content_tr">
-								  <p>${vo.p_inquiry_title }</p>
-								  ${vo.p_inquiry_content }
-							  </td>
-						    
-						</tr>
+						<c:forEach var="vo" items="${orderList }" varStatus="it">
+				    	<fmt:formatDate var="regdate" value="${vo.order_date}" pattern="yyyy-MM-dd"/>
+							<tbody>
+							  <tr>
+								<td rowspan="2" class="order_num_td">
+									${regdate }<br>
+									[ ${vo.order_code } ]<br> 
+									<a href="" class="table_btn">주문 상세보기</a>
+								</td>
+								<td class="order_info_td">
+									<img src="https://view01.wemep.co.kr/wmp-product/6/996/2101399966/2101399966_thumbnail.jpg" alt="메이킹유 6801볼트원피스">
+									
+									<div>
+										<a href="https://front.wemakeprice.com/deal/627640468?prodNo=2101399966&amp;allowView=Y"
+													target="_blank"> 메이킹유 6801볼트원피스 </a>
+										<hr>
+										<span>9,900</span> / <span>${vo.order_quantity }개</span>
+									</div>
+								</td>
+								<td rowspan="2">
+									<strong>${vo.order_status }</strong><br>
+									<a href="" class="table_btn">배송조회</a>
+								</td>
+								
+								<td>
+								  <a href="" class="table_btn">반품신청</a><br>
+								  <a href="" class="table_btn">교환신청</a>
+								</td>
+							  </tr>
+							</tbody>
+
+						</c:forEach>
 					</table>	
-				  </c:forEach>
+				  
 
 					<div class="paging_container">
 						<c:if test="${pm.prev }">

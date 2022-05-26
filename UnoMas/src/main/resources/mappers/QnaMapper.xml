@@ -63,7 +63,7 @@
 		where user_num = ${user_num}
 		]]>
 		order by qna_num desc
-		limit #{pageStart}, #{perPageNum}s
+		limit #{pageStart}, #{perPageNum}
 	</select>
 	
 		

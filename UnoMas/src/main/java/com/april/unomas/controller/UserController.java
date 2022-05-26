@@ -149,9 +149,12 @@ public class UserController {
 	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
-		String saveID = (String) session.getAttribute("saveID");
-		UserVO userInfoVO = service.getUserInfo(saveID);
-		model.addAttribute("userInfoVO", userInfoVO);
+		
+		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
+		System.out.println("세션값: " + saveNUM);
+//		String saveID = (String) session.getAttribute("saveID");
+//		UserVO userInfoVO = service.getUserInfo(saveID);
+//		model.addAttribute("userInfoVO", userInfoVO);
 		return "/user/updateMyInfo";
 	}
 

@@ -441,7 +441,7 @@ public class ProductController {
 		}
 	}
 	
-	
+	// 상품 문의
 	@RequestMapping(value = "/write_inquiry", method = RequestMethod.GET)
 	public String writeInquiryGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));
@@ -456,6 +456,7 @@ public class ProductController {
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
+	// 상품 문의 내역
 	@RequestMapping(value = "/list_inquiry", method = RequestMethod.GET)
 	public String getInquiryListGET(@RequestParam("prod_num") int prod_num, 
 			@RequestParam("page") int page, Model model) throws Exception {
@@ -482,29 +483,49 @@ public class ProductController {
 		return "/product/inqBoardAjax";
 	}
 	
+	// 상품 문의 수정
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.GET)
-	public String modifyInquiryGET(@RequestParam("inquiry_num") int inquiry_num, Model model) throws Exception {
+	public String modifyInquiryGET(@RequestParam("inquiry_num") int inquiry_num, Model model,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum, 
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
 		ProdInquiryVO vo = service.getInquiry(inquiry_num);
 		
 		model.addAttribute("prod_name", service.getProduct(vo.getProd_num()).getProd_name());
 		model.addAttribute("vo", vo);
+		model.addAttribute("pagingNum", pagingNum);
+		model.addAttribute("pageInfo", pageInfo);
 		
 		return "product/inquiryModifyForm";
 	}
 	
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.POST)
-	public String modifyInquiryPOST(ProdInquiryVO vo) throws Exception {
+	public String modifyInquiryPOST(ProdInquiryVO vo, Model model,
+			@RequestParam(value = "pagingNum", required = false) String pagingNum, 
+			@RequestParam(value="pageInfo", required = false) String pageInfo) throws Exception {
 		service.modifyInquiry(vo);
 		
-		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		if(pageInfo.equals("my")) {
+			return "redirect:/user/my_prod_qa?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		}
+		
 	}
 	
+	// 상품 문의 삭제
 	@RequestMapping(value = "/remove_inquiry", method = RequestMethod.GET)
 	public String removeInquiryGET(@RequestParam("inquiry_num") int inquiry_num, 
-			@RequestParam("prod_num") int prod_num) throws Exception {
+			@RequestParam(value="prod_num", required = false) int prod_num,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum, 
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
+		
 		service.removeInquiry(inquiry_num);
 		
-		return "redirect:/product/product_detail?prod_num=" + prod_num;
+		if(pageInfo.equals("my")) {
+			return "redirect:/user/my_prod_qa?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + prod_num;
+		}
 	}
 
 	@RequestMapping(value = "/new_list", method = RequestMethod.GET)

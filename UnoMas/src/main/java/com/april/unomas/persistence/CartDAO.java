@@ -14,4 +14,5 @@ public interface CartDAO {
     public int sumMoney(int user_num);			// 장바구니 금액 합계
     public int updateCart(CartVO vo);			// 장바구니 상품수량 변경 
     public void modifyCart(CartVO vo);			// 장바구니 수정
+    public CartVO getSelectedItem(int cart_num); // 회원이 주문하려고 선택한 상품 가져오는 메서드
 }

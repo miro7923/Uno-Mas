@@ -60,4 +60,7 @@ public interface UserService {
 		
 	// 내 상품 리뷰
 	public List<ProdInquiryVO> getMyPquestion(String num, UserCriteria cri);
+	
+	// 결제완료 후 적립금 업데이트
+	public void updatePoint(int user_point);
 }

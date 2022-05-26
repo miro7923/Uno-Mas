@@ -139,7 +139,10 @@ public class UserServiceImpl implements UserService {
 		return dao.getMyQuestion(num, cri);
 	}
 	
-	
+	@Override
+	public void updatePoint(int user_point) {
+		dao.updatePoint(user_point);
+	}
 	
 	
 	

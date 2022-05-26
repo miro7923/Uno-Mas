@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${path}/resources/css/user_css/myReview.css">
+<link rel="stylesheet" href="${path}/resources/css/user_css/myQuestion.css">
 <link rel="stylesheet" href="${path}/resources/css/user_css/pagingCommon.css">
 <title>마이페이지</title>
 </head>
@@ -55,9 +55,6 @@
 					
 					
 						<td style="width: 180px;">
-							<a href="/product/modify_review?review_num=">
-							  <input type="button" value="수정하기" class="review_btn" style="border-color: #B9CE45;">
-							</a>
 							<a href="/product/modify_review">
 							  <input type="button" value="삭제하기" onclick="" class="review_btn" style="border-color: red;">
 							</a>
@@ -67,14 +64,14 @@
 					<tr>
 					  <c:choose>
 					    <c:when test="${empty vo.qna_image1 }">
-					      <td colspan=11s" class="content_tr">
+					      <td colspan=11" class="content_tr">
 							  <p>${vo.qna_title }</p>
 							  ${vo.qna_content }
 						  </td>
 					    </c:when>
 					    <c:otherwise>
-					      <td colspan="3">
-						    <img src='<spring:url value="/resources/upload/images/board/review/"></spring:url>' class="review_img">
+					      <td colspan="3"> 
+						    <img src='<spring:url value="/resources/upload/images/board/qna/"></spring:url>' class="review_img">
 						  </td>
 						  <td colspan="8" class="content_tr">
 							  <p>${vo.qna_title }</p>

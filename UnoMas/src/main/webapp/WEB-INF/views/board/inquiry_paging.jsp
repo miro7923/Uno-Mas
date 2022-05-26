@@ -30,7 +30,7 @@
                     <div class="faq-accordin">
                         
                         <div class="page_aticle">
-    <div class="head_aticle">
+    			<div class="head_aticle">
                     <h2 class="tit">1:1 문의<span class="tit_sub"></span></h2>
                 </div>
     

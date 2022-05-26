@@ -65,6 +65,9 @@ public interface UserDAO {
 	
 	// 내 1:1 목록
 	public List<QnaVO> getMyQuestion(String num, UserCriteria cri);
+	
+	// 결제완료 후 적립금
+	public void updatePoint(int user_point);
 
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);

@@ -240,6 +240,12 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println("ya는? " + ya.get(0));
 		return sqlSession.selectList(NAMESPACE + ".getMyQuestion", map);
 	}
+	
+	// 결제완료 후 적립금 업데이트
+	@Override
+	public void updatePoint(int user_point) {
+		sqlSession.update(NAMESPACE + ".updatePoint", user_point);
+	}
 
 	
 	@Override

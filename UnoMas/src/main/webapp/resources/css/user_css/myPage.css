@@ -59,13 +59,14 @@
 	font-weight: bold;
 }
 
-.middle-content > h3 >span {
+.middle-content > h3 >span > a {
 	float: right;
+	color: black;
     font-size: 20px;
     margin-right: 10px;
     cursor: pointer;
 }
-.middle-content > h3 >span:hover {
+.middle-content > h3 >span > a:hover {
 	color: #B9CE45;
 	font-size: 25px;
 }

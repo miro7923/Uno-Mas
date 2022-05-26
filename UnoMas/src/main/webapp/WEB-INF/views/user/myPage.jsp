@@ -42,7 +42,7 @@
   	  </div>
   	
   	  <div class="middle-content">
-  			<h3>장바구니 <span><a href="product/shopping-cart">+</a></span></h3>
+  			<h3>장바구니 <span><a href="/product/shopping-cart">+</a></span></h3>
   			<table class="cart-table">
   				<colgroup>
           			<col width="20%"><col width="30%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">

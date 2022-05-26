@@ -14,7 +14,7 @@ import com.april.unomas.domain.CartVO;
 @Repository
 public class CartDAOImpl implements CartDAO{
 	
-	private static String namespace = "com.april.unomas.mappers.cartMapper";
+	private static String NAMESPACE = "com.april.unomas.mappers.cartMapper";
 
 	@Inject
 	SqlSession sqlSession;
@@ -22,7 +22,7 @@ public class CartDAOImpl implements CartDAO{
 
 	@Override
 	public int insert(CartVO vo) {
-		return sqlSession.insert(namespace+".insert",vo);
+		return sqlSession.insert(NAMESPACE+".insert",vo);
 		
 	}
 
@@ -69,5 +69,9 @@ public class CartDAOImpl implements CartDAO{
 		return sqlSession.selectOne("sumMoney", user_num);
 	}
 	
+	@Override
+	public CartVO getSelectedItem(int cart_num) {
+		return sqlSession.selectOne(NAMESPACE + ".getSelectedItems", cart_num);
+	}
 	
 }

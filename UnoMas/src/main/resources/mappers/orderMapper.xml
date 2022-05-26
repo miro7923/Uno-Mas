@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.unomas.mapper.OrderMapper">
+    <!-- 회원의 배송지 목록 가져오기 -->
+    <select id="getOrderAddrList" resultType="OrderAddrVO">
+        SELECT *
+        FROM order_addr
+        WHERE user_num = #{user_num}
+    </select>
+    
+    <!-- 가장 마지막 주문번호 찾기 -->
+    <select id="getLastOrderNum" resultType="int">
+        SELECT MAX(order_code)
+        FROM orders
+    </select>
+    
+    <!-- 주문정보 생성 -->
+    <insert id="createOrder">
+        INSERT INTO orders(order_code, user_num, prod_num, order_total, order_quantity, order_postalcode, 
+        order_roadaddr, order_detailaddr)
+        VALUES(#{order_code}, #{user_num}, #{prod_num}, #{order_total}, #{order_quantity}, #{order_postalcode}, 
+        #{order_roadaddr}, #{order_detailaddr})
+    </insert>
+    
+    <!-- 결제정보 생성 -->
+    <insert id="createPay">
+        INSERT INTO pay(user_num, order_code, pay_method, pay_card_company, pay_card_num, pay_total_price)
+        VALUES(#{user_num}, #{order_code}, #{pay_method}, #{pay_card_company}, #{pay_card_num}, #{pay_total_price})
+    </insert>
+    
+    <!-- 주문 개수 -->
+    <select id="orderCount" parameterType="String" resultType="int">
+    	SELECT order_code
+    	FROM orders
+    	WHERE user_num=#{num}
+    </select>
+    
+    <!-- 주문 목록 -->
+    <select id="myOrderList" parameterType="Map" resultType="com.april.unomas.domain.OrderVO">
+		SELECT *
+		FROM orders 
+		WHERE user_num=${num}
+		ORDER BY order_date DESC
+		LIMIT #{cri.pageStart},#{cri.perPageNum}
+    </select>
+    
+</mapper>
