@@ -238,3 +238,18 @@ function uploadImg(num, type) {
 	});
 }
 
+function showFileName(num) {
+    var fileTarget = $('#uploadImg'+num);
+    
+    fileTarget.on('change', function() {
+        if (window.FileReader) { // modern browser
+            var fileName = $('#uploadImg'+num)[0].files[0].name;
+        }
+        else { // IE
+            var filename = $('#uploadImg'+num).val().split('/').pop().split('\\').pop();
+        }
+        
+        $('#uploadImgName'+num).val(fileName);
+    });
+}
+

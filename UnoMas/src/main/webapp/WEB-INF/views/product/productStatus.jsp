@@ -182,69 +182,69 @@
 							</div>
 							<!-- 추가항목 끝-->
 							<!-- 상품이미지-->
-							<div class="row">
-								<div class="col-lg-12">
-									<label></label>
-									<div class="line"><hr></div><br><br>
-									<h4>상품이미지<label>(100MB)</label></h4>
-								</div>
-							</div>
-							<div class="product-list">
-		                        <div class="row">
-		                            <div class="col-lg-3 col-sm-6">
-		                                <div class="product-item">
-		                                    <div class="pi-text">
-		                                        <h5>기본 이미지(세로)</h5><br>
-				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-1.jpg" alt="">
-				                                        <div class="sale pp-sale">1</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
-				                                    </div>
-		                                        <div class="catagory-name">[이미지 삭제]</div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            <div class="col-lg-3 col-sm-6">
-		                                <div class="product-item">
-		                                    <div class="pi-text">
-		                                        <h5>상품 상세 설명</h5><br>
-				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-2.jpg" alt="">
-				                                        <div class="sale pp-sale">2</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
-				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            <div class="col-lg-3 col-sm-6">
-		                                <div class="product-item">
-		                                    <div class="pi-text">
-		                                        <h5>썸네일</h5><br>
-				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
-				                                        <div class="sale pp-sale">3</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
-				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                            <div class="col-lg-3 col-sm-6">
-		                                <div class="product-item">
-		                                    <div class="pi-text">
-		                                        <h5>품절 시 대체 썸네일</h5><br>
-				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-4.jpg" alt="">
-				                                        <div class="sale pp-sale">4</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
-				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
-		                                    </div>
-		                                </div>
-		                            </div>
-								</div>
-							</div>
+<!-- 							<div class="row"> -->
+<!-- 								<div class="col-lg-12"> -->
+<!-- 									<label></label> -->
+<!-- 									<div class="line"><hr></div><br><br> -->
+<!-- 									<h4>상품이미지<label>(100MB)</label></h4> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 							<div class="product-list"> -->
+<!-- 		                        <div class="row"> -->
+<!-- 		                            <div class="col-lg-3 col-sm-6"> -->
+<!-- 		                                <div class="product-item"> -->
+<!-- 		                                    <div class="pi-text"> -->
+<!-- 		                                        <h5>기본 이미지(세로)</h5><br> -->
+<!-- 				                                    <div class="pi-pic"> -->
+<%-- 				                                        <img src="${path}/resources/img/products/product-1.jpg" alt=""> --%>
+<!-- 				                                        <div class="sale pp-sale">1</div> -->
+<!-- 				                                        <input type="file" id="uploadImg" oninput="checkFileName();"> -->
+<!-- 				                                    </div> -->
+<!-- 		                                        <div class="catagory-name">[이미지 삭제]</div> -->
+<!-- 		                                    </div> -->
+<!-- 		                                </div> -->
+<!-- 		                            </div> -->
+<!-- 		                            <div class="col-lg-3 col-sm-6"> -->
+<!-- 		                                <div class="product-item"> -->
+<!-- 		                                    <div class="pi-text"> -->
+<!-- 		                                        <h5>상품 상세 설명</h5><br> -->
+<!-- 				                                    <div class="pi-pic"> -->
+<%-- 				                                        <img src="${path}/resources/img/products/product-2.jpg" alt=""> --%>
+<!-- 				                                        <div class="sale pp-sale">2</div> -->
+<!-- 				                                        <input type="file" id="uploadImg" oninput="checkFileName();"> -->
+<!-- 				                                    </div> -->
+<!-- 		                                     	<div class="catagory-name">[이미지 삭제]</div> -->
+<!-- 		                                    </div> -->
+<!-- 		                                </div> -->
+<!-- 		                            </div> -->
+<!-- 		                            <div class="col-lg-3 col-sm-6"> -->
+<!-- 		                                <div class="product-item"> -->
+<!-- 		                                    <div class="pi-text"> -->
+<!-- 		                                        <h5>썸네일</h5><br> -->
+<!-- 				                                    <div class="pi-pic"> -->
+<%-- 				                                        <img src="${path}/resources/img/products/product-3.jpg" alt=""> --%>
+<!-- 				                                        <div class="sale pp-sale">3</div> -->
+<!-- 				                                        <input type="file" id="uploadImg" oninput="checkFileName();"> -->
+<!-- 				                                    </div> -->
+<!-- 		                                     	<div class="catagory-name">[이미지 삭제]</div> -->
+<!-- 		                                    </div> -->
+<!-- 		                                </div> -->
+<!-- 		                            </div> -->
+<!-- 		                            <div class="col-lg-3 col-sm-6"> -->
+<!-- 		                                <div class="product-item"> -->
+<!-- 		                                    <div class="pi-text"> -->
+<!-- 		                                        <h5>품절 시 대체 썸네일</h5><br> -->
+<!-- 				                                    <div class="pi-pic"> -->
+<%-- 				                                        <img src="${path}/resources/img/products/product-4.jpg" alt=""> --%>
+<!-- 				                                        <div class="sale pp-sale">4</div> -->
+<!-- 				                                        <input type="file" id="uploadImg" oninput="checkFileName();"> -->
+<!-- 				                                    </div> -->
+<!-- 		                                     	<div class="catagory-name">[이미지 삭제]</div> -->
+<!-- 		                                    </div> -->
+<!-- 		                                </div> -->
+<!-- 		                            </div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<!-- 상품이미지 끝-->
 							<div class="row">
 								<div class="col-lg-12">
