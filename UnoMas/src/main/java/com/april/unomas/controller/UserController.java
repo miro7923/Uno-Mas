@@ -228,4 +228,9 @@ public class UserController {
 		return Integer.toString(service.checkPW(vo));
 	}
 
+	// 주문 상세보기 페이지
+	@RequestMapping(value = "/my_order_detail", method = RequestMethod.GET)
+	public String orderDetail() {
+		return "/user/myOrderDetail";
+	}
 }
