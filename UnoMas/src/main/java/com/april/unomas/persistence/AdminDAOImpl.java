@@ -68,12 +68,6 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public AdminVO adminLogin(AdminVO vo) {
-		// 관리자 로그인
-		return sqlSession.selectOne(NAMESPACE+".adminLogin",vo);
-	}
-
-	@Override
 	public NoticeVO noticeRead(Integer notice_num) {
 		// 공지사항 글 조회
 		return sqlSession.selectOne(NAMESPACE+".getNotice",notice_num);
