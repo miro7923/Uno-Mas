@@ -71,7 +71,6 @@
 											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain">
 										</div>
 										<div class="col-lg-12">
-											<label for="zip">검색 키워드</label> <input type="text"> <label></label>
 											<div class="line"><hr></div><br><br>
 										</div>
 									</div>

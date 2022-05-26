@@ -55,18 +55,25 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" name="categories" id="categories">
+											<select class="selectBox" id="categories">
 												<option value="0" selected="selected">대분류</option>
 												<c:forEach var="cvo" items="${categories }">
-												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
 												</c:forEach>
+												<option value="1" <c:if test="${vo.prod_category > 0 }">selected</c:if>>채소</option>
+												<option value="2" <c:if test="${vo.prod_category > 3 }">selected</c:if>>과일 · 견과류 · 쌀</option>
+												<option value="3" <c:if test="${vo.prod_category > 6 }">selected</c:if>>수산 · 해산 · 건어물</option>
+												<option value="4" <c:if test="${vo.prod_category > 10 }">selected</c:if>>정육 · 계란</option>
+												<option value="5" <c:if test="${vo.prod_category > 15 }">selected</c:if>>생수 · 우유 · 음료</option>
+												<option value="6" <c:if test="${vo.prod_category > 18 }">selected</c:if>>신상품</option>
+												<option value="7" <c:if test="${vo.prod_category > 19 }">selected</c:if>>특가</option>
 											</select>
 										</div>
 										<div class="col-lg-6">
 											<select class="selectBox" name="prod_category" id="details">
 												<option value="0" selected>소분류</option>
 												<c:forEach var="dvo" items="${details }">
-													<option value="${dvo.dcate_num }" class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
+													<option value="${dvo.dcate_num }" 
+														<c:if test="${vo.prod_category eq dvo.dcate_num }">selected="selected"</c:if>class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
 												</c:forEach>
 											</select>
 											<label></label>
@@ -75,7 +82,6 @@
 											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain" value="${vo.prod_explain }">
 										</div>
 										<div class="col-lg-12">
-											<label for="zip">검색 키워드</label> <input type="text"> <label></label>
 											<div class="line"><hr></div><br><br>
 										</div>
 									</div>
