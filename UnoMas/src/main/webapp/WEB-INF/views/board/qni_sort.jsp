@@ -11,6 +11,11 @@
 <html lang="zxx">
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
+
 <!-- Head end -->
 
 <body>
@@ -49,14 +54,15 @@
     <div class="head_aticle">
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
-
-	<select id="search_type" name="search_type">
+	<div class="select">
+	<select id="search_type_qni" name="search_type">
     	<option value="" disabled selected>검색조건</option>
     	<option value="title">제목</option>
     	<option value="cate">카테고리</option>
     	<option value="content">내용</option>
     </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
+    </div>
+    <input type="text" id="keyword_qni" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
     <button id="search_btn" onclick="search_qni()">검색</button>
 

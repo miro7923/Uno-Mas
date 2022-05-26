@@ -28,8 +28,5 @@
     <link rel="stylesheet" href="${path}/resources/css/style.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/headerFooter.css?after" type="text/css">
     
-    <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after" type="text/css">
+    
 </head>

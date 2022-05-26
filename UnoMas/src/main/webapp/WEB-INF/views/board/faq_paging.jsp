@@ -10,6 +10,11 @@
 </head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
+`
 <!-- Head end -- >
 
 <body>
@@ -49,13 +54,14 @@
         <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
     </div>
     
-    <select id="search_type" name="search_type">
+<!--     <select id="search_type" name="search_type"> -->
 <!--     	<option value="">검색조건</option> -->
-    	<option value="title">제목</option>
+<!--     	<option value="title">제목</option> -->
 <!--     	<option value="cate">카테고리</option> -->
 <!--     	<option value="content">내용</option> -->
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
+<!--     </select> -->
+	<input type="hidden" value="title" name="search_type" id="search_type_faq">
+    <input type="text" id="keyword_faq" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
     <button id="search_btn" onclick="search_faq()">검색</button>
     
@@ -126,16 +132,7 @@
 
                     <td>
                     
-                    <select id="search_type" name="search_type">
-<!--     	<option value="">검색조건</option> -->
-    	<option value="title">제목</option>
-<!--     	<option value="cate">카테고리</option> -->
-<!--     	<option value="content">내용</option> -->
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
-<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search_faq()">검색</button>
-                                        
+                   
                    
                     
                     </td>
