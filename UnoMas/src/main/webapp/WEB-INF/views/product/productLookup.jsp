@@ -59,21 +59,15 @@
 		<div class="container">
 			<div class="row">
 
-				<!-- 상품관리 카테고리 -->
-				<div
-					class="col-lg-2 produts-sidebar-filter">
+				<!-- 관리자 카테고리 -->
+				<div class="col-lg-3 produts-sidebar-filter">
 					<div class="filter-widget">
-						<h4 class="fw-title">상품관리</h4>
-						<ul class="filter-catagories">
-<!-- 							<li><a href="product_lookup">상품조회</a></li> -->
-							<li><a href="product_lookup">상품조회</a></li>
-							<li><a href="product_register">상품등록</a></li>
-						</ul>
+				 		<jsp:include page="../inc/adminLeftBar.jsp"></jsp:include>
 					</div>
 				</div>
 				
 				<!-- 상품관리 카테고리 끝-->
-				<div class="col-lg-10">
+				<div class="col-lg-9">
 					<h2>상품조회</h2>
 					<div class="line"><hr></div>
 					<div class="container">
@@ -128,7 +122,7 @@
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row"><span class="sold">품절</span></td>
 																			<td class="normal-row"><span class="sold">${vo.prod_readcnt }</span></td> <!-- 조회수 -->
-																			<td class="normal-row"><span class="sold">-</span></td> <!-- 주문량 -->
+																			<td class="normal-row"><span class="sold">${vo.prod_sellcnt }</span></td> <!-- 주문량 -->
 																			<td class="normal-row"><span class="sold">${vo.prod_stock }</span></td>
 																		</c:when>
 																		<c:otherwise>
@@ -142,7 +136,7 @@
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row">정상</td>
 																			<td class="normal-row">${vo.prod_readcnt }</td> <!-- 조회수 -->
-																			<td class="normal-row">-</td> <!-- 주문량 -->
+																			<td class="normal-row">${vo.prod_sellcnt }</td> <!-- 주문량 -->
 																			<td class="normal-row">${vo.prod_stock }</td>
 																		</c:otherwise>
 																		

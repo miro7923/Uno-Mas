@@ -5,10 +5,91 @@
    
 <!DOCTYPE html>
 <html>
-  <jsp:include page="../inc/adminHeader.jsp"></jsp:include>
-<!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3">
+<link rel="stylesheet" href="${path}/resources/css/user_css/myInfo.css">
+<link rel="stylesheet" href="${path}/resources/css/admin.css?after1">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UnoMas 관리자페이지</title>
+</head>
+<!-- Start Header -->
+
+
+<body>
+    <!-- Header Section Begin -->
+    <jsp:include page="../inc/adminHeader2.jsp"></jsp:include>
+    <!-- Header End -->
+    
+    <!-- Product Register Section End -->
+	<section class="product-shop spad">
+		<div class="container">
+			<div class="row">
+
+				<!-- 관리자 카테고리 -->
+				<div class="col-lg-3 produts-sidebar-filter">
+					<div class="filter-widget">
+				 		<jsp:include page="../inc/adminLeftBar.jsp"></jsp:include>
+					</div>
+				</div>
+				
+				<div class="col-lg-9">
+					<h2>관리자페이지</h2>
+					<div class="line"><hr></div>
+					<div class="container">
+						<form action="#" class="checkout-form">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+		
         
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <section class="product-shop spad">
+		<div class="container">
+			<div class="row">
+			
+				<!-- 관리자 카테고리 -->
+				<div class="col-lg-3 produts-sidebar-filter">
+					<div class="filter-widget">
+					</div>
+				</div>
+				
+        		<div class="col-lg-9">
+					<h2>공지사항</h2><div class="line"><hr></div>
+					<div class="container">
+						<form role="form" method="post" class="checkout-form" id="register">
+							<!-- 기본정보 -->
+							<div class="row">
+								<div class="col-lg-12">
         <div class="container">
             <div class="row">
             
@@ -126,6 +207,10 @@
                 </div>
             </div>
         </div>
+        
+        </div>
+        </div>
+        </section>
         <jsp:include page="../inc/adminScript.jsp"></jsp:include>
         
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
