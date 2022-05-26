@@ -77,7 +77,6 @@ public class UserController {
 				session.setAttribute("saveNUM", loginMap.get("num"));
 			}
 		}
-
 		return result;
 	}
 

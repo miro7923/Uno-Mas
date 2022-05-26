@@ -64,38 +64,9 @@ public class AdminController {
 		return "/admin/main";
 	}
 	
-	@RequestMapping(value = "/admin_login",method = RequestMethod.GET)
-	public String adminLoginGET() {
-		
-		return "/admin/admin_login";
-	}
-	
-//	@RequestMapping(value = "/admin_login",method = RequestMethod.POST)
-//	public String adminLoginPOST(AdminVO vo,HttpSession session) throws Exception{
-//		
-//		AdminVO adminVO = service.adminLogin(vo);
-//		
-//		// 로그인 실패
-//		if(adminVO == null || adminVO.getAdmin_permit() != 1) {
-//			return "redirect:/admin/admin_login";
-//		}
-//		log.info("로그인 실패");
-//				
-//		log.info(adminVO+"");
-//		
-//		// 로그인 성공 및 정보 저장
-//		session.setAttribute("saveAID", adminVO);
-//		log.info("로그인 성공!");
-//		
-//		return "redirect:/admin/main";
-//	}
-	
 	@RequestMapping(value = "/admin_logout",method = RequestMethod.GET)
 	public String adminLogoutGET(AdminVO vo,HttpSession session) throws Exception {
-		
-		if(session.getAttribute("saveID") != null) {
-			session.invalidate();
-		}
+		session.invalidate();
 		
 		return "/index";
 	}

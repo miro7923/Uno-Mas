@@ -29,6 +29,7 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSession sqlSession;
 	private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 	private static final String NAMESPACE = "com.unomas.mapper.userMapper";
+	private static final String NAMESPACE_A = "com.unomas.mapper.adminMapper";
 
 	@Autowired
 	JavaMailSender mailSender;
@@ -69,13 +70,13 @@ public class UserDAOImpl implements UserDAO {
 		int result = 0;
 		
 		if (vo.getUser_id().contains("admin")) {
-			AdminVO loginVO = sqlSession.selectOne(NAMESPACE + ".adminLogin", vo);
 			
-			System.out.println("loginVO" +loginVO);
+			AdminVO loginVO = sqlSession.selectOne(NAMESPACE_A + ".adminLogin", vo);
+			
 			if (loginVO == null) {
 				result = 0;
 			} else {
-				if (loginVO.getAdmin_permit() != 1 || loginVO.getAdmin_permit() != 2) {
+				if (loginVO.getAdmin_permit() != 1 && loginVO.getAdmin_permit() != 2) {
 					result = -1;
 				} else {
 					result = 1;
@@ -87,21 +88,21 @@ public class UserDAOImpl implements UserDAO {
 			return loginMap;
 			
 		} else {
+			
 			UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
-		
-			System.out.println("loginVO" +loginVO);
-//			if (loginVO == null) {
-//				result = 0;
-//			} else {
-//				if (loginVO.getUser_status() != 1) {
-//					result = -1;
-//				} else {
-//					result = 1;
-//					loginMap.put("num", loginVO.getUser_num());
-//				}
-//			}
-//
-//			loginMap.put("result", result);
+			
+			if (loginVO == null) {
+				result = 0;
+			} else {
+				if (loginVO.getUser_status() != 1) {
+					result = -1;
+				} else {
+					result = 1;
+					loginMap.put("num", loginVO.getUser_num());
+				}
+			}
+
+			loginMap.put("result", result);
 			return loginMap;
 		}
 		

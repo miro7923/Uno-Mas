@@ -23,7 +23,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE = "com.unomas.mapper.AdminMapper";
+	private static final String NAMESPACE = "com.unomas.mapper.adminMapper";
 	
 	@Override
 	public List<AdminVO> adminList(Criter cri) {
