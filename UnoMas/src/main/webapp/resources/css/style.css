@@ -1175,7 +1175,7 @@ ol {
 .product-item .pi-pic .sale {
 	color: #ffffff;
 	font-size: 10px;
-	background: #76BC42;
+	background: #b9ce45;
 	position: absolute;
 	left: 0;
 	top: 20px;
@@ -1184,7 +1184,7 @@ ol {
 }
 
 .product-item .pi-pic .sale.pp-sale {
-	background: #e7ab3c;
+	background: #b9ce45;
 }
 
 .product-item .pi-pic .icon {

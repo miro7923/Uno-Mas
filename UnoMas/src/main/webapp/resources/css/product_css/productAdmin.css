@@ -70,27 +70,15 @@ input[type="checkbox"]:checked::before {
 
 input:focus {
 	outline: none !important;
-	border-color: #f67555;
-	box-shadow: 0 0 5px #f67555;
+	border-color: #b9ce45;
+/* 	box-shadow: 0 0 5px #b9ce45; */
 }
 
 select:focus{
 	outline: none !important;
-
-	border-color: #f67555;
-	box-shadow: 0 0 5px #f67555;
+	border-color: #b9ce45;
+/* 	box-shadow: 0 0 5px #b9ce45; */
 }
-/* .search input:focus { */
-/* 	outline: none !important; */
-/* 	border-color: none; */
-/* 	box-shadow: none; */
-/* } */
-
-/* .search select:focus{ */
-/* 	outline: none !important; */
-/* 	border-color: none; */
-/* 	box-shadow: none; */
-/* } */
 
 /* .cart-table table tr td.cart-pic { */
 /* 	width: 4%; */
@@ -343,6 +331,34 @@ select:focus{
     float: right;
 }
 
+.site-btn {
+	background: #b9ce45;
+    border: 1px solid #b9ce45;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 13px 45px 11px;
+    cursor: pointer;
+}
+
+.pi-pic input[type="file"]{
+	position: absolute;
+ 	width: 0;
+  	height: 0;
+  	padding: 0;
+  	overflow: hidden;
+  	border: 0;
+}
+
+.site-btn label {
+	color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.product-item .pi-pic.sale pp-sale {
+	background: #b9ce45 !important;
+}
 .co-button {
     display: inline-block;
     font-size: 14px;

@@ -71,7 +71,6 @@
 											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain">
 										</div>
 										<div class="col-lg-12">
-											<label for="zip">검색 키워드</label> <input type="text"> <label></label>
 											<div class="line"><hr></div><br><br>
 										</div>
 									</div>
@@ -167,10 +166,11 @@
 				                                    <div class="pi-pic">
 				                                        <img src="" alt="" id="prevImg1">
 				                                        <div class="sale pp-sale">1</div>
+				                                        <input class="uploadImgName1" id="uploadImgName1" value="이미지 선택" disabled="disabled"> 
 				                                        <input type="hidden" id="prod_image1" name="prod_image1">
-				                                        <input type="file" id="uploadImg1" name="uploadImg1" oninput="checkFileName(1, 'top');">
+														<label class="site-btn" for="uploadImg1" id="uploadBtn">업로드</label>
+				                                        <input type="file" id="uploadImg1" name="uploadImg1" oninput="checkFileName(1, 'top'); showFileName(1);">
 				                                    </div>
-		                                        <div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -181,10 +181,11 @@
 				                                    <div class="pi-pic">
 				                                        <img src="" alt="" id="prevImg2">
 				                                        <div class="sale pp-sale">2</div>
+				                                        <input class="uploadImgName2" id="uploadImgName2" value="이미지 선택" disabled="disabled">
 				                                        <input type="hidden" id="prod_image2" name="prod_image2">
-				                                        <input type="file" id="uploadImg2" name="uploadImg2" oninput="checkFileName(2, 'detail');">
+				                                        <label class="site-btn" for="uploadImg2" id="uploadBtn">업로드</label>
+				                                        <input type="file" id="uploadImg2" name="uploadImg2" oninput="checkFileName(2, 'detail'); showFileName(2);">
 				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -195,10 +196,11 @@
 				                                    <div class="pi-pic">
 				                                        <img src="" alt="" id="prevImg3">
 				                                        <div class="sale pp-sale">3</div>
+				                                        <input class="uploadImgName3" id="uploadImgName3" value="이미지 선택" disabled="disabled">
 				                                        <input type="hidden" id="prod_image3" name="prod_image3">
-				                                        <input type="file" id="uploadImg3" name="uploadImg3" oninput="checkFileName(3, 'thumb');">
+				                                        <label class="site-btn" for="uploadImg3" id="uploadBtn">업로드</label>
+				                                        <input type="file" id="uploadImg3" name="uploadImg3" oninput="checkFileName(3, 'thumb'); showFileName(3);">
 				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -209,10 +211,11 @@
                                                 <div class="pi-pic">
                                                     <img src="" alt="" id="prevImg4">
                                                     <div class="sale pp-sale">4</div>
-				                                        <input type="hidden" id="prod_image4" name="prod_image4">
-                                                    <input type="file" id="uploadImg4" name="uploadImg4" oninput="checkFileName(4, 'soldout');">
+				                                    <input class="uploadImgName4" id="uploadImgName4" value="이미지 선택" disabled="disabled">
+				                                    <input type="hidden" id="prod_image4" name="prod_image4">
+				                                    <label class="site-btn" for="uploadImg4" id="uploadBtn">업로드</label>
+                                                    <input type="file" id="uploadImg4" name="uploadImg4" oninput="checkFileName(4, 'soldout'); showFileName(4);">
                                                 </div>
-                                              <div class="catagory-name">[이미지 삭제]</div>
                                           </div>
                                       </div>
                                   </div>

@@ -56,7 +56,7 @@
 			WHERE prod_name LIKE concat('%', #{keyword}, '%')
 		</if>
 		<if test="searchType.equals('prod_num')">
-			WHERE prod_num LIKE concat('%', #{keyword}, '%')
+			WHERE prod_num LIKE concat(#{keyword})
 		</if>
 		
 		ORDER BY prod_num DESC, prod_regdate DESC
@@ -72,7 +72,7 @@
 			WHERE prod_name LIKE concat('%', #{keyword}, '%')
 		</if>
 		<if test="searchType.equals('prod_num')">
-			WHERE prod_num LIKE concat('%', #{keyword}, '%')
+			WHERE prod_num LIKE concat(#{keyword})
 		</if>
     </select>
     

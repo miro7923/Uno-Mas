@@ -57,3 +57,19 @@ function prodCheck() {
     var obj = $("form[role='form']");
 	obj.submit();
 }
+
+//function numberCk() {
+//    var number = RegExp(/^(0|[1-9]+[0-9])$/);
+//    if(!number.test($("[name=prod_price]").val())){
+//        $("[name=prod_price]").focus();
+//        return false;
+//    }
+//}
+
+function discntrateCk(){
+    var discntrate = RegExp(/^(0|[1-9]+[0-9]{1,2})$/);
+    if(!discntrate.test($("[name=prod_discntrate]").val())){
+        $("[name=prod_discntrate]").focus();
+        return false;
+    }
+}
