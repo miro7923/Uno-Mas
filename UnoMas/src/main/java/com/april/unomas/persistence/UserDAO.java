@@ -14,7 +14,6 @@ import com.april.unomas.domain.UserVO;
 
 public interface UserDAO {
 
-	public String getTime();
 	public void joinAdmin(AdminVO vo);
 	
 	// 회원가입

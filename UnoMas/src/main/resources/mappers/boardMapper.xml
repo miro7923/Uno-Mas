@@ -5,7 +5,7 @@
   
 <mapper namespace="com.unomas.mapper.BoardMapper">
 
-<resultMap type="AdminVO" id="adminMap">
+	<resultMap type="AdminVO" id="adminMap">
 		<id column="ADMIN_NUM" property="admin_num"/>
 		<id column="ADMIN_ID" property="admin_id"/>
 		<id column="ADMIN_PASS" property="admin_pass"/>
@@ -14,7 +14,7 @@
 		<id column="ADMIN_LASTLOGIN" property="admin_lastlogin"/>
 	</resultMap>
 
-<resultMap type="QnaCateVO" id="qnaCateMap">
+	<resultMap type="QnaCateVO" id="qnaCateMap">
 		<id column="QNACATE_NUM" property="qnacate_num"/>
 		<id column="QNACATE_NAME" property="qnacate_name"/>
 	</resultMap>

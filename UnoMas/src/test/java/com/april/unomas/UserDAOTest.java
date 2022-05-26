@@ -30,12 +30,6 @@ public class UserDAOTest {
 		log.info(dao.toString());
 	}
 	
-//	@Test
-	public void DB시간확인() {
-		
-		String time = dao.getTime();
-		log.info("DB시간 : " + time);
-	}
 	
 //	@Test
 	public void 관리자등록확인() {

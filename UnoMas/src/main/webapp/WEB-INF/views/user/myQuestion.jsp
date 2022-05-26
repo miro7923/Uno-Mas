@@ -27,7 +27,8 @@
 
 			<div class="point_list_box">
 			  <c:forEach var="vo" items="${qnaList }" varStatus="it">
-			    <fmt:formatDate var="regdate" value="${vo.qna_regdate}" pattern="yyyy-MM-dd"/>
+			    <fmt:formatDate var="regdate" value="${vo.qna_comVO.qnacom_regdate}" pattern="yyyy-MM-dd"/>
+				<fmt:formatDate var="com_regdate" value="${vo.qna_comVO.qnacom_regdate}" pattern="yyyy-MM-dd"/>
 				<table class="point_table">
 					<tr>
 						<th scope="col">번호</th>
@@ -55,9 +56,9 @@
 					
 					
 						<td style="width: 180px;">
-							<a href="/product/modify_review">
-							  <input type="button" value="삭제하기" onclick="" class="review_btn" style="border-color: red;">
-							</a>
+							
+							  <input type="button" value="삭제하기" onclick="deleteAction(${vo.qna_num})" class="review_btn" style="border-color: red;">
+							
 						</td>
 					</tr>
 					
@@ -71,15 +72,25 @@
 					    </c:when>
 					    <c:otherwise>
 					      <td colspan="3"> 
-						    <img src='<spring:url value="/resources/upload/images/board/qna/"></spring:url>' class="review_img">
+						    <img src='<spring:url value="/resources/upload/images/board/qna/${vo.qna_image1 }"></spring:url>' class="review_img">
 						  </td>
 						  <td colspan="8" class="content_tr">
 							  <p>${vo.qna_title }</p>
 							  ${vo.qna_content }
 						  </td>
+						  
 					    </c:otherwise>
 					  </c:choose>
 					</tr>
+					
+					<c:if test="${vo.qna_comVO ne null}">
+						<tr class="comment_tr">
+							<th rowspan="2">답<br><br>변</th>
+							<td colspan="10">${vo.qna_comVO.qnacom_content }
+								<div>관리자 | ${com_regdate }</div>
+							</td>
+						</tr>
+					</c:if>
 				</table>	
 			  </c:forEach>
 			</div>
@@ -121,5 +132,7 @@
 	<!-- js -->
 	<script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>
   	<script src="${path}/resources/js/main.js"></script> 
+  	
+  	<script src="${path}/resources/js/user_js/myQuestion.js"></script>
 </body>
 </html>

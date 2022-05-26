@@ -78,7 +78,20 @@ th, td {
 	text-align: right;
 }
 
+.review_btn {
+	background-color: white;
+	padding: 5px 10px;
+	border: 1px solid;
+}
 
+.review_img {
+	width: 200px;
+    height: 200px;
+    margin: 0px -40px;
+}
+
+
+/* 페이징 */
 .page_control {
 	text-align: center;
     margin: 20px auto;
@@ -100,20 +113,9 @@ th, td {
 }
 
 
-.review_btn {
-	background-color: white;
-	padding: 5px 10px;
-	border: 1px solid;
-}
-
-.review_img {
-	width: 150px;
-    height: 150px;
-    margin: 0px -40px;
-}
 
 
-/* 페이징 스타일*/
+
 .allUser_paging {
 	min-width: 250px;
 /* 	border: 1px solid black; */

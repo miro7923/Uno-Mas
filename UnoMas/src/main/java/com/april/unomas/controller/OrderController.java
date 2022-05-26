@@ -124,9 +124,7 @@ public class OrderController {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
 		List<Integer> codeList = orderService.MyOrderCount(saveNUM); 
-		
-		int totalCount = 
-		System.out.println("총 주문 개수: " + totalCount);
+		System.out.println("총 주문 개수: " + codeList.size());
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
@@ -136,7 +134,7 @@ public class OrderController {
 
 		UserPageMaker pm = new UserPageMaker();
 		pm.setCri(cri);
-		pm.setTotalCount(totalCount);
+		pm.setTotalCount(codeList.size());
 
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("pagingNum", pagingNum);

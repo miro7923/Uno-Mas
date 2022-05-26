@@ -350,10 +350,16 @@ public class BoardController {
 	}
 	
 	@GetMapping(value = "/qna_delete")
-	public String inquiryDelete(@RequestParam("qna_num") Integer qna_num) throws Exception {
+	public String inquiryDelete(@RequestParam("qna_num") Integer qna_num,
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
 		qService.deleteInquiry(qna_num);
 		
-		return "redirect:/board/inquiry_paging";
+		if(pageInfo.equals("my")) {
+			return "redirect:/user/my_question";
+		} else {
+			return "redirect:/board/inquiry_paging";
+		}
+		
 	}
 	
 	@GetMapping(value = "/inquiry_comment")

@@ -18,8 +18,10 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
@@ -37,18 +39,11 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Autowired
 	JavaMailSender mailSender;
-	
-	@Override
-	public String getTime() {
-		String time = sqlSession.selectOne(NAMESPACE + ".getTime");
-		return time;
-	}
 
 	@Override
 	public void joinAdmin(AdminVO vo) {
 		sqlSession.insert(NAMESPACE + ".joinAdmin", vo);
 	}
-	
 	
 	// 회원가입
 	@Override
@@ -219,8 +214,14 @@ public class UserDAOImpl implements UserDAO {
 		Map<String, Object> map = new HashMap();
 		map.put("num", num);
 		map.put("cri", cri);
-
-		return sqlSession.selectList(NAMESPACE + ".getMyPQ", map);
+		
+		List<ProdInquiryVO> pqList= sqlSession.selectList(NAMESPACE + ".getMyPQ", map);
+		System.out.println("pdList: " + pqList.get(0));
+		for(ProdInquiryVO p: pqList) {
+			ProdCommentVO comment = sqlSession.selectOne(NAMESPACE + ".getMyPQcomment", p.getP_inquiry_num());
+			p.setProd_comment(comment);
+		}
+		return pqList;
 	}
 	
 	
@@ -236,9 +237,13 @@ public class UserDAOImpl implements UserDAO {
 		Map<String, Object> map = new HashMap();
 		map.put("num", num);
 		map.put("cri", cri);
-		List ya = sqlSession.selectList(NAMESPACE + ".getMyQuestion", map);
-		System.out.println("ya는? " + ya.get(0));
-		return sqlSession.selectList(NAMESPACE + ".getMyQuestion", map);
+		
+		List<QnaVO> qnaList = sqlSession.selectList(NAMESPACE + ".getMyQuestion", map);
+		for(QnaVO q: qnaList) {
+			Qna_ComVO comment = sqlSession.selectOne(NAMESPACE + ".getQcomment", q.getQna_num());
+			q.setQna_comVO(comment);
+		}
+		return qnaList;
 	}
 	
 	// 결제완료 후 적립금 업데이트
@@ -267,10 +272,7 @@ public class UserDAOImpl implements UserDAO {
 		
 		return result;
 	}
-	
-	
-	
-	
-	
+
+
 	
 }

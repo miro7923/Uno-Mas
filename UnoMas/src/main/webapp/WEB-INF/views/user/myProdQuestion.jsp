@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="${path}/resources/css/user_css/myReview.css">
+<link rel="stylesheet" href="${path}/resources/css/user_css/myProdQuestion.css">
 <link rel="stylesheet" href="${path}/resources/css/user_css/pagingCommon.css">
 <title>마이페이지</title>
 </head>
@@ -33,6 +33,7 @@
 			    <c:otherwise>
 				    <c:forEach var="vo" items="${pqnaList }" varStatus="it">
 				    <fmt:formatDate var="regdate" value="${vo.p_inquiry_regdate}" pattern="yyyy-MM-dd"/>
+				    <fmt:formatDate var="com_regdate" value="${vo.prod_comment.com_regdate}" pattern="yyyy-MM-dd"/>
 					<table class="point_table">
 						<tr>
 							<th scope="col">번호</th>
@@ -45,9 +46,17 @@
 							<td>${regdate }</td>
 							
 							<th scope="col">상태</th>
-							<td>${vo.prod_name }</td>
-						
-							
+							<th scope="col">상태</th>
+							<c:choose>
+								<c:when test="${vo.p_inquiry_process eq false }">
+									<td style="color: red">답변 대기</td>
+								</c:when>
+								<c:otherwise>
+									<td style="color: blue">답변 완료</td>
+								</c:otherwise>
+							</c:choose>
+
+
 							<td style="width: 180px;">
 								<a href="/product/modify_inquiry?inquiry_num=${vo.p_inquiry_num }&pageInfo=my&pagingNum=${pagingNum}">
 								  <input type="button" value="수정하기" class="review_btn" style="border-color: #B9CE45;">
@@ -62,13 +71,20 @@
 						<td colspan="9" style="text-align: left; padding-left: 20px">${vo.prod_name }</td>
 						
 						<tr>
-						  
-						      <td colspan=11" class="content_tr">
-								  <p>${vo.p_inquiry_title }</p>
-								  ${vo.p_inquiry_content }
-							  </td>
-						    
+							<td colspan="11" class="content_tr">
+								<p>${vo.p_inquiry_title }</p>
+								${vo.p_inquiry_content }
+							</td>
 						</tr>
+						
+						<c:if test="${vo.prod_comment ne null}">
+						  <tr class="comment_tr">
+							<th rowspan="2">답<br><br>변</th>
+							<td colspan="9">${vo.prod_comment.com_content }
+								<div>관리자 | ${com_regdate }</div>
+							</td>
+						  </tr>
+						</c:if>
 					</table>	
 				  </c:forEach>
 
