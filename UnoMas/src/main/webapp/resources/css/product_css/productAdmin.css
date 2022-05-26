@@ -357,7 +357,7 @@ select:focus{
 }
 
 .product-item .pi-pic.sale pp-sale {
-	background: #b9ce45;
+	background: #b9ce45 !important;
 }
 .co-button {
     display: inline-block;
