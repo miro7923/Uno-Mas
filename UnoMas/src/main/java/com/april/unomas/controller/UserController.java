@@ -1,6 +1,7 @@
 package com.april.unomas.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -54,43 +55,30 @@ public class UserController {
 	}
 
 	// 로그인 페이지 구현 (GET)
-	// http://localhost:8088/user/login
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET() {
-		log.info(" loginGET() 호출 -> user/login.jsp 이동");
-
 		return "/user/login";
 	}
 
 	// 로그인 페이지 구현 (POST)
-	// http://localhost:8088/user/login
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
-		System.out.println(" loginPOST() 호출 -> user/login.jsp 이동");
 
-		// 전달된 정보 저장
-		System.out.println("아이디 잘 들어와?: " + vo.getUser_id());
+		HashMap loginMap = service.loginUser(vo);
 
-
-		Integer result = service.loginUser(vo);
-		System.out.println("로그인 결과!!!  " + result);
-
-		if(result == 1) {
+		String result = String.valueOf(loginMap.get("result"));
+		if (result.equals("1")) {
 			session.setAttribute("saveID", vo.getUser_id());
+			session.setAttribute("saveNUM", loginMap.get("num"));
 		}
-		
-		return Integer.toString(result);
+
+		return result;
 	}
 
 	// 로그아웃 구현
-	// http://localhost:8088/user/logout
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpSession session) {
-
-		log.info(" logoutGET() 호출 -> 메인 페이지 index.jsp 이동");
-
-		// 로그아웃 시 세션 초기화
 		session.invalidate();
 
 		return "redirect:/index";
@@ -99,21 +87,15 @@ public class UserController {
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user", method = RequestMethod.GET)
 	public String deleteUserGET() {
-
-		log.info("deleteUserGET() 호출 -> deleteUser.jsp 이동");
-
 		return "/user/deleteUser";
 	}
 
 	// 회원탈퇴(POST)
 	@RequestMapping(value = "/delete_user", method = RequestMethod.POST)
 	public String deleteUserPOST(UserVO vo, HttpSession session) {
-
 		service.deleteUser(vo);
 
 		session.invalidate();
-
-		log.info("deleteUserPOST 처리 완료");
 
 		return "redirect:/index";
 	}
@@ -160,7 +142,7 @@ public class UserController {
 		return result;
 	}
 
-	// mypage
+	// 마이페이지
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
 		return "/user/myPage";
@@ -168,54 +150,44 @@ public class UserController {
 
 	// 회원정보 조회
 	@RequestMapping(value = "/myInfo")
-	   public String myInfo(HttpSession session, Model model) {
-	      System.out.println("일단 들어오긴하지??");
-	      String saveID = (String) session.getAttribute("saveID");
-	      System.out.println("세션아이디: " +saveID);
-	      UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
-	      model.addAttribute("userInfoVO", userInfoVO);
-	      return "/user/myInfo";
-	   }
-	
-	// 비밀번호 체크
-	@RequestMapping(value="/checkPw",method = RequestMethod.GET)
-	public String checkPw(UserVO vo, Model model) {
-		boolean result = service.checkPw(vo);
-		
-		if(result) { // 일치
-			return "redirect:/user/updateMyInfo";
-			
-		}else { // 불일치
-			service.updateUser(vo);
-			model.addAttribute("msg", "비밀번호가 틀립니다.");
-			
-			return "/user/checkPw";
-		}
+	public String myInfo(HttpSession session, Model model) {
+
+		String saveID = (String) session.getAttribute("saveID");
+		UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
+
+		model.addAttribute("userInfoVO", userInfoVO);
+
+		return "/user/myInfo";
 	}
 
-	//회원정보수정(GET)
-	// http://localhost:8088/user/update_myInfo
+	// 회원정보수정(GET)
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 
 		String saveID = (String) session.getAttribute("saveID");
-
+		System.out.println("update_myInfo : "+ saveID);
 		UserVO userInfoVO = service.getUserInfo(saveID);
-
 		model.addAttribute("userInfoVO", userInfoVO);
-
+		
+		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
+		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
+		System.out.println("addAddrList: "+addAddrList.size());
+		model.addAttribute("addAddrList", addAddrList);
+		
 		return "/user/updateMyInfo";
 	}
 
 	// 회원정보수정(POST)
-	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
-	public String myInfoUpdatePOST(UserVO vo) {
-
-		log.info("수정한 데이터 : " + vo);
+	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
+		if (eAgree.equals("1")) {
+			vo.setUser_emailagree(1);
+		} 
 
 		service.updateUser(vo);
-//		service.updateAddr(vo);
+		service.updateAddAddr(vo);
+
+		log.info("수정완료");
 
 		return "redirect:/user/myInfo";
 	}
@@ -234,6 +206,26 @@ public class UserController {
 	@RequestMapping(value = "/together_guide")
 	public String togetherInfo() {
 		return "/user/togetherGuide";
+	}
+
+	// 비번체크
+	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
+	public String pwCheck(HttpSession session, Model model) {
+		System.out.println("check_pw GET");
+		
+		String saveID = (String) session.getAttribute("saveID");
+		System.out.println("update_myInfo : "+ saveID);
+		UserVO userInfoVO = service.getUserInfo(saveID);
+		model.addAttribute("userInfoVO", userInfoVO);
+		
+		return "/user/checkPW";
+	}
+
+	// 비번체크
+	@RequestMapping(value = "/check_pw", method = RequestMethod.POST)
+	@ResponseBody
+	public String pwCheck(UserVO vo) {
+		return Integer.toString(service.checkPW(vo));
 	}
 
 }

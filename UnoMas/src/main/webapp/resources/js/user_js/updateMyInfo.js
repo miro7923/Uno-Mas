@@ -39,25 +39,6 @@ function execDaumPostcode(num) {
 						document.getElementById('postalcode2').value = data.zonecode;
 						document.getElementById("roadaddr2").value = roadAddr;
 					}
-
-
-//					var guideTextBox = document.getElementById("guide");
-//					// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-//					if (data.autoRoadAddress) {
-//						var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-//						guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr
-//								+ ')';
-//						guideTextBox.style.display = 'block';
-//
-//					} else if (data.autoJibunAddress) {
-//						var expJibunAddr = data.autoJibunAddress;
-//						guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr
-//								+ ')';
-//						guideTextBox.style.display = 'block';
-//					} else {
-//						guideTextBox.innerHTML = '';
-//						guideTextBox.style.display = 'none';
-//					}
 				}
 			}).open();
 			
@@ -134,3 +115,5 @@ function phoneCheckFunc() {
 		});
 	
 }			
+
+

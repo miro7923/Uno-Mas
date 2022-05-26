@@ -74,7 +74,15 @@ public class AdminController {
 		if(adminVO == null || adminVO.getAdmin_permit() != 1) {
 			return "redirect:/admin/admin_login";
 		}
-		session.setAttribute("saveID", adminVO);
+
+		log.info("로그인 실패");
+				
+		log.info(adminVO+"");
+		
+		// 로그인 성공 및 정보 저장
+		session.setAttribute("saveAID", adminVO);
+		log.info("로그인 성공!");
+
 		return "redirect:/admin/main";
 	}
 	
