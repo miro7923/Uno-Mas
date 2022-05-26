@@ -22,7 +22,7 @@
 		src="http://postcode.map.daum.net/search?origin=http%3A%2F%2Flocalhost%3A8090&amp;indaum=off&amp;banner=on&amp;ubl=on&amp;mode=transmit&amp;vt=popup&amp;amr=on&amp;amj=on&amp;ani=off&amp;sd=on&amp;fi=on&amp;fc=on&amp;plrg=&amp;plrgt=1.5&amp;hmb=off&amp;heb=off&amp;asea=off&amp;smh=off&amp;zo=on&amp;us=on&amp;msi=10&amp;ahs=off&amp;whas=500&amp;sm=on&amp;a51=off&amp;zn=Y&amp;fullpath=%2Forder%2Forder"
 		style="border: 0 none; margin: 0; width: 100%; height: 100%; min-width: 300px; overflow: hidden; padding: 0"></iframe>
 -->
-    
+    <!-- @@@@@@@ 배송지 선택하면 주문 화면에서 신규배송지 탭에 출력되게 하기 -->
     <div id="pop_wrap">
         <div id="pop_header">
             <h1 class="h1">배송지 목록</h1>
