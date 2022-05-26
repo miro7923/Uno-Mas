@@ -372,7 +372,7 @@
 												<div class="row" id="pagediv">
 												    <input type="hidden" value="1" id="curReviewPage">
 													<div class="col-lg-12 text-center">
-														<c:if test="${reviewPm.prev }">
+														<c:if test="${reviewPm.prev == true }">
 															<a href="/product/review_list?page=${reviewPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
 														</c:if>
 														
@@ -384,7 +384,7 @@
 															</span> 
 														</c:forEach>
 														
-														<c:if test="${reviewPm.next }">
+														<c:if test="${reviewPm.next == true }">
 															<a href="/product/review_list?page=${reviewPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
 														</c:if>
 													</div>

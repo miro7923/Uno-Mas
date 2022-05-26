@@ -60,7 +60,7 @@
                                         <input type="radio" value="2" name="deliverSpot">신규배송지
                                         <!-- @@ 주소북 목록 불러오기 @@ -->
                                         <button type="button" class="site-btn deliverListBtn"
-                                         onclick="window.open('/addrBook');">배송지 목록</button>
+                                         onclick="window.open('/order/addr_book?user_num=${sessionScope.saveNUM}&pageNum=1');">배송지 목록</button>
                                     </div>
                                 </div>
                             </div>

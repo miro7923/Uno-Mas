@@ -1,6 +1,8 @@
 package com.april.unomas.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.ProdCriteria;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -22,8 +25,18 @@ public class OrderDAOImpl implements OrderDAO {
 	private static String NAMESPACE = "com.unomas.mapper.OrderMapper";
 	
 	@Override
-	public List<OrderAddrVO> getOrderAddrList(int user_num) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getOrderAddrList", user_num);
+	public List<OrderAddrVO> getOrderAddrList(int user_num, int pageStart, int perPageNum) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_num", user_num);
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		
+		return sqlSession.selectList(NAMESPACE + ".getOrderAddrList", map);
+	}
+
+	@Override
+	public int getOrderAddrCnt(int user_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getOrderAddrCnt", user_num);
 	}
 
 	@Override

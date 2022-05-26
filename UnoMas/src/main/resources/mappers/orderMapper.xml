@@ -9,6 +9,14 @@
         SELECT *
         FROM order_addr
         WHERE user_num = #{user_num}
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 회원의 배송지 개수 가져오기 -->
+    <select id="getOrderAddrCnt" resultType="int">
+        SELECT COUNT(addr_num)
+        FROM order_addr
+        WHERE user_num = #{user_num}
     </select>
     
     <!-- 가장 마지막 주문번호 찾기 -->

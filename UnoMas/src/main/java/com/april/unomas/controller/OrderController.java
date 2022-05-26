@@ -28,6 +28,8 @@ import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.CartService;
@@ -88,9 +90,13 @@ public class OrderController {
 		// 회원 정보
 		model.addAttribute("userVO", userService.getUserInfo((String)session.getAttribute("saveID")));
 		
+		ProdCriteria cri = new ProdCriteria();
+		cri.setPage(1);
+		cri.setPerPageNum(5);
+		
 		// 회원의 주소북 목록
 		int user_num = (int) session.getAttribute("saveNUM");
-		List<OrderAddrVO> orderAddrList = orderService.getOrderAddrList(user_num);
+		List<OrderAddrVO> orderAddrList = orderService.getOrderAddrList(user_num, cri.getPageStart(), cri.getPerPageNum());
 		model.addAttribute("orderAddrList", orderAddrList);
 		
 		// 회원의 기본배송지 
@@ -232,5 +238,48 @@ public class OrderController {
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
 	public String checkGet() {
 		return "order/check";
+	}
+	
+	@RequestMapping(value = "/addr_book", method = RequestMethod.GET)
+	public String addrBookGET(@RequestParam int user_num, @RequestParam int pageNum, Model model) throws Exception {
+		ProdCriteria cri = new ProdCriteria();
+		cri.setPage(pageNum);
+		cri.setPerPageNum(5);
+		
+		List<OrderAddrVO> orderAddrList = orderService.getOrderAddrList(user_num, cri.getPageStart(), cri.getPerPageNum());
+
+		// 첫번째 페이지일 때만 기본 배송지 정보 저장
+		if (pageNum == 1) {
+			for (int i = 0; i < orderAddrList.size(); i++) {
+				// 회원의 기본 배송지 따로 저장
+				if (orderAddrList.get(i).isAddr_primary()) 
+					model.addAttribute("primaryAddr", orderAddrList.get(i));
+			}
+		}
+
+		// 배송지 목록 페이지처리 정보 저장
+		ProdPageMaker pm = new ProdPageMaker();
+		pm.setCri(cri);
+		pm.setTotalCnt(orderService.getOrderAddrCnt(user_num));
+		
+		model.addAttribute("pm", pm);
+		model.addAttribute("curPage", pageNum);
+		log.info("@@@@@@@@@ curPage: " +pageNum);
+		
+		// 회원의 전체 배송지 목록 저장
+		model.addAttribute("orderAddrList", orderAddrList);
+		
+		// 페이지 번호가 1보다 크면 다음페이지를 보여달라는 것임
+		// 새 목록을 임시페이지로 내보낸 뒤 임시페이지의 주소를 리턴한다.
+		// ajax에서 임시페이지에 출력되어 있는 새 게시판 목록을 원본 페이지로 가져와서 바꾼다.
+		if (pageNum > 1) {
+			log.info("@@@@@@@@@ 임시페이지 리턴");
+			return "order/shippingLocationAjax";
+		}
+		else {
+			// 페이지 번호가 1이면 첫번째 페이지를 보여주면 되니까 원본 페이지로 이동
+			log.info("@@@@@@@@@ 원본 페이지 리턴");
+			return "order/shippingLocation";
+		}
 	}
 }

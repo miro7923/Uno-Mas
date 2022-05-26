@@ -21,8 +21,13 @@ public class OrderServiceImpl implements OrderService {
 	private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 	
 	@Override
-	public List<OrderAddrVO> getOrderAddrList(int user_num) throws Exception {
-		return dao.getOrderAddrList(user_num);
+	public List<OrderAddrVO> getOrderAddrList(int user_num, int pageStart, int perPageNum) throws Exception {
+		return dao.getOrderAddrList(user_num, pageStart, perPageNum);
+	}
+
+	@Override
+	public int getOrderAddrCnt(int user_num) throws Exception {
+		return dao.getOrderAddrCnt(user_num);
 	}
 
 	@Override

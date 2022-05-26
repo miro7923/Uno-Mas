@@ -125,9 +125,6 @@ public class ProductController {
 		map.put("pageNum", pageNum);
 		map.put("pm", pm);
 		
-		// 세션 로그인 정보가 있으면 회원 번호 저장
-		String user_id = (String)session.getAttribute("saveID");
-		
 		model.addAllAttributes(map);
 		
 		return "product/productList";

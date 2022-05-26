@@ -222,7 +222,6 @@ function changePageNum(num, maxNum, boardType) {
 			type: 'get',
 			url: '/product/list_review?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				console.log('결과: '+data);
 				var html = jQuery('<div>').html(data);
 				var contents = html.find('div#reviewListAjax').html();
 				$('#reviewListAjax').html(contents);
@@ -254,7 +253,6 @@ function changePageNum(num, maxNum, boardType) {
 			type: 'get',
 			url: '/product/list_inquiry?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				console.log('결과: '+data);
 				var html = jQuery('<div>').html(data);
 				var contents = html.find('div#inqDiv').html();
 				$('#inqDiv').html(contents);
@@ -265,9 +263,7 @@ function changePageNum(num, maxNum, boardType) {
 				alert('통신 실패');
 			}
 		});
-		
-	}
-	
+	}	
 }
 
 function confirmToRemove(type, postNum, prodNum) {
