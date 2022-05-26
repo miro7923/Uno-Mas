@@ -30,9 +30,9 @@
 				</div>
 
 				<div class="check_box">
-<!-- 					<label class="label_checkbox"> -->
-<!-- 						<input type="checkbox" id="check_save" name="remember-me" value="chk">로그인정보 저장 -->
-<!-- 					</label> -->
+					<label class="label_checkbox">
+						<input type="checkbox" id="check_save" name="remember-me" value="chk">아이디 저장
+					</label>
 					<div class="login_search">
 						<a href="find_id" id="id_search">아이디 찾기 | </a> <a href="find_pw" id="pass_search" >비밀번호 찾기</a>
 					</div>
