@@ -4,10 +4,10 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-    	AdminVO vo = (AdminVO)session.getAttribute("saveID");
+    	String vo = (String)session.getAttribute("saveAID");
 		if(vo == null) {
 %>
-		<script>location.href="/admin/admin_login";</script>
+		<script>location.href="/user/login";</script>
 <%
 		}
     		
@@ -264,7 +264,7 @@
                   <img src="/resources/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                   <span class="hidden-xs">
                   <%if(vo != null) {%>
-                  <%=vo.getAdmin_id() %>님 환영합니다
+                  <%=vo.toString() %>님 환영합니다
                   <%} %>
                   </span>
                 </a>
