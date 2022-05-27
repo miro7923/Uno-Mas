@@ -16,4 +16,5 @@ public interface CartService {
 	 public void modifyCart(CartVO vo);			// 장바구니 수정
 	 public CartVO getSelectedItem(int cart_num);
 	 public void deleteByUserNum(int user_num, int prod_num); //회원번호랑 상품번호로 카트 상품 삭제
+
 }

@@ -11,6 +11,7 @@ public class BoardReviewVO {
 	private Integer user_num;
 	private String user_id;
 	private Integer prod_num;
+	private String prod_name;
 	private String review_title;
 	private String review_content;
 	private int review_readcnt;

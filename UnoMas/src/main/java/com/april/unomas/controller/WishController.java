@@ -27,7 +27,9 @@ public class WishController {
 
 	// 찜 목록
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception {
+	public ModelAndView list(HttpSession session, ModelAndView mav,
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo
+			) throws Exception {
 		Map<String, Object> map=new HashMap<String, Object>();
 	 
 	    int user_num = (int) session.getAttribute("saveNUM");
@@ -40,6 +42,7 @@ public class WishController {
 	        // ModelAndView mav에 이동할 페이지의 이름과 데이터를 저장한다.
 	        mav.setViewName("product/wishlist"); // 이동할 페이지의 이름
 	        mav.addObject("map", map); // map변수 저장
+	        mav.addObject("pageInfo", pageInfo);
 	 
 	        return mav; // 화면 이동
 	}

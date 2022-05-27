@@ -344,6 +344,7 @@
 															<p id="reviewContent${it.index }">${reviewVo.review_content }</p>
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
+										
 															<c:if test="${sessionScope.saveID != null && sessionScope.saveNUM == reviewVo.user_num }">
 																<p class="text-right">
 																    <a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
@@ -457,6 +458,7 @@
 															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
 															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
 															<c:if test="${sessionScope.saveID != null && sessionScope.saveNUM == inquiryVo.user_num }">
+
 																<p class="text-right">
 																    <a href="/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
 																    <a href="javascript:void(0)" 

@@ -54,11 +54,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/main",method = RequestMethod.GET)
 	public String adminMainGET(Criter cri,Model model) throws Exception{
-		PagingVO pagingVO = new PagingVO(cri);
-		pagingVO.setTotalCount(service.userCount());
-		List<UserVO> userList = service.userView(cri);
-		model.addAttribute("userList", userList);
-		model.addAttribute("pagingVO", pagingVO);
 		return "/admin/main";
 	}
 	

@@ -1,0 +1,128 @@
+*{ margin:0px; padding: 0px; font-size: 13px;}
+
+
+.myReview_container {
+	display: flex;
+	width: 1084px;
+    min-height: 900px;
+    margin: 30px auto;
+    margin-top: 80px;
+}
+.point_right_container {
+	float: left;
+    width: 850px;
+    min-width: 800px;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+
+/* 포인트 내역  */
+.review_container {
+    margin-bottom: 50px;
+    min-height: 300px;
+}
+.review_container > h3 {
+	font-size: 18px !important;
+    font-weight: bold;
+}
+
+.null_text {
+	font-size: 20px;
+    text-align: center;
+    margin: 200px;
+}
+
+
+.point_table {
+	width: 100%;
+	font-size: 12px;
+	margin: 20px 0px 50px 0px;
+    border-top: 1px solid #c3c3c3;
+    border-bottom: 1px solid #ddd;
+    border-collapse: collapse;
+    text-align: center;
+}
+tr {
+	height: 40px;
+}
+td {
+	min-width: 20px;
+}
+th {
+	background-color: #eee;
+}
+th, td {
+	border: 1px solid #ddd;
+}
+.content_tr {
+	min-height: 150px;
+    text-align: left;
+    padding: 25px;
+    vertical-align: top;
+}
+.content_tr > p {
+	font-weight: 600;
+}
+
+
+.page_control {
+	text-align: center;
+    margin: 20px auto;
+}
+.previous_daum {
+/* 	background-color: #B9CE45; */
+}
+.page_control > a {
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #333 !important;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.page_control a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #B9CE45;
+}
+
+
+.review_btn {
+	background-color: white;
+	padding: 5px 10px;
+	border: 1px solid;
+}
+
+.review_img {
+	width: 200px;
+    height: 200px;
+    margin: 0px -40px;
+}
+
+
+/* 페이징 스타일*/
+.paging_container {
+	min-width: 250px;
+/* 	border: 1px solid black; */
+	margin: 70px auto;
+	text-align: center;
+
+}
+.paging_num {
+	color: black !important;
+	margin: 0px 10px;
+}
+.paging_num_yes {
+	color: #B9CE45 !important;
+	font-weight: bold !important;
+	margin: 0px 10px;
+}
+.paging_a {
+	color: black !important;
+    border: 1px solid black;
+    padding: 3px 4px;
+}
+.paging_a:hover {
+	color: #B9CE45 !important;
+	font-weight: bold !important;
+}

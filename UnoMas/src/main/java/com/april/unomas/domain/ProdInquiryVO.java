@@ -17,4 +17,5 @@ public class ProdInquiryVO {
 	private Timestamp p_inquiry_regdate;
 	private boolean p_inquiry_processs;
 	private ProdCommentVO prod_comment;
+
 }

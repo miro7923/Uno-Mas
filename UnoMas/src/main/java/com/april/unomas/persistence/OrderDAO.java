@@ -1,12 +1,14 @@
 package com.april.unomas.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
 import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCriteria;
+import com.april.unomas.domain.UserCriteria;
 
 public interface OrderDAO {
 
@@ -36,4 +38,10 @@ public interface OrderDAO {
 	
 	// 포인트 테이블에 저장하기
 	public void createPointInfo(PointVO vo) throws Exception;
+	
+	// 총 주문 개수
+	public List<Integer> myOrderCount(String num) throws Exception;
+
+	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
+
 }

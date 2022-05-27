@@ -1,5 +1,7 @@
 package com.april.unomas.persistence;
 
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +16,12 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+
+import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCriteria;
+
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -24,6 +30,7 @@ public class OrderDAOImpl implements OrderDAO {
 	private SqlSession sqlSession;
 	private static final Logger log = LoggerFactory.getLogger(OrderDAOImpl.class);
 	private static String NAMESPACE = "com.unomas.mapper.OrderMapper";
+	
 	
 	@Override
 	public List<OrderAddrVO> getOrderAddrList(int user_num, int pageStart, int perPageNum) throws Exception {
@@ -73,9 +80,43 @@ public class OrderDAOImpl implements OrderDAO {
 	public PayVO getLastPay() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getLastPay");
 	}
-
+	
 	@Override
 	public void createPointInfo(PointVO vo) throws Exception {
 		sqlSession.insert(NAMESPACE + ".createNewPoint", vo);
 	}
+
+
+	// 주문개수
+	@Override
+	public List<Integer> myOrderCount(String num) throws Exception {		
+		return sqlSession.selectList(NAMESPACE + ".orderCount", num);
+	}
+
+	// 주문 목록
+	@Override
+	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception {
+		Map<String, Object> map = new HashMap();
+		map.put("num", num);
+		map.put("cri", cri);
+		
+		List<Integer> cList = new ArrayList<Integer>();
+		cList.add(33);
+		cList.add(34);
+		
+		Map<Integer, List> orderMap = new HashMap<Integer, List>();
+		
+		for(Integer code: cList) {
+			List<OrderVO> orderList = sqlSession.selectList(NAMESPACE + ".myOrderList", code);
+			System.out.println("가쟈온 주문정보: " + orderList);
+			orderMap.put(code, orderList);
+		}
+		System.out.println("전체다 잘 가져와지나???" + orderMap);
+		
+		
+		return orderMap;
+	}
+	
+	
+
 }

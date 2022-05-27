@@ -14,6 +14,7 @@ import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
 
@@ -102,7 +103,7 @@ public class UserServiceImpl implements UserService {
 
 	// 회원 탈퇴
 	@Override
-	public int deleteUser(UserVO vo) {
+	public Integer deleteUser(UserVO vo) {
 		return dao.deleteUser(vo);
 	}
 	
@@ -118,6 +119,7 @@ public class UserServiceImpl implements UserService {
 	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
 		return dao.getMyReview(id, cri);
 	}
+
 
 	// 내 상품문의 개수
 	@Override
@@ -143,6 +145,13 @@ public class UserServiceImpl implements UserService {
 		return dao.getMyQuestion(num, cri);
 	}
 	
+	// 포인트 적립
+	@Override
+	public void updatePoint(int user_point) {
+		// TODO Auto-generated method stub
+	}
+
+	
 	// 회원번호로 회원정보 가져오기
 	@Override
 	public UserVO getUserInfoByNum(int user_num) {
@@ -154,5 +163,6 @@ public class UserServiceImpl implements UserService {
 	public void updatePoint(int user_num, int user_point) {
 		dao.updatePoint(user_num, user_point);
 	}
+
 	
 }

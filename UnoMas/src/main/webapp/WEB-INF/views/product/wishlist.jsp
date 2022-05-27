@@ -20,8 +20,14 @@
     <!-- Header Section Begin -->
     <jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
+    
+      <c:if test="${pageInfo eq 'my' }">
+      	<div style="margin: 70px 20px 50px 220px;">
+      	  <jsp:include page="../user/myPageLeftBar.jsp"></jsp:include>
+      	</div>
+      </c:if>
 
-    <!-- Breadcrumb Section Begin -->
+  	<!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
         <div class="container">
             <div class="row">

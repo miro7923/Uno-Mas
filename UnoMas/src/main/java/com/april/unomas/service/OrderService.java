@@ -1,11 +1,13 @@
 package com.april.unomas.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
 import com.april.unomas.domain.PointVO;
+import com.april.unomas.domain.UserCriteria;
 
 public interface OrderService {
 
@@ -35,4 +37,12 @@ public interface OrderService {
 	
 	// 포인트 테이블에 저장하기
 	public void createPointInfo(PointVO vo) throws Exception;
+	
+	// 총 주문 개수
+	public List<Integer> MyOrderCount(String num) throws Exception;
+
+	// 내 주문 목록
+	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
+
+	
 }

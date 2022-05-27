@@ -20,29 +20,29 @@
   	<div class="middle-container">
   	  <div class="top_bar">
   		<div>
-  			<img src="" class="top_bar_img">
+  			<img src="${path}/resources/img/user_img/mypage_point.png" class="top_bar_img">
   			<span>적립금</span><br>
   			<span>150p</span>
   		</div>
   		<div>
-  			<img src="" class="top_bar_img">
+  			<img src="${path}/resources/img/user_img/mypage_deliv.png" class="top_bar_img">
   			<span>배송중</span><br>
   			<span>7개</span>
   		</div>
   		<div>
-  			<img src="" class="top_bar_img">
+  			<img src="${path}/resources/img/user_img/mypage_together.png" class="top_bar_img">
   			<span>공동구매</span><br>
   			<span>10회</span>
   		</div>
   		<div>
-  			<img src="" class="top_bar_img">
+  			<img src="${path}/resources/img/user_img/mypage_review.png" class="top_bar_img">
   			<span>후기</span><br>
   			<span>10개</span>
   		</div>
   	  </div>
   	
   	  <div class="middle-content">
-  			<h3>장바구니 <span>+</span></h3>
+  			<h3>장바구니 <span><a href="/product/shopping-cart?pageInfo=my">+</a></span></h3>
   			<table class="cart-table">
   				<colgroup>
           			<col width="20%"><col width="30%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">
@@ -65,7 +65,7 @@
 		  		</tr>
   			</table>
   			
-  			<h3 style="margin-top:50px;">전체 주문 내역<span>+</span></h3>
+  			<h3 style="margin-top:50px;">전체 주문 내역 <span><a href="/order/my_order">+</a></span></h3>
   			<table class="cart-table">
   				<colgroup>
           			<col width="20%"><col width="30%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">

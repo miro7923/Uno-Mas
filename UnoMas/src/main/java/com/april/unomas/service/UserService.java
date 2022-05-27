@@ -10,6 +10,7 @@ import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
+
 public interface UserService {
 	
 	// 회원가입
@@ -30,6 +31,9 @@ public interface UserService {
 	// 비번 변경
 	public int changePW(UserVO vo);
 	
+	// 비번 체크
+	public Integer checkPW(UserVO vo);
+	
 	// 회원정보 가져오기
 	public UserVO getUserInfo(String id);
 	
@@ -43,7 +47,7 @@ public interface UserService {
 	public void updateAddAddr(UserVO vo);
 	
 	// 회원탈퇴
-	public int deleteUser(UserVO vo);
+	public Integer deleteUser(UserVO vo);
 	
 	// 내 리뷰 개수
 	public Integer myReviewCnt(String id);
@@ -68,8 +72,10 @@ public interface UserService {
 	
 	// 결제완료 후 적립금 업데이트
 	public void updatePoint(int user_num, int user_point);
-
-	// 비번 체크
-	public Integer checkPW(UserVO vo);
 	
+	// 결제완료 후 적립금 업데이트
+	public void updatePoint(int user_point);
+
+	
+
 }

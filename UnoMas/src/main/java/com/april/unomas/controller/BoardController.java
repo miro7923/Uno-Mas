@@ -268,10 +268,17 @@ public class BoardController {
 		response.getOutputStream().close();
 	}
 	
+	
 	@RequestMapping(value = "/inquiry_delete",method = RequestMethod.GET)
-	public String inquiryDelete(@RequestParam("qna_num") Integer qna_num) throws Exception {
+	public String inquiryDelete(@RequestParam("qna_num") Integer qna_num, 
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
 		qService.deleteInquiry(qna_num);
-		return "redirect:/board/inquiry_paging";
+		
+		if(pageInfo.equals("my")) {
+			return "redirect:/user/my_question";
+		} else {
+			return "redirect:/board/inquiry_paging";
+		}
 	}
 	
 	@RequestMapping(value = "/inquiry_comment",method = RequestMethod.GET)

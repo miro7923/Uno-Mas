@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -12,6 +13,7 @@ import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
 import com.april.unomas.domain.PointVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.persistence.OrderDAO;
 
 @Service
@@ -64,5 +66,15 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void createPointInfo(PointVO vo) throws Exception {
 		dao.createPointInfo(vo);
+	}
+	
+	@Override
+	public List<Integer> MyOrderCount(String num) throws Exception {
+		return dao.myOrderCount(num);
+	}
+
+	@Override
+	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception {
+		return dao.getMyOrderList(num, cri);
 	}
 }

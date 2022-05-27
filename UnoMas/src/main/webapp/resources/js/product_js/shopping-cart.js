@@ -1,4 +1,3 @@
-
 function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 selectall체크박스 체크on
 	const checkboxes = document.querySelectorAll('input[name="cartCheck"]'); // 전체 체크박스
 	const checked = document.querySelectorAll('input[name="cartCheck"]:checked'); // 선택된 체크박스

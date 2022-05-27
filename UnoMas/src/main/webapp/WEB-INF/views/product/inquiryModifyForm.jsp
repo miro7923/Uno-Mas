@@ -22,11 +22,11 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>문의하기</h4>
-						<form action="/product/modify_inquiry" method="post" class="comment-form">
+						<form action="/product/modify_inquiry?pageInfo=${pageInfo }&pagingNum=${pagingNum}" method="post" class="comment-form">
 						    <div class="row">
 						        <div class="col-lg-12">
 						            <input type="hidden" value="${vo.p_inquiry_num }" name="p_inquiry_num">
-						            <input type="hidden" value="${sessionScope.saveID.user_num }" name="user_num">
+						            <input type="hidden" value="${saveNUM }" name="user_num">
 						            <input type="hidden" value="${vo.prod_num }" name="prod_num">
   						            <p class="productName">상품명 : ${prod_name }</p>
 						        </div>

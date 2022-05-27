@@ -1,6 +1,14 @@
 package com.april.unomas.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -8,17 +16,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +42,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
+
+import com.april.unomas.domain.UserCriteria;
+import com.april.unomas.domain.UserPageMaker;
+import com.april.unomas.service.CartService;
+import com.april.unomas.service.OrderService;
+import com.april.unomas.service.UserService;
+
 import com.april.unomas.domain.PayVO;
 import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -43,6 +64,7 @@ import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.AccessToken;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+
 
 @Controller
 @RequestMapping("/order/*")
@@ -64,6 +86,7 @@ public class OrderController {
 	
 	private IamportClient client = new IamportClient("5728685660422556", "cc59f3e8d3e9a6cbdfcd57686e110f426580a7d15a5319465a36203e98e5a045b3303f3b0c42b156");
 	
+
 	@RequestMapping(value = "/order", method = RequestMethod.GET)
 	public String orderGET() {
 		return "order/order";
@@ -146,6 +169,7 @@ public class OrderController {
 		UserVO userVO = userService.getUserInfoByNum(payVO.getUser_num());
 		model.addAttribute("userVO", userVO);
 		
+
 		// 결제완료 페이지로 이동
 		return "order/complete";
 	}
@@ -247,6 +271,36 @@ public class OrderController {
 		return "order/check";
 	}
 	
+
+	
+	// 마이페이지 - 주문 내역 
+	@RequestMapping(value = "/my_order")
+	public String myOrder(HttpSession session, Model model,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) throws Exception{
+
+		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
+		
+		List<Integer> codeList = orderService.MyOrderCount(saveNUM); 
+		System.out.println("총 결제 개수: " + codeList.size());
+
+		UserCriteria cri = new UserCriteria();
+		cri.setPage(Integer.parseInt(pagingNum));
+		cri.setPerPageNum(3);
+
+		Map<Integer, List> orderMap = orderService.getMyOrderList(saveNUM, cri);
+
+		UserPageMaker pm = new UserPageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(codeList.size());
+		pm.setTotalCount(10);
+
+		model.addAttribute("orderMap", orderMap);
+		model.addAttribute("pagingNum", pagingNum);
+		model.addAttribute("pm", pm);
+
+		return "order/myOrderList";
+	}
+
 	@RequestMapping(value = "/addr_book", method = RequestMethod.GET)
 	public String addrBookGET(@RequestParam int user_num, @RequestParam int pageNum, Model model) throws Exception {
 		ProdCriteria cri = new ProdCriteria();
@@ -287,5 +341,6 @@ public class OrderController {
 			// 페이지 번호가 1이면 첫번째 페이지를 보여주면 되니까 원본 페이지로 이동
 			return "order/shippingLocation";
 		}
+
 	}
 }

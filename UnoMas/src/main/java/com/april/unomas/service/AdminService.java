@@ -8,6 +8,7 @@ import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.Qna_ComVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 public interface AdminService {
@@ -17,12 +18,15 @@ public interface AdminService {
 	
 	// 관리자 수
 	public Integer adminCount() throws Exception;
-		
-	// 유저 목록
-	public List<UserVO> userView(Criter cri) throws Exception;
 	
-	// 유저 수
-	public Integer userCount() throws Exception;
+	// 유저 
+	public Integer allUserCount(String standard);
+
+	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception;
+
+	public List<UserVO> getDropUser(UserCriteria cri) throws Exception;
+		
+		
 	
 	// 공지사항 목록
 	public List<NoticeVO> noticeView(Criter cri) throws Exception;
