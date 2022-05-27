@@ -98,10 +98,17 @@ public class WishController {
 			for(String i : chArr) {   
 				prod_num = Integer.parseInt(i);
 				wish.setProd_num(prod_num);
-				service.insertCheckWish(wish);
+				if(service.checkCart(user_num, prod_num) != 0) {
+					System.out.println(service.checkCart(user_num, prod_num));
+					result = 2;
+					break;
+				} else {
+					service.insertCheckWish(wish);
+					result = 1;
+				}
 			}   
-			result = 1;
 		}  
+		System.out.println(result);
 		return result;  
 	}
 		

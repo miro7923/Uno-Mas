@@ -48,4 +48,15 @@
 		VALUES (#{user_num}, #{prod_num}, #{prod_amount})
 		ON DUPLICATE KEY UPDATE prod_amount = prod_amount
     </insert>
+    
+    <!-- 장바구니 체크 -->
+    <select id="checkCart" resultType="int">
+    	SELECT COUNT(*)
+		FROM wishlist w 
+		LEFT JOIN cart c 
+		ON c.user_num = w.user_num AND c.prod_num = w.prod_num
+		LEFT JOIN products p
+		ON w.prod_num = p.prod_num
+		WHERE c.user_num = #{user_num} AND c.prod_num = #{prod_num} AND (w.prod_num = c.prod_num OR p.prod_stock=0)
+    </select>
 </mapper>
