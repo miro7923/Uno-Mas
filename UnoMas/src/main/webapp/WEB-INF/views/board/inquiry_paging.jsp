@@ -69,7 +69,7 @@
                                 <tbody>
     
                                     <tr>
-                                        <td class="td_subject">${vo.qna_title }</td>
+                                        <td class="td_subject" style="cursor: pointer;">${vo.qna_title }</td>
                         <td class="td_regdate">${vo.qna_regdate }</td>
                         <c:choose>
                         <c:when test="${vo.qna_process eq '0' }">
@@ -125,12 +125,12 @@
                         <div class="pagediv">
                         <div class="row justify-content-center">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                 <li class="page-item">
                 	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
                 		<span>&lt;&lt;</span>
                 	</a>
                 </li>
-                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
@@ -146,12 +146,12 @@
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
-                  </c:if>
                   <li class="page-item">
                 	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
                 		<span>&gt;&gt;</span>
                 	</a>
                 </li>
+                  </c:if>
                 </ul>
             </div>
                     </div> <!-- paging div -->

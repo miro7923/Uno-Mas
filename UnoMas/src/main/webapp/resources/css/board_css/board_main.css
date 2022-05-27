@@ -192,9 +192,14 @@
 }
 #search_btn{
 	background-color: #B9CE45;
-	color: white;
+	color: #ffffff;
 	width: 40px;
-	border-color: white;
+	border: 1px solid #B9CE45;
+	font-weight: 700;
+	text-transform: uppercase;
+	cursor: pointer;
+	margin: 3px 3px 10px 3px;
+	padding: 2px;
 }
 .nfile:hover {
 	color:red;
@@ -205,6 +210,8 @@
     width: 900px;
     text-align: center;
     font-size: 14px;
+    margin: 3px 3px 10px 3px;
+    padding: 5px 10px 5px 10px;
 }
 
 .table_faq tr td {

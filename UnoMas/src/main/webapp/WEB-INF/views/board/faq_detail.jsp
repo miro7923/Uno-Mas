@@ -56,28 +56,31 @@
     
     
     <table width="100%" align="center" cellpadding="0" cellspacing="0">
-<tbody><tr>
+<tbody>
+
+<tr>
 <td>
 <table width="100%">
 <tbody><tr>
 <td>
 <table class="boardView" width="100%">
-<tbody><tr>
+<tbody>
+
+<tr>
 <th scope="row" style="border:none;">제목</th>
 <td>${vo.notice_title }<input type="hidden" name="notice_title" value="${vo.notice_title }"></td>
 </tr>
+
 <tr>
 <th scope="row">작성자</th>
 <td>${vo.adminVO.admin_id }<input type="hidden" name="admin_num" value="${vo.admin_num }"></td>
 </tr>
+
 <tr>
 <th scope="row">첨부파일</th>
 <td><a class="nfile" href="/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
 </tr>
-<tr>
-<th scope="row">이미지</th>
-<td><img alt="" src="${path }/resources/upload/images/board/notice/${vo.notice_img }"><input type="hidden" name="notice_img" value="${vo.notice_img }"></td>
-</tr>
+
 <tr class="etcArea">
 <td colspan="2">
 <ul>
@@ -101,7 +104,11 @@
 <td style="padding:10px;" height="200" valign="top" id="contents">
 <table width="100%" style="table-layout:fixed">
 <tbody><tr>
-<td>${fn:replace(vo.notice_content,cn,br)}
+<td>
+
+<span><img alt="" src="${path }/resources/upload/images/board/notice/${vo.notice_img }"><input type="hidden" name="notice_img" value="${vo.notice_img }"></span><br><br>
+${fn:replace(vo.notice_content,cn,br)}
+
 <input type="hidden" name="notice_content" value="${fn:replace(vo.notice_content,cn,br)}">
 </td>
 </tr>

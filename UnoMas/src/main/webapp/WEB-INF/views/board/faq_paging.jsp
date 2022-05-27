@@ -63,7 +63,7 @@
 	<input type="hidden" value="title" name="search_type" id="search_type_faq">
     <input type="text" id="keyword_faq" name="keyword" value="" placeholder="검색어 입력" >
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search_faq()">검색</button>
+    <button class="" id="search_btn" onclick="search_faq()">검색</button>
     
     <form name="frmList" onsubmit="return chkFormList(this)">
         <input type="hidden" name="id" value="notice">
@@ -113,12 +113,12 @@
 
  <div class="row justify-content-center" style="justify-content: center!important;">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                 <li class="page-item">
                 	<a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
                 		<span>&lt;&lt;</span>
                 	</a>
                 </li>
-                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
@@ -134,12 +134,12 @@
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
-                  </c:if>
                   <li class="page-item">
                 	<a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
                 		<span>&gt;&gt;</span>
                 	</a>
                 </li>
+                  </c:if>
                 </ul>
             </div>
 
