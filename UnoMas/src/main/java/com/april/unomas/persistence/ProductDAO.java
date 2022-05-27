@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.Criter;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -182,5 +183,13 @@ public interface ProductDAO {
 
 	// 가정의달 소고기 상품 정보
 	public List<SelectVO> mayEvent() throws Exception;
-
+	
+	// 상품 재고 감소
+	public void decreaseStock(int sell, int prod_num) throws Exception;
+	
+	// 상품 문의 댓글 생성
+	public void insertInqComment(ProdCommentVO vo) throws Exception;
+	
+	// 상품 문의 댓글 가져오기
+	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception;
 }
