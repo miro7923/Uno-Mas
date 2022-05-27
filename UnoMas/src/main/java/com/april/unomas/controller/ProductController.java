@@ -213,30 +213,51 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
-	public String productLookup(ProdCriteria pc, Model model) throws Exception {
+	public String productLookup(HttpServletRequest request, Model model) throws Exception {
 		
-		// 상품 데이터 조회
-		List<ProductVO> productList = service.getAllProductList(pc);
-		model.addAttribute("productList", productList);
+		String page = request.getParameter("page");
+		String searchType = request.getParameter("searchType");
+		String keyword = request.getParameter("keyword");
 		
+		if(page == null ) { page = "1";}
+		if(searchType == null ) { searchType = "1";}
+		if(keyword == null ) { keyword = "";}
+		
+		log.info("페이지 :"+page);
 		// 하단 페이지 처리
 		ProdPageMaker pm = new ProdPageMaker();
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(Integer.parseInt(page));
 		pm.setCri(pc);
-		pm.setTotalCnt(service.getAllCnt());
+		pm.setTotalCnt(service.getAllCnt(searchType, keyword));
+//		pm.setSrchTypeKyw(searchType, keyword);
+		pm.setSearchType(searchType);
+		pm.setKeyword(keyword);
 		model.addAttribute("pm", pm);
+		
+		// 상품 데이터 조회
+		List<ProductVO> productList 
+			= service.getAllProductList(pc.getPageStart(), pc.getPerPageNum(), searchType, keyword);
+		model.addAttribute("productList", productList);
+//		model.addAttribute("select", page);
+//		model.addAttribute("searchType",searchType);
+//		model.addAttribute("keyword",keyword);
 		
 		return "product/productLookup";
 	}
 	
 	@RequestMapping(value ="/status", method = RequestMethod.GET)
-	public String products(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String products(@RequestParam("prod_num") int prod_num, /*@RequestParam("dcate_num") int dcate_num,*/ Model model) throws Exception {
+		log.info("get호출");
+		log.info(prod_num+"");
 		List<CategoryVO> categories = service.getTopCategory();
 		List<CategoryVO> details = service.getDCategory();
-		List<CategoryVO> getcate = service.getCategory(prod_num);
+//		List<CategoryVO> getcate = service.getCategory(dcate_num);
 		
 		model.addAttribute("vo", service.getProduct(prod_num));
 		model.addAttribute("categories",categories);
 		model.addAttribute("details",details);
+//		model.addAttribute("getcate", getcate);
 		
 		return "product/productStatus";
 		
@@ -558,4 +579,37 @@ public class ProductController {
 		return "product/productList";
 	}
 
+	@RequestMapping(value = "/product_search", method = RequestMethod.GET) // /shop -> /product_list
+	public String searchGET(Model model,Criter criter) throws Exception {
+		ProdCriteria cri = new ProdCriteria();
+		
+		// 하단 페이징 처리 //////
+		// 현재 분류별 전체 상품 개수 얻기
+		// dcate_num(소분류) 번호가 0이라면 전체를 불러오는 것이고
+		// 1이상이라면 각각의 소분류만 불러오는 것이다.
+		int postCnt = 0;
+		postCnt = service.getSearchProdCnt(criter);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<ProductVO> productList = null;
+		productList = service.searchProd(criter);
+		
+		
+		PagingVO pm = new PagingVO(criter);
+		pm.setTotalCount(postCnt);
+		
+		// 글 목록 정보 저장
+		map.put("productList", productList);
+
+		map.put("postCnt", postCnt);
+		
+		// 페이지 처리 정보 저장
+		map.put("pm", pm);
+		
+		model.addAllAttributes(map);
+		
+		return "product/productSearch";
+	}
+	
 }
