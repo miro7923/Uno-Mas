@@ -61,7 +61,7 @@
 <!--     	<option value="content">내용</option> -->
 <!--     </select> -->
 	<input type="hidden" value="title" name="search_type" id="search_type_faq">
-    <input type="text" id="keyword_faq" name="keyword" value="" placeholder="검색어 입력" onkeyup="search_enter_faq()">
+    <input type="text" id="keyword_faq" name="keyword" value="" placeholder="검색어 입력" >
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
     <button id="search_btn" onclick="search_faq()">검색</button>
     

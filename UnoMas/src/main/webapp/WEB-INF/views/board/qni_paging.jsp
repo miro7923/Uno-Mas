@@ -65,7 +65,7 @@
     </select>
     </div>
     
-    <input type="text" id="keyword_qni" name="keyword" value="" placeholder="검색어 입력" class="search_input" onkeyup="search_enter_qni()">
+    <input type="text" id="keyword_qni" name="keyword" value="" placeholder="검색어 입력" class="search_input" >
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
     <button id="search_btn" onclick="search_qni()" class="search_btn">검색</button>
 
