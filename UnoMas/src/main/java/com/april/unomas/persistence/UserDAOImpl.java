@@ -1,4 +1,4 @@
-	package com.april.unomas.persistence;
+package com.april.unomas.persistence;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +29,7 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSession sqlSession;
 	private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 	private static final String NAMESPACE = "com.unomas.mapper.userMapper";
+	private static final String NAMESPACE_A = "com.unomas.mapper.adminMapper";
 
 	@Autowired
 	JavaMailSender mailSender;
@@ -60,24 +61,51 @@ public class UserDAOImpl implements UserDAO {
 	// 로그인
 	@Override
 	public HashMap<String, Integer> loginUser(UserVO vo) {
-		HashMap<String, Integer> loginMap = new HashMap<String, Integer>() { 
-			{ put("result", 0); put("num", null); }
+		HashMap<String, Integer> loginMap = new HashMap<String, Integer>() {
+			{
+				put("result", 0);
+				put("num", null);
+			}
 		};
 		int result = 0;
-		UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
-
-		if (loginVO == null) {
-			result = 0;
-		} else {
-			if (loginVO.getUser_status() != 1) {
-				result = -1;
+		
+		if (vo.getUser_id().contains("admin")) {
+			
+			AdminVO loginVO = sqlSession.selectOne(NAMESPACE_A + ".adminLogin", vo);
+			
+			if (loginVO == null) {
+				result = 0;
 			} else {
-				result = 1;
-				loginMap.put("num", loginVO.getUser_num());
+				if (loginVO.getAdmin_permit() != 1 && loginVO.getAdmin_permit() != 2) {
+					result = -1;
+				} else {
+					result = 1;
+					loginMap.put("num", loginVO.getAdmin_num());
+				}
 			}
+
+			loginMap.put("result", result);
+			return loginMap;
+			
+		} else {
+			
+			UserVO loginVO = sqlSession.selectOne(NAMESPACE + ".loginUser", vo);
+			
+			if (loginVO == null) {
+				result = 0;
+			} else {
+				if (loginVO.getUser_status() != 1) {
+					result = -1;
+				} else {
+					result = 1;
+					loginMap.put("num", loginVO.getUser_num());
+				}
+			}
+
+			loginMap.put("result", result);
+			return loginMap;
 		}
-		loginMap.put("result", result);
-		return loginMap;
+		
 	}
 
 	// 회원 아이디 찾기
@@ -160,13 +188,13 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 
 	}
-	
+
 	// 추가 배송지 조회
 	@Override
 	public List<UserVO> getAddAddr(int user_num) {
-		List<UserVO> addAddrVO = sqlSession.selectList(NAMESPACE+".getAddAddr", user_num);
-		
-		log.info("user_num: " +user_num);
+		List<UserVO> addAddrVO = sqlSession.selectList(NAMESPACE + ".getAddAddr", user_num);
+
+		log.info("user_num: " + user_num);
 		log.info("DAO 조회");
 
 		return addAddrVO;
@@ -175,20 +203,18 @@ public class UserDAOImpl implements UserDAO {
 	// 추가 배송지 수정
 	@Override
 	public Integer updateAddAddr(UserVO vo) {
-		Integer result = sqlSession.update(NAMESPACE+".updateAddAddr", vo);
+		Integer result = sqlSession.update(NAMESPACE + ".updateAddAddr", vo);
 		log.info("DAO 수정");
 
 		return result;
 	}
-	
 
 	// 회원탈퇴
 	@Override
 	public void deleteUser(UserVO vo) {
-  		sqlSession.delete(NAMESPACE + ".deleteUser", vo);
+		sqlSession.delete(NAMESPACE + ".deleteUser", vo);
 
 	}
-
 
 	// 비번 체크
 	@Override

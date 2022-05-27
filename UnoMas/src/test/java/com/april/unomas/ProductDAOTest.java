@@ -42,17 +42,17 @@ public class ProductDAOTest {
 	}
 	
 //	@Test
-	public void 전체상품목록출력테스트() throws Exception {
-		ProdCriteria pp = new ProdCriteria();
-		pp.setPage(5);
-		pp.setPerPageNum(9);
-		
-		List<ProductVO> productList = dao.getAllProductList(pp);
-	
-		for(ProductVO vo : productList) {
-			log.info(vo.getProd_num()+" : " + vo.getProd_name());
-		}
-	}
+//	public void 전체상품목록출력테스트() throws Exception {
+//		ProdCriteria pp = new ProdCriteria();
+//		pp.setPage(5);
+//		pp.setPerPageNum(9);
+//		
+//		List<ProductVO> productList = dao.getAllProductList(pp);
+//	
+//		for(ProductVO vo : productList) {
+//			log.info(vo.getProd_num()+" : " + vo.getProd_name());
+//		}
+//	}
 	
 //	@Test
 	public void 카테고리별상품출력() throws Exception {

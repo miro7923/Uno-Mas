@@ -27,7 +27,7 @@ a{
 	font-weight: bold;
 }
 
-#pass {
+.checkPW_content #pass {
 	border: 1px solid #c3c3c3;
     margin: 10px 10px 10px 0px;
     padding: 10px;
@@ -37,7 +37,7 @@ a{
     font-size: 13px;
 }
 
-#reBtn {
+.checkPW_content #reBtn {
     border: 1px solid #B9CE45;
     background-color: #B9CE45;
     width: 80px;
@@ -47,7 +47,7 @@ a{
     font-weight: 500;
 }
 
-#cir_text {
+.checkPW_content #cir_text {
 	color: red;
 	font-size: 12px;
 	height: 0px;

@@ -12,9 +12,6 @@ import com.april.unomas.domain.UserVO;
 
 public interface AdminService {
 
-	// 관리자 로그인
-	public AdminVO adminLogin(AdminVO vo) throws Exception;
-	
 	// 관리자 목록
 	public List<AdminVO> adminView(Criter cri) throws Exception;
 	
