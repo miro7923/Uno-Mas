@@ -7,12 +7,15 @@ import java.util.Map;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.UserVO;
 
 public interface UserDAO {
 
-	public String getTime();
 	public void joinAdmin(AdminVO vo);
 	
 	// 회원가입
@@ -46,19 +49,35 @@ public interface UserDAO {
 	public Integer updateAddAddr(UserVO vo); 
 
 	// 회원탈퇴
-	public void deleteUser(UserVO vo);
+	public Integer deleteUser(UserVO vo);
 
 	// 비번 체크
 	public Integer checkPW(UserVO vo);
+	
+	// 내 리뷰 개수
+	public Integer getMyReviewCnt(String num);
+	
+	// 내 리뷰
+	public List<BoardReviewVO> getMyReview(String num, UserCriteria cri);
+	
+	// 내 상품문의 개수
+	public Integer MyPquestionCount(String num);
+
+	// 내 상품 문의
+	public List<ProdInquiryVO> getMyPquestion(String num, UserCriteria cri);
+	
+	// 내 1:1 개수
+	public Integer MyQuestionCount(String num);
+	
+	// 내 1:1 목록
+	public List<QnaVO> getMyQuestion(String num, UserCriteria cri);
+	
+	// 결제완료 후 적립금
+	public void updatePoint(int user_point);
+
 
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);
-	
-	// 내 리뷰 개수
-	public Integer getMyReviewCnt(String id);
-	
-	// 내 리뷰
-	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri);
 	
 	// 회원번호로 회원정보 가져오기
 	public UserVO getUserInfoByNum(int user_num);
