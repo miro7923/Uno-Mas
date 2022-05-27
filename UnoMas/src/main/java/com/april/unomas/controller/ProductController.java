@@ -32,6 +32,7 @@ import com.april.unomas.domain.Commons;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.ImgType;
 import com.april.unomas.domain.PagingVO;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -40,6 +41,7 @@ import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.ProductService;
+import com.april.unomas.service.UserService;
 
 @Controller
 @RequestMapping("/product/*")
