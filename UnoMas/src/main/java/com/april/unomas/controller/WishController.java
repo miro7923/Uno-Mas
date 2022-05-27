@@ -90,7 +90,7 @@ public class WishController {
 		
 		int result = 0;
 		int prod_num = 0;
-		
+		int count = 0;
 		
 		if(user_num != 0) {
 			wish.setUser_num(user_num);
@@ -99,16 +99,20 @@ public class WishController {
 				prod_num = Integer.parseInt(i);
 				wish.setProd_num(prod_num);
 				if(service.checkCart(user_num, prod_num) != 0) {
-					System.out.println(service.checkCart(user_num, prod_num));
+					count++;
 					result = 2;
 					break;
-				} else {
+				}
+			}
+			for(String i : chArr ) {
+				prod_num = Integer.parseInt(i);
+				wish.setProd_num(prod_num);
+				if(count == 0) {
 					service.insertCheckWish(wish);
 					result = 1;
 				}
-			}   
+			}
 		}  
-		System.out.println(result);
 		return result;  
 	}
 		

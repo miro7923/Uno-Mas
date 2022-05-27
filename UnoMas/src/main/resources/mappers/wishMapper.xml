@@ -52,11 +52,11 @@
     <!-- 장바구니 체크 -->
     <select id="checkCart" resultType="int">
     	SELECT COUNT(*)
-		FROM wishlist w 
-		LEFT JOIN cart c 
+		FROM unomasdb.wishlist w 
+		LEFT JOIN unomasdb.cart c 
 		ON c.user_num = w.user_num AND c.prod_num = w.prod_num
-		LEFT JOIN products p
+		LEFT JOIN unomasdb.products p
 		ON w.prod_num = p.prod_num
-		WHERE c.user_num = #{user_num} AND c.prod_num = #{prod_num} AND (w.prod_num = c.prod_num OR p.prod_stock=0)
+		WHERE w.user_num = #{user_num} AND w.prod_num = #{prod_num} AND (w.prod_num = c.prod_num OR p.prod_stock=0)
     </select>
 </mapper>
