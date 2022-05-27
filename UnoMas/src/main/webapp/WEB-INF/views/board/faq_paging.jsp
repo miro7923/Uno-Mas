@@ -10,8 +10,12 @@
 </head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after" type="text/css">
-<!-- Head end -->
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
+`
+<!-- Head end -- >
 
 <body>
     <!-- Header Section Begin -->
@@ -35,7 +39,6 @@
     <!-- Faq Section Begin -->
     <div class="faq-section spad">
     
-    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
     
         <div class="container">
             <div class="row">
@@ -45,37 +48,29 @@
                     <div class="faq-accordin">
                         
                         <div class="page_aticle">
+    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
+    <div class="page_section">
     <div class="head_aticle">
         <h2 class="tit">공지사항 <span class="tit_sub">새로운 소식들과 유용한 정보들을 한곳에서 확인하세요.</span></h2>
     </div>
     
-    <select id="search_type" name="search_type">
+<!--     <select id="search_type" name="search_type"> -->
 <!--     	<option value="">검색조건</option> -->
-    	<option value="title">제목</option>
+<!--     	<option value="title">제목</option> -->
 <!--     	<option value="cate">카테고리</option> -->
 <!--     	<option value="content">내용</option> -->
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
+<!--     </select> -->
+	<input type="hidden" value="title" name="search_type" id="search_type_faq">
+    <input type="text" id="keyword_faq" name="keyword" value="" placeholder="검색어 입력">
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
-    
-    <script type="text/javascript">
-    	function search() {
-    		var search_type_val = document.getElementById("search_type");
-    		var type_val = search_type_val.options[search_type_val.selectedIndex].value;
-    		var keyword_val = document.getElementById("keyword").value;
-    		var url = "/board/faq_paging?search_type="+type_val+"&keyword="+encodeURIComponent(keyword_val);
-    		
-    		location.href=url;
-    	}
-    </script>
+    <button id="search_btn" onclick="search_faq()">검색</button>
     
     <form name="frmList" onsubmit="return chkFormList(this)">
         <input type="hidden" name="id" value="notice">
         
 
 
-        <table class="xans-board-listheader jh" style="width: 100%;">
+        <table class="xans-board-listheader jh" >
             <thead>
                 <tr>
                     <th>번호</th>
@@ -106,23 +101,25 @@
         <div class="pagediv">
 
  <div class="row justify-content-center" style="justify-content: center!important;">
-              <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
-              </div>
             </div>
 
                     </div> <!-- paging div -->
@@ -133,16 +130,7 @@
 
                     <td>
                     
-                    <select id="search_type" name="search_type">
-<!--     	<option value="">검색조건</option> -->
-    	<option value="title">제목</option>
-<!--     	<option value="cate">카테고리</option> -->
-<!--     	<option value="content">내용</option> -->
-    </select>
-    <input type="text" id="keyword" name="keyword" value="" placeholder="검색어 입력">
-<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search()">검색</button>
-                                        
+                   
                    
                     
                     </td>
@@ -151,6 +139,7 @@
         </table>
         </div><!-- paging 검색 div -->
     </form>
+    </div>
 </div>
                         
                         
@@ -177,6 +166,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 
 </html>
