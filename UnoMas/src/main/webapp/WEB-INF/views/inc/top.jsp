@@ -27,4 +27,6 @@
     <link rel="stylesheet" href="${path}/resources/css/slicknav.min.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/style.css?after" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/headerFooter.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/board_css/search_font_color.css?after" type="text/css">
+    
 </head>
