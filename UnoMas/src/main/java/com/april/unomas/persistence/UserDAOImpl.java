@@ -227,7 +227,6 @@ public class UserDAOImpl implements UserDAO {
 		return sqlSession.selectOne(NAMESPACE+".checkPW",vo);
 	}
 	
-	
 	// 내 리뷰 개수
 	@Override
 	public Integer getMyReviewCnt(String num) {
