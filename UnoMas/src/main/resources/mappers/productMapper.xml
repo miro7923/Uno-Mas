@@ -217,7 +217,7 @@
     
     <!-- 특가 상품 목록 가져오기 -->
     <select id="getSaleProducts" resultType="ProductVO">
-        SELECT *
+        SELECT * 
         FROM products
         WHERE prod_discntrate > 0
         ORDER BY prod_regdate DESC
@@ -374,4 +374,53 @@
         DELETE FROM wishlist
         WHERE user_num = #{user_num} and prod_num = #{prod_num}
     </delete>
+    
+    <!-- 상품 검색 -->
+    <select id="searchProd" resultType="ProductVO">
+    	<![CDATA[
+    	SELECT * 
+    	FROM products
+    	WHERE prod_num > 0
+    	]]>
+    	<include refid="search_condition"></include>
+    	ORDER BY prod_num DESC, prod_regdate DESC
+		LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 검색 상품 갯수 -->
+    <select id="searchCnt" resultType="int">
+    	<![CDATA[
+    	SELECT COUNT(*) 
+    	FROM products
+    	WHERE prod_num > 0
+    	]]>
+    	<include refid="search_condition"></include>
+    </select>
+    <sql id="search_condition">
+	<if test="search_type != null">
+		<if test="search_type == 'prod_name'.toString()">
+			AND prod_name LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+	</if>
+	</sql>
+
+    <!-- 상품 재고 감소 -->
+    <update id="decreaseStock">
+        UPDATE products
+        SET prod_stock = prod_stock - #{sell}
+        WHERE prod_num = #{prod_num}
+    </update>
+    
+    <!-- 상품 문의글 댓글 생성 -->
+    <insert id="insertInqComment">
+        INSERT INTO prod_comments(p_inquiry_num, admin_num, com_content)
+        VALUES(#{p_inquiry_num}, #{admin_num}, #{com_content})
+    </insert>
+    
+    <!-- 상품 문의글 가져오기 -->
+    <select id="getInqComment" resultType="ProdCommentVO">
+        SELECT *
+        FROM prod_comments
+        WHERE p_inquiry_num = #{p_inquiry_num}
+    </select>
 </mapper>

@@ -12,8 +12,27 @@ a:hover {
 	color: #5179a5;
 }
 
+.tab-item ul li {
+	width: 25%;
+	text-align: center;
+}
+
 .tab-item ul li a {
-	padding: 18px 117px;
+	border-top: 0;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.tab-item ul li:nth-child(1) a {
+	border-right: 0;
+}
+
+.tab-item ul li:nth-child(2) a {
+	border-right: 0;
+}
+
+.tab-item ul li:nth-child(3) a {
+	border-right: 0;
 }
 
 .likeBtn {

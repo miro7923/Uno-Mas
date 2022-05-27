@@ -21,11 +21,5 @@ public class MemberServiceTest {
 	
 	@Inject
 	private UserService service;
-	
-	@Test
-	public void 시간체크서비스() {
-		
-		String time = service.getTimeS();
-		log.info(time);
-	}
+
 }

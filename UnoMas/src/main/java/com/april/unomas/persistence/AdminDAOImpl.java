@@ -15,6 +15,7 @@ import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.Qna_ComVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 @Repository
@@ -24,30 +25,56 @@ public class AdminDAOImpl implements AdminDAO {
 	private SqlSession sqlSession;
 	
 	private static final String NAMESPACE = "com.unomas.mapper.adminMapper";
-	
+
+	// 관리자 - 관리자
+	// 관리자 로그인
 	@Override
-	public List<AdminVO> adminList(Criter cri) {
-		// 관리자 목록 보기
-		return sqlSession.selectList(NAMESPACE+".adminList",cri);
+	public AdminVO adminLogin(AdminVO vo) {
+		return sqlSession.selectOne(NAMESPACE + ".adminLogin", vo);
 	}
 
 	@Override
 	public Integer adminTotal() {
 		// 관리자 수
-		return sqlSession.selectOne(NAMESPACE+".adminTotal");
+		return sqlSession.selectOne(NAMESPACE + ".adminTotal");
+	}
+
+	// 관리자 목록 보기
+	@Override
+	public List<AdminVO> adminList(Criter cri) {
+		return sqlSession.selectList(NAMESPACE + ".adminList", cri);
 	}
 	
+	
+	// 관리자 - User
 	@Override
-	public List<UserVO> userList(Criter cri) {
-		// 유저 목록 보기
-		return sqlSession.selectList(NAMESPACE+".userList",cri);
+	public Integer allUserCount(String standard) {	
+		System.out.println(" AdminDAO : 여기서 문제?" + standard);
+		if(standard.equals("drop")) {
+			return Integer.parseInt(sqlSession.selectOne(NAMESPACE+".allDropUserCount"));
+		} else {
+			return Integer.parseInt(sqlSession.selectOne(NAMESPACE+".allUserCount"));
+		}
 	}
 
 	@Override
-	public Integer userTotal() {
-		// 유저 수
-		return sqlSession.selectOne(NAMESPACE+".userTotal");
+	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception{
+		Map<String, Object> map = new HashMap();
+		map.put("standard", standard);
+		map.put("cri", cri);
+		return sqlSession.selectList(NAMESPACE+".getAllUser", map);
 	}
+	
+	@Override
+	public List<UserVO> getDropUser(UserCriteria cri) throws Exception {
+		System.out.println("DAO: 탈퇴조회 여기까지 들어와??");
+		return sqlSession.selectList(NAMESPACE+".getDropUser");
+	}
+	
+	
+	
+	
+	
 
 	@Override
 	public List<NoticeVO> noticeList(Criter cri) {

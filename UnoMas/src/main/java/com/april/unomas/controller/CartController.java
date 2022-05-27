@@ -1,8 +1,6 @@
 package com.april.unomas.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -15,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.UserVO;
@@ -26,7 +24,7 @@ import com.april.unomas.service.CartService;
 public class CartController {
 	
 	@Inject
-	CartService cartService;
+	private CartService cartService;
 	
 	private static final Logger log = LoggerFactory.getLogger(CartController.class);
 	
@@ -49,6 +47,7 @@ public class CartController {
 	}
 	
 	// 장바구니 목록
+
 		@RequestMapping(value = "list", method = RequestMethod.GET)
 		public String listGET(HttpSession session, Model model) {
 		    int user_num = (int) session.getAttribute("saveNUM");
@@ -85,19 +84,34 @@ public class CartController {
 	 
 	// 장바구니 수정
 	@RequestMapping("updateCart")
-		public String update(@RequestParam int[] prod_amount, @RequestParam int[] prod_num, HttpSession session) {
-			// session의 id
-			UserVO vo = (UserVO)session.getAttribute("saveID");
-		    int user_num= vo.getUser_num();
-			// 레코드의 갯수 만큼 반복문 실행
-			for(int i=0; i<prod_num.length; i++){
-				CartVO cart = new CartVO();
-				cart.setUser_num(user_num);
-				cart.setProd_amount(prod_amount[i]);
-				cart.setProd_num(prod_num[i]);
-				cartService.modifyCart(cart);
-			}
-			
-			return "redirect:/product/cart/list";
+	public String update(@RequestParam int[] prod_amount, @RequestParam int[] prod_num, HttpSession session) {
+		// session의 id
+	    int user_num= (int)session.getAttribute("saveNUM");
+		// 레코드의 갯수 만큼 반복문 실행
+		for(int i=0; i<prod_num.length; i++){
+			CartVO cart = new CartVO();
+			cart.setUser_num(user_num);
+			cart.setProd_amount(prod_amount[i]);
+			cart.setProd_num(prod_num[i]);
+			cartService.modifyCart(cart);
+		}
+		
+		return "redirect:/product/cart/list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quantity", method = RequestMethod.GET)
+	public String updateCartGET(@RequestParam("cart_num") int cart_num, 
+			@RequestParam("prod_amount") int prod_amount, @RequestParam("prod_num") int prod_num, 
+			HttpSession session) {
+		CartVO vo = new CartVO();
+		vo.setUser_num((Integer) session.getAttribute("saveNUM"));
+		vo.setCart_num(cart_num);
+		vo.setProd_amount(prod_amount);
+		vo.setProd_num(prod_num);
+		
+		cartService.modifyCart(vo);
+		
+		return "complete";
 	}
 }

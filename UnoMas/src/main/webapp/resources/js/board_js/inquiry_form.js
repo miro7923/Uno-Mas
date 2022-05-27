@@ -1,35 +1,58 @@
   // select1 과 select2 모두 선택되면(value값이 1이상이면) 버튼의 색상변경 (클래스추가)
-  const select1 = document.querySelector("#select1");
-  const select2 = document.querySelector("#select2");
+  const select1 = document.getElementById("select1");
+  const select2 = document.getElementById("select2");
   const submitButton = document.querySelector("#submitButton");
-  const subjectVal = document.querySelector("#subject").value;
-  const contentVal = document.querySelector("#content").value;
+  const subjectVal = document.getElementById("subject");
+  const contentVal = document.getElementById("content");
   
   function checkAll() { // 유효성 검사 함수
     
-    var subject = document.querySelector("#subject");
-    if(subject.value == "") {
+    if(subjectVal.value == "") {
         alert("제목을 입력해주세요.");
         subject.focus();
         return false;
     }
 
-    if(content.value == "") {
+    if(contentVal.value == "") {
         alert("내용을 입력해주세요.");
         content.focus();
         return false;
     }
 
   }
-
-
+  function checkPoint() {
+  	if( parseInt(select1.value) >= 1 ) {
+  		select2.disabled = false;
+  	} else {
+  		select2.disabled = true;
+  	}
+  	if( parseInt(select2.value) >= 0 && parseInt(select1.value) >= 1) {
+  		subjectVal.disabled = false;
+  	} else {
+  		subjectVal.disabled = true;
+  	}
+  	if( subjectVal.value != "" ) {
+  		contentVal.disabled = false;
+  	} else {
+  		contentVal.disabled = true;
+  	}
+  	if( contentVal.value != "" ) {
+  		submitButton.classList.remove("btn-secondary");
+      	submitButton.classList.add("btn-primary");
+      	submitButton.disabled = false;
+  	} else {
+  		submitButton.classList.remove("btn-primary");
+  		submitButton.classList.add("btn-secondary");
+  		submitButton.disabled = true;
+  	}
+  	
+  }  
+  
   function submitButtonColorChange() { // 셀렉트박스를 모두 선택해야 등록버튼이 활성화 되는 함수
-  if (parseInt(select1.value)>=1 && parseInt(select2.value)>=1){
-
-      submitButton.classList.remove("btn-secondary");
-      submitButton.classList.add("btn-primary");
-      submitButton.disabled = false;
-      }
+  
+      	submitButton.classList.remove("btn-secondary");
+      	submitButton.classList.add("btn-primary");
+      	submitButton.disabled = false;
   }
 
   select1.onchange = function() { // 문의유형 선택시 상세유형이 변경되도록 하는 함수

@@ -29,12 +29,11 @@
 	background-color: #B9CE45;
 }
 .top_bar_img {
-	border: 1px solid black;
 	float: left;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
+    width: 60px;
+    height: 60px;
     border-radius: 100px;
+    margin-top: -7px;
    
 }
 .top_bar > div> span {
@@ -60,13 +59,14 @@
 	font-weight: bold;
 }
 
-.middle-content > h3 >span {
+.middle-content > h3 >span > a {
 	float: right;
+	color: black;
     font-size: 20px;
     margin-right: 10px;
     cursor: pointer;
 }
-.middle-content > h3 >span:hover {
+.middle-content > h3 >span > a:hover {
 	color: #B9CE45;
 	font-size: 25px;
 }
@@ -93,8 +93,8 @@ th, td {
     margin-bottom: 50px;
     text-align: center;
 }
+
 .bottom-container > img {
 	width: 850px;
     height: 230px;
 }
-

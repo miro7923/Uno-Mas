@@ -14,6 +14,7 @@ import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.Qna_ComVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.AdminDAO;
 
@@ -38,16 +39,21 @@ public class AdminServiceImpl implements AdminService {
 		return dao.adminTotal();
 	}
 
+	
+
 	@Override
-	public List<UserVO> userView(Criter cri) {
-		// 유저 목록보기
-		return dao.userList(cri);
+	public Integer allUserCount(String standard) {
+		return dao.allUserCount(standard);
 	}
 
 	@Override
-	public Integer userCount() {
-		// 유저 수
-		return dao.userTotal();
+	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception {
+		return dao.getAllUser(standard, cri);
+	}
+
+	@Override
+	public List<UserVO> getDropUser(UserCriteria cri) throws Exception {
+		return dao.getDropUser(cri);
 	}
 
 	@Override

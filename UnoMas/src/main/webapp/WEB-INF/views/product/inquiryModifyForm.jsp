@@ -11,6 +11,12 @@
 	href="${path}/resources/css/reviewWritingForm.css?after22">
 <!-- Header end -->
 
+<%
+    if (session.getAttribute("saveID") == null) {
+    	response.sendRedirect("/index");
+    }
+%>
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -22,11 +28,11 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>문의하기</h4>
-						<form action="/product/modify_inquiry" method="post" class="comment-form">
+						<form action="/product/modify_inquiry?pageInfo=${pageInfo }&pagingNum=${pagingNum}" method="post" class="comment-form">
 						    <div class="row">
 						        <div class="col-lg-12">
 						            <input type="hidden" value="${vo.p_inquiry_num }" name="p_inquiry_num">
-						            <input type="hidden" value="${sessionScope.saveID.user_num }" name="user_num">
+						            <input type="hidden" value="${saveNUM }" name="user_num">
 						            <input type="hidden" value="${vo.prod_num }" name="prod_num">
   						            <p class="productName">상품명 : ${prod_name }</p>
 						        </div>
@@ -41,7 +47,7 @@
 							<div class="row">
 								<div class="col-lg-2">내용</div>
 								<div class="col-lg-10">
-									<textarea class="reviewTextarea" name="p_inquiry_content"
+									<textarea class="reviewTextarea" name="p_inquiry_content" id="textArea"
 										placeholder="상품에 대한 문의 내용을 입력해 주세요.
 반품/환불 문의는 1:1문의로 가능합니다.">${vo.p_inquiry_content }</textarea>
 								</div>

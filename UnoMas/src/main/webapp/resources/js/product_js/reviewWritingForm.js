@@ -59,3 +59,7 @@ function selectRating() {
 		$('#review_rating').val($('#reviewRating').val()).attr('selected', 'selected');
 	}
 }
+
+function insertNewline() {
+	$('#textArea').val().replace(/\r\n|\n/ , "<br>");
+}

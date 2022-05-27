@@ -18,3 +18,5 @@
 13. [대분류별 상품목록페이지에서 소분류별 상품 출력하는 기능 구현](DevLog/2022-05-05-uno-mas-dev-log-13.md)<br>
 14. [신상품 페이지와 특가상품 페이지에서 할인상품의 할인율과 할인가 보여주기](DevLog/2022-05-10-uno-mas-dev-log-14.md)<br>
 15. [후기글 첨부 이미지의 수정과 삭제](DevLog/2022-05-17-uno-mas-dev-log-15.md)<br>
+16. [Ajax로 이미지파일 업로드](DevLog/2022-05-18-uno-mas-dev-log-16.md)<br>
+17. [새로고침 없이 게시판 목록 불러오기](DevLog/2022-05-22-uno-mas-dev-log-17.md)<br>

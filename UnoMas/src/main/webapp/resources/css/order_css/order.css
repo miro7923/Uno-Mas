@@ -7,9 +7,19 @@
     margin: 0;
 }
 
+.checkout-form input {
+	height: 13px;
+}
+
 .deliverListBtn {
     padding: 3px 8px;
     margin-left: 20px;
+}
+
+@media only screen and (min-width: 1200px) {
+	.col-lg-2 {
+	    bottom: 0;
+	}	
 }
 
 .emph {
@@ -56,10 +66,19 @@
     padding-left: 10px; 
 }
 
+.site-btn {
+	background: #B9CE45;
+    border: 1px solid #B9CE45;
+}
+
+.checkout-form .place-order .order-total .order-table li.total-price span {
+    color: #B9CE45;
+}
+
 .orderTable {
     width: 100%;
     border: none;
-    border-top: 2px solid #e7ab3c;
+    border-top: 2px solid #B9CE45;
     border-bottom: 1px solid #dddde1;
     table-layout: fixed;
 }

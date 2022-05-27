@@ -2,21 +2,23 @@ package com.april.unomas.domain;
 
 import java.sql.Date;
 
+import lombok.Data;
+
+@Data
 public class QnaVO {
-	
 	private int qna_num;
 	private int user_num;
 	private String qna_title;
 	private String qna_content;
 	private Date qna_regdate;
 	private int qnacate_num;
+	private String qnacate_name;
 	private int qna_process;
 	private String qnacate2;
 	private String qna_image1;
 	private String qna_image2;
 	private QnaCateVO qnaCateVO;
 	private Qna_ComVO qna_comVO;
-	
 
 	
 	public Qna_ComVO getQna_comVO() {
@@ -92,6 +94,15 @@ public class QnaVO {
 	public void setQnacate2(String qnacate2) {
 		this.qnacate2 = qnacate2;
 	}
+	
+	
+	
+	public String getQnacate_name() {
+		return qnacate_name;
+	}
+	public void setQnacate_name(String qnacate_name) {
+		this.qnacate_name = qnacate_name;
+	}
 	@Override
 	public String toString() {
 		return "QnaVO [qna_num=" + qna_num + ", user_num=" + user_num + ", qna_title=" + qna_title + ", qna_content="
@@ -99,7 +110,6 @@ public class QnaVO {
 				+ qna_process + ", qnacate2=" + qnacate2 + ", qna_image1=" + qna_image1 + ", qna_image2=" + qna_image2
 				+ ", qnaCateVO=" + qnaCateVO + ", qna_comVO=" + qna_comVO + "]";
 	}
-	
 	
 	
 	

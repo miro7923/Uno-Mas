@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Criter;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -295,8 +297,33 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public List<ProductVO> searchProd(Criter pc) throws Exception {
+		return dao.searchProd(pc);
+	}
+
+	@Override
+	public int getSearchProdCnt(Criter pc) throws Exception {
+		return dao.getSearchProdCnt(pc);
+	}
+	
+	@Override
 	public List<SelectVO> mayEvent() throws Exception {
 		List<SelectVO> beefList = dao.mayEvent();
 		return beefList;
+	}
+
+	@Override
+	public void decreaseStock(int sell, int prod_num) throws Exception {
+		dao.decreaseStock(sell, prod_num);
+	}
+
+	@Override
+	public void writeInqComment(ProdCommentVO vo) throws Exception {
+		dao.insertInqComment(vo);
+	}
+
+	@Override
+	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception {
+		return dao.getInqComment(p_inquiry_num);
 	}
 }

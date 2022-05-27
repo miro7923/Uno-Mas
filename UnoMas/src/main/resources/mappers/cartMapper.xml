@@ -15,19 +15,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 장바구니 목록 -->
     <select id="listCart" resultType="com.april.unomas.domain.CartVO">
     <!-- DAO에서 listCart라는 태그로 인해 실행되고 결과타입은 VO타입으로 한다. (다른계층으로 보내기 위해서) -->
-        SELECT cart_num, p.prod_num, c.user_num, prod_name, prod_amount, prod_price, (prod_price*prod_amount) money
-        FROM users m, cart c, products p
-        WHERE m.user_num = c.user_num and c.prod_num = p.prod_num and c.user_num = #{user_num} 
+        SELECT cart_num, p.prod_num, c.user_num, prod_name, prod_image3, prod_amount, prod_price, (prod_price*prod_amount) money
+        FROM cart c, products p
+        WHERE c.user_num = #{user_num} and c.prod_num = p.prod_num 
         ORDER BY cart_num;
     </select>
     
-    <!-- 장바구니 전체 금액 -->
+    <!-- 회원의 장바구니 목록에서 선택된 상품만 가져오기 -->
+    <select id="getSelectedItems" resultType="CartVO">
+        SELECT c.cart_num, p.prod_num, c.user_num, prod_name, prod_amount, prod_price, (prod_price * prod_amount) money
+		FROM cart c 
+		JOIN products p ON c.prod_num = p.prod_num
+		WHERE c.cart_num = #{cart_num};
+    </select>
     
     <!-- 장바구니 개별 상품 삭제 -->
     <delete id="delete">
         DELETE
         FROM unomasdb.cart
         WHERE cart_num = #{cart_num}
+    </delete>
+    
+    <!-- 회원번호랑 상품번호로 장바구니 개별 상품 삭제 -->
+    <delete id="deleteByUserNum">
+        DELETE FROM cart
+        WHERE user_num = #{user_num} and prod_num = #{prod_num}
     </delete>
 	
     <!-- 장바구니 수정 -->

@@ -18,7 +18,7 @@ import com.april.unomas.persistence.ProductDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
-		locations = {"file:Src/main/webapp/WEB-INF/spring/root-context.xml"}
+		locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"}
 		)
 
 public class ProductDAOTest {
@@ -117,11 +117,16 @@ public class ProductDAOTest {
 		log.info("Is in wishlist? " + dao.isInWishlist(1, 9));
 	}
 	
-	@Test
+//	@Test
 	public void 상품별리뷰글개수() throws Exception {
 		ProdCriteria pc = new ProdCriteria();
 		pc.setProd_num(84);
 		pc.setPerPageNum(7);
 		log.info("글목록: " + dao.getReviewList(pc));
+	}
+	
+	@Test
+	public void 재고감소() throws Exception {
+		dao.decreaseStock(2, 20);
 	}
 }

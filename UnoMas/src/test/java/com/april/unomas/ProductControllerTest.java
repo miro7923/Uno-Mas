@@ -53,7 +53,7 @@ public class ProductControllerTest {
 		log.info(mvc.toString());
 	}
 	
-//	@Test
+	@Test
 	public void 상품목록출력테스트() throws Exception {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/product/product_list?topcate_num=4&pageNum=1&dcate_num=0");
 		mvc.perform(requestBuilder).andExpect(status().isOk()).andExpect(view().name("product/productList")).andDo(print());
@@ -108,7 +108,7 @@ public class ProductControllerTest {
 		.andDo(print());
 	}
 	
-	@Test
+//	@Test
 	public void 리뷰수정테스트() throws Exception {
 		mvc.perform(post("/product/modify_review").param("prod_num", "84").param("review_content", "맛있네요.")
 				.param("review_num", "4").param("review_rating", "4.0").param("review_title", "또 시킬거에요."))

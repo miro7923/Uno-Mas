@@ -3,6 +3,8 @@ package com.april.unomas.service;
 import java.util.List;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Criter;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -12,7 +14,6 @@ import com.april.unomas.domain.SelectVO;
 
 public interface ProductService {
 
-
 	// 상품 등록
 	public void insertProduct(ProductVO vo) throws Exception;
 	
@@ -21,8 +22,8 @@ public interface ProductService {
 	
 	// 상품 삭제
 	public void deleteProduct(ProductVO vo) throws Exception;
-	
-	// 상위 카테고리별로 상품 목록 가져오는 메서드
+
+	// 상품 목록 상위 카테고리별로 불러오기
 	public List<ProductVO> getProductList(ProdCriteria pc) throws Exception;
 	
 	// 상위 카테고리별 한 페이지에 표시할 만큼만 상품 목록 불러오기
@@ -30,9 +31,9 @@ public interface ProductService {
 	
 	// 대분류별 소분류 번호 리스트 가져오기
 	public List<Integer> getTopcateCnt(int topcate_num) throws Exception;
-
+  
 	// 전체 상품 목록 가져오기
-	public List<ProductVO> getAllProductList(int pagestart, int perPageNum, String searchType, String keyword) throws Exception;
+	public List<ProductVO> getAllProductList(int pageStart, int perPageNum, String searchType, String keyword) throws Exception;
 	
 	// 전체 상품 개수 가져오기
 	public Integer getAllCnt(String searchType, String keyword) throws Exception;
@@ -40,10 +41,10 @@ public interface ProductService {
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;
 	
-	// 상위 카테고리 가져오기
+	// 상품 상위 카테고리 가져오기
 	public List<CategoryVO> getTopCategory() throws Exception;
 	
-	// 상위 카테고리 이름 가져오는 메서드
+	// 상품 상위 카테고리 이름 가져오기
 	public String getTopCateName(int topcate_num) throws Exception;
 	
 	// 상품 하위 카테고리 가져오기
@@ -53,7 +54,7 @@ public interface ProductService {
 	public List<String> getDcateNames(int topcate_num) throws Exception;
 	
 	// 상품별 카테고리 가져오기
-	public List<CategoryVO> getCategory(int dcate_num) throws Exception;
+	public List<CategoryVO> getCategory(int prod_num) throws Exception;
 	
 	// 소분류별로 분류해서 가져오기
 	public List<ProductVO> getDcateList(ProdCriteria pc) throws Exception;
@@ -72,14 +73,14 @@ public interface ProductService {
 	
 	// 상품 조회수 증가
 	public void addProdReadcnt(int prod_num) throws Exception;
-  
+	
 	// 장바구니에 상품 넣는 메서드
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
 	
 	// 회원 장바구니에 상품 존재 여부 확인
 	public CartVO getProdInCart(int user_num, int prod_num) throws Exception;
 	
-	// 회원 장바구니 수량 업데이트
+	// 회원 장바구니 수량 증가
 	public void modifyCartAmount(int user_num, int prod_num, int prod_amount) throws Exception;
 	
 	// 신상품 목록 가져오는 메서드
@@ -121,14 +122,14 @@ public interface ProductService {
 	// 리뷰글 이미지파일 정보 가져오기
 	public String getReviewImg(int review_num) throws Exception;
 	
-	// 리뷰글 삭제
+	// 리뷰글 하나 삭제
 	public void removeReview(int review_num) throws Exception;
 	
 	// 리뷰글 좋아요 증가
 	public void addReviewLikeCnt(int review_num) throws Exception;
 	
 	// 리뷰글 좋아요 취소
-	public void cancelLike(int review_num) throws Exception;
+	public void cancelLike(int revuew_num) throws Exception;
 	
 	// 상품별 문의글 목록 가져오기
 	public List<ProdInquiryVO> getInquiryList(ProdCriteria pc) throws Exception;
@@ -174,7 +175,20 @@ public interface ProductService {
 	
 	// 신상품별 상품 정보(메인페이지)
 	public List<SelectVO> brandnewSelect2() throws Exception;
+
+	public List<ProductVO> searchProd(Criter pc) throws Exception;
 	
+	public int getSearchProdCnt(Criter pc) throws Exception;
+
 	// 가정의달 소고기 상품 정보
 	public List<SelectVO> mayEvent() throws Exception;
+	
+	// 상품 재고 감소
+	public void decreaseStock(int sell, int prod_num) throws Exception;
+	
+	// 상품 문의 댓글 생성
+	public void writeInqComment(ProdCommentVO vo) throws Exception;
+	
+	// 상품 문의 댓글 가져오기
+	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception;
 }
