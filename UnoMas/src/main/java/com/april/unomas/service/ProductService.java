@@ -72,7 +72,7 @@ public interface ProductService {
 	public int getLastProdNum() throws Exception;
 	
 	// 상품 조회수 증가
-	public void updateProdReadcnt(int prod_num) throws Exception;
+	public void addProdReadcnt(int prod_num) throws Exception;
 	
 	// 장바구니에 상품 넣는 메서드
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
