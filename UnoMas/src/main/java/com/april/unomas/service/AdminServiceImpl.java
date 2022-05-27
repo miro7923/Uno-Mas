@@ -8,44 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-
-import com.april.unomas.domain.UserCriteria;
-
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.Qna_ComVO;
-
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.AdminDAO;
 
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
+
+	private static final Logger log 
+	= LoggerFactory.getLogger(AdminServiceImpl.class);
 	
 	@Inject
 	private AdminDAO dao;
-	private static final Logger log = LoggerFactory.getLogger(AdminServiceImpl.class);
-
-	
-	@Override
-	public Integer allUserCount(String standard) {
-		System.out.println("Service: DAO결과!!" + dao.allUserCount(standard));
-		return dao.allUserCount(standard);
-	}
-
-	@Override
-	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception{
-		return dao.getAllUser(standard, cri);
-	}
-
-	@Override
-	public List<UserVO> getDropUser(UserCriteria cri) throws Exception {
-		return dao.getDropUser(cri);
-	}
-	
-
 	
 	@Override
 	public List<AdminVO> adminView(Criter cri) {
@@ -87,12 +66,6 @@ public class AdminServiceImpl implements AdminService{
 	public void noticeWrite(NoticeVO vo) {
 		// 공지사항 글쓰기
 		dao.noticeInsert(vo);
-	}
-
-	@Override
-	public AdminVO adminLogin(AdminVO vo) {
-		// 관리자 로그인
-		return dao.adminLogin(vo);
 	}
 
 	@Override
@@ -202,6 +175,7 @@ public class AdminServiceImpl implements AdminService{
 		// 1:1문의 조회
 		return dao.getQna(qna_num);
 	}
+	
 	
 	
 }

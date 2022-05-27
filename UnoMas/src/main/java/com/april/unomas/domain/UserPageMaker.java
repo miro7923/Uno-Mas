@@ -47,7 +47,7 @@ public class UserPageMaker {
 		// 이전과 다음
 		prev = startPage == 1 ? false :  true;
 		next = endPage * cri.getPerPageNum() >= totalCount? false : true;
-		System.out.println("페이지메이커: " + endPage);
+		System.out.println("UserPageMaker 페이지메이커: " + endPage);
 	}
 	
 }

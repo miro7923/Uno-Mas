@@ -579,7 +579,7 @@ public class ProductController {
 		
 		return "product/productList";
 	}
-
+	
 	@RequestMapping(value = "/product_search", method = RequestMethod.GET) // /shop -> /product_list
 	public String searchGET(Model model,Criter criter) throws Exception {
 		ProdCriteria cri = new ProdCriteria();
@@ -612,5 +612,4 @@ public class ProductController {
 		
 		return "product/productSearch";
 	}
-	
 }

@@ -58,13 +58,13 @@ function prodCheck() {
 	obj.submit();
 }
 
-function numberCk() {
-    var number = RegExp(/^(0|[1-9]+[0-9])$/);
-    if(!number.test($("[name=prod_price]").val())){
-        $("[name=prod_price]").focus();
-        return false;
-    }
-}
+//function numberCk() {
+//    var number = RegExp(/^(0|[1-9]+[0-9])$/);
+//    if(!number.test($("[name=prod_price]").val())){
+//        $("[name=prod_price]").focus();
+//        return false;
+//    }
+//}
 
 function discntrateCk(){
     var discntrate = RegExp(/^(0|[1-9]+[0-9]{1,2})$/);
@@ -73,6 +73,3 @@ function discntrateCk(){
         return false;
     }
 }
-
-
-

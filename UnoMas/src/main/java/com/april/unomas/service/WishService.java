@@ -9,9 +9,6 @@ public interface WishService {
 	// 찜 목록
 	public List<WishVO> list(int user_num) throws Exception;
 	
-	// 찜 추가
-	public void insertWish(WishVO vo) throws Exception;
-	
 	// 찜 X삭제 버튼
 	public void deleteWish(int wish_num) throws Exception;
 	
@@ -23,4 +20,7 @@ public interface WishService {
 	
 	// 찜 전체 삭제
 	public void deleteAllWish(int user_num) throws Exception;
+
+	// 장바구니 단품 담기
+	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
 }

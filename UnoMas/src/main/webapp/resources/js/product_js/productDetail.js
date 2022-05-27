@@ -220,7 +220,7 @@ function changePageNum(num, maxNum, boardType) {
 	    
 	    $.ajax({
 			type: 'get',
-			url: '/product/list_review?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			url: '/product/review_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
 				$('#reviewListAjax').html(data);
 				
@@ -230,6 +230,8 @@ function changePageNum(num, maxNum, boardType) {
 				alert('통신 실패');
 			}
 		});
+		
+		$('#curReviewPage').val(num);
 	}
 	else {
 		initQna();
@@ -249,7 +251,7 @@ function changePageNum(num, maxNum, boardType) {
 	    
 		$.ajax({
 			type: 'get',
-			url: '/product/list_inquiry?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			url: '/product/inquiry_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
 				$('#inqDiv').html(data);
 
@@ -259,7 +261,7 @@ function changePageNum(num, maxNum, boardType) {
 				alert('통신 실패');
 			}
 		});
-	}	
+	}
 }
 
 function confirmToRemove(type, postNum, prodNum) {

@@ -134,7 +134,12 @@ $(".date").html(date);
 //});
 
 /* 재고 상태 라디오버튼 제어 */
-$("input:radio[name=stock_state]").attr("disabled", true); //비활성화 
+//function stockBtn(){
+//	var stock = $('prod_stock');
+//	if(stock = 0){
+//		$('input:radio[name=stock_state]:input[value=' + sold + ']').attr("checked", true);
+//	}
+//}
 
 /* 대분류 선택에 따른 소분류 카테고리 */
 var cates = false;
@@ -152,7 +157,7 @@ $(function(){
 	$("#categories").trigger("change");
 })
 
-/* 파일업로드 */
+
 function checkFileName(num, type) {
     var regex = new RegExp("(.*?)\.(jpg|jpeg|png|gif)");
     var maxSize = 10 * 1024 * 1024;
@@ -234,22 +239,17 @@ function uploadImg(num, type) {
 }
 
 function showFileName(num) {
-	
-    var fileTarget = $('#uploadImg' + num);
+    var fileTarget = $('#uploadImg'+num);
     
     fileTarget.on('change', function() {
         if (window.FileReader) { // modern browser
-            var fileName = $('#uploadImg'+ num)[0].files[0].name;
+            var fileName = $('#uploadImg'+num)[0].files[0].name;
         }
         else { // IE
-            var fileName = $('#uploadImg' + num).val().split('/').pop().split('\\').pop();
+            var filename = $('#uploadImg'+num).val().split('/').pop().split('\\').pop();
         }
         
         $('#uploadImgName'+num).val(fileName);
     });
 }
 
-function removeImg(num) {
-	$('#uploadImg'+num).val(null);
-	$('#uploadImgName'+num).val('이미지 선택');
-}

@@ -64,7 +64,7 @@
 									    </c:choose>
 									</h5>
 									<c:if test="${sessionScope.saveID == null }">
-										<p class="memberInfo" style="color: #9db329;">로그인 후, 적립혜택이 제공됩니다.</p>
+										<p class="memberInfo">로그인 후, 적립혜택이 제공됩니다.</p>
 									</c:if>									
 								</div>
 								<div class="pd-tags">
@@ -143,11 +143,11 @@
 		                                    <c:choose>
 		                                        <c:when test="${isInWishlist == true }">
 												    <button class="icon_heart" id="wishlistBtn" 
-												        onclick="toggleWishlistBtn(${user_num}, ${vo.prod_num });"></button>
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
 		                                        </c:when>
 		                                        <c:otherwise>
 												    <button class="icon_heart_alt" id="wishlistBtn" 
-												        onclick="toggleWishlistBtn(${user_num}, ${vo.prod_num });"></button>
+												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
 		                                        </c:otherwise>
 		                                    </c:choose>
                                         </c:otherwise>
@@ -159,7 +159,11 @@
 								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
 								           </c:when>
 									       <c:when test="${sessionScope.saveID != null }">
+<<<<<<< HEAD
 										       <input type="hidden" id="user_num" value="${saveNUM }">
+=======
+										       <input type="hidden" id="user_num" value="${sessionScope.saveID.user_num }">
+>>>>>>> 81ba11210b322b3f79bcbc678f4f2a74ad12890c
 										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 										       <input type="hidden" id="prod_amount" value="1">
 											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 
@@ -177,14 +181,14 @@
 					<div class="product-tab">
 						<div class="tab-item">
 							<ul class="nav" role="tablist">
-								<li style="border-left: 1px solid #ebebeb;"><a class="active" data-toggle="tab" href="#tab-1"
+								<li><a class="active" data-toggle="tab" href="#tab-1"
 									role="tab">상품설명</a></li>
 								<li><a data-toggle="tab" href="#tab-2" role="tab">상세정보</a>
 								</li>
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
 								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
 										(${reviewCnt })</a></li>
-								<li style="border-right: 1px solid #ebebeb;"><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();" style="border-right: 1px solid #ebebeb;">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -409,7 +413,7 @@
 												onclick="window.parent.location.href = '/user/mypage'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
-										<div class="comment-option" id="inqDiv">
+										<div class="comment-option">
 											<table class="reviewTable" width="100%" border="0"
 												cellpadding="0" cellspacing="0">
 												<caption style="display: none">문의 제목</caption>
@@ -531,7 +535,7 @@
 	<script src="${path}/resources/js/jquery.slicknav.js"></script>
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/js/product_js/productDetail.js?as12"></script>
+	<script src="${path}/resources/js/product_js/productDetail.js"></script>
 </body>
 
 </html>

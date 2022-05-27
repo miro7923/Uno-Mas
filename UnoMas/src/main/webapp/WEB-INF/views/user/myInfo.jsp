@@ -120,7 +120,7 @@
 			</div>
 
 			<div style="text-align: center;" >
-				<a href="update_myInfo" class="updateBtn">수정</a>
+				<a href="check_pw" class="updateBtn">수정</a>
 			</div>
 			
 		</div>

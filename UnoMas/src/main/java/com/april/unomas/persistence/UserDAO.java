@@ -84,4 +84,5 @@ public interface UserDAO {
 	
 	// 결제완료 후 적립금
 	public void updatePoint(int user_num, int user_point);
+
 }

@@ -22,45 +22,7 @@
                     <h2 class="tit">1:1 문의<span class="tit_sub"></span></h2>
                 </div>
     
-    <script>
-  var preContent;
-
-  function view_content(obj)
-  {
-    var div = obj.parentNode;
-
-    for (var i=1, m=div.childNodes.length;i<m;i++) {
-      if (div.childNodes[i].nodeType != 1) continue;    // text node.
-      else if (obj == div.childNodes[ i ]) continue;
-
-      obj = div.childNodes[ i ];
-      break;
-    }
-
-    if (preContent && obj!=preContent){
-      obj.style.display = "block";
-      preContent.style.display = "none";
-    }
-    else if (preContent && obj==preContent) preContent.style.display = ( preContent.style.display == "none" ? "block" : "none" );
-    else if (preContent == null ) obj.style.display = "block";
-
-    preContent = obj;
-  }
-
-  { // 초기출력
-    var no = "faq_";
-    if ( document.getElementById( no ) ) view_content( document.getElementById( no ) );
-  }
-
- 
-</script>
-<script type="text/javascript">
-	function deleteAction(data) {
-		if(confirm("삭제하시겠습니까?") == true){
-			location.href='/board/qna_delete?qna_num='+data;
-		}
-	}
-</script>
+   
 
         <form name="frmList" id="form" method="get" action="?">
             <div class="page_section">
@@ -141,19 +103,23 @@
                         <div class="row justify-content-center">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/qna_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/qna_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/admin/qna_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -188,7 +154,7 @@
             </div>
         </div>
         
-        
+        <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 <!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <jsp:include page="../inc/adminFooter.jsp"></jsp:include>

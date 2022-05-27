@@ -2,9 +2,6 @@ package com.april.unomas.service;
 
 import java.util.List;
 
-
-import com.april.unomas.domain.UserCriteria;
-import com.april.unomas.domain.UserVO;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
@@ -13,20 +10,8 @@ import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserVO;
 
-
 public interface AdminService {
-	
-	public Integer allUserCount(String standard);
 
-	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception;
-	
-	public List<UserVO> getDropUser(UserCriteria cri) throws Exception;
-
-
-
-	// 관리자 로그인
-	public AdminVO adminLogin(AdminVO vo) throws Exception;
-	
 	// 관리자 목록
 	public List<AdminVO> adminView(Criter cri) throws Exception;
 	
@@ -101,5 +86,4 @@ public interface AdminService {
 	
 	// 1:1문의 조회
 	public QnaVO getQna(Integer qna_num) throws Exception;
-
 }

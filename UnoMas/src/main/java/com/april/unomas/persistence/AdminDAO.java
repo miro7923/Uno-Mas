@@ -2,8 +2,6 @@ package com.april.unomas.persistence;
 
 import java.util.List;
 
-
-import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardVO;
 import com.april.unomas.domain.Criter;
@@ -13,9 +11,6 @@ import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserVO;
 
 public interface AdminDAO {
-
-	// 관리자 로그인
-	public AdminVO adminLogin(AdminVO vo);
 	
 	// 관리자 목록
 	public List<AdminVO> adminList(Criter cri);
@@ -28,13 +23,6 @@ public interface AdminDAO {
 	
 	// 유저 수
 	public Integer userTotal();
-	
-	public Integer allUserCount(String standard);
-
-	public List<UserVO> getAllUser(String standard, UserCriteria cri) throws Exception;
-	
-	public List<UserVO> getDropUser(UserCriteria cri) throws Exception;
-	
 	
 	// 공지사항 글 목록
 	public List<NoticeVO> noticeList(Criter cri);

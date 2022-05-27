@@ -7,62 +7,62 @@
   <!-- 디비시간정보 가져오기 -->
   <!-- 겟타임 메서드를 호출하면 현재시간을 받아서 스트링 형태로 가져올 것이다. -->
   <select id="getTime" resultType="string">
-      select now()
+      SELECT now()
   </select>
   
   <!-- 관리자 등록 쿼리문 -->
   <insert id="joinAdmin">
-      insert into admin(admin_id, admin_pass) 
-      values(#{admin_id}, #{admin_pass})
+      INSERT into admin(admin_id, admin_pass) 
+      VALUES (#{admin_id}, #{admin_pass})
   </insert>
   
     <!-- 유저 회원가입 -->
   <insert id="joinUser">
-	insert into users(user_id, user_pass, user_name, user_birth, user_phone, user_email, user_postalcode, user_roadaddr, user_detailaddr, user_emailagree) 
-	values(#{user_id}, #{user_pass}, #{user_name}, #{user_birth}, #{user_phone}, #{user_email}, #{user_postalcode}, #{user_roadaddr}, #{user_detailaddr}, #{user_emailagree})  
+	INSERT into users(user_id, user_pass, user_name, user_birth, user_phone, user_email, user_postalcode, user_roadaddr, user_detailaddr, user_emailagree) 
+	VALUES (#{user_id}, #{user_pass}, #{user_name}, #{user_birth}, #{user_phone}, #{user_email}, #{user_postalcode}, #{user_roadaddr}, #{user_detailaddr}, #{user_emailagree})  
   </insert>
   
   <!-- 아이디 중복검사 -->
   <select id="idCheck_sql" resultType="int">
-  	select count(*) 
-  	from users 
-  	where user_id=#{user_id}
+  	SELECT count(*) 
+  	FROM users 
+  	WHERE user_id=#{user_id}
   </select>
   
   <!-- 아이디 찾기 -->
   <select id="findID_sql" resultType="String">
-  	select user_id 
-  	from users 
-  	where user_email=#{user_email} and user_name=#{user_name}
+  	SELECT user_id 
+  	FROM users 
+  	WHERE user_email=#{user_email} and user_name=#{user_name}
   </select>
   
   <!-- 비번 찾기 -->
   <select id="findPW_sql" resultType="String">
-  	select count(user_num)
-  	from users 
-  	where user_name=#{user_name} and user_email=#{user_email} and user_name=#{user_name}
+  	SELECT count(user_num)
+  	FROM users 
+  	WHERE user_name=#{user_name} and user_email=#{user_email} and user_name=#{user_name}
   </select>
   
   <!-- 비번 변경 -->
   <update id="changePW_sql">
-  	update users 
-  	set user_pass=#{user_pass} 
-  	where user_id=#{user_id}
+  	UPDATE users 
+  	SET user_pass=#{user_pass} 
+  	WHERE user_id=#{user_id}
   </update>
   
   <!-- 로그인 -->
   <select id="loginUser" resultType="com.april.unomas.domain.UserVO">
-  	select user_num, user_id, user_pass, user_status
-  	from users 
-  	where user_id=#{user_id} and user_pass=#{user_pass} 
+  	SELECT user_id, user_pass, user_status, user_num
+  	FROM users 
+  	WHERE user_id=#{user_id} and user_pass=#{user_pass} 
   </select>
-  
+
   <!-- 회원 정보 가져오기 -->
   <select id="getUserInfo" parameterType="String" resultType="com.april.unomas.domain.UserVO">
-	select user_id, user_name, user_birth, user_phone, user_email, 
-	user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point, user_bank, user_account, user_account_holder
-	from users 
-	where user_id = #{user_id}
+   select user_id, user_name, user_birth, user_phone, user_email, 
+   user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point, user_bank, user_account, user_account_holder
+   from users 
+   where user_id = #{user_id}
   </select>
   
   <!-- 회원번호로 회원정보 가져오기 -->
@@ -77,54 +77,37 @@
   <update id="updateUser" >
   	update users 
   	set user_name=#{user_name}, user_email=#{user_email}, user_birth=#{user_birth}, user_phone=#{user_phone},
-  		user_postalcode=#{user_postalcode}, user_roadaddr=#{user_roadaddr}, user_detailaddr=#{user_detailaddr},
-  		user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}
+  	user_bank=#{user_bank}, user_account=#{user_account}, user_account_holder=#{user_account_holder}, user_emailagree=#{user_emailagree}
   	where user_id=#{user_id}
   </update>
   
-
-  <!-- 비밀번호 체크 -->
-  <select id="checkPW" resultType="int">
-  	SELECT count(*)
-  	FROM users
-  	WHERE user_id=#{user_id} and (user_pass=#{user_pass} OR 
-  	(SELECT count(*) FROM admin WHERE admin_pass=#{user_pass}))
+  <!-- 회원 추가 배송지 조회 -->
+  <select id="getAddAddr" parameterType="Int" resultType="com.april.unomas.domain.UserVO">
+  	select addr_num, user_num, addr_name, addr_postalcode, addr_roadaddr, addr_detailaddr
+  	from order_addr
+  	where user_num=#{user_num}
   </select>
-
+  
+  <!-- 회원 추가 배송지 설정 -->
+  <update id="updateAddAddr">
+  	update order_addr
+  	set addr_name=#{addr_name}, addr_postalcode=#{addr_postalcode}, addr_roadaddr=#{addr_roadaddr}, addr_detailaddr=#{addr_detailaddr}
+  	where user_num=#{user_num}
+  </update>
   
   <!-- 회원탈퇴 -->
   <update id="deleteUser">
   	UPDATE users 
-  	SET user_status=-1, user_deldate=now()
+  	SET user_status=-1
   	WHERE user_id=#{user_id}
   </update>
   
-  <select id="myReviewCnt" parameterType="String" resultType="int">
-  	SELECT count(review_num)
-  	FROM board_review 
-  	WHERE user_num=${value}
-  </select>
-  
-  <select id="getMyReview" parameterType="Map" resultType="com.april.unomas.domain.BoardReviewVO">
-  	SELECT * 
-  	FROM board_review 
-  	WHERE user_num=${id}
-  	ORDER BY review_regdate DESC 
-  	LIMIT #{cri.pageStart},#{cri.perPageNum}
-  </select>
-  
-  <select id="myPQcnt" parameterType="String" resultType="int">
-  	SELECT count(p_inquiry_num)
-  	FROM prod_inquiry
-  	WHERE user_num=${value}
-  </select>
-  
-  <select id="getMyPQ" parameterType="Map" resultType="com.april.unomas.domain.BoardReviewVO">
-  	SELECT * 
-  	FROM prod_inquiry 
-  	WHERE user_num=${id}
-  	ORDER BY review_regdate DESC 
-  	LIMIT #{cri.pageStart},#{cri.perPageNum}
+  <!-- 비밀번호 체크 -->
+  <select id="checkPW" resultType="int">
+     SELECT count(*)
+     FROM users
+     WHERE user_id=#{user_id} and (user_pass=#{user_pass} OR 
+     (SELECT count(*) FROM admin WHERE admin_pass=#{user_pass}))
   </select>
   
   <!-- 결제완료 후 적립금 업데이트 -->
