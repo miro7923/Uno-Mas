@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
@@ -51,13 +52,13 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
-		return dao.getAllProductList(pc);
+	public List<ProductVO> getAllProductList(int pagestart, int perPageNum, String searchType, String keyword) throws Exception {
+		return dao.getAllProductList(pagestart, perPageNum, searchType, keyword);
 	}
 
 	@Override
-	public Integer getAllCnt() throws Exception {
-		return dao.getAllCnt();
+	public Integer getAllCnt(String searchType, String keyword) throws Exception {
+		return dao.getAllCnt(searchType, keyword);
 	}
 
 	@Override
@@ -293,6 +294,22 @@ public class ProductServiceImpl implements ProductService{
 	public List<SelectVO> brandnewSelect2() throws Exception {
 		List<SelectVO> newlist2 = dao.brandnewSelect2();
 		return newlist2;
+	}
+
+	@Override
+	public List<ProductVO> searchProd(Criter pc) throws Exception {
+		return dao.searchProd(pc);
+	}
+
+	@Override
+	public int getSearchProdCnt(Criter pc) throws Exception {
+		return dao.getSearchProdCnt(pc);
+	}
+	
+	@Override
+	public List<SelectVO> mayEvent() throws Exception {
+		List<SelectVO> beefList = dao.mayEvent();
+		return beefList;
 	}
 
 	@Override
