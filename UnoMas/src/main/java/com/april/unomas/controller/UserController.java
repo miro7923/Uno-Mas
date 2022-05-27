@@ -270,6 +270,10 @@ public class UserController {
 		return totalResult;
 	}
 	
-	
+	// 비번체크
+	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
+	public String pwCheck() {
+		return "/user/checkPW";
+	}
 
 }
