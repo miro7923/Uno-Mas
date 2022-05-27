@@ -23,12 +23,12 @@
 		<br>
 		
 		<h4>자주하는 질문</h4>
-		<a href="">자주하는 질문</a>
-		<a href="">자주하는 질문 등록</a>
+		<a href="/admin/faq_board">자주하는 질문</a>
+		<a href="/admin/faq_write">자주하는 질문 등록</a>
 		<br>
 		
 		<h4>1:1문의</h4>
-		<a href="./myInfo">1:1문의</a>
+		<a href="/admin/inquiry_paging">1:1문의</a>
 
 	</div>
 		<a href="/admin/main"><div class="mypage-cate-info">관리자 홈</div></a>

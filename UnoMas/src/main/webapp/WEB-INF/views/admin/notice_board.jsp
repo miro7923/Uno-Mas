@@ -52,8 +52,9 @@
 												<button type="button" id="search_btn" onclick="search_admin_notice()">
 													<i class="ti-search"></i>
 												</button>
-											</div>
+											</div><br>
 										</div>
+										
 										
 										<div class="col-lg-12">
 											<table class="table_board">

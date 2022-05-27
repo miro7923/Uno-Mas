@@ -45,6 +45,19 @@
     float: right;
 }
 
+.del-button {
+    color: #ffffff;
+    background: #666;
+    border: 1px solid #666;
+   	margin: 0px 0px 10px 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 13px 45px 11px;
+    cursor: pointer;
+    float: right;
+}
+
 .table_info  {
 	margin: 0;
 	padding: 0;
@@ -68,6 +81,23 @@
 	color: #333;
 	text-align: left;
 	margin-bottom: 20px;
+}
+
+.notice_field input {
+    width: 100%;
+    height: 46px;
+    border: 2px solid #ebebeb;
+    margin-bottom: 0px;
+    padding-left: 15px;
+}
+
+.notice_field {
+    border-style: none !important;
+    margin: 0px;
+    padding: 10px;
+    height: 40px;
+    width: 50%;
+    font-size: 12px;
 }
 .admin_profile  {
 	margin: 0;
@@ -107,6 +137,10 @@
 .table_board th {
     background: #f9f9f9;
     color: #666;
+    text-align: left;
+}
+.table_board td {
+    text-align: left;
 }
 
 .table_board th, td {
@@ -175,9 +209,10 @@ li {
     width: 100%;
     height: 46px;
     border: 2px solid #ebebeb;
-    margin-bottom: 20px;
     padding-left: 15px;
+    margin-bottom: 0px;
 }
+    
 
 .input-search button {
     font-size: 16px;
@@ -247,4 +282,12 @@ a:hover {
 
 .textarea {
 	border-style: none !important;
+}
+
+.delete_text {
+	float: right;
+}
+
+.delete_text:hover {
+	color: #f67555;
 }

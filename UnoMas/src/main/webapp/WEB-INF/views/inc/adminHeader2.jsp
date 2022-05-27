@@ -7,7 +7,7 @@
 <div id="preloder">
 	<div class="loader"></div>
 </div>
-<link rel="stylesheet" href="${path}/resources/cssadminn.css">
+<%-- <link rel="stylesheet" href="${path}/resources/cssadminn.css"> --%>
 <!-- Header Section Begin -->
 <header class="headerSection">
 	<%

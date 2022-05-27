@@ -42,21 +42,21 @@
 								<tr>
 									<th>작성자</th>
 									<td><input type="hidden" name="admin_num" value="1">
-										<input type="text" class="input_field" name="admin_name" placeholder="글쓴이" value="${vo.admin_id }" readonly>
+										<input type="text" class="notice_field " name="admin_name" placeholder="글쓴이" value="${vo.admin_id }" readonly>
 									</td>
 								</tr>
 								<tr>
 									<th>제목</th>
-									<td><input type="text" class="input_field" name="notice_title" placeholder="제목을 입력하세요"></td>
+									<td><input type="text" class="notice_field " name="notice_title" placeholder="제목을 입력하세요"></td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
-									<td><input type="file" class="input_field" name="notice_file"></td>
+									<td><input type="file" class="notice_field " name="notice_file"></td>
 								</tr>
 			
 								<tr>
 									<th>이미지</th>
-									<td><input type="file" class="input_field" name="notice_img"></td>
+									<td><input type="file" class="notice_field " name="notice_img"></td>
 								</tr>
 							</table>
 				<table class="table_info">
