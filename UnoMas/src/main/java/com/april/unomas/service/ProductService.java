@@ -123,7 +123,7 @@ public interface ProductService {
 	public String getReviewImg(int review_num) throws Exception;
 	
 	// 리뷰글 하나 삭제
-	public void deleteReview(int review_num) throws Exception;
+	public void removeReview(int review_num) throws Exception;
 	
 	// 리뷰글 좋아요 증가
 	public void addReviewLikeCnt(int review_num) throws Exception;
