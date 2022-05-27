@@ -11,6 +11,12 @@
 	href="${path}/resources/css/product_css/reviewWritingForm.css?after2">
 <!-- Header end -->
 
+<%
+    if (session.getAttribute("saveID") == null) {
+    	response.sendRedirect("/index");
+    }
+%>
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -27,7 +33,7 @@
 								<div class="col-lg-12">
 									<!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
 									<input type="hidden" value="${vo.prod_num }" name="prod_num" id="prod_num">
-									<input type="hidden" value="${sessionScope.saveID.user_num }" name="user_num" id="user_num">
+									<input type="hidden" value="${sessionScope.saveNUM }" name="user_num" id="user_num">
 									<p class="productName">
 										상품명 : ${vo.prod_name } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 										평가 : 

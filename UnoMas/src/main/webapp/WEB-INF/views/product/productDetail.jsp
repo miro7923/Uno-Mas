@@ -193,7 +193,7 @@
 											<img src='<spring:url value="/resources/upload/images/products/detail/${vo.prod_image2 }"></spring:url>' alt="">
 										</div>
 										<br> <br>
-										<div class="row">
+										<%-- <div class="row">
 											<div class="text-center col-lg-12">
 												<!-- id 선택자 지정된 부분만 디비에서 불러와서 채우면 됨 -->
 												<h3 class="detailSubTitle" id="detailSubTitle">${vo.prod_explain }</h3>
@@ -225,7 +225,7 @@
 												<p class="detailOtherContent" id="ingredient">사용할 만큼만 꺼내
 													흐르는 물로 깨끗이 세척하세요.</p>
 											</div>
-										</div>
+										</div> --%>
 										<br> <br>
 									</div>
 								</div>
