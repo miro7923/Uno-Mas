@@ -18,7 +18,13 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+
+import com.april.unomas.domain.ProdCommentVO;
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.Qna_ComVO;
 import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.UserVO;
 
 // @Repository : 해당 클래스가 DAO 역할을 하는 객체로 스프링이 인식
@@ -31,23 +37,18 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSession sqlSession;
 	private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 	private static final String NAMESPACE = "com.unomas.mapper.userMapper";
+	private static final String NAMESPACE_QNA = "com.unomas.mapper.QnaMapper";
 	private static final String NAMESPACE_A = "com.unomas.mapper.adminMapper";
 	
 	@Autowired
 	JavaMailSender mailSender;
 	
-	@Override
-	public String getTime() {
-		String time = sqlSession.selectOne(NAMESPACE + ".getTime");
-		return time;
-	}
 
 	@Override
 	public void joinAdmin(AdminVO vo) {
 		sqlSession.insert(NAMESPACE + ".joinAdmin", vo);
 	}
-	
-	
+
 	// 회원가입
 	@Override
 	public void joinUser(UserVO vo) {
@@ -110,7 +111,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		
 	}
-	
+
 	// 회원 아이디 찾기
 	@Override
 	public int findIdProcess(UserVO vo) {
@@ -132,7 +133,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return result;
 	}
-	
+
 	// 회원 비밀번호 찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
@@ -166,8 +167,7 @@ public class UserDAOImpl implements UserDAO {
 
 		return findpw_map;
 	}
-	
-	
+
 	// 비번 변경
 	@Override
 	public int changePW(UserVO vo) {
@@ -176,16 +176,15 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-	
-	// 회원 정보 조회
+	// 회원정보 조회
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = sqlSession.selectOne(NAMESPACE + ".getUserInfo", id);
 
 		return userInfoVO;
 	}
-	
-	// 회원정보수정
+
+	// 회원정보 수정
 	@Override
 	public Integer updateUser(UserVO vo) {
 		Integer result = sqlSession.update(NAMESPACE + ".updateUser", vo);
@@ -204,7 +203,7 @@ public class UserDAOImpl implements UserDAO {
 
 		return addAddrVO;
 	}
-	
+
 	// 추가 배송지 수정
 	@Override
 	public Integer updateAddAddr(UserVO vo) {
@@ -213,18 +212,61 @@ public class UserDAOImpl implements UserDAO {
 
 		return result;
 	}
-	
+
 	// 회원탈퇴
 	@Override
-	public void deleteUser(UserVO vo) {
-		sqlSession.delete(NAMESPACE + ".deleteUser", vo);
-
+	public Integer deleteUser(UserVO vo) {
+		return sqlSession.delete(NAMESPACE+".deleteUser",vo); 
 	}
 
-	// 비번체크
+	// 비번 체크
 	@Override
 	public Integer checkPW(UserVO vo) {
-		return sqlSession.selectOne(NAMESPACE+".checkPW",vo);
+		return sqlSession.selectOne(NAMESPACE + ".checkPW", vo);
+	}
+	
+	// 내 상품 문의 개수
+	@Override
+	public Integer MyPquestionCount(String num) {
+		return sqlSession.selectOne(NAMESPACE + ".myPQcnt", num);
+	}
+
+	// 내 상품 문의
+	@Override
+	public List<ProdInquiryVO> getMyPquestion(String num, UserCriteria cri) {
+		Map<String, Object> map = new HashMap();
+		map.put("num", num);
+		map.put("cri", cri);
+		
+		List<ProdInquiryVO> pqList= sqlSession.selectList(NAMESPACE + ".getMyPQ", map);
+		System.out.println("pdList: " + pqList.get(0));
+		for(ProdInquiryVO p: pqList) {
+			ProdCommentVO comment = sqlSession.selectOne(NAMESPACE + ".getMyPQcomment", p.getP_inquiry_num());
+			p.setProd_comment(comment);
+		}
+		return pqList;
+	}
+	
+	
+	// 내 1:1 문의 개수
+	@Override
+	public Integer MyQuestionCount(String num) {
+		return sqlSession.selectOne(NAMESPACE + ".myQuestioncnt", num);
+	}
+
+	// 내 1:1 문의
+	@Override
+	public List<QnaVO> getMyQuestion(String num, UserCriteria cri) {
+		Map<String, Object> map = new HashMap();
+		map.put("num", num);
+		map.put("cri", cri);
+		
+		List<QnaVO> qnaList = sqlSession.selectList(NAMESPACE + ".getMyQuestion", map);
+		for(QnaVO q: qnaList) {
+			Qna_ComVO comment = sqlSession.selectOne(NAMESPACE + ".getQcomment", q.getQna_num());
+			q.setQna_comVO(comment);
+		}
+		return qnaList;
 	}
 	
 	// 내 리뷰 개수
@@ -235,13 +277,18 @@ public class UserDAOImpl implements UserDAO {
 
 	// 내 리뷰
 	@Override
-	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
-		System.out.println("DAO: 잘 들어옴?" + id + "" + cri);
+	public List<BoardReviewVO> getMyReview(String num, UserCriteria cri) {
 		Map<String, Object> map = new HashMap();
-		map.put("id", id);
+		map.put("num", num);
 		map.put("cri", cri);
 		
 		return sqlSession.selectList(NAMESPACE+".getMyReview", map);
+	}
+	
+	// 결제완료 후 적립금 업데이트
+	@Override
+	public void updatePoint(int user_point) {
+		sqlSession.update(NAMESPACE + ".updatePoint", user_point);
 	}
 
 	// 이메일
@@ -252,7 +299,7 @@ public class UserDAOImpl implements UserDAO {
 
 		try {
 			msg.setFrom(evo.getSender());
-//				msg.setTo(evo.getRecipients());
+//			msg.setTo(evo.getRecipients());
 			msg.setTo("tksop59@naver.com");
 			msg.setSubject(evo.getSubject()); // 제목 셋팅
 			msg.setText(evo.getContent()); // 내용 셋팅

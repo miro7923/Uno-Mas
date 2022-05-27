@@ -10,8 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
 
@@ -25,7 +29,7 @@ public class UserServiceImpl implements UserService {
 	@Inject
 	private UserDAO dao;
 	
-	
+
 	// 회원가입
 	@Override
 	public void joinUser(UserVO vo) {
@@ -39,7 +43,6 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 
-
 	// 로그인
 	@Override
 	public HashMap loginUser(UserVO vo) {
@@ -49,10 +52,12 @@ public class UserServiceImpl implements UserService {
 	// 아이디 찾기
 	@Override
 	public int findIdProcess(UserVO vo) {
-		return dao.findIdProcess(vo);
+		// DAO를 호출하여 아이디가 있는지 판단.
+		int result = dao.findIdProcess(vo);
+		return result;
 	}
 
-	// 비번찾기
+	// 비번 찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
 		HashMap<String, String> findpw_map = dao.findPwProcess(vo);
@@ -66,17 +71,11 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
-	
 	// 회원 정보 조회
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = dao.getUserInfo(id);
 		return userInfoVO;
-	}
-	
-	@Override
-	public UserVO getUserInfoByNum(int user_num) {
-		return dao.getUserInfoByNum(user_num);
 	}
 
 	// 회원정보수정
@@ -85,27 +84,34 @@ public class UserServiceImpl implements UserService {
 		dao.updateUser(vo);
 	}
 
-	// 비번 체크
+	// 추가 배송지 조회
 	@Override
-	public Integer checkPW(UserVO vo) {
-		return dao.checkPW(vo);
+	public List<UserVO> getAddAddr(int user_num) {
+		List<UserVO> addAddrVO = dao.getAddAddr(user_num);
+		return addAddrVO;
 	}
 
-//	@Override
-//	public void updateAddr(UserVO vo) {
-//		dao.updateAddr(vo);
-//	}
-
+	// 추가 배송지 수정
+	@Override
+	public void updateAddAddr(UserVO vo) {
+		dao.updateAddAddr(vo);
+	}
 
 	// 회원 탈퇴
 	@Override
 	public Integer deleteUser(UserVO vo) {
 		return dao.deleteUser(vo);
 	}
-
+	
+	// 비번 체크
+	@Override
+	public Integer checkPW(UserVO vo) {
+	    return dao.checkPW(vo);
+	}
+	
 	// 내 리뷰 개수
 	@Override
-	public Integer getMyReviewCnt(String num) {
+	public Integer myReviewCnt(String num) {
 		System.out.println("서비스에서 받은 유저번호: " + num);
 		return dao.getMyReviewCnt(num);
 	}
@@ -114,6 +120,36 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
 		return dao.getMyReview(id, cri);
+	}
+
+
+	// 내 상품문의 개수
+	@Override
+	public Integer myPqaCnt(String num) {
+		return dao.MyPquestionCount(num);
+	}
+
+	// 내 상품 문의 
+	@Override
+	public List<ProdInquiryVO> getMyPquestion(String num, UserCriteria cri) {
+		return dao.getMyPquestion(num, cri);
+	}
+
+	// 내 1:1 개수
+	@Override
+	public Integer MyQuestionCount(String num) {
+		return dao.MyQuestionCount(num);
+	}
+
+	// 내 1:1 목록
+	@Override
+	public List<QnaVO> getMyQuestion(String num, UserCriteria cri) {
+		return dao.getMyQuestion(num, cri);
+	}
+	
+	@Override
+	public UserVO getUserInfoByNum(int user_num) {
+		return dao.getUserInfoByNum(user_num);
 	}
 
 	@Override
