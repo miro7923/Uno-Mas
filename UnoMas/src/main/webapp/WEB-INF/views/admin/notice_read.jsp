@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -92,7 +93,7 @@
 									<input type="hidden" readonly>
 								</c:when>
 								<c:otherwise>
-                                    <img class="" src="${path}/resources/upload/images/board/notice/${vo.notice_img }">
+                                    <img class="product-big-img" src="<spring:url value='/resources/upload/images/board/notice/${vo.notice_img }'></spring:url>" alt="">
                                 </c:otherwise>
                             </c:choose>
 						<div class="textarea">
