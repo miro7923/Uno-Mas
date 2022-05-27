@@ -8,7 +8,11 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/order.css?after22">
-<link rel="stylesheet" href="${path}/resources/css/inquiry_form.css?after22">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
+
 <!-- Header end -->
 <body>
 	<!-- Header Section Begin -->
@@ -114,8 +118,9 @@
 	<script src="${path}/resources/js/owl.carousel.min.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 	<script src="${path}/resources/js/complete.js"></script>
-	<script src="${path}/resources/js/inquiry_form.js"></script>
-
-
+	<script src="${path}/resources/js/board_js/inquiry_form.js"></script>
+	<script src="${path}/resources/js/board_js/inquiry_list.js"></script>
+	<script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 </html>

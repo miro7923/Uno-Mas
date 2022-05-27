@@ -3,6 +3,7 @@ package com.april.unomas.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -117,26 +118,29 @@ public class OrderController {
 		return "order/check";
 	}
 	
+	
 	// 마이페이지 - 주문 내역 
 	@RequestMapping(value = "/my_order")
 	public String myOrder(HttpSession session, Model model,
 			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) throws Exception{
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
+		
 		List<Integer> codeList = orderService.MyOrderCount(saveNUM); 
-		System.out.println("총 주문 개수: " + codeList.size());
+		System.out.println("총 결제 개수: " + codeList.size());
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
 		cri.setPerPageNum(3);
 
-		List<OrderVO> orderList = orderService.getMyOrderList(saveNUM, cri);
+		Map<Integer, List> orderMap = orderService.getMyOrderList(saveNUM, cri);
 
 		UserPageMaker pm = new UserPageMaker();
 		pm.setCri(cri);
 		pm.setTotalCount(codeList.size());
+		pm.setTotalCount(10);
 
-		model.addAttribute("orderList", orderList);
+		model.addAttribute("orderMap", orderMap);
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 

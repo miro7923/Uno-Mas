@@ -48,17 +48,32 @@
     </select>
     
     <!-- 전체 상품 목록 가져오기 -->
-    <select id="getAllProductList" resultType="ProductVO">
+    <select id="getAllProductList" parameterType="hashMap" resultType="ProductVO">
 		SELECT *
 		FROM products
+		
+		<if test="searchType.equals('prod_name')">
+			WHERE prod_name LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('prod_num')">
+			WHERE prod_num LIKE concat(#{keyword})
+		</if>
+		
 		ORDER BY prod_num DESC, prod_regdate DESC
 		LIMIT #{pageStart}, #{perPageNum}
     </select>
     
     <!--  전체 상품 개수 가져오기 -->
-    <select id="getAllCnt" resultType="Integer">
+    <select id="getAllCnt" parameterType="hashMap" resultType="Integer">
     	SELECT count(prod_num)
     	FROM products
+    	
+    	<if test="searchType.equals('prod_name')">
+			WHERE prod_name LIKE concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('prod_num')">
+			WHERE prod_num LIKE concat(#{keyword})
+		</if>
     </select>
     
     <!-- 대분류별 상품 개수 가져오기 -->
@@ -110,7 +125,7 @@
 		SELECT t.topcate_name, d.dcate_name
 		FROM top_category t JOIN detail_category d
 		ON (t.topcate_num = d.topcate_num)
-		WHERE dcate_num = (SELECT prod_category FROM products WHERE prod_category = #{prod_category})
+		WHERE dcate_num = #{dcate_num}
     </select>
     
     <!-- 소분류별로 상품 가져오기 -->
@@ -160,6 +175,7 @@
     <insert id="insertCart">
         INSERT INTO cart (user_num, prod_num, prod_amount)
         VALUES (#{user_num}, #{prod_num}, #{prod_amount})
+        ON DUPLICATE KEY UPDATE prod_amount=prod_amount+VALUES(prod_amount)
     </insert>
     
     <!-- 회원의 카트에 담긴 상품 확인 -->

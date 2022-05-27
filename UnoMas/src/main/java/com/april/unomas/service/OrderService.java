@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
@@ -25,5 +26,5 @@ public interface OrderService {
 	public List<Integer> MyOrderCount(String num) throws Exception;
 	
 	// 내 주문 목록
-	public List<OrderVO> getMyOrderList(String num, UserCriteria cri) throws Exception;
+	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
 }

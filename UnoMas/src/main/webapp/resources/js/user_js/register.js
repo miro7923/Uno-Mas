@@ -99,12 +99,6 @@ function phoneCheckFunc() {
 
 }
 
-
-
-
-
-
-
 // 생년월일
 function birthCheck() {
 	if($("select[name=birth-year]").val()== "" || $("select[name=birth-month]").val()== ""){

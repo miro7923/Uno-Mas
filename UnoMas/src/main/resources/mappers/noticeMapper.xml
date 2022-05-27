@@ -28,87 +28,63 @@
 </resultMap>
 
   <insert id="create">
-		insert into board_notice(admin_num,notice_title,notice_content) 
-		values(#{admin_num},#{notice_title},#{notice_content})
+		INSERT INTO board_notice(admin_num,notice_title,notice_content) 
+		VALUES (#{admin_num},#{notice_title},#{notice_content})
 	</insert>
 	
 	<insert id="insert">
-		insert into board_notice(admin_num,notice_title,notice_content,notice_file,notice_img,notice_ip)
-		values (#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_img},#{notice_ip})
+		INSERT INTO board_notice(admin_num,notice_title,notice_content,notice_file,notice_img,notice_ip)
+		VALUES (#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_img},#{notice_ip})
 	</insert>
 	
-	<select id="listAll" resultType="NoticeVO">
-		<![CDATA[
-		select * from board_notice 
-		where notice_num > 0
-		]]>
-	</select>
-	
 	<select id="getNotice" resultMap="noticeMap">
-		select notice_num,notice_title,notice_content,notice_regdate,notice_readcnt,notice_ip,notice_img,notice_file,a.admin_num,a.admin_id 
-		from board_notice b join admin a
-		where notice_num=#{notice_num}
+		SELECT notice_num,notice_title,notice_content,notice_regdate,notice_readcnt,notice_ip,notice_img,notice_file,a.admin_num,a.admin_id 
+		FROM board_notice b JOIN admin a
+		WHERE notice_num=#{notice_num}
 	</select>
 	
 	<update id="rCountUp">
-		update board_notice 
-		set notice_readcnt=notice_readcnt+1
-		where notice_num=#{notice_num}
+		UPDATE board_notice 
+		SET notice_readcnt=notice_readcnt+1
+		WHERE notice_num=#{notice_num}
 	</update>
 	
 	<select id="noticeCnt" resultType="Integer">
 		<![CDATA[
-		select count(*) 
-		from board_notice
-		where notice_num > 0
+		SELECT count(*) 
+		FROM board_notice
+		WHERE notice_num > 0
 		]]>
 		<include refid="search_condition"></include>
 	</select>
-	
-<!-- 	<select id="pagingNotice" resultType="NoticeVO"> -->
-<!-- 		<![CDATA[ -->
-<!-- 		select *  -->
-<!-- 		from board_notice -->
-<!-- 		where notice_num > 0 -->
-<!-- 		]]> -->
-<!-- 		<include refid="search_condition"></include> -->
-<!-- 		order by notice_num desc -->
-<!-- 		limit #{pageStart}, #{perPageNum} -->
-<!-- 	</select> -->
 	
 	<select id="pagingNotice" resultMap="noticeMap">
 		<![CDATA[
-		select notice_num,notice_title,notice_content,notice_regdate,notice_readcnt,notice_ip,notice_img,notice_file,a.admin_num,a.admin_id
-		from board_notice b join admin a
-		where notice_num > 0
+		SELECT notice_num,notice_title,notice_content,notice_regdate,notice_readcnt,notice_ip,notice_img,notice_file,a.admin_num,a.admin_id
+		FROM board_notice b JOIN admin a
+		WHERE notice_num > 0
 		]]>
 		<include refid="search_condition"></include>
-		order by notice_num desc
-		limit #{pageStart}, #{perPageNum}
+		ORDER BY notice_num desc
+		LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
 	<update id="updateNotice">
-		update board_notice 
-		set notice_title=#{notice_title},notice_content=#{notice_content},notice_regdate=now()
-		where notice_num=#{notice_num}
+		UPDATE board_notice 
+		SET notice_title=#{notice_title},notice_content=#{notice_content},notice_regdate=now()
+		WHERE notice_num=#{notice_num}
 	</update>
-	
+
 	<delete id="deleteNotice">
-		delete from board_notice
-		where notice_num=#{notice_num}
+		DELETE from board_notice
+		WHERE notice_num=#{notice_num}
 	</delete>
 	
 	<sql id="search_condition">
 	<if test="search_type != null">
 		<if test="search_type == 'title'.toString()">
-			and notice_title like concat('%', #{keyword}, '%')
+			AND notice_title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
-<!-- 		<if test="search_type == 'cate'.toString()"> -->
-<!-- 			and notice_cate like concat('%', #{keyword}, '%') -->
-<!-- 		</if> -->
-<!-- 		<if test="search_type == 'content'.toString()"> -->
-<!-- 			and notice_content like concat('%', #{keyword}, '%') -->
-<!-- 		</if> -->
 	</if>
 	</sql>
 	

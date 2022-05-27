@@ -63,9 +63,6 @@
     border-collapse: collapse;
     text-align: center;
 }
-tr {
-	height: 40px;
-}
 th, td {
 	border: 1px solid #ddd;
 	padding: 15px 10px;

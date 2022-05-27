@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${path}/resources/css/defaultCss.css">
 <link rel="stylesheet" href="${path}/resources/css/user_css/basicModal.css">
-<script src="${path}/resources/js/user_js/basicModal.js"></script>
 
 
 </head>
@@ -29,5 +28,5 @@
 
 </body>
 
-
+<script src="${path}/resources/js/user_js/basicModal.js"></script>
 </html>

@@ -54,9 +54,8 @@ a{
     width: 165px;
 }
 .table_info th, .table_info td {
-    padding: 20px;
+        padding: 10px 0px 10px 20px;
     border-top: 1px solid #ededed;
-    height: 50px;
 }
 
 .myinfo_content > th, td {
@@ -85,6 +84,7 @@ a{
     padding: 0 10px;
     border: 1px solid #ddd;
     color: #666;
+    font-size: 12px;
 }
 .check-button {
     background-color: #B9CE45;
@@ -113,7 +113,7 @@ select {
     border-radius: 3px;
     display: inline-block;
     width: 3cm;
-    margin: -15px 10px 0px 0px;
+    margin: -10px 10px 10px;
     padding: 0 10px;
     border: 1px solid #c3c3c3;
     color: #666;
@@ -155,7 +155,7 @@ ul, ol {
 	margin:5px auto;
 	
 }
-#postalcode, #postalcode1, #postalcode2 {
+#postalcode, #postalcode1, #postalcode2, #addr_num {
 	box-sizing: border-box;
     display: inline-block;
     margin:6px auto;

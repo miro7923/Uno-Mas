@@ -12,34 +12,52 @@
     <header class="headerSection">
     <%
     	String vo = (String)session.getAttribute("saveID");
-    	if(vo == null){ // 로그인 안 했을 때 링크
+    	String advo = (String)session.getAttribute("saveAID");	
+    
+    	if(vo == null && advo == null){ // 로그인 안 했을 때 링크
     %>
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="../user/login" class="linkMenu">로그인</a>
+    				<a href="/user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="/user/register_agree" class="linkMenu">회원가입</a>
+    				<a href="/user/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/board/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
     	<%
-			} else { // 로그인 했을 때 링크
+			} if(vo != null) { // 회원 로그인 했을 때 링크
     	%>	
-    	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
+    	<div id="headerTop" class="headerTop"> 
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="../user/mypage" class="linkMenu">마이페이지</a>
+    				<a href="/user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="../user/logout" class="linkMenu">로그아웃</a>
+    				<a href="/user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/board/faq_paging" class="linkMenu">고객센터</a>
+    			</li>
+    		</ul>
+    	</div>
+    	<%
+			} if (advo != null) { // 관리자 로그인 했을 때 링크
+    	%>
+    	<div id="headerTop" class="headerTop"> 
+    		<ul class="listMenu">
+    			<li class="menu menuMypage">
+    				<a href="/admin/main" class="linkMenu">관리자페이지</a>
+    			</li>
+    			<li class="menu menuLogout">
+    				<a href="/user/logout" class="linkMenu">로그아웃</a>
+    			</li>
+    			<li class="menu CS">
+    				<a href="/board/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -60,15 +78,16 @@
                         <div class="advanced-search">
                             <button type="button" class="category-btn">All Categories</button>
                             <div class="input-group">
-                                <input type="text" placeholder="검색어를 입력해주세요.">
-                                <button type="button"><i class="ti-search"></i></button>
+                            	<input type="hidden" value="prod_name" name="search_type" id="search_type_prod">
+                                <input type="text" id="keyword_prod" name="keyword" value="" placeholder="검색어를 입력해주세요.">
+                                <button type="button" onclick="search_prod()"><i class="ti-search"></i></button>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="/product/wishlist">
+                                <a href="/product/wishlist/list">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>

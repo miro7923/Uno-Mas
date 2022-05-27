@@ -29,11 +29,11 @@ public class AdminUserController {
 	private static final Logger log = LoggerFactory.getLogger(AdminUserController.class);
 	
 	
-	@RequestMapping(value = "/main")
-	public ModelAndView adminHome(Model model) throws Exception {
-		ModelAndView mav = new ModelAndView("admin/adminMain");
-		return mav;
-	}
+//	@RequestMapping(value = "/main")
+//	public ModelAndView adminHome(Model model) throws Exception {
+//		ModelAndView mav = new ModelAndView("admin/adminMain");
+//		return mav;
+//	}
 	
 
 	

@@ -1,6 +1,7 @@
 package com.april.unomas.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
@@ -24,5 +25,5 @@ public interface OrderDAO {
 	// 총 주문 개수
 	public List<Integer> myOrderCount(String num) throws Exception;
 	
-	public List<OrderVO> getMyOrderList(String num, UserCriteria cri) throws Exception;
+	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
 }

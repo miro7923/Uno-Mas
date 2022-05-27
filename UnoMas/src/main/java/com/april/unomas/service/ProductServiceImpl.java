@@ -50,13 +50,13 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception {
-		return dao.getAllProductList(pc);
+	public List<ProductVO> getAllProductList(int pagestart, int perPageNum, String searchType, String keyword) throws Exception {
+		return dao.getAllProductList(pagestart, perPageNum, searchType, keyword);
 	}
 
 	@Override
-	public Integer getAllCnt() throws Exception {
-		return dao.getAllCnt();
+	public Integer getAllCnt(String searchType, String keyword) throws Exception {
+		return dao.getAllCnt(searchType, keyword);
 	}
 
 	@Override
@@ -90,8 +90,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<CategoryVO> getCategory(int prod_num) throws Exception {
-		return dao.getCategory(prod_num);
+	public List<CategoryVO> getCategory(int dcate_num) throws Exception {
+		return dao.getCategory(dcate_num);
 	}
 
 	@Override
@@ -292,5 +292,11 @@ public class ProductServiceImpl implements ProductService{
 	public List<SelectVO> brandnewSelect2() throws Exception {
 		List<SelectVO> newlist2 = dao.brandnewSelect2();
 		return newlist2;
+	}
+
+	@Override
+	public List<SelectVO> mayEvent() throws Exception {
+		List<SelectVO> beefList = dao.mayEvent();
+		return beefList;
 	}
 }

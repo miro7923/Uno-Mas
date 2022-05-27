@@ -18,4 +18,7 @@ public class OrderVO {
 	private String order_roadaddr;
 	private String order_detailaddr;
 	private double user_point;
+	
+	private String prod_name;
+	private int prod_price;
 }

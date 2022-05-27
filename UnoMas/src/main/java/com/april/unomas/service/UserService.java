@@ -4,13 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.UserVO;
 
 public interface UserService {
+
 	
 	// 회원가입
 	public void joinUser(UserVO vo);
@@ -30,15 +33,20 @@ public interface UserService {
 	// 비번 변경
 	public int changePW(UserVO vo);
 	
-	// 회원 정보 가져오기
+	// 비번 체크
+	public Integer checkPW(UserVO vo);
+	
+	// 회원정보 가져오기
 	public UserVO getUserInfo(String id);
-		
+	
 	// 회원정보수정
 	public void updateUser(UserVO vo);
 
+	// 추가 배송지 조회
+	public List<UserVO> getAddAddr(int user_num);
 	
-	// 비번체크
-	public Integer checkPW(UserVO vo);
+	// 추가 배송지 수정
+	public void updateAddAddr(UserVO vo);
 	
 	// 회원탈퇴
 	public Integer deleteUser(UserVO vo);
@@ -63,4 +71,7 @@ public interface UserService {
 	
 	// 결제완료 후 적립금 업데이트
 	public void updatePoint(int user_point);
+
+	
+
 }

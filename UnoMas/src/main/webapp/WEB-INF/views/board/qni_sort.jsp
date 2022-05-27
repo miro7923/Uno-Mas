@@ -11,6 +11,11 @@
 <html lang="zxx">
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
+<link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
+
 <!-- Head end -->
 
 <body>
@@ -35,7 +40,6 @@
     <!-- Faq Section Begin -->
     <div class="faq-section spad">
     
-    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
     
         <div class="container">
             <div class="row">
@@ -45,52 +49,28 @@
                     <div class="faq-accordin">
                         
                         <div class="page_aticle">
+    <jsp:include page="../inc/board_sub_menu.jsp"></jsp:include>
+            <div class="page_section">
     <div class="head_aticle">
                     <h2 class="tit">자주하는 질문 <span class="tit_sub">고객님들께서 가장 자주하시는 질문을 모두 모았습니다.</span></h2>
                 </div>
-    
-    
-    <script>
-  var preContent;
-
-  function view_content(obj)
-  {
-    var div = obj.parentNode;
-
-    for (var i=1, m=div.childNodes.length;i<m;i++) {
-      if (div.childNodes[i].nodeType != 1) continue;    // text node.
-      else if (obj == div.childNodes[ i ]) continue;
-
-      obj = div.childNodes[ i ];
-      break;
-    }
-
-    if (preContent && obj!=preContent){
-      obj.style.display = "block";
-      preContent.style.display = "none";
-    }
-    else if (preContent && obj==preContent) preContent.style.display = ( preContent.style.display == "none" ? "block" : "none" );
-    else if (preContent == null ) obj.style.display = "block";
-
-    preContent = obj;
-  }
-
-  { // 초기출력
-    var no = "faq_";
-    if ( document.getElementById( no ) ) view_content( document.getElementById( no ) );
-  }
-
- 
-</script>
-
-
+	<div class="select">
+	<select id="search_type_qni" name="search_type">
+    	<option value="" disabled selected>검색조건</option>
+    	<option value="title">제목</option>
+    	<option value="cate">카테고리</option>
+    	<option value="content">내용</option>
+    </select>
+    </div>
+    <input type="text" id="keyword_qni" name="keyword" value="" placeholder="검색어 입력">
+<%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
+    <button id="search_btn" onclick="search_qni()">검색</button>
 
         <form name="frmList" id="form" method="get" action="?">
-            <div class="page_section">
                 
                 <div class="search_date">
                     <select class="btn_layer" id="qni_category">
-                       			<option>카테고리 선택</option>
+                       			<option disabled selected>카테고리 선택</option>
                        			<option value="1">배송/포장</option>
                             	<option value="2">취소/교환/환불</option>
                             	<option value="3">이벤트/적립금</option>
@@ -102,13 +82,13 @@
                 </div>
                 
                 <div class="xans-element- xans-myshop xans-myshop-couponserial ">
-                    <table width="100%" class="xans-board-listheader">
+                    <table class="xans-board-listheader">
                         <tbody>
                             <tr>
-                                <th width="70" class="input_txt">번호</th>
-                                <th width="135" class="input_txt">카테고리</th>
-                                <th style="width: 500px; text-align: center;" class="input_txt">제목</th>
-                                <th style="width: 100px; text-align: center;" class="input_txt">작성자</th>
+                                <th class="input_txt_qni_sort_num">번호</th>
+                                <th class="input_txt_qni_sort_cate">카테고리</th>
+                                <th class="input_txt_qni_sort_title">제목</th>
+                                <th class="input_txt_qni_sort_writer">작성자</th>
                             </tr>
                         </tbody>
                     </table>
@@ -119,16 +99,16 @@
                                 <tbody>
     
                                     <tr>
-                                        <td width="70" align="center">${fn:length(pList)-i.index }</td>
-                                        <td width="135" align="center">${vo.qnaCateVO.qnacate_name }</td>
-                                        <td style="cursor:pointer">${vo.faq_title }</td>
-                                        <td style="cursor:pointer">${vo.adminVO.admin_id }</td>
+                                        <td class="input_txt_qni_sort_num">${fn:length(pList)-i.index }</td>
+                                        <td class="input_txt_qni_sort_cate">${vo.qnaCateVO.qnacate_name }</td>
+                                        <td class="input_txt_qni_sort_title">${vo.faq_title }</td>
+                                        <td class="input_txt_qni_sort_writer">${vo.adminVO.admin_id }</td>
                                     </tr>
                                 </tbody>
                             </table>
                                 
                             <div style="display:none;padding:30px; border-top:1px solid #e6e6e6">
-                                <table cellpadding="0" cellspacing="0" border="0">
+                                <table>
                                     <tbody>
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
@@ -150,19 +130,23 @@
 <div class="row justify-content-center">
               <div class="col-1 justify-content-center ">
                 <ul class="pagination">
+                <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
+                  </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
                   <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
                   </c:forEach>
+                  <c:if test="${pagingVO.next }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </div>
@@ -179,15 +163,10 @@
                     </table>
                 </div>
 
-            </div>
-        </form>
-    
-    
-    
-    
+        </form>   
+            </div><!-- page_section -->
 </div>
-                        
-                        
+                            
                     </div>
                 </div>
             </div>
@@ -211,14 +190,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    <script type="text/javascript">
-		$(document).ready(function() {
-			$("#qni_category").change(function() {
-				var changeVal = $(this).val();
-				location.href="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num="+changeVal;
-			});
-		});
-	</script>
+   <script src="${path}/resources/js/board_js/boardMain.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
 </body>
 
 </html>

@@ -12,7 +12,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserVO {
@@ -35,6 +34,15 @@ public class UserVO {
 	private String user_account;
 	private String user_account_holder;
 	private Timestamp user_deldate;
+	
+	private int addr_num;
+	private String addr_name;
+	private String addr_postalcode;
+	private String addr_roadaddr;
+	private String addr_detailaddr;
+	private boolean addr_primary;
+	private String addr_recipient;
+	private String addr_phone;
 
 }
 

@@ -12,36 +12,8 @@ a:hover {
 	color: #5179a5;
 }
 
-.tab-item .nav li {
-	width: 25%;
-	border-top: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	text-align: center;
-}
-
 .tab-item ul li a {
-	color: #b2b2b2;
-    padding: 18px -8px;
-    position: relative;
-    border-top: none; 
-    border-left: none; 
-    border-bottom: none;
-}
-
-.tab-item ul li:nth-child(1) a {
-	border: none;
-}
-
-.tab-item ul li:nth-child(2) a {
-	border-right: none;
-}
-
-.tab-item ul li:nth-child(3) a {
-	border: none;
-}
-
-.tab-item ul li:nth-child(4) a {
-	border: none;
+	padding: 18px 117px;
 }
 
 .likeBtn {

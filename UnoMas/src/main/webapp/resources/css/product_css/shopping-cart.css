@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 .proceed-checkout ul li.shipping {
 	font-weight: 400;
 	text-transform: capitalize;
@@ -58,4 +59,8 @@
     line-height: 28px;
     cursor: pointer;
     width: 18px;
+}
+
+.shopping-cart-table {
+	min-height: 700px !important;
 }

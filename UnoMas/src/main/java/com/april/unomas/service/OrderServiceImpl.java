@@ -1,6 +1,7 @@
 package com.april.unomas.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,7 +48,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderVO> getMyOrderList(String num, UserCriteria cri) throws Exception {
+	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception {
 		return dao.getMyOrderList(num, cri);
 	}
 	

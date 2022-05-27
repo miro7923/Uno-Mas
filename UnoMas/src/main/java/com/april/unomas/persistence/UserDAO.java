@@ -7,9 +7,11 @@ import java.util.Map;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.UserVO;
 
 public interface UserDAO {
@@ -39,7 +41,12 @@ public interface UserDAO {
 
 	// 회원정보수정
 	public Integer updateUser(UserVO vo);
-
+	
+	// 추가 배송지 조회
+	public List<UserVO> getAddAddr(int user_num);
+	
+	// 추가 배송지 수정
+	public Integer updateAddAddr(UserVO vo); 
 
 	// 회원탈퇴
 	public Integer deleteUser(UserVO vo);
@@ -67,6 +74,7 @@ public interface UserDAO {
 	
 	// 결제완료 후 적립금
 	public void updatePoint(int user_point);
+
 
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);

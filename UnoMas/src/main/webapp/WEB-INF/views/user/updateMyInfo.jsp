@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <meta charset=UTF-8>
-<title>개인정보수정 페이지</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
 
 <body>
@@ -14,12 +13,11 @@
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- 헤더 -->
 
-
 	<div class="myinfo_container">
 
 		<!-- 마이페이지 카테고리 -->
 		<jsp:include page="myPageLeftBar.jsp"></jsp:include>
-
+		<!-- 마이페이지 카테고리 -->
 
 		<div class="myinfo_content">
 			<h2>개인 정보 수정</h2>
@@ -33,8 +31,6 @@
 					<tr>
 						<th>아이디</th>
 						<td><input type="text" class="input_field" name="user_id" value="${userInfoVO.user_id }" disabled></td>
-					</tr>
-
 					<tr>
 						<th>이름</th>
 						<td><input type="text" class="input_field" name="user_name" value="${userInfoVO.user_name }" required></td>
@@ -56,6 +52,7 @@
 			                    %><option value="<%=i%>"><%=i %>년</option><%
 			                 }
 			               %>
+			               <c:set var="birth" value=""></c:set>
 			            </select>
 			            <select name="birth-month" class="input-birth" oninput="birthCheck()" disabled="disabled">
 			               <option value="">월</option>
@@ -66,7 +63,7 @@
 			               %>
 			            </select>
 	               
-			            <select name="birth-day" class="input-birth" disabled="disabled">
+			            <select name="birth-day" class="input-birth" disabled="disabled" oninput="combineBirth()">
 			               <option value="">일</option>
 			            </select><br>
 			            <input name="user_birth" hidden value="">
@@ -80,9 +77,6 @@
 						<div name="phoneCheckDiv"></div></td>
 					</tr>
 				</table>
-
-
-
 
 				<div style="text-align: right;">
 				<h3 style="float: left;">배송지 정보</h3>
@@ -101,29 +95,27 @@
 				</table>
 				<table class="table_info">
 					<tr>
-						<th>추가 배송지</th>
+						<th>추가 배송지${addAddrList }</th>
+						<c:forEach var="vo" items="${addAddrList }" varStatus="status">
 						<td style="line-height: 25px;">
-							<label>배송지1</label><br>
-							<input type="text" id="postalcode1" name="postalcode1"  placeholder="우편번호">
-							<input type="text" id="roadaddr1" name="roadaddr1" placeholder="도로명주소">
+							<input type="text" id="addr_num" name="addr_num" value="${addAddrList.addr_name }" placeholder="배송지 별명"><br>
+							<input type="text" id="postalcode1" name="addr_postalcode" value="${addAddrList.addr_postalcode }" placeholder="우편번호">
+							<input type="text" id="roadaddr1" name="addr_roadaddr" value="${addAddrList.addr_roadaddr }" placeholder="도로명주소">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="detailaddr1" placeholder="상세주소">
+							<input type="text" id="detailaddr" name="addr_detailaddr" value="${addAddrList.addr_detailaddr }" placeholder="상세주소">
 							<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
 							<br><br>
-							<label>배송지2</label><br>
-							<input type="text" id="postalcode2" name="postalcode2" placeholder="우편번호">
-							<input type="text" id="roadaddr2" name="roadaddr2" placeholder="도로명주소">
+							<input type="text" id="addr_num" name="addr_num" value="${addAddrList.addr_name }" placeholder="배송지 별명"><br>
+							<input type="text" id="postalcode2" name="addr_postalcode" value="${addAddrList.addr_postalcode }" placeholder="우편번호">
+							<input type="text" id="roadaddr2" name="addr_roadaddr" value="${addAddrList.addr_roadaddr }" placeholder="도로명주소">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="detailaddr2" placeholder="상세주소">
+							<input type="text" id="detailaddr" name="addr_detailaddr" value="${addAddrList.addr_detailaddr }" placeholder="상세주소">
 							<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('2')">
 						</td>
+						</c:forEach>
 					</tr>
 				</table>
 				
-
-
-
-
 				<h3>환불 정보</h3>
 				<table class="table_info">
 					<colgroup>
@@ -141,7 +133,7 @@
 											<select class="form-select form-select-sm" name="user_bank" aria-label=".form-select-sm example" 
 											style="box-sizing: border-box;display: inline-block;width: 40%;
 											height: 38px;margin:10px;padding: 0 10px;border: 1px solid #ddd	;color: #666;font-size: 11px;">
-											  <option value="${userInfoVO.user_bank }" ></option>
+											  <option value="${userInfoVO.user_bank }">${userInfoVO.user_bank }</option>
 											  <option value="기업은행">기업은행</option>
 											  <option value="국민은행">국민은행</option>
 											  <option value="농협은행">농협은행</option>
@@ -154,13 +146,13 @@
 										<dt>계좌번호</dt>
 										<dd>
 											<span class="input_area"> 
-											<input type="text" id="account" name="user_account" title="계좌번호 입력" value="${userInfoVO.user_account }" style="width: 250px">
+											<input type="text" id="account" name="user_account" value="${userInfoVO.user_account }" title="계좌번호 입력" style="width: 250px">
 											</span>
 										</dd>
 										<dt>예금주</dt>
 										<dd>
 											<span class="input_area">
-											<input type="text" id="account_holder" name="user_account_holder" title="예금주 입력" value="${userInfoVO.user_account_holder }" style="width: 250px">
+											<input type="text" id="account_holder" name="user_account_holder" value="${userInfoVO.user_account_holder }" title="예금주 입력"  style="width: 250px">
 											</span> 
 										</dd>
 									</dl>
@@ -172,7 +164,7 @@
 
 				<h3>(선택) 개인정보 수집 및 이용안내</h3>
 				<hr>
-				<input type="checkbox" id="checkbox_text">(선택) 이메일 이벤트등 마케팅 수신 동의
+				<input type="checkbox"  name="user_emailagree" value="${userInfoVO.user_emailagree }" id="checkbox_text" >(선택) 이메일 이벤트등 마케팅 수신 동의
 				<div id="agree_listbox">
 				<ul class="agree-list">
 					<li>개인정보 수집 및 이용동의 미동의 시 성별정보는 저장되지 않습니다.</li>
@@ -184,7 +176,7 @@
 			</div>
 
 			<div style="text-align: center;">
-				<input type="button" class="updateBtn" value="수정" onclick="location.href='/user/myInfo'">
+				<input type="submit" class="updateBtn" value="수정">
 			</div>
 			</form>
 

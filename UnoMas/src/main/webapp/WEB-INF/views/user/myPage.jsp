@@ -42,7 +42,7 @@
   	  </div>
   	
   	  <div class="middle-content">
-  			<h3>장바구니 <span><a href="/product/shopping-cart">+</a></span></h3>
+  			<h3>장바구니 <span><a href="/product/shopping-cart?pageInfo=my">+</a></span></h3>
   			<table class="cart-table">
   				<colgroup>
           			<col width="20%"><col width="30%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">
@@ -65,7 +65,7 @@
 		  		</tr>
   			</table>
   			
-  			<h3 style="margin-top:50px;">전체 주문 내역<span><a href="">+</a></span></h3>
+  			<h3 style="margin-top:50px;">전체 주문 내역 <span><a href="/order/my_order">+</a></span></h3>
   			<table class="cart-table">
   				<colgroup>
           			<col width="20%"><col width="30%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">

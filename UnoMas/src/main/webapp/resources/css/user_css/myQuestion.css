@@ -54,7 +54,6 @@ th {
 }
 th, td {
 	border: 1px solid #ddd;
-	padding: 15px 10px;
 }
 .content_tr {
 	min-height: 150px;
@@ -79,26 +78,6 @@ th, td {
 }
 
 
-.page_control {
-	text-align: center;
-    margin: 20px auto;
-}
-.previous_daum {
-/* 	background-color: #B9CE45; */
-}
-.page_control > a {
-	padding: 2px 5px;
-	text-decoration: none;
-	color: #333 !important;
-	margin: 0 5px;
-	cursor: pointer;
-}
-.page_control a:hover {
-	text-decoration: none;
-	font-weight: bold;
-	color: #B9CE45;
-}
-
 
 .review_btn {
 	background-color: white;
@@ -114,7 +93,7 @@ th, td {
 
 
 /* 페이징 스타일*/
-.allUser_paging {
+.paging_container {
 	min-width: 250px;
 /* 	border: 1px solid black; */
 	margin: 70px auto;

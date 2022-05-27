@@ -27,23 +27,8 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public void boardWrite(BoardVO vo) {
-		log.info("boardWrite(vo) -> mapper");
-		
 		sqlSession.insert(NAMESPACE+".create",vo);
-		
-		log.info("mapper(실행완료) -> DAO -> service");
-
 	}
-
-	@Override
-	public List<BoardVO> listAll() {
-		log.info("listAll() -> mapper");
-		
-		log.info("mapper완료 -> service 이동");
-		
-		return sqlSession.selectList(NAMESPACE+".listAll");
-	}
-
 	
 	@Override
 	public List<BoardVO> selectBoardList(Criter cri) {
@@ -73,12 +58,6 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public Integer countBoardList(Criter cri) {
-		
-		return sqlSession.selectOne(NAMESPACE+".countBoard",cri);
-	}
-
-	@Override
 	public Integer sortCateCount(Integer qnacate_num) {
 		
 		return sqlSession.selectOne(NAMESPACE+".sortCateCount",qnacate_num);
@@ -96,7 +75,5 @@ public class BoardDAOImpl implements BoardDAO {
 		log.info(paramMap+"##########");
 		return sqlSession.selectList(NAMESPACE+".sortCategory",paramMap);
 	}
-
-	
 
 }

@@ -46,15 +46,14 @@
 							<td>${regdate }</td>
 							
 							<th scope="col">상태</th>
-							<th scope="col">상태</th>
-							<c:choose>
-								<c:when test="${vo.p_inquiry_process eq false }">
-									<td style="color: red">답변 대기</td>
-								</c:when>
-								<c:otherwise>
-									<td style="color: blue">답변 완료</td>
-								</c:otherwise>
-							</c:choose>
+<%-- 							<c:choose> --%>
+<%-- 								<c:when test="${vo.p_inquiry_process eq false }"> --%>
+<!-- 									<td style="color: red">답변 대기</td> -->
+<%-- 								</c:when> --%>
+<%-- 								<c:otherwise> --%>
+<!-- 									<td style="color: blue">답변 완료</td> -->
+<%-- 								</c:otherwise> --%>
+<%-- 							</c:choose> --%>
 
 
 							<td style="width: 180px;">

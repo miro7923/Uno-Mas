@@ -14,9 +14,6 @@ public interface NoticeService {
 	// 글쓰기(첨부파일)
 	public void noticeInsert(NoticeVO vo) throws Exception;
 			
-	// 글전체 목록(listAll)	
-	public List<NoticeVO> listAll() throws Exception;
-	
 	// 글 조회
 	public NoticeVO getNotice(Integer notice_num) throws Exception;
 	

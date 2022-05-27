@@ -54,7 +54,6 @@ th {
 }
 th, td {
 	border: 1px solid #ddd;
-	padding: 15px 10px;
 }
 .content_tr {
 	min-height: 150px;
@@ -102,7 +101,7 @@ th, td {
 
 
 /* 페이징 스타일*/
-.allUser_paging {
+.paging_container {
 	min-width: 250px;
 /* 	border: 1px solid black; */
 	margin: 70px auto;

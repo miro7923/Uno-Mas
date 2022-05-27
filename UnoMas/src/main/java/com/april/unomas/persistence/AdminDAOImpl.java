@@ -7,13 +7,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
-
-import com.april.unomas.domain.UserCriteria;
-
 import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.AdminVO;
@@ -22,34 +15,38 @@ import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.NoticeVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.Qna_ComVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
 
-	
 	@Inject
 	private SqlSession sqlSession;
-	private static final String NAMESPACE = "com.unomas.mapper.adminMapper";
-	private static final Logger log = LoggerFactory.getLogger(AdminDAOImpl.class);
-
 	
+	private static final String NAMESPACE = "com.unomas.mapper.adminMapper";
+
 	// 관리자 - 관리자
 	// 관리자 로그인
 	@Override
 	public AdminVO adminLogin(AdminVO vo) {
-		return sqlSession.selectOne(NAMESPACE+".adminLogin",vo);
+		return sqlSession.selectOne(NAMESPACE + ".adminLogin", vo);
 	}
-	
+
+	@Override
+	public Integer adminTotal() {
+		// 관리자 수
+		return sqlSession.selectOne(NAMESPACE + ".adminTotal");
+	}
+
 	// 관리자 목록 보기
 	@Override
 	public List<AdminVO> adminList(Criter cri) {
-		return sqlSession.selectList(NAMESPACE+".adminList",cri);
+		return sqlSession.selectList(NAMESPACE + ".adminList", cri);
 	}
 	
 	
-	
-	// 관리자 - User파트
+	// 관리자 - User
 	@Override
 	public Integer allUserCount(String standard) {	
 		System.out.println(" AdminDAO : 여기서 문제?" + standard);
@@ -67,7 +64,6 @@ public class AdminDAOImpl implements AdminDAO {
 		map.put("cri", cri);
 		return sqlSession.selectList(NAMESPACE+".getAllUser", map);
 	}
-
 	
 	@Override
 	public List<UserVO> getDropUser(UserCriteria cri) throws Exception {
@@ -75,26 +71,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return sqlSession.selectList(NAMESPACE+".getDropUser");
 	}
 	
-
-
-
-	@Override
-	public Integer adminTotal() {
-		// 관리자 수
-		return sqlSession.selectOne(NAMESPACE+".adminTotal");
-	}
 	
-	@Override
-	public List<UserVO> userList(Criter cri) {
-		// 유저 목록 보기
-		return sqlSession.selectList(NAMESPACE+".userList",cri);
-	}
-
-	@Override
-	public Integer userTotal() {
-		// 유저 수
-		return sqlSession.selectOne(NAMESPACE+".userTotal");
-	}
+	
+	
+	
 
 	@Override
 	public List<NoticeVO> noticeList(Criter cri) {
@@ -113,8 +93,6 @@ public class AdminDAOImpl implements AdminDAO {
 		// 공지사항 글쓰기
 		sqlSession.insert(NAMESPACE+".noticeInsert", vo);
 	}
-
-	
 
 	@Override
 	public NoticeVO noticeRead(Integer notice_num) {

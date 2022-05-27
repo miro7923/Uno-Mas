@@ -31,20 +31,35 @@
         VALUES(#{user_num}, #{order_code}, #{pay_method}, #{pay_card_company}, #{pay_card_num}, #{pay_total_price})
     </insert>
     
-    <!-- 주문 개수 -->
+	<!-- 주문 개수 -->
     <select id="orderCount" parameterType="String" resultType="int">
     	SELECT order_code
-    	FROM orders
+    	FROM pay
     	WHERE user_num=#{num}
     </select>
     
+<!--     <select id="orderCount" parameterType="String" resultType="int"> -->
+<!--     	SELECT count(pay_num) -->
+<!--     	FROM pay -->
+<!--     	WHERE user_num=#{num} -->
+<!--     </select> -->
+
+	
+    
     <!-- 주문 목록 -->
-    <select id="myOrderList" parameterType="Map" resultType="com.april.unomas.domain.OrderVO">
+<!--     <select id="myOrderList" parameterType="Map" resultType="com.april.unomas.domain.OrderVO"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM orders  -->
+<!-- 		WHERE user_num=${num} -->
+<!-- 		ORDER BY order_date DESC -->
+<!-- 		LIMIT #{cri.pageStart},#{cri.perPageNum} -->
+<!--     </select> -->
+    
+    <select id="myOrderList" parameterType="int" resultType="com.april.unomas.domain.OrderVO">
 		SELECT *
-		FROM orders 
-		WHERE user_num=${num}
-		ORDER BY order_date DESC
-		LIMIT #{cri.pageStart},#{cri.perPageNum}
+		from orders as o
+		JOIN products AS p ON p.prod_num = o.prod_num
+		WHERE o.order_code=#{code}
     </select>
     
 </mapper>

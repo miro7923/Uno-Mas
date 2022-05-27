@@ -12,7 +12,6 @@ $(function(){
 
 })
 
-
 //function showModal(){
 //	$('#myModal').show();
 //}

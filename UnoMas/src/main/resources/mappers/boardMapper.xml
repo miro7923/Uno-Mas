@@ -30,80 +30,78 @@
 		<collection property="adminVO" resultMap="adminMap"></collection>
 	</resultMap>
 
-
-
-  <insert id="create">
-		insert into board_faq(faq_title,faq_content,faq_cate) 
-		values(#{faq_title},#{faq_content},#{faq_cate})
+  	<insert id="create">
+		INSERT INTO board_faq(faq_title,faq_content,faq_cate) 
+		VALUES(#{faq_title},#{faq_content},#{faq_cate})
 	</insert>
 	
 	<select id="sortCategory" resultMap="boardMap">
-		select * 
-		from board_faq b
-		join qna_category q
-		on b.qnacate_num = q.qnacate_num
-		join admin a
-		on b.admin_num = a.admin_num
-		where b.qnacate_num=#{qnacate_num}
-		order by faq_num desc
-		limit #{pageStart} , #{perPageNum}
+		SELECT * 
+		FROM board_faq b
+		JOIN qna_category q
+		ON b.qnacate_num = q.qnacate_num
+		JOIN admin a
+		ON b.admin_num = a.admin_num
+		WHERE b.qnacate_num=#{qnacate_num}
+		ORDER BY faq_num DESC
+		LIMIT #{pageStart} , #{perPageNum}
 	</select>
 	
 	<select id="sortCateCount" resultType="Integer">
-		select count(*) from board_faq
-		where qnacate_num=#{qnacate_num}
+		SELECT COUNT(*) FROM board_faq
+		WHERE qnacate_num=#{qnacate_num}
 	</select>
 	
 	<select id="countBoard" resultType="Integer">
 		<![CDATA[
-		select count(*) from board_faq
-		where faq_num > 0
+		SELECT COUNT(*) 
+		FROM board_faq
+		WHERE faq_num > 0
 		]]>
 		<include refid="search_condition"></include>
 	</select>
 	
 	<select id="pagingBoard" resultMap="boardMap">
 		<![CDATA[
-		select * 
-		from board_faq b
-		join qna_category q
-		on b.qnacate_num = q.qnacate_num
-		join admin a
-		on b.admin_num = a.admin_num
+		SELECT * 
+		FROM board_faq b
+		JOIN qna_category q
+		ON b.qnacate_num = q.qnacate_num
+		JOIN admin a
+		ON b.admin_num = a.admin_num
 		]]>
 		<include refid="search_condition"></include>
-		order by faq_num desc
-		limit #{pageStart} , #{perPageNum}
+		ORDER BY faq_num DESC
+		LIMIT #{pageStart} , #{perPageNum}
 	</select>
 	
 	<select id="getBoard" resultType="BoardVO">
-		select * from board_faq
-		where faq_num=#{faq_num}
+		SELECT * 
+		FROM board_faq
+		WHERE faq_num=#{faq_num}
 	</select>
 	
 	<update id="updateBoard">
-		update board_faq 
-		set faq_title=#{faq_title},faq_cate=#{faq_cate},faq_content=#{faq_content} 
-		where faq_num=#{faq_num}
+		UPDATE board_faq 
+		SET faq_title=#{faq_title},faq_cate=#{faq_cate},faq_content=#{faq_content} 
+		WHERE faq_num=#{faq_num}
 	</update>
 	
 	<delete id="deleteBoard">
-		delete from board_faq
-		where faq_num=#{faq_num}
+		DELETE FROM board_faq
+		WHERE faq_num=#{faq_num}
 	</delete>
-	
-	
 	
 	<sql id="search_condition">
 	<if test="search_type != null">
 		<if test="search_type == 'title'.toString()">
-			and faq_title like concat('%', #{keyword}, '%')
+			AND faq_title LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="search_type == 'cate'.toString()">
-			and faq_cate like concat('%', #{keyword}, '%')
+			AND q.qnacate_name LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 		<if test="search_type == 'content'.toString()">
-			and faq_content like concat('%', #{keyword}, '%')
+			AND faq_content LIKE CONCAT('%', #{keyword}, '%')
 		</if>
 	</if>
 	</sql>

@@ -10,18 +10,11 @@ public interface BoardDAO {
 	// 글쓰기
 	public void boardWrite(BoardVO vo);
 	
-	// 글 목록 가져오기
-	public List<BoardVO> listAll();
-	
-	
-	
 	// 페이징
 	public List<BoardVO> selectBoardList(Criter cri);
 	
 	// 전체 글 갯수
 	public Integer countBoardList();
-	// 전체 글 갯수cri
-	public Integer countBoardList(Criter cri);
 	
 	// 글 조회
 	public BoardVO getBoard(Integer faq_num);
@@ -37,6 +30,5 @@ public interface BoardDAO {
 	
 	// 카테고리 정렬
 	public List<BoardVO> sortCate(Integer qnacate_num, Criter cri);
-	
 	
 }

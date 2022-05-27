@@ -35,9 +35,17 @@
 			}
 		});
 		
+
+	document.getElementById("searchBtn").onclick = function() {
+		var searchType = document.getElementsByName("searchType")[0].value;
+		var keyword = document.getElementsByName("keyword")[0].value;
+		
+		console.log(searchType);
+		console.log(keyword);
+		location.href = "/product/product_lookup?page=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+	};
+	
 	});
-
-
 </script>
 
 <!-- Start Header -->
@@ -57,6 +65,7 @@
 					<div class="filter-widget">
 						<h4 class="fw-title">상품관리</h4>
 						<ul class="filter-catagories">
+<!-- 							<li><a href="product_lookup">상품조회</a></li> -->
 							<li><a href="product_lookup">상품조회</a></li>
 							<li><a href="product_register">상품등록</a></li>
 						</ul>
@@ -75,25 +84,22 @@
 									<div class="col-lg-12">
 										<br>
 										<div class="row">
-											<div class="col-lg-3">
-												<select class="selectBox">
-												<option>상품명</option>
-												<option>품번</option>
-												<option>상태</option>
-											</select>
-											</div>
-											<div class="col-lg-9">
-												<div class="input-search">
-													<input type="text" placeholder="검색어를 입력해주세요.">
-													<button type="button"><i class="ti-search"></i></button>
+												<div class="col-lg-3">
+													<select class="selectBox" name="searchType">
+													<option value="prod_name" <c:if test="${pm.searchType == 'prod_name' }">selected</c:if>>상품명</option>
+													<option value="prod_num" <c:if test="${pm.searchType == 'prod_num' }">selected</c:if>>품번</option>
+												</select>
 												</div>
-											</div>
+												<div class="col-lg-9">
+													<div class="input-search">
+														<input type="text" name="keyword" value="${pm.keyword }"placeholder="검색어를 입력해주세요.">
+														<button type="button" id="searchBtn"><i class="ti-search"></i></button>
+													</div>
+												</div>
 											<div class="col-lg-12">
 											<label></label>
 		                                        <button type="button" class="cancel-button" >취소</button>
 		                                        <button type="button" class="selectDel-button" >선택삭제</button>
-		                                     </div>
-		                                     <div class="col-lg-12">
 												<div class="cart-table">
 													<table>
 														<thead>
@@ -116,8 +122,10 @@
 																			<td class="cart-pic first-row">
 																				<input type="checkbox" class="chBox" name="chBox" prod_num="${vo.prod_num }">
 																			<td class="normal-row"><span class="sold">${vo.prod_num }</span></td>
+			<!-- 															<td class="cart-title first-row"> -->
 																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }&page=${pc.page}&perPageNum=${pc.perPageNum }"><span class="sold">${vo.prod_name }</span></a></td>
 																			<td class="normal-row"><span class="sold">${vo.prod_price }</span></td>
+			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row"><span class="sold">품절</span></td>
 																			<td class="normal-row"><span class="sold">${vo.prod_readcnt }</span></td> <!-- 조회수 -->
 																			<td class="normal-row"><span class="sold">-</span></td> <!-- 주문량 -->
@@ -128,8 +136,10 @@
 																				<input type="checkbox" class="chBox" name="chBox" prod_num="${vo.prod_num }">
 																			</td>
 																			<td class="normal-row">${vo.prod_num }</td>
+			<!-- 															<td class="cart-title first-row"> -->
 																			<td class="normal-row"><a href="/product/status?prod_num=${vo.prod_num }">${vo.prod_name }</a></td>
 																			<td class="normal-row">${vo.prod_price }</td>
+			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row">정상</td>
 																			<td class="normal-row">${vo.prod_readcnt }</td> <!-- 조회수 -->
 																			<td class="normal-row">-</td> <!-- 주문량 -->
@@ -147,15 +157,15 @@
 													<div class="col-lg-12 text-center">
 <!-- 													<ul class="pagination pagination-sm no-margin"> -->
 														<c:if test="${pm.prev }">
-															<span><a href="product_lookup?page=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a></span>
+															<span><a href="/product/product_lookup?page=${pm.startPage - 1}${pm.srchTypeKyw}" class="arrow_carrot-left_alt pagingBtn" id="prev">이전</a></span>
 														</c:if>
 														
-														<c:forEach var="i" begin="${pm.startPage }" end="${pm.endPage }">
-															<span><a href="product_lookup?page=${i }" class="pagingBtn" style="color: black; font-weight: bold;"  >${i } </a></span>
+														<c:forEach var="page" begin="${pm.startPage }" end="${pm.endPage }">
+															<span><a href="/product/product_lookup?page=${page }${pm.srchTypeKyw}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span>
 														</c:forEach>
 														
 														<c:if test="${pm.next && pm.endPage > 0 }">
-															<span><a href="product_lookup?page=${pm.endPage+1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a></span>
+															<span><a href="/product/product_lookup?page=${pm.endPage+1 }${pm.srchTypeKyw}" class="arrow_carrot-right_alt pagingBtn" id="next">다음</a></span>
 														</c:if>
 <!-- 													</ul> -->
 												</div>
