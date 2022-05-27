@@ -144,7 +144,7 @@ public interface ProductService {
 	public ProdInquiryVO getInquiry(int inquiry_num) throws Exception;
 	
 	// 상품 문의글 수정
-	public void updateInquiry(ProdInquiryVO vo) throws Exception;
+	public void modifyInquiry(ProdInquiryVO vo) throws Exception;
 	
 	// 상품 문의글 하나 삭제
 	public void deleteInquiry(int inquiry_num) throws Exception;
