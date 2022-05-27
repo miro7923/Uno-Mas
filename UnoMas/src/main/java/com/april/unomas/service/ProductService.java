@@ -153,10 +153,10 @@ public interface ProductService {
 	public boolean isInWishlist(int user_num, int prod_num) throws Exception;
 	
 	// 위시리스트 등록
-	public void insertWishlist(int user_num, int prod_num) throws Exception;
+	public void addWishlist(int user_num, int prod_num) throws Exception;
 	
 	// 위시리스트 제거
-	public void deleteWishlist(int user_num, int prod_num) throws Exception;
+	public void removeWishlist(int user_num, int prod_num) throws Exception;
 
 	// 조회수별 상품 정보
 	public List<SelectVO> readcntSelect() throws Exception;
