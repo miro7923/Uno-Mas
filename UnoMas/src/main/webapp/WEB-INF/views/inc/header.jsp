@@ -67,7 +67,7 @@
     	 <div class="container"> <!-- 로고·검색창·찜·장바구니 -->
             <div class="inner-header">
                 <div class="row">
-                    <div class="col-lg-2 col-md-2">
+                    <div class="col-lg-2 col-md-2" style="bottom: 30px;">
                         <div class="logo">
                             <a href="/index">
                                 <img src="${path}/resources/img/logo.png" alt="로고">
