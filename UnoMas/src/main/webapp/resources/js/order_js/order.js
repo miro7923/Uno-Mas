@@ -1,3 +1,5 @@
+var IMP = window.IMP; // 생략 가능
+
 $(document).ready(function() {
     $('#normalAddr').show();
     $('#newAddr').hide();
@@ -13,7 +15,124 @@ $(document).ready(function() {
     changeIndividualCashReciptType();
     changeCashReciptType();
     convertCurrency(5);
+	
+	IMP.init("imp02942199"); // 예: imp00000000
 });
+
+// 아임포트 결제 API 사용
+function requestPay() {
+	var phone = '';
+	var addr = '';
+	var postalcode = '';
+	if ($('input:radio[name=deliverSpot]:checked').val() == 1) {
+		// 기본배송지 사용
+		phone = $('#phone').val();
+		addr = $('#roadAddr').val() + ' ' + $('#detailAddr').val();
+		postalcode = $('#postalcode').val();
+	}
+	else {
+		// 신규배송지 사용
+		phone = $('#newPhone').val();
+		addr = $('#newRoadAddress').val() + ' ' + $('#newDetailAddress').val();
+		postalcode = $('#newPostalcode').val();
+	}
+	
+    var uid = '';
+  // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay({ // param
+        pg: "html5_inicis",
+        pay_method: "card",
+        merchant_uid: $('#orderCode').val(),
+        name: $('#prodName0').val(),
+        amount: $('#total').val(),
+        buyer_email: $('#userEmail').text(),
+        buyer_name: $('#userName').text(),
+        buyer_tel: phone,
+        buyer_addr: addr,
+        buyer_postcode: postalcode
+    }, function (rsp) { // callback
+        if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+	    	uid = rsp.imp_uid;
+      	  // 결제검증
+      		$.ajax({
+				url: '/order/verify_iamport/' + rsp.imp_uid,
+				type: 'post'
+			}).done(function(data) {
+				if ($('#total').val() == data.response.amount) {
+		        	// jQuery로 HTTP 요청
+		        	// @@ 상품 개수만큼 반복문 돌리기... order code는 모두 같아야 한다.
+		        	var roadAddr = '';
+		        	var detailAddr = '';
+		        	var recipient = '';
+		        	if ($('input:radio[name=deliverSpot]:checked').val() == 1) {
+						roadAddr = $('#roadAddr').val();
+						detailAddr = $('#detailAddr').val();
+						recipient = $('#name').val();
+					}
+					else {
+						roadAddr = $('#newRoadAddress').val();
+						detailAddr = $('#newDetailAddress').val();
+						recipient = $('#newName').val();
+					}
+		        	
+		        	
+		        	for (var i = 0; i < $('#prodCnt').val(); i++) {
+						var orderVO = JSON.stringify({
+		                	order_code: $('#orderCode').val(),
+		                	cart_num: $('#cartNum'+i).val(),
+		                	order_postalcode: postalcode,
+		                	order_roadaddr: roadAddr,
+		                	order_detailaddr: detailAddr,
+		                	user_num: $('#userNum').val(),
+		                	prod_num: $('#prodNum'+i).val(),
+		                	order_quantity: $('#prodQuantity'+i).val(),
+		                	order_total: $('#orderTotal'+i).val(),
+		                	user_point: $('#userPoint').val(),
+		                	order_recipient: recipient,
+		                	order_memo: $('#ask').val()
+						});
+					
+			        	jQuery.ajax({
+			            	url: "/order/complete", // 예: https://www.myservice.com/payments/complete
+			            	type: "POST",
+			            	dataType: 'json',
+			            	contentType: 'application/json',
+			            	data: orderVO
+			        	});
+	        		}
+	        	
+	        		createPayInfo(uid);
+				}
+				else {
+					alert('결제 실패');
+				}
+			})
+			} else {
+        		alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
+			}
+		});
+}
+
+function createPayInfo(uid) {
+	$.ajax({
+		type: 'get',
+		url: '/order/pay_info',
+		data: {
+			'imp_uid': uid,
+			'amount': $('#total').val(),
+			'ship': $('#shippingFee').val(),
+			'point': $('#userPoint').val()
+		},
+		success: function(data) {
+			alert('결제가 완료 되었습니다.');
+      		// 결제완료 페이지로 이동
+      		location.replace('/order/complete?pay_num='+data);
+		},
+		error: function() {
+			alert('결제정보 저장 통신 실패');
+		}
+	});
+}
 
 function toggleAddrBox() {
     $('input:radio[name=deliverSpot]').change(function() {
@@ -177,4 +296,13 @@ function convertCurrency(cnt) {
     
     var point = $('#point').text();
     $('#point').text(point.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+}
+
+function checkCard() {
+	if ($('[name=cardSelect] > option:selected').val() == $('#first').val()) {
+		alert('카드 종류를 선택하세요!');
+	}
+	else {
+		requestPay();
+	}
 }

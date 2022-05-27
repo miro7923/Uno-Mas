@@ -65,6 +65,14 @@
    where user_id = #{user_id}
   </select>
   
+  <!-- 회원번호로 회원정보 가져오기 -->
+  <select id="getUserInfoByNum" resultType="UserVO">
+    SELECT user_num, user_id, user_name, user_birth, user_phone, user_email, user_postalcode, user_roadaddr, 
+    user_detailaddr, user_status, user_emailagree, user_point, user_bank, user_account, user_account_holder
+    FROM users
+    WHERE user_num = #{user_num}
+  </select>
+  
   <!-- 회원정보 수정 -->
   <update id="updateUser" >
   	update users 
@@ -101,5 +109,12 @@
      WHERE user_id=#{user_id} and (user_pass=#{user_pass} OR 
      (SELECT count(*) FROM admin WHERE admin_pass=#{user_pass}))
   </select>
+  
+  <!-- 결제완료 후 적립금 업데이트 -->
+  <update id="updatePoint">
+    UPDATE users
+    SET user_point = user_point + #{user_point}
+    WHERE user_num = #{user_num}
+  </update>
   
 </mapper>

@@ -57,7 +57,6 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public List<ProductVO> getAllProductList(int pageStart, int perPageNum, String searchType, String keyword) throws Exception {
-	
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		
 		data.put("pageStart", pageStart);

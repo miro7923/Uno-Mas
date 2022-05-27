@@ -122,10 +122,10 @@
     
     <!-- 상품별 카테고리 가져오기 -->
     <select id="getCategory" resultType="CategoryVO">
-	SELECT t.topcate_name, d.dcate_name
-	FROM top_category t JOIN detail_category d
-	ON (t.topcate_num = d.topcate_num)
-	WHERE dcate_num = #{dcate_num}
+		SELECT t.topcate_name, d.dcate_name
+		FROM top_category t JOIN detail_category d
+		ON (t.topcate_num = d.topcate_num)
+		WHERE dcate_num = #{dcate_num}
     </select>
     
     <!-- 소분류별로 상품 가져오기 -->
@@ -153,9 +153,9 @@
     
     <!-- 상품 번호로 해당 상품 이미지 가져오기 -->
     <select id="getProdImgs" resultType="ProductVO">
-	SELECT prod_image1, prod_image2, prod_image3, prod_image4
-	FROM products
-	WHERE prod_num = #{prod_num}
+		SELECT prod_image1, prod_image2, prod_image3, prod_image4
+		FROM products
+		WHERE prod_num = #{prod_num}
     </select>
 
     <!-- 상품 마지막 번호 정보 가져오기 -->
@@ -403,7 +403,7 @@
 		</if>
 	</if>
 	</sql>
-	
+
     <!-- 상품 재고 감소 -->
     <update id="decreaseStock">
         UPDATE products

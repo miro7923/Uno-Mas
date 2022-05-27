@@ -50,6 +50,9 @@ public class ProductController {
 	@Inject
 	private ProductService service;
 	
+	@Inject
+	private UserService userService;
+	
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 	
 	@Resource(name = "reviewImgUploadPath")
@@ -609,5 +612,4 @@ public class ProductController {
 		
 		return "product/productSearch";
 	}
-
 }

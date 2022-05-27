@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.unomas.mapper.OrderMapper">
+    <!-- 회원의 배송지 목록 가져오기 -->
+    <select id="getOrderAddrList" resultType="OrderAddrVO">
+        SELECT *
+        FROM order_addr
+        WHERE user_num = #{user_num}
+        LIMIT #{pageStart}, #{perPageNum}
+    </select>
+    
+    <!-- 회원의 배송지 개수 가져오기 -->
+    <select id="getOrderAddrCnt" resultType="int">
+        SELECT COUNT(addr_num)
+        FROM order_addr
+        WHERE user_num = #{user_num}
+    </select>
+    
+    <!-- 가장 마지막 주문번호 찾기 -->
+    <select id="getLastOrderNum" resultType="int">
+        SELECT MAX(order_code)
+        FROM orders
+    </select>
+    
+    <!-- 주문정보 생성 -->
+    <insert id="createOrder">
+        INSERT INTO orders(order_code, user_num, prod_num, order_total, order_quantity, order_postalcode, 
+        order_roadaddr, order_detailaddr, order_recipient, order_memo)
+        VALUES(#{order_code}, #{user_num}, #{prod_num}, #{order_total}, #{order_quantity}, #{order_postalcode}, 
+        #{order_roadaddr}, #{order_detailaddr}, #{order_recipient}, #{order_memo})
+    </insert>
+    
+    <!-- 결제정보 생성 -->
+    <insert id="createPay">
+        INSERT INTO pay(user_num, order_code, pay_method, pay_card_company, pay_card_num, pay_total_price, 
+        pay_installment, pay_shippingfee, pay_point)
+        VALUES(#{user_num}, #{order_code}, #{pay_method}, #{pay_card_company}, #{pay_card_num}, #{pay_total_price}, 
+        #{pay_installment}, #{pay_shippingfee}, #{pay_point})
+    </insert>
+    
+    <!-- 주문정보 가져오기 -->
+    <select id="getOrderInfos" resultType="OrderVO">
+        SELECT o.order_code, o.user_num, o.prod_num, o.order_date, o.order_total, o.order_status, o.order_quantity,
+        o.order_postalcode, o.order_roadaddr, o.order_detailaddr, o.order_recipient, o.order_memo, p.prod_name
+        FROM orders o JOIN products p 
+        ON o.prod_num = p.prod_num
+        WHERE order_code = #{order_code}
+    </select>
+    
+    <!-- 결제정보 가져오기 -->
+    <select id="getPay" resultType="PayVO">
+        SELECT *
+        FROM pay
+        WHERE pay_num = #{pay_num}
+    </select>
+    
+    <!-- 직전에 생성된 주문정보 가져오기 -->
+    <select id="getLastPay" resultType="PayVO">
+        SELECT *
+        FROM pay
+        WHERE pay_num = (SELECT MAX(pay_num)
+						 FROM pay)
+    </select>
+    
+    <!-- 포인트 적립 내역 테이블에 저장 -->
+    <insert id="createNewPoint">
+        INSERT INTO point(order_code, user_num, point_content, point_cost, point_deadline)
+        VALUES(#{order_code}, #{user_num}, #{point_content}, #{point_cost}, DATE_ADD(now(), INTERVAL 1 YEAR))
+    </insert>
+</mapper>

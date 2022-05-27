@@ -1,8 +1,6 @@
 package com.april.unomas.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -10,11 +8,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.UserVO;
@@ -25,7 +24,7 @@ import com.april.unomas.service.CartService;
 public class CartController {
 	
 	@Inject
-	CartService cartService;
+	private CartService cartService;
 	
 	private static final Logger log = LoggerFactory.getLogger(CartController.class);
 	
@@ -49,29 +48,19 @@ public class CartController {
 	
 	// 장바구니 목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView list(HttpSession session, ModelAndView mav) {
-		Map<String, Object> map=new HashMap<String, Object>();
-	 
-		UserVO vo = (UserVO)session.getAttribute("saveID");
-	    int user_num= vo.getUser_num();
+	public String listGET(HttpSession session, Model model) {
+	    int user_num = (int) session.getAttribute("saveNUM");
 	        	
-	        List<CartVO> list=cartService.listCart(user_num);  // 장바구니 목록
-	        int sumMoney=cartService.sumMoney(user_num);  // 총 상품가격
-	        int fee=sumMoney >= 50000 ? 0 : 2500; // 배송비 계산
-	 
-	        map.put("list", list); // 장바구니 정보를 map에 저장
-	        map.put("count", list.size()); // 장바구니 상품의 유무
-	        map.put("sumMoney", sumMoney); // 장바구니 전체 금액
-	        map.put("fee", fee); // 배송료
-	        map.put("sum", sumMoney+fee); // 총 결제 예상금액(장바구니+배송비)
-	 
-	        // ModelAndView mav에 이동할 페이지의 이름과 데이터를 저장한다.
-	        mav.setViewName("product/shopping-cart"); // 이동할 페이지의 이름
-	        mav.addObject("map", map); // map변수 저장
-	 
-	        return mav; // 화면 이동
-	 
-	        
+        List<CartVO> list = cartService.listCart(user_num);  // 장바구니 목록
+        int sumMoney = cartService.sumMoney(user_num);  // 총 상품가격
+        int fee = sumMoney >= 50000 ? 0 : 2500; // 배송비 계산
+ 
+        model.addAttribute("list", list); // 장바구니 정보를 map에 저장
+        model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액
+        model.addAttribute("fee", fee); // 배송료
+        model.addAttribute("sum", sumMoney+fee); // 총 결제 예상금액(장바구니+배송비)
+        
+        return "product/shopping-cart"; // 화면 이동
 	 }
 	
 	 // 장바구니 단품 삭제
@@ -94,19 +83,34 @@ public class CartController {
 	 
 	// 장바구니 수정
 	@RequestMapping("updateCart")
-		public String update(@RequestParam int[] prod_amount, @RequestParam int[] prod_num, HttpSession session) {
-			// session의 id
-			UserVO vo = (UserVO)session.getAttribute("saveID");
-		    int user_num= vo.getUser_num();
-			// 레코드의 갯수 만큼 반복문 실행
-			for(int i=0; i<prod_num.length; i++){
-				CartVO cart = new CartVO();
-				cart.setUser_num(user_num);
-				cart.setProd_amount(prod_amount[i]);
-				cart.setProd_num(prod_num[i]);
-				cartService.modifyCart(cart);
-			}
-			
-			return "redirect:/product/cart/list";
+	public String update(@RequestParam int[] prod_amount, @RequestParam int[] prod_num, HttpSession session) {
+		// session의 id
+	    int user_num= (int)session.getAttribute("saveNUM");
+		// 레코드의 갯수 만큼 반복문 실행
+		for(int i=0; i<prod_num.length; i++){
+			CartVO cart = new CartVO();
+			cart.setUser_num(user_num);
+			cart.setProd_amount(prod_amount[i]);
+			cart.setProd_num(prod_num[i]);
+			cartService.modifyCart(cart);
+		}
+		
+		return "redirect:/product/cart/list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/quantity", method = RequestMethod.GET)
+	public String updateCartGET(@RequestParam("cart_num") int cart_num, 
+			@RequestParam("prod_amount") int prod_amount, @RequestParam("prod_num") int prod_num, 
+			HttpSession session) {
+		CartVO vo = new CartVO();
+		vo.setUser_num((Integer) session.getAttribute("saveNUM"));
+		vo.setCart_num(cart_num);
+		vo.setProd_amount(prod_amount);
+		vo.setProd_num(prod_num);
+		
+		cartService.modifyCart(vo);
+		
+		return "complete";
 	}
 }

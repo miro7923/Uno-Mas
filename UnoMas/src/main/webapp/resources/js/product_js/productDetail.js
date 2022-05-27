@@ -222,22 +222,12 @@ function changePageNum(num, maxNum, boardType) {
 			type: 'get',
 			url: '/product/review_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				for (var i = 0; i < data.length; i++) {
-					$('#reviewTitle'+i).text(data[i].review_title);
-					$('#reviewNum'+i).text(data[i].review_num);
-					$('#reviewUserid'+i).text(data[i].user_id);
-					
-					// Timestamp 변환
-					var regdate = new Date(data[i].review_regdate);
-					var year = regdate.getFullYear();
-					var month = regdate.getMonth() + 1;
-					var day = regdate.getDate();
-					$('#reviewRegdate'+i).text(year + '. ' + month + '. ' + day);
-					
-					$('#reviewReadcnt'+i).text(data[i].review_readcnt);
-					$('#reviewRating'+i).text(data[i].review_rating + ' / 5.0');
-					$('#reviewContent'+i).text(data[i].review_content);
-				}
+				$('#reviewListAjax').html(data);
+				
+				getPageNum();
+			},
+			error: function() {
+				alert('통신 실패');
 			}
 		});
 		
@@ -263,24 +253,14 @@ function changePageNum(num, maxNum, boardType) {
 			type: 'get',
 			url: '/product/inquiry_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
-				for (var i = 0; i < data.length; i++) {
-					$('#inquiryNum'+i).text(data[i].p_inquiry_num);
-					$('#inquiryTitle'+i).text(data[i].p_inquiry_title);
-					$('#inquiryUserid'+i).text(data[i].user_id);
-					
-					// Timestamp 변환
-					var regdate = new Date(data[i].p_inquiry_regdate);
-					var year = regdate.getFullYear();
-					var month = regdate.getMonth() + 1;
-					var day = regdate.getDate();
-					$('#inquiryRegdate'+i).text(year + '. ' + month + '. ' + day);
-					
-					$('#inquiryContent'+i).text(data[i].p_inquiry_content);
-				}
+				$('#inqDiv').html(data);
+
+				getPageNum();
+			},
+			error: function() {
+				alert('통신 실패');
 			}
 		});
-		
-		$('#curInquiryPage').val(num);
 	}
 }
 
