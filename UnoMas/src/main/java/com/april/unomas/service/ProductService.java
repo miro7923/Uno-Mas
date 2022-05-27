@@ -147,7 +147,7 @@ public interface ProductService {
 	public void modifyInquiry(ProdInquiryVO vo) throws Exception;
 	
 	// 상품 문의글 하나 삭제
-	public void deleteInquiry(int inquiry_num) throws Exception;
+	public void removeInquiry(int inquiry_num) throws Exception;
 	
 	// 해당 상품이 해당 유저의 위시리스트에 있는지 조회
 	public boolean isInWishlist(int user_num, int prod_num) throws Exception;
