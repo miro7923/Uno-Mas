@@ -97,15 +97,7 @@ function requestPay() {
 			            	type: "POST",
 			            	dataType: 'json',
 			            	contentType: 'application/json',
-			            	data: orderVO,
-			            	success: function(data) {
-								alert('success return: '+data);
-								console.log(data);
-							},
-							error: function(errordata) {
-								alert('주문정보 저장 실패');
-								console.log(errordata);
-							}
+			            	data: orderVO
 			        	});
 	        		}
 	        	

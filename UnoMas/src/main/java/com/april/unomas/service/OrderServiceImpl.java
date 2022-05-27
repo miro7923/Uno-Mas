@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.persistence.OrderDAO;
 
 @Service
@@ -58,5 +59,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public PayVO getLastPay() throws Exception {
 		return dao.getLastPay();
+	}
+
+	@Override
+	public void createPointInfo(PointVO vo) throws Exception {
+		dao.createPointInfo(vo);
 	}
 }

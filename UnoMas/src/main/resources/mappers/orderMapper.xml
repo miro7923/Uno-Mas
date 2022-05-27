@@ -68,6 +68,6 @@
     <!-- 포인트 적립 내역 테이블에 저장 -->
     <insert id="createNewPoint">
         INSERT INTO point(order_code, user_num, point_content, point_cost, point_deadline)
-        VALUES(#{order_code}, #{user_num}, #{point_content}, #{point_cost}, #{point_deadline})
+        VALUES(#{order_code}, #{user_num}, #{point_content}, #{point_cost}, DATE_ADD(now(), INTERVAL 1 YEAR))
     </insert>
 </mapper>

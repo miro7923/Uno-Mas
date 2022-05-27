@@ -29,6 +29,7 @@ import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
@@ -229,6 +230,14 @@ public class OrderController {
 		// 회원 적립금 추가
 		userService.updatePoint((int)session.getAttribute("saveNUM"), (int)point);
 		
+		// 적립금 테이블에 내역 추가
+		PointVO pointVO = new PointVO();
+		pointVO.setOrder_code(payVO.getOrder_code());
+		pointVO.setPoint_content("결제");
+		pointVO.setPoint_cost((int)point);
+		pointVO.setUser_num((int)session.getAttribute("saveNUM"));
+		
+		orderService.createPointInfo(pointVO);
 		
 		return new ResponseEntity<Integer>(payVO.getPay_num(), HttpStatus.OK);
 	}
