@@ -125,6 +125,11 @@
                         <div class="pagediv">
                         <div class="row justify-content-center">
                 <ul class="pagination">
+                <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                		<span>&lt;&lt;</span>
+                	</a>
+                </li>
                 <c:if test="${pagingVO.prev }">
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
@@ -142,6 +147,11 @@
                     </a>
                   </li>
                   </c:if>
+                  <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                		<span>&gt;&gt;</span>
+                	</a>
+                </li>
                 </ul>
             </div>
                     </div> <!-- paging div -->

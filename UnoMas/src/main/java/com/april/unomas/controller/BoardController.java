@@ -174,19 +174,22 @@ public class BoardController {
 		vo.setQna_title(request.getParameter("qna_title"));
 		vo.setQna_content(request.getParameter("qna_content"));
 		
-		UUID uid = UUID.randomUUID();
-		String fileName = uid.toString()+"_"+qna_image1.getOriginalFilename();
-		File targetFile = new File(qnaUploadPath,fileName);
-		FileCopyUtils.copy(qna_image1.getBytes(), targetFile);
-		vo.setQna_image1(fileName);
+		if(!qna_image1.isEmpty()) {
+			UUID uid = UUID.randomUUID();
+			String fileName = uid.toString()+"_"+qna_image1.getOriginalFilename();
+			File targetFile = new File(qnaUploadPath,fileName);
+			FileCopyUtils.copy(qna_image1.getBytes(), targetFile);
+			vo.setQna_image1(fileName);
+		}
 		
-		UUID uid2 = UUID.randomUUID();
-		String fileName2 = uid2.toString()+"_"+qna_image2.getOriginalFilename();
-		File targetFile2 = new File(qnaUploadPath,fileName2);
-		FileCopyUtils.copy(qna_image2.getBytes(), targetFile2);
-		vo.setQna_image2(fileName2);
-		qService.qnaWrite(saveID,vo);
-		
+		if(!qna_image2.isEmpty()) {
+			UUID uid2 = UUID.randomUUID();
+			String fileName2 = uid2.toString()+"_"+qna_image2.getOriginalFilename();
+			File targetFile2 = new File(qnaUploadPath,fileName2);
+			FileCopyUtils.copy(qna_image2.getBytes(), targetFile2);
+			vo.setQna_image2(fileName2);
+			qService.qnaWrite(saveID,vo);
+		}
 		return "redirect:/board/inquiry_paging";
 	}
 	
