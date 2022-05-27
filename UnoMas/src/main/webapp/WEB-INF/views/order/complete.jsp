@@ -217,7 +217,7 @@
 				<div class="row text-center">
 					<div class="col-lg-12 mt-5">
 					    <button type="button" class="site-btn" onclick="location.href='/';">홈</button>
-						<button type="button" class="site-btn" onclick="location.href='../user/mypage/order_list';">마이페이지</button>
+						<button type="button" class="site-btn" onclick="location.href='/user/mypage';">마이페이지</button>
 					</div>
 				</div>
 			</form>

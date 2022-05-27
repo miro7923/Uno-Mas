@@ -125,7 +125,6 @@ public class OrderController {
 		// 주문정보 가져오기
 		List<OrderVO> orderList = orderService.getOrderInfos(payVO.getOrder_code());
 		model.addAttribute("orderList", orderList);
-		log.info("@@@@@@@@@ orderList: "+orderList);
 		
 		// 장바구니에서 결제 완료된 상품 삭제 & 재고감소
 		for (int i = 0; i < orderList.size(); i++) {
@@ -145,7 +144,6 @@ public class OrderController {
 		// 회원정보 저장
 		UserVO userVO = userService.getUserInfoByNum(payVO.getUser_num());
 		model.addAttribute("userVO", userVO);
-		log.info("@@@@@@@@@@@@@ userVO: "+userVO);
 		
 		// 결제완료 페이지로 이동
 		return "order/complete";
@@ -155,11 +153,11 @@ public class OrderController {
 	@RequestMapping(value = "/complete", method = RequestMethod.POST, 
 	consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
 	produces = MediaType.TEXT_PLAIN_VALUE)
-	public String completePOST(@RequestBody OrderVO vo) throws Exception {
+	public ResponseEntity<String> completePOST(@RequestBody OrderVO vo) throws Exception {
 		// 결제 완료된 주문정보 DB에 저장
 		orderService.createOrder(vo);
 		
-		return "주문정보 생성 완료";
+		return new ResponseEntity<String>("주문정보 생성 완료", HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/mobile_complete", method = RequestMethod.GET)
@@ -258,7 +256,6 @@ public class OrderController {
 					orderAddrList.remove(i);
 				}
 			}
-			log.info("@@@@@@@@@@@ orderAddrList: "+orderAddrList);
 		}
 
 		// 배송지 목록 페이지처리 정보 저장

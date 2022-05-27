@@ -102,7 +102,7 @@ function requestPay() {
 			            	url: "/order/complete", // 예: https://www.myservice.com/payments/complete
 			            	type: "POST",
 			            	dataType: 'json',
-			            	contentType: "application/json",
+			            	contentType: 'application/json',
 			            	data: orderVO,
 			            	success: function(data) {
 								alert('success return: '+data);
