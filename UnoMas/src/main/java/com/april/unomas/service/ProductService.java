@@ -187,7 +187,7 @@ public interface ProductService {
 	public void decreaseStock(int sell, int prod_num) throws Exception;
 	
 	// 상품 문의 댓글 생성
-	public void insertInqComment(ProdCommentVO vo) throws Exception;
+	public void writeInqComment(ProdCommentVO vo) throws Exception;
 	
 	// 상품 문의 댓글 가져오기
 	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception;
