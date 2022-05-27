@@ -74,7 +74,7 @@
 															<td><a
 																href="/admin/notice_read?notice_num=${vo.notice_num }"><span
 																	class="title"><b>${vo.notice_title }</b></span></a></td>
-															<td>${vo.adminVO.admin_id }</td>
+															<td>UnoMás</td>
 															<td>${vo.notice_regdate }</td>
 															<td>${vo.notice_readcnt }</td>
 														</tr>

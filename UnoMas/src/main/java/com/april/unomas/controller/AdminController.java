@@ -164,7 +164,6 @@ public class AdminController {
 	
 	@RequestMapping(value="/notice_delete",method = RequestMethod.GET)
 	public String noticeDeleteGET(@RequestParam("notice_num") int notice_num) throws Exception {
-		
 		service.noticeDelete(notice_num);
 		
 		return "redirect:/admin/notice_board";

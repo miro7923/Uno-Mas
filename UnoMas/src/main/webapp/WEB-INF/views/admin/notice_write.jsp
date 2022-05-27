@@ -42,7 +42,7 @@
 								<tr>
 									<th>작성자</th>
 									<td><input type="hidden" name="admin_num" value="1">
-										<input type="text" class="notice_field " name="admin_name" placeholder="글쓴이" value="${vo.admin_id }" readonly>
+										<input type="text" class="notice_field " name="admin_name" placeholder="UnoMás" readonly>
 									</td>
 								</tr>
 								<tr>

@@ -9,9 +9,20 @@
 <%-- <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3"> --%>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
 <link rel="stylesheet" href="${path}/resources/css/admin.css?after1">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#del-button").click(function(){
+			var result = confirm("선택한 글을 삭제하시겠습니까?");
+			if(!result){
+				return false;
+			};
+		});
+	});
+</script>
 
 <%
-	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
 %>
 
@@ -44,6 +55,7 @@
 					<div class="line"><hr></div>
 					<div class="container">
 						<form action="#" class="checkout-form"><br>
+<%-- 						<form action="/admin/notice_delete?notice_num=${vo.notice_num }" class="checkout-form"><br> --%>
 							<table class="table_board" style="margin-bottom: 60px; height: 330px;">
 
 					<tr>
@@ -52,16 +64,16 @@
 					</tr>
 					<tr>
 						<th>작성자</th>
-						<td colspan="3">${vo.adminVO.admin_id }<input type="hidden" class="table_board" name="admin_num" value="${vo.admin_num }"></td>
+						<td colspan="3">UnoMás</td>
 					</tr>
 					<tr>
 						<th>첨부파일</th>
 						<td colspan="3"><a class="nfile" href="/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
 					</tr>
-					<tr>
-						<th>이미지</th>
-						<td colspan="3"><img alt="" src="${path }/resources/upload/images/board/notice/${vo.notice_img }"><input type="hidden" name="notice_img" value="${vo.notice_img }"></td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<th>이미지</th> -->
+<%-- 						<td colspan="3"><img alt="" src="${path }/resources/upload/images/board/notice/${vo.notice_img }"><input type="hidden" name="notice_img" value="${vo.notice_img }"></td> --%>
+<!-- 					</tr> -->
 					<tr>
 						<th>작성일</th>
 						<td>${vo.notice_regdate }<input type="hidden" class="table_board" name="" value="${vo.notice_regdate }"></td>
@@ -75,6 +87,14 @@
 					</tr>
 					<tr>
 						<td>
+							<c:choose>
+								<c:when test="${empty vo.notice_img }">
+									<input type="hidden" readonly>
+								</c:when>
+								<c:otherwise>
+                                    <img class="" src="${path}/resources/upload/images/board/notice/${vo.notice_img }">
+                                </c:otherwise>
+                            </c:choose>
 						<div class="textarea">
 		                    	<textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.notice_content,cn,br)}</textarea>
 		                    </div>
@@ -84,7 +104,8 @@
 						</tr>
 				</table>
 				<button type="button" class="count-button" onclick="location.href='/admin/notice_update?notice_num=${vo.notice_num }';">수정</button>
-				<button type="button" class="del-button" onclick="location.href='/admin/notice_delete?notice_num=${vo.notice_num }';"><span class="delete_text">삭제</span></button>
+				<button type="button" class="del-button" id="del-button" onclick="location.href='/admin/notice_delete?notice_num=${vo.notice_num }';"><span class="delete_text">삭제</span></button>
+<!-- 				<button type="submit" class="del-button" id="del-button" ><span class="delete_text">삭제</span></button> -->
 				<button type="button" class="back-button" onclick="history.back();">취소</button>
 				<br><br>
 				</form>
