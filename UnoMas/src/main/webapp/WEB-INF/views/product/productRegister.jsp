@@ -12,7 +12,7 @@
 
 <body>
     <!-- Header Section Begin -->
-    <jsp:include page="../inc/header.jsp"></jsp:include>
+    <jsp:include page="../inc/adminHeader2.jsp"></jsp:include>
     <!-- Header End -->
 	
 	<!-- Product Register Section End -->

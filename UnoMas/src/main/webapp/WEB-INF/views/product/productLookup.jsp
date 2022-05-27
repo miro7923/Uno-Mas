@@ -51,7 +51,7 @@
 <!-- Start Header -->
 <body>
     <!-- Header Section Begin -->
-    <jsp:include page="../inc/header.jsp"></jsp:include>
+    <jsp:include page="../inc/adminHeader2.jsp"></jsp:include>
     <!-- Header End -->
     
     <!-- Product Register Section End -->
@@ -147,22 +147,22 @@
 													</table>
 												</div>
 												<!-- 페이징처리 -->
-												<div class="row" id="pagediv">
-													<div class="col-lg-12 text-center">
-<!-- 													<ul class="pagination pagination-sm no-margin"> -->
-														<c:if test="${pm.prev }">
-															<span><a href="/product/product_lookup?page=${pm.startPage - 1}${pm.srchTypeKyw}" class="arrow_carrot-left_alt pagingBtn" id="prev">이전</a></span>
-														</c:if>
-														
-														<c:forEach var="page" begin="${pm.startPage }" end="${pm.endPage }">
-															<span><a href="/product/product_lookup?page=${page }${pm.srchTypeKyw}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span>
-														</c:forEach>
-														
-														<c:if test="${pm.next && pm.endPage > 0 }">
-															<span><a href="/product/product_lookup?page=${pm.endPage+1 }${pm.srchTypeKyw}" class="arrow_carrot-right_alt pagingBtn" id="next">다음</a></span>
-														</c:if>
-<!-- 													</ul> -->
-												</div>
+												<div class="row justify-content-center">
+													<div class="col-lg-12" style="text-align:center;">
+														<ul class="pagination">
+															<c:if test="${pm.prev }">
+																<span><a class="page-link text-dark" href="/product/product_lookup?page=${pm.startPage - 1}${pm.srchTypeKyw}" class="arrow_carrot-left_alt pagingBtn" id="prev">이전</a></span>
+															</c:if>
+															
+															<c:forEach var="page" begin="${pm.startPage }" end="${pm.endPage }">
+																<span><a class="page-link text-dark" href="/product/product_lookup?page=${page }${pm.srchTypeKyw}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span>
+															</c:forEach>
+															
+															<c:if test="${pm.next && pm.endPage > 0 }">
+																<span><a class="page-link text-dark" href="/product/product_lookup?page=${pm.endPage+1 }${pm.srchTypeKyw}" class="arrow_carrot-right_alt pagingBtn" id="next">다음</a></span>
+															</c:if>
+														</ul>
+													</div>
 												</div>
 												<!-- 페이징처리 -->
 											</div>
