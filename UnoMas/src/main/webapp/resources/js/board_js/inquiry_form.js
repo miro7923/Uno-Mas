@@ -26,7 +26,7 @@
   	} else {
   		select2.disabled = true;
   	}
-  	if( parseInt(select2.value) >= 1 ) {
+  	if( parseInt(select2.value) >= 0 && parseInt(select1.value) >= 1) {
   		subjectVal.disabled = false;
   	} else {
   		subjectVal.disabled = true;

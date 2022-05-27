@@ -23,6 +23,7 @@
     text-align: center;
     vertical-align: middle;
     word-wrap: break-word;
+    font-size: 14px;
 }
 
 .xans-board-listheader tbody tr:first-child td {
@@ -36,13 +37,14 @@
 
 .xans-board-listheader.jh tr td {
     padding: 20px 0;
+    font-size: 14px;
 }
 
 
 .xans-board-listheader th {
     padding: 20px 0;
     vertical-align: middle;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .xans-board-listheader td a {
@@ -202,6 +204,7 @@
     border-top: 1px solid #f4f4f4;
     width: 900px;
     text-align: center;
+    font-size: 14px;
 }
 
 .table_faq tr td {
@@ -213,7 +216,7 @@ table {
     line-height: 1;
     letter-spacing: -.05em;
     color: #4c4c4c;
-    font-size: 12px;
+    font-size: 14px;
     max-width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
