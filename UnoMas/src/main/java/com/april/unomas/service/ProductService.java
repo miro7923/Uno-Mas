@@ -126,7 +126,7 @@ public interface ProductService {
 	public void deleteReview(int review_num) throws Exception;
 	
 	// 리뷰글 좋아요 증가
-	public void modifyReviewLikeCnt(int review_num) throws Exception;
+	public void addReviewLikeCnt(int review_num) throws Exception;
 	
 	// 리뷰글 좋아요 취소
 	public void cancelLike(int revuew_num) throws Exception;
