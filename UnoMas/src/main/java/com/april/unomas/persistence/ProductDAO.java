@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
@@ -33,10 +34,10 @@ public interface ProductDAO {
 	public List<Integer> getTopcateCnt(int topcate_num) throws Exception;
   
 	// 전체 상품 목록 가져오기
-	public List<ProductVO> getAllProductList(ProdCriteria pc) throws Exception;
+	public List<ProductVO> getAllProductList(int pageStart, int perPageNum, String searchType, String keyword) throws Exception;
 	
 	// 전체 상품 개수 가져오기
-	public Integer getAllCnt() throws Exception;
+	public Integer getAllCnt(String searchType, String keyword) throws Exception;
 	
 	// 대분류별 상품 개수 가져오기
 	public Integer getProductCnt(ProdCriteria pc) throws Exception;
@@ -175,6 +176,13 @@ public interface ProductDAO {
 	
 	// 신상품별 상품 정보(메인페이지)
 	public List<SelectVO> brandnewSelect2() throws Exception;
+
+	public List<ProductVO> searchProd(Criter pc) throws Exception;
+	
+	public int getSearchProdCnt(Criter pc) throws Exception;
+
+	// 가정의달 소고기 상품 정보
+	public List<SelectVO> mayEvent() throws Exception;
 	
 	// 상품 재고 감소
 	public void decreaseStock(int sell, int prod_num) throws Exception;
