@@ -16,7 +16,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 // @Repository : 해당 클래스가 DAO 역할을 하는 객체로 스프링이 인식
@@ -30,10 +32,10 @@ public class UserDAOImpl implements UserDAO {
 	private static final Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 	private static final String NAMESPACE = "com.unomas.mapper.userMapper";
 	private static final String NAMESPACE_A = "com.unomas.mapper.adminMapper";
-
+	
 	@Autowired
 	JavaMailSender mailSender;
-
+	
 	@Override
 	public String getTime() {
 		String time = sqlSession.selectOne(NAMESPACE + ".getTime");
@@ -44,7 +46,8 @@ public class UserDAOImpl implements UserDAO {
 	public void joinAdmin(AdminVO vo) {
 		sqlSession.insert(NAMESPACE + ".joinAdmin", vo);
 	}
-
+	
+	
 	// 회원가입
 	@Override
 	public void joinUser(UserVO vo) {
@@ -107,7 +110,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		
 	}
-
+	
 	// 회원 아이디 찾기
 	@Override
 	public int findIdProcess(UserVO vo) {
@@ -129,7 +132,7 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return result;
 	}
-
+	
 	// 회원 비밀번호 찾기
 	@Override
 	public HashMap<String, String> findPwProcess(UserVO vo) {
@@ -163,7 +166,8 @@ public class UserDAOImpl implements UserDAO {
 
 		return findpw_map;
 	}
-
+	
+	
 	// 비번 변경
 	@Override
 	public int changePW(UserVO vo) {
@@ -172,15 +176,16 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-	// 회원정보 조회
+	
+	// 회원 정보 조회
 	@Override
 	public UserVO getUserInfo(String id) {
 		UserVO userInfoVO = sqlSession.selectOne(NAMESPACE + ".getUserInfo", id);
 
 		return userInfoVO;
 	}
-
-	// 회원정보 수정
+	
+	// 회원정보수정
 	@Override
 	public Integer updateUser(UserVO vo) {
 		Integer result = sqlSession.update(NAMESPACE + ".updateUser", vo);
@@ -199,7 +204,7 @@ public class UserDAOImpl implements UserDAO {
 
 		return addAddrVO;
 	}
-
+	
 	// 추가 배송지 수정
 	@Override
 	public Integer updateAddAddr(UserVO vo) {
@@ -208,7 +213,7 @@ public class UserDAOImpl implements UserDAO {
 
 		return result;
 	}
-
+	
 	// 회원탈퇴
 	@Override
 	public void deleteUser(UserVO vo) {
@@ -216,10 +221,27 @@ public class UserDAOImpl implements UserDAO {
 
 	}
 
-	// 비번 체크
+	// 비번체크
 	@Override
 	public Integer checkPW(UserVO vo) {
-		return sqlSession.selectOne(NAMESPACE + ".checkPW", vo);
+		return sqlSession.selectOne(NAMESPACE+".checkPW",vo);
+	}
+	
+	// 내 리뷰 개수
+	@Override
+	public Integer getMyReviewCnt(String num) {
+		return sqlSession.selectOne(NAMESPACE+".myReviewCnt", num);
+	}
+
+	// 내 리뷰
+	@Override
+	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
+		System.out.println("DAO: 잘 들어옴?" + id + "" + cri);
+		Map<String, Object> map = new HashMap();
+		map.put("id", id);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(NAMESPACE+".getMyReview", map);
 	}
 
 	// 이메일
@@ -230,7 +252,7 @@ public class UserDAOImpl implements UserDAO {
 
 		try {
 			msg.setFrom(evo.getSender());
-//			msg.setTo(evo.getRecipients());
+//				msg.setTo(evo.getRecipients());
 			msg.setTo("tksop59@naver.com");
 			msg.setSubject(evo.getSubject()); // 제목 셋팅
 			msg.setText(evo.getContent()); // 내용 셋팅
@@ -244,4 +266,18 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
+	@Override
+	public UserVO getUserInfoByNum(int user_num) {
+		return sqlSession.selectOne(NAMESPACE + ".getUserInfoByNum", user_num);
+	}
+	
+	// 결제완료 후 적립금 업데이트
+	@Override
+	public void updatePoint(int user_num, int user_point) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("user_point", user_point);
+		
+		sqlSession.update(NAMESPACE + ".updatePoint", map);
+	}
 }
