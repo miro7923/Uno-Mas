@@ -40,7 +40,7 @@
 						<form class="checkout-form" method="post" enctype="multipart/form-data"><br>
 							<table class="table_info" style="margin-bottom: 60px; height: 330px;">
 								<tr>
-									<th>글쓴이</th>
+									<th>작성자</th>
 									<td><input type="hidden" name="admin_num" value="1">
 										<input type="text" class="input_field" name="admin_name" placeholder="글쓴이" value="${vo.admin_id }" readonly>
 									</td>
