@@ -157,11 +157,7 @@
 								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
 								           </c:when>
 									       <c:when test="${sessionScope.saveID != null }">
-<<<<<<< HEAD
-										       <input type="hidden" id="user_num" value="${saveNUM }">
-=======
-										       <input type="hidden" id="user_num" value="${sessionScope.saveID.user_num }">
->>>>>>> 81ba11210b322b3f79bcbc678f4f2a74ad12890c
+										       <input type="hidden" id="user_num" value="${sessionScope.saveNUM }">
 										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 										       <input type="hidden" id="prod_amount" value="1">
 											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 
@@ -177,7 +173,7 @@
 					<br> <br>
 
 					<div class="product-tab">
-						<div class="tab-item">
+						<div class="tab-item" style="border: 1px solid #ebebeb;">
 							<ul class="nav" role="tablist">
 								<li><a class="active" data-toggle="tab" href="#tab-1"
 									role="tab">상품설명</a></li>
@@ -186,7 +182,7 @@
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
 								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
 										(${reviewCnt })</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();" style="border-right: 1px solid #ebebeb;">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
