@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.april.unomas.domain.AdminVO;
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserVO;
 
 public interface UserDAO {
@@ -48,8 +50,19 @@ public interface UserDAO {
 
 	// 비번 체크
 	public Integer checkPW(UserVO vo);
-	
+
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);
 	
+	// 내 리뷰 개수
+	public Integer getMyReviewCnt(String id);
+	
+	// 내 리뷰
+	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri);
+	
+	// 회원번호로 회원정보 가져오기
+	public UserVO getUserInfoByNum(int user_num);
+	
+	// 결제완료 후 적립금
+	public void updatePoint(int user_num, int user_point);
 }
