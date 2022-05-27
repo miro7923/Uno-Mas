@@ -33,33 +33,35 @@ public interface UserDAO {
 	// 비번 변경
 	public int changePW(UserVO vo);
 	
-	// 회원정보수정을 위한 비밀번호 재확인
-//	public boolean checkPw(UserVO vo);
-	
 	// 회원정보 조회
 	public UserVO getUserInfo(String id);
-	
-	// 회원번호로 회원정보 가져오기
-	public UserVO getUserInfoByNum(int user_num);
 
 	// 회원정보수정
 	public Integer updateUser(UserVO vo);
-
+	
+	// 추가 배송지 조회
+	public List<UserVO> getAddAddr(int user_num);
+	
+	// 추가 배송지 수정
+	public Integer updateAddAddr(UserVO vo); 
 
 	// 회원탈퇴
-	public Integer deleteUser(UserVO vo);
+	public void deleteUser(UserVO vo);
 
 	// 비번 체크
 	public Integer checkPW(UserVO vo);
+
+	// 이메일 보내기
+	public int sendEmailMethod(EmailVO evo);
 	
 	// 내 리뷰 개수
 	public Integer getMyReviewCnt(String id);
 	
 	// 내 리뷰
 	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri);
-
-	// 이메일 보내기
-	public int sendEmailMethod(EmailVO evo);
+	
+	// 회원번호로 회원정보 가져오기
+	public UserVO getUserInfoByNum(int user_num);
 	
 	// 결제완료 후 적립금
 	public void updatePoint(int user_num, int user_point);
