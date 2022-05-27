@@ -30,7 +30,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.Commons;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.ImgType;
+import com.april.unomas.domain.PagingVO;
 import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
