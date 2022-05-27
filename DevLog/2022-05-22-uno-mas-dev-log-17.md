@@ -27,7 +27,7 @@
 
 # 진행상황 
 
-<p align="center"><img src="../../assets/images/unomas_prodBoard1.png" width="900"></p>
+<p align="center"><img src="https://miro7923.github.io/assets/images/unomas_prodBoard1.png" width="900"></p>
 
 * 상품 상세페이지에 있는 후기와 문의 게시판의 하단에 있는 페이지 번호를 클릭하면 다음 글 목록을 보여주는 기능을 만들었다. 그런데 페이지의 새로고침 없이 보여주는 기능을 곁들인 
 * [[Web] ajax으로 받아온 data를 jstl로 표현하기](https://backstreet-programmer.tistory.com/105)

@@ -27,7 +27,7 @@
 
 # 진행상황 
 
-<p align="center"><img src="../../assets/images/unomas_uploadProdImg2.png" width="900"></p>
+<p align="center"><img src="https://miro7923.github.io/assets/images/unomas_uploadProdImg2.png" width="900"></p>
 
 * 관리자용 상품 등록 페이지에서 비동기 방식으로 상품 이미지를 업로드하고 등록된 이미지를 미리볼 수 있는 기능을 구현했다. 
 
@@ -48,7 +48,7 @@
 
 ## servlet-context.xml
 
-<p align="center"><img src="../../assets/images/unomas_uploadProdImg3.png" width="700"></p>
+<p align="center"><img src="https://miro7923.github.io/assets/images/unomas_uploadProdImg3.png" width="700"></p>
 
 * 저장되는 이미지의 종류별로 폴더를 분리하는 것이 깔끔하고 화면에 뿌려주기 위해 해당 파일을 찾아올 때 분류된 폴더에서 찾아오는 것이 더 빠를 것이라 생각해서 위와 같이 이미지가 업로드 되는 경로를 분리해 주었다.
 
