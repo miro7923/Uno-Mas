@@ -74,7 +74,7 @@ public class ProductController {
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("pageNum") int pageNum, @RequestParam("dcate_num") int dcate_num, 
-			Model model) throws Exception {
+			HttpSession session, Model model) throws Exception {
 		ProdCriteria cri = new ProdCriteria();
 		cri.setTopcate_num(topcate_num);
 		
@@ -114,7 +114,7 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
-
+		
 		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
@@ -161,11 +161,22 @@ public class ProductController {
 		model.addAttribute("reviewPm", reviewPm);
 		model.addAttribute("inquiryPm", inquiryPm);
 		
-		UserVO userVo = (UserVO) session.getAttribute("saveID");
-		if (userVo != null)
-			model.addAttribute("isInWishlist", service.isInWishlist(userVo.getUser_num(), prod_num));
+		String user_id = (String) session.getAttribute("saveID");
+		if (user_id != null) {
+			int user_num = (int) session.getAttribute("saveNUM");
+			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
+		}
 		else
 			model.addAttribute("isInWishlist", false);
+		
+		// 문의글 댓글 정보 저장
+		List<ProdCommentVO> inqComList = new ArrayList<ProdCommentVO>();
+		for (int i = 0; i < inquiryList.size(); i++) {
+			ProdCommentVO comVO = service.getInqComment(inquiryList.get(i).getP_inquiry_num());
+			inqComList.add(comVO);
+		}
+		model.addAttribute("inqComList", inqComList);
+		log.info("inqComList: "+inqComList);
 		
 		return "product/productDetail";
 	}
@@ -305,8 +316,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
-	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model,
+			HttpSession session) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));
+		model.addAttribute("user_num", userService.getUserInfo((String)session.getAttribute("saveID")));
 		
 		return "product/reviewWritingForm";
 	}
@@ -338,12 +351,38 @@ public class ProductController {
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
+	@RequestMapping(value = "/list_review", method = RequestMethod.GET)
+	public String getReviewListGET(@RequestParam("prod_num") int prod_num, 
+			@RequestParam("page") int page, Model model) throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<BoardReviewVO> list = service.getReviewList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		ProdPageMaker reviewPm = new ProdPageMaker();
+		reviewPm.setCri(pc);
+		reviewPm.setTotalCnt(service.getReviewCnt(prod_num));
+		
+		model.addAttribute("reviewList", list);
+		model.addAttribute("reviewPm", reviewPm);
+		model.addAttribute("page", page);
+		
+		return "product/revBoardAjax";
+	}
+	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.GET)
-	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model) throws Exception {
+	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model,
+			HttpSession session) throws Exception {
 		BoardReviewVO reviewVO = service.getReview(review_num);
 		
 		model.addAttribute("prod_name", service.getProduct(reviewVO.getProd_num()).getProd_name());
 		model.addAttribute("vo", reviewVO);
+//		model.addAttribute("user_num", userService.getUserNum((String)session.getAttribute("saveID")));
 		
 		return "product/reviewModifyForm";
 	}
@@ -424,6 +463,32 @@ public class ProductController {
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
+	@RequestMapping(value = "/list_inquiry", method = RequestMethod.GET)
+	public String getInquiryListGET(@RequestParam("prod_num") int prod_num, 
+			@RequestParam("page") int page, Model model) throws Exception {
+		log.info("@@@@@@@@@@@@@@@ getInquiryList() 호출");
+		
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<ProdInquiryVO> list = service.getInquiryList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		ProdPageMaker inquiryPm = new ProdPageMaker();
+		inquiryPm.setCri(pc);
+		inquiryPm.setTotalCnt(service.getInquiryCnt(prod_num));
+		
+		model.addAttribute("inquiryList", list);
+		model.addAttribute("inquiryPm", inquiryPm);
+		model.addAttribute("page", page);
+		
+		return "/product/inqBoardAjax";
+	}
+	
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.GET)
 	public String modifyInquiryGET(@RequestParam("inquiry_num") int inquiry_num, Model model) throws Exception {
 		ProdInquiryVO vo = service.getInquiry(inquiry_num);
@@ -445,6 +510,25 @@ public class ProductController {
 	public String removeInquiryGET(@RequestParam("inquiry_num") int inquiry_num, 
 			@RequestParam("prod_num") int prod_num) throws Exception {
 		service.removeInquiry(inquiry_num);
+		
+		return "redirect:/product/product_detail?prod_num=" + prod_num;
+	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.GET)
+	public String writeInqCommentGET(@RequestParam int prod_num, @RequestParam int p_inquiry_num,
+			Model model) throws Exception {
+		model.addAttribute("prod", service.getProduct(prod_num));
+		model.addAttribute("inq", service.getInquiry(p_inquiry_num));
+		
+		return "product/inquiryAnswerForm";
+	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.POST)
+	public String writeInqCommentPOST(ProdCommentVO vo, HttpServletRequest request) throws Exception {
+		service.writeInqComment(vo);
+		log.info("ProdCommentVO: "+vo);
+		
+		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
 		
 		return "redirect:/product/product_detail?prod_num=" + prod_num;
 	}
