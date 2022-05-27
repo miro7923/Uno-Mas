@@ -37,31 +37,28 @@
 					- 공지사항 등록
 					<div class="line"><hr></div>
 					<div class="container">
-						<form action="#" class="checkout-form"><br>
+						<form class="checkout-form" method="post" enctype="multipart/form-data"><br>
 							<table class="table_info" style="margin-bottom: 60px; height: 330px;">
-					<tr>
-						<th>글쓴이</th>
-						<td><input type="hidden" name="admin_num" value="1">
-							<input type="text" class="input_field" name="admin_name" placeholder="글쓴이" value="${vo.admin_id }" readonly>
-						</td>
-						
-					</tr>
-
-					<tr>
-						<th>제목</th>
-						<td><input type="text" class="input_field" name="notice_title" placeholder="제목을 입력하세요"></td>
-					</tr>
-
-					<tr>
-						<th>첨부파일</th>
-						<td><input type="file" class="input_field" name="notice_file"></td>
-					</tr>
-
-					<tr>
-						<th>이미지</th>
-						<td><input type="file" class="input_field" name="notice_img"></td>
-					</tr>
-				</table>
+								<tr>
+									<th>글쓴이</th>
+									<td><input type="hidden" name="admin_num" value="1">
+										<input type="text" class="input_field" name="admin_name" placeholder="글쓴이" value="${vo.admin_id }" readonly>
+									</td>
+								</tr>
+								<tr>
+									<th>제목</th>
+									<td><input type="text" class="input_field" name="notice_title" placeholder="제목을 입력하세요"></td>
+								</tr>
+								<tr>
+									<th>첨부파일</th>
+									<td><input type="file" class="input_field" name="notice_file"></td>
+								</tr>
+			
+								<tr>
+									<th>이미지</th>
+									<td><input type="file" class="input_field" name="notice_img"></td>
+								</tr>
+							</table>
 				<table class="table_info">
 					<tr>
 						<th>내용</th>
@@ -75,7 +72,7 @@
 					</tr>
 				</table>
 				<button type="submit" class="count-button">등록</button>
-				<button type="button" class="back-button">취소</button>
+				<button type="button" class="back-button" onclick="history.back();">취소</button>
 				</form>
 			</div>
 

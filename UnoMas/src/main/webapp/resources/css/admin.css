@@ -8,7 +8,7 @@
     background: #b9ce45;
 /*     width: 20%; */
     border: 1px solid #b9ce45;
-    margin: 0px 10px 10px 10px;
+    margin: 0px 0px 10px 10px;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
@@ -67,7 +67,7 @@
 	font-size: 14px;
 	color: #333;
 	text-align: left;
-	margin-bottom: 60px;
+	margin-bottom: 20px;
 }
 .admin_profile  {
 	margin: 0;
@@ -175,7 +175,7 @@ li {
     width: 100%;
     height: 46px;
     border: 2px solid #ebebeb;
-    margin-bottom: 0px;
+    margin-bottom: 20px;
     padding-left: 15px;
 }
 
@@ -206,6 +206,7 @@ a:hover {
     padding-left: 0;
     list-style: none;
     border-radius: 0.25rem;
+    margin-top: 30px;
 }
 
 .input_field {

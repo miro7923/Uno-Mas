@@ -40,13 +40,11 @@
 						<form action="#" class="checkout-form" name="frmList" onsubmit="return chkFormList(this)">
 						<input type="hidden" name="id" value="notice">
 							<div class="row">
-								<div class="col-lg-12">
-									<br>
-									<div class="row">
-										<div class="col-lg-3">
-											<select class="selectBox" name="searchType">
-												<option value="title">제목</option>
-											</select>
+								<div class="row">
+									<div class="col-lg-3">
+										<select class="selectBox" name="searchType">
+											<option value="title">제목</option>
+										</select>
 										</div>
 										<div class="col-lg-9">
 											<div class="input-search">
@@ -56,10 +54,7 @@
 												</button>
 											</div>
 										</div>
-										<div class="col-lg-12">
-											<label></label>
-		                                        <button type="button" class="write-button" onclick="location.href='/admin/notice_write';">글쓰기</button>
-										</div>
+										
 										<div class="col-lg-12">
 											<table class="table_board">
 												<thead>
@@ -85,6 +80,11 @@
 													</c:forEach>
 												</tbody>
 											</table>
+												<div class="col-lg-12">
+													<div class="row" style="display: inline;">
+		                                        		<button type="button" class="count-button" onclick="location.href='/admin/notice_write';">글쓰기</button>
+													</div>
+												</div>
 											<!-- 페이징 처리 -->
 											<div class="row justify-content-center">
 												<div class="col-lg-12" style="text-align:center;">
@@ -112,7 +112,6 @@
 										</div>
 									</div>
 								</div>
-							</div>
 						</form>
 					</div>
 				</div>
