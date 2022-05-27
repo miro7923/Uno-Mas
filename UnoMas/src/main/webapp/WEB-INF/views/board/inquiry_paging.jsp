@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
@@ -87,14 +91,16 @@
                                     <tbody>
                                         <tr valign="top">
                                             <th style="color:#0000bf;width:40px; padding-top:1px;"></th>
-                                            <td><span class="px-3">1차 카테고리</span>
-			            <span> > </span><br>
+                                            <td><span class="px-3">카테고리 ></span>
 			            <span>${vo.qnaCateVO.qnacate_name }</span>
 			            <div class="question mt-3 pb-5 px-3">
-<%-- 			            <img src="${path}/resources/img/question.svg" class="questionicon">  --%>
+			            <c:if test="${vo.qna_image1 ne null}">
 			            <a href="/board/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="../resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
+			            </c:if>
+			            <c:if test="${vo.qna_image2  ne null}">
 			            <a href="/board/image2Down?qna_image2=${vo.qna_image2 }"><img name="qna_image2" alt="img2" src="../resources/upload/images/board/qna/${vo.qna_image2 }"></a><input type="hidden" value="${vo.qna_image2 }" name="qna_image2"><br>
-			            <span> 문의 내용 >> ${vo.qna_content }</span>
+			            </c:if>
+			            <span> 문의 내용 >> </span><br><br>${fn:replace(vo.qna_content,cn,br)}
 			        </div>
 			        <div class="answer pb-5 px-3" >
 <%-- 			            <img src="${path}/resources/img/answer.svg" class="answericon">  --%>
@@ -118,7 +124,6 @@
                     <div class="layout-pagination">
                         <div class="pagediv">
                         <div class="row justify-content-center">
-              <div class="col-1 justify-content-center ">
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
                   <li class="page-item">
@@ -138,7 +143,6 @@
                   </li>
                   </c:if>
                 </ul>
-              </div>
             </div>
                     </div> <!-- paging div -->
                     

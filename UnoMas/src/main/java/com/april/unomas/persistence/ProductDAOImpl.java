@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -341,7 +342,18 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	@Override
+	public List<ProductVO> searchProd(Criter pc) throws Exception {
+		return sqlSession.selectList(NAMESPACE+".searchProd",pc);
+	}
+
+	@Override
+	public int getSearchProdCnt(Criter pc) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+".searchCnt",pc);
+	}
+
+  @Override
 	public List<SelectVO> mayEvent() throws Exception {
 		return sqlSession.selectList("com.april.unomas.mappers.eventMapper" + ".may");
 	}
+
 }

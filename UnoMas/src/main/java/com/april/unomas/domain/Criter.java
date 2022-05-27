@@ -75,6 +75,4 @@ public class Criter {
 				+ keyword + "]";
 	}
     
-    
-    
 }

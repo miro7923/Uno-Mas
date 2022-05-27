@@ -128,7 +128,6 @@
                     <div class="layout-pagination">
                         <div class="pagediv">
 <div class="row justify-content-center">
-              <div class="col-1 justify-content-center ">
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
                   <li class="page-item">
@@ -148,7 +147,6 @@
                   </li>
                   </c:if>
                 </ul>
-              </div>
             </div>
 						
                         </div>

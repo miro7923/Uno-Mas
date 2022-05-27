@@ -29,7 +29,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.Commons;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.ImgType;
+import com.april.unomas.domain.PagingVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -487,6 +489,39 @@ public class ProductController {
 		model.addAttribute("pm", pm);
 		
 		return "product/productList";
+	}
+	
+	@RequestMapping(value = "/product_search", method = RequestMethod.GET) // /shop -> /product_list
+	public String searchGET(Model model,Criter criter) throws Exception {
+		ProdCriteria cri = new ProdCriteria();
+		
+		// 하단 페이징 처리 //////
+		// 현재 분류별 전체 상품 개수 얻기
+		// dcate_num(소분류) 번호가 0이라면 전체를 불러오는 것이고
+		// 1이상이라면 각각의 소분류만 불러오는 것이다.
+		int postCnt = 0;
+		postCnt = service.getSearchProdCnt(criter);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<ProductVO> productList = null;
+		productList = service.searchProd(criter);
+		
+		
+		PagingVO pm = new PagingVO(criter);
+		pm.setTotalCount(postCnt);
+		
+		// 글 목록 정보 저장
+		map.put("productList", productList);
+
+		map.put("postCnt", postCnt);
+		
+		// 페이지 처리 정보 저장
+		map.put("pm", pm);
+		
+		model.addAllAttributes(map);
+		
+		return "product/productSearch";
 	}
 
 }

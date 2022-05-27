@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.CategoryVO;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -295,8 +296,19 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	public List<ProductVO> searchProd(Criter pc) throws Exception {
+		return dao.searchProd(pc);
+	}
+
+	@Override
+	public int getSearchProdCnt(Criter pc) throws Exception {
+		return dao.getSearchProdCnt(pc);
+	}
+	
+  @Override
 	public List<SelectVO> mayEvent() throws Exception {
 		List<SelectVO> beefList = dao.mayEvent();
 		return beefList;
 	}
+
 }

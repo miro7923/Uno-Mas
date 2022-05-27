@@ -30,7 +30,7 @@
                     </div>
 	<input type="hidden" name="user_num" value="">
                     <div class="col-5 input-group-prepend" style="display: inline;">
-                        <select class="custom-select" id="select1" name="qnacate_num" onchange="submitButtonColorChange()">
+                        <select class="custom-select" id="select1" name="qnacate_num" oninput="checkPoint()">
                             <option selected disabled>문의 유형을 선택해주세요</option>
                             <option value="1">배송/포장</option>
                             <option value="2">취소/교환/환불</option>
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="col-5 input-group-prepend " style="display: inline;">
-                        <select class="custom-select" id="select2" name="qnacate2" onchange="submitButtonColorChange()">
+                        <select class="custom-select" id="select2" name="qnacate2" disabled oninput="checkPoint()">
                             <option selected disabled>상세 유형을 선택해주세요</option>
 
                         </select>    
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="col-10">
-                    <input type="text" class="form-control" id="subject" name="qna_title" placeholder="제목을 입력해주세요" >
+                    <input type="text" class="form-control" id="subject" name="qna_title" placeholder="제목을 입력해주세요" disabled oninput="checkPoint()">
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="col-10">
-                         <textarea class="form-control" rows="20" id="content" style="resize: none;" name="qna_content"></textarea>
+                         <textarea class="form-control" rows="20" id="content" style="resize: none;" name="qna_content" disabled oninput="submitButtonColorChange()"></textarea>
                     </div>
 
                 </div>
