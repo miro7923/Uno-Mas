@@ -13,4 +13,6 @@ public class OrderAddrVO {
 	private String addr_detailaddr;
 	private boolean addr_primary;
 	private String addr_recipient;
+	private String addr_phone;
+
 }

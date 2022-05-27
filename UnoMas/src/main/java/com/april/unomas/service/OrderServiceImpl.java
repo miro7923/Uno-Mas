@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.persistence.OrderDAO;
 
@@ -23,8 +24,13 @@ public class OrderServiceImpl implements OrderService {
 	private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 	
 	@Override
-	public List<OrderAddrVO> getOrderAddrList(int user_num) throws Exception {
-		return dao.getOrderAddrList(user_num);
+	public List<OrderAddrVO> getOrderAddrList(int user_num, int pageStart, int perPageNum) throws Exception {
+		return dao.getOrderAddrList(user_num, pageStart, perPageNum);
+	}
+
+	@Override
+	public int getOrderAddrCnt(int user_num) throws Exception {
+		return dao.getOrderAddrCnt(user_num);
 	}
 
 	@Override
@@ -43,7 +49,27 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Integer> MyOrderCount(String num) throws Exception{
+	public List<OrderVO> getOrderInfos(int order_code) throws Exception {
+		return dao.getOrderInfos(order_code);
+	}
+
+	@Override
+	public PayVO getPay(int pay_num) throws Exception {
+		return dao.getPay(pay_num);
+	}
+
+	@Override
+	public PayVO getLastPay() throws Exception {
+		return dao.getLastPay();
+	}
+
+	@Override
+	public void createPointInfo(PointVO vo) throws Exception {
+		dao.createPointInfo(vo);
+	}
+	
+	@Override
+	public List<Integer> MyOrderCount(String num) throws Exception {
 		return dao.myOrderCount(num);
 	}
 
@@ -51,8 +77,4 @@ public class OrderServiceImpl implements OrderService {
 	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception {
 		return dao.getMyOrderList(num, cri);
 	}
-	
-	
-	
-	
 }

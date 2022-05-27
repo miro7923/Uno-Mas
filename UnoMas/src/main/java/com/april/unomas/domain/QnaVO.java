@@ -2,8 +2,10 @@ package com.april.unomas.domain;
 
 import java.sql.Date;
 
+import lombok.Data;
+
+@Data
 public class QnaVO {
-	
 	private int qna_num;
 	private int user_num;
 	private String qna_title;
@@ -17,7 +19,6 @@ public class QnaVO {
 	private String qna_image2;
 	private QnaCateVO qnaCateVO;
 	private Qna_ComVO qna_comVO;
-	
 
 	
 	public Qna_ComVO getQna_comVO() {
@@ -109,7 +110,6 @@ public class QnaVO {
 				+ qna_process + ", qnacate2=" + qnacate2 + ", qna_image1=" + qna_image1 + ", qna_image2=" + qna_image2
 				+ ", qnaCateVO=" + qnaCateVO + ", qna_comVO=" + qna_comVO + "]";
 	}
-	
 	
 	
 	

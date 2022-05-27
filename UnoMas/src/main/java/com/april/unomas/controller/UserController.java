@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.UserCriteria;
+import com.april.unomas.domain.UserPageMaker;
+
+import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserPageMaker;
 
@@ -57,8 +60,7 @@ public class UserController {
 	@RequestMapping(value = "/idCheck")
 	@ResponseBody
 	public String idCheck(UserVO vo) {
-		String res = Integer.toString(service.idCheck(vo));
-		return res;
+		return Integer.toString(service.idCheck(vo));
 	}
 
 	// 로그인 페이지 구현 (GET)
@@ -91,9 +93,9 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpSession session) {
 		session.invalidate();
-
 		return "redirect:/index";
 	}
+
 	
 	// 아이디 찾기
 	@RequestMapping(value = "/find_id")
@@ -137,53 +139,38 @@ public class UserController {
 		return result;
 	}
 
-	// 마이페이지
+	// mypage
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
 		return "/user/myPage";
 	}
 
-	// 회원정보 조회
+	
+	// 회원정보 조회	
 	@RequestMapping(value = "/myInfo")
 	public String myInfo(HttpSession session, Model model) {
-
 		String saveID = (String) session.getAttribute("saveID");
 		UserVO userInfoVO = service.getUserInfo(saveID); 
-
 		model.addAttribute("userInfoVO", userInfoVO);
-
 		return "/user/myInfo";
 	}
+	
 
-	// 회원정보수정(GET)
+	//회원정보수정(GET)
+	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
 	public String myInfoUpdateGET(HttpSession session, Model model) {
-
 		String saveID = (String) session.getAttribute("saveID");
-		System.out.println("update_myInfo : " + saveID);
 		UserVO userInfoVO = service.getUserInfo(saveID);
 		model.addAttribute("userInfoVO", userInfoVO);
-
-		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
-		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
-		System.out.println("addAddrList: " + addAddrList.size());
-		model.addAttribute("addAddrList", addAddrList);
-
 		return "/user/updateMyInfo";
 	}
 
 	// 회원정보수정(POST)
+	// http://localhost:8088/user/update_myInfo
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
-	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
-		if (eAgree.equals("1")) {
-			vo.setUser_emailagree(1);
-		}
-
+	public String myInfoUpdatePOST(UserVO vo) {
 		service.updateUser(vo);
-		service.updateAddAddr(vo);
-
-		log.info("수정완료");
-
 		return "redirect:/user/myInfo";
 	}
 
@@ -191,13 +178,11 @@ public class UserController {
 	public String myPoint() {
 		return "/user/myPoint";
 	}
-
 	
 	@RequestMapping(value = "/my_review")
 	public String myReview(HttpSession session, Model model, 
 			@RequestParam(value="pagingNum", required=false, defaultValue="1") String pagingNum
 			) {
-
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
 		int totalReviewCnt = service.myReviewCnt(saveNUM);
 
@@ -226,26 +211,25 @@ public class UserController {
 			) {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
-		int totalCount = service.myPqaCnt(saveNUM);
+		int totalReviewCnt = service.myReviewCnt(saveNUM);
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
 		cri.setPerPageNum(5);
 		
-		List<ProdInquiryVO> pqnaList = service.getMyPquestion(saveNUM, cri);
+		List<BoardReviewVO> reviewList = service.getMyReview(saveNUM, cri);
 		
 		UserPageMaker pm = new UserPageMaker();
 		pm.setCri(cri);
-		pm.setTotalCount(totalCount);
+		pm.setTotalCount(totalReviewCnt);
 		
-		model.addAttribute("pqnaList", pqnaList);
+		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 		
 		return "/user/myProdQuestion";
 	}
-	
-	
+
 	// 마이페이지 - 1:1 문의
 	@RequestMapping(value = "/my_quesiton")
 	public String myQuestion(HttpSession session, Model model,
@@ -284,40 +268,52 @@ public class UserController {
 		return "/user/togetherGuide";
 	}
 
+	
+	
+	// 비밀번호 확인
+	@RequestMapping(value = "/check_pw", method=RequestMethod.POST)
+	@ResponseBody
+	public String pwCheck(UserVO vo) {
+		return Integer.toString(service.checkPW(vo));
+	}
+	
+	
+	// 회원탈퇴(GET)
+	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
+	public String deleteUserGET() {
+		return "/user/deleteUser";
+	}
+	
+	
+	// 회원탈퇴(POST)
+	@RequestMapping(value = "/delete_user",method=RequestMethod.POST)
+	@ResponseBody
+	public String deleteUserPOST(UserVO vo, HttpSession session) {
+		String totalResult = "0";
+		int pwResult = service.checkPW(vo);
+		if(pwResult == 1) {	
+			String delResult = Integer.toString(service.deleteUser(vo));
+			if(delResult.equals("1")) { 
+				session.invalidate(); 
+				totalResult = delResult;
+			} 
+		} 
+		return totalResult;
+	}
+	
 	// 비번체크
 	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
 	public String pwCheck() {
 		return "/user/checkPW";
 	}
 
-	// 비번체크
-	@RequestMapping(value = "/check_pw", method = RequestMethod.POST)
-	@ResponseBody
-	public String pwCheck(UserVO vo) {
-		return Integer.toString(service.checkPW(vo));
-	}
-	
-	// 회원탈퇴(GET)
-	@RequestMapping(value = "/delete_user", method = RequestMethod.GET)
-	public String deleteUserGET() {
-		return "/user/deleteUser";
-	}
 
-	// 회원탈퇴(POST)
-	@RequestMapping(value = "/delete_user", method = RequestMethod.POST)
-	@ResponseBody
-	public String deleteUserPOST(UserVO vo, HttpSession session) {
-		String totalResult = "0";
-		int pwResult = service.checkPW(vo);
-		System.out.println("비번확인결과: " + pwResult);
-		if (pwResult == 1) {
-			String delResult = Integer.toString(service.deleteUser(vo));
-			if (delResult.equals("1")) {
-				session.invalidate();
-				totalResult = delResult;
-			}
-		}
-		return totalResult;
-	}
+	// 비번체크 - 나중에 확인
+//	@RequestMapping(value = "/check_pw", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String pwCheck(UserVO vo) {
+//		return Integer.toString(service.checkPW(vo));
+//	}
+	
 
 }

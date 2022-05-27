@@ -29,7 +29,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.Commons;
+import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.ImgType;
+import com.april.unomas.domain.PagingVO;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -38,6 +41,7 @@ import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.ProductService;
+import com.april.unomas.service.UserService;
 
 @Controller
 @RequestMapping("/product/*")
@@ -45,6 +49,9 @@ public class ProductController {
 
 	@Inject
 	private ProductService service;
+	
+	@Inject
+	private UserService userService;
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 	
@@ -72,7 +79,7 @@ public class ProductController {
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("pageNum") int pageNum, @RequestParam("dcate_num") int dcate_num, 
-			Model model) throws Exception {
+			HttpSession session, Model model) throws Exception {
 		ProdCriteria cri = new ProdCriteria();
 		cri.setTopcate_num(topcate_num);
 		
@@ -112,7 +119,7 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
-
+		
 		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
@@ -159,11 +166,22 @@ public class ProductController {
 		model.addAttribute("reviewPm", reviewPm);
 		model.addAttribute("inquiryPm", inquiryPm);
 		
-		UserVO userVo = (UserVO) session.getAttribute("saveID");
-		if (userVo != null)
-			model.addAttribute("isInWishlist", service.isInWishlist(userVo.getUser_num(), prod_num));
+		String user_id = (String) session.getAttribute("saveID");
+		if (user_id != null) {
+			int user_num = (int) session.getAttribute("saveNUM");
+			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
+		}
 		else
 			model.addAttribute("isInWishlist", false);
+		
+		// 문의글 댓글 정보 저장
+		List<ProdCommentVO> inqComList = new ArrayList<ProdCommentVO>();
+		for (int i = 0; i < inquiryList.size(); i++) {
+			ProdCommentVO comVO = service.getInqComment(inquiryList.get(i).getP_inquiry_num());
+			inqComList.add(comVO);
+		}
+		model.addAttribute("inqComList", inqComList);
+		log.info("inqComList: "+inqComList);
 		
 		return "product/productDetail";
 	}
@@ -306,8 +324,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
-	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model,
+			HttpSession session) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));
+		model.addAttribute("user_num", userService.getUserInfo((String)session.getAttribute("saveID")));
 		
 		return "product/reviewWritingForm";
 	}
@@ -337,6 +357,30 @@ public class ProductController {
 		service.insertReview(vo);
 		
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+	}
+	
+	@RequestMapping(value = "/list_review", method = RequestMethod.GET)
+	public String getReviewListGET(@RequestParam("prod_num") int prod_num, 
+			@RequestParam("page") int page, Model model) throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<BoardReviewVO> list = service.getReviewList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		ProdPageMaker reviewPm = new ProdPageMaker();
+		reviewPm.setCri(pc);
+		reviewPm.setTotalCnt(service.getReviewCnt(prod_num));
+		
+		model.addAttribute("reviewList", list);
+		model.addAttribute("reviewPm", reviewPm);
+		model.addAttribute("page", page);
+		
+		return "product/revBoardAjax";
 	}
 	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.GET)
@@ -444,6 +488,7 @@ public class ProductController {
 	}
 	
 
+
 	// 상품 문의 내역
 	@RequestMapping(value = "/list_inquiry", method = RequestMethod.GET)
 	public String getInquiryListGET(@RequestParam("prod_num") int prod_num, 
@@ -471,6 +516,7 @@ public class ProductController {
 		return "/product/inqBoardAjax";
 	}
 	
+
 	// 상품 문의 수정
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.GET)
 	public String modifyInquiryGET(@RequestParam("inquiry_num") int inquiry_num, Model model,
@@ -515,6 +561,25 @@ public class ProductController {
 			return "redirect:/product/product_detail?prod_num=" + prod_num;
 		}
 	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.GET)
+	public String writeInqCommentGET(@RequestParam int prod_num, @RequestParam int p_inquiry_num,
+			Model model) throws Exception {
+		model.addAttribute("prod", service.getProduct(prod_num));
+		model.addAttribute("inq", service.getInquiry(p_inquiry_num));
+		
+		return "product/inquiryAnswerForm";
+	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.POST)
+	public String writeInqCommentPOST(ProdCommentVO vo, HttpServletRequest request) throws Exception {
+		service.writeInqComment(vo);
+		log.info("ProdCommentVO: "+vo);
+		
+		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
+		
+		return "redirect:/product/product_detail?prod_num=" + prod_num;
+	}
 
 	@RequestMapping(value = "/new_list", method = RequestMethod.GET)
 	public String newProductListGET(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, 
@@ -557,5 +622,37 @@ public class ProductController {
 		
 		return "product/productList";
 	}
+	
+	@RequestMapping(value = "/product_search", method = RequestMethod.GET) // /shop -> /product_list
+	public String searchGET(Model model,Criter criter) throws Exception {
+		ProdCriteria cri = new ProdCriteria();
+		
+		// 하단 페이징 처리 //////
+		// 현재 분류별 전체 상품 개수 얻기
+		// dcate_num(소분류) 번호가 0이라면 전체를 불러오는 것이고
+		// 1이상이라면 각각의 소분류만 불러오는 것이다.
+		int postCnt = 0;
+		postCnt = service.getSearchProdCnt(criter);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<ProductVO> productList = null;
+		productList = service.searchProd(criter);
+		
+		
+		PagingVO pm = new PagingVO(criter);
+		pm.setTotalCount(postCnt);
+		
+		// 글 목록 정보 저장
+		map.put("productList", productList);
 
+		map.put("postCnt", postCnt);
+		
+		// 페이지 처리 정보 저장
+		map.put("pm", pm);
+		
+		model.addAllAttributes(map);
+		
+		return "product/productSearch";
+	}
 }

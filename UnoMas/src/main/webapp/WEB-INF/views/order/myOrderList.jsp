@@ -75,7 +75,7 @@
 						
 					<div class="paging_container">
 						<c:if test="${pm.prev }">
-							<a href="my_prod_qa?pagingNum=${pm.startPage - 1}"
+							<a href="my_order?pagingNum=${pm.startPage - 1}"
 								class="paging_a">이전</a>
 						</c:if>
 		

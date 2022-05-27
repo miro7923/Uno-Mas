@@ -79,4 +79,10 @@ public interface UserDAO {
 	// 이메일 보내기
 	public int sendEmailMethod(EmailVO evo);
 	
+	// 회원번호로 회원정보 가져오기
+	public UserVO getUserInfoByNum(int user_num);
+	
+	// 결제완료 후 적립금
+	public void updatePoint(int user_num, int user_point);
+
 }

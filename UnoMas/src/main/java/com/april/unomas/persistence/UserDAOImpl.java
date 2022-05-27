@@ -314,5 +314,18 @@ public class UserDAOImpl implements UserDAO {
 		return result;
 	}
 
-
+	@Override
+	public UserVO getUserInfoByNum(int user_num) {
+		return sqlSession.selectOne(NAMESPACE + ".getUserInfoByNum", user_num);
+	}
+	
+	// 결제완료 후 적립금 업데이트
+	@Override
+	public void updatePoint(int user_num, int user_point) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user_num", user_num);
+		map.put("user_point", user_point);
+		
+		sqlSession.update(NAMESPACE + ".updatePoint", map);
+	}
 }

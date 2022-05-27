@@ -1,4 +1,3 @@
-
 function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 selectall체크박스 체크on
 	const checkboxes = document.querySelectorAll('input[name="cartCheck"]'); // 전체 체크박스
 	const checked = document.querySelectorAll('input[name="cartCheck"]:checked'); // 선택된 체크박스
@@ -11,11 +10,9 @@ function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 s
 	}
 	
 	var subTotal = 0;
-	alert('checked len: '+checked.length);
 	for (var i = 0; i < checkboxes.length; i++) {
 		if ($('#checkbox'+i).is(':checked')) {
 			var tmp = Number($('#prodOriginPrice'+i).val()) * Number($('#amount'+(i+1)).val());
-			alert('상품 하나 합계: '+tmp);
 			subTotal += tmp;
 		}
 	}
@@ -25,26 +22,21 @@ function checkSelectAll(){ // 전체체크와 선택체크의 수가 같아야 s
 	$('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 	
 	if (checked.length <= 0) {
-		$('#spanShippingFee').text(0 + ' 원');
+		$('#spanShippingFee').text('0 원');
 		$('#shippingFee').attr('value', 0);
 	}
 	else {
 		if (subTotal >= 50000) {
-			$('#spanShippingFee').text(0 + ' 원');
+			$('#spanShippingFee').text('0 원');
 			$('#shippingFee').attr('value', 0);
 		}
 		else {
-			$('#spanShippingFee').text(2500 + ' 원');
+			$('#spanShippingFee').text('2,500 원');
 			$('#shippingFee').attr('value', 2500);
 		}
 	}
 	
-    // 배송비까지 합친 합계 계산
-    // 파라미터로 넘길 input hidden 태그에 넣을 값
-    var total = subTotal + Number($('#shippingFee').val());
-    $('#inputTotal').val(total);
-    // 통화에 , 찍어서 화면에 보여줄 값
-    $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+    calcTotalWithShipFee(subTotal);
 }
 
 function selectAll(selectAll)  { // selectall 체크박스로 on/off
@@ -52,6 +44,21 @@ function selectAll(selectAll)  { // selectall 체크박스로 on/off
 		checkboxes.forEach((checkbox) => {
 		checkbox.checked = selectAll.checked
 	})
+	
+	const checked = document.querySelectorAll('input[name="cartCheck"]:checked'); // 선택된 체크박스
+	if (checked.length == 0) {
+		$('#subTotal').text('0 원');
+		$('#inputSubTotal').attr('value', 0);
+		
+		$('#spanShippingFee').text('0 원');
+		$('#shippingFee').attr('value', 0);
+		
+		$('#total').text('0 원');
+		$('#inputTotal').attr('value', 0);
+	}
+	else {
+		checkSelectAll();
+	}
 }
 
 $(function(){ // 장바구니 비우기
@@ -136,7 +143,6 @@ function calcTotalPrice(idx, type) {
 			},
 			success: function(data) {
 				if (data == 'complete') {
-					alert('장바구니 수량 변경 완료');
 				}
 			},
 			error: function() {
@@ -154,12 +160,7 @@ function calcTotalPrice(idx, type) {
 	        // 통화에 , 찍어서 화면에 보여줄 값
 	        $('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 	        
-	        // 배송비까지 합친 합계 계산
-	        // 파라미터로 넘길 input hidden 태그에 넣을 값
-	        var total = subTotal + Number($('#shippingFee').val());
-	        $('#inputTotal').val(total);
-	        // 통화에 , 찍어서 화면에 보여줄 값
-	        $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+	        calcTotalWithShipFee(subTotal);
 		}
     }
     else {
@@ -182,13 +183,29 @@ function calcTotalPrice(idx, type) {
 		        // 통화에 , 찍어서 화면에 보여줄 값
 		        $('#subTotal').text(subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 		        
-		        // 배송비까지 합친 합계 계산
-		        // 파라미터로 넘길 input hidden 태그에 넣을 값
-		        var total = subTotal + Number($('#shippingFee').val());
-		        $('#inputTotal').val(total);
-		        // 통화에 , 찍어서 화면에 보여줄 값
-		        $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
+		        calcTotalWithShipFee(subTotal);
 			}
 		}
 	}
+}
+
+function calcTotalWithShipFee(subTotal) {
+    // 배송비까지 합친 합계 계산
+    // 파라미터로 넘길 input hidden 태그에 넣을 값
+    // 5만원 이상 배송비 면제
+    var total = 0;
+    if (subTotal >= 50000) {
+		$('#shippingFee').val(0);
+		$('#spanShippingFee').text('0 원');
+		total = subTotal;
+	}
+	else {
+		$('#shippingFee').val(2500);
+		$('#spanShippingFee').text('2,500 원');
+	    total = subTotal + Number($('#shippingFee').val());
+	}
+	
+    $('#inputTotal').val(total);
+    // 통화에 , 찍어서 화면에 보여줄 값
+    $('#total').text(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' 원');
 }

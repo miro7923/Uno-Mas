@@ -1,5 +1,6 @@
 package com.april.unomas.persistence;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,12 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+
 import com.april.unomas.domain.UserCriteria;
+
+import com.april.unomas.domain.PointVO;
+import com.april.unomas.domain.ProdCriteria;
+
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -25,9 +31,20 @@ public class OrderDAOImpl implements OrderDAO {
 	private static final Logger log = LoggerFactory.getLogger(OrderDAOImpl.class);
 	private static String NAMESPACE = "com.unomas.mapper.OrderMapper";
 	
+	
 	@Override
-	public List<OrderAddrVO> getOrderAddrList(int user_num) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".getOrderAddrList", user_num);
+	public List<OrderAddrVO> getOrderAddrList(int user_num, int pageStart, int perPageNum) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_num", user_num);
+		map.put("pageStart", pageStart);
+		map.put("perPageNum", perPageNum);
+		
+		return sqlSession.selectList(NAMESPACE + ".getOrderAddrList", map);
+	}
+
+	@Override
+	public int getOrderAddrCnt(int user_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getOrderAddrCnt", user_num);
 	}
 
 	@Override
@@ -41,40 +58,42 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public void createOrder(OrderVO vo) throws Exception {
-//		sqlSession.insert(NAMESPACE + ".createOrder", vo);
+		sqlSession.insert(NAMESPACE + ".createOrder", vo);
 	}
 
 	@Override
 	public void createPay(PayVO vo) throws Exception {
-//		sqlSession.insert(NAMESPACE + ".createPay", vo);
+		sqlSession.insert(NAMESPACE + ".createPay", vo);
 	}
 
-	// 주문 개수 가져오기.
-//	@Override
-//	public List<Integer> myOrderCount(String num) throws Exception {
-//		List<Integer> totalCode = sqlSession.selectList(NAMESPACE + ".orderCount", num);
-//		
-//		List<Integer> codeList = new ArrayList<Integer>();
-//		int code = totalCode.get(0);
-//		int count = 1;
-//		for(int i=1; i<totalCode.size(); i++) {
-//			if(totalCode.get(i) == code) {
-//				count += 1;
-//			} else {
-//				codeList.add(count);
-//				code = totalCode.get(i);	
-//				count = 1;
-//			}
-//		}
-//		return codeList;
-//	}
+	@Override
+	public List<OrderVO> getOrderInfos(int order_code) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getOrderInfos", order_code);
+	}
+
+	@Override
+	public PayVO getPay(int pay_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getPay", pay_num);
+	}
+
+	@Override
+	public PayVO getLastPay() throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getLastPay");
+	}
 	
-	// 주문개수 - 테스트
+	@Override
+	public void createPointInfo(PointVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".createNewPoint", vo);
+	}
+
+
+	// 주문개수
 	@Override
 	public List<Integer> myOrderCount(String num) throws Exception {		
 		return sqlSession.selectList(NAMESPACE + ".orderCount", num);
 	}
 
+	// 주문 목록
 	@Override
 	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception {
 		Map<String, Object> map = new HashMap();
@@ -99,5 +118,5 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 	
 	
-	
+
 }

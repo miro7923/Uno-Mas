@@ -30,7 +30,6 @@ public class UserDAOTest {
 		log.info(dao.toString());
 	}
 	
-	
 //	@Test
 	public void 관리자등록확인() {
 		AdminVO vo = new AdminVO();
@@ -73,4 +72,8 @@ public class UserDAOTest {
 		vo.setAddr_name("회사");
 	}
 	
+	@Test
+	public void 회원번호로정보가져오기() {
+		log.info("@@@@@@@@@@@ vo: "+dao.getUserInfoByNum(1));
+	}
 }

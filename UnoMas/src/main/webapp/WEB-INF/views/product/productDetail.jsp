@@ -157,7 +157,7 @@
 								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
 								           </c:when>
 									       <c:when test="${sessionScope.saveID != null }">
-										       <input type="hidden" id="user_num" value="${sessionScope.saveID.user_num }">
+										       <input type="hidden" id="user_num" value="${sessionScope.saveNUM }">
 										       <input type="hidden" id="prod_num" value="${vo.prod_num }">
 										       <input type="hidden" id="prod_amount" value="1">
 											   <button class="primary-btn pd-cart" id="cartBtn" onclick="insertCart();">장바구니 담기</button> 
@@ -173,7 +173,7 @@
 					<br> <br>
 
 					<div class="product-tab">
-						<div class="tab-item">
+						<div class="tab-item" style="border: 1px solid #ebebeb;">
 							<ul class="nav" role="tablist">
 								<li><a class="active" data-toggle="tab" href="#tab-1"
 									role="tab">상품설명</a></li>
@@ -182,7 +182,7 @@
 								<!-- @@ 후기 개수에 따라 () 안에 숫자 출력하기 @@ -->
 								<li><a data-toggle="tab" href="#tab-3" role="tab" onclick="initReview();">후기
 										(${reviewCnt })</a></li>
-								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();" style="border-right: 1px solid #ebebeb;">문의</a></li>
+								<li><a data-toggle="tab" href="#tab-4" role="tab" onclick="initQna();">문의</a></li>
 							</ul>
 						</div>
 						<div class="tab-item-content">
@@ -279,7 +279,7 @@
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
 												문의 및 요청사항은 마이페이지 내  
-												<span onclick="window.parent.location.href = '/mypage/my_QnA'"
+												<span onclick="window.parent.location.href = '/user/mypage'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
 										<div class="comment-option" id="reviewListAjax">
@@ -344,8 +344,8 @@
 															<p id="reviewContent${it.index }">${reviewVo.review_content }</p>
 															<!-- @@ 로그인 기능 추가되면 로그인한 사용자만 자기글 수정/삭제 가능하게 구현 @@ -->
 															<!-- @@ 관리자도 수정 삭제 가능 -->
-															
-															<c:if test="${sessionScope.saveNUM != null && user_num == reviewVo.user_num }">
+										
+															<c:if test="${sessionScope.saveID != null && sessionScope.saveNUM == reviewVo.user_num }">
 																<p class="text-right">
 																    <a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
 																    <a href="javascript:void(0)" onclick="confirmToRemove('review', ${reviewVo.review_num}, ${vo.prod_num })" 
@@ -371,7 +371,7 @@
 												<div class="row" id="pagediv">
 												    <input type="hidden" value="1" id="curReviewPage">
 													<div class="col-lg-12 text-center">
-														<c:if test="${reviewPm.prev }">
+														<c:if test="${reviewPm.prev == true }">
 															<a href="/product/review_list?page=${reviewPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
 														</c:if>
 														
@@ -383,7 +383,7 @@
 															</span> 
 														</c:forEach>
 														
-														<c:if test="${reviewPm.next }">
+														<c:if test="${reviewPm.next == true }">
 															<a href="/product/review_list?page=${reviewPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
 														</c:if>
 													</div>
@@ -405,7 +405,7 @@
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
 												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
-												onclick="window.parent.location.href = '/mypage/my_QnA'"
+												onclick="window.parent.location.href = '/user/mypage'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
 										<div class="comment-option">
@@ -457,15 +457,21 @@
 															<p id="inquiryContent${it.index }">${inquiryVo.p_inquiry_content }</p>
 															<!-- @@ 관리자는 수정 삭제 답변 모두 가능 @@ -->
 															<!-- @@ 로그인 한 회원이 쓴 자기 글은 수정 삭제 가능 @@ -->
+															<c:if test="${sessionScope.saveID != null && sessionScope.saveNUM == inquiryVo.user_num }">
 
-															<c:if test="${sessionScope.saveNUM != null && user_num == inquiryVo.user_num }">
 																<p class="text-right">
 																    <a href="/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
 																    <a href="javascript:void(0)" 
 																    onclick="confirmToRemove('inquiry', ${inquiryVo.p_inquiry_num}, ${vo.prod_num })" style="color: #5179a5;">삭제</a>
 																</p>
 															</c:if>
-															<p class="text-right"><a href="#">답변하기</a></p>
+															<c:if test="${sessionScope.saveANUM != null && inqComList != null && inqComList[it.index] == null }">
+																<p class="text-right"><a href="/product/write_inq_comment?prod_num=${vo.prod_num }&p_inquiry_num=${inquiryVo.p_inquiry_num}">답변하기</a></p>
+															</c:if>
+															
+															<c:if test="${inqComList != null && inqComList[it.index] != null }">
+															    <p><br><br>${inqComList[it.index].com_content }</p>
+															</c:if>
 														</div>
 													</c:forEach>
 											    </c:otherwise>

@@ -21,5 +21,5 @@ public class MemberServiceTest {
 	
 	@Inject
 	private UserService service;
-	
+
 }

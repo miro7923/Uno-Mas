@@ -13,3 +13,4 @@ public class ProdCommentVO {
 	private String com_content;
 	private Timestamp com_regdate;
 }
+

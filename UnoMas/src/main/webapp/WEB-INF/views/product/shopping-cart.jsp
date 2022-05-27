@@ -19,6 +19,7 @@
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<!-- Header End -->
+<<<<<<< HEAD
 	
 	<c:if test="${pageInfo eq 'my' }">
       	<div style="margin: 70px 20px 50px 220px;">
@@ -26,6 +27,9 @@
       	</div>
     </c:if>
 	
+=======
+
+>>>>>>> f4c949dc3cde14a2180609408913b25cdddd04c3
 	<!-- Breadcrumb Section Begin -->
 	<div class="breacrumb-section">
 		<div class="container">
@@ -41,7 +45,11 @@
 	<!-- Breadcrumb Section Begin -->
 
 	<!-- Shopping Cart Section Begin -->
+<<<<<<< HEAD
 	<section class="shopping-cart-table">
+=======
+	<section class="shopping-cart spad">
+>>>>>>> f4c949dc3cde14a2180609408913b25cdddd04c3
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
