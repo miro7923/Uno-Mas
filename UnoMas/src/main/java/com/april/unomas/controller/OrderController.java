@@ -150,9 +150,7 @@ public class OrderController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/complete", method = RequestMethod.POST, 
-	consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
-	produces = MediaType.TEXT_PLAIN_VALUE)
+	@RequestMapping(value = "/complete", method = RequestMethod.POST)
 	public ResponseEntity<String> completePOST(@RequestBody OrderVO vo) throws Exception {
 		// 결제 완료된 주문정보 DB에 저장
 		orderService.createOrder(vo);
@@ -230,6 +228,7 @@ public class OrderController {
 		
 		// 회원 적립금 추가
 		userService.updatePoint((int)session.getAttribute("saveNUM"), (int)point);
+		
 		
 		return new ResponseEntity<Integer>(payVO.getPay_num(), HttpStatus.OK);
 	}

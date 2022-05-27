@@ -64,4 +64,10 @@
         WHERE pay_num = (SELECT MAX(pay_num)
 						 FROM pay)
     </select>
+    
+    <!-- 포인트 적립 내역 테이블에 저장 -->
+    <insert id="createNewPoint">
+        INSERT INTO point(order_code, user_num, point_content, point_cost, point_deadline)
+        VALUES(#{order_code}, #{user_num}, #{point_content}, #{point_cost}, #{point_deadline})
+    </insert>
 </mapper>

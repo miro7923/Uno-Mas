@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCriteria;
 
 @Repository
@@ -71,5 +72,10 @@ public class OrderDAOImpl implements OrderDAO {
 	@Override
 	public PayVO getLastPay() throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getLastPay");
+	}
+
+	@Override
+	public void createPointInfo(PointVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".createNewPoint", vo);
 	}
 }

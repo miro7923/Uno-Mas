@@ -5,6 +5,7 @@ import java.util.List;
 import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.OrderVO;
 import com.april.unomas.domain.PayVO;
+import com.april.unomas.domain.PointVO;
 
 public interface OrderService {
 
@@ -31,4 +32,7 @@ public interface OrderService {
 	
 	// 직전에 생성된 결제정보 가져오기
 	public PayVO getLastPay() throws Exception;
+	
+	// 포인트 테이블에 저장하기
+	public void createPointInfo(PointVO vo) throws Exception;
 }

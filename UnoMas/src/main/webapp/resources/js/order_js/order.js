@@ -75,13 +75,7 @@ function requestPay() {
 						recipient = $('#newName').val();
 					}
 		        	
-		        	alert('recipient: '+recipient);
-					alert('phone: '+phone);
-					alert('addr: '+addr);
-					alert('roadAddr: '+roadAddr);
-					alert('detailAddr: '+detailAddr);
-					alert('postalcode: '+postalcode);
-					
+		        	
 		        	for (var i = 0; i < $('#prodCnt').val(); i++) {
 						var orderVO = JSON.stringify({
 		                	order_code: $('#orderCode').val(),
@@ -106,9 +100,11 @@ function requestPay() {
 			            	data: orderVO,
 			            	success: function(data) {
 								alert('success return: '+data);
+								console.log(data);
 							},
-							error: function() {
+							error: function(errordata) {
 								alert('주문정보 저장 실패');
+								console.log(errordata);
 							}
 			        	});
 	        		}

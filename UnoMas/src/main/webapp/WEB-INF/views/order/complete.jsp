@@ -43,7 +43,7 @@
 								<label for="cun-name">주문번호</label>
 							</div>
 							<div class="col-lg-11 text-left">
-								<label><strong>${payVO.order_code }</strong></label>
+								<label><strong>${payVO.pay_num }</strong></label>
 							</div>
 						</div>
 						<br><hr><br>
