@@ -16,9 +16,7 @@
 <link rel="stylesheet"
 	href="${path}/resources/css/product_css/productDetail.css?after2">
 <!-- Header end -->
-<%
-    session.setAttribute("saveANUM", 1);
-%>
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>

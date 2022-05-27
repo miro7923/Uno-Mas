@@ -66,12 +66,18 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
+
 		HashMap loginMap = service.loginUser(vo);
+
 		String result = String.valueOf(loginMap.get("result"));
-		System.out.println("결과: " +  result + loginMap.get("num"));
-		if(result.equals("1")) {
-			session.setAttribute("saveID", vo.getUser_id());
-			session.setAttribute("saveNUM", loginMap.get("num"));
+		if (result.equals("1")) {
+			if (vo.getUser_id().contains("admin")) {
+				session.setAttribute("saveAID", vo.getUser_id());
+				session.setAttribute("saveANUM", loginMap.get("num"));
+			} else {
+				session.setAttribute("saveID", vo.getUser_id());
+				session.setAttribute("saveNUM", loginMap.get("num"));
+			}
 		}
 		return result;
 	}
