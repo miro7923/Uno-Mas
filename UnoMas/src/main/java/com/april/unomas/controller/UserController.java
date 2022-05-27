@@ -172,7 +172,7 @@ public class UserController {
 			) {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
-		int totalReviewCnt = service.getMyReviewCnt(saveNUM);
+		int totalReviewCnt = service.myReviewCnt(saveNUM);
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
@@ -199,7 +199,7 @@ public class UserController {
 			) {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
-		int totalReviewCnt = service.getMyReviewCnt(saveNUM);
+		int totalReviewCnt = service.myReviewCnt(saveNUM);
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
