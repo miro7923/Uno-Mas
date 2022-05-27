@@ -23,7 +23,7 @@ public class AdminDAOImpl implements AdminDAO {
 	@Inject
 	private SqlSession sqlSession;
 	
-	private static final String NAMESPACE = "com.unomas.mapper.AdminMapper";
+	private static final String NAMESPACE = "com.unomas.mapper.adminMapper";
 	
 	@Override
 	public List<AdminVO> adminList(Criter cri) {
@@ -65,12 +65,6 @@ public class AdminDAOImpl implements AdminDAO {
 	public void noticeInsert(NoticeVO vo) {
 		// 공지사항 글쓰기
 		sqlSession.insert(NAMESPACE+".noticeInsert", vo);
-	}
-
-	@Override
-	public AdminVO adminLogin(AdminVO vo) {
-		// 관리자 로그인
-		return sqlSession.selectOne(NAMESPACE+".adminLogin",vo);
 	}
 
 	@Override

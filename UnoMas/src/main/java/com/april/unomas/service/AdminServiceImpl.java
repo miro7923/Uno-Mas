@@ -69,12 +69,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public AdminVO adminLogin(AdminVO vo) {
-		// 관리자 로그인
-		return dao.adminLogin(vo);
-	}
-
-	@Override
 	public NoticeVO getNotice(Integer notice_num) throws Exception {
 		// 공지사항 조회
 		return dao.noticeRead(notice_num);

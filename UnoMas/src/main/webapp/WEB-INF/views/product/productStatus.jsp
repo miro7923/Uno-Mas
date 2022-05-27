@@ -91,37 +91,34 @@
 											<label>상품 카테고리<span>*</span></label>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" id="categories">
+											<select class="selectBox" id="categories" disabled>
 												<option value="0" selected="selected">대분류</option>
 												<c:forEach var="cvo" items="${categories }">
-												<option value="${cvo.topcate_num }">${cvo.topcate_num }. ${cvo.topcate_name }</option>
 												</c:forEach>
+												<option value="1" <c:if test="${vo.prod_category > 0 }">selected</c:if>>채소</option>
+												<option value="2" <c:if test="${vo.prod_category > 3 }">selected</c:if>>과일 · 견과류 · 쌀</option>
+												<option value="3" <c:if test="${vo.prod_category > 6 }">selected</c:if>>수산 · 해산 · 건어물</option>
+												<option value="4" <c:if test="${vo.prod_category > 10 }">selected</c:if>>정육 · 계란</option>
+												<option value="5" <c:if test="${vo.prod_category > 15 }">selected</c:if>>생수 · 우유 · 음료</option>
+												<option value="6" <c:if test="${vo.prod_category > 18 }">selected</c:if>>신상품</option>
+												<option value="7" <c:if test="${vo.prod_category > 19 }">selected</c:if>>특가</option>
 											</select>
 										</div>
 										<div class="col-lg-6">
-											<select class="selectBox" name="prod_category" id="details">
+											<select class="selectBox" name="prod_category" id="details" disabled>
 												<option value="0" selected>소분류</option>
 												<c:forEach var="dvo" items="${details }">
-													<c:set var="dcateNum" value="${dvo.dcate_num }"></c:set>
-													<option value="${dvo.dcate_num }" class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
 													<option value="${dvo.dcate_num }" 
-														<c:if test="${vo.prod_category == dcateNum }">selected</c:if>class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
+														<c:if test="${vo.prod_category eq dvo.dcate_num }">selected="selected"</c:if>class="cate${dvo.topcate_num }">${dvo.dcate_name }</option>
 												</c:forEach>
 											</select>
 											<label></label>
 										</div>
-<!-- 											<select class="selectBox" > -->
-<!-- 												<option selected>대분류</option> -->
-<%-- 												<option value="1봉" <c:if test="${vo.prod_sellunit == '1봉'}">selected</c:if>>1봉</option> --%>
-<!-- 											</select> -->
-											
-											<input type="text" name="prod_category" value="${vo.prod_category }" readonly>
 											<label></label>
 										<div class="col-lg-12">
 											<label>요약 설명<span>*</span></label> <input type="text" name="prod_explain" value="${vo.prod_explain }" readonly>
 										</div>
 										<div class="col-lg-12">
-											<label for="zip">검색 키워드</label> <input type="text"> <label></label>
 											<div class="line"><hr></div><br><br>
 										</div>
 									</div>
@@ -186,7 +183,7 @@
 								<div class="col-lg-12">
 									<label></label>
 									<div class="line"><hr></div><br><br>
-									<h4>상품이미지<label>(100MB)</label></h4>
+									<h4>상품이미지 목록<label></label></h4>
 								</div>
 							</div>
 							<div class="product-list">
@@ -196,11 +193,16 @@
 		                                    <div class="pi-text">
 		                                        <h5>기본 이미지(세로)</h5><br>
 				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-1.jpg" alt="">
+				                                    	<c:choose>
+														<c:when test="${empty vo.prod_image1 }">
+														<input type="text" value="이미지 없음" readonly>
+														</c:when>
+														<c:otherwise>
 				                                        <div class="sale pp-sale">1</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                        <img class="" src="${path}/resources/upload/images/products/top/${vo.prod_image1 }">
+				                                        </c:otherwise>
+				                                        </c:choose>
 				                                    </div>
-		                                        <div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -209,11 +211,16 @@
 		                                    <div class="pi-text">
 		                                        <h5>상품 상세 설명</h5><br>
 				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-2.jpg" alt="">
+				                                    	<c:choose>
+														<c:when test="${empty vo.prod_image2 }">
+														<input type="text" value="이미지 없음" readonly>
+														</c:when>
+														<c:otherwise>
 				                                        <div class="sale pp-sale">2</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                        <img class="" src="${path}/resources/upload/images/products/detail/${vo.prod_image2 }">
+				                                    	</c:otherwise>
+				                                    	</c:choose>
 				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -222,11 +229,16 @@
 		                                    <div class="pi-text">
 		                                        <h5>썸네일</h5><br>
 				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-3.jpg" alt="">
+				                                    	<c:choose>
+														<c:when test="${empty vo.prod_image3 }">
+														<input type="text" value="이미지 없음" readonly>
+														</c:when>
+														<c:otherwise>
 				                                        <div class="sale pp-sale">3</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                        <img class="" src="${path}/resources/upload/images/products/thumbnail/${vo.prod_image3 }">
+				                                  		</c:otherwise>
+				                                  		</c:choose>
 				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>
@@ -235,11 +247,16 @@
 		                                    <div class="pi-text">
 		                                        <h5>품절 시 대체 썸네일</h5><br>
 				                                    <div class="pi-pic">
-				                                        <img src="${path}/resources/img/products/product-4.jpg" alt="">
+				                                    	<c:choose>
+														<c:when test="${empty vo.prod_image4 }">
+														<input type="text" value="이미지 없음" readonly>
+														</c:when>
+														<c:otherwise>
 				                                        <div class="sale pp-sale">4</div>
-				                                        <input type="file" id="uploadImg" oninput="checkFileName();">
+				                                        <img class="" src="${path}/resources/upload/images/products/soldout/${vo.prod_image4 }">
+				                                        </c:otherwise>
+														</c:choose>
 				                                    </div>
-		                                     	<div class="catagory-name">[이미지 삭제]</div>
 		                                    </div>
 		                                </div>
 		                            </div>

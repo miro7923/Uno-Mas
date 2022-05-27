@@ -12,7 +12,9 @@
     <header class="headerSection">
     <%
     	String vo = (String)session.getAttribute("saveID");
-    	if(vo == null){ // 로그인 안 했을 때 링크
+    	String advo = (String)session.getAttribute("saveAID");	
+    
+    	if(vo == null && advo == null){ // 로그인 안 했을 때 링크
     %>
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
@@ -28,12 +30,28 @@
     		</ul>
     	</div>
     	<%
-			} else { // 로그인 했을 때 링크
+			} if(vo != null) { // 회원 로그인 했을 때 링크
     	%>	
-    	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
+    	<div id="headerTop" class="headerTop"> 
     		<ul class="listMenu">
     			<li class="menu menuMypage">
     				<a href="../user/mypage" class="linkMenu">마이페이지</a>
+    			</li>
+    			<li class="menu menuLogout">
+    				<a href="../user/logout" class="linkMenu">로그아웃</a>
+    			</li>
+    			<li class="menu CS">
+    				<a href="../board/faq_paging" class="linkMenu">고객센터</a>
+    			</li>
+    		</ul>
+    	</div>
+    	<%
+			} if (advo != null) { // 관리자 로그인 했을 때 링크
+    	%>
+    	<div id="headerTop" class="headerTop"> 
+    		<ul class="listMenu">
+    			<li class="menu menuMypage">
+    				<a href="../admin/main" class="linkMenu">관리자페이지</a>
     			</li>
     			<li class="menu menuLogout">
     				<a href="../user/logout" class="linkMenu">로그아웃</a>
@@ -69,7 +87,7 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="/product/wishlist">
+                                <a href="/product/wishlist/list">
                                     <i class="icon_heart_alt"></i>
                                 </a>
                             </li>

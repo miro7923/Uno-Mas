@@ -73,15 +73,10 @@ public class UserDAOTest {
 		dao.loginUser(vo);
 	}
 	
-//	@Test
-//	public void 회원정보수정테스트() {
-//		UserVO vo = new UserVO();
-//		vo.setUser_name("육");
-//		vo.setUser_email("user6@naver.com");
-//		vo.setUser_birth("2003-05-26");
-//		vo.setUser_phone("01020020202");
-//		dao.updateUser(vo);
-//		
-//	}
+	@Test
+	public void 추가배송지테스트() {
+		UserVO vo = new UserVO();
+		vo.setAddr_name("회사");
+	}
 	
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.april.unomas.mappers.eventMapper">
+
+<select id="may" resultType="com.april.unomas.domain.SelectVO">
+	SELECT p.prod_num, p.prod_name, p.prod_sellcnt, t.topcate_num, d.dcate_num, d.dcate_name, p.prod_price, p.prod_discntrate, p.prod_image3, p.prod_stock
+	FROM unomasdb.products p
+	INNER JOIN unomasdb.detail_category d
+	ON p.prod_category = d.dcate_num
+	INNER JOIN unomasdb.top_category t
+	ON d.topcate_num = t.topcate_num
+	WHERE d.dcate_num = 11
+	ORDER BY prod_readcnt is null asc, prod_readcnt desc limit 4
+</select>
+
+</mapper>
