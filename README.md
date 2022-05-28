@@ -21,3 +21,4 @@
 16. [Ajax로 이미지파일 업로드](DevLog/2022-05-18-uno-mas-dev-log-16.md)<br>
 17. [새로고침 없이 게시판 목록 불러오기](DevLog/2022-05-22-uno-mas-dev-log-17.md)<br>
 18. [결제기능 추가(아임포트 API)](DevLog/2022-05-26-uno-mas-dev-log-18.md)<br>
+19. [주문시 베송지 목록 새 창에서 선택된 배송지 정보 가져오는 기능 추가](DevLog/2022-05-27-uno-mas-dev-log-19.md)<br>
