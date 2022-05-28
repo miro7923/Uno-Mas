@@ -42,7 +42,8 @@ public interface OrderService {
 	public List<Integer> MyOrderCount(String num) throws Exception;
 
 	// 내 주문 목록
-	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
+//	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
+	public Map<Integer, List> getMyOrderList(String num, List<Integer> limitList) throws Exception;
 
 	
 }

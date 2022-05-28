@@ -3,6 +3,7 @@
 }
 
 .mypage_container {
+	display: table;
 	width: 1084px;
 	height: 1200x;
     min-height: 1300px;
@@ -57,6 +58,7 @@
 	font-size: 18px;
 	margin: 30px 0px 10px 0px;
 	font-weight: bold;
+	margin-bottom: -20px;
 }
 
 .middle-content > h3 >span > a {
@@ -76,8 +78,8 @@ table {
 	border-collapse: collapse;
 	text-align: center;
 	width: 100%;
-	min-height: 300px;
 	font-size: 14px;
+	min-height: 300px;
 }
 th, td {
 	border: 1px solid #d5d5d5;

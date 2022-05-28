@@ -141,11 +141,11 @@
 		                                    <c:choose>
 		                                        <c:when test="${isInWishlist == true }">
 												    <button class="icon_heart" id="wishlistBtn" 
-												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
+												        onclick="toggleWishlistBtn(${saveNUM}, ${vo.prod_num });"></button>
 		                                        </c:when>
 		                                        <c:otherwise>
 												    <button class="icon_heart_alt" id="wishlistBtn" 
-												        onclick="toggleWishlistBtn(${sessionScope.saveID.user_num}, ${vo.prod_num });"></button>
+												        onclick="toggleWishlistBtn(${saveNUM}, ${vo.prod_num });"></button>
 		                                        </c:otherwise>
 		                                    </c:choose>
                                         </c:otherwise>

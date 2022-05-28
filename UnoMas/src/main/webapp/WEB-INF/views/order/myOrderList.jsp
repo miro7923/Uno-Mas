@@ -32,8 +32,8 @@
 					<colgroup>
 					  <col style="width: 15%"><col style="width: 55%;"><col style="width: 15%"><col style="width: 15%">
 					</colgroup>
-					<tr >
-						<td>주문일/주문번호</td><td>상품정보</td><td>상태</td><td>신청</td>
+					<tr class="table_top_tr">
+						<th>주문일/주문번호</th><th>상품정보</th><th>상태</th><th>신청</th>
 					</tr>
 					
 					<tbody>	
@@ -46,12 +46,12 @@
 							  <fmt:formatDate var="regdate" value="${map.value[0].order_date}" pattern="yyyy-MM-dd" />
 								<tr>
 									<td rowspan="${fn:length(map.value) }" class="order_num_td">${regdate }<br>
-											[ ${map.key } ]<br> 
-											<a href="" class="table_btn">주문 상세보기</a>
+											( ${map.key } )<br> 
+											<a href="order_detail" class="table_btn">주문 상세보기</a>
 									</td>
 									<c:forEach var="val" items="${map.value }" varStatus="itt">
 										<td class="order_info_td">
-											<img src="" alt="이미지">
+											<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
 											<div>
 												<a href="" target="_blank"> ${val.prod_name } </a>
 												<hr>
@@ -60,8 +60,20 @@
 										</td>
 									</c:forEach>
 										
-									<td rowspan="${fn:length(map.value) }"><strong>${map.value[0].order_status }</strong><br>
-										<a href="" class="table_btn">배송조회</a>
+									<td rowspan="${fn:length(map.value) }">
+									  <c:choose>
+									  	<c:when test="${map.value[0].order_status eq '결제완료'}">
+									  		<strong style="color: red;">${map.value[0].order_status }<strong><br>
+									  	</c:when>
+									  	<c:when test="${map.value[0].order_status eq '배송완료'}">
+									  		<strong style="color: blue;">${map.value[0].order_status }<strong><br>
+									  	</c:when>
+									  	<c:otherwise>
+									  		<strong>${map.value[0].order_status }<strong><br>
+									  	</c:otherwise>
+									  </c:choose>
+										
+									  <a href="" class="table_btn">배송조회</a>
 									</td>
 									<td><a href="" class="table_btn">반품신청</a><br> 
 										<a href="" class="table_btn">교환신청</a>
@@ -83,17 +95,17 @@
 							end="${pm.endPage }" step="1">
 							<c:choose>
 								<c:when test="${pg.index == pagingNum }">
-									<a href="my_prod_qa?pagingNum=${pg.index }"
+									<a href="my_order?pagingNum=${pg.index }"
 										class="paging_num_yes">${pg.index }</a>
 								</c:when>
 								<c:otherwise>
-									<a href="my_prod_qa?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
+									<a href="my_order?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 		
 						<c:if test="${pm.next }">
-							<a href="my_prod_qa?pagingNum=${pm.endPage + 1}"
+							<a href="my_order?pagingNum=${pm.endPage + 1}"
 								class="paging_a">다음</a>
 						</c:if>
 					</div>

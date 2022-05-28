@@ -92,7 +92,7 @@
                                 </a>
                             </li>
                             <li class="cart-icon">
-                                <a href="/product/shopping-cart">
+                                <a href="/product/cart/list">
                                     <i class="icon_bag_alt"></i>
                                 </a>
                             </li>

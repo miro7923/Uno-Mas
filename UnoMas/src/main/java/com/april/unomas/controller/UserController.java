@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
@@ -27,6 +28,8 @@ import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserPageMaker;
 
 import com.april.unomas.domain.UserVO;
+import com.april.unomas.service.CartService;
+import com.april.unomas.service.OrderService;
 import com.april.unomas.service.UserService;
 
 @Controller
@@ -35,6 +38,13 @@ public class UserController {
 
 	@Inject
 	private UserService service;
+	
+	@Inject
+	private OrderService orderService;
+	
+	@Inject
+	private CartService cartService;
+	
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	// 회원가입 이용약관 페이지
@@ -141,7 +151,25 @@ public class UserController {
 
 	// mypage
 	@RequestMapping(value = "/mypage")
-	public String mypage() {
+	public String mypage(HttpSession session, Model model) throws Exception {
+		int saveNUM = (int)session.getAttribute("saveNUM");
+		
+		List<Integer> codeList = orderService.MyOrderCount(String.valueOf(saveNUM));
+		if(codeList.size() > 0) {
+			List<Integer> limitList = codeList.subList(0, 3);
+			Map<Integer, List> orderMap = orderService.getMyOrderList(String.valueOf(saveNUM), limitList);
+			model.addAttribute("orderMap", orderMap);
+		}
+		
+		List<CartVO> list = cartService.listCart(saveNUM);
+		int sumMoney = cartService.sumMoney(saveNUM);  	// 총 상품가격
+        int fee = sumMoney >= 50000 ? 0 : 2500; 		// 배송비 계산
+ 
+        model.addAttribute("list", list.subList(0, 4)); // 장바구니 정보를 map에 저장
+        model.addAttribute("sumMoney", sumMoney); 		// 장바구니 전체 금액
+        model.addAttribute("fee", fee); 				// 배송료
+        model.addAttribute("sum", sumMoney+fee); 		// 총 결제 예상금액(장바구니+배송비)
+		
 		return "/user/myPage";
 	}
 

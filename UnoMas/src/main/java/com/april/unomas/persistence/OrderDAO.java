@@ -42,6 +42,6 @@ public interface OrderDAO {
 	// 총 주문 개수
 	public List<Integer> myOrderCount(String num) throws Exception;
 
-	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
+	public Map<Integer, List> getMyOrderList(String num, List<Integer> limitList) throws Exception;
 
 }

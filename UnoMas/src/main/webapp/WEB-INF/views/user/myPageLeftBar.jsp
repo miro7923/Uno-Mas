@@ -9,14 +9,14 @@
 
 
 <div class="left-bar">
-	<div class="page_name">마이페이지</div>
+	<div class="page_name"><a href="/user/mypage">마이페이지</a></div>
 	
 	<div class="mypage-cate">
 		<h4>My 쇼핑</h4>
 		<a href="/order/my_order">주문목록/배송조회</a>
 		<a href="">취소/교환/환불</a>
 		<a href="/product/wishlist/list?pageInfo=my">찜한 상품</a>
-		<a href="/product/shopping-cart?pageInfo=my">장바구니</a>
+		<a href="/product/cart/list?pageInfo=my">장바구니</a>
 		<br>
 		
 		<h4>My 공동구매</h4>

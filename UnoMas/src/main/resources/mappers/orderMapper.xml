@@ -78,7 +78,7 @@
     	WHERE user_num=#{num}
     </select>
     
-    
+    <!-- 주문 목록 -->
     <select id="myOrderList" parameterType="int" resultType="com.april.unomas.domain.OrderVO">
 		SELECT *
 		from orders as o

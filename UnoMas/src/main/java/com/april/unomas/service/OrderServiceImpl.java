@@ -74,7 +74,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception {
-		return dao.getMyOrderList(num, cri);
+	public Map<Integer, List> getMyOrderList(String num, List limitList) throws Exception {
+		return dao.getMyOrderList(num, limitList);
 	}
 }
