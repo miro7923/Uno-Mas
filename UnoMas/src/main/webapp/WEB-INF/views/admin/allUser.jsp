@@ -34,7 +34,7 @@
 						<div class="allUser_container">
 							<h3>전체 회원</h3>
 							<div class="line"><hr></div>
-							<span>(총 ${pm.totalCount })</span><br>
+							<span><b>- 총 회원 수: ${pm.totalCount }</b></span><br>
 
 							<div class="allUser_top">
 								<a href="/admin/all_user?standard=desc" id="standard_default">최신순</a>

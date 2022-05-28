@@ -105,7 +105,8 @@
 				                                        <td style="width: 70px; text-align: center;">${vo.faq_num }</td>
 				                                        <td style="width: 135px; text-align: center;">${vo.qnaCateVO.qnacate_name }</td>
 				                                        <td style="width: 500px; cursor:pointer">${vo.faq_title }</td>
-				                                        <td style="width: 100px; cursor:pointer">${vo.adminVO.admin_id }</td>
+				                                        <td style="width: 100px; cursor:pointer">UnoMás</td>
+<%-- 				                                        <td style="width: 100px; cursor:pointer">${vo.adminVO.admin_id }</td> --%>
 				                                    </tr>
 				                                </tbody>
 				                            </table> 
