@@ -93,7 +93,7 @@ public class WishController {
 		
 		int result = 0;
 		int prod_num = 0;
-		
+		int count = 0;
 		
 		if(user_num != 0) {
 			wish.setUser_num(user_num);
@@ -101,10 +101,21 @@ public class WishController {
 			for(String i : chArr) {   
 				prod_num = Integer.parseInt(i);
 				wish.setProd_num(prod_num);
-				service.insertCheckWish(wish);
-			}   
-			result = 1;
-		}  
+				if(service.checkCart(user_num, prod_num) != 0) {
+					count++;
+					result = 2;
+					break;
+				}
+			}
+			for(String i : chArr ) {
+				prod_num = Integer.parseInt(i);
+				wish.setProd_num(prod_num);
+				if(count == 0) {
+					service.insertCheckWish(wish);
+					result = 1;
+				}
+			}
+		}
 		return result;  
 	}
 		

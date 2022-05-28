@@ -733,7 +733,7 @@ ol {
 }
 
 .nav-item .nav-depart .depart-btn .depart-hover li a:hover {
-	color: #e7ab3c;
+	color: #B9CE45;
 }
 
 .nav-item .nav-menu {
@@ -751,7 +751,7 @@ ol {
 }
 
 .nav-item .nav-menu li.active a {
-	background: #e7ab3c;
+	background: #B9CE45;
 }
 
 .nav-item .nav-menu li a {
@@ -768,7 +768,7 @@ ol {
 }
 
 .nav-item .nav-menu li:hover>a {
-	background: #e7ab3c;
+	background: #B9CE45;
 }
 
 .nav-item .nav-menu li:hover .dropdown {
@@ -798,7 +798,7 @@ ol {
 
 .nav-item .nav-menu li .dropdown li:hover>a {
 	background: transparent;
-	color: #e7ab3c;
+	color: #B9CE45;
 }
 
 .nav-item .nav-menu li .dropdown li a {
@@ -1218,7 +1218,7 @@ ol {
 }
 
 .product-item .pi-pic ul li.w-icon.active a {
-	background: #e7ab3c;
+	background: #B9CE45;
 	color: #ffffff;
 }
 
@@ -1253,7 +1253,7 @@ ol {
 }
 
 .product-item .pi-text .product-price {
-	color: #e7ab3c;
+	color: #B9CE45;
 	font-size: 20px;
 	font-weight: 700;
 }
