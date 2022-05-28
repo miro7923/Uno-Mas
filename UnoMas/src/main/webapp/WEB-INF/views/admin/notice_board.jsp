@@ -6,7 +6,7 @@
 <html lang="zxx">
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/user_css/myInfo.css">
-<link rel="stylesheet" href="${path}/resources/css/admin.css?after1">
+<link rel="stylesheet" href="${path}/resources/css/admin_css/admin.css?after1">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -41,12 +41,12 @@
 						<input type="hidden" name="id" value="notice">
 							<div class="row">
 								<div class="row">
-									<div class="col-lg-3">
+									<div class="col-lg-3" style="padding-right:0px; border-right: none;">
 										<select class="selectBox" name="searchType">
 											<option value="title">제목</option>
 										</select>
 										</div>
-										<div class="col-lg-9">
+										<div class="col-lg-9" style="padding-left:0px;">
 											<div class="input-search">
 												<input type="text" id="keyword" name="keyword" value="" placeholder="검색어를 입력해주세요.">
 												<button type="button" id="search_btn" onclick="search_admin_notice()">
@@ -81,11 +81,6 @@
 													</c:forEach>
 												</tbody>
 											</table>
-												<div class="col-lg-12">
-													<div class="row" style="display: inline;">
-		                                        		<button type="button" class="count-button" onclick="location.href='/admin/notice_write';">글쓰기</button>
-													</div>
-												</div>
 											<!-- 페이징 처리 -->
 											<div class="row justify-content-center">
 												<div class="col-lg-12" style="text-align:center;">
@@ -108,6 +103,12 @@
 															</a></li>
 														</c:if>
 													</ul>
+												</div>
+											</div>
+											<!-- 페이징 처리 끝 -->
+											<div class="col-lg-12" style="padding:0px;">
+												<div class="row" style="display: inline;">
+		                                        	<button type="button" class="register-button" onclick="location.href='/admin/notice_write';">공지사항 등록</button>
 												</div>
 											</div>
 										</div>

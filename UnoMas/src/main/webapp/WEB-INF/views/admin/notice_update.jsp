@@ -8,7 +8,7 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <%-- <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3"> --%>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
-<link rel="stylesheet" href="${path}/resources/css/admin.css?after1">
+<link rel="stylesheet" href="${path}/resources/css/admin_css/admin.css?after1">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

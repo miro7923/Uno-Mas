@@ -7,7 +7,7 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <%-- <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3"> --%>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
-<link rel="stylesheet" href="${path}/resources/css/admin.css?after1">
+<link rel="stylesheet" href="${path}/resources/css/admin_css/admin.css?after1">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,25 +38,25 @@
 					<div class="line"><hr></div>
 					<div class="container">
 						<form class="checkout-form" method="post" enctype="multipart/form-data"><br>
-							<table class="table_info" style="margin-bottom: 60px; height: 330px;">
+							<table class="table_info" style="margin-bottom: 30px; height: 330px;">
 								<tr>
 									<th>작성자</th>
 									<td><input type="hidden" name="admin_num" value="1">
-										<input type="text" class="notice_field " name="admin_name" placeholder="UnoMás" readonly>
+										<input type="text" style="margin-bottom: 0px;" class="notice_field " name="admin_name" placeholder="UnoMás" readonly>
 									</td>
 								</tr>
 								<tr>
 									<th>제목</th>
-									<td><input type="text" class="notice_field " name="notice_title" placeholder="제목을 입력하세요"></td>
+									<td><input type="text" style="margin-bottom: 0px;" class="notice_field " name="notice_title" placeholder="제목을 입력하세요"></td>
 								</tr>
 								<tr>
 									<th>첨부파일</th>
-									<td><input type="file" class="notice_field " name="notice_file"></td>
+									<td><input type="file" style="margin-bottom: 0px;" class="notice_field " name="notice_file"></td>
 								</tr>
 			
 								<tr>
 									<th>이미지</th>
-									<td><input type="file" class="notice_field " name="notice_img"></td>
+									<td><input type="file" style="margin-bottom: 0px;" class="notice_field " name="notice_img"></td>
 								</tr>
 							</table>
 				<table class="table_info">
