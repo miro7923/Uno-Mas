@@ -95,9 +95,6 @@ div, th, td, li, dt, dd, p {
 	.inner-header{
 		padding: 39px 0 10px;
 	}
-	.col-lg-2{
-		bottom: 30px;
-	}
 }
 @media only screen and (max-width: 1199px){
 	.inner-header{

@@ -61,6 +61,10 @@ a:hover {
     color: #fa622f;
 }
 
+.product-item .pi-pic ul li.w-icon.active a {
+	background: #B9CE45;
+}
+
 .product-item .pi-text .product-price .originPrice {
     font-size: 16px;
 }

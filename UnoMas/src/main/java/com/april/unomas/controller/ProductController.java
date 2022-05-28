@@ -32,6 +32,7 @@ import com.april.unomas.domain.Commons;
 import com.april.unomas.domain.Criter;
 import com.april.unomas.domain.ImgType;
 import com.april.unomas.domain.PagingVO;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.ProdCriteria;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -40,6 +41,7 @@ import com.april.unomas.domain.ProdPageMaker;
 import com.april.unomas.domain.ProductVO;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.ProductService;
+import com.april.unomas.service.UserService;
 
 @Controller
 @RequestMapping("/product/*")
@@ -47,6 +49,9 @@ public class ProductController {
 
 	@Inject
 	private ProductService service;
+	
+	@Inject
+	private UserService userService;
 	
 	private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 	
@@ -74,7 +79,7 @@ public class ProductController {
 	@RequestMapping(value = "/product_list", method = RequestMethod.GET) // /shop -> /product_list
 	public String shopGET(@RequestParam("topcate_num") int topcate_num, 
 			@RequestParam("pageNum") int pageNum, @RequestParam("dcate_num") int dcate_num, 
-			Model model) throws Exception {
+			HttpSession session, Model model) throws Exception {
 		ProdCriteria cri = new ProdCriteria();
 		cri.setTopcate_num(topcate_num);
 		
@@ -114,7 +119,7 @@ public class ProductController {
 		map.put("topcate", service.getTopCateName(topcate_num));
 		map.put("dcate_num", dcate_num);
 		map.put("dcateList", service.getDcateNames(topcate_num));
-
+		
 		map.put("postCnt", postCnt);
 		
 		// 페이지 처리 정보 저장
@@ -161,11 +166,22 @@ public class ProductController {
 		model.addAttribute("reviewPm", reviewPm);
 		model.addAttribute("inquiryPm", inquiryPm);
 		
-		UserVO userVo = (UserVO) session.getAttribute("saveID");
-		if (userVo != null)
-			model.addAttribute("isInWishlist", service.isInWishlist(userVo.getUser_num(), prod_num));
+		String user_id = (String) session.getAttribute("saveID");
+		if (user_id != null) {
+			int user_num = (int) session.getAttribute("saveNUM");
+			model.addAttribute("isInWishlist", service.isInWishlist(user_num, prod_num));
+		}
 		else
 			model.addAttribute("isInWishlist", false);
+		
+		// 문의글 댓글 정보 저장
+		List<ProdCommentVO> inqComList = new ArrayList<ProdCommentVO>();
+		for (int i = 0; i < inquiryList.size(); i++) {
+			ProdCommentVO comVO = service.getInqComment(inquiryList.get(i).getP_inquiry_num());
+			inqComList.add(comVO);
+		}
+		model.addAttribute("inqComList", inqComList);
+		log.info("inqComList: "+inqComList);
 		
 		return "product/productDetail";
 	}
@@ -300,13 +316,18 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/shopping-cart")
-	public String cart() {
+	public String cart(Model model,
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) {
+		model.addAttribute("pageInfo", pageInfo);
+		
 		return "product/shopping-cart";
 	}
 	
 	@RequestMapping(value = "/write_review", method = RequestMethod.GET)
-	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
+	public String writeReviewGET(@RequestParam("prod_num") int prod_num, Model model,
+			HttpSession session) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));
+		model.addAttribute("user_num", userService.getUserInfo((String)session.getAttribute("saveID")));
 		
 		return "product/reviewWritingForm";
 	}
@@ -338,19 +359,49 @@ public class ProductController {
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
+	@RequestMapping(value = "/list_review", method = RequestMethod.GET)
+	public String getReviewListGET(@RequestParam("prod_num") int prod_num, 
+			@RequestParam("page") int page, Model model) throws Exception {
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<BoardReviewVO> list = service.getReviewList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		ProdPageMaker reviewPm = new ProdPageMaker();
+		reviewPm.setCri(pc);
+		reviewPm.setTotalCnt(service.getReviewCnt(prod_num));
+		
+		model.addAttribute("reviewList", list);
+		model.addAttribute("reviewPm", reviewPm);
+		model.addAttribute("page", page);
+		
+		return "product/revBoardAjax";
+	}
+	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.GET)
-	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model) throws Exception {
+	public String modifyReviewGET(@RequestParam("review_num") int review_num, Model model,
+			HttpSession session,
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
+
 		BoardReviewVO reviewVO = service.getReview(review_num);
 		
 		model.addAttribute("prod_name", service.getProduct(reviewVO.getProd_num()).getProd_name());
 		model.addAttribute("vo", reviewVO);
+		model.addAttribute("pageInfo", pageInfo);
 		
 		return "product/reviewModifyForm";
 	}
 	
 	@RequestMapping(value = "/modify_review", method = RequestMethod.POST)
 	public String modifyReviewPOST(HttpServletRequest request, 
-			@RequestParam(value = "review_image", required = false) MultipartFile file) throws Exception {
+			@RequestParam(value = "review_image", required = false) MultipartFile file,
+			@RequestParam(value="pageInfo", required = false) String pageInfo,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) throws Exception {
 		BoardReviewVO vo = new BoardReviewVO();
 		vo.setReview_num(Integer.parseInt(request.getParameter("review_num")));
 		vo.setProd_num(Integer.parseInt(request.getParameter("prod_num")));
@@ -394,12 +445,19 @@ public class ProductController {
 		
 		service.modifyReview(vo);
 		
-		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		if(pageInfo.equals("pReview")) {
+			return "redirect:/user/my_review?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		}
+		
 	}
 	
 	@RequestMapping(value = "/remove_review", method = RequestMethod.GET)
 	public String removeReviewGET(@RequestParam("review_num") int review_num, 
-			@RequestParam("prod_num") int prod_num) throws Exception {
+			@RequestParam(value = "prod_num", required = false) int prod_num, 
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum, 
+			@RequestParam(value="pageInfo", required = false) String pageInfo) throws Exception {
 		// 리뷰와 함께 업로드 된 이미지파일 서버에서 삭제
 		File f = new File(reviewImgUploatPath + File.separator + service.getReviewImg(review_num));
 		if (f.exists()) 
@@ -407,9 +465,14 @@ public class ProductController {
 		
 		service.removeReview(review_num);
 		
-		return "redirect:/product/product_detail?prod_num=" + prod_num;
+		if(pageInfo.equals("pReview")) {
+			return "redirect:/user/my_review?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + prod_num;
+		}
 	}
 	
+	// 상품 문의
 	@RequestMapping(value = "/write_inquiry", method = RequestMethod.GET)
 	public String writeInquiryGET(@RequestParam("prod_num") int prod_num, Model model) throws Exception {
 		model.addAttribute("vo", service.getProduct(prod_num));
@@ -424,27 +487,96 @@ public class ProductController {
 		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
 	}
 	
+
+
+	// 상품 문의 내역
+	@RequestMapping(value = "/list_inquiry", method = RequestMethod.GET)
+	public String getInquiryListGET(@RequestParam("prod_num") int prod_num, 
+			@RequestParam("page") int page, Model model) throws Exception {
+		log.info("@@@@@@@@@@@@@@@ getInquiryList() 호출");
+		
+		ProdCriteria pc = new ProdCriteria();
+		pc.setPage(page);
+		pc.setPerPageNum(7);
+		pc.setProd_num(prod_num);
+		
+		List<ProdInquiryVO> list = service.getInquiryList(pc);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setUser_id(service.getUserid(list.get(i).getUser_num()));
+		}
+		
+		ProdPageMaker inquiryPm = new ProdPageMaker();
+		inquiryPm.setCri(pc);
+		inquiryPm.setTotalCnt(service.getInquiryCnt(prod_num));
+		
+		model.addAttribute("inquiryList", list);
+		model.addAttribute("inquiryPm", inquiryPm);
+		model.addAttribute("page", page);
+		
+		return "/product/inqBoardAjax";
+	}
+	
+
+	// 상품 문의 수정
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.GET)
-	public String modifyInquiryGET(@RequestParam("inquiry_num") int inquiry_num, Model model) throws Exception {
+	public String modifyInquiryGET(@RequestParam("inquiry_num") int inquiry_num, Model model,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum, 
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
 		ProdInquiryVO vo = service.getInquiry(inquiry_num);
 		
 		model.addAttribute("prod_name", service.getProduct(vo.getProd_num()).getProd_name());
 		model.addAttribute("vo", vo);
+		model.addAttribute("pagingNum", pagingNum);
+		model.addAttribute("pageInfo", pageInfo);
 		
 		return "product/inquiryModifyForm";
 	}
 	
 	@RequestMapping(value = "/modify_inquiry", method = RequestMethod.POST)
-	public String modifyInquiryPOST(ProdInquiryVO vo) throws Exception {
+	public String modifyInquiryPOST(ProdInquiryVO vo, Model model,
+			@RequestParam(value = "pagingNum", required = false) String pagingNum, 
+			@RequestParam(value="pageInfo", required = false) String pageInfo) throws Exception {
 		service.modifyInquiry(vo);
 		
-		return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		if(pageInfo.equals("my")) {
+			return "redirect:/user/my_prod_qa?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + vo.getProd_num();
+		}
+		
 	}
 	
+	// 상품 문의 삭제
 	@RequestMapping(value = "/remove_inquiry", method = RequestMethod.GET)
 	public String removeInquiryGET(@RequestParam("inquiry_num") int inquiry_num, 
-			@RequestParam("prod_num") int prod_num) throws Exception {
+			@RequestParam(value="prod_num", required = false) int prod_num,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum, 
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) throws Exception {
+		
 		service.removeInquiry(inquiry_num);
+		
+		if(pageInfo.equals("my")) {
+			return "redirect:/user/my_prod_qa?pagingNum="+pagingNum;
+		} else {
+			return "redirect:/product/product_detail?prod_num=" + prod_num;
+		}
+	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.GET)
+	public String writeInqCommentGET(@RequestParam int prod_num, @RequestParam int p_inquiry_num,
+			Model model) throws Exception {
+		model.addAttribute("prod", service.getProduct(prod_num));
+		model.addAttribute("inq", service.getInquiry(p_inquiry_num));
+		
+		return "product/inquiryAnswerForm";
+	}
+	
+	@RequestMapping(value = "/write_inq_comment", method = RequestMethod.POST)
+	public String writeInqCommentPOST(ProdCommentVO vo, HttpServletRequest request) throws Exception {
+		service.writeInqComment(vo);
+		log.info("ProdCommentVO: "+vo);
+		
+		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
 		
 		return "redirect:/product/product_detail?prod_num=" + prod_num;
 	}
@@ -523,5 +655,4 @@ public class ProductController {
 		
 		return "product/productSearch";
 	}
-
 }

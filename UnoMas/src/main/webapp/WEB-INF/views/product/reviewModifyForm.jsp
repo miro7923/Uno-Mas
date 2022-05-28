@@ -11,6 +11,12 @@
 	href="${path}/resources/css/product_css/reviewWritingForm.css?pafet">
 <!-- Header end -->
 
+<%
+    if (session.getAttribute("saveID") == null) {
+    	response.sendRedirect("/index");
+    }
+%>
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -22,13 +28,13 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>후기수정</h4>
-						<form action="/product/modify_review" method="post" class="comment-form" enctype="multipart/form-data">
+						<form action="/product/modify_review?pageInfo=${pageInfo }" method="post" class="comment-form" enctype="multipart/form-data">
 							<div class="row">
 								<div class="col-lg-12">
 									<!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->
 									<input type="hidden" value="${vo.review_num }" name="review_num">
 									<input type="hidden" value="${vo.prod_num }" name="prod_num">
-									<input type="hidden" value="${sessionScope.saveID.user_num }" name="user_num">
+									<input type="hidden" value="${sessionScope.saveNUM }" name="user_num">
 									<p class="productName">
 										상품명 : ${prod_name } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 										평가 : 

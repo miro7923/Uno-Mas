@@ -217,7 +217,7 @@
     
     <!-- 특가 상품 목록 가져오기 -->
     <select id="getSaleProducts" resultType="ProductVO">
-        SELECT *
+        SELECT * 
         FROM products
         WHERE prod_discntrate > 0
         ORDER BY prod_regdate DESC
@@ -403,4 +403,24 @@
 		</if>
 	</if>
 	</sql>
+
+    <!-- 상품 재고 감소 -->
+    <update id="decreaseStock">
+        UPDATE products
+        SET prod_stock = prod_stock - #{sell}
+        WHERE prod_num = #{prod_num}
+    </update>
+    
+    <!-- 상품 문의글 댓글 생성 -->
+    <insert id="insertInqComment">
+        INSERT INTO prod_comments(p_inquiry_num, admin_num, com_content)
+        VALUES(#{p_inquiry_num}, #{admin_num}, #{com_content})
+    </insert>
+    
+    <!-- 상품 문의글 가져오기 -->
+    <select id="getInqComment" resultType="ProdCommentVO">
+        SELECT *
+        FROM prod_comments
+        WHERE p_inquiry_num = #{p_inquiry_num}
+    </select>
 </mapper>

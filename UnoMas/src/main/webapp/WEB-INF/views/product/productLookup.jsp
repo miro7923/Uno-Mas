@@ -51,7 +51,7 @@
 <!-- Start Header -->
 <body>
     <!-- Header Section Begin -->
-    <jsp:include page="../inc/header.jsp"></jsp:include>
+    <jsp:include page="../inc/adminHeader2.jsp"></jsp:include>
     <!-- Header End -->
     
     <!-- Product Register Section End -->
@@ -59,21 +59,15 @@
 		<div class="container">
 			<div class="row">
 
-				<!-- 상품관리 카테고리 -->
-				<div
-					class="col-lg-2 produts-sidebar-filter">
+				<!-- 관리자 카테고리 -->
+				<div class="col-lg-3 produts-sidebar-filter">
 					<div class="filter-widget">
-						<h4 class="fw-title">상품관리</h4>
-						<ul class="filter-catagories">
-<!-- 							<li><a href="product_lookup">상품조회</a></li> -->
-							<li><a href="product_lookup">상품조회</a></li>
-							<li><a href="product_register">상품등록</a></li>
-						</ul>
+				 		<jsp:include page="../inc/adminLeftBar.jsp"></jsp:include>
 					</div>
 				</div>
 				
 				<!-- 상품관리 카테고리 끝-->
-				<div class="col-lg-10">
+				<div class="col-lg-9">
 					<h2>상품조회</h2>
 					<div class="line"><hr></div>
 					<div class="container">
@@ -128,7 +122,7 @@
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row"><span class="sold">품절</span></td>
 																			<td class="normal-row"><span class="sold">${vo.prod_readcnt }</span></td> <!-- 조회수 -->
-																			<td class="normal-row"><span class="sold">-</span></td> <!-- 주문량 -->
+																			<td class="normal-row"><span class="sold">${vo.prod_sellcnt }</span></td> <!-- 주문량 -->
 																			<td class="normal-row"><span class="sold">${vo.prod_stock }</span></td>
 																		</c:when>
 																		<c:otherwise>
@@ -142,7 +136,7 @@
 			<!-- 															<td class="qua-col first-row"> -->
 																			<td class="normal-row">정상</td>
 																			<td class="normal-row">${vo.prod_readcnt }</td> <!-- 조회수 -->
-																			<td class="normal-row">-</td> <!-- 주문량 -->
+																			<td class="normal-row">${vo.prod_sellcnt }</td> <!-- 주문량 -->
 																			<td class="normal-row">${vo.prod_stock }</td>
 																		</c:otherwise>
 																		
@@ -153,22 +147,22 @@
 													</table>
 												</div>
 												<!-- 페이징처리 -->
-												<div class="row" id="pagediv">
-													<div class="col-lg-12 text-center">
-<!-- 													<ul class="pagination pagination-sm no-margin"> -->
-														<c:if test="${pm.prev }">
-															<span><a href="/product/product_lookup?page=${pm.startPage - 1}${pm.srchTypeKyw}" class="arrow_carrot-left_alt pagingBtn" id="prev">이전</a></span>
-														</c:if>
-														
-														<c:forEach var="page" begin="${pm.startPage }" end="${pm.endPage }">
-															<span><a href="/product/product_lookup?page=${page }${pm.srchTypeKyw}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span>
-														</c:forEach>
-														
-														<c:if test="${pm.next && pm.endPage > 0 }">
-															<span><a href="/product/product_lookup?page=${pm.endPage+1 }${pm.srchTypeKyw}" class="arrow_carrot-right_alt pagingBtn" id="next">다음</a></span>
-														</c:if>
-<!-- 													</ul> -->
-												</div>
+												<div class="row justify-content-center">
+													<div class="col-lg-12" style="text-align:center;">
+														<ul class="pagination">
+															<c:if test="${pm.prev }">
+																<span><a class="page-link text-dark" href="/product/product_lookup?page=${pm.startPage - 1}${pm.srchTypeKyw}" class="arrow_carrot-left_alt pagingBtn" id="prev">이전</a></span>
+															</c:if>
+															
+															<c:forEach var="page" begin="${pm.startPage }" end="${pm.endPage }">
+																<span><a class="page-link text-dark" href="/product/product_lookup?page=${page }${pm.srchTypeKyw}" class="pagingBtn" style="color: black; font-weight: bold;"  >${page } </a></span>
+															</c:forEach>
+															
+															<c:if test="${pm.next && pm.endPage > 0 }">
+																<span><a class="page-link text-dark" href="/product/product_lookup?page=${pm.endPage+1 }${pm.srchTypeKyw}" class="arrow_carrot-right_alt pagingBtn" id="next">다음</a></span>
+															</c:if>
+														</ul>
+													</div>
 												</div>
 												<!-- 페이징처리 -->
 											</div>

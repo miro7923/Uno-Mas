@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.april.unomas.domain.CategoryVO;
 import com.april.unomas.domain.Criter;
+import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
 import com.april.unomas.domain.ProdCriteria;
@@ -56,7 +57,6 @@ public class ProductDAOImpl implements ProductDAO {
 	
 	@Override
 	public List<ProductVO> getAllProductList(int pageStart, int perPageNum, String searchType, String keyword) throws Exception {
-	
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		
 		data.put("pageStart", pageStart);
@@ -351,9 +351,27 @@ public class ProductDAOImpl implements ProductDAO {
 		return sqlSession.selectOne(NAMESPACE+".searchCnt",pc);
 	}
 
-  @Override
+	@Override
 	public List<SelectVO> mayEvent() throws Exception {
 		return sqlSession.selectList("com.april.unomas.mappers.eventMapper" + ".may");
 	}
 
+	@Override
+	public void decreaseStock(int sell, int prod_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("sell", sell);
+		map.put("prod_num", prod_num);
+		
+		sqlSession.update(NAMESPACE + ".decreaseStock", map);
+	}
+
+	@Override
+	public void insertInqComment(ProdCommentVO vo) throws Exception {
+		sqlSession.insert(NAMESPACE + ".insertInqComment", vo);
+	}
+
+	@Override
+	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getInqComment", p_inquiry_num);
+	}
 }

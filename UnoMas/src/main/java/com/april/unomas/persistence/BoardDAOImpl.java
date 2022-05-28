@@ -32,6 +32,8 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public List<BoardVO> selectBoardList(Criter cri) {
+		List ya = sqlSession.selectList(NAMESPACE+".pagingBoard",cri);
+		System.out.println("ya는? " + ya.get(0));
 		return sqlSession.selectList(NAMESPACE+".pagingBoard",cri);
 	}
 

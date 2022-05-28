@@ -13,12 +13,11 @@ import com.april.unomas.persistence.CartDAO;
 public class CartServiceImpl implements CartService{
 
 	@Inject
-	CartDAO cartDao;
+	private CartDAO cartDao;
 
 	@Override
 	public int insert(CartVO vo) {
 		return cartDao.insert(vo);
-		
 	}
 
 	@Override
@@ -29,7 +28,6 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void delete(int cart_num) {
 		cartDao.delete(cart_num);
-		
 	}
 
 	@Override
@@ -45,7 +43,6 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int updateCart(CartVO vo) {
 		return cartDao.updateCart(vo);
-		
 	}
 
 	@Override
@@ -56,6 +53,16 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public int sumMoney(int user_num) {
 		return cartDao.sumMoney(user_num);
+	}
+	
+	@Override
+	public CartVO getSelectedItem(int cart_num) {
+		return cartDao.getSelectedItem(cart_num);
+	}
+
+	@Override
+	public void deleteByUserNum(int user_num, int prod_num) {
+		cartDao.deleteByUserNum(user_num, prod_num);
 	}
 
 }

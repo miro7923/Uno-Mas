@@ -30,9 +30,7 @@
 					style="margin-bottom: 60px; height: 330px;">
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" class="input_field" name="user_id" value="${userInfoVO.user_id }" readonly></td>
-					</tr>
-
+						<td><input type="text" class="input_field" name="user_id" value="${userInfoVO.user_id }" disabled></td>
 					<tr>
 						<th>이름</th>
 						<td><input type="text" class="input_field" name="user_name" value="${userInfoVO.user_name }" required></td>

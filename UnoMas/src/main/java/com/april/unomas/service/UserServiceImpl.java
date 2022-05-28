@@ -10,6 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.ProdInquiryVO;
+import com.april.unomas.domain.QnaVO;
+import com.april.unomas.domain.UserCriteria;
+
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.persistence.UserDAO;
 
@@ -22,13 +27,6 @@ public class UserServiceImpl implements UserService {
 	
 	@Inject
 	private UserDAO dao;
-	
-	// 시간정보
-	@Override
-	public String getTimeS() {
-		String time = dao.getTime();
-		return time;
-	}
 	
 	// 회원가입
 	@Override
@@ -97,16 +95,74 @@ public class UserServiceImpl implements UserService {
 		dao.updateAddAddr(vo);
 	}
 
-	// 회원 탈퇴
+	// 비번 체크
 	@Override
-	public void deleteUser(UserVO vo) {
-		dao.deleteUser(vo);
+	public Integer checkPW(UserVO vo) {
+		return dao.checkPW(vo);
 	}
 
-// 비번 체크
-   @Override
-   public Integer checkPW(UserVO vo) {
-      return dao.checkPW(vo);
-   }
+	// 회원 탈퇴
+	@Override
+	public Integer deleteUser(UserVO vo) {
+		return dao.deleteUser(vo);
+	}
+	
+	// 내 리뷰 개수
+	@Override
+	public Integer myReviewCnt(String num) {
+		System.out.println("서비스에서 받은 유저번호: " + num);
+		return dao.getMyReviewCnt(num);
+	}
+
+	// 내 리뷰
+	@Override
+	public List<BoardReviewVO> getMyReview(String id, UserCriteria cri) {
+		return dao.getMyReview(id, cri);
+	}
+
+
+	// 내 상품문의 개수
+	@Override
+	public Integer myPqaCnt(String num) {
+		return dao.MyPquestionCount(num);
+	}
+
+	// 내 상품 문의 
+	@Override
+	public List<ProdInquiryVO> getMyPquestion(String num, UserCriteria cri) {
+		return dao.getMyPquestion(num, cri);
+	}
+
+	// 내 1:1 개수
+	@Override
+	public Integer MyQuestionCount(String num) {
+		return dao.MyQuestionCount(num);
+	}
+
+	// 내 1:1 목록
+	@Override
+	public List<QnaVO> getMyQuestion(String num, UserCriteria cri) {
+		return dao.getMyQuestion(num, cri);
+	}
+	
+	// 포인트 적립
+	@Override
+	public void updatePoint(int user_point) {
+		// TODO Auto-generated method stub
+	}
+
+	
+	// 회원번호로 회원정보 가져오기
+	@Override
+	public UserVO getUserInfoByNum(int user_num) {
+		return dao.getUserInfoByNum(user_num);
+	}
+
+	// 포인트 적립
+	@Override
+	public void updatePoint(int user_num, int user_point) {
+		dao.updatePoint(user_num, user_point);
+	}
+
 	
 }

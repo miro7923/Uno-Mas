@@ -19,13 +19,13 @@
     	<div id="headerTop" class="headerTop"> <!-- 헤더 맨위쪽 링크 -->
     		<ul class="listMenu">
     			<li class="menu menuLogin">
-    				<a href="../user/login" class="linkMenu">로그인</a>
+    				<a href="/user/login" class="linkMenu">로그인</a>
     			</li>
     			<li class="menu menuJoin">
-    				<a href="../user/register" class="linkMenu">회원가입</a>
+    				<a href="/user/register" class="linkMenu">회원가입</a>
     			</li>
     			<li class="menu CS">
-    				<a href="../board/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/board/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -35,13 +35,13 @@
     	<div id="headerTop" class="headerTop"> 
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="../user/mypage" class="linkMenu">마이페이지</a>
+    				<a href="/user/mypage" class="linkMenu">마이페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="../user/logout" class="linkMenu">로그아웃</a>
+    				<a href="/user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="../board/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/board/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
@@ -51,23 +51,24 @@
     	<div id="headerTop" class="headerTop"> 
     		<ul class="listMenu">
     			<li class="menu menuMypage">
-    				<a href="../admin/main" class="linkMenu">관리자페이지</a>
+    				<a href="/admin/main" class="linkMenu">관리자페이지</a>
     			</li>
     			<li class="menu menuLogout">
-    				<a href="../user/logout" class="linkMenu">로그아웃</a>
+    				<a href="/user/logout" class="linkMenu">로그아웃</a>
     			</li>
     			<li class="menu CS">
-    				<a href="../board/faq_paging" class="linkMenu">고객센터</a>
+    				<a href="/board/faq_paging" class="linkMenu">고객센터</a>
     			</li>
     		</ul>
     	</div>
     	<%
 			}
     	%>
+    	
     	 <div class="container"> <!-- 로고·검색창·찜·장바구니 -->
             <div class="inner-header">
                 <div class="row">
-                    <div class="col-lg-2 col-md-2">
+                    <div class="col-lg-2 col-md-2" style="bottom: 30px;">
                         <div class="logo">
                             <a href="/index">
                                 <img src="${path}/resources/img/logo.png" alt="로고">
@@ -87,14 +88,32 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="/product/wishlist/list">
-                                    <i class="icon_heart_alt"></i>
-                                </a>
+                        	    <c:choose>
+	                        	    <c:when test="${sessionScope.saveNUM != null }">
+		                                <a href="javascript:void(0);" onclick="checkLogin('wish', true)">
+		                                    <i class="icon_heart_alt"></i>
+		                                </a>
+	                        	    </c:when>
+	                        	    <c:otherwise>
+	                        	        <a href="javascript:void(0);" onclick="checkLogin('wish', false)">
+		                                    <i class="icon_heart_alt"></i>
+		                                </a>
+	                        	    </c:otherwise>
+                        	    </c:choose>
                             </li>
                             <li class="cart-icon">
-                                <a href="/product/shopping-cart">
-                                    <i class="icon_bag_alt"></i>
-                                </a>
+                                <c:choose>
+	                                <c:when test="${sessionScope.saveNUM != null }">
+		                                <a href="javascript:void(0);" onclick="checkLogin('cart', true)">
+		                                    <i class="icon_bag_alt"></i>
+		                                </a>
+	                                </c:when>
+	                                <c:otherwise>
+	                                    <a href="javascript:void(0);" onclick="checkLogin('cart', false)">
+		                                    <i class="icon_bag_alt"></i>
+		                                </a>
+	                                </c:otherwise>
+                                </c:choose>
                             </li>
                         </ul>
                     </div>
@@ -160,5 +179,10 @@
             </div>
         </div>
     </header>
+
     <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+   
+
     <script src="${path}/resources/js/board_js/boardSearch.js"></script>
+    <script src="${path}/resources/js/header.js"></script>
+
