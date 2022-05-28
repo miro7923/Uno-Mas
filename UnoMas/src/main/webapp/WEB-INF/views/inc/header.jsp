@@ -87,14 +87,32 @@
                     <div class="col-lg-3 text-right col-md-3">
                         <ul class="nav-right">
                         	<li class="heart-icon">
-                                <a href="/product/wishlist/list">
-                                    <i class="icon_heart_alt"></i>
-                                </a>
+                        	    <c:choose>
+	                        	    <c:when test="${sessionScope.saveNUM != null }">
+		                                <a href="javascript:void(0);" onclick="checkLogin('wish', true)">
+		                                    <i class="icon_heart_alt"></i>
+		                                </a>
+	                        	    </c:when>
+	                        	    <c:otherwise>
+	                        	        <a href="javascript:void(0);" onclick="checkLogin('wish', false)">
+		                                    <i class="icon_heart_alt"></i>
+		                                </a>
+	                        	    </c:otherwise>
+                        	    </c:choose>
                             </li>
                             <li class="cart-icon">
-                                <a href="/product/shopping-cart">
-                                    <i class="icon_bag_alt"></i>
-                                </a>
+                                <c:choose>
+	                                <c:when test="${sessionScope.saveNUM != null }">
+		                                <a href="javascript:void(0);" onclick="checkLogin('cart', true)">
+		                                    <i class="icon_bag_alt"></i>
+		                                </a>
+	                                </c:when>
+	                                <c:otherwise>
+	                                    <a href="javascript:void(0);" onclick="checkLogin('cart', false)">
+		                                    <i class="icon_bag_alt"></i>
+		                                </a>
+	                                </c:otherwise>
+                                </c:choose>
                             </li>
                         </ul>
                     </div>
@@ -161,3 +179,4 @@
         </div>
     </header>
     <script src="${path}/resources/js/board_js/boardSearch.js"></script>
+    <script src="${path}/resources/js/header.js"></script>

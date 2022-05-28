@@ -12,7 +12,7 @@ function checkLogin(type, login) {
 			break;
 		case 'wish':
 			if (login) {
-				location.href = '/product/wishlist';
+				location.href = '/product/wishlist/list';
 			}
 			else {
 				if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?')) {
