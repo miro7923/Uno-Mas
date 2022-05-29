@@ -1,7 +1,7 @@
 .allUser_container{
 	width: 1084px;
 	min-height: 1000px;
-    margin: 50px auto;
+/*     margin: 50px auto; */
 }
 
 h3 {
@@ -36,6 +36,11 @@ h3 {
 	border: 1px solid #B9CE45;
 }
 
+.line hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #b9ce45;
+}
 
 
 

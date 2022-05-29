@@ -9,7 +9,7 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <%-- <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3"> --%>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
-<link rel="stylesheet" href="${path}/resources/css/admin.css?after1">
+<link rel="stylesheet" href="${path}/resources/css/admin_css/admin.css?after1">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -97,8 +97,8 @@
                                 </c:otherwise>
                             </c:choose>
 						<div class="textarea">
-		                    	<textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.notice_content,cn,br)}</textarea>
-		                    </div>
+		                    <textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.notice_content,cn,br)}</textarea>
+		                </div>
 	<%-- 					<textarea>${fn:replace(vo.notice_content,cn,br)}</textarea> --%>
 	<%-- 					<input type="hidden" name="notice_content" value="${fn:replace(vo.notice_content,cn,br)}"> --%>
 						</td>

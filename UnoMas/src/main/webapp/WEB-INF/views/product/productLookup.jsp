@@ -78,13 +78,13 @@
 									<div class="col-lg-12">
 										<br>
 										<div class="row">
-												<div class="col-lg-3">
+												<div class="col-lg-3" style="padding-right:0px; border-right: none;">
 													<select class="selectBox" name="searchType">
 													<option value="prod_name" <c:if test="${pm.searchType == 'prod_name' }">selected</c:if>>상품명</option>
 													<option value="prod_num" <c:if test="${pm.searchType == 'prod_num' }">selected</c:if>>품번</option>
 												</select>
 												</div>
-												<div class="col-lg-9">
+												<div class="col-lg-9" style="padding-left:0px;">
 													<div class="input-search">
 														<input type="text" name="keyword" value="${pm.keyword }"placeholder="검색어를 입력해주세요.">
 														<button type="button" id="searchBtn"><i class="ti-search"></i></button>

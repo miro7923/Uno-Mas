@@ -17,6 +17,9 @@
 	max-width: 60%;
 }
 
+.input-search input{
+	border-style: solid solid solid none;
+}
 /* input[type="checkbox"] { */
 /* 	display: none; */
 /* } */

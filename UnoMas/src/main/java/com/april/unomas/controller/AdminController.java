@@ -59,13 +59,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/main2",method = RequestMethod.GET)
 	public String adminMainGET2(Criter cri,Model model) throws Exception{
-		PagingVO pagingVO = new PagingVO(cri);
-		pagingVO.setTotalCount(service.userCount());
-		List<UserVO> userList = service.userView(cri);
-		
-		model.addAttribute("userList", userList);
-		model.addAttribute("pagingVO", pagingVO);
-		
 		return "/admin/main2";
 	}
 	
@@ -200,7 +193,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/qna_board",method = RequestMethod.GET)
 	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
-		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
+		String adminVO = (String) session.getAttribute("saveAID");
 		if(adminVO == null) {
 			return "redirect:/admin/admin_login";
 		}
@@ -214,8 +207,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/qna_comment",method = RequestMethod.GET)
 	public String qnaCommentWriteGET(@RequestParam("qna_num") Integer qna_num, Model model,HttpSession session) throws Exception {
-		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
-		model.addAttribute("admin_id",adminVO.getAdmin_id());
+		String adminVO = (String) session.getAttribute("saveAID");
 		model.addAttribute("qnaVO",service.getQna(qna_num));
 		model.addAttribute("qna_num",qna_num);
 		return "/admin/qna_comment";
