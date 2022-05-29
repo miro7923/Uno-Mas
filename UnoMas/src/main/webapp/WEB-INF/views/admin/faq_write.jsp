@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%AdminVO vo = (AdminVO) session.getAttribute("saveID");%>
+
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
   
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
         <h3 class="css-1ttk28w eug5r8l0">자주하는 질문</h3>
         <div class="css-185m8ch e1153ede0">
             <form method="post">
-            <input type="hidden" name="admin_num" value="<%=vo.getAdmin_num()%>">
+            <input type="hidden" name="admin_num" value="1">
                 <div class="css-17bp14q e1vbjq4w3">
                     <div class="css-mm5tap e1vbjq4w2"><label for="inquiry-subject" data-testid="label-text">제목<span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span></label></div>
                     <div class="css-12l4j2c e1vbjq4w1">

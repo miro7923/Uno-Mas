@@ -28,7 +28,7 @@
 		<br>
 		
 		<h4>1:1문의</h4>
-		<a href="/admin/inquiry_paging">1:1문의</a>
+		<a href="/admin/qna_board">1:1문의</a>
 
 	</div>
 		<a href="/admin/main"><div class="mypage-cate-info">관리자 홈</div></a>

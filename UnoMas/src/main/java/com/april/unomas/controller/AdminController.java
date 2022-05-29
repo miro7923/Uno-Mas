@@ -102,15 +102,19 @@ public class AdminController {
 		vo.setNotice_ip(request.getRemoteAddr());
 		
 		if(!notice_file.isEmpty()) {
-		UUID uid = UUID.randomUUID();	
-		String fileName = uid.toString()+"_"+notice_file.getOriginalFilename();
+//		UUID uid = UUID.randomUUID();	
+//		String fileName = uid.toString()+"_"+notice_file.getOriginalFilename();
+		String fileName = notice_file.getOriginalFilename();
+		
 		File targetFile = new File(noticeFileUploadPath,fileName);
 		FileCopyUtils.copy(notice_file.getBytes(), targetFile);
 		vo.setNotice_file(fileName);
 		}
 		if(!notice_img.isEmpty()) {
-		UUID uid = UUID.randomUUID();
-		String imageName = uid.toString()+"_"+notice_img.getOriginalFilename();
+//		UUID uid = UUID.randomUUID();
+//		String imageName = uid.toString()+"_"+notice_img.getOriginalFilename();
+		String imageName = notice_img.getOriginalFilename();
+		
 		File targetImage = new File(noticeImageUploadPath,imageName);
 		FileCopyUtils.copy(notice_img.getBytes(), targetImage);
 		vo.setNotice_img(imageName);
@@ -200,9 +204,9 @@ public class AdminController {
 	
 	@RequestMapping(value = "/qna_board",method = RequestMethod.GET)
 	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
-		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
+		String adminVO = (String) session.getAttribute("saveAID");
 		if(adminVO == null) {
-			return "redirect:/admin/admin_login";
+			return "redirect:/user/user_login";
 		}
 		List<QnaVO> pList = service.qnaView(cri);
 		model.addAttribute("pList",pList);
@@ -214,8 +218,8 @@ public class AdminController {
 	
 	@RequestMapping(value = "/qna_comment",method = RequestMethod.GET)
 	public String qnaCommentWriteGET(@RequestParam("qna_num") Integer qna_num, Model model,HttpSession session) throws Exception {
-		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
-		model.addAttribute("admin_id",adminVO.getAdmin_id());
+		String adminVO = (String) session.getAttribute("saveAID");
+		model.addAttribute("admin_id",adminVO);
 		model.addAttribute("qnaVO",service.getQna(qna_num));
 		model.addAttribute("qna_num",qna_num);
 		return "/admin/qna_comment";
