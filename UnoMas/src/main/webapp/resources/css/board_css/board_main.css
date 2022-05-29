@@ -51,7 +51,7 @@
     color: #555;
 }
 .page_aticle{
-	width: 1140px;
+	width: 1150px;
 }
 .page_aticle .head_aticle {
     padding: 5px 0 34px;
@@ -192,9 +192,14 @@
 }
 #search_btn{
 	background-color: #B9CE45;
-	color: white;
+	color: #ffffff;
 	width: 40px;
-	border-color: white;
+	border: 1px solid #B9CE45;
+	font-weight: 700;
+	text-transform: uppercase;
+	cursor: pointer;
+	margin: 3px 3px 10px 3px;
+	padding: 2px;
 }
 .nfile:hover {
 	color:red;
@@ -205,6 +210,8 @@
     width: 900px;
     text-align: center;
     font-size: 14px;
+    margin: 3px 3px 10px 3px;
+    padding: 5px 10px 5px 10px;
 }
 
 .table_faq tr td {
@@ -212,7 +219,7 @@
 }
 
 table {
-    font-family: noto sans, malgun gothic, AppleGothic, dotum;
+    
     line-height: 1;
     letter-spacing: -.05em;
     color: #4c4c4c;
@@ -670,6 +677,11 @@ ul {
 	background-color: #B9CE45;
 	border-color: #B9CE45;
 	color: white;
+	font-weight: 700;
+	text-transform: uppercase;
+	cursor: pointer;
+	margin: 3px 3px 10px 3px;
+	padding: 2px;
 }
 select{
 	-webkit-appearance: none;
@@ -723,4 +735,10 @@ select{
 		white-space: nowrap;
 	}
 	
+	.site-btn{
+		background-color: #B9CE45;
+		border-color: #B9CE45; 
+		padding:5px;
+		margin:3px 3px 10px 3px;
+	}
 	

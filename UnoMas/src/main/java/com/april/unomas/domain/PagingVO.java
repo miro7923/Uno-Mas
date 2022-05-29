@@ -8,10 +8,24 @@ public class PagingVO {
 	    private int totalCount;
 	    private int startPage;
 	    private int endPage;
+	    private int lastPage;
 	    private boolean prev;
 	    private boolean next;
 	    private int displayPageNum = 6;
+	    private int firstPage;
 	    
+		public int getFirstPage() {
+			return firstPage;
+		}
+		public void setFirstPage(int firstPage) {
+			this.firstPage = firstPage;
+		}
+		public int getLastPage() {
+			return lastPage;
+		}
+		public void setLastPage(int lastPage) {
+			this.lastPage = lastPage;
+		}
 		public Criter getCri() {
 	        return cri;
 	    }
@@ -44,6 +58,10 @@ public class PagingVO {
 	        if (this.endPage > tempEndPage) {
 	            this.endPage = tempEndPage;
 	        }
+	        int realEnd = (int) (Math.ceil(totalCount / (double) perPageNum));
+	        this.lastPage = realEnd;
+	        
+	        this.firstPage = 1;
 	 
 	        this.prev = (startPage != 1);
 	        this.next = (endPage * perPageNum < totalCount);

@@ -4,21 +4,16 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
-<head>
-
-
-</head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
 <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_form.css?after22" type="text/css">
 <link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
 <link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
-`
-<!-- Head end -- >
-
+<!-- Head End -->
 <body>
     <!-- Header Section Begin -->
+    
 	<jsp:include page="../inc/header.jsp"></jsp:include>
     <!-- Header End -->
 
@@ -61,9 +56,9 @@
 <!--     	<option value="content">내용</option> -->
 <!--     </select> -->
 	<input type="hidden" value="title" name="search_type" id="search_type_faq">
-    <input type="text" id="keyword_faq" name="keyword" value="" placeholder="검색어 입력">
+    <input type="text" id="keyword_faq" name="keyword" value="" placeholder="검색어 입력" >
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
-    <button id="search_btn" onclick="search_faq()">검색</button>
+    <button class="" id="search_btn" onclick="search_faq()">검색</button>
     
     <form name="frmList" onsubmit="return chkFormList(this)">
         <input type="hidden" name="id" value="notice">
@@ -75,6 +70,7 @@
                 <tr>
                     <th>번호</th>
                     <th>제목</th>
+                    <th></th>
                     <th>작성자</th>
                     <th>작성일</th>
                     <th>조회</th>
@@ -86,6 +82,16 @@
                     <td width="50" nowrap="" align="center" >${vo.notice_num }</td>
                     <td style="padding-left:10px; text-align:left; color:#999">
                         <a href="/board/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a>
+                    </td>
+                    <td>
+                    <c:choose>
+                    <c:when test="${vo.notice_file eq null }">
+                    
+                    </c:when>
+                    <c:otherwise>
+                    <img alt="" src="../resources/img/board/fileIcon.png" style="width: 15px;">
+                    </c:otherwise> 
+                    </c:choose> 
                     </td>
                     <td width="100" nowrap="" align="center">
                         ${vo.adminVO.admin_id } </td>
@@ -103,6 +109,11 @@
  <div class="row justify-content-center" style="justify-content: center!important;">
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
+                <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                		<span>&lt;&lt;</span>
+                	</a>
+                </li>
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
@@ -118,6 +129,11 @@
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/faq_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                		<span>&gt;&gt;</span>
+                	</a>
+                </li>
                   </c:if>
                 </ul>
             </div>

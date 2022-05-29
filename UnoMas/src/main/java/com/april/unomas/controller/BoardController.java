@@ -174,19 +174,26 @@ public class BoardController {
 		vo.setQna_title(request.getParameter("qna_title"));
 		vo.setQna_content(request.getParameter("qna_content"));
 		
-		UUID uid = UUID.randomUUID();
-		String fileName = uid.toString()+"_"+qna_image1.getOriginalFilename();
-		File targetFile = new File(qnaUploadPath,fileName);
-		FileCopyUtils.copy(qna_image1.getBytes(), targetFile);
-		vo.setQna_image1(fileName);
+		if(!qna_image1.isEmpty()) {
+//			UUID uid = UUID.randomUUID();
+//			String fileName = uid.toString()+"_"+qna_image1.getOriginalFilename();
+			String fileName = qna_image1.getOriginalFilename();
+			
+			File targetFile = new File(qnaUploadPath,fileName);
+			FileCopyUtils.copy(qna_image1.getBytes(), targetFile);
+			vo.setQna_image1(fileName);
+		}
 		
-		UUID uid2 = UUID.randomUUID();
-		String fileName2 = uid2.toString()+"_"+qna_image2.getOriginalFilename();
-		File targetFile2 = new File(qnaUploadPath,fileName2);
-		FileCopyUtils.copy(qna_image2.getBytes(), targetFile2);
-		vo.setQna_image2(fileName2);
-		qService.qnaWrite(saveID,vo);
-		
+		if(!qna_image2.isEmpty()) {
+//			UUID uid2 = UUID.randomUUID();
+//			String fileName2 = uid2.toString()+"_"+qna_image2.getOriginalFilename();
+			String fileName2 = qna_image2.getOriginalFilename();
+			
+			File targetFile2 = new File(qnaUploadPath,fileName2);
+			FileCopyUtils.copy(qna_image2.getBytes(), targetFile2);
+			vo.setQna_image2(fileName2);
+			qService.qnaWrite(saveID,vo);
+		}
 		return "redirect:/board/inquiry_paging";
 	}
 	
@@ -197,6 +204,7 @@ public class BoardController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>if(confirm('로그인 하시겠습니까?')){ location.href='/user/login';} else { history.back();}</script>");
 			out.flush();
+			out.close();
 		}
 		String saveID = (String) session.getAttribute("saveID");
 		List<QnaVO> pList = qService.pagingQnaList(saveID,cri);
@@ -237,18 +245,19 @@ public class BoardController {
 	
 	@RequestMapping(value = "/nFileDown",method = RequestMethod.GET)
 	public void noticeFileDownload(HttpServletResponse response,@RequestParam("notice_file") String notice_file) throws Exception{
-		byte[] fileByte = FileUtils.readFileToByteArray(new File(noticeFileUploadPath+"\\"+notice_file));
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(noticeFileUploadPath+File.separator+notice_file));
 		response.setContentType("application/octet-stream");
 		response.setHeader("Content-Disposition", "attachment; filename=\""+URLEncoder.encode(notice_file,"UTF-8")+"\";");
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		response.getOutputStream().write(fileByte);
 		response.getOutputStream().flush();
-		response.getOutputStream().close();
+		response.getOutputStream().close();			
+		
 	}
 	
 	@RequestMapping(value = "/image1Down",method = RequestMethod.GET)
 	public void inquiryImage1Download(HttpServletResponse response,@RequestParam("qna_image1") String qna_image1) throws Exception {
-		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+"\\"+qna_image1));
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+File.separator+qna_image1));
 		response.setContentType("application/cotet-stream");
 		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image1,"UTF-8")+"\";");
 		response.setHeader("Content-Transfer-Encoding", "binary");
@@ -259,7 +268,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "/image2Down",method = RequestMethod.GET)
 	public void inquiryImage2Download(HttpServletResponse response,@RequestParam("qna_image2") String qna_image2) throws Exception {
-		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+"\\"+qna_image2));
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+File.separator+qna_image2));
 		response.setContentType("application/cotet-stream");
 		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image2,"UTF-8")+"\";");
 		response.setHeader("Content-Transfer-Encoding", "binary");
