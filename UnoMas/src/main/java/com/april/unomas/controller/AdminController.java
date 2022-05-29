@@ -57,17 +57,12 @@ public class AdminController {
 		return "/admin/main";
 	}
 	
-//	@RequestMapping(value = "/main2",method = RequestMethod.GET)
-//	public String adminMainGET2(Criter cri,Model model) throws Exception{
-//		PagingVO pagingVO = new PagingVO(cri);
-//		pagingVO.setTotalCount(service.userCount());
-//		List<UserVO> userList = service.userView(cri);
-//		
-//		model.addAttribute("userList", userList);
-//		model.addAttribute("pagingVO", pagingVO);
-//		
-//		return "/admin/main2";
-//	}
+
+	@RequestMapping(value = "/main2",method = RequestMethod.GET)
+	public String adminMainGET2(Criter cri,Model model) throws Exception{
+		return "/admin/main2";
+	}
+
 	
 	@RequestMapping(value = "/admin_logout",method = RequestMethod.GET)
 	public String adminLogoutGET(AdminVO vo,HttpSession session) throws Exception {
@@ -219,7 +214,9 @@ public class AdminController {
 	@RequestMapping(value = "/qna_comment",method = RequestMethod.GET)
 	public String qnaCommentWriteGET(@RequestParam("qna_num") Integer qna_num, Model model,HttpSession session) throws Exception {
 		String adminVO = (String) session.getAttribute("saveAID");
+
 		model.addAttribute("admin_id",adminVO);
+
 		model.addAttribute("qnaVO",service.getQna(qna_num));
 		model.addAttribute("qna_num",qna_num);
 		return "/admin/qna_comment";

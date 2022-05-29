@@ -17,6 +17,10 @@
 		<a href="/product/product_lookup">상품 조회</a>
 		<br>
 		
+		<h4>회원관리</h4>
+		<a href="/admin/all_user">회원 조회</a>
+		<br>
+		
 		<h4>공지사항</h4>
 		<a href="/admin/notice_board">공지사항</a>
 		<a href="/admin/notice_write">공지사항 등록</a>

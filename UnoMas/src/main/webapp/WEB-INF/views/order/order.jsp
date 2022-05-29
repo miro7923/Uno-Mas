@@ -42,6 +42,7 @@
                                 <label for="cun-name">${fn:substring(userVO.user_phone, 0, 3) } 
                                 - ${fn:substring(userVO.user_phone, 3, 7) } 
                                 - ${fn:substring(userVO.user_phone, 7, 11) }</label>
+                                <input type="hidden" value="${userVO.user_phone }" id="userPhone">
                             </div>
                             <div class="col-lg-12">
                                 <label for="cun" id="userEmail">${userVO.user_email }</label>
