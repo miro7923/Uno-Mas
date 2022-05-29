@@ -94,7 +94,15 @@ function requestPay() {
 			            	type: "POST",
 			            	dataType: 'json',
 			            	contentType: 'application/json',
-			            	data: orderVO
+			            	data: orderVO,
+			            	success: function(data) {
+								if (data != 1) {
+									alert('주문정보 생성 실패');
+								}
+							},
+							error: function() {
+								alert('주문정보 생성 실패');
+							}
 			        	});
 	        		}
 	        	

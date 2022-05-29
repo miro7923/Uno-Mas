@@ -21,7 +21,7 @@ public interface OrderService {
 	public int getLastOrderNum() throws Exception;
 	
 	// 주문정보 생성
-	public void createOrder(OrderVO vo) throws Exception;
+	public int createOrder(OrderVO vo) throws Exception;
 	
 	// 결제정보 생성
 	public void createPay(PayVO vo) throws Exception;

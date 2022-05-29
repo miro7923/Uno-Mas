@@ -57,8 +57,8 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 
 	@Override
-	public void createOrder(OrderVO vo) throws Exception {
-		sqlSession.insert(NAMESPACE + ".createOrder", vo);
+	public int createOrder(OrderVO vo) throws Exception {
+		return sqlSession.insert(NAMESPACE + ".createOrder", vo);
 	}
 
 	@Override
