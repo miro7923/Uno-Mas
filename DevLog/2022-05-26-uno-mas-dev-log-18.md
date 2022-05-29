@@ -484,7 +484,60 @@ for (var i = 0; i < $('#prodCnt').val(); i++) {
 ```
 
 * 처음에는 `requestPay()` 메서드의 주문정보를 생성하는 부분을 이런식으로 작성해서 통신의 성공 유무를 확인하려 했다. 그런데 통신에 실패해서 주문정보 생성에 실패했다는 메시지가 출력되는데 주문정보는 내가 의도한 대로 생성이 잘 되는... 결과적으로 동작에는 아무 문제가 없는 상황이 발생되었다. 원인이 궁금해서 정말 여러 가지 방법으로 테스트를 해 보았지만 주문 정보 생성은 정말정말 잘 되는데 에러 데이터는 계속 리턴되는 희안한 상황이 계속되었다. 아직까지도 원인을 못 찾음...
-* 프로젝트 진행 마감날도 다가오고 일단 전체적인 동작에는 문제가 없기 때문에 `ajax` 통신의 `success` 이하 부분은 삭제하고 가기로 했다.<br><br><br>
+* 프로젝트 진행 마감날도 다가오고 일단 전체적인 동작에는 문제가 없기 때문에 `ajax` 통신의 `success` 이하 부분은 삭제하고 가기로 했다.
+
+## => 해결!
+
+```java
+@ResponseBody
+@RequestMapping(value = "/complete", method = RequestMethod.POST)
+public ResponseEntity<String> completePOST(@RequestBody OrderVO vo) throws Exception {
+    // 결제 완료된 주문정보 DB에 저장
+    orderService.createOrder(vo);
+
+    return new ResponseEntity<String>("주문정보 생성 완료", HttpStatus.OK);
+}
+```
+* 처음엔 DB에 데이터를 삽입하는 동작을 수행하는 컨트롤러 메서드에서 따로 조건 처리를 해주지 않고 그냥 저장한 뒤 `String` 데이터와 함께 항상 200을 리턴하도록 했다. 그런데 이게 문제였던 것 같다. 
+
+```java
+@ResponseBody
+@RequestMapping(value = "/complete", method = RequestMethod.POST)
+public ResponseEntity<Integer> completePOST(@RequestBody OrderVO vo) throws Exception {
+    // 결제 완료된 주문정보 DB에 저장
+    int result = orderService.createOrder(vo);
+
+    if (result == 0) {
+        log.info("@@@@@@@@@@@ 주문정보 저장 실패");
+        return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    log.info("@@@@@@@@@@@@ 주문정보 저장 성공");
+    return new ResponseEntity<Integer>(1, HttpStatus.CREATED);
+}
+```
+
+* 리턴 데이터를 정수형으로 바꿔주니까 작동이 잘 되었다... 문자열 데이터를 파싱하는 과정에서 문제가 있었던 것일까? 문자열 리턴값을 영어로 썼을 때에도 똑같이 `error`가 리턴되었기 때문에 한글을 사용한 것이 문제가 되는 것은 아닌 것 같고, `json`을 이용한 `post` 통신에서 문자열을 리턴값으로 받아오는 것 자체가 `HTTP 상태 코드`와 상관없이 `error`를 리턴시키는 원인인 듯 하다.
+
+```javascript
+jQuery.ajax({
+    url: "/order/complete", // 예: https://www.myservice.com/payments/complete
+    type: "POST",
+    dataType: 'json',
+    contentType: 'application/json',
+    data: orderVO,
+    success: function(data) {
+        if (data != 1) {
+            alert('주문정보 생성 실패');
+        }
+    },
+    error: function() {
+        alert('주문정보 생성 실패');
+    }
+});
+```
+
+* 수정한 컨트롤러 메서드에 따라 콜백 받는 부분도 약간 수정해 주었다. 원인을 찾기까지 좀 오래 걸렸지만 새로운 거 하나 배웠다...<br><br><br>
 
 # 마감까지
 * `D-1`<br><br><br>
