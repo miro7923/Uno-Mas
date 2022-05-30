@@ -25,7 +25,7 @@
 			<hr>
 
 			<h3>기본 정보</h3>
-			<form action="update_myInfo" method="post">
+			<form action="./update_myInfo" method="post">
 			<div class="table_div">
 				<table class="table_info"
 					style="margin-bottom: 60px; height: 330px;">
@@ -173,13 +173,13 @@
 										<dt>계좌번호</dt>
 										<dd>
 											<span class="input_area"> 
-											<input type="text" id="account" name="user_account" value="${userInfoVO.user_account }" title="계좌번호 입력" style="width: 250px">
+											<input type="text" id="account" name="user_account" value="${userInfoVO.user_account }" placeholder="-없이 숫자만 입력해주세요." title="계좌번호 입력" style="width: 250px">
 											</span>
 										</dd>
 										<dt>예금주</dt>
 										<dd>
 											<span class="input_area">
-											<input type="text" id="account_holder" name="user_account_holder" value="${userInfoVO.user_account_holder }" title="예금주 입력"  style="width: 250px">
+											<input type="text" id="account_holder" name="user_account_holder" value="${userInfoVO.user_account_holder }" placeholder="예금주명" title="예금주 입력"  style="width: 250px">
 											</span> 
 										</dd>
 									</dl>

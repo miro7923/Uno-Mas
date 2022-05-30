@@ -182,7 +182,7 @@ public class UserController {
 	// 회원정보수정(POST)
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
 	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
-		System.out.println("POST 컨트롤");
+		System.out.println("POST 컨트롤@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
 		if (eAgree.equals("1")) {
 			vo.setUser_emailagree(1);
