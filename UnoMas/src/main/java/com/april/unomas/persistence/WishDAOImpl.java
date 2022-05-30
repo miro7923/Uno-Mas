@@ -55,4 +55,12 @@ public class WishDAOImpl implements WishDAO {
 		sqlSession.insert(namespace + ".insertCart", cart);
 	}
 
+	@Override
+	public int checkCart(int user_num, int prod_num) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user_num",user_num);
+		map.put("prod_num",prod_num);
+
+		return sqlSession.selectOne(namespace + ".checkCart" , map);
+	}
 }

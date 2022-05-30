@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4 offset-lg-4">
-                                <button type="button" id="selectInsertWish_btn" class="green-btn">장바구니 선택 담기</button>
+                        	<button type="button" id="selectInsertWish_btn" class="green-btn">장바구니 선택 담기</button>
                         </div>
                     </div>
                 </div>
