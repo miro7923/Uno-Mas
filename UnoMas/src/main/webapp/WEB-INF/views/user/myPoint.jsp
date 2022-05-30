@@ -25,7 +25,7 @@
 				
 			<div class="point_simple_box">
 				<dl class="point_status_box">
-					<dt>사용가능 포인트 <em>${userP }</em> P</dt>
+					<dt>사용가능 포인트 <em><fmt:formatNumber value="${userP}" pattern="#,###" /></em> P</dt>
 				</dl>
 				<dl class="point_status_box">
 					<dt>사용 포인트 <em>0</em> P</dt>
