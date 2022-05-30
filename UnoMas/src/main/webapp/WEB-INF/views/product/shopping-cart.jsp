@@ -41,11 +41,9 @@
 	<!-- Breadcrumb Section Begin -->
 
 	<!-- Shopping Cart Section Begin -->
-<<<<<<< HEAD
-	<section class="shopping-cart-table">
-=======
+
 	<section class="shopping-cart spad">
->>>>>>> f4c949dc3cde14a2180609408913b25cdddd04c3
+
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
