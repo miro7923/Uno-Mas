@@ -308,7 +308,8 @@ public class OrderController {
 	
 	// 주문 상세보기 페이지
 	@RequestMapping(value = "/order_detail", method = RequestMethod.GET)
-	public String orderDetail(HttpSession session, @RequestParam int code, Model model) throws Exception {
+	public String orderDetail(HttpSession session, @RequestParam int code, Model model,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) throws Exception {
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
 //		int code2 = Integer.parseInt(code); 
 		
@@ -319,6 +320,7 @@ public class OrderController {
 		
 		model.addAttribute("orderMap", orderMap);
 		model.addAttribute("payInfo", payInfo);
+		model.addAttribute("pagingNum", pagingNum);
 		
 		return "/order/myOrderDetail";
 	}

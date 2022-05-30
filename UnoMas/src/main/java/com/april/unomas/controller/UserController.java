@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.CartVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
@@ -222,11 +223,35 @@ public class UserController {
 		return "redirect:/user/myInfo";
 	}
 
+	// 포인트 페이지
 	@RequestMapping(value = "/mypoint")
-	public String myPoint() {
+	public String myPoint(HttpSession session, Model model, 
+			@RequestParam(value="pagingNum", required=false, defaultValue="1") String pagingNum) {
+		
+		UserCriteria cri = new UserCriteria();
+		cri.setPage(Integer.parseInt(pagingNum));
+		cri.setPerPageNum(15);
+		
+		int saveNUM = (int)session.getAttribute("saveNUM");
+		int pointCount = service.pointCount(saveNUM);
+		
+		int userP = service.getUserPoint(saveNUM);
+		List<PointVO> pointList = service.getPointList(saveNUM, cri);
+		
+		UserPageMaker pm = new UserPageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(pointCount);
+		
+		model.addAttribute("userP", userP);
+		model.addAttribute("pointList", pointList);
+		model.addAttribute("pagingNum", pagingNum);
+		model.addAttribute("pm", pm);
+		
 		return "/user/myPoint";
 	}
 	
+	
+	// 리뷰 페이지
 	@RequestMapping(value = "/my_review")
 	public String myReview(HttpSession session, Model model, 
 			@RequestParam(value="pagingNum", required=false, defaultValue="1") String pagingNum

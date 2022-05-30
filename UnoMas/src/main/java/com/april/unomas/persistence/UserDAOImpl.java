@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
-
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
@@ -299,7 +299,6 @@ public class UserDAOImpl implements UserDAO {
 
 		try {
 			msg.setFrom(evo.getSender());
-//			msg.setTo(evo.getRecipients());
 			msg.setTo("tksop59@naver.com");
 			msg.setSubject(evo.getSubject()); // 제목 셋팅
 			msg.setText(evo.getContent()); // 내용 셋팅
@@ -327,4 +326,26 @@ public class UserDAOImpl implements UserDAO {
 		
 		sqlSession.update(NAMESPACE + ".updatePoint", map);
 	}
+
+	@Override
+	public int getUserPoint(int num) {
+		System.out.println("포인트 잘?" + sqlSession.update(NAMESPACE + ".getUserP", num));
+		return sqlSession.selectOne(NAMESPACE + ".getUserP", num);
+	}
+	
+	@Override
+	public int pointCount(int num) {
+		return sqlSession.selectOne(NAMESPACE + ".pointCount", num);
+	}
+
+	@Override
+	public List<PointVO> getPointList(int num, UserCriteria cri) {
+		Map<String, Object> map = new HashMap();
+		map.put("num", num);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(NAMESPACE + ".getpList", map);
+	}
+	
+	
 }

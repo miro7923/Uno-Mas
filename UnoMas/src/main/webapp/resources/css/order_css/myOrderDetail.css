@@ -21,7 +21,7 @@ table {
     border-bottom: 2px solid #d5d5d5;
     text-align: center;
     width: 100%;
-    min-height: 300px;
+    min-height: 100px;
     font-size: 14px;
 }
 .product-info tr{
@@ -41,6 +41,11 @@ table {
 	border-left: 1px solid #d5d5d5;
 	border-right: 1px solid #d5d5d5;
 }
+
+
+.shipping-address {
+	min-height: 300px;
+}
 .shipping-address .sa-tr{
     border-bottom: 1px solid #d5d5d5;
     height: 20px;
@@ -51,6 +56,10 @@ table {
 .shipping-address td{
 	text-align: left;
 	padding-left: 20px;
+}
+
+.payment-info {
+	min-height: 300px;
 }
 .payment-info #paymentFirstLine{
 	text-align: left;

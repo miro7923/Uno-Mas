@@ -64,12 +64,14 @@
 		  	  <tbody style="min-height: 300px">
 		  	  	<c:forEach var="row" items="${list}" varStatus="i">
 		  		 	<tr>
-			  			<td class="cart-pic first-row">
+			  			<td>
 			  				<img src='<spring:url value="/resources/upload/images/products/thumbnail/${row.prod_image3 }"></spring:url>' 
 			  				alt="" style="width: 90px; height: 90px;">
 						</td>
-						<td class="cart-title first-row">${row.prod_name}</td>
-						<td class="p-price first-row">
+						<td>
+							<a href="/product/product_detail?prod_num=${row.prod_num }" class="prod_detail_a">${row.prod_name}</a>
+						</td>
+						<td>
 							<span id="prodPrice${i.index }">${row.prod_price }</span>원
 						</td>
 			  			<td>${row.prod_amount}개</td>
@@ -107,7 +109,7 @@
 									<td class="order_info_td">
 										<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
 										<div>
-											<a href="/product/product_detail?prod_num=${val.prod_num }" target="_blank"> ${val.prod_name } </a>
+											<a href="/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
 											<hr>
 											<span>${val.prod_price }원</span> / <span>${val.order_quantity }개</span>
 										 </div>

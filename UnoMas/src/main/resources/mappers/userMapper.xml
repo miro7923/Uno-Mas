@@ -175,4 +175,24 @@
     WHERE user_num = #{user_num}
   </update>
   
+  <select id="getUserP" resultType="int">
+  	SELECT user_point
+  	FROM users
+  	WHERE user_num=#{num}
+  </select>
+  
+  <select id="pointCount" resultType="int">
+  	SELECT count(point_num)
+  	FROM point
+  	WHERE user_num=#{num}
+  </select>
+  
+  <select id="getpList" parameterType="Map" resultType="com.april.unomas.domain.PointVO">
+   SELECT *
+   FROM point
+   WHERE user_num=#{num}
+   ORDER BY point_regdate DESC
+   LIMIT #{cri.pageStart},#{cri.perPageNum}
+  </select>
+  
 </mapper>

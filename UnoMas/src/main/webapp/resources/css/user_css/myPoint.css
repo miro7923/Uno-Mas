@@ -2,8 +2,9 @@
 
 
 .point_container {
+	display: flex;
 	width: 1084px;
-	height: 900px;
+	min-height: 900px;
     margin: 30px auto;
 }
 .point_right_container {
@@ -27,16 +28,16 @@
 }
 .point_simple_box {
 	display: flex;
-    height: 80px;
+    min-height: 80px;
     border-top: 1px solid #d5d5d5;
 }
-.point_ststus_box {
+.point_status_box {
 	border-left: 1px solid #d5d5d5;
     width: 33%;
-    padding: 10px;
+    padding: 10px 10px 0px 10px;
     font-size: 11pt;
 }
-.point_ststus_box em {
+.point_status_box em {
     font-size: 15pt;
     color: #3d727f;
 }
@@ -63,6 +64,7 @@
     border-collapse: collapse;
     text-align: center;
 }
+th { background-color: #eee }
 th, td {
 	border: 1px solid #ddd;
 	padding: 15px 10px;
@@ -71,29 +73,36 @@ th, td {
 .num_minus{ color: red; }
 
 
-.page_control {
+/* 페이징 */
+.paging_container {
+	min-width: 250px;
+/* 	border: 1px solid black; */
+	margin: 70px auto;
 	text-align: center;
-    margin: 20px auto;
+
 }
-.previous_daum {
-/* 	background-color: #B9CE45; */
+.paging_num {
+	color: black !important;
+	margin: 0px 10px;
 }
-.page_control > a {
-	padding: 2px 5px;
-	text-decoration: none;
-	color: #333 !important;
-	margin: 0 5px;
-	cursor: pointer;
+.paging_num_yes {
+	color: #B9CE45 !important;
+	font-weight: bold !important;
+	margin: 0px 10px;
 }
-.page_control a:hover {
-	text-decoration: none;
-	font-weight: bold;
-	color: #B9CE45;
+.paging_a {
+	color: black !important;
+    border: 1px solid black;
+    padding: 3px 4px;
+}
+.paging_a:hover {
+	color: #B9CE45 !important;
+	font-weight: bold !important;
 }
 
 
 
-/* ����Ʈ �̿� �ȳ� */
+/* 포인트 공지 */
 .point_notice {
 	margin-top: 80px;
 	padding: 29px 30px 27px;

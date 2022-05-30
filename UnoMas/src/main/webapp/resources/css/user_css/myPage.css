@@ -100,3 +100,8 @@ th, td {
 	width: 850px;
     height: 230px;
 }
+
+/*장바구니*/
+.prod_detail_a, .prod_detail_a:hover{
+	color: black;
+}

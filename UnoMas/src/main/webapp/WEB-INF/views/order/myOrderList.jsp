@@ -43,11 +43,12 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="map" items="${orderMap }" varStatus="it">
+								<c:set var="index" value="${it.index}" />
 							    <fmt:formatDate var="regdate" value="${map.value[0].order_date}" pattern="yyyy-MM-dd" />
 								<tr>
 									<td class="order_num_td">${regdate }<br>
 											( ${map.key } )<br>
-											<a href="/order/order_detail?code=${map.key }" class="table_btn">주문 상세보기</a>
+											<a href="/order/order_detail?code=${map.key }&pagingNum=${pagingNum }" class="table_btn">주문 상세보기</a>
 									</td>
 									<c:forEach var="val" items="${map.value }" varStatus="itt">
 										<td class="order_info_td">
@@ -60,17 +61,17 @@
 										</td>
 									</c:forEach>
 									
-									<
+									
 									<td rowspan="1">
 									  <c:choose>
 									  	<c:when test="${map.value[0].order_status eq '결제완료'}">
-									  		<strong style="color: red;">${val.order_status }<strong><br>
+									  		<strong style="color: red;">${map.value[0].order_status }<strong><br>
 									  	</c:when>
-									  	<c:when test="${map.value[0].order_status eq '배송완료'}">
-									  		<strong style="color: blue;">${val.order_status }<strong><br>
+									  	<c:when test="${val.order_status eq '배송완료'}">
+									  		<strong style="color: blue;">${map.value[0].order_status }<strong><br>
 									  	</c:when>
 									  	<c:otherwise>
-									  		<strong>${map.value.order_status }<strong><br>
+									  		<strong>${map.value[0].order_status }<strong><br>
 									  	</c:otherwise>
 									  </c:choose>
 							
@@ -91,16 +92,13 @@
 						
 					<div class="paging_container">
 						<c:if test="${pm.prev }">
-							<a href="my_order?pagingNum=${pm.startPage - 1}"
-								class="paging_a">이전</a>
+							<a href="my_order?pagingNum=${pm.startPage - 1}" class="paging_a">이전</a>
 						</c:if>
 		
-						<c:forEach var="block" varStatus="pg" begin="${pm.startPage }"
-							end="${pm.endPage }" step="1">
+						<c:forEach var="block" varStatus="pg" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<c:choose>
 								<c:when test="${pg.index == pagingNum }">
-									<a href="my_order?pagingNum=${pg.index }"
-										class="paging_num_yes">${pg.index }</a>
+									<a href="my_order?pagingNum=${pg.index }" class="paging_num_yes">${pg.index }</a>
 								</c:when>
 								<c:otherwise>
 									<a href="my_order?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
@@ -109,8 +107,7 @@
 						</c:forEach>
 		
 						<c:if test="${pm.next }">
-							<a href="my_order?pagingNum=${pm.endPage + 1}"
-								class="paging_a">다음</a>
+							<a href="my_order?pagingNum=${pm.endPage + 1}" class="paging_a">다음</a>
 						</c:if>
 					</div>
 			

@@ -150,18 +150,14 @@
 			</div>
 			
 			<div class="list_btn">
-				<input type="button" value="목록" class="site-btn">
+				<input type="button" value="목록" class="site-btn" style="background-color: #B9CE45; border:none"
+					onclick="location.href='/order/my_order?pagingNum=${pagingNum }'">
 			</div>
 			
 		</div>
 		
 		
 	</div>
-  	
-  	
-  	<div class="bottom-container">
-  		
-  	</div>
   	
   	
   <jsp:include page="../inc/bottom.jsp"></jsp:include>
