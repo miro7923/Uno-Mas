@@ -58,9 +58,9 @@
 															<div class="sc-item">
 																<input type="radio" name="stock_state" value="sold" checked onclick="return(false);"> <label for="sold" class="active">품절</label>
 															</div>
-															<div class="sc-item">
-																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
-															</div>
+<!-- 															<div class="sc-item"> -->
+<!-- 																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label> -->
+<!-- 															</div> -->
 														</c:when>
 														<c:when test="${vo.prod_stock > 0}">
 															<div class="sc-item">
@@ -73,11 +73,11 @@
 																<input type="radio" name="stock_state" value="sold"> <label for="sold">품절</label>
 																</div>
 															</div>
-															<div class="sc-item">
-																<div class="normal">
-																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
-																</div>
-															</div>
+<!-- 															<div class="sc-item"> -->
+<!-- 																<div class="normal"> -->
+<!-- 																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label> -->
+<!-- 																</div> -->
+<!-- 															</div> -->
 														</c:when>
 													</c:choose>
 												</div>
