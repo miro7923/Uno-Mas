@@ -21,6 +21,8 @@ import com.april.unomas.persistence.AdminDAO;
 @Service
 public class AdminServiceImpl implements AdminService {
 
+	
+
 	private static final Logger log 
 	= LoggerFactory.getLogger(AdminServiceImpl.class);
 	
@@ -180,6 +182,22 @@ public class AdminServiceImpl implements AdminService {
 	public QnaVO getQna(Integer qna_num) throws Exception {
 		// 1:1문의 조회
 		return dao.getQna(qna_num);
+	}
+	
+	@Override
+	public void deleteQna(Integer qna_num) {
+		// 1:1문의 삭제
+		dao.qnaDelete(qna_num);
+	}
+
+	@Override
+	public Integer noticeCount(Criter cri) throws Exception {
+		return dao.noticeTotal(cri);
+	}
+
+	@Override
+	public Integer faqCount(Criter cri) throws Exception {
+		return dao.faqTotal(cri);
 	}
 	
 	

@@ -34,6 +34,9 @@ public interface AdminService {
 	// 공지사항 글 갯수
 	public Integer noticeCount() throws Exception;
 	
+	// 공지사항 검색 글 갯수
+	public Integer noticeCount(Criter cri) throws Exception;
+	
 	// 공지사항 글쓰기
 	public void noticeWrite(NoticeVO vo) throws Exception;
 	
@@ -57,6 +60,9 @@ public interface AdminService {
 	
 	// 자주하는 질문 갯수
 	public Integer faqCount() throws Exception;
+	
+	// 자주하는 질문 검색 글 갯수
+	public Integer faqCount(Criter cri) throws Exception;
 	
 	// 자주하는 질문 정렬 목록
 	public List<BoardVO> faqSortView(Integer qnacate_num,Criter cri) throws Exception;
@@ -90,4 +96,7 @@ public interface AdminService {
 	
 	// 1:1문의 조회
 	public QnaVO getQna(Integer qna_num) throws Exception;
+	
+	// 1:1문의 삭제
+	public void deleteQna(Integer qna_num);
 }

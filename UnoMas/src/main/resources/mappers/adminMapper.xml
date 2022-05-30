@@ -279,6 +279,11 @@
 		WHERE qna_num = #{qna_num}
 	</update>
 	
+	<delete id="qnaDelete">
+		DELETE FROM board_qna
+		WHERE qna_num=#{qna_num}
+	</delete>
+	
 	<sql id="search_condition_faq">
 	<if test="search_type != null">
 		<if test="search_type == 'title'.toString()">

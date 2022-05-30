@@ -36,6 +36,9 @@ public interface AdminDAO {
 	// 공지사항 글 갯수
 	public Integer noticeTotal();
 	
+	// 공지사항 검색 글 갯수
+	public Integer noticeTotal(Criter cri);
+	
 	// 공지사항 글쓰기
 	public void noticeInsert(NoticeVO vo);
 	
@@ -56,6 +59,9 @@ public interface AdminDAO {
 	
 	// 자주하는 질문 글 갯수
 	public Integer faqTotal();
+	
+	// 자주하는 질문 검색 글 갯수
+	public Integer faqTotal(Criter cri);
 	
 	// 자주하는 질문 정렬 글 갯수
 	public Integer faqSortTotal(Integer qnacate_num);
@@ -92,5 +98,8 @@ public interface AdminDAO {
 	
 	// 1:1 문의글 하나 가져오기
 	public QnaVO getQna(Integer qna_num);
+	
+	// 1:1 문의 삭제
+	public void qnaDelete(Integer qna_num);
 	
 }

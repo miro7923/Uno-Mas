@@ -30,4 +30,8 @@ public interface BoardService {
 	
 	// 전체 정렬 글 갯수
 	public Integer sortCateCount(Integer qnacate_num) throws Exception;
+	
+	// 검색 글 갯수
+	public Integer countBoardTotal(Criter cri) throws Exception;
+	
 }
