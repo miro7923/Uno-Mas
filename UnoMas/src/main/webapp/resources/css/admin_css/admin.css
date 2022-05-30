@@ -108,9 +108,27 @@
     cursor: pointer;
 }
 
+.answer-button{
+/* 	width: 20%; */
+    height: 46px;
+/*     border: 2px solid #ebebeb; */
+    border: none;
+    background-color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0px;
+    padding: 10px;
+    cursor: pointer;
+    word-break: keep-all;
+}
+
 .register-button:hover {
 	background-color: #666;
 	color: white;
+}
+
+.answer-button:hover {
+	color: red;
 }
 
 .table_info  {
@@ -125,9 +143,23 @@
 	text-align: left;
 	margin-bottom: 60px;
 }
+
 .table_board  {
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding: 0px;
+	margin-bottom: 60px;
+	width: 100%;
+	border: 1px solid #ededed;
+	border-collapse: collapse;
+	font-size: 14px;
+	color: #333;
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.table_qna  {
+	margin: 0px;
+	padding: 0px;
 	margin-bottom: 60px;
 	width: 100%;
 	border: 1px solid #ededed;
@@ -194,12 +226,30 @@
     color: #666;
     text-align: left;
 }
+
+.table_qna th {
+    background: #f9f9f9;
+    color: #666;
+    text-align: left;
+}
+
 .table_board td {
     text-align: left;
 }
 
+.table_qna td {
+    text-align: left;
+    padding: 0px;
+}
+
 .table_board th, td {
     padding: 18px 15px 16px 20px;
+    border: 1px solid #ededed;
+    vertical-align: middle;
+}
+
+.table_board th, td {
+    padding: 10px;
     border: 1px solid #ededed;
     vertical-align: middle;
 }
@@ -331,6 +381,16 @@ a:hover {
     border-radius: 4px;
 }
 
+.qna-textarea {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 4px;
+}
+
 .textarea-text {
     display: block;
     width: 100%;
@@ -369,8 +429,37 @@ a:hover {
 	font-weight: bold;
 }
 
+.answer_b {
+	font-weight: bold;
+	color: #f67555;
+}
+
+.answer_b:hover {
+	color: #b9ce45;
+}
+
+.answer_f {
+	font-weight: bold;
+	color: #666;
+}
+
+.answer_f:hover {
+	color: #b9ce45;
+}
+
 .line hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 1px solid #b9ce45;
+}
+
+.qna_content {
+	padding: 10px;
+	text-align: left;
+}
+
+.qna_content hr {
+	margin-top: 1rem;
+    margin-bottom: 1rem;
+	border: 1px solid #ebebeb;
 }

@@ -142,12 +142,7 @@
 										class="paging_a">다음</a>
 								</c:if>
 							</div>
-
 						</div>
-
-
-
-
 					</div>
 				</div>
 			</div>
