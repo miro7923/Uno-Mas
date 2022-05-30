@@ -7,7 +7,7 @@
 <div id="preloder">
 	<div class="loader"></div>
 </div>
-<%-- <link rel="stylesheet" href="${path}/resources/cssadminn.css"> --%>
+<link rel="stylesheet" href="${path}/resources/css/admin_css/adminHeader.css">
 <!-- Header Section Begin -->
 <header class="headerSection">
 	<%
@@ -48,7 +48,7 @@
 	%>
 	
 	 <div class="container"> <!-- 로고·검색창·찜·장바구니 -->
-            <div class="inner-header">
+            <div class="inner-header" style="padding: 0px; margin: 0px auto; padding-bottom: 10px;">
                 <div class="row">
                     <div class="col-lg-5 col-md-5">
                     </div>
@@ -60,18 +60,6 @@
                         </div>
                     </div>
                     <div class="col-lg-5 text-right col-md-5">
-<!--                         <ul class="nav-right"> -->
-<!--                         	<li class="heart-icon"> -->
-<!--                                 <a href="/product/wishlist/list"> -->
-<!--                                     <i class="icon_heart_alt"></i> -->
-<!--                                 </a> -->
-<!--                             </li> -->
-<!--                             <li class="cart-icon"> -->
-<!--                                 <a href="/product/shopping-cart"> -->
-<!--                                     <i class="icon_bag_alt"></i> -->
-<!--                                 </a> -->
-<!--                             </li> -->
-<!--                         </ul> -->
                     </div>
                 </div>
             </div>
@@ -81,7 +69,7 @@
                 <div class="nav-depart">
                     <div class="depart-btn">
                         <i class="ti-menu"></i>
-                        <span>전체 카테고리</span>
+                        <span>상품 카테고리</span>
                         <ul class="depart-hover firstMenu">
                             <li><a href="/product/product_list?cateStart=1&cateEnd=3&topcate_num=1&pageNum=1&dcate_num=0">채소</a>
                             	<ul class="secondMenu">
@@ -126,12 +114,19 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a href="/product/new_list">신상품</a></li>
-                        <li><a href="/product/sale_list">특가</a></li>
-                        <li><a href="co_buying_list">공동구매</a></li>
+                        <li><a href="/product/product_lookup">상품관리</span></a></li>
+                        <li><a href="/product/new_list"><span class="menu">신상품목</span></a></li>
+                        <li><a href="/product/sale_list"><span class="menu">특가품목</span></a></li>
+                        <li><a href="/admin/notice_board"><span class="menu">공지사항</span></a></li>
+                        <li><a href="/admin/qna_board"><span class="menu">1:1문의 답변 현황</span></a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
             </div>
         </div>
     </header>
+    
+    <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/resources/js/board_js/boardSearch.js"></script>
+    <script src="${path}/resources/js/header.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
