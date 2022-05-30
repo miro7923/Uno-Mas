@@ -54,8 +54,6 @@
 												</button>
 											</div><br>
 										</div>
-										
-										
 										<div class="col-lg-12">
 											<table class="table_board">
 												<thead>
@@ -71,9 +69,10 @@
 													<c:forEach items="${noticeList }" var="vo">
 														<tr>
 															<td>${vo.notice_num }</td>
-															<td><a
-																href="/admin/notice_read?notice_num=${vo.notice_num }"><span
-																	class="title"><b>${vo.notice_title }</b></span></a></td>
+															<td><a href="/admin/notice_read?notice_num=${vo.notice_num }">
+																	<span class="title">${vo.notice_title }</span>
+																</a>
+															</td>
 															<td>UnoMás</td>
 															<td>${vo.notice_regdate }</td>
 															<td>${vo.notice_readcnt }</td>

@@ -59,9 +59,9 @@
 										<th>신규 가입자 수</th>
 									</tr>
 									<tr>
-										<td>30</td>
-										<td>46</td>
-										<td>10</td>
+										<td>22</td>
+										<td>16</td>
+										<td>7</td>
 										<td>3</td>
 									</tr>
 								</table>
