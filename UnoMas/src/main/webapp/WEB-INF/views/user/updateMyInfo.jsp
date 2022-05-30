@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -35,7 +36,7 @@
 
 					<tr>
 						<th>이름</th>
-						<td><input type="text" class="input_field" name="user_name" value="${userInfoVO.user_name }" required></td>
+						<td><input type="text" class="input_field" name="user_name" value="${userInfoVO.user_name }" minlength=1 maxlength=15 required></td>
 					</tr>
 
 					<tr>
@@ -45,31 +46,31 @@
 					
 					<tr>
 						<th>생년월일</th>
-						<td>
-						<span id="birth"></span><br>
-	          			<select class="input-birth" name="birth-year" oninput="birthCheck()">
-	              			<option value="">연도</option>
-			               <%
-			                 for(int i=1950; i<=2022; i++) {
-			                    %><option value="<%=i%>"><%=i %>년</option><%
-			                 }
-			               %>
-			               <c:set var="birth" value=""></c:set>
-			            </select>
-			            <select name="birth-month" class="input-birth" oninput="birthCheck()" disabled="disabled">
-			               <option value="">월</option>
-			               <%
-			                 for(int i=1; i<=12; i++) {
-			                    %><option value="<%=i%>"><%=i %>월</option><%
-			                 }
-			               %>
-			            </select>
-	               
-			            <select name="birth-day" class="input-birth" disabled="disabled" oninput="combineBirth()">
-			               <option value="">일</option>
-			            </select><br>
-			            <input name="user_birth" hidden value="">
-				        </td>   
+						<td><input type="text" class="input_field" name="user_birth" value="${userInfoVO.user_birth }"readonly>
+						<input type="button" class="check-button" name="birthCheck" value="수정하기" onclick="birthCheckFunc()">
+						<div id="birthCheckDiv" oninput="birthCheck()">
+						<select class="input-birth" name="birth-year" oninput="birthCheck()">
+							<option value="">연도</option>
+							<%
+							  for(int i=1950; i<=2010; i++) {
+								  %><option value="<%=i%>"><%=i %>년</option><%
+							  }
+							%>
+						</select>
+		                <select name="birth-month" class="input-birth" oninput="birthCheck()" disabled="disabled">
+							<option value="">월</option>
+							<%
+							  for(int i=1; i<=12; i++) {
+								  %><option value="<%=i%>"><%=i %>월</option><%
+							  }
+							%>
+						</select>
+		                
+						<select name="birth-day" class="input-birth" disabled="disabled" oninput="combineBirth()">
+							<option value="">일</option>
+						</select><br>
+						<input name="user_birth" hidden value="">
+					</div></td>
 					</tr>
 
 					<tr>
@@ -95,27 +96,51 @@
 						</td>
 					</tr>
 				</table>
-				<table class="table_info">
-					<tr>
-						<th>추가 배송지${addAddrList }</th>
-						<c:forEach var="vo" items="${addAddrList }" varStatus="status">
-						<td style="line-height: 25px;">
-							<input type="text" id="addr_num" name="addr_num" value="${addAddrList.addr_name }" placeholder="배송지 별명"><br>
-							<input type="text" id="postalcode1" name="addr_postalcode" value="${addAddrList.addr_postalcode }" placeholder="우편번호">
-							<input type="text" id="roadaddr1" name="addr_roadaddr" value="${addAddrList.addr_roadaddr }" placeholder="도로명주소">
-							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="addr_detailaddr" value="${addAddrList.addr_detailaddr }" placeholder="상세주소">
-							<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
-							<br><br>
-							<input type="text" id="addr_num" name="addr_num" value="${addAddrList.addr_name }" placeholder="배송지 별명"><br>
-							<input type="text" id="postalcode2" name="addr_postalcode" value="${addAddrList.addr_postalcode }" placeholder="우편번호">
-							<input type="text" id="roadaddr2" name="addr_roadaddr" value="${addAddrList.addr_roadaddr }" placeholder="도로명주소">
-							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="addr_detailaddr" value="${addAddrList.addr_detailaddr }" placeholder="상세주소">
-							<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('2')">
-						</td>
-						</c:forEach>
-					</tr>
+				<table class="table_addr">
+				<c:set var="AddrListSize" value="${fn:length(addAddrList) }"/>
+					<c:choose>
+						<c:when test="${AddrListSize eq 3}">
+							<c:forEach var="vo" items="${addAddrList }" begin="1" end="2" varStatus="status">
+							<tr>
+								<th>추가 배송지</th>
+								<td style="line-height: 25px; ">
+									<input type="text" id="addr_num" name="addr_num" value="${vo.addr_name }" placeholder="배송지 별명"><br>
+									<input type="text" id="postalcode1" name="addr_postalcode" value="${vo.addr_postalcode }" placeholder="우편번호">
+									<input type="text" id="roadaddr1" name="addr_roadaddr" value="${vo.addr_roadaddr }" placeholder="도로명주소">
+									<span id="guide" style="color:#999;display:none"></span>
+									<input type="text" id="detailaddr" name="addr_detailaddr" value="${vo.addr_detailaddr }" placeholder="상세주소">
+									<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
+								</td>
+							</tr>
+							</c:forEach>
+						</c:when>
+						<c:when test="${AddrListSize eq 2}">	
+							<c:forEach var="vo" items="${addAddrList }" begin="2" end="2" varStatus="status">
+							<tr>
+								<th>추가 배송지1</th>
+								<td style="line-height: 25px; ">
+									<input type="text" id="addr_num" name="addr_num" value="${vo.addr_name }" placeholder="배송지 별명"><br>
+									<input type="text" id="postalcode1" name="addr_postalcode" value="${vo.addr_postalcode }" placeholder="우편번호">
+									<input type="text" id="roadaddr1" name="addr_roadaddr" value="${vo.addr_roadaddr }" placeholder="도로명주소">
+									<span id="guide" style="color:#999;display:none"></span>
+									<input type="text" id="detailaddr" name="addr_detailaddr" value="${vo.addr_detailaddr }" placeholder="상세주소">
+									<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
+								</td>
+							</tr>
+							</c:forEach>
+							<tr>
+								<th>추가 배송지2</th>
+								<td style="line-height: 25px; ">
+									<input type="text" id="addr_num" name="addr_num" value="" placeholder="배송지 별명"><br>
+									<input type="text" id="postalcode1" name="addr_postalcode" value="" placeholder="우편번호">
+									<input type="text" id="roadaddr1" name="addr_roadaddr" value="" placeholder="도로명주소">
+									<span id="guide" style="color:#999;display:none"></span>
+									<input type="text" id="detailaddr" name="addr_detailaddr" value="" placeholder="상세주소">
+									<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
+								</td>
+							</tr>
+						</c:when>
+				</c:choose>
 				</table>
 				
 				<h3>환불 정보</h3>
@@ -181,7 +206,6 @@
 				<input type="submit" class="updateBtn" value="수정">
 			</div>
 			</form>
-
 		</div>
 	</div>
 

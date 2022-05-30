@@ -62,7 +62,7 @@
    select user_id, user_name, user_birth, user_phone, user_email, 
    user_postalcode, user_roadaddr, user_detailaddr, user_status, user_emailagree, user_point, user_bank, user_account, user_account_holder
    from users 
-   where user_id = #{user_id}
+   where user_id=#{user_id}
   </select>
   
   <!-- 회원정보 수정 -->
@@ -80,10 +80,10 @@
   	where user_num=#{user_num}
   </select>
   
-  <!-- 회원 추가 배송지 설정 -->
+  <!-- 회원 추가 배송지 수정 -->
   <update id="updateAddAddr">
   	update order_addr
-  	set addr_name=#{addr_name}, addr_postalcode=#{addr_postalcode}, addr_roadaddr=#{addr_roadaddr}, addr_detailaddr=#{addr_detailaddr}
+  	set addr_name=#{addr_name}, addr_postalcode=#{addr_postalcode}, addr_roadaddr=#{addr_roadaddr}, addr_detailaddr=#{addr_detailaddr}, addr_primary=0
   	where user_num=#{user_num}
   </update>
   

@@ -11,7 +11,7 @@ function passCk(){
 				if(result != "1") {
 					$("#cir_text").html("잘못된 비밀번호입니다.");
 				} else {
-					window.location.href="http://localhost:8088/user/update_myInfo";
+					window.location.href="/user/update_myInfo";
 				}
 			},
 			error: function(error) {

@@ -35,13 +35,20 @@ function execDaumPostcode(num) {
 						document.getElementById('postalcode1').value = data.zonecode;
 						document.getElementById("roadaddr1").value = roadAddr;
 					}
-					if(num=='2') {
-						document.getElementById('postalcode2').value = data.zonecode;
-						document.getElementById("roadaddr2").value = roadAddr;
-					}
 				}
 			}).open();
 			
+}
+
+// 생년월일 selectbox
+function birthCheckFunc() {
+	var con = document.getElementById("birthCheckDiv");
+	if(con.style.display=='none') {
+		con.style.display = 'block';
+	}else {
+		con.style.display = 'none';
+	}
+	
 }
 
 // 생년월일
@@ -101,7 +108,6 @@ function combineBirth() {
 
 // 핸드폰 인증번호
 function phoneCheckFunc() {
-	$('[name=phone]').css('margin-bottom', '0px');
 	$('[name=phoneCheckDiv]').html (
 		'<input type="text" class="input-field" name="phoneCode" placeholder="인증번호 입력"> <input type="button" name="phoneCodeCheck" value="확인" class="check-button"><br>'
 	);

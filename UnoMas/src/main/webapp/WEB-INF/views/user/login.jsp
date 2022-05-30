@@ -22,7 +22,7 @@
 		<article>
 			<h3 class="login_name">로그인</h3>
 			<hr>
-			<form id="join" method="post">
+			<form id="join" method="post" onsubmit="return memberCk();">
 				<div class="input_box">
 				<input type="text" id="id" name="user_id" placeholder="아이디를 입력하세요.">
 				<input type="password" id="pass" name="user_pass" placeholder="비밀번호를 입력하세요.">
@@ -31,7 +31,7 @@
 
 				<div class="check_box">
 					<label class="label_checkbox">
-						<input type="checkbox" id="check_save" name="remember-me" value="chk">아이디 저장
+						<input type="checkbox" id="check_save" name="check_save">아이디 저장
 					</label>
 					<div class="login_search">
 						<a href="find_id" id="id_search">아이디 찾기 | </a> <a href="find_pw" id="pass_search" >비밀번호 찾기</a>
@@ -39,7 +39,7 @@
 				</div>
 				
 				<div id="buttons">
-					<input type="button" value="로그인" id="loginus"  onclick="memberCk()">
+					<input type="submit" value="로그인" id="loginus">
 					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/user/register';">
 				</div>
 			</form>

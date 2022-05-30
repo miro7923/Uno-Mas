@@ -169,13 +169,11 @@ public class UserController {
 	public String myInfoUpdateGET(HttpSession session, Model model) {
 
 		String saveID = (String) session.getAttribute("saveID");
-		System.out.println("update_myInfo : " + saveID);
 		UserVO userInfoVO = service.getUserInfo(saveID);
 		model.addAttribute("userInfoVO", userInfoVO);
 
 		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
 		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
-		System.out.println("addAddrList: " + addAddrList.size());
 		model.addAttribute("addAddrList", addAddrList);
 
 		return "/user/updateMyInfo";
@@ -184,8 +182,12 @@ public class UserController {
 	// 회원정보수정(POST)
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
 	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
+		System.out.println("POST 컨트롤");
+		
 		if (eAgree.equals("1")) {
 			vo.setUser_emailagree(1);
+		}else {
+			vo.setUser_emailagree(0);
 		}
 
 		service.updateUser(vo);
