@@ -177,11 +177,17 @@ public class OrderController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/complete", method = RequestMethod.POST)
-	public ResponseEntity<String> completePOST(@RequestBody OrderVO vo) throws Exception {
+	public ResponseEntity<Integer> completePOST(@RequestBody OrderVO vo) throws Exception {
 		// 결제 완료된 주문정보 DB에 저장
-		orderService.createOrder(vo);
+		int result = orderService.createOrder(vo);
 		
-		return new ResponseEntity<String>("주문정보 생성 완료", HttpStatus.OK);
+		if (result == 0) {
+			log.info("@@@@@@@@@@@ 주문정보 저장 실패");
+			return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
+		}
+		
+		log.info("@@@@@@@@@@@@ 주문정보 저장 성공");
+		return new ResponseEntity<Integer>(1, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "/mobile_complete", method = RequestMethod.GET)

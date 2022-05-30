@@ -205,6 +205,22 @@ public class AdminDAOImpl implements AdminDAO {
 		// 1:1문의 조회
 		return sqlSession.selectOne(NAMESPACE+".getQna",qna_num);
 	}
+
+	@Override
+	public void qnaDelete(Integer qna_num) {
+		// 1:1문의 삭제
+		sqlSession.delete(NAMESPACE+".qnaDelete",qna_num);
+	}
+
+	@Override
+	public Integer noticeTotal(Criter cri) {
+		return sqlSession.selectOne(NAMESPACE+".noticeTotal",cri);
+	}
+
+	@Override
+	public Integer faqTotal(Criter cri) {
+		return sqlSession.selectOne(NAMESPACE+".faqCount",cri);
+	}
 	
 	
 }

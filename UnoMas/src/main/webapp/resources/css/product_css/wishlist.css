@@ -41,3 +41,6 @@
 .cart-title h5{
 	font-size: 12px;
 }
+.cart-table table tr td.p-price, .cart-table table tr td.total-price {
+	color: #B9CE45;
+}

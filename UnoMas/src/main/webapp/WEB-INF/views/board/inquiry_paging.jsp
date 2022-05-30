@@ -43,7 +43,7 @@
                     <h2 class="tit">1:1 문의<span class="tit_sub"></span></h2>
                 </div>
     
-    <input type="button" value="글쓰기" class="inquiry_write_btn" onclick="location.href='/board/inquiry_form';">
+    <input type="button" value="글쓰기" class="site-btn" onclick="location.href='/board/inquiry_form';">
  
 
         <form name="frmList" id="form" method="get" action="?">
@@ -69,7 +69,7 @@
                                 <tbody>
     
                                     <tr>
-                                        <td class="td_subject">${vo.qna_title }</td>
+                                        <td class="td_subject" style="cursor: pointer;">${vo.qna_title }</td>
                         <td class="td_regdate">${vo.qna_regdate }</td>
                         <c:choose>
                         <c:when test="${vo.qna_process eq '0' }">
@@ -79,7 +79,7 @@
                         	<td class="td_answerstatus"><a href="/board/inquiry_comment?qna_num=${vo.qna_num }" style="color: red;">답변완료</a></td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->                        	
                         </c:otherwise>
                         </c:choose>
-                        <td class="td_delete"><input type="button" class="td_delete_btn" value="삭제" onclick="deleteAction(${vo.qna_num})"></td>
+                        <td class="td_delete"><input type="button" class="site-btn" style="margin:0px;" value="삭제" onclick="deleteAction(${vo.qna_num})"></td>
                                     </tr>
                                 </tbody>
                             </table> 
@@ -126,6 +126,11 @@
                         <div class="row justify-content-center">
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
+                <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                		<span>&lt;&lt;</span>
+                	</a>
+                </li>
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
@@ -141,6 +146,11 @@
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                		<span>&gt;&gt;</span>
+                	</a>
+                </li>
                   </c:if>
                 </ul>
             </div>

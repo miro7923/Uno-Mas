@@ -39,8 +39,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public void createOrder(OrderVO vo) throws Exception {
-		dao.createOrder(vo);
+	public int createOrder(OrderVO vo) throws Exception {
+		return dao.createOrder(vo);
 	}
 
 	@Override

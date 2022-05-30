@@ -31,4 +31,8 @@ public interface BoardDAO {
 	// 카테고리 정렬
 	public List<BoardVO> sortCate(Integer qnacate_num, Criter cri);
 	
+	// 검색 글 갯수
+	public Integer countBoardList(Criter cri);
+	
+	
 }

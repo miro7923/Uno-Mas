@@ -25,7 +25,7 @@
       	  <jsp:include page="../user/myPageLeftBar.jsp"></jsp:include>
       	</div>
     </c:if>
-	
+
 	<!-- Breadcrumb Section Begin -->
 	<div class="breacrumb-section">
 		<div class="container">
@@ -42,9 +42,9 @@
 
 	<!-- Shopping Cart Section Begin -->
 
+
 	<section class="shopping-cart-table">
 <!-- 	<section class="shopping-cart spad"> -->
-
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -54,8 +54,7 @@
 								<table>
 									<thead>
 										<tr>
-											<th class="cartCheck"><input type="checkbox"
-												name="selectall" value="selectall" onclick='selectAll(this)' /></th>
+											<th class="cartCheck"><input type="checkbox" name="selectall" value="selectall" onclick='selectAll(this)' /></th>
 											<th>이미지</th>
 											<th class="p-name">상품 정보</th>
 											<th>가격</th>
@@ -79,9 +78,7 @@
 										<thead>
 											<tr>
 												<th class="cartCheck">
-												<input type="checkbox" checked="checked"
-													name="selectall" value="selectall"
-													onclick='selectAll(this)' /></th>
+												<input type="checkbox" checked="checked" name="selectall" value="selectall" onclick='selectAll(this)' /></th>
 												<th>이미지</th>
 												<th class="p-name">상품 정보</th>
 												<th>가격</th>
@@ -105,10 +102,10 @@
 														width="80" height="80"></td>
 													<td class="cart-title first-row">${row.prod_name}</td>
 													<td class="p-price first-row">
-													<%-- <fmt:formatNumber value="${row.prod_price}" pattern="#,###,###" /> --%>
-													<span id="prodPrice${i.index }">${row.prod_price }</span>
-													<input type="hidden" id="prodOriginPrice${i.index }" value="${row.prod_price }">
-													원</td>
+														<%-- <fmt:formatNumber value="${row.prod_price}" pattern="#,###,###" /> --%>
+														<span id="prodPrice${i.index }">${row.prod_price }</span>
+														<input type="hidden" id="prodOriginPrice${i.index }" value="${row.prod_price }">원
+													</td>
 													<td class="qua-col first-row">
 														<div class="quantity">
 															<div class="pro-qty-cart">
@@ -125,11 +122,11 @@
 													<%-- <fmt:formatNumber
 															value="${row.prod_price*row.prod_amount}"
 															pattern="#,###,###" /> --%>
-													<span id="prodTotalPrice${i.index }">${row.prod_price*row.prod_amount}</span>
-													원</td>
+													<span id="prodTotalPrice${i.index }">${row.prod_price*row.prod_amount}</span>원
+													</td>
 													<td class="close-td first-row"><a
-														href="${path}/product/cart/delete?cart_num=${row.cart_num}"><i
-															class="ti-close"></i></a></td>
+														href="${path}/product/cart/delete?cart_num=${row.cart_num}">
+														<i class="ti-close"></i></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

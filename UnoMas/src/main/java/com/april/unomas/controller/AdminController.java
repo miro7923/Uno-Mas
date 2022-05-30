@@ -1,14 +1,17 @@
 package com.april.unomas.controller;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -57,6 +60,13 @@ public class AdminController {
 		return "/admin/main";
 	}
 	
+
+	@RequestMapping(value = "/main2",method = RequestMethod.GET)
+	public String adminMainGET2(Criter cri,Model model) throws Exception{
+		return "/admin/main2";
+	}
+
+	
 	@RequestMapping(value = "/admin_logout",method = RequestMethod.GET)
 	public String adminLogoutGET(AdminVO vo,HttpSession session) throws Exception {
 		session.invalidate();
@@ -90,15 +100,19 @@ public class AdminController {
 		vo.setNotice_ip(request.getRemoteAddr());
 		
 		if(!notice_file.isEmpty()) {
-		UUID uid = UUID.randomUUID();	
-		String fileName = uid.toString()+"_"+notice_file.getOriginalFilename();
+//		UUID uid = UUID.randomUUID();	
+//		String fileName = uid.toString()+"_"+notice_file.getOriginalFilename();
+		String fileName = notice_file.getOriginalFilename();
+		
 		File targetFile = new File(noticeFileUploadPath,fileName);
 		FileCopyUtils.copy(notice_file.getBytes(), targetFile);
 		vo.setNotice_file(fileName);
 		}
 		if(!notice_img.isEmpty()) {
-		UUID uid = UUID.randomUUID();
-		String imageName = uid.toString()+"_"+notice_img.getOriginalFilename();
+//		UUID uid = UUID.randomUUID();
+//		String imageName = uid.toString()+"_"+notice_img.getOriginalFilename();
+		String imageName = notice_img.getOriginalFilename();
+		
 		File targetImage = new File(noticeImageUploadPath,imageName);
 		FileCopyUtils.copy(notice_img.getBytes(), targetImage);
 		vo.setNotice_img(imageName);
@@ -188,9 +202,9 @@ public class AdminController {
 	
 	@RequestMapping(value = "/qna_board",method = RequestMethod.GET)
 	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
-		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
+		String adminVO = (String) session.getAttribute("saveAID");
 		if(adminVO == null) {
-			return "redirect:/admin/admin_login";
+			return "redirect:/user/user_login";
 		}
 		List<QnaVO> pList = service.qnaView(cri);
 		model.addAttribute("pList",pList);
@@ -202,8 +216,10 @@ public class AdminController {
 	
 	@RequestMapping(value = "/qna_comment",method = RequestMethod.GET)
 	public String qnaCommentWriteGET(@RequestParam("qna_num") Integer qna_num, Model model,HttpSession session) throws Exception {
-		AdminVO adminVO = (AdminVO) session.getAttribute("saveID");
-		model.addAttribute("admin_id",adminVO.getAdmin_id());
+		String adminVO = (String) session.getAttribute("saveAID");
+
+		model.addAttribute("admin_id",adminVO);
+
 		model.addAttribute("qnaVO",service.getQna(qna_num));
 		model.addAttribute("qna_num",qna_num);
 		return "/admin/qna_comment";
@@ -220,6 +236,37 @@ public class AdminController {
 	public String qnaCommentViewGET(@RequestParam("qna_num") Integer qna_num,Model model) throws Exception {
 		model.addAttribute("vo",service.qnaCommentView(qna_num));
 		return "/admin/qna_commentView";
+	}
+	
+	@RequestMapping(value = "/image1Down",method = RequestMethod.GET)
+	public void qnaImage1Download(HttpServletResponse response,@RequestParam("qna_image1") String qna_image1) throws Exception {
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+File.separator+qna_image1));
+		response.setContentType("application/cotet-stream");
+		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image1,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+	
+	@RequestMapping(value = "/image2Down",method = RequestMethod.GET)
+	public void inquiryImage2Download(HttpServletResponse response,@RequestParam("qna_image2") String qna_image2) throws Exception {
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+File.separator+qna_image2));
+		response.setContentType("application/cotet-stream");
+		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image2,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+
+
+	@RequestMapping(value = "/qna_delete",method = RequestMethod.GET)
+	public String qnaDeleteGET(@RequestParam("qna_num") Integer qna_num) throws Exception {
+		service.deleteQna(qna_num);
+		
+		return "redirect:/admin/qna_board";
+
 	}
 	
 }

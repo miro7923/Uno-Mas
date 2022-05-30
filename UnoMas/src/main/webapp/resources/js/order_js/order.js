@@ -21,18 +21,15 @@ $(document).ready(function() {
 
 // 아임포트 결제 API 사용
 function requestPay() {
-	var phone = '';
 	var addr = '';
 	var postalcode = '';
 	if ($('input:radio[name=deliverSpot]:checked').val() == 1) {
 		// 기본배송지 사용
-		phone = $('#phone').val();
 		addr = $('#roadAddr').val() + ' ' + $('#detailAddr').val();
 		postalcode = $('#postalcode').val();
 	}
 	else {
 		// 신규배송지 사용
-		phone = $('#newPhone').val();
 		addr = $('#newRoadAddress').val() + ' ' + $('#newDetailAddress').val();
 		postalcode = $('#newPostalcode').val();
 	}
@@ -47,7 +44,7 @@ function requestPay() {
         amount: $('#total').val(),
         buyer_email: $('#userEmail').text(),
         buyer_name: $('#userName').text(),
-        buyer_tel: phone,
+        buyer_tel: $('#userPhone').val(),
         buyer_addr: addr,
         buyer_postcode: postalcode
     }, function (rsp) { // callback
@@ -97,7 +94,15 @@ function requestPay() {
 			            	type: "POST",
 			            	dataType: 'json',
 			            	contentType: 'application/json',
-			            	data: orderVO
+			            	data: orderVO,
+			            	success: function(data) {
+								if (data != 1) {
+									alert('주문정보 생성 실패');
+								}
+							},
+							error: function() {
+								alert('주문정보 생성 실패');
+							}
 			        	});
 	        		}
 	        	

@@ -65,7 +65,7 @@
     </select>
     </div>
     
-    <input type="text" id="keyword_qni" name="keyword" value="" placeholder="검색어 입력" class="search_input">
+    <input type="text" id="keyword_qni" name="keyword" value="" placeholder="검색어 입력" class="search_input" >
 <%--     <button onclick="location.href='/qni_paging?page=1&perPageNum=${pList.perPageNum}&search_type=$search_type.val()&keyword=encodeURIComponent($keyword.val())'">검색</button> --%>
     <button id="search_btn" onclick="search_qni()" class="search_btn">검색</button>
 
@@ -95,6 +95,7 @@
                             </tr>
                         </tbody>
                     </table> <!-- table header -->
+                    <c:set var="num" value="${pagingVO.totalCount - ((pagingVO.cri.page-1) * 10) }"></c:set>
                                 <c:forEach items="${pList }" var="vo">
                                
                         <div>
@@ -102,7 +103,7 @@
                                 <tbody>
     
                                     <tr>
-                                        <td width="70" align="center" class="input_txt_qni_num">${vo.faq_num }</td>
+                                        <td width="70" align="center" class="input_txt_qni_num">${num }</td>
                                         <td width="135" align="center" class="input_txt_qni_cate">${vo.qnaCateVO.qnacate_name }</td>
                                         <td style="cursor:pointer" class="input_txt_qni_title">${vo.faq_title }</td>
                                         <td style="cursor:pointer" class="input_txt_qni_writer">${vo.adminVO.admin_id }</td>
@@ -125,7 +126,7 @@
                                 </table>
                             </div>
                         </div> <!-- table body -->
-
+								<c:set var="num" value="${num-1 }"></c:set>
                                 </c:forEach>
                                 
                     <div style="padding:1px; border-top:1px solid #e6e6e6"></div>
@@ -135,6 +136,11 @@
                         <div class="row justify-content-center">
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
+                <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                		<span>&lt;&lt;</span>
+                	</a>
+                </li>
                   <li class="page-item">
                     <a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
@@ -150,6 +156,11 @@
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
+                  <li class="page-item">
+                	<a class="page-link text-dark" href='<c:url value="/board/qni_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                		<span>&gt;&gt;</span>
+                	</a>
+                </li>
                   </c:if>
                 </ul>
             </div>

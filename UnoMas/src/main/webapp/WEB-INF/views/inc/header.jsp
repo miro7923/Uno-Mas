@@ -80,7 +80,7 @@
                             <button type="button" class="category-btn">All Categories</button>
                             <div class="input-group">
                             	<input type="hidden" value="prod_name" name="search_type" id="search_type_prod">
-                                <input type="text" id="keyword_prod" name="keyword" value="" placeholder="검색어를 입력해주세요.">
+                                <input type="text" id="keyword_prod" name="keyword" value="" placeholder="검색어를 입력해주세요." >
                                 <button type="button" onclick="search_prod()"><i class="ti-search"></i></button>
                             </div>
                         </div>
@@ -172,12 +172,16 @@
                     <ul>
                         <li><a href="/product/new_list">신상품</a></li>
                         <li><a href="/product/sale_list">특가</a></li>
-                        <li><a href="co_buying_list">공동구매</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
             </div>
         </div>
     </header>
+
     <script src="${path}/resources/js/board_js/boardSearch.js"></script>
     <script src="${path}/resources/js/header.js"></script>
+    <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+   
+
+

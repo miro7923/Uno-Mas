@@ -11,6 +11,12 @@
 	href="${path}/resources/css/product_css/reviewWritingForm.css?after22">
 <!-- Header end -->
 
+<%
+    if (session.getAttribute("saveID") == null) {
+    	response.sendRedirect("/index");
+    }
+%>
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -25,7 +31,7 @@
 						<form action="/product/write_inquiry" method="post" class="comment-form">
 						    <div class="row">
 						        <div class="col-lg-12">
-						            <input type="hidden" value="1" name="user_num">
+						            <input type="hidden" value="${sesseionScope.saveNUM }" name="user_num">
 						            <input type="hidden" value="${vo.prod_num }" name="prod_num">
   						            <p class="productName">상품명 : ${vo.prod_name }</p>
 						        </div>

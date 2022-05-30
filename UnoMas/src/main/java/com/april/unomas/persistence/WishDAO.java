@@ -23,4 +23,7 @@ public interface WishDAO {
 	
 	// 장바구니 단품 담기
 	public void insertCart(int user_num, int prod_num, int prod_amount) throws Exception;
+	
+	// 장바구니와 같은 상품 있는지 체크
+	public int checkCart(int user_num, int prod_num) throws Exception;
 }

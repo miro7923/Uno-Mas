@@ -76,7 +76,9 @@
 						        <div>
 									<p class="prdPrice">
 								    <del><fmt:formatNumber value="${rl2.prod_price}" type="number"/>원</del><br>
-								    <fmt:formatNumber value="${rl2.prod_price*(100-rl2.prod_discntrate)/100}" type="number"/>원
+								    <c:set var="discnted1" value="${rl2.prod_price*(100-rl2.prod_discntrate)/100}"/>
+							        <c:set var="discntedPrice1" value="${discnted1+((discnted1%10>5)?(10-(discnted1%10))%10:-(discnted1%10))}"/>
+                                 	<fmt:formatNumber value="${discntedPrice1}" type="number"/>원
 								    </p>
 						        </div>
 		                    </c:otherwise>
@@ -107,7 +109,9 @@
 						        <div>
 									<p class="prdPrice">
 								    <del><fmt:formatNumber value="${sl2.prod_price}" type="number"/>원</del><br>
-								    <fmt:formatNumber value="${sl2.prod_price*(100-sl2.prod_discntrate)/100}" type="number"/>원
+								    <c:set var="discnted2" value="${sl2.prod_price*(100-sl2.prod_discntrate)/100}"/>
+							        <c:set var="discntedPrice2" value="${discnted2+((discnted2%10>5)?(10-(discnted2%10))%10:-(discnted2%10))}"/>
+                                 	<fmt:formatNumber value="${discntedPrice2}" type="number"/>원
 								    </p>
 						        </div>
 		                    </c:otherwise>
@@ -138,7 +142,9 @@
 						        <div>
 									<p class="prdPrice">
 								    <del><fmt:formatNumber value="${bl2.prod_price}" type="number"/>원</del><br>
-								    <fmt:formatNumber value="${bl2.prod_price*(100-bl2.prod_discntrate)/100}" type="number"/>원
+								    <c:set var="discnted3" value="${bl2.prod_price*(100-bl2.prod_discntrate)/100}"/>
+							        <c:set var="discntedPrice3" value="${discnted3+((discnted3%10>5)?(10-(discnted3%10))%10:-(discnted3%10))}"/>
+                                 	<fmt:formatNumber value="${discntedPrice3}" type="number"/>원
 								    </p>
 						        </div>
 		                    </c:otherwise>
@@ -223,7 +229,9 @@
                                 	</c:when>
                                 	<c:otherwise>
 		                                 <div class="product-price">
-		                                    <fmt:formatNumber value="${rl.prod_price*(100-rl.prod_discntrate)/100}" type="number"/>원
+		                                    <c:set var="discnted4" value="${rl.prod_price*(100-rl.prod_discntrate)/100}"/>
+									        <c:set var="discntedPrice4" value="${discnted4+((discnted4%10>5)?(10-(discnted4%10))%10:-(discnted4%10))}"/>
+		                                 	<fmt:formatNumber value="${discntedPrice4}" type="number"/>원
 		                                    <span><fmt:formatNumber value="${rl.prod_price}" type="number"/>원</span>
 		                                </div>
                                 	</c:otherwise>
@@ -310,7 +318,9 @@
                                 	</c:when>
                                 	<c:otherwise>
 		                                 <div class="product-price">
-		                                    <fmt:formatNumber value="${sl.prod_price*(100-sl.prod_discntrate)/100}" type="number"/>원
+				                            <c:set var="discnted5" value="${sl.prod_price*(100-sl.prod_discntrate)/100}"/>
+									        <c:set var="discntedPrice5" value="${discnted5+((discnted5%10>5)?(10-(discnted5%10))%10:-(discnted5%10))}"/>
+		                                 	<fmt:formatNumber value="${discntedPrice5}" type="number"/>원
 		                                    <span><fmt:formatNumber value="${sl.prod_price}" type="number"/>원</span>
 		                                </div>
                                 	</c:otherwise>
@@ -398,7 +408,9 @@
                                 	</c:when>
                                 	<c:otherwise>
 		                                 <div class="product-price">
-		                                    <fmt:formatNumber value="${bl.prod_price*(100-bl.prod_discntrate)/100}" type="number"/>원
+		                                 	<c:set var="discnted6" value="${bl.prod_price*(100-bl.prod_discntrate)/100}"/>
+									        <c:set var="discntedPrice6" value="${discnted6+((discnted6%10>5)?(10-(discnted6%10))%10:-(discnted6%10))}"/>
+		                                 	<fmt:formatNumber value="${discntedPrice6}" type="number"/>원
 		                                    <span><fmt:formatNumber value="${bl.prod_price}" type="number"/>원</span>
 		                                </div>
                                 	</c:otherwise>

@@ -17,20 +17,20 @@
 	<!-- 찜 X 삭제 버튼 -->
 	<delete id="deleteWish" parameterType="int">
 		DELETE
-		FROM unomasdb.wishlist
+		FROM wishlist
 		WHERE wish_num = #{wish_num}
 	</delete>
 	
 	<!-- 찜 선택 삭제 -->
 	<delete id="deleteCheckWish">
 		DELETE
-		FROM unomasdb.wishlist
+		FROM wishlist
 		WHERE wish_num = #{wish_num} AND user_num = #{user_num}
 	</delete>
 	
 	<!-- 장바구니 선택 추가 -->
 	<insert id="insertCheckWish">
-		INSERT INTO unomasdb.cart (user_num, prod_num)
+		INSERT INTO cart (user_num, prod_num)
 		VALUES (#{user_num}, #{prod_num})
 		ON DUPLICATE KEY UPDATE prod_num = prod_num
 	</insert>
@@ -38,14 +38,25 @@
 	<!-- 찜 전체 삭제 -->
 	<delete id="deleteAllWish" parameterType="int">
 		DELETE
-		FROM unomasdb.wishlist
+		FROM wishlist
 		WHERE user_num = #{user_num}
 	</delete>
 	
 	<!-- 장바구니 단품 담기 -->
 	<insert id="insertCart">
-		INSERT INTO unomasdb.cart (user_num, prod_num, prod_amount)
+		INSERT INTO cart (user_num, prod_num, prod_amount)
 		VALUES (#{user_num}, #{prod_num}, #{prod_amount})
 		ON DUPLICATE KEY UPDATE prod_amount = prod_amount
     </insert>
+    
+     <!-- 장바구니 체크 -->
+    <select id="checkCart" resultType="int">
+    	SELECT COUNT(*)
+		FROM unomasdb.wishlist w 
+		LEFT JOIN unomasdb.cart c 
+		ON c.user_num = w.user_num AND c.prod_num = w.prod_num
+		LEFT JOIN unomasdb.products p
+		ON w.prod_num = p.prod_num
+		WHERE w.user_num = #{user_num} AND w.prod_num = #{prod_num} AND (w.prod_num = c.prod_num OR p.prod_stock=0)
+    </select>
 </mapper>

@@ -12,7 +12,7 @@
 
 <body>
     <!-- Header Section Begin -->
-    <jsp:include page="../inc/header.jsp"></jsp:include>
+    <jsp:include page="../inc/adminHeader2.jsp"></jsp:include>
     <!-- Header End -->
 	
 	<!-- Product Register Section End -->
@@ -20,19 +20,15 @@
 		<div class="container">
 			<div class="row">
 			
-				<!-- 상품관리 카테고리 -->
-				<div class="col-lg-2 produts-sidebar-filter">
+				<!-- 관리자 카테고리 -->
+				<div class="col-lg-3 produts-sidebar-filter">
 					<div class="filter-widget">
-						<h4 class="fw-title">상품관리</h4>
-						<ul class="filter-catagories">
-							<li><a href="product_lookup">상품조회</a></li>
-							<li><a href="product_register">상품등록</a></li>
-						</ul>
+				 		<jsp:include page="../inc/adminLeftBar.jsp"></jsp:include>
 					</div>
 				</div>
 
 				<!-- 상품등록-->
-				<div class="col-lg-10">
+				<div class="col-lg-9">
 					<h2>개별상품조회 :: ${vo.prod_name }</h2><div class="line"><hr></div>
 					<div class="container">
 						<form action="/product/modify" method="get" class="checkout-form" >
@@ -62,9 +58,9 @@
 															<div class="sc-item">
 																<input type="radio" name="stock_state" value="sold" checked onclick="return(false);"> <label for="sold" class="active">품절</label>
 															</div>
-															<div class="sc-item">
-																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
-															</div>
+<!-- 															<div class="sc-item"> -->
+<!-- 																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label> -->
+<!-- 															</div> -->
 														</c:when>
 														<c:when test="${vo.prod_stock > 0}">
 															<div class="sc-item">
@@ -77,11 +73,11 @@
 																<input type="radio" name="stock_state" value="sold"> <label for="sold">품절</label>
 																</div>
 															</div>
-															<div class="sc-item">
-																<div class="normal">
-																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label>
-																</div>
-															</div>
+<!-- 															<div class="sc-item"> -->
+<!-- 																<div class="normal"> -->
+<!-- 																<input type="radio" name="stock_state" value="hide"> <label for="hide">숨김</label> -->
+<!-- 																</div> -->
+<!-- 															</div> -->
 														</c:when>
 													</c:choose>
 												</div>

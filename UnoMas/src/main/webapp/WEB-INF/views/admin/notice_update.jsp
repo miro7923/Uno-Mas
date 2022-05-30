@@ -1,78 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-  
 <!DOCTYPE html>
-<html>
-  <jsp:include page="../inc/adminHeader.jsp"></jsp:include>
-        
-<!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-        
-        
-      <div class="container">
-            <div class="row">
-            
-                <div class="col-lg-12">
-                
-                    <div class="faq-accordin">
-                        
-                        <div class="page_aticle">
-    
-    
-    <div class="css-171zbec eug5r8l1">
-        <h3 class="css-1ttk28w eug5r8l0">공지 사항</h3>
-        <div class="css-185m8ch e1153ede0">
-            <form method="post" action="/admin/notice_update">
-            <input type="hidden" name="notice_num" value="${vo.notice_num }">
-                <div class="css-17bp14q e1vbjq4w3">
-                    <div class="css-mm5tap e1vbjq4w2"><label for="inquiry-subject" data-testid="label-text">글쓴이<span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span></label></div>
-                    <div class="css-12l4j2c e1vbjq4w1">
-                        <div class="css-1waqr6j e1uzxhvi4">
-                            <div height="44" class="css-t7kbxx e1uzxhvi1">
-                            <input type="hidden" name="admin_num" value="1">
-                            <input data-testid="input-box" id="inquiry-subject" name="admin_name" placeholder="글쓴이" type="text" height="44" class="css-1fapsij e1uzxhvi0" value="관리자" readonly></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="css-17bp14q e1vbjq4w3">
-                    <div class="css-mm5tap e1vbjq4w2"><label for="inquiry-subject" data-testid="label-text">제목<span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span></label></div>
-                    <div class="css-12l4j2c e1vbjq4w1">
-                        <div class="css-1waqr6j e1uzxhvi4">
-                            <div height="44" class="css-t7kbxx e1uzxhvi1"><input data-testid="input-box" id="inquiry-subject" name="notice_title" type="text" height="44" class="css-1fapsij e1uzxhvi0" value="${vo.notice_title }"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="css-rm6te4 e1fgvk594">
-                    <div class="css-17bp14q e1vbjq4w3">
-                        <div class="css-mm5tap e1vbjq4w2"><label for="inquiry-contents" data-testid="label-text">내용<span data-testid="label-required-text" class="css-hwfcu5 e1vbjq4w0">*</span></label></div>
-                        <div class="css-12l4j2c e1vbjq4w1">
-                            <div class="css-0 e1tjt2bn7">
-                                <div class="css-77m6at e1tjt2bn5"><textarea id="inquiry-contents" inputmode="text" aria-label="textarea-message" name="notice_content" class="css-835sfl e1tjt2bn1" >${vo.notice_content }</textarea>
-                                    <span class="content-length-counter css-zgkz6w e1tjt2bn0"><span><span class="css-pa1wgl e1tjt2bn2">0자 </span><span class="css-1eqlkgi e1tjt2bn3">/ 500자</span></span></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
-                
-                <div class="css-1spu0j4 ebvrvv11"><button type="submit" class="css-13kn1it ebvrvv10">등록</button></div>
-            </form>
-        </div>
-    </div>
-    
-    
-</div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <jsp:include page="../inc/adminScript.jsp"></jsp:include>
-<!--  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<html lang="zxx">
+<jsp:include page="../inc/top.jsp"></jsp:include>
+<%-- <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3"> --%>
+<link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
+<link rel="stylesheet" href="${path}/resources/css/admin_css/admin.css?after1">
 
-  <jsp:include page="../inc/adminFooter.jsp"></jsp:include>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UnoMas 관리자페이지</title>
+</head>
+<!-- Start Header -->
+
+<body>
+    <!-- Header Section Begin -->
+    <jsp:include page="../inc/adminHeader2.jsp"></jsp:include>
+    <!-- Header End -->
+    
+    <!-- Product Register Section End -->
+	<section class="product-shop spad">
+		<div class="container">
+			<div class="row">
+
+				<!-- 관리자 카테고리 -->
+				<div class="col-lg-3 produts-sidebar-filter">
+					<div class="filter-widget">
+						<jsp:include page="../inc/adminLeftBar.jsp"></jsp:include>
+					</div>
+				</div>
+
+				<div class="col-lg-9">
+					<h2>공지사항</h2>
+					- ${vo.notice_num }번 글 수정
+					<div class="line">
+						<hr>
+					</div>
+					<div class="container">
+						<form method="post" action="/admin/notice_update"
+							class="checkout-form">
+							<br>
+							<table class="table_board">
+								<tr>
+									<th>작성자</th>
+									<td colspan="3"><input type="text" class="input_field"
+										name="admin_num" value="UnoMás" readonly></td>
+								</tr>
+								<tr>
+									<th>제목</th>
+									<td colspan="3"><input type="text" class="input_field"
+										name="notice_title" value="${vo.notice_title }"></td>
+								</tr>
+							</table>
+							<table class="table_board">
+								<tr>
+									<th>내용</th>
+								</tr>
+								<tr>
+									<td>
+										<div class="textarea">
+											<textarea inputmode="text" name="notice_content"
+												class="textarea-text" placeholder="내용을 입력하세요">${vo.notice_content }</textarea>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<button type="submit" class="count-button">등록</button>
+							<br><br>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- Partner Logo Section End -->
+    <!-- Footer Section Begin -->
+	<jsp:include page="../inc/bottom.jsp"></jsp:include>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/resources/js/bootstrap.min.js"></script>
+    <script src="${path}/resources/js/jquery-ui.min.js"></script>
+    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
+    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
+    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
+    <script src="${path}/resources/js/jquery.dd.min.js"></script>
+    <script src="${path}/resources/js/jquery.slicknav.js"></script>
+    <script src="${path}/resources/js/owl.carousel.min.js"></script>
+    <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/product_js/productAdmin.js"></script>
+</body>
+
+</html>
