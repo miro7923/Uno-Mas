@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -105,7 +106,7 @@ public class BoardController {
 	@RequestMapping(value="/qni_paging",method = RequestMethod.GET)
 	public String pagingListGET(Criter cri,Model model) throws Exception {
 	    PagingVO pagingVO = new PagingVO(cri);
-	    pagingVO.setTotalCount(service.countBoardTotal());
+	    pagingVO.setTotalCount(service.countBoardTotal(cri));
 	    List<BoardVO> pList = service.selectBoardList(cri);
 	    model.addAttribute("pList", pList);
 	    model.addAttribute("pagingVO", pagingVO);
@@ -294,6 +295,30 @@ public class BoardController {
 	public String inquiryCommentGET(@RequestParam("qna_num") Integer qna_num, Model model) throws Exception {
 		model.addAttribute("commentList",qService.getComment(qna_num));
 		return "/board/inquiry_comment";
+	}
+	
+	@RequestMapping(value="/qni_search",method = RequestMethod.GET)
+	public String qniSearchGET(Criter cri,Model model) throws Exception {
+	    PagingVO pagingVO = new PagingVO(cri);
+	    int total = service.countBoardTotal(cri);
+	    pagingVO.setTotalCount(total);
+	    List<BoardVO> pList = service.selectBoardList(cri);
+	    model.addAttribute("total",total);
+	    model.addAttribute("pList", pList);
+	    model.addAttribute("pagingVO", pagingVO);
+	    return "/board/qni_search";    
+	}
+	
+	@RequestMapping(value="/faq_search",method = RequestMethod.GET)
+	public String faqSearchGET(Criter cri, Model model) throws Exception {
+		PagingVO pagingVO = new PagingVO(cri);
+		int total = nService.noticeCnt(cri);
+		pagingVO.setTotalCount(total);
+		List<NoticeVO> pList = nService.pagingNotices(cri);
+		model.addAttribute("total",total);
+		model.addAttribute("pList",pList);
+		model.addAttribute("pagingVO",pagingVO);
+		return "/board/faq_search";
 	}
 	
 }

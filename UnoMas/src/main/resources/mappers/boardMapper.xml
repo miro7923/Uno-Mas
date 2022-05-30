@@ -55,8 +55,9 @@
 	<select id="countBoard" resultType="Integer">
 		<![CDATA[
 		SELECT COUNT(*) 
-		FROM board_faq
-		WHERE faq_num > 0
+		FROM board_faq b
+		JOIN qna_category q
+		WHERE b.qnacate_num = q.qnacate_num
 		]]>
 		<include refid="search_condition"></include>
 	</select>
@@ -72,6 +73,19 @@
 		ORDER BY faq_num DESC
 		LIMIT #{pageStart} , #{perPageNum}
 	</select>
+	
+<!-- 	<select id="pagingBoard" resultMap="boardMap"> -->
+<!-- 		SELECT faq_num,b.admin_num,faq_title,faq_content, faq_regdate,b.qnacate_num,q.qnacate_num,q.qnacate_name -->
+<!-- 		FROM board_faq b -->
+<!-- 		JOIN qna_category q -->
+<!-- 		ON b.qnacate_num = q.qnacate_num -->
+<!-- 		JOIN admin a -->
+<!-- 		ON b.admin_num = a.admin_num -->
+<!-- 		where faq_num > 0 -->
+<!-- 		<include refid="search_condition"></include> -->
+<!-- 		ORDER BY faq_num DESC -->
+<!-- 		LIMIT #{pageStart} , #{perPageNum} -->
+<!-- 	</select> -->
 	
 	<select id="getBoard" resultType="BoardVO">
 		SELECT * 

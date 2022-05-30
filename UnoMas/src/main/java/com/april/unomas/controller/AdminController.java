@@ -1,14 +1,17 @@
 package com.april.unomas.controller;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -233,6 +236,37 @@ public class AdminController {
 	public String qnaCommentViewGET(@RequestParam("qna_num") Integer qna_num,Model model) throws Exception {
 		model.addAttribute("vo",service.qnaCommentView(qna_num));
 		return "/admin/qna_commentView";
+	}
+	
+	@RequestMapping(value = "/image1Down",method = RequestMethod.GET)
+	public void qnaImage1Download(HttpServletResponse response,@RequestParam("qna_image1") String qna_image1) throws Exception {
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+File.separator+qna_image1));
+		response.setContentType("application/cotet-stream");
+		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image1,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+	
+	@RequestMapping(value = "/image2Down",method = RequestMethod.GET)
+	public void inquiryImage2Download(HttpServletResponse response,@RequestParam("qna_image2") String qna_image2) throws Exception {
+		byte[] fileByte = FileUtils.readFileToByteArray(new File(qnaUploadPath+File.separator+qna_image2));
+		response.setContentType("application/cotet-stream");
+		response.setHeader("content-Disposition", "attachment; filename=\""+URLEncoder.encode(qna_image2,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
+	}
+
+
+	@RequestMapping(value = "/qna_delete",method = RequestMethod.GET)
+	public String qnaDeleteGET(@RequestParam("qna_num") Integer qna_num) throws Exception {
+		service.deleteQna(qna_num);
+		
+		return "redirect:/admin/qna_board";
+
 	}
 	
 }

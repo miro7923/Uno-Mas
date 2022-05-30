@@ -32,8 +32,8 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public List<BoardVO> selectBoardList(Criter cri) {
-		List ya = sqlSession.selectList(NAMESPACE+".pagingBoard",cri);
-		System.out.println("ya는? " + ya.get(0));
+//		List ya = sqlSession.selectList(NAMESPACE+".pagingBoard",cri);
+//		System.out.println("ya는? " + ya.get(0));
 		return sqlSession.selectList(NAMESPACE+".pagingBoard",cri);
 	}
 
@@ -75,5 +75,12 @@ public class BoardDAOImpl implements BoardDAO {
 		log.info(paramMap+"##########");
 		return sqlSession.selectList(NAMESPACE+".sortCategory",paramMap);
 	}
+
+	@Override
+	public Integer countBoardList(Criter cri) {
+		return sqlSession.selectOne(NAMESPACE+".countBoard",cri);
+	}
+	
+	
 
 }

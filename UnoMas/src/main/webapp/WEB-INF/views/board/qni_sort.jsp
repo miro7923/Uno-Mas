@@ -151,7 +151,7 @@
                     </a>
                   </li>
                   <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/ani_sort${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
                 		<span>&gt;&gt;</span>
                 	</a>
                 </li>

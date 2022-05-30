@@ -61,4 +61,10 @@ public class BoardServiceImpl implements BoardService {
 		return dao.sortCate(qnacate_num, cri);
 	}
 
+	@Override
+	public Integer countBoardTotal(Criter cri) throws Exception {
+		return dao.countBoardList(cri);
+	}
+	
+	
 }
