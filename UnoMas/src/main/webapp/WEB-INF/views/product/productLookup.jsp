@@ -7,7 +7,6 @@
 
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
-<link rel="stylesheet" href="${path}/resources/css/defaultCss.css">
 <link rel="stylesheet" href="${path}/resources/css/admin_css/allUser.css">
 <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after3">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>

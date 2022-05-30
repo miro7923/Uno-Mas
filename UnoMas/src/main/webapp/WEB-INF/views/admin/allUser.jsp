@@ -7,9 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${path}/resources/css/defaultCss.css">
 <link rel="stylesheet" href="${path}/resources/css/admin_css/allUser.css">
-<%-- <link rel="stylesheet" href="${path}/resources/css/admin_css/admin.css?after1"> --%>
 <title>UnoMas 관리자페이지</title>
 </head>
 <body>
