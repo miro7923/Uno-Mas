@@ -95,7 +95,14 @@ $(document).ready(function() {
 		} else $("#allCheck").prop("checked", true); 
 	});
 });
-		
+
+/* 체크박스 해제 버튼 */
+$(document).ready(function() {
+	$("#allNonChk").click(function() {
+		$(":checkbox").prop("checked",false);
+	});
+});
+	
 /* 오늘 날짜 */
 var now = new Date();
 var month = now.getMonth()+1;
