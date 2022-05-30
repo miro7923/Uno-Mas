@@ -101,7 +101,7 @@
 							<tr>
 								<td rowspan="${fn:length(map.value) }" class="order_num_td">${regdate }<br>
 										( ${map.key } )<br> 
-										<a href="/order/order_detail" class="table_btn">주문 상세보기</a>
+										<a href="/order/order_detail?code=${map.key }" class="table_btn">주문 상세보기</a>
 								</td>
 								<c:forEach var="val" items="${map.value }" varStatus="itt">
 									<td class="order_info_td">

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -43,43 +43,47 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="map" items="${orderMap }" varStatus="it">
-							  <fmt:formatDate var="regdate" value="${map.value[0].order_date}" pattern="yyyy-MM-dd" />
+							    <fmt:formatDate var="regdate" value="${map.value[0].order_date}" pattern="yyyy-MM-dd" />
 								<tr>
-									<td rowspan="${fn:length(map.value) }" class="order_num_td">${regdate }<br>
-											( ${map.key } )<br> 
-											<a href="order_detail" class="table_btn">주문 상세보기</a>
+									<td class="order_num_td">${regdate }<br>
+											( ${map.key } )<br>
+											<a href="/order/order_detail?code=${map.key }" class="table_btn">주문 상세보기</a>
 									</td>
 									<c:forEach var="val" items="${map.value }" varStatus="itt">
 										<td class="order_info_td">
 											<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
 											<div>
-												<a href="" target="_blank"> ${val.prod_name } </a>
+												<a href="/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
 												<hr>
 												<span>${val.prod_price }원</span> / <span>${val.order_quantity }개</span>
 											 </div>
 										</td>
 									</c:forEach>
-										
-									<td rowspan="${fn:length(map.value) }">
+									
+									<
+									<td rowspan="1">
 									  <c:choose>
 									  	<c:when test="${map.value[0].order_status eq '결제완료'}">
-									  		<strong style="color: red;">${map.value[0].order_status }<strong><br>
+									  		<strong style="color: red;">${val.order_status }<strong><br>
 									  	</c:when>
 									  	<c:when test="${map.value[0].order_status eq '배송완료'}">
-									  		<strong style="color: blue;">${map.value[0].order_status }<strong><br>
+									  		<strong style="color: blue;">${val.order_status }<strong><br>
 									  	</c:when>
 									  	<c:otherwise>
-									  		<strong>${map.value[0].order_status }<strong><br>
+									  		<strong>${map.value.order_status }<strong><br>
 									  	</c:otherwise>
 									  </c:choose>
-										
+							
 									  <a href="" class="table_btn">배송조회</a>
 									</td>
-									<td><a href="" class="table_btn">반품신청</a><br> 
+							
+									<td >
+										<a href="" class="table_btn">반품신청</a><br> 
 										<a href="" class="table_btn">교환신청</a>
 									</td>
 								</tr>
-							</c:forEach>
+								</c:forEach>
+							
 				  		</c:otherwise>
 				  	  </c:choose>
 				  	  </tbody>

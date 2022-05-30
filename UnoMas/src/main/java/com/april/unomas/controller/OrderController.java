@@ -2,6 +2,7 @@ package com.april.unomas.controller;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -307,9 +308,21 @@ public class OrderController {
 	
 	// 주문 상세보기 페이지
 	@RequestMapping(value = "/order_detail", method = RequestMethod.GET)
-	public String orderDetail() {
+	public String orderDetail(HttpSession session, @RequestParam int code, Model model) throws Exception {
+		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
+//		int code2 = Integer.parseInt(code); 
+		
+		List<Integer> limitList = new ArrayList<Integer>(Arrays.asList(code));
+		Map<Integer, List> orderMap = orderService.getMyOrderList(saveNUM, limitList);
+		
+		PayVO payInfo = orderService.getPayInfo(code);
+		
+		model.addAttribute("orderMap", orderMap);
+		model.addAttribute("payInfo", payInfo);
+		
 		return "/order/myOrderDetail";
 	}
+	
 
 	
 	@RequestMapping(value = "/addr_book", method = RequestMethod.GET)

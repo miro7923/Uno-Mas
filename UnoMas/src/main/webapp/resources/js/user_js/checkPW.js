@@ -2,16 +2,16 @@ function passCk(){
 	$.ajax({
 			async: true,
 			type: "POST",
-			url: "check_pw",
 			data: {
-				'user_id' : $("#id").val(),
-				'user_pass': $("#pass").val() 
+				'user_id' : $("[name=user_id]").val(),
+				'user_pass': $("[name=user_pass]").val() 
 			},
+			url: "/user/check_pw",
 			success: function(result) {
 				if(result != "1") {
 					$("#cir_text").html("잘못된 비밀번호입니다.");
 				} else {
-					window.location.href="http://localhost:8088/user/update_myInfo";
+					window.location.href="/user/update_myInfo";
 				}
 			},
 			error: function(error) {

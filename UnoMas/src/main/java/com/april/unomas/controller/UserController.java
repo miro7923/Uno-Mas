@@ -148,6 +148,21 @@ public class UserController {
 
 		return result;
 	}
+	
+	
+	// 비밀번호 확인
+	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
+	public String pwCheck() {
+		return "/user/checkPW";
+	}
+	
+	// 비밀번호 확인
+	@RequestMapping(value = "/check_pw", method=RequestMethod.POST)
+	@ResponseBody
+	public String pwCheck(UserVO vo) {
+		System.out.println("비번체크한 결과:" + Integer.toString(service.checkPW(vo)));
+		return Integer.toString(service.checkPW(vo));
+	}
 
 	// mypage
 	@RequestMapping(value = "/mypage")
@@ -162,10 +177,15 @@ public class UserController {
 		}
 		
 		List<CartVO> list = cartService.listCart(saveNUM);
+		System.out.println(" 장바구니 목록: " + list);
 		int sumMoney = cartService.sumMoney(saveNUM);  	// 총 상품가격
         int fee = sumMoney >= 50000 ? 0 : 2500; 		// 배송비 계산
- 
-        model.addAttribute("list", list.subList(0, 4)); // 장바구니 정보를 map에 저장
+        
+        if(list.size()>4) {
+        	model.addAttribute("list", list.subList(0, 4));
+        } else {
+        	model.addAttribute("list", list);
+        }
         model.addAttribute("sumMoney", sumMoney); 		// 장바구니 전체 금액
         model.addAttribute("fee", fee); 				// 배송료
         model.addAttribute("sum", sumMoney+fee); 		// 총 결제 예상금액(장바구니+배송비)
@@ -297,15 +317,6 @@ public class UserController {
 	}
 
 	
-	
-	// 비밀번호 확인
-	@RequestMapping(value = "/check_pw", method=RequestMethod.POST)
-	@ResponseBody
-	public String pwCheck(UserVO vo) {
-		return Integer.toString(service.checkPW(vo));
-	}
-	
-	
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
 	public String deleteUserGET() {
@@ -328,20 +339,6 @@ public class UserController {
 		} 
 		return totalResult;
 	}
-	
-	// 비번체크
-	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
-	public String pwCheck() {
-		return "/user/checkPW";
-	}
-
-
-	// 비번체크 - 나중에 확인
-//	@RequestMapping(value = "/check_pw", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String pwCheck(UserVO vo) {
-//		return Integer.toString(service.checkPW(vo));
-//	}
 	
 
 }

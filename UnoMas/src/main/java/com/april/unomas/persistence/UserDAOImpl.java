@@ -222,7 +222,6 @@ public class UserDAOImpl implements UserDAO {
 	// 비번 체크
 	@Override
 	public Integer checkPW(UserVO vo) {
-		System.out.println("DAO: 비번체크 여기까지 와?" + vo.getUser_pass());
 		return sqlSession.selectOne(NAMESPACE + ".checkPW", vo);
 	}
 	

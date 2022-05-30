@@ -30,8 +30,12 @@ table {
 .product-info th{
 	background-color: #f7f7f7;
 }
+.product-info td {
+	border-right: 1px solid #d5d5d5;
+}
 .product-info .product-name{
 	text-align: left;
+	padding-left: 20px;
 }
 .product-info .delivery-fee{
 	border-left: 1px solid #d5d5d5;
@@ -39,12 +43,14 @@ table {
 }
 .shipping-address .sa-tr{
     border-bottom: 1px solid #d5d5d5;
+    height: 20px;
 }
 .shipping-address .sa-th{
 	background-color: #f7f7f7;
 }
 .shipping-address td{
 	text-align: left;
+	padding-left: 20px;
 }
 .payment-info #paymentFirstLine{
 	text-align: left;
@@ -73,4 +79,27 @@ table {
 }
 .payment-info #paymentFourthLine{
 	text-align: left;
+}
+
+.product-info-img {
+	text-align: left;
+	display: flex;
+}
+.product-info-img > div {
+	margin: 50px 10px 0px 20px;
+}
+.product-info-img > div > a {
+	color: black;
+}
+.product-info-img > div > a:hover {
+	color: black;
+}
+.product-info-img > img {
+	min-width: 130px;
+    height: 130px;
+}
+
+.list_btn {
+	text-align: center;
+    margin: 50px;
 }

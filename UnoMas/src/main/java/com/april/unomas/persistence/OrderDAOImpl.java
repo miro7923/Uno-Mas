@@ -105,6 +105,10 @@ public class OrderDAOImpl implements OrderDAO {
 		return orderMap;
 	}
 	
-	
+	// 주문코드로 결제 정보 가져오기
+	@Override
+	public PayVO getPayInfo(int order_code) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getPayInfo", order_code);
+	}
 
 }
