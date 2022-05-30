@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.nav-item .nav-depart .depart-btn .depart-hover li a:hover {
+	color: #B9CE45;
+}
+
+.nav-item .nav-menu li.active a {
+	background: #B9CE45;
+}
+
+.nav-item .nav-menu li:hover>a {
+	background: #B9CE45;
+}

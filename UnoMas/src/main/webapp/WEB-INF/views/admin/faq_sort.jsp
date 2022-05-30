@@ -9,6 +9,9 @@
 <link rel="stylesheet" href="${path}/resources/css/user_css/myInfo.css">
 <link rel="stylesheet" href="${path}/resources/css/admin_css/admin.css?after1">
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+
 <%
 	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
@@ -94,18 +97,24 @@
 					                    </table> <!-- table header -->
 					                 </div>
                                 <c:forEach items="${pList }" var="vo">
+
+<%--                                 <c:forEach items="${pList }" var="vo" varStatus="i"> --%>
+
                                 
                                 <div class="col-lg-12">
 		                        	<div class="col-lg-12" style="padding: 0px;">
 				                        <div>
 				                            <table class="table_board" onclick="view_content(this)" id="faq_7" style="margin-bottom:0px;">
 				                                <tbody>
-				    
+
 				                                    <tr>
 				                                        <td style="width: 70px; text-align: center;">${vo.faq_num }</td>
+<%-- 				                                        <td style="width: 70px; text-align: center;">${fn:length(pList)-i.index }</td> --%>
 				                                        <td style="width: 135px; text-align: center;">${vo.qnaCateVO.qnacate_name }</td>
 				                                        <td style="width: 500px; cursor:pointer">${vo.faq_title }</td>
 				                                        <td style="width: 100px; cursor:pointer">UnoMás</td>
+				                                        <td style="width: 100px; cursor:pointer"><input type="hidden" value="${vo.adminVO.admin_id }"></td>
+
 <%-- 				                                        <td style="width: 100px; cursor:pointer">${vo.adminVO.admin_id }</td> --%>
 				                                    </tr>
 				                                </tbody>
@@ -116,13 +125,12 @@
 				                                    <tbody>
 				                                        <tr valign="top">
 				                                            <td>
-				                                            
+
 				                                            <div class="fnq-textarea">
 				                                            	<span class="answer">답변 ></span> 
 										                    	<textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.faq_content,cn,br)}</textarea>
 										                    </div>
-				                                            
-				                                            
+
 <%-- 				                                            <span class="answer">답변 ></span> ${fn:replace(vo.faq_content,cn,br)} --%>
 				                                            <br>
 				                                            <input type="text" style="border:none; margin:0px;" readonly>
@@ -148,19 +156,22 @@
 											<ul class="pagination">
 												<c:if test="${pagingVO.prev }">
 													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
-														aria-label="Previous"> <span aria-hidden="true">&lt;</span>
+
+														href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
+														<span aria-hidden="true">&lt;</span>
+
 													</a></li>
 												</c:if>
 												<c:forEach begin="${pagingVO.startPage }"
 													end="${pagingVO.endPage }" var="pageNum">
-													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+
+													<li class="page-item"><a class="page-link text-dark" href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
 												</c:forEach>
 												<c:if test="${pagingVO.next }">
 													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
-														aria-label="Next"> <span aria-hidden="true">&gt;</span>
+														href='<c:url value="/admin/faq_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
+														<span aria-hidden="true">&gt;</span>
+
 													</a></li>
 												</c:if>
 											</ul>

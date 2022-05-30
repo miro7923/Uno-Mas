@@ -172,7 +172,6 @@
                     <ul>
                         <li><a href="/product/new_list">신상품</a></li>
                         <li><a href="/product/sale_list">특가</a></li>
-                        <li><a href="co_buying_list">공동구매</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>
