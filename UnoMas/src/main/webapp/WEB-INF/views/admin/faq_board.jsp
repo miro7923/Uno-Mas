@@ -125,8 +125,8 @@
 <%-- 				                                            <span class="answer">답변 ></span> ${fn:replace(vo.faq_content,cn,br)} --%>
 				                                            <br>
 				                                            <input type="text" style="border:none; margin:0px;" readonly>
-				                                            <input type="button" class="fnq-count-button" value="수정" onclick="location.href='/admin/faq_update?faq_num=${vo.faq_num}'">
-				                                            <input type="button" class="fnq-del-button" value="삭제" onclick="location.href='/admin/faq_delete?faq_num=${vo.faq_num}'">
+				                                            <input type="button" class="fnq-count-button" value="수정" onclick="location.href='/UnoMas/admin/faq_update?faq_num=${vo.faq_num}'">
+				                                            <input type="button" class="fnq-del-button" value="삭제" onclick="location.href='/UnoMas/admin/faq_delete?faq_num=${vo.faq_num}'">
 				                                            
 				                                            </td>
 				                                        </tr>
@@ -147,18 +147,18 @@
 											<ul class="pagination">
 												<c:if test="${pagingVO.prev }">
 													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
+														href='<c:url value="/UnoMas/admin/faq_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
 														aria-label="Previous"> <span aria-hidden="true">&lt;</span>
 													</a></li>
 												</c:if>
 												<c:forEach begin="${pagingVO.startPage }"
 													end="${pagingVO.endPage }" var="pageNum">
 													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+														href='<c:url value="/UnoMas/admin/faq_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
 												</c:forEach>
 												<c:if test="${pagingVO.next }">
 													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
+														href='<c:url value="/UnoMas/admin/faq_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
 														aria-label="Next"> <span aria-hidden="true">&gt;</span>
 													</a></li>
 												</c:if>
@@ -168,7 +168,7 @@
 									</div>
 									<!-- 페이징 처리 끝-->
 									<div class="col-lg-12">
-                                		<button type="button" class="register-button" onclick="location.href='/admin/faq_write';">자주하는 질문 등록</button>
+                                		<button type="button" class="register-button" onclick="location.href='/UnoMas/admin/faq_write';">자주하는 질문 등록</button>
 									</div>
 								</div>
 							</div>

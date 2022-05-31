@@ -22,7 +22,7 @@
 		<article>
 			<h3 class="login_name">로그인</h3>
 			<hr>
-			<form action="/admin/admin_login" id="join" method="post">
+			<form action="/UnoMas/admin/admin_login" id="join" method="post">
 				<div class="input_box">
 				<input type="text" id="id" name="admin_id" placeholder="아이디를 입력하세요.">
 				<input type="password" id="pass" name="admin_pass" placeholder="비밀번호를 입력하세요.">
@@ -40,7 +40,7 @@
 				
 				<div id="buttons">
 					<input type="submit" value="로그인" id="loginus">
-					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/user/register';">
+					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/UnoMas/user/register';">
 				</div>
 			</form>
 
