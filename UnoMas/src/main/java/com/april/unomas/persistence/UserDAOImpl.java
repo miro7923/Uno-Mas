@@ -78,7 +78,7 @@ public class UserDAOImpl implements UserDAO {
 
 	// 로그인
 	@Override
-	public HashMap<String, Integer> loginUser(UserVO vo) {
+	public HashMap loginUser(UserVO vo) {
 		HashMap<String, Integer> loginMap = new HashMap<String, Integer>() {
 			{
 				put("result", 0);
@@ -211,10 +211,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<UserVO> getAddAddr(int user_num) {
 		List<UserVO> addAddrVO = sqlSession.selectList(NAMESPACE + ".getAddAddr", user_num);
-
-		log.info("user_num: " + user_num);
-		log.info("DAO 조회");
-
+		
 		return addAddrVO;
 	}
 
@@ -222,8 +219,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Integer updateAddAddr(UserVO vo) {
 		Integer result = sqlSession.update(NAMESPACE + ".updateAddAddr", vo);
-		log.info("DAO 수정");
-
+		
 		return result;
 	}
 
