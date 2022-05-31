@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="cart-table">
-                    <form action="/product/wishlist/insert_cart" method="post">
+                    <form action="/UnoMas/product/wishlist/insert_cart" method="post">
                         <table>
                         	<c:choose>
                         		<c:when test="${map.count eq 0}">
@@ -84,11 +84,11 @@
 		                                	<td class="wishCheck"><input type="checkbox" name="wishCheck" value="check" class="chBox" onclick='checkSelectAll()'
 		                                		data-wishNum="${list.wish_num}" data-prodNum="${list.prod_num}"/></td>
 		                                	<td class="cart-pic first-row wishImg">
-		                                		<a href="/product/product_detail?prod_num=${list.prod_num}">
+		                                		<a href="/UnoMas/product/product_detail?prod_num=${list.prod_num}">
 		                                		<img class="wishImg" src='<spring:url value="/resources/upload/images/products/thumbnail/${list.prod_image3}"></spring:url>' alt="">
 		                                		</a></td>
 		                                    <td class="cart-title first-row">
-		                                    	<a href="/product/product_detail?prod_num=${list.prod_num}">
+		                                    	<a href="/UnoMas/product/product_detail?prod_num=${list.prod_num}">
 		                                        <h5>${list.prod_name}</h5>
 		                                        </a></td>
 		                                    <c:choose>
@@ -123,7 +123,7 @@
 		                                        		</c:otherwise>
 		                                        	</c:choose>
 		                                        </div></td>
-		                                    <td class="close-td first-row"><a href="/product/wishlist/deleteWish?wish_num=${list.wish_num}"><i class="ti-close" ></i></a></td>
+		                                    <td class="close-td first-row"><a href="/UnoMas/product/wishlist/deleteWish?wish_num=${list.wish_num}"><i class="ti-close" ></i></a></td>
 		                                </tr>
 		                            	</c:forEach>
 		                            </tbody>

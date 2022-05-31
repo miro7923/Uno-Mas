@@ -29,7 +29,7 @@
 						<p>이 상품은 어떠신가요?</p>
 					</div>
 					<div class="col-lg-12 col-md-12 text-right moreView">
-						<p><a href="/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=11">더 보기</a></p>
+						<p><a href="/UnoMas/product/product_list?cateStart=11&cateEnd=15&topcate_num=4&pageNum=1&dcate_num=11">더 보기</a></p>
 					</div>
 					<div class="col-lg-12 col-md-12 ">
 						<div class="itemWrap">
@@ -37,13 +37,13 @@
 								<c:forEach items="${beefList}" var="bL">
 									<dl class="itemList">
 										<dt class="thumb">
-											<a href="/product/product_detail?prod_num=${bL.prod_num}">
+											<a href="/UnoMas/product/product_detail?prod_num=${bL.prod_num}">
 												<img class="beef" src="<spring:url value="/resources/upload/images/products/thumbnail/${bL.prod_image3 }"></spring:url>" alt="가정의달고기이미지">
 											</a>
 										</dt>
 										<dd class="prdInfo">
 											<p class="prdName">
-												<a href="/product/product_detail?prod_num=${bL.prod_num}">${bL.prod_name}</a>
+												<a href="/UnoMas/product/product_detail?prod_num=${bL.prod_num}">${bL.prod_name}</a>
 											</p>
 											<c:choose>
 							                    <c:when test="${bL.prod_discntrate eq 0}">
