@@ -185,7 +185,6 @@ public class UserDAOImpl implements UserDAO {
 	public Integer updateUser(UserVO vo) {
 		Integer result = sqlSession.update(NAMESPACE + ".updateUser", vo);
 
-		log.info("회원정보 DAO 수정 : "+result);
 		return result;
 
 	}
@@ -202,7 +201,6 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public Integer updateAddAddr(UserVO vo) {
 		Integer result = sqlSession.update(NAMESPACE + ".updateAddAddr", vo);
-		log.info("추가 배송지 DAO 수정 : "+result);
 		
 		return result;
 	}
