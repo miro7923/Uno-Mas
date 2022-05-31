@@ -140,12 +140,12 @@ function submitInfo() {
 	
 	$.ajax({
 		type: 'post',
-		url: '/user/update_myInfo',
+		url: 'update_myInfo',
 		dataType: 'json',
 		contentType: 'application/json',
 		data: UserVO,
 		success: function(data) {
-			location.href = 'UnoMas/user/myInfo';
+			location.href = '/UnoMas/user/myInfo';
 		},
 		error: function() {
 		}
@@ -164,15 +164,13 @@ function changeAddr(num) {
 	
 	$.ajax({
 		type: 'post',
-		url: '/user/update_myInfo',
+		url: 'update_myInfo',
 		dataType: 'json',
 		contentType: 'application/json',
 		data: UserVO,
 		success: function(data) {
-			
 		},
 		error: function() {
-			
 		}
 	});
 }
