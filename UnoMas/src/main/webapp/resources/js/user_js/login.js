@@ -1,3 +1,36 @@
+$(document).ready(function() {
+	loadCookie();
+});
+
+function loadCookie() {
+	var key = getCookie("key");
+		$("input[name='user_id']").val(key);
+		
+		// 이전에 이미 아이디 저장
+		if($("input[name='user_id']").val() != "") {
+			$("#check_save").attr("checked",true);
+		};
+		
+		// 체크박스 변화o
+		$("#check_save").change(function(){
+			if($("#check_save").is(":checked")){
+				var key = $("input[name='user_id']").val();
+				setCookie("key",key,7);
+			}else {
+				deleteCookie("key");
+			}
+		});
+		
+		// 아이디저장 이미 체크한 후 아이디 입력
+		$("input[name='user_id']").keyup(function(){
+			if($("#check_save").is(":checked")){
+				var key = $("input[name='user_id']").val();
+				setCookie("key",key,7);
+			}
+		});
+}
+
+
 // 쿠키 저장
 function setCookie(cookieName,value,exdays){
 	var exdate = new Date();
@@ -48,7 +81,7 @@ function memberCk(){
 	$.ajax({
 		async: true,
 		type: "POST",
-		url: "login",
+		url: "UnoMas/user/login",
 		data: {
 			'user_id': $("#id").val(), 
 			'user_pass': $("#pass").val()
@@ -56,38 +89,13 @@ function memberCk(){
 		success: function(result) {
 			if(result != "1") {
 				$("#cir_text").html("잘못된 아이디 혹은 비밀번호입니다.");
+				
 			} else {
 				window.location.replace(document.referrer);
 			}
 		},
 		error: function(error) {
-			alert("실패");
 		}
 	}); 
 	
-	var key = getCookie("key");
-	$("input[name='user_id']").val(key);
-	
-	// 이전에 이미 아이디 저장
-	if($("input[name='user_id']").val() != "") {
-		$("#check_save").attr("checked",true);
-	};
-	
-	// 체크박스 변화o
-	$("#check_save").change(function(){
-		if($("#check_save").is(":checked")){
-			var key = $("input[name='user_id']").val();
-			setCookie("key",key,7);
-		}else {
-			deleteCookie("key");
-		}
-	});
-	
-	// 아이디저장 이미 체크한 후 아이디 입력
-	$("input[name='user_id']").keyup(function(){
-		if($("#check_save").is(":checked")){
-			var key = $("input[name='user_id']").val();
-			setCookie("key",key,7);
-		}
-	});
 }

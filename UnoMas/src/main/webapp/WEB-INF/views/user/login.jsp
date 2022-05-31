@@ -4,10 +4,10 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
-<head>
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
+
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <!-- Header end -->
@@ -22,7 +22,7 @@
 		<article>
 			<h3 class="login_name">로그인</h3>
 			<hr>
-			<form id="join" method="post" onsubmit="return memberCk();">
+			<form id="join" method="post" onsubmit="return memberCk()">
 				<div class="input_box">
 				<input type="text" id="id" name="user_id" placeholder="아이디를 입력하세요.">
 				<input type="password" id="pass" name="user_pass" placeholder="비밀번호를 입력하세요.">

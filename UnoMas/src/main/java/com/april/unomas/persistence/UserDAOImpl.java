@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
 
 	// 로그인
 	@Override
-	public HashMap<String, Integer> loginUser(UserVO vo) {
+	public HashMap loginUser(UserVO vo) {
 		HashMap<String, Integer> loginMap = new HashMap<String, Integer>() {
 			{
 				put("result", 0);

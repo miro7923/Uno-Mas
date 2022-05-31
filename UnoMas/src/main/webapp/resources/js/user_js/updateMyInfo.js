@@ -122,4 +122,57 @@ function phoneCheckFunc() {
 	
 }			
 
+function submitInfo() {
+	var UserVO = JSON.stringify({
+		user_id: $('#userId').val(),
+		user_name: $('#userName').val(),
+		user_email: $('#userEmail').val(),
+		user_birth: $('#userBirth').val(),
+		user_phone: $('#userPhone').val(),
+		user_postalcode: $('#postalcode').val(),
+		user_roadaddr: $('#roadaddr').val(),
+		user_detailaddr: $('#detailaddr').val(),
+		user_bank: $('#userBank').val(),
+		user_account: $('#account').val(),
+		user_account_holder: $('#account_holder').val(),
+		user_emailagree: $('#checkbox_text').val()
+	});
+	
+	$.ajax({
+		type: 'post',
+		url: '/user/update_myInfo',
+		dataType: 'json',
+		contentType: 'application/json',
+		data: UserVO,
+		success: function(data) {
+			location.href = 'UnoMas/user/myInfo';
+		},
+		error: function() {
+		}
+	});
+}
 
+function changeAddr(num) {
+	var UserVO = JSON.stringify({
+		user_num: $('#user_num').val(),
+		addr_num: $('#addr_num').val(),
+		addr_name: $('#addr_name'+num).val(),
+		addr_postalcode: $('#postalcode'+num).val(),
+		addr_roadaddr: $('#roadaddr'+num).val(),
+		addr_detailaddr: $('#detailaddr'+num).val()
+	});
+	
+	$.ajax({
+		type: 'post',
+		url: '/user/update_myInfo',
+		dataType: 'json',
+		contentType: 'application/json',
+		data: UserVO,
+		success: function(data) {
+			
+		},
+		error: function() {
+			
+		}
+	});
+}

@@ -172,7 +172,7 @@ ul, ol {
 	margin:5px auto;
 	
 }
-.table_info #postalcode, #postalcode1, #postalcode2, #addr_num {
+.postalcode, .addr_name {
 	box-sizing: border-box;
     display: inline-block;
     margin:6px auto;
@@ -186,7 +186,7 @@ ul, ol {
     font-size: 13px;
     
 }
-.table_info #roadaddr, #roadaddr1, #roadaddr2 {
+.roadaddr {
 	box-sizing: border-box;
     display: inline-block;
     margin:2px auto;
@@ -199,7 +199,7 @@ ul, ol {
     font-size: 13px;
     
 }
-#detailaddr {
+.detailaddr {
 	box-sizing: border-box;
     display: inline-block;
     margin:2px auto;
@@ -252,7 +252,19 @@ ul, ol {
     border: 1px solid #B9CE45;
 }
 
-
+.updateAddr {
+	box-sizing: border-box;
+    display: inline-block;
+    margin:5px 10px;
+    padding: 3px 25px;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #22741C;
+    font-size: 12px;
+    font-weight:500;
+    color: #22741C;
+}
 
 
 

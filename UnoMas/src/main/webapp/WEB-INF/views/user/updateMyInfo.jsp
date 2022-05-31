@@ -25,28 +25,28 @@
 			<hr>
 
 			<h3>기본 정보</h3>
-			<form action="./update_myInfo" method="post">
+			<input type="hidden" id="user_num" value="${sessionScope.saveNUM }" name="user_num">
 			<div class="table_div">
 				<table class="table_info"
 					style="margin-bottom: 60px; height: 330px;">
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" class="input_field" name="user_id" value="${userInfoVO.user_id }" readonly></td>
+						<td><input type="text" class="input_field" id="userId" name="user_id" value="${userInfoVO.user_id }" readonly></td>
 					</tr>
 
 					<tr>
 						<th>이름</th>
-						<td><input type="text" class="input_field" name="user_name" value="${userInfoVO.user_name }" minlength=1 maxlength=15 required></td>
+						<td><input type="text" class="input_field" id="userName" name="user_name" value="${userInfoVO.user_name }" minlength=1 maxlength=15 required></td>
 					</tr>
 
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" class="input_field" name="user_email" value="${userInfoVO.user_email }"required></td>
+						<td><input type="email" class="input_field" id="userEmail" name="user_email" value="${userInfoVO.user_email }" required></td>
 					</tr>
 					
 					<tr>
 						<th>생년월일</th>
-						<td><input type="text" class="input_field" name="user_birth" value="${userInfoVO.user_birth }"readonly>
+						<td><input type="text" class="input_field" id="userBirth" name="user_birth" value="${userInfoVO.user_birth }" readonly>
 						<input type="button" class="check-button" name="birthCheck" value="수정하기" onclick="birthCheckFunc()">
 						<div id="birthCheckDiv" oninput="birthCheck()">
 						<select class="input-birth" name="birth-year" oninput="birthCheck()">
@@ -75,7 +75,7 @@
 
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="input_field" name="user_phone" value="${userInfoVO.user_phone }" placeholder=" -없이 숫자만 입력" required><span id="phone"></span>
+						<td><input type="text" class="input_field" id="userPhone" name="user_phone" value="${userInfoVO.user_phone }" placeholder=" -없이 숫자만 입력" required><span id="phone"></span>
 						<input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()">
 						<div name="phoneCheckDiv"></div></td>
 					</tr>
@@ -89,10 +89,10 @@
 					<tr>
 						<th>기본 배송지</th>
 						<td style="line-height: 25px;">
-							<input type="text" id="postalcode" name="user_postalcode" value="${userInfoVO.user_postalcode }" placeholder="우편번호">
-							<input type="text" id="roadaddr" name="user_roadaddr" value="${userInfoVO.user_roadaddr }" placeholder="도로명주소">
+							<input type="text" id="postalcode" class="postalcode" name="user_postalcode" value="${userInfoVO.user_postalcode }" placeholder="우편번호">
+							<input type="text" id="roadaddr" class="roadaddr" name="user_roadaddr" value="${userInfoVO.user_roadaddr }" placeholder="도로명주소">
 							<span id="guide" style="color:#999;display:none"></span>
-							<input type="text" id="detailaddr" name="user_detailaddr" value="${userInfoVO.user_detailaddr }" placeholder="상세주소">
+							<input type="text" id="detailaddr" class="detailaddr" name="user_detailaddr" value="${userInfoVO.user_detailaddr }" placeholder="상세주소">
 						</td>
 					</tr>
 				</table>
@@ -102,14 +102,16 @@
 						<c:when test="${AddrListSize eq 3}">
 							<c:forEach var="vo" items="${addAddrList }" begin="1" end="2" varStatus="status">
 							<tr>
-								<th>추가 배송지</th>
+								<th>추가 배송지 ${sessionScope.addr_num }</th>
 								<td style="line-height: 25px; ">
-									<input type="text" id="addr_num" name="addr_num" value="${vo.addr_name }" placeholder="배송지 별명"><br>
-									<input type="text" id="postalcode1" name="addr_postalcode" value="${vo.addr_postalcode }" placeholder="우편번호">
-									<input type="text" id="roadaddr1" name="addr_roadaddr" value="${vo.addr_roadaddr }" placeholder="도로명주소">
+									<input type="hidden" id="addr_num" value="${vo.addr_num }" name="addr_num">
+									<input type="text" id="addr_name${status.index }" class="addr_name" name="addr_name" value="${vo.addr_name }" placeholder="배송지 별명"><br>
+									<input type="text" id="postalcode${status.index }" class="postalcode" name="addr_postalcode" value="${vo.addr_postalcode }" placeholder="우편번호">
+									<input type="text" id="roadaddr${status.index }" class="roadaddr" name="addr_roadaddr" value="${vo.addr_roadaddr }" placeholder="도로명주소">
 									<span id="guide" style="color:#999;display:none"></span>
-									<input type="text" id="detailaddr" name="addr_detailaddr" value="${vo.addr_detailaddr }" placeholder="상세주소">
+									<input type="text" id="detailaddr${status.index }" class="detailaddr" name="addr_detailaddr" value="${vo.addr_detailaddr }" placeholder="상세주소">
 									<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
+									<button id="updateAddr${status.index }" class="updateAddr" onclick="changeAddr('${status.index}')" >수정</button>
 								</td>
 							</tr>
 							</c:forEach>
@@ -119,24 +121,28 @@
 							<tr>
 								<th>추가 배송지1</th>
 								<td style="line-height: 25px; ">
-									<input type="text" id="addr_num" name="addr_num" value="${vo.addr_name }" placeholder="배송지 별명"><br>
-									<input type="text" id="postalcode1" name="addr_postalcode" value="${vo.addr_postalcode }" placeholder="우편번호">
-									<input type="text" id="roadaddr1" name="addr_roadaddr" value="${vo.addr_roadaddr }" placeholder="도로명주소">
+									<input type="hidden" id="addr_num" value="${vo.addr_num }" name="addr_num">
+									<input type="text" id="addr_name${status.index }" class="addr_name" name="addr_name" value="${vo.addr_name }" placeholder="배송지 별명"><br>
+									<input type="text" id="postalcode${status.index }" class="postalcode" name="addr_postalcode" value="${vo.addr_postalcode }" placeholder="우편번호">
+									<input type="text" id="roadaddr${status.index }" class="roadaddr" name="addr_roadaddr" value="${vo.addr_roadaddr }" placeholder="도로명주소">
 									<span id="guide" style="color:#999;display:none"></span>
-									<input type="text" id="detailaddr" name="addr_detailaddr" value="${vo.addr_detailaddr }" placeholder="상세주소">
+									<input type="text" id="detailaddr${status.index }" class="detailaddr" name="addr_detailaddr" value="${vo.addr_detailaddr }" placeholder="상세주소">
 									<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
+									<button id="updateAddr${status.index }" class="updateAddr" onclick="changeAddr('${status.index}')">수정</button>
 								</td>
 							</tr>
 							</c:forEach>
 							<tr>
 								<th>추가 배송지2</th>
 								<td style="line-height: 25px; ">
-									<input type="text" id="addr_num" name="addr_num" value="" placeholder="배송지 별명"><br>
-									<input type="text" id="postalcode1" name="addr_postalcode" value="" placeholder="우편번호">
-									<input type="text" id="roadaddr1" name="addr_roadaddr" value="" placeholder="도로명주소">
+									<input type="hidden" id="addr_num" value="${vo.addr_num }" name="addr_num">
+									<input type="text" id="addr_name${status.index }" class="addr_name" name="addr_name" value="" placeholder="배송지 별명"><br>
+									<input type="text" id="postalcode${status.index }" class="postalcode"  name="addr_postalcode" value="" placeholder="우편번호">
+									<input type="text" id="roadaddr${status.index }" class="roadaddr" name="addr_roadaddr" value="" placeholder="도로명주소">
 									<span id="guide" style="color:#999;display:none"></span>
-									<input type="text" id="detailaddr" name="addr_detailaddr" value="" placeholder="상세주소">
+									<input type="text" id="detailaddr${status.index }" class="detailaddr" name="addr_detailaddr" value="" placeholder="상세주소">
 									<input type="button" name="postalcode" value="우편번호 찾기" id="postal_btn2" onclick="execDaumPostcode('1')">
+									<button id="updateAddr${status.index }" class="updateAddr" onclick="changeAddr('${status.index}')">수정</button>
 								</td>
 							</tr>
 						</c:when>
@@ -157,7 +163,7 @@
 									<dl>
 										<dt>은행명</dt>
 										<dd>
-											<select class="form-select form-select-sm" name="user_bank" aria-label=".form-select-sm example" 
+											<select class="form-select form-select-sm" id="userBank" name="user_bank" aria-label=".form-select-sm example" 
 											style="box-sizing: border-box;display: inline-block;width: 40%;
 											height: 38px;margin:10px;padding: 0 10px;border: 1px solid #ddd	;color: #666;font-size: 11px;">
 											  <option value="${userInfoVO.user_bank }">${userInfoVO.user_bank }</option>
@@ -203,9 +209,8 @@
 			</div>
 
 			<div style="text-align: center;">
-				<input type="submit" class="updateBtn" value="수정">
+				<input type="submit" class="updateBtn" onclick="submitInfo()" value="수정">
 			</div>
-			</form>
 		</div>
 	</div>
 

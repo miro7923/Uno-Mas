@@ -9,8 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,12 +33,12 @@ public class UserController {
 	// 회원가입 이용약관 페이지
 	@RequestMapping(value = "/register_agree")
 	public String registerAgree() {
-		return "/user/registerAgree";
+		return "user/registerAgree";
 	}
 
 	@RequestMapping(value = "/register")
 	public String registerGet() {
-		return "/user/register";
+		return "user/register";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -44,7 +47,7 @@ public class UserController {
 			vo.setUser_emailagree(1);
 		}
 		service.joinUser(vo);
-		return "redirect:/user/login";
+		return "redirect:user/login";
 	}
 
 	@RequestMapping(value = "/idCheck")
@@ -57,7 +60,7 @@ public class UserController {
 	// 로그인 페이지 구현 (GET)
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET() {
-		return "/user/login";
+		return "user/login";
 	}
 
 	// 로그인 페이지 구현 (POST)
@@ -65,7 +68,7 @@ public class UserController {
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
 
-		HashMap loginMap = service.loginUser(vo);
+		HashMap<String, Integer> loginMap = service.loginUser(vo);
 
 		String result = String.valueOf(loginMap.get("result"));
 		if (result.equals("1")) {
@@ -85,13 +88,13 @@ public class UserController {
 	public String logoutGET(HttpSession session) {
 		session.invalidate();
 
-		return "redirect:/index";
+		return "redirect:index";
 	}
 
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user", method = RequestMethod.GET)
 	public String deleteUserGET() {
-		return "/user/deleteUser";
+		return "user/deleteUser";
 	}
 
 	// 회원탈퇴(POST)
@@ -101,7 +104,7 @@ public class UserController {
 
 		session.invalidate();
 
-		return "redirect:/index";
+		return "redirect:index";
 	}
 
 	// 아이디 찾기
@@ -120,7 +123,7 @@ public class UserController {
 	// 비번 찾기
 	@RequestMapping(value = "/find_pw")
 	public String findPW() {
-		return "/user/findPW";
+		return "user/findPW";
 	}
 
 	@RequestMapping(value = "/find_pw", method = RequestMethod.POST)
@@ -135,7 +138,7 @@ public class UserController {
 	@RequestMapping(value = "/change_pw")
 	public String changePWGet(@RequestParam(value = "id", required = false) String id, Model model) {
 		model.addAttribute("id", id);
-		return "/user/changePW";
+		return "user/changePW";
 	}
 
 	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
@@ -149,7 +152,7 @@ public class UserController {
 	// 마이페이지
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
-		return "/user/myPage";
+		return "user/myPage";
 	}
 
 	// 회원정보 조회
@@ -157,11 +160,11 @@ public class UserController {
 	public String myInfo(HttpSession session, Model model) {
 
 		String saveID = (String) session.getAttribute("saveID");
-		UserVO userInfoVO = service.getUserInfo(saveID); // 일단 직접 입력하고 추 후에 세션값 입력.
+		UserVO userInfoVO = service.getUserInfo(saveID);
 
 		model.addAttribute("userInfoVO", userInfoVO);
 
-		return "/user/myInfo";
+		return "user/myInfo";
 	}
 
 	// 회원정보수정(GET)
@@ -176,48 +179,40 @@ public class UserController {
 		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
 		model.addAttribute("addAddrList", addAddrList);
 
-		return "/user/updateMyInfo";
+		return "user/updateMyInfo";
 	}
 
 	// 회원정보수정(POST)
+	@ResponseBody
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
-	public String myInfoUpdatePOST(UserVO vo, @RequestParam("emailAgree") String eAgree) {
-		System.out.println("POST 컨트롤@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		
-		if (eAgree.equals("1")) {
-			vo.setUser_emailagree(1);
-		}else {
-			vo.setUser_emailagree(0);
-		}
+	public ResponseEntity<Integer> myInfoUpdatePOST(@RequestBody UserVO vo) {
 
 		service.updateUser(vo);
 		service.updateAddAddr(vo);
 
-		log.info("수정완료");
-
-		return "redirect:/user/myInfo";
+		return new ResponseEntity<Integer>(1, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/mypoint")
 	public String myPoint() {
-		return "/user/myPoint";
+		return "user/myPoint";
 	}
 
 	// guide
 	@RequestMapping(value = "/return_guide")
 	public String canclePinfo() {
-		return "/user/returnGuide";
+		return "user/returnGuide";
 	}
 
 	@RequestMapping(value = "/together_guide")
 	public String togetherInfo() {
-		return "/user/togetherGuide";
+		return "user/togetherGuide";
 	}
 
 	// 비번체크
 	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
 	public String pwCheck() {
-		return "/user/checkPW";
+		return "user/checkPW";
 	}
 
 	// 비번체크
