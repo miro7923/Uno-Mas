@@ -30,7 +30,7 @@
 			
 			<div id="buttons">
 				<input type="submit" value="확인" id="find_ok" onclick="findIdFunc()">
-				<input type="button" value="로그인" id="login" onclick=" location.href='/user/login';">
+				<input type="button" value="로그인" id="login" onclick=" location.href='/UnoMas/user/login';">
 			</div>
 		</article>
 		<!-- 본문내용 -->

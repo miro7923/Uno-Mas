@@ -32,7 +32,7 @@
 			
 			<div id="buttons">
 				<input type="button" value="확인" id="find_ok" onclick="findPWFunc()">
-				<input type="button" value="로그인" id="login" onclick=" location.href='login';">
+				<input type="button" value="로그인" id="login" onclick=" location.href='/UnoMas/user/login';">
 			</div>
 		</article>
 	<!-- 본문내용 -->

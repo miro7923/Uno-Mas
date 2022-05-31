@@ -81,7 +81,7 @@ function memberCk(){
 	$.ajax({
 		async: true,
 		type: "POST",
-		url: "UnoMas/user/login",
+		url: "/user/login",
 		data: {
 			'user_id': $("#id").val(), 
 			'user_pass': $("#pass").val()
