@@ -59,6 +59,7 @@
                 <input type="text" class="register_field" name="user_phone" placeholder="-없이 숫자만 입력">
                 <input type="button" class="check-button" name="phoneCheck" value="인증하기" onclick="phoneCheckFunc()"><br>
 				<div name="phoneCheckDiv"></div>
+				<p name="phoneSend_text" class="phoneSend_text"></p>
 
                 <label>이메일</label><span id="email"></span><br>
                 <input type="text" class="register_field" name="user_email"><br>

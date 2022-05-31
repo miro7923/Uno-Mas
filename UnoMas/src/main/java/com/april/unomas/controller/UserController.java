@@ -31,6 +31,7 @@ import com.april.unomas.domain.UserPageMaker;
 import com.april.unomas.domain.UserVO;
 import com.april.unomas.service.CartService;
 import com.april.unomas.service.OrderService;
+import com.april.unomas.service.SmsService;
 import com.april.unomas.service.UserService;
 
 @Controller
@@ -46,6 +47,9 @@ public class UserController {
 	@Inject
 	private CartService cartService;
 	
+	@Inject
+	private SmsService smsService;
+	
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	// 회원가입 이용약관 페이지
@@ -60,12 +64,21 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPost(@RequestParam("emailAgree") String eAgree, UserVO vo) {
+	public String registerPost(@RequestParam(value = "emailAgree", required = false, defaultValue="0") String eAgree, UserVO vo) {
 		if (eAgree.equals("1")) {
 			vo.setUser_emailagree(1);
+		} else {
+			vo.setUser_emailagree(0);
 		}
 		service.joinUser(vo);
 		return "redirect:/user/login";
+	}
+	
+	@RequestMapping(value = "/auth_phone")
+	@ResponseBody
+	public List<Integer> AuthPhoneNumber(String p) {
+		List<Integer> resList = smsService.sendSMS(p);
+		return resList;
 	}
 
 	@RequestMapping(value = "/idCheck")

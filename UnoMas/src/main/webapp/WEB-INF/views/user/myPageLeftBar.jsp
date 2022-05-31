@@ -36,7 +36,7 @@
 		
 	</div>
 	
-	<a href="return_guide"><div class="mypage-cate-info">취소/환불 안내</div></a>
+	<a href="/user/return_guide"><div class="mypage-cate-info">취소/환불 안내</div></a>
 </div>
 
 <script src="${path}/resources/js/user_js/jquery-3.6.0.js"></script>

@@ -17,6 +17,18 @@
 	VALUES (#{user_id}, #{user_pass}, #{user_name}, #{user_birth}, #{user_phone}, #{user_email}, #{user_postalcode}, #{user_roadaddr}, #{user_detailaddr}, #{user_emailagree})  
   </insert>
   
+  <insert id="joinAddr">
+  	INSERT into order_addr(user_num, addr_name, addr_postalcode, addr_roadaddr, addr_detailaddr,addr_primary, addr_recipient, addr_phone)
+  	VALUES (#{user_num}, "집(기본)", #{addr_postalcode}, #{addr_roadaddr}, #{addr_detailaddr}, 1, #{addr_recipient}, #{addr_phone})
+  </insert>
+  
+  <!-- 아이디로 회원번호 찾기 -->
+  <select id="findNum" resultType="int">
+  	SELECT user_num
+  	FROM users
+  	WHERE user_id=#{user_id}
+  </select>
+  
   <!-- 아이디 중복검사 -->
   <select id="idCheck_sql" resultType="int">
   	SELECT count(*) 

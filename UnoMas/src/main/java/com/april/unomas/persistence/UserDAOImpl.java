@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
+import com.april.unomas.domain.OrderAddrVO;
 import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.ProdInquiryVO;
@@ -53,6 +54,19 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void joinUser(UserVO vo) {
 		sqlSession.insert(NAMESPACE + ".joinUser", vo);
+		
+		int num = sqlSession.selectOne(NAMESPACE + ".findNum", vo.getUser_id());
+		
+		OrderAddrVO addVO = new OrderAddrVO();
+		addVO.setUser_num(num);
+		addVO.setAddr_name("집(기본)");
+		addVO.setAddr_postalcode(vo.getUser_postalcode());
+		addVO.setAddr_roadaddr(vo.getUser_roadaddr());
+		addVO.setAddr_detailaddr(vo.getUser_detailaddr());
+		addVO.setAddr_primary(true);
+		addVO.setAddr_recipient(vo.getUser_name());
+		addVO.setAddr_phone(vo.getUser_phone());
+		sqlSession.insert(NAMESPACE + ".joinAddr", addVO);
 	}
 
 	// 아이디 중복검사
@@ -308,7 +322,6 @@ public class UserDAOImpl implements UserDAO {
 		} catch (Exception e) {
 
 		}
-
 		return result;
 	}
 
