@@ -46,7 +46,7 @@
   	  </div>
   	
   	  <div class="middle-content">
-  			<h3>장바구니 <span><a href="/product/cart/list?pageInfo=my">+</a></span></h3>
+  			<h3>장바구니 <span><a href="/UnoMas/product/cart/list?pageInfo=my">+</a></span></h3>
   			<table class="cart-table">
   			  <colgroup>
           		<col width="10%"><col width="30%"><col width="10%"><col width="10%"><col width="10%">
@@ -69,7 +69,7 @@
 			  				alt="" style="width: 90px; height: 90px;">
 						</td>
 						<td>
-							<a href="/product/product_detail?prod_num=${row.prod_num }" class="prod_detail_a">${row.prod_name}</a>
+							<a href="/UnoMas/product/product_detail?prod_num=${row.prod_num }" class="prod_detail_a">${row.prod_name}</a>
 						</td>
 						<td>
 							<span id="prodPrice${i.index }">${row.prod_price }</span>원
@@ -83,7 +83,7 @@
   			
   			
   			
-  			<h3 style="margin-top:50px;">주문 내역 <span><a href="/order/my_order">+</a></span></h3>
+  			<h3 style="margin-top:50px;">주문 내역 <span><a href="/UnoMas/order/my_order">+</a></span></h3>
   			<table class="point_table">
 				<colgroup>
 				  <col style="width: 15%"><col style="width: 55%;"><col style="width: 15%"><col style="width: 15%">
@@ -103,13 +103,13 @@
 							<tr>
 								<td rowspan="${fn:length(map.value) }" class="order_num_td">${regdate }<br>
 										( ${map.key } )<br> 
-										<a href="/order/order_detail?code=${map.key }" class="table_btn">주문 상세보기</a>
+										<a href="/UnoMas/order/order_detail?code=${map.key }" class="table_btn">주문 상세보기</a>
 								</td>
 								<c:forEach var="val" items="${map.value }" varStatus="itt">
 									<td class="order_info_td">
 										<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
 										<div>
-											<a href="/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
+											<a href="/UnoMas/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
 											<hr>
 											<span>${val.prod_price }원</span> / <span>${val.order_quantity }개</span>
 										 </div>

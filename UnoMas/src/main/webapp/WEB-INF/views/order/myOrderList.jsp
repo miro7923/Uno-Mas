@@ -48,13 +48,13 @@
 								<tr>
 									<td class="order_num_td">${regdate }<br>
 											( ${map.key } )<br>
-											<a href="/order/order_detail?code=${map.key }&pagingNum=${pagingNum }" class="table_btn">주문 상세보기</a>
+											<a href="/UnoMas/order/order_detail?code=${map.key }&pagingNum=${pagingNum }" class="table_btn">주문 상세보기</a>
 									</td>
 									<c:forEach var="val" items="${map.value }" varStatus="itt">
 										<td class="order_info_td">
 											<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
 											<div>
-												<a href="/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
+												<a href="/UnoMas/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
 												<hr>
 												<span>${val.prod_price }원</span> / <span>${val.order_quantity }개</span>
 											 </div>

@@ -116,7 +116,7 @@
 			
 			
 			<div style="text-align: right;">
-				<a href="" class="deleteBtn">회원 탈퇴</a>
+				<a href="/UnoMas/user/delete_user" class="deleteBtn">회원 탈퇴</a>
 			</div>
 
 			<div style="text-align: center;" >

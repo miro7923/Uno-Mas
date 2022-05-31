@@ -42,7 +42,7 @@
 							<td class="product-info-img">
 								<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
 								<div>
-								  <a href="/product/product_detail?prod_num=${val.prod_num }">${val.prod_name }</a>
+								  <a href="/UnoMas/product/product_detail?prod_num=${val.prod_num }">${val.prod_name }</a>
 								</div>
 								
 							</td>	
@@ -151,7 +151,7 @@
 			
 			<div class="list_btn">
 				<input type="button" value="목록" class="site-btn" style="background-color: #B9CE45; border:none"
-					onclick="location.href='/order/my_order?pagingNum=${pagingNum }'">
+					onclick="location.href='/UnoMas/order/my_order?pagingNum=${pagingNum }'">
 			</div>
 			
 		</div>

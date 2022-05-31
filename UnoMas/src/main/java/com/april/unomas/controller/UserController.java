@@ -71,7 +71,7 @@ public class UserController {
 			vo.setUser_emailagree(0);
 		}
 		service.joinUser(vo);
-		return "redirect:/user/login";
+		return "redirect:/UnoMas/user/login";
 	}
 	
 	@RequestMapping(value = "/auth_phone")
@@ -233,7 +233,7 @@ public class UserController {
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
 	public String myInfoUpdatePOST(UserVO vo) {
 		service.updateUser(vo);
-		return "redirect:/user/myInfo";
+		return "redirect:/UnoMas/user/myInfo";
 	}
 
 	// 포인트 페이지
