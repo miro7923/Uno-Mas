@@ -25,7 +25,7 @@
                         <div class="col-lg-5 hero">
                             <h1>가정의 달</h1>
                             <p>어린이날, 어버이날까지 가정의 달 선물 최대 30% 할인</p>
-                            <a href="/event/may" class="primary-btn">자세히 보기</a>
+                            <a href="/UnoMas/event/may" class="primary-btn">자세히 보기</a>
                         </div>
                     </div>
                     <div class="off-card">
@@ -39,7 +39,7 @@
                         <div class="col-lg-5 hero">
                             <h1>제철 음식</h1>
                             <p>5월에 꼭 먹어야 할 제철 과일을 확인해보세요.</p>
-                            <a href="product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=4" class="primary-btn">자세히 보기</a>
+                            <a href="/UnoMas/product/product_list?cateStart=4&cateEnd=6&topcate_num=2&pageNum=1&dcate_num=4" class="primary-btn">자세히 보기</a>
                         </div>
                     </div>
                 </div>
@@ -56,13 +56,13 @@
 				<c:forEach items="${readcntList2}" var="rl2">
 				<dl class="itemList">
 					<dt class="thumb">
-						<a href="/product/product_detail?prod_num=${rl2.prod_num}">
+						<a href="/UnoMas/product/product_detail?prod_num=${rl2.prod_num}">
 							<img class="hot1" src="<spring:url value="/resources/upload/images/products/thumbnail/${rl2.prod_image3 }"></spring:url>" alt="hot이미지1">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="/product/product_detail?prod_num=${rl2.prod_num}">${rl2.prod_name}</a>
+							<a href="/UnoMas/product/product_detail?prod_num=${rl2.prod_num}">${rl2.prod_name}</a>
 						</p>
 						<c:choose>
 		                    <c:when test="${rl2.prod_discntrate eq 0}">
@@ -89,13 +89,13 @@
 				<c:forEach items="${sellcntList2}" var="sl2">
 				<dl class="itemList">
 					<dt class="thumb">
-						<a href="/product/product_detail?prod_num=${sl2.prod_num}">
+						<a href="/UnoMas/product/product_detail?prod_num=${sl2.prod_num}">
 							<img class="hot1" src="<spring:url value="/resources/upload/images/products/thumbnail/${sl2.prod_image3 }"></spring:url>" alt="hot이미지2">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="/product/product_detail?prod_num=${sl2.prod_num}">${sl2.prod_name}</a>
+							<a href="/UnoMas/product/product_detail?prod_num=${sl2.prod_num}">${sl2.prod_name}</a>
 						</p>
 						<c:choose>
 		                    <c:when test="${sl2.prod_discntrate eq 0}">
@@ -122,13 +122,13 @@
 				<c:forEach items="${brandnewList2}" var="bl2">
 				<dl class="itemList">
 					<dt class="thumb">
-						<a href="/product/product_detail?prod_num=${bl2.prod_num}">
+						<a href="/UnoMas/product/product_detail?prod_num=${bl2.prod_num}">
 							<img class="hot1" src="<spring:url value="/resources/upload/images/products/thumbnail/${bl2.prod_image3 }"></spring:url>" alt="hot이미지3">
 						</a>
 					</dt>
 					<dd class="prdInfo">
 						<p class="prdName">
-							<a href="/product/product_detail?prod_num=${bl2.prod_num}">${bl2.prod_name}</a>
+							<a href="/UnoMas/product/product_detail?prod_num=${bl2.prod_num}">${bl2.prod_name}</a>
 						</p>
 						<c:choose>
 		                    <c:when test="${bl2.prod_discntrate eq 0}">
@@ -190,7 +190,7 @@
                     	%>
                         <div class="product-item">
                             <div class="pi-pic">
-                            	<a href="/product/product_detail?prod_num=${rl.prod_num}">
+                            	<a href="/UnoMas/product/product_detail?prod_num=${rl.prod_num}">
                                 	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${rl.prod_image3 }"></spring:url>" alt="조회수이미지">
                             	</a>
                             	<c:choose>
@@ -215,9 +215,9 @@
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name">
-	                                <a class="cateName" href="/product/product_list?topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=${rl.dcate_num}">
+	                                <a class="cateName" href="/UnoMas/product/product_list?topcate_num=${rl.topcate_num}&pageNum=1&dcate_num=${rl.dcate_num}">
 	                            		${rl.dcate_name}</a>
-	                                <a href="/product/product_detail?prod_num=${rl.prod_num}">
+	                                <a href="/UnoMas/product/product_detail?prod_num=${rl.prod_num}">
 	                                    <h5>${rl.prod_name}</h5>
 	                                </a>
                                 </div>
@@ -279,7 +279,7 @@
                     	%>
                         <div class="product-item">
                             <div class="pi-pic">
-                            	<a href="/product/product_detail?prod_num=${sl.prod_num}">
+                            	<a href="/UnoMas/product/product_detail?prod_num=${sl.prod_num}">
                                 	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${sl.prod_image3 }"></spring:url>" alt="판매량이미지">
                             	</a>
                             	<c:choose>
@@ -304,9 +304,9 @@
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name">
-	                            	<a class="cateName" href="/product/product_list?topcate_num=${sl.topcate_num}&pageNum=1&dcate_num=${sl.dcate_num}">
+	                            	<a class="cateName" href="/UnoMas/product/product_list?topcate_num=${sl.topcate_num}&pageNum=1&dcate_num=${sl.dcate_num}">
 	                            		${sl.dcate_name}</a>
-	                                <a class="prodName" href="/product/product_detail?prod_num=${sl.prod_num}">
+	                                <a class="prodName" href="/UnoMas/product/product_detail?prod_num=${sl.prod_num}">
 	                                    <h5>${sl.prod_name}</h5>
 	                                </a>
                                 </div>
@@ -369,7 +369,7 @@
                     	%>
                         <div class="product-item">
                             <div class="pi-pic">
-                            	<a href="/product/product_detail?prod_num=${bl.prod_num}">
+                            	<a href="/UnoMas/product/product_detail?prod_num=${bl.prod_num}">
                                 	<img src="<spring:url value="/resources/upload/images/products/thumbnail/${bl.prod_image3 }"></spring:url>" alt="신상품이미지">
                             	</a>
                             	<c:choose>
@@ -394,9 +394,9 @@
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name">
-                                	<a class="cateName" href="/product/product_list?topcate_num=${bl.topcate_num}&pageNum=1&dcate_num=${bl.dcate_num}">
+                                	<a class="cateName" href="/UnoMas/product/product_list?topcate_num=${bl.topcate_num}&pageNum=1&dcate_num=${bl.dcate_num}">
 	                            		${bl.dcate_name}</a>
-	                                <a class="prodName" href="/product/product_detail?prod_num=${bl.prod_num}">
+	                                <a class="prodName" href="/UnoMas/product/product_detail?prod_num=${bl.prod_num}">
 	                                    <h5>${bl.prod_name}</h5>
 	                                </a>
                                 </div>
@@ -481,6 +481,6 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
-    <script src="${path}/resources/js/index_js/index.js"></script>
+    <script src="${path}/resources/js/index_js/index.js?1234"></script>
 </body>
 </html>

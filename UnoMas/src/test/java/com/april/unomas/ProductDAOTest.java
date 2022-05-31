@@ -1,5 +1,7 @@
 package com.april.unomas;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -61,8 +63,9 @@ public class ProductDAOTest {
 		log.info(dao.getProductList(pp)+"");
 	}
 	
-//	@Test
+	@Test
 	public void 상위카테고리출력테스트() throws Exception {
+		assertEquals("채소", dao.getTopCateName(1));
 		log.info(dao.getTopCateName(1));
 	}
 	
@@ -125,7 +128,7 @@ public class ProductDAOTest {
 		log.info("글목록: " + dao.getReviewList(pc));
 	}
 	
-	@Test
+//	@Test
 	public void 재고감소() throws Exception {
 		dao.decreaseStock(2, 20);
 	}
