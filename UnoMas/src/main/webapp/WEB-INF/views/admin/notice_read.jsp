@@ -69,7 +69,7 @@
 					</tr>
 					<tr>
 						<th>첨부파일</th>
-						<td colspan="3"><a class="nfile" href="/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
+						<td colspan="3"><a class="nfile" href="/UnoMas/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
 					</tr>
 <!-- 					<tr> -->
 <!-- 						<th>이미지</th> -->
@@ -93,7 +93,7 @@
 									<input type="hidden" readonly>
 								</c:when>
 								<c:otherwise>
-                                    <img class="product-big-img" src="<spring:url value='/resources/upload/images/board/notice/${vo.notice_img }'></spring:url>" alt="">
+                                    <img class="product-big-img" src="<spring:url value='/UnoMas/resources/upload/images/board/notice/${vo.notice_img }'></spring:url>" alt="">
                                 </c:otherwise>
                             </c:choose>
 						<div class="textarea">
@@ -104,8 +104,8 @@
 						</td>
 						</tr>
 				</table>
-				<button type="button" class="count-button" onclick="location.href='/admin/notice_update?notice_num=${vo.notice_num }';">수정</button>
-				<button type="button" class="del-button" id="del-button" onclick="location.href='/admin/notice_delete?notice_num=${vo.notice_num }';"><span class="delete_text">삭제</span></button>
+				<button type="button" class="count-button" onclick="location.href='/UnoMas/admin/notice_update?notice_num=${vo.notice_num }';">수정</button>
+				<button type="button" class="del-button" id="del-button" onclick="location.href='/UnoMas/admin/notice_delete?notice_num=${vo.notice_num }';"><span class="delete_text">삭제</span></button>
 <!-- 				<button type="submit" class="del-button" id="del-button" ><span class="delete_text">삭제</span></button> -->
 				<button type="button" class="back-button" onclick="history.back();">취소</button>
 				<br><br>

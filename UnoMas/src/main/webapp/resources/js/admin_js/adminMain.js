@@ -3,13 +3,13 @@
  */
  function deleteAction(data) {
 		if(confirm("삭제하시겠습니까?") == true){
-			location.href='/admin/qna_delete?qna_num='+data;
+			location.href='/UnoMas/admin/qna_delete?qna_num='+data;
 		}
 	}
  $(document).ready(function() {
 			$("#qni_category").change(function() {
 				var changeVal = $(this).val();
-				location.href="/admin/faq_sort?qnacate_num="+changeVal;
+				location.href="/UnoMas/admin/faq_sort?qnacate_num="+changeVal;
 			});
 		});
 		
