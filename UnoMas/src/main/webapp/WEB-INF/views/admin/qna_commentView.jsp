@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -13,7 +14,6 @@
 	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
 %>
-<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,9 +49,11 @@
 							<table class="table_info" style="margin: 40px 0px 30px 0px;">
 								<tr>
 									<th>작성자</th>
-									<td><input type="text" style="margin-bottom: 0px; padding: 0px;" class="notice_field " name="admin_name" placeholder="UnoMás" readonly>
-										<input type="hidden" name="admin_num" value="1">
-									</td>
+									<td><input type="text"
+										style="margin-bottom: 0px; padding: 0px;"
+										class="notice_field " name="admin_name" placeholder="UnoMás"
+										readonly> <input type="hidden" name="admin_num"
+										value="1"></td>
 									<th>작성일</th>
 									<td style="padding: 20px; text-align: left;">${vo.qnacom_regdate }</td>
 								</tr>
@@ -62,19 +64,25 @@
 								</tr>
 								<tr>
 									<td>
-				                        <div class="textarea">
-				                      		<textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.qnacom_content,cn,br)}</textarea>
-				                        	<input type="hidden" name="notice_content" value="${fn:replace(vo.qnacom_content,cn,br)}">
-				                        </div>
-			                       	</td>
+										<div class="textarea">
+											<span class="answer" style="text-align: left;">문의 답변 내역 ></span>
+											<textarea inputmode="text" name="notice_content"
+												class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.qnacom_content,cn,br)}</textarea>
+											<input type="hidden" name="notice_content"
+												value="${fn:replace(vo.qnacom_content,cn,br)}">
+										</div>
+									</td>
 								</tr>
 							</table>
-							<button type="button" class="register-button" onclick="location.href='/admin/qna_board';">1:1 문의 목록</button>
+							<button type="button" class="register-button"
+								onclick="location.href='/UnoMas/admin/qna_board';">1:1
+								문의 목록</button>
 						</form>
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
 	<!-- Partner Logo Section End -->
     <!-- Footer Section Begin -->
