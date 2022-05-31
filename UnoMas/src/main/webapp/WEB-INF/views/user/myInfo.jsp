@@ -96,7 +96,7 @@
 				<h3 class="myinfo_h3">(선택) 개인정보 수집 및 이용안내</h3>
 				<hr>
 				<c:choose>
-				<c:when test="${userInfoVO.user_emailagree == 0 }">
+				<c:when test="${userInfoVO.user_emailagree eq 0 }">
 				  <input type="checkbox" id="checkbox_text" disabled="disabled">(선택) 이메일 이벤트등 마케팅 수신 동의
 				</c:when>
 				<c:otherwise>
@@ -116,7 +116,7 @@
 			
 			
 			<div style="text-align: right;">
-				<a href="" class="deleteBtn">회원 탈퇴</a>
+				<a href="/UnoMas/user/delete_user" class="deleteBtn">회원 탈퇴</a>
 			</div>
 
 			<div style="text-align: center;" >

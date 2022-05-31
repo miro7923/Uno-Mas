@@ -13,6 +13,7 @@ public class OrderVO {
 	private int cart_num;
 	private String prod_name;
 	private int prod_price;
+	private String prod_image1;
 
 	private Timestamp order_date;
 	private int order_total;

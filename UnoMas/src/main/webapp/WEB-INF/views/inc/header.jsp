@@ -184,4 +184,3 @@
 
     <script src="${path}/resources/js/board_js/boardSearch.js"></script>
     <script src="${path}/resources/js/header.js"></script>
-

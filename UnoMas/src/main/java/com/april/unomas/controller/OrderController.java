@@ -2,6 +2,7 @@ package com.april.unomas.controller;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -279,26 +280,29 @@ public class OrderController {
 	
 
 	
-	// 마이페이지 - 주문 내역 
+	// 마이페이지 - 주문 목록
 	@RequestMapping(value = "/my_order")
 	public String myOrder(HttpSession session, Model model,
 			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) throws Exception{
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
-		
 		List<Integer> codeList = orderService.MyOrderCount(saveNUM); 
-		System.out.println("총 결제 개수: " + codeList.size());
-
+		
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
 		cri.setPerPageNum(3);
-
-		Map<Integer, List> orderMap = orderService.getMyOrderList(saveNUM, cri);
+		
+		List<Integer> limitList = new ArrayList<Integer>();
+		try {
+			limitList = codeList.subList(cri.getPageStart(), cri.getPageStart()+3);
+		} catch (Exception e) {
+			limitList = codeList.subList(cri.getPageStart(), codeList.size());
+		}
+		Map<Integer, List> orderMap = orderService.getMyOrderList(saveNUM, limitList);
 
 		UserPageMaker pm = new UserPageMaker();
 		pm.setCri(cri);
 		pm.setTotalCount(codeList.size());
-		pm.setTotalCount(10);
 
 		model.addAttribute("orderMap", orderMap);
 		model.addAttribute("pagingNum", pagingNum);
@@ -306,7 +310,29 @@ public class OrderController {
 
 		return "order/myOrderList";
 	}
+	
+	
+	// 주문 상세보기 페이지
+	@RequestMapping(value = "/order_detail", method = RequestMethod.GET)
+	public String orderDetail(HttpSession session, @RequestParam int code, Model model,
+			@RequestParam(value = "pagingNum", required = false, defaultValue = "1") String pagingNum) throws Exception {
+		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
+//		int code2 = Integer.parseInt(code); 
+		
+		List<Integer> limitList = new ArrayList<Integer>(Arrays.asList(code));
+		Map<Integer, List> orderMap = orderService.getMyOrderList(saveNUM, limitList);
+		
+		PayVO payInfo = orderService.getPayInfo(code);
+		
+		model.addAttribute("orderMap", orderMap);
+		model.addAttribute("payInfo", payInfo);
+		model.addAttribute("pagingNum", pagingNum);
+		
+		return "/order/myOrderDetail";
+	}
+	
 
+	
 	@RequestMapping(value = "/addr_book", method = RequestMethod.GET)
 	public String addrBookGET(@RequestParam int user_num, @RequestParam int pageNum, Model model) throws Exception {
 		ProdCriteria cri = new ProdCriteria();

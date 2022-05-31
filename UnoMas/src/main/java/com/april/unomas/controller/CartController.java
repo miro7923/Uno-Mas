@@ -48,7 +48,8 @@ public class CartController {
 	
 	// 장바구니 목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String listGET(HttpSession session, Model model) {
+	public String listGET(HttpSession session, Model model,
+			@RequestParam(value="pageInfo", required = false, defaultValue="") String pageInfo) {
 	    int user_num = (int) session.getAttribute("saveNUM");
 	        	
         List<CartVO> list = cartService.listCart(user_num);  // 장바구니 목록
@@ -59,6 +60,7 @@ public class CartController {
         model.addAttribute("sumMoney", sumMoney); // 장바구니 전체 금액
         model.addAttribute("fee", fee); // 배송료
         model.addAttribute("sum", sumMoney+fee); // 총 결제 예상금액(장바구니+배송비)
+        model.addAttribute("pageInfo", pageInfo);
         
         return "product/shopping-cart"; // 화면 이동
 	 }

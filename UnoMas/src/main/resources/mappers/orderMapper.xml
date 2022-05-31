@@ -78,12 +78,18 @@
     	WHERE user_num=#{num}
     </select>
     
-    
+    <!-- 주문 목록 -->
     <select id="myOrderList" parameterType="int" resultType="com.april.unomas.domain.OrderVO">
 		SELECT *
 		from orders as o
 		JOIN products AS p ON p.prod_num = o.prod_num
 		WHERE o.order_code=#{code}
+    </select>
+    
+    <select id="getPayInfo" resultType="PayVO">
+        SELECT *
+        FROM pay
+        WHERE order_code = #{order_code}
     </select>
     
     

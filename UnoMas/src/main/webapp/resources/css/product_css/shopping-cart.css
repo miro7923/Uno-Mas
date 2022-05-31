@@ -62,5 +62,7 @@
 }
 
 .shopping-cart-table {
+	padding-top: 80px;
+    padding-bottom: 60px;
 	min-height: 700px !important;
 }

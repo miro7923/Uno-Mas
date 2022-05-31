@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.CartVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
@@ -27,6 +29,9 @@ import com.april.unomas.domain.UserCriteria;
 import com.april.unomas.domain.UserPageMaker;
 
 import com.april.unomas.domain.UserVO;
+import com.april.unomas.service.CartService;
+import com.april.unomas.service.OrderService;
+import com.april.unomas.service.SmsService;
 import com.april.unomas.service.UserService;
 
 @Controller
@@ -35,6 +40,16 @@ public class UserController {
 
 	@Inject
 	private UserService service;
+	
+	@Inject
+	private OrderService orderService;
+	
+	@Inject
+	private CartService cartService;
+	
+	@Inject
+	private SmsService smsService;
+	
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	// 회원가입 이용약관 페이지
@@ -49,12 +64,22 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPost(@RequestParam("emailAgree") String eAgree, UserVO vo) {
+	public String registerPost(@RequestParam(value = "emailAgree", required = false, defaultValue="0") String eAgree, UserVO vo) {
 		if (eAgree.equals("1")) {
 			vo.setUser_emailagree(1);
+		} else {
+			vo.setUser_emailagree(0);
 		}
 		service.joinUser(vo);
 		return "redirect:/UnoMas/user/login";
+
+	}
+	
+	@RequestMapping(value = "/auth_phone")
+	@ResponseBody
+	public List<Integer> AuthPhoneNumber(String p) {
+		List<Integer> resList = smsService.sendSMS(p);
+		return resList;
 	}
 
 	@RequestMapping(value = "/idCheck")
@@ -138,11 +163,48 @@ public class UserController {
 
 		return result;
 	}
+	
+	
+	// 비밀번호 확인
+	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
+	public String pwCheck() {
+		return "/user/checkPW";
+	}
+	
+	// 비밀번호 확인
+	@RequestMapping(value = "/check_pw", method=RequestMethod.POST)
+	@ResponseBody
+	public String pwCheck(UserVO vo) {
+		return Integer.toString(service.checkPW(vo));
+	}
 
 	// mypage
 	@RequestMapping(value = "/mypage")
-	public String mypage() {
-		return "user/myPage";
+	public String mypage(HttpSession session, Model model) throws Exception {
+		int saveNUM = (int)session.getAttribute("saveNUM");
+		
+		List<Integer> codeList = orderService.MyOrderCount(String.valueOf(saveNUM));
+		if(codeList.size() > 0) {
+			List<Integer> limitList = codeList.subList(0, 3);
+			Map<Integer, List> orderMap = orderService.getMyOrderList(String.valueOf(saveNUM), limitList);
+			model.addAttribute("orderMap", orderMap);
+		}
+		
+		List<CartVO> list = cartService.listCart(saveNUM);
+		System.out.println(" 장바구니 목록: " + list);
+		int sumMoney = cartService.sumMoney(saveNUM);  	// 총 상품가격
+        int fee = sumMoney >= 50000 ? 0 : 2500; 		// 배송비 계산
+        
+        if(list.size()>4) {
+        	model.addAttribute("list", list.subList(0, 4));
+        } else {
+        	model.addAttribute("list", list);
+        }
+        model.addAttribute("sumMoney", sumMoney); 		// 장바구니 전체 금액
+        model.addAttribute("fee", fee); 				// 배송료
+        model.addAttribute("sum", sumMoney+fee); 		// 총 결제 예상금액(장바구니+배송비)
+		
+		return "/user/myPage";
 	}
 
 	
@@ -174,11 +236,35 @@ public class UserController {
 		return "redirect:/UnoMas/user/myInfo";
 	}
 
+	// 포인트 페이지
 	@RequestMapping(value = "/mypoint")
-	public String myPoint() {
-		return "user/myPoint";
+	public String myPoint(HttpSession session, Model model, 
+			@RequestParam(value="pagingNum", required=false, defaultValue="1") String pagingNum) {
+		
+		UserCriteria cri = new UserCriteria();
+		cri.setPage(Integer.parseInt(pagingNum));
+		cri.setPerPageNum(15);
+		
+		int saveNUM = (int)session.getAttribute("saveNUM");
+		int pointCount = service.pointCount(saveNUM);
+		
+		int userP = service.getUserPoint(saveNUM);
+		List<PointVO> pointList = service.getPointList(saveNUM, cri);
+		
+		UserPageMaker pm = new UserPageMaker();
+		pm.setCri(cri);
+		pm.setTotalCount(pointCount);
+		
+		model.addAttribute("userP", userP);
+		model.addAttribute("pointList", pointList);
+		model.addAttribute("pagingNum", pagingNum);
+		model.addAttribute("pm", pm);
+		
+		return "/user/myPoint";
 	}
 	
+	
+	// 리뷰 페이지
 	@RequestMapping(value = "/my_review")
 	public String myReview(HttpSession session, Model model, 
 			@RequestParam(value="pagingNum", required=false, defaultValue="1") String pagingNum
@@ -269,15 +355,6 @@ public class UserController {
 	}
 
 	
-	
-	// 비밀번호 확인
-	@RequestMapping(value = "/check_pw", method=RequestMethod.POST)
-	@ResponseBody
-	public String pwCheck(UserVO vo) {
-		return Integer.toString(service.checkPW(vo));
-	}
-	
-	
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
 	public String deleteUserGET() {
@@ -301,19 +378,6 @@ public class UserController {
 		return totalResult;
 	}
 	
-	// 비번체크
-	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
-	public String pwCheck() {
-		return "user/checkPW";
-	}
 
-
-	// 비번체크 - 나중에 확인
-//	@RequestMapping(value = "/check_pw", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String pwCheck(UserVO vo) {
-//		return Integer.toString(service.checkPW(vo));
-//	}
-	
 
 }

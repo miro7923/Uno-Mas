@@ -42,7 +42,9 @@ public interface OrderService {
 	public List<Integer> MyOrderCount(String num) throws Exception;
 
 	// 내 주문 목록
-	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
+	public Map<Integer, List> getMyOrderList(String num, List<Integer> limitList) throws Exception;
 
+	// 결제 정보 가져오기(with.order_code)
+	public PayVO getPayInfo(int order_code) throws Exception;
 	
 }

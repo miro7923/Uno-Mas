@@ -95,28 +95,20 @@ public class OrderDAOImpl implements OrderDAO {
 
 	// 주문 목록
 	@Override
-	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception {
-		Map<String, Object> map = new HashMap();
-		map.put("num", num);
-		map.put("cri", cri);
-		
-		List<Integer> cList = new ArrayList<Integer>();
-		cList.add(33);
-		cList.add(34);
-		
+	public Map<Integer, List> getMyOrderList(String num, List<Integer> limitList) throws Exception {	
 		Map<Integer, List> orderMap = new HashMap<Integer, List>();
-		
-		for(Integer code: cList) {
+		for(int code: limitList) {
 			List<OrderVO> orderList = sqlSession.selectList(NAMESPACE + ".myOrderList", code);
-			System.out.println("가쟈온 주문정보: " + orderList);
 			orderMap.put(code, orderList);
 		}
-		System.out.println("전체다 잘 가져와지나???" + orderMap);
-		
-		
+
 		return orderMap;
 	}
 	
-	
+	// 주문코드로 결제 정보 가져오기
+	@Override
+	public PayVO getPayInfo(int order_code) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".getPayInfo", order_code);
+	}
 
 }

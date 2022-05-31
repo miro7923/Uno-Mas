@@ -18,7 +18,8 @@ import org.springframework.stereotype.Repository;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
-
+import com.april.unomas.domain.OrderAddrVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdCommentVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
@@ -53,6 +54,19 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public void joinUser(UserVO vo) {
 		sqlSession.insert(NAMESPACE + ".joinUser", vo);
+		
+		int num = sqlSession.selectOne(NAMESPACE + ".findNum", vo.getUser_id());
+		
+		OrderAddrVO addVO = new OrderAddrVO();
+		addVO.setUser_num(num);
+		addVO.setAddr_name("집(기본)");
+		addVO.setAddr_postalcode(vo.getUser_postalcode());
+		addVO.setAddr_roadaddr(vo.getUser_roadaddr());
+		addVO.setAddr_detailaddr(vo.getUser_detailaddr());
+		addVO.setAddr_primary(true);
+		addVO.setAddr_recipient(vo.getUser_name());
+		addVO.setAddr_phone(vo.getUser_phone());
+		sqlSession.insert(NAMESPACE + ".joinAddr", addVO);
 	}
 
 	// 아이디 중복검사
@@ -222,7 +236,6 @@ public class UserDAOImpl implements UserDAO {
 	// 비번 체크
 	@Override
 	public Integer checkPW(UserVO vo) {
-		System.out.println("DAO: 비번체크 여기까지 와?" + vo.getUser_pass());
 		return sqlSession.selectOne(NAMESPACE + ".checkPW", vo);
 	}
 	
@@ -300,7 +313,6 @@ public class UserDAOImpl implements UserDAO {
 
 		try {
 			msg.setFrom(evo.getSender());
-//			msg.setTo(evo.getRecipients());
 			msg.setTo("tksop59@naver.com");
 			msg.setSubject(evo.getSubject()); // 제목 셋팅
 			msg.setText(evo.getContent()); // 내용 셋팅
@@ -310,7 +322,6 @@ public class UserDAOImpl implements UserDAO {
 		} catch (Exception e) {
 
 		}
-
 		return result;
 	}
 
@@ -328,4 +339,26 @@ public class UserDAOImpl implements UserDAO {
 		
 		sqlSession.update(NAMESPACE + ".updatePoint", map);
 	}
+
+	@Override
+	public int getUserPoint(int num) {
+		System.out.println("포인트 잘?" + sqlSession.update(NAMESPACE + ".getUserP", num));
+		return sqlSession.selectOne(NAMESPACE + ".getUserP", num);
+	}
+	
+	@Override
+	public int pointCount(int num) {
+		return sqlSession.selectOne(NAMESPACE + ".pointCount", num);
+	}
+
+	@Override
+	public List<PointVO> getPointList(int num, UserCriteria cri) {
+		Map<String, Object> map = new HashMap();
+		map.put("num", num);
+		map.put("cri", cri);
+		
+		return sqlSession.selectList(NAMESPACE + ".getpList", map);
+	}
+	
+	
 }
