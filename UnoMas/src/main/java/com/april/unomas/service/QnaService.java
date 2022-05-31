@@ -20,5 +20,7 @@ public interface QnaService {
 	public void deleteInquiry(Integer qna_num);
 	
 	public Qna_ComVO getComment(Integer qna_num);
+
+	public void qnaCreate(QnaVO vo) throws Exception;
 	
 }

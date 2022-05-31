@@ -170,11 +170,12 @@ public class BoardController {
 	public String inquiryWritePOST(HttpServletRequest request,RedirectAttributes rttr, MultipartFile qna_image1,MultipartFile qna_image2,HttpSession session) throws Exception {
 		QnaVO vo = new QnaVO();
 		String saveID = (String) session.getAttribute("saveID");
+		int saveNUM = (Integer) session.getAttribute("saveNUM");
+		vo.setUser_num(saveNUM);
 		vo.setQnacate_num(Integer.parseInt(request.getParameter("qnacate_num")));
 		vo.setQnacate2(request.getParameter("qnacate2"));
 		vo.setQna_title(request.getParameter("qna_title"));
 		vo.setQna_content(request.getParameter("qna_content"));
-		
 		if(!qna_image1.isEmpty()) {
 //			UUID uid = UUID.randomUUID();
 //			String fileName = uid.toString()+"_"+qna_image1.getOriginalFilename();
@@ -183,7 +184,7 @@ public class BoardController {
 			File targetFile = new File(qnaUploadPath,fileName);
 			FileCopyUtils.copy(qna_image1.getBytes(), targetFile);
 			vo.setQna_image1(fileName);
-		}
+		} 
 		
 		if(!qna_image2.isEmpty()) {
 //			UUID uid2 = UUID.randomUUID();
@@ -193,8 +194,10 @@ public class BoardController {
 			File targetFile2 = new File(qnaUploadPath,fileName2);
 			FileCopyUtils.copy(qna_image2.getBytes(), targetFile2);
 			vo.setQna_image2(fileName2);
-			qService.qnaWrite(saveID,vo);
 		}
+		
+//			qService.qnaWrite(saveID,vo);
+			qService.qnaCreate(vo);
 		return "redirect:/board/inquiry_paging";
 	}
 	

@@ -17,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,6 +82,16 @@ public class AdminController {
 		return "/admin/notice_board";
 	}
 	
+	@RequestMapping(value = "/notice_search",method = RequestMethod.GET)
+	public String searchNoticeGET(Criter cri,Model model) throws Exception{
+		PagingVO pagingVO = new PagingVO(cri);
+		pagingVO.setTotalCount(service.searchNoticeCount(cri));
+		List<NoticeVO> noticeList = service.noticeView(cri);
+		model.addAttribute("noticeList",noticeList);
+		model.addAttribute("pagingVO",pagingVO);
+		return "/admin/notice_search";
+	}
+	
 	@RequestMapping(value = "/notice_write",method = RequestMethod.GET)
 	public String noticeWriteGET(Model model,HttpSession session) throws Exception{
 		AdminVO vo = (AdminVO) session.getAttribute("saveID");
@@ -136,7 +144,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/notice_update",method = RequestMethod.POST)
-	public String noticeUpdatePOST(NoticeVO vo) throws Exception {
+	public String noticeUpdatePOST(@RequestParam("notice_num") int notice_num,HttpServletRequest request) throws Exception {
+		NoticeVO vo = new NoticeVO();
+		vo.setNotice_num(notice_num);
+		vo.setNotice_title(request.getParameter("notice_title"));
+		vo.setNotice_content(request.getParameter("notice_content"));
 		service.noticeUpdate(vo);
 		return "redirect:/admin/notice_board";
 	}
@@ -149,7 +161,6 @@ public class AdminController {
 	
 	@RequestMapping(value = "/faq_write",method = RequestMethod.GET)
 	public String boardWriteGET() throws Exception{
-		log.info("registGET() 호출 -> /board/qni_write.jsp 이동");
 		return "/admin/faq_write";
 	}
 	
@@ -174,11 +185,21 @@ public class AdminController {
 	@RequestMapping(value="/faq_board",method = RequestMethod.GET)
 	public String pagingListGET(Criter cri,Model model) throws Exception {
 	    PagingVO pagingVO = new PagingVO(cri);
-	    pagingVO.setTotalCount(service.faqCount());
+	    pagingVO.setTotalCount(service.searchFaqCount(cri));
 	    List<BoardVO> pList = service.faqView(cri);
 	    model.addAttribute("pList", pList);
 	    model.addAttribute("pagingVO", pagingVO);
 	    return "/admin/faq_board";
+	}
+	
+	@RequestMapping(value="/faq_search",method = RequestMethod.GET)
+	public String searchFaqGET(Criter cri,Model model) throws Exception {
+	    PagingVO pagingVO = new PagingVO(cri);
+	    pagingVO.setTotalCount(service.searchFaqCount(cri));
+	    List<BoardVO> pList = service.faqView(cri);
+	    model.addAttribute("pList", pList);
+	    model.addAttribute("pagingVO", pagingVO);
+	    return "/admin/faq_search";
 	}
 	
 	@RequestMapping(value="/faq_update",method = RequestMethod.GET)

@@ -213,13 +213,15 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public Integer noticeTotal(Criter cri) {
-		return sqlSession.selectOne(NAMESPACE+".noticeTotal",cri);
+	public Integer searchNoticeTotal(Criter cri) {
+		// 공지사항 검색 글 갯수
+		return sqlSession.selectOne(NAMESPACE+".searchNoticeCount",cri);
 	}
 
 	@Override
-	public Integer faqTotal(Criter cri) {
-		return sqlSession.selectOne(NAMESPACE+".faqCount",cri);
+	public Integer searchFaqTotal(Criter cri) {
+		// 질문 검색 글 갯수
+		return sqlSession.selectOne(NAMESPACE+".searchFaqCount",cri);
 	}
 	
 	

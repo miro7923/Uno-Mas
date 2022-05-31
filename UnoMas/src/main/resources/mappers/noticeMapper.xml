@@ -51,7 +51,7 @@
 	
 	<select id="noticeCnt" resultType="Integer">
 		<![CDATA[
-		SELECT count(*) 
+		SELECT COUNT(*) 
 		FROM board_notice
 		WHERE notice_num > 0
 		]]>

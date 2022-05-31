@@ -71,6 +71,11 @@ public class QnaDAOImpl implements QnaDAO{
 	public Qna_ComVO getComment(Integer qna_num) {
 		return sqlSession.selectOne(NAMESPACE+".getComment",qna_num);
 	}
+
+	@Override
+	public void qnaCreate(QnaVO vo) {
+		sqlSession.insert(NAMESPACE+".createQna",vo);
+	}
 	
 	
 }

@@ -47,11 +47,11 @@
 						<hr>
 					</div>
 					<div class="container">
-						<form class="checkout-form" method="post">
+						<form onsubmit="return faqCK();" name="fr" class="checkout-form" method="post">
 							<table class="table_info" style="margin: 40px 0px 30px 0px;">
 								<tr>
 									<th>제목</th>
-									<td><input type="text" style="margin-bottom: 0px;" class="notice_field " name="faq_title" placeholder="제목을 입력하세요"></td>
+									<td><input type="text" style="margin-bottom: 0px;" class="notice_field " name="faq_title" id="faq_title" placeholder="제목을 입력하세요"></td>
 								</tr>
 								<tr>
 									<th>카테고리</th>
@@ -59,7 +59,7 @@
 										<input type="hidden" name="id" value="notice">
 										<input type="hidden" name="admin_num" value="1">
 										<select class="selectBox" style="border-style: none;" name="qnacate_num" id="qni_category">
-											<option>카테고리 선택</option>
+											<option value="0" disabled selected>카테고리 선택</option>
 											<option value="1">배송/포장</option>
 											<option value="2">취소/교환/환불</option>
 											<option value="3">이벤트/적립금</option>
@@ -78,16 +78,17 @@
 								<tr>
 									<td>
 				                        <div class="textarea">
-				                      		<textarea inputmode="text" name="faq_content" class="textarea-text" placeholder="내용을 입력하세요"></textarea>
+				                      		<textarea inputmode="text" name="faq_content" id="faq_content" class="textarea-text" placeholder="내용을 입력하세요"></textarea>
 				                        </div>
 			                       	</td>
 								</tr>
 							</table>
-							<button type="submit" class="count-button">등록</button>
+							<button type="submit" class="count-button" >등록</button>
 							<button type="button" class="back-button" onclick="history.back();">취소</button>
 						</form>
 					</div>
 				</div>
+			</div>
 			</div>
 		</section>
 
@@ -108,6 +109,8 @@
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
+    <script src="${path}/resources/js/admin_js/adminWrite.js"></script>
+    
 </body>
 
 </html>

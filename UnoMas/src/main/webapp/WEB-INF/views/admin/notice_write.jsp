@@ -37,7 +37,7 @@
 					- 공지사항 등록
 					<div class="line"><hr></div>
 					<div class="container">
-						<form class="checkout-form" method="post" enctype="multipart/form-data"><br>
+						<form onsubmit="return noticeCK();" class="checkout-form" method="post" name="fr" enctype="multipart/form-data"><br>
 							<table class="table_info" style="margin-bottom: 30px; height: 330px;">
 								<tr>
 									<th>작성자</th>
@@ -100,6 +100,7 @@
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
+    <script src="${path}/resources/js/admin_js/adminWrite.js"></script>
 </body>
 
 </html>

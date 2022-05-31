@@ -41,3 +41,5 @@ var preContent;
     var no = "faq_";
     if ( document.getElementById( no ) ) view_content( document.getElementById( no ) );
   }
+  
+  
