@@ -49,6 +49,11 @@
 	color: #FF5E00;
 	margin-left: 10px;
 }
+.phoneSend_text {
+    font-size: 13px;
+    color: red;
+    margin-top: -30px;
+}
 
 .register_field{
     width: 310px;

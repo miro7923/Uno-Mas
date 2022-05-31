@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html>
@@ -20,17 +21,17 @@
 	
 	<div class="point_right_container">	
 		<div class="point_simple_container">
-			<div class="point_hello">김땡땡 님 환영합니다! </div>
+			<div class="point_hello">${saveID } 님 환영합니다! </div>
 				
 			<div class="point_simple_box">
-				<dl class="point_ststus_box">
-					<dt>사용가능 포인트 <em>20</em> P</dt>
+				<dl class="point_status_box">
+					<dt>사용가능 포인트 <em><fmt:formatNumber value="${userP}" pattern="#,###" /></em> P</dt>
 				</dl>
-				<dl class="point_ststus_box">
-					<dt>사용 포인트 <em>20</em> P</dt>
+				<dl class="point_status_box">
+					<dt>사용 포인트 <em>0</em> P</dt>
 				</dl>
-				<dl class="point_ststus_box">
-					<dt>소멸 예정 포인트 <em>20</em> P</dt>
+				<dl class="point_status_box">
+					<dt>소멸 예정 포인트 <em>0</em> P</dt>
 					<dd>(30일이내 소멸예정)</dd>
 				</dl>
 			</div>
@@ -63,52 +64,43 @@
 					</thead>
 
 					<tbody>
-						<tr>
-								<td>2022-04-23</td>
-								<td>적립</td>
-								<td>4월 출석체크 포인트</td>
-								<td><span class="num_plus">10</span></td>
-								<td>2022-04-26</td>
-						</tr>
-						<tr>
-								<td>2022-04-22</td>
-								<td>적립</td>
-								<td>4월 출석체크 포인트</td>
-								<td><span class="num_plus">10</span></td>
-								<td>2022-04-25</td>
-						</tr>
-						<tr>
-								<td>2022-04-21</td>
-								<td>사용</td>
-								<td>포인트 사용 – 상품</td>
-								<td><span class="num_minus">-20</span></td>
-								<td>-</td>
-						</tr>
+						<c:forEach var="vo" items="${pointList }">
+							<tr>
+								<td><fmt:formatDate value="${vo.point_regdate}" pattern="yyyy-MM-dd" /></td>
+								<td>${vo.point_form }</td>
+								<td>상품 구매</td>
+								<td><span class="num_plus">${vo.point_cost }</span></td>
+								<td><fmt:formatDate value="${vo.point_deadline}" pattern="yyyy-MM-dd"/></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 			
 			<div class="page_control">
-			<%
-				// 이전을 누르면 이전 블럭의 제일 첫 페이지로 이동!
-				//if(startPage > pageBlock) {
-					%><a href="" class="previous_daum">[이전]</a> <%
-				//}
-			%>
-
-			<%
-				//for(int i=startPage; i<=endPage; i++) {
-					%><a>1</a> <%		
-				//}
-			%>
-
-			<%
-				//if(endPage < pageCount) {
-					%><a href="" class="previous_daum">[다음]</a> <%
-				//}
-			%>
-
-	  </div>
+				<div class="paging_container">
+					<c:if test="${pm.prev }">
+						<a href="mypoint?pagingNum=${pm.startPage - 1}" class="paging_a">이전</a>
+					</c:if>
+	
+					<c:forEach var="block" varStatus="pg" begin="${pm.startPage }" end="${pm.endPage }" step="1">
+						<c:choose>
+							<c:when test="${pg.index == pagingNum }">
+								<a href="mypoint?pagingNum=${pg.index }" class="paging_num_yes">${pg.index }</a>
+							</c:when>
+							<c:otherwise>
+								<a href="mypoint?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+	
+					<c:if test="${pm.next }">
+						<a href="mypoint?pagingNum=${pm.endPage + 1}" class="paging_a">다음</a>
+					</c:if>
+				</div>
+	  		</div>
+	  		
+	  		
 		</div>
       	<!-- 포인트 내역 -->
       
@@ -131,14 +123,6 @@
 <!-- 	<div style="border-top: 1px solid black; height: 200px; background-color: green; clear:left;"> 푸터 </div> -->
 	<jsp:include page="../inc/bottom.jsp"></jsp:include>
 	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-    <script src="${path}/resources/js/bootstrap.min.js"></script>
-    <script src="${path}/resources/js/jquery-ui.min.js"></script>
-    <script src="${path}/resources/js/jquery.countdown.min.js"></script>
-    <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
-    <script src="${path}/resources/js/jquery.zoom.min.js"></script>
-    <script src="${path}/resources/js/jquery.dd.min.js"></script>
-    <script src="${path}/resources/js/jquery.slicknav.js"></script>
-    <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
 </body>
 </html>

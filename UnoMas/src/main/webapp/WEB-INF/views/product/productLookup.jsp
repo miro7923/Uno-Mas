@@ -25,10 +25,10 @@
 				
 				$.ajax({
 					type : "POST",
-					url : "${contextPath}/product/delete",
+					url : "${contextPath}/UnoMas/product/delete",
 					data : {chbox : checkArr},
 					success : function(){
-						location.href = "/product/product_lookup";
+						location.href = "/UnoMas/product/product_lookup";
 					}, error : function(){
 						alert("상품삭제 에러");
 					}
@@ -43,7 +43,7 @@
 		
 		console.log(searchType);
 		console.log(keyword);
-		location.href = "/product/product_lookup?page=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+		location.href = "/UnoMas/product/product_lookup?page=1" + "&searchType=" + searchType + "&keyword=" + keyword;
 	};
 	
 	});
@@ -126,7 +126,7 @@
 													</td>
 													<td class="normal-row"><span class="sold">${vo.prod_num }</span></td>
 													<td class="normal-row"><span class="sold"> <a
-															href="/product/status?prod_num=${vo.prod_num }"><span
+															href="/UnoMas/product/status?prod_num=${vo.prod_num }"><span
 																class="sold">${vo.prod_name }</span></a></td>
 													<td class="normal-row"><span class="sold">${vo.prod_price }</span></td>
 													<td class="normal-row"><span class="sold">품절</span></td>
@@ -141,7 +141,7 @@
 													</td>
 													<td class="normal-row">${vo.prod_num }</td>
 													<td class="normal-row"><a
-														href="/product/status?prod_num=${vo.prod_num }"><span
+														href="/UnoMas/product/status?prod_num=${vo.prod_num }"><span
 															class="normal">${vo.prod_name }</span></a></td>
 													<td class="normal-row">${vo.prod_price }</td>
 													<td class="normal-row">정상</td>
@@ -161,21 +161,21 @@
 									<ul class="pagination">
 										<c:if test="${pm.prev }">
 											<span><a class="page-link text-dark"
-												href="/product/product_lookup?page=${pm.startPage - 1}${pm.srchTypeKyw}"
+												href="/UnoMas/product/product_lookup?page=${pm.startPage - 1}${pm.srchTypeKyw}"
 												class="arrow_carrot-left_alt pagingBtn" id="prev">이전</a></span>
 										</c:if>
 
 										<c:forEach var="page" begin="${pm.startPage }"
 											end="${pm.endPage }">
 											<span><a class="page-link text-dark"
-												href="/product/product_lookup?page=${page }${pm.srchTypeKyw}"
+												href="/UnoMas/product/product_lookup?page=${page }${pm.srchTypeKyw}"
 												class="pagingBtn" style="color: black; font-weight: bold;">${page }
 											</a></span>
 										</c:forEach>
 
 										<c:if test="${pm.next && pm.endPage > 0 }">
 											<span><a class="page-link text-dark"
-												href="/product/product_lookup?page=${pm.endPage+1 }${pm.srchTypeKyw}"
+												href="/UnoMas/product/product_lookup?page=${pm.endPage+1 }${pm.srchTypeKyw}"
 												class="arrow_carrot-right_alt pagingBtn" id="next">다음</a></span>
 										</c:if>
 									</ul>

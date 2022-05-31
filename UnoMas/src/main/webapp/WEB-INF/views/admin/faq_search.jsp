@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -13,7 +14,6 @@
 	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
 %>
-<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

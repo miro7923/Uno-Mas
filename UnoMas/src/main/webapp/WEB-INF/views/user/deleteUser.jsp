@@ -79,38 +79,34 @@
 				<li><span>6.</span>우노마스 회원 탈퇴 시 우노마스페이의 등록 정보는 삭제됩니다.</li>
 			</ol>
 			
-			<label class="del_check"><input type="checkbox"> 탈퇴시 삭제내용을 확인했습니다.</label>
+			<span name="warn_text1" class="warn_text"></span><br>
+			<label class="del_check"><input type="checkbox" name="check_box"> 탈퇴시 삭제내용을 확인했습니다.</label>
 		</div>
 					
 					
 					
 					
-		<h3>회원 정보 확인</h3>
-		<form action="delete_user" method="post">
+		<h3>회원 정보 확인 <span name="warn_text2" class="warn_text"></span></h3>
+		<form>
 		<table class="table_info">
 			<colgroup><col style="width: 164px;"><col style="width: *;"></colgroup>
 			<tbody>
 				<tr>
 					<th>아이디(이메일)</th>
-					<td>이메일 샘플</td>
+					<td><input type="text" name="id" value="${saveID }" readonly></td>
 				</tr>
 
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" id="_password" value="" title="비밀번호 입력"></td>
-				</tr>
-
-				<tr>
-					<th>이름</th>
-					<td><input type="text" id="_userName" value="" title="이름 입력"></td>
+					<td><input type="password" name="pw" placeholder="비밀번호 입력"></td>
 				</tr>
 			</tbody>
 		</table>
 			
 			
 		<div class="btn_area">
-			<input type="submit" class="btn_submit" value="탈퇴">
-			<a href="" class="btn_cancle" style="color: black">취소</a>
+			<input type="button" class="btn_submit" value="탈퇴" onclick="delFunc()">
+			<a href="/UnoMas/user/myInfo" class="btn_cancle" style="color: black">취소</a>
 		</div>
 		</form>
 				
@@ -134,6 +130,10 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script> 
+    
+    <script src="${path}/resources/js/user_js/deleteUser.js"></script>
+    
+    
 
 </body>
 </html>

@@ -23,7 +23,7 @@ function pwCheckFunc(){
 			'user_id': targetID,
 			'user_pass': $('[name=pw]').val()
 		},
-		url: "/user/delete_user",
+		url: "/UnoMas/user/delete_user",
 		success: function(result) {
 			console.log("비번 조회 결과: ", result);
 			if (result == "1") {

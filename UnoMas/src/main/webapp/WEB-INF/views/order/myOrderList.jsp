@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
@@ -32,8 +32,8 @@
 					<colgroup>
 					  <col style="width: 15%"><col style="width: 55%;"><col style="width: 15%"><col style="width: 15%">
 					</colgroup>
-					<tr >
-						<td>주문일/주문번호</td><td>상품정보</td><td>상태</td><td>신청</td>
+					<tr class="table_top_tr">
+						<th>주문일/주문번호</th><th>상품정보</th><th>상태</th><th>신청</th>
 					</tr>
 					
 					<tbody>	
@@ -43,31 +43,48 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="map" items="${orderMap }" varStatus="it">
-							  <fmt:formatDate var="regdate" value="${map.value[0].order_date}" pattern="yyyy-MM-dd" />
+								<c:set var="index" value="${it.index}" />
+							    <fmt:formatDate var="regdate" value="${map.value[0].order_date}" pattern="yyyy-MM-dd" />
 								<tr>
-									<td rowspan="${fn:length(map.value) }" class="order_num_td">${regdate }<br>
-											[ ${map.key } ]<br> 
-											<a href="" class="table_btn">주문 상세보기</a>
+									<td class="order_num_td">${regdate }<br>
+											( ${map.key } )<br>
+											<a href="/UnoMas/order/order_detail?code=${map.key }&pagingNum=${pagingNum }" class="table_btn">주문 상세보기</a>
 									</td>
 									<c:forEach var="val" items="${map.value }" varStatus="itt">
 										<td class="order_info_td">
-											<img src="" alt="이미지">
+											<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
 											<div>
-												<a href="" target="_blank"> ${val.prod_name } </a>
+												<a href="/UnoMas/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
 												<hr>
 												<span>${val.prod_price }원</span> / <span>${val.order_quantity }개</span>
 											 </div>
 										</td>
 									</c:forEach>
-										
-									<td rowspan="${fn:length(map.value) }"><strong>${map.value[0].order_status }</strong><br>
-										<a href="" class="table_btn">배송조회</a>
+									
+									
+									<td rowspan="1">
+									  <c:choose>
+									  	<c:when test="${map.value[0].order_status eq '결제완료'}">
+									  		<strong style="color: red;">${map.value[0].order_status }<strong><br>
+									  	</c:when>
+									  	<c:when test="${val.order_status eq '배송완료'}">
+									  		<strong style="color: blue;">${map.value[0].order_status }<strong><br>
+									  	</c:when>
+									  	<c:otherwise>
+									  		<strong>${map.value[0].order_status }<strong><br>
+									  	</c:otherwise>
+									  </c:choose>
+							
+									  <a href="" class="table_btn">배송조회</a>
 									</td>
-									<td><a href="" class="table_btn">반품신청</a><br> 
+							
+									<td >
+										<a href="" class="table_btn">반품신청</a><br> 
 										<a href="" class="table_btn">교환신청</a>
 									</td>
 								</tr>
-							</c:forEach>
+								</c:forEach>
+							
 				  		</c:otherwise>
 				  	  </c:choose>
 				  	  </tbody>
@@ -75,26 +92,22 @@
 						
 					<div class="paging_container">
 						<c:if test="${pm.prev }">
-							<a href="my_order?pagingNum=${pm.startPage - 1}"
-								class="paging_a">이전</a>
+							<a href="my_order?pagingNum=${pm.startPage - 1}" class="paging_a">이전</a>
 						</c:if>
 		
-						<c:forEach var="block" varStatus="pg" begin="${pm.startPage }"
-							end="${pm.endPage }" step="1">
+						<c:forEach var="block" varStatus="pg" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<c:choose>
 								<c:when test="${pg.index == pagingNum }">
-									<a href="my_prod_qa?pagingNum=${pg.index }"
-										class="paging_num_yes">${pg.index }</a>
+									<a href="my_order?pagingNum=${pg.index }" class="paging_num_yes">${pg.index }</a>
 								</c:when>
 								<c:otherwise>
-									<a href="my_prod_qa?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
+									<a href="my_order?pagingNum=${pg.index }" class="paging_num">${pg.index }</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 		
 						<c:if test="${pm.next }">
-							<a href="my_prod_qa?pagingNum=${pm.endPage + 1}"
-								class="paging_a">다음</a>
+							<a href="my_order?pagingNum=${pm.endPage + 1}" class="paging_a">다음</a>
 						</c:if>
 					</div>
 			

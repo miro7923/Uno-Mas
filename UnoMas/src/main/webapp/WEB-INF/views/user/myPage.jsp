@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -8,6 +11,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${path}/resources/css/user_css/myPage.css">
+<link rel="stylesheet" href="${path}/resources/css/order_css/myOrderList.css">
 <title>UnoMas 마이페이지</title>
 </head>
 <body>
@@ -42,51 +46,100 @@
   	  </div>
   	
   	  <div class="middle-content">
-  			<h3>장바구니 <span><a href="/product/shopping-cart?pageInfo=my">+</a></span></h3>
+  			<h3>장바구니 <span><a href="/UnoMas/product/cart/list?pageInfo=my">+</a></span></h3>
   			<table class="cart-table">
-  				<colgroup>
-          			<col width="20%"><col width="30%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">
-        		</colgroup>
-		  		<tr height="40">
+  			  <colgroup>
+          		<col width="10%"><col width="30%"><col width="10%"><col width="10%"><col width="10%">
+        	  </colgroup>
+        	  <thead>
+		  		<tr class="table_top_tr">
 					<th scope="col">이미지</th>
 					<th scope="col">상품 정보</th>
-					<th scope="col">금액</th>
+					<th scope="col">가격</th>
 					<th scope="col">수량</th>
-					<th scope="col">주문</th>
-					<th scope="col">삭제</th>
+					<th scope="col">합계</th>
 		  		</tr>
-		  		<tr>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  		</tr>
+		  	  </thead>
+		  	  
+		  	  <tbody style="min-height: 300px">
+		  	  	<c:forEach var="row" items="${list}" varStatus="i">
+		  		 	<tr>
+			  			<td>
+			  				<img src='<spring:url value="/resources/upload/images/products/thumbnail/${row.prod_image3 }"></spring:url>' 
+			  				alt="" style="width: 90px; height: 90px;">
+						</td>
+						<td>
+							<a href="/UnoMas/product/product_detail?prod_num=${row.prod_num }" class="prod_detail_a">${row.prod_name}</a>
+						</td>
+						<td>
+							<span id="prodPrice${i.index }">${row.prod_price }</span>원
+						</td>
+			  			<td>${row.prod_amount}개</td>
+			  			<td>${row.prod_price*row.prod_amount} 원</td>
+		  			</tr>
+		  		</c:forEach>
+		  	  </tbody>
   			</table>
   			
-  			<h3 style="margin-top:50px;">전체 주문 내역 <span><a href="/order/my_order">+</a></span></h3>
-  			<table class="cart-table">
-  				<colgroup>
-          			<col width="20%"><col width="30%"><col width="10%"><col width="10%"><col width="10%"><col width="10%">
-        		</colgroup>
-		  		<tr height="40">
-					<th scope="col">주문일</th>
-					<th scope="col">주문 번호</th>
-					<th scope="col">수령인</th>
-					<th scope="col">상품 정보</th>
-					<th scope="col">금액</th>
-					<th scope="col">주문 상태</th>
-		  		</tr>
-		  		<tr>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  			<td>이미지</td>
-		  		</tr>
-  			</table>
+  			
+  			
+  			<h3 style="margin-top:50px;">주문 내역 <span><a href="/UnoMas/order/my_order">+</a></span></h3>
+  			<table class="point_table">
+				<colgroup>
+				  <col style="width: 15%"><col style="width: 55%;"><col style="width: 15%"><col style="width: 15%">
+				</colgroup>
+				<tr class="table_top_tr">
+					<th>주문일/주문번호</th><th>상품정보</th><th>상태</th><th>신청</th>
+				</tr>
+					
+				<tbody>	
+				<c:choose> 
+					<c:when test="${empty orderMap }">
+						<td colspan="4" class="null_text">상품 문의 내역이 없습니다.</td>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="map" items="${orderMap }" varStatus="it">
+						  <fmt:formatDate var="regdate" value="${map.value[0].order_date}" pattern="yyyy-MM-dd" />
+							<tr>
+								<td rowspan="${fn:length(map.value) }" class="order_num_td">${regdate }<br>
+										( ${map.key } )<br> 
+										<a href="/UnoMas/order/order_detail?code=${map.key }" class="table_btn">주문 상세보기</a>
+								</td>
+								<c:forEach var="val" items="${map.value }" varStatus="itt">
+									<td class="order_info_td">
+										<img src='<spring:url value="/resources/upload/images/products/top/${val.prod_image1 }"></spring:url>' alt="이미지">
+										<div>
+											<a href="/UnoMas/product/product_detail?prod_num=${val.prod_num }"> ${val.prod_name } </a>
+											<hr>
+											<span>${val.prod_price }원</span> / <span>${val.order_quantity }개</span>
+										 </div>
+									</td>
+								</c:forEach>
+										
+								<td rowspan="${fn:length(map.value) }">
+								  <c:choose>
+								  	<c:when test="${map.value[0].order_status eq '결제완료'}">
+								  		<strong style="color: red;">${map.value[0].order_status }<strong><br>
+								  	</c:when>
+								  	<c:when test="${map.value[0].order_status eq '배송완료'}">
+								  		<strong style="color: blue;">${map.value[0].order_status }<strong><br>
+								  	</c:when>
+								  	<c:otherwise>
+								  		<strong>${map.value[0].order_status }<strong><br>
+								  	</c:otherwise>
+								  </c:choose>
+									
+								  <a href="" class="table_btn">배송조회</a>
+								</td>
+								<td><a href="" class="table_btn">반품신청</a><br> 
+									<a href="" class="table_btn">교환신청</a>
+								</td>
+							</tr>
+						</c:forEach>
+			  		</c:otherwise>
+			  	  </c:choose>
+			  	</tbody>
+			</table>
   	  </div>
   	
   	

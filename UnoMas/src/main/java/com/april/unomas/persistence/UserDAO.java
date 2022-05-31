@@ -7,7 +7,7 @@ import java.util.Map;
 import com.april.unomas.domain.AdminVO;
 import com.april.unomas.domain.BoardReviewVO;
 import com.april.unomas.domain.EmailVO;
-
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
@@ -85,4 +85,12 @@ public interface UserDAO {
 	// 결제완료 후 적립금
 	public void updatePoint(int user_num, int user_point);
 
+	// 포인트 조회
+	public int getUserPoint(int saveNUM);
+	
+	// 포인트 목록 개수
+	public int pointCount(int saveNUM);
+	
+	// 포인트 내역 조회
+	public List<PointVO> getPointList(int saveNUM, UserCriteria cri);
 }
