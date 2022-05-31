@@ -35,9 +35,9 @@
 							<span><b>- 총 회원 수: ${pm.totalCount }</b></span><br>
 
 							<div class="allUser_top">
-								<a href="/admin/all_user?standard=desc" id="standard_default">최신순</a>
-								<a href="/admin/all_user?standard=asc" id="standard_asc">오래된
-									순</a> <a href="/admin/all_user?standard=drop" id="standard_drop">탈퇴회원</a>
+								<a href="/UnoMas/admin/all_user?standard=desc" id="standard_default">최신순</a>
+								<a href="/UnoMas/admin/all_user?standard=asc" id="standard_asc">오래된
+									순</a> <a href="/UnoMas/admin/all_user?standard=drop" id="standard_drop">탈퇴회원</a>
 							</div>
 
 							<c:forEach var="vo" items="${userList }" varStatus="it">

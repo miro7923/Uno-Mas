@@ -40,12 +40,12 @@ public class UserController {
 	// 회원가입 이용약관 페이지
 	@RequestMapping(value = "/register_agree")
 	public String registerAgree() {
-		return "/user/registerAgree";
+		return "user/registerAgree";
 	}
 
 	@RequestMapping(value = "/register")
 	public String registerGet() {
-		return "/user/register";
+		return "user/register";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -54,7 +54,7 @@ public class UserController {
 			vo.setUser_emailagree(1);
 		}
 		service.joinUser(vo);
-		return "redirect:/user/login";
+		return "redirect:/UnoMas/user/login";
 	}
 
 	@RequestMapping(value = "/idCheck")
@@ -66,7 +66,7 @@ public class UserController {
 	// 로그인 페이지 구현 (GET)
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET() {
-		return "/user/login";
+		return "user/login";
 	}
 
 	// 로그인 페이지 구현 (POST)
@@ -93,7 +93,7 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpSession session) {
 		session.invalidate();
-		return "redirect:/index";
+		return "redirect:/UnoMas/index";
 	}
 
 	
@@ -113,7 +113,7 @@ public class UserController {
 	// 비번 찾기
 	@RequestMapping(value = "/find_pw")
 	public String findPW() {
-		return "/user/findPW";
+		return "user/findPW";
 	}
 
 	@RequestMapping(value = "/find_pw", method = RequestMethod.POST)
@@ -128,7 +128,7 @@ public class UserController {
 	@RequestMapping(value = "/change_pw")
 	public String changePWGet(@RequestParam(value = "id", required = false) String id, Model model) {
 		model.addAttribute("id", id);
-		return "/user/changePW";
+		return "user/changePW";
 	}
 
 	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
@@ -142,7 +142,7 @@ public class UserController {
 	// mypage
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
-		return "/user/myPage";
+		return "user/myPage";
 	}
 
 	
@@ -152,7 +152,7 @@ public class UserController {
 		String saveID = (String) session.getAttribute("saveID");
 		UserVO userInfoVO = service.getUserInfo(saveID); 
 		model.addAttribute("userInfoVO", userInfoVO);
-		return "/user/myInfo";
+		return "user/myInfo";
 	}
 	
 
@@ -163,7 +163,7 @@ public class UserController {
 		String saveID = (String) session.getAttribute("saveID");
 		UserVO userInfoVO = service.getUserInfo(saveID);
 		model.addAttribute("userInfoVO", userInfoVO);
-		return "/user/updateMyInfo";
+		return "user/updateMyInfo";
 	}
 
 	// 회원정보수정(POST)
@@ -171,12 +171,12 @@ public class UserController {
 	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
 	public String myInfoUpdatePOST(UserVO vo) {
 		service.updateUser(vo);
-		return "redirect:/user/myInfo";
+		return "redirect:/UnoMas/user/myInfo";
 	}
 
 	@RequestMapping(value = "/mypoint")
 	public String myPoint() {
-		return "/user/myPoint";
+		return "user/myPoint";
 	}
 	
 	@RequestMapping(value = "/my_review")
@@ -200,7 +200,7 @@ public class UserController {
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 		
-		return "/user/myReview";
+		return "user/myReview";
 	}
 	
 	
@@ -227,7 +227,7 @@ public class UserController {
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 		
-		return "/user/myProdQuestion";
+		return "user/myProdQuestion";
 	}
 
 	// 마이페이지 - 1:1 문의
@@ -252,7 +252,7 @@ public class UserController {
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 
-		return "/user/myQuestion";
+		return "user/myQuestion";
 	}
 	
 	
@@ -260,12 +260,12 @@ public class UserController {
 	// guide
 	@RequestMapping(value = "/return_guide")
 	public String canclePinfo() {
-		return "/user/returnGuide";
+		return "user/returnGuide";
 	}
 
 	@RequestMapping(value = "/together_guide")
 	public String togetherInfo() {
-		return "/user/togetherGuide";
+		return "user/togetherGuide";
 	}
 
 	
@@ -281,7 +281,7 @@ public class UserController {
 	// 회원탈퇴(GET)
 	@RequestMapping(value = "/delete_user",method=RequestMethod.GET)
 	public String deleteUserGET() {
-		return "/user/deleteUser";
+		return "user/deleteUser";
 	}
 	
 	
@@ -304,7 +304,7 @@ public class UserController {
 	// 비번체크
 	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
 	public String pwCheck() {
-		return "/user/checkPW";
+		return "user/checkPW";
 	}
 
 
