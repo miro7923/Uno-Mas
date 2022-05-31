@@ -40,12 +40,16 @@
 						<hr>
 					</div>
 					<div class="container">
-						<form method="post" class="checkout-form" name="fr" >
+
+						<form method="post" action="/UnoMas/admin/notice_update"
+							class="checkout-form">
+
 							<br>
 							
 							<table class="table_board">
 								<tr>
 									<th>작성자</th>
+
 									<td colspan="3"><input type="text" class="input_field"
 										name="admin_num" value="UnoMás" readonly>
 										<input type="hidden" id="notice_num" name="notice_num" value="${vo.notice_num }">
@@ -56,6 +60,7 @@
 									<th>제목</th>
 									<td colspan="3"><input type="text" class="input_field"
 										name="notice_title" id="notice_title" value="${vo.notice_title }"></td>
+
 								</tr>
 							</table>
 							<table class="table_board">

@@ -57,14 +57,7 @@ public class AdminController {
 	public String adminMainGET(Criter cri,Model model) throws Exception{
 		return "/admin/main";
 	}
-	
 
-	@RequestMapping(value = "/main2",method = RequestMethod.GET)
-	public String adminMainGET2(Criter cri,Model model) throws Exception{
-		return "/admin/main2";
-	}
-
-	
 	@RequestMapping(value = "/admin_logout",method = RequestMethod.GET)
 	public String adminLogoutGET(AdminVO vo,HttpSession session) throws Exception {
 		session.invalidate();

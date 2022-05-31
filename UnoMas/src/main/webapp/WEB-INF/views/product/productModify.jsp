@@ -90,13 +90,13 @@
 									<h4>판매정보</h4>
 									<div class="row">
 										<div class="col-lg-12">
-											<label>판매가<span>*</span></label> <input type="text" name="prod_price" id="prod_price" value="${vo. prod_price }">
+											<label>판매가<span>*</span></label> <input type="number" name="prod_price" id="prod_price" value="${vo. prod_price }">
 										</div>
 										<div class="col-lg-12">
-											<label>할인율<span>*</span></label> <input type="text" name="prod_discntrate" id="prod_discntrate"  value="${vo. prod_discntrate }" placeholder="0 ~ 100">
+											<label>할인율<span>*</span></label> <input type="number" name="prod_discntrate" id="prod_discntrate"  value="${vo. prod_discntrate }" placeholder="0 ~ 100">
 										</div>
 										<div class="col-lg-12">
-											<label>상품 재고<span>*</span></label> <input type="text" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }">
+											<label>상품 재고<span>*</span></label> <input type="number" name="prod_stock" class="prod_stock" id="prod_stock" value="${vo. prod_stock }">
 										</div>
 										<div class="col-lg-12">
 											<label>판매 단위<span>*</span></label>
@@ -126,7 +126,7 @@
 												<label>원산지<span>*</span></label><input type="text" name="prod_country" id="prod_country" value="${vo.prod_country }">
 											</div>
 											<div class="col-lg-12">
-												<label>유통기한<span>*</span></label><input type="text" name="prod_expire" id="selbox2" value="${vo.prod_expire }" placeholder="남은 기한 ex) 7">
+												<label>유통기한<span>*</span></label><input type="number" name="prod_expire" id="selbox2" value="${vo.prod_expire }" placeholder="남은 기한 ex) 7">
 											</div>
 <!-- 											<div class="col-lg-12"> -->
 <!-- 												<input type="text" value="농산물로 별도의 유통기한은 없으나 가급적 빠른 섭취 부탁드립니다." name="prod_expire" id="selboxDirect2"> -->

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.april.unomas.domain.BoardReviewVO;
+import com.april.unomas.domain.PointVO;
 import com.april.unomas.domain.ProdInquiryVO;
 import com.april.unomas.domain.QnaVO;
 import com.april.unomas.domain.UserCriteria;
@@ -44,7 +45,8 @@ public class UserServiceImpl implements UserService {
 	// 로그인
 	@Override
 	public HashMap loginUser(UserVO vo) {
-		return dao.loginUser(vo);
+		HashMap<String, Integer> loginMap = dao.loginUser(vo);
+		return loginMap;
 	}
 	
 	// 아이디 찾기
@@ -162,6 +164,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updatePoint(int user_num, int user_point) {
 		dao.updatePoint(user_num, user_point);
+	}
+
+	@Override
+	public int getUserPoint(int saveNUM) {
+		return dao.getUserPoint(saveNUM);
+	}
+	
+	@Override
+	public int pointCount(int saveNUM) {
+		return dao.pointCount(saveNUM);
+	}
+
+	@Override
+	public List<PointVO> getPointList(int saveNUM, UserCriteria cri) {
+		return dao.getPointList(saveNUM, cri);
 	}
 
 	

@@ -41,7 +41,9 @@
 							<div class="row">
 								<div class="row">
 									<div class="col-lg-3" style="padding-right:0px; border-right: none;">
+
 										<select class="selectBox" name="searchType" id="search_type_notice">
+
 											<option value="title">제목</option>
 										</select>
 										</div>
@@ -70,7 +72,7 @@
 													<c:forEach items="${noticeList }" var="vo">
 														<tr>
 															<td>${vo.notice_num }</td>
-															<td><a href="/admin/notice_read?notice_num=${vo.notice_num }">
+															<td><a href="/UnoMas/admin/notice_read?notice_num=${vo.notice_num }">
 																	<span class="title">${vo.notice_title }</span>
 																</a>
 															</td>
@@ -109,7 +111,7 @@
 											</form>
 											<div class="col-lg-12" style="padding:0px;">
 												<div class="row" style="display: inline;">
-		                                        	<button type="button" class="register-button" onclick="location.href='/admin/notice_write';">공지사항 등록</button>
+		                                        	<button type="button" class="register-button" onclick="location.href='/UnoMas/admin/notice_write';">공지사항 등록</button>
 												</div>
 											</div>
 										</div>
@@ -139,6 +141,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/admin_js/adminSearch.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
     <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 </body>

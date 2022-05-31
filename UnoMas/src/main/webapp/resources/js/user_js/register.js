@@ -1,5 +1,6 @@
 // user/signUp.jsp페이지의 자바스크립트 파일
 let checkedID = "";
+let authCode = -1;
 
 // 우편번호 가져오는 함수.
 function searchPostNum() {
@@ -70,11 +71,9 @@ function idCheckFunc() {
 
 /// 아이디 중복 체크 이후 다시 바꿨을 때
 function changeIDCheck() {
-	console.log("들어오는지 확인")
 	if($("[name=idCheckBtn]").val() == "사용가능✔") {
 		if($("[name=user_id]").val() != checkedID) {
 			$('[name=idCheckBtn]').val("중복확인");
-//			$('[name=idCheckBtn]').css("background-color","#FFCBCB");
 			$("[name=user_id]").focus();
 		}
 	}
@@ -83,6 +82,8 @@ function changeIDCheck() {
 
 // 핸드폰 인증번호 보내기
 function phoneCheckFunc() {
+	let phoneN = $('[name=user_phone]').val();
+	
 	if($("[name=user_phone]").val() == ""){
 		$("#phone").text("*핸드폰 번호를 적어주세요.");
         $("[name=user_phone]").focus();
@@ -92,12 +93,40 @@ function phoneCheckFunc() {
 	$('[name=user_phone]').css('margin-bottom', '0px');
 	if ($('[name=phoneCode]').length == 0) {
 		$('[name=phoneCheckDiv]').append(
-			'<input type="text" class="register_field" name="phoneCode" placeholder="인증번호 입력"> <input type="button" name="phoneCheck_btn" value="확인" class="check-button"><br>'
+			'<input type="text" class="register_field" name="phoneCode" placeholder="인증번호 입력"> <input type="button" name="phoneCheck_btn" value="확인" onclick="phoneCodeCheck()" class="check-button"><br>'
 		);
 	}
-	
+	$.ajax({
+		async: true,
+		type: 'GET',
+		data: { 'p': phoneN },
+		url: "auth_phone",
+		success: function(result) {
+			authCode = result[1];
+			if (result[0] == '1') {
+				$('[name=phoneSend_text]').text("인증번호를 보냈습니다. 잠시 기다려주세요.");
+				$("[name=phoneCode]").focus();
+			} else {
+				$('[name=phoneSend_text]').text("인증번호보내기에 실패했습니다. 다시 시도해주세요.");
+			}
+		},
+		error: function(error) {
+			$("#id").text("*잠시 후 다시 시도해주세요.");
+		}
 
+	});
 }
+
+
+function phoneCodeCheck() {
+	if($('[name=phoneCode]').val() == authCode) {
+		$('[name=phoneCheck_btn]').val("✔");
+	} else {
+		$('[name=phoneSend_text]').text("인증번호가 틀립니다.");
+	}
+}
+
+
 
 // 생년월일
 function birthCheck() {
@@ -221,8 +250,7 @@ function signUpCheckFunc() {
         return false;
     }
     
-
-		
+	
 	// 핸드폰 번호
 	if(!phonNumberCheck.test($("[name=user_phone]").val())){
 		$("#phone").text("*정확하게 입력되었는지 확인해주세요.");
@@ -231,8 +259,9 @@ function signUpCheckFunc() {
     }
 	
 	// 핸드폰 인증
-	if($("[name=phoneCode]").val="") {
+	if($("[name=phoneCheck_btn]").val() != "✔") {
 		$("#phone").text("*핸드폰 인증을 해주세요.");
+		return false;
 	}
 	
 		

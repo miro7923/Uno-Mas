@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -13,7 +14,6 @@
 	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
 %>
-<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -37,7 +37,7 @@
 						<jsp:include page="../inc/adminLeftBar.jsp"></jsp:include>
 					</div>
 				</div>
-				
+
 				<div class="col-lg-9">
 					<h2>자주하는 질문</h2>
 					- 고객님들께서 가장 자주하시는 질문을 모두 모았습니다.
@@ -81,94 +81,103 @@
 										<br>
 									</div>
 									<div class="col-lg-12">
-					                    <table class="table_board" style="margin-bottom: 0px;">
-					                        <tbody>
-					                            <tr>
-					                                <th style="width: 70px; text-align: center;" class="input_txt">번호</th>
-					                                <th style="width: 135px; text-align: center;" class="input_txt">카테고리</th>
-					                                <th style="width: 500px; text-align: center;" class="input_txt">제목</th>
-					                                <th style="width: 100px; text-align: center;" class="input_txt">작성자</th>
-					                            </tr>
-					                        </tbody>
-					                    </table> <!-- table header -->
-					                 </div>
-                                <c:forEach items="${pList }" var="vo">
-                                
-                                <div class="col-lg-12">
-		                        	<div class="col-lg-12" style="padding: 0px;">
-				                        <div>
-				                            <table class="table_board" onclick="view_content(this)" id="faq_7" style="margin-bottom:0px;">
-				                                <tbody>
-				    
-				                                    <tr>
-				                                        <td style="width: 70px; text-align: center;">${vo.faq_num }</td>
-				                                        <td style="width: 135px; text-align: center;">${vo.qnaCateVO.qnacate_name }</td>
-				                                        <td style="width: 500px; cursor:pointer">${vo.faq_title }</td>
-				                                        <td style="width: 100px; text-align: center; cursor:pointer">UnoMás</td>
-<%-- 				                                        <td style="width: 100px; cursor:pointer">${vo.adminVO.admin_id }</td> --%>
-				                                    </tr>
-				                                </tbody>
-				                            </table> 
-				                                
-				                            <div style="display:none;padding:30px; border-top:1px solid #e6e6e6">
-				                                <table class="table_board">
-				                                    <tbody>
-				                                        <tr valign="top">
-				                                            <td>
-				                                            
-				                                            <div class="fnq-textarea">
-				                                            	<span class="answer">답변 ></span> 
-										                    	<textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.faq_content,cn,br)}</textarea>
-										                    </div>
-				                                            
-				                                            
-<%-- 				                                            <span class="answer">답변 ></span> ${fn:replace(vo.faq_content,cn,br)} --%>
-				                                            <br>
-				                                            <input type="text" style="border:none; margin:0px;" readonly>
-				                                            <input type="button" class="fnq-count-button" value="수정" onclick="location.href='/UnoMas/admin/faq_update?faq_num=${vo.faq_num}'">
-				                                            <input type="button" class="fnq-del-button" value="삭제" onclick="location.href='/UnoMas/admin/faq_delete?faq_num=${vo.faq_num}'">
-				                                            
-				                                            </td>
-				                                        </tr>
-				                                    </tbody>
-				                                    
-				                                </table>
-				                           	</div>
-		                           		</div>
-		                        	</div> <!-- table body -->
-	                        	</div>
-                            </c:forEach>
-                                
+										<table class="table_board" style="margin-bottom: 0px;">
+											<tbody>
+												<tr>
+													<th style="width: 70px; text-align: center;"
+														class="input_txt">번호</th>
+													<th style="width: 135px; text-align: center;"
+														class="input_txt">카테고리</th>
+													<th style="width: 500px; text-align: center;"
+														class="input_txt">제목</th>
+													<th style="width: 100px; text-align: center;"
+														class="input_txt">작성자</th>
+												</tr>
+											</tbody>
+										</table>
+										<!-- table header -->
+									</div>
+									<c:forEach items="${pList }" var="vo">
+
+										<div class="col-lg-12">
+											<div class="col-lg-12" style="padding: 0px;">
+												<div>
+													<table class="table_board" onclick="view_content(this)"
+														id="faq_7" style="margin-bottom: 0px;">
+														<tbody>
+
+															<tr>
+																<td style="width: 70px; text-align: center;">${vo.faq_num }</td>
+																<td style="width: 135px; text-align: center;">${vo.qnaCateVO.qnacate_name }</td>
+																<td style="width: 500px; cursor: pointer">${vo.faq_title }</td>
+																<td style="width: 100px; text-align: center; cursor: pointer">UnoMás</td>
+																<%-- <td style="width: 100px; cursor:pointer">${vo.adminVO.admin_id }</td> --%>
+															</tr>
+														</tbody>
+													</table>
+
+													<div
+														style="display: none; padding: 30px; border-top: 1px solid #e6e6e6">
+														<table class="table_board">
+															<tbody>
+																<tr valign="top">
+																	<td>
+																		<div class="fnq-textarea">
+																			<span class="answer">답변 ></span>
+																			<textarea inputmode="text" name="notice_content"
+																				class="textarea-text" placeholder="내용을 입력하세요"
+																				readonly>${fn:replace(vo.faq_content,cn,br)}</textarea>
+																		</div> <%-- 				                                            <span class="answer">답변 ></span> ${fn:replace(vo.faq_content,cn,br)} --%>
+																		<br> <input type="text"
+																		style="border: none; margin: 0px;" readonly> <input
+																		type="button" class="fnq-count-button" value="수정"
+																		onclick="location.href='/UnoMas/admin/faq_update?faq_num=${vo.faq_num}'">
+																		<input type="button" class="fnq-del-button" value="삭제"
+																		onclick="location.href='/UnoMas/admin/faq_delete?faq_num=${vo.faq_num}'">
+
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+											<!-- table body -->
+										</div>
+									</c:forEach>
+
 
 									<!-- 페이징 처리 -->
 									<div class="col-lg-12">
-									<div class="row justify-content-center">
-										<div class="col-lg-12" style="text-align: center;">
-											<ul class="pagination">
-												<c:if test="${pagingVO.prev }">
-													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/UnoMas/admin/faq_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
-														aria-label="Previous"> <span aria-hidden="true">&lt;</span>
-													</a></li>
-												</c:if>
-												<c:forEach begin="${pagingVO.startPage }"
-													end="${pagingVO.endPage }" var="pageNum">
-													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/UnoMas/admin/faq_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
-												</c:forEach>
-												<c:if test="${pagingVO.next }">
-													<li class="page-item"><a class="page-link text-dark"
-														href='<c:url value="/UnoMas/admin/faq_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
-														aria-label="Next"> <span aria-hidden="true">&gt;</span>
-													</a></li>
-												</c:if>
-											</ul>
+										<div class="row justify-content-center">
+											<div class="col-lg-12" style="text-align: center;">
+												<ul class="pagination">
+													<c:if test="${pagingVO.prev }">
+														<li class="page-item"><a class="page-link text-dark"
+															href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
+															aria-label="Previous"> <span aria-hidden="true">&lt;</span>
+														</a></li>
+													</c:if>
+													<c:forEach begin="${pagingVO.startPage }"
+														end="${pagingVO.endPage }" var="pageNum">
+														<li class="page-item"><a class="page-link text-dark"
+															href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+													</c:forEach>
+													<c:if test="${pagingVO.next }">
+														<li class="page-item"><a class="page-link text-dark"
+															href='<c:url value="/admin/faq_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
+															aria-label="Next"> <span aria-hidden="true">&gt;</span>
+														</a></li>
+													</c:if>
+												</ul>
+											</div>
 										</div>
-									</div>
 									</div>
 									<!-- 페이징 처리 끝-->
 									<div class="col-lg-12">
-                                		<button type="button" class="register-button" onclick="location.href='/UnoMas/admin/faq_write';">자주하는 질문 등록</button>
+										<button type="button" class="register-button"
+											onclick="location.href='/UnoMas/admin/faq_write';">자주하는
+											질문 등록</button>
 									</div>
 								</div>
 							</div>
@@ -176,8 +185,10 @@
 					</div>
 				</div>
 			</div>
-			</div>
-		</section>
+
+		</div>
+	</section>
+
 
 	<!-- Partner Logo Section End -->
     <!-- Footer Section Begin -->
@@ -195,6 +206,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/admin_js/adminMain.js"></script>
+    <script src="${path}/resources/js/admin_js/adminSearch.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
     <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 </body>

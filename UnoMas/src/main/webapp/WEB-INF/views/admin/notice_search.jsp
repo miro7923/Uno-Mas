@@ -70,7 +70,7 @@
 													<c:forEach items="${noticeList }" var="vo">
 														<tr>
 															<td>${vo.notice_num }</td>
-															<td><a href="/admin/notice_read?notice_num=${vo.notice_num }">
+															<td><a href="/UnoMas/admin/notice_read?notice_num=${vo.notice_num }">
 																	<span class="title">${vo.notice_title }</span>
 																</a>
 															</td>
@@ -87,18 +87,22 @@
 													<ul class="pagination">
 														<c:if test="${pagingVO.prev }">
 															<li class="page-item"><a class="page-link text-dark"
-																href='<c:url value="/admin/notice_search${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
+
+																href='<c:url value="/UnoMas/admin/notice_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
+
 																aria-label="Previous"> <span aria-hidden="true">&lt;</span>
 															</a></li>
 														</c:if>
 														<c:forEach begin="${pagingVO.startPage }"
 															end="${pagingVO.endPage }" var="pageNum">
 															<li class="page-item"><a class="page-link text-dark"
-																href='<c:url value="/admin/notice_search${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+
+																href='<c:url value="/UnoMas/admin/notice_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
 														</c:forEach>
 														<c:if test="${pagingVO.next }">
 															<li class="page-item"><a class="page-link text-dark"
-																href='<c:url value="/admin/notice_search${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
+																href='<c:url value="/UnoMas/admin/notice_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
+
 																aria-label="Next"> <span aria-hidden="true">&gt;</span>
 															</a></li>
 														</c:if>
@@ -109,7 +113,7 @@
 											</form>
 											<div class="col-lg-12" style="padding:0px;">
 												<div class="row" style="display: inline;">
-		                                        	<button type="button" class="register-button" onclick="location.href='/admin/notice_write';">공지사항 등록</button>
+		                                        	<button type="button" class="register-button" onclick="location.href='/UnoMas/admin/notice_write';">공지사항 등록</button>
 												</div>
 											</div>
 										</div>

@@ -1,0 +1,114 @@
+@charset "UTF-8";
+.mypage_container {
+	width: 1084px;
+	height: 1200x;
+    min-height: 1300px;
+    margin: 70px auto;
+}
+.middle-container {
+    float: left;
+    width: 850px;
+    margin-left: 25px;
+}
+.middle-content > h3 {
+    padding: 10px 0px;
+    font-size: 18px;
+    margin: 0px 0px 10px 0px;
+    font-weight: bold;
+}
+table {
+    border-top: 2px solid #d5d5d5;
+    border-bottom: 2px solid #d5d5d5;
+    text-align: center;
+    width: 100%;
+    min-height: 100px;
+    font-size: 14px;
+}
+.product-info tr{
+	border-bottom: 1px solid #d5d5d5;
+}
+.product-info th{
+	background-color: #f7f7f7;
+}
+.product-info td {
+	border-right: 1px solid #d5d5d5;
+}
+.product-info .product-name{
+	text-align: left;
+	padding-left: 20px;
+}
+.product-info .delivery-fee{
+	border-left: 1px solid #d5d5d5;
+	border-right: 1px solid #d5d5d5;
+}
+
+
+.shipping-address {
+	min-height: 300px;
+}
+.shipping-address .sa-tr{
+    border-bottom: 1px solid #d5d5d5;
+    height: 20px;
+}
+.shipping-address .sa-th{
+	background-color: #f7f7f7;
+}
+.shipping-address td{
+	text-align: left;
+	padding-left: 20px;
+}
+
+.payment-info {
+	min-height: 300px;
+}
+.payment-info #paymentFirstLine{
+	text-align: left;
+	vertical-align: bottom;
+	border-left-style: hidden !important;
+	border-bottom-style: hidden !important;
+	border-right-style: hidden !important;
+}
+.payment-info #paymentSecondLine{
+	text-align: right;
+	vertical-align: top;
+}
+.payment-info #paymentSecondLine .nonblank{
+	border-bottom: 1px solid #d5d5d5;
+}
+.payment-info #paymentThirdLine{
+	border-bottom: 2px solid #d5d5d5;
+}
+.payment-info #paymentThirdLine .name{
+	text-align: left;
+	vertical-align: top;
+}
+.payment-info #paymentThirdLine .money{
+	text-align: right;
+	vertical-align: top;
+}
+.payment-info #paymentFourthLine{
+	text-align: left;
+}
+
+.product-info-img {
+	text-align: left;
+	display: flex;
+}
+.product-info-img > div {
+	margin: 50px 10px 0px 20px;
+}
+.product-info-img > div > a {
+	color: black;
+}
+.product-info-img > div > a:hover {
+	color: black;
+}
+.product-info-img > img {
+	min-width: 130px;
+    height: 130px;
+}
+
+.list_btn {
+	text-align: center;
+    margin: 50px;
+}

@@ -21,7 +21,7 @@ function selectAll(selectAll)  { // selectall 체크박스로 on/off
 $(function(){ // 찜 전체삭제
 	$("#btnDelete").click(function(){
 		if(confirm("찜 목록을 비우시겠습니까?")){
-			location.href="/product/wishlist/deleteAllWish";
+			location.href="/UnoMas/product/wishlist/deleteAllWish";
 		}
 	});
 });
@@ -37,13 +37,13 @@ $("#selectDelete_btn").click(function(){ // 찜 선택삭제
 		});
 		    
 		$.ajax({
-			url : "/product/wishlist/deleteCheckWish",
+			url : "/UnoMas/product/wishlist/deleteCheckWish",
 			type : "post",
 			data : { chbox : checkArr },
 			success : function(result){
 				if(result == 1){
 					alert("성공적으로 삭제했습니다.")
-					location.href = "/product/wishlist/list";
+					location.href = "/UnoMas/product/wishlist/list";
 				} else {
 					alert("찜 삭제에 실패했습니다.");
 				} 
@@ -59,15 +59,15 @@ $("#selectInsertWish_btn").click(function(){ // 장바구니 선택 담기
 	});
 		    
 	$.ajax({
-		url : "/product/wishlist/insertCheckWish",
+		url : "/UnoMas/product/wishlist/insertCheckWish",
 		type : "post",
 		data : { chbox : checkArr },
 		success : function(result){
 			if(result == 1){
 				if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?')){
-		        	location.href = '/product/cart/list';
+		        	location.href = '/UnoMas/product/cart/list';
 				} else {
-					location.href = '/product/wishlist/list';
+					location.href = '/UnoMas/product/wishlist/list';
 				}
 			} else if (result == 2) {
 				alert("장바구니에 담을 수 없는 상품이 있습니다.");
@@ -80,7 +80,7 @@ $("#selectInsertWish_btn").click(function(){ // 장바구니 선택 담기
 
 function wishToCart(number) { // 장바구니 단품 담기
     $.ajax({
-	    url: '/product/wishlist/insert_cart',
+	    url: '/UnoMas/product/wishlist/insert_cart',
 	    type: "post",
 	    data: {
 	        'user_num': $('#user_num').val(),
@@ -89,9 +89,9 @@ function wishToCart(number) { // 장바구니 단품 담기
 	          },
 	    success: function() {
 	        if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?')){
-	        	location.href = '/product/cart/list';
+	        	location.href = '/UnoMas/product/cart/list';
 			} else {
-				location.href = '/product/wishlist/list';
+				location.href = '/UnoMas/product/wishlist/list';
 			}	        
 	    }
     });

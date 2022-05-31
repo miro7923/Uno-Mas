@@ -67,7 +67,7 @@ $(function(){ // 장바구니 비우기
 	
 	$("#btnDelete").click(function(){
 		if(confirm("장바구니를 비우시겠습니까?")){
-			location.href="/product/cart/deleteAll";
+			location.href="/UnoMas/product/cart/deleteAll";
 		}
 	});
 });

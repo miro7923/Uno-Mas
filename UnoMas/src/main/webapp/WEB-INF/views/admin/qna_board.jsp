@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -13,7 +14,6 @@
 	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
 %>
-<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -77,10 +77,10 @@
 				                                        <td style="width: 120px; text-align: center;">${vo.qna_regdate }</td>
 				                                        <c:choose>
 					                                        <c:when test="${vo.qna_process eq '0'}">
-					                                        	<td style="width: 70px; text-align: center; cursor:pointer"><a href="/admin/qna_comment?qna_num=${vo.qna_num }"><span class="answer_b">답변대기</span></a> </td>
+					                                        	<td style="width: 70px; text-align: center; cursor:pointer"><a href="/UnoMas/admin/qna_comment?qna_num=${vo.qna_num }"><span class="answer_b">답변대기</span></a> </td>
 					                                        </c:when>
 					                                        <c:otherwise>
-					                                        	<td style="width: 70px; text-align: center; cursor:pointer"><a href="/admin/qna_commentView?qna_num=${vo.qna_num }"><span class="answer_f">답변완료</span></a></td>
+					                                        	<td style="width: 70px; text-align: center; cursor:pointer"><a href="/UnoMas/admin/qna_commentView?qna_num=${vo.qna_num }"><span class="answer_f">답변완료</span></a></td>
 															</c:otherwise>
                         								</c:choose>				                                        
 				                                        <td style="width: 70px; text-align: center; cursor: pointer">
@@ -97,11 +97,11 @@
 				                                            <div class="qna-textarea">
 				                                            	<span class="answer">1차 카테고리 ${vo.qnaCateVO.qnacate_name } > 2차 카테고리 ${vo.qnacate2 }</span> 
 										                    	<textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.qna_content,cn,br)}</textarea>
-										                   		첨부 이미지(1) <a href="/admin/image1Down?qna_image1=${vo.qna_image1 }">
+										                   		첨부 이미지(1) <a href="/UnoMas/admin/image1Down?qna_image1=${vo.qna_image1 }">
 										                   					<img name="qna_image1" alt="img1" src="/resources/upload/images/board/qna/${vo.qna_image1 }">
 										                   				</a>
 										                   				<input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
-			            										첨부 이미지(2) <a href="/admin/image2Down?qna_image2=${vo.qna_image2 }">
+			            										첨부 이미지(2) <a href="/UnoMas/admin/image2Down?qna_image2=${vo.qna_image2 }">
 			            													<img name="qna_image2" alt="img2" src="/resources/upload/images/board/qna/${vo.qna_image2 }">
 			            												</a>
 			            												<input type="hidden" value="${vo.qna_image2 }" name="qna_image2">
@@ -171,6 +171,7 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/admin_js/adminMain.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
 </body>
 

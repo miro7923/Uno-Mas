@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -13,7 +14,6 @@
 	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
 %>
-<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -49,9 +49,10 @@
 							<table class="table_info" style="margin: 40px 0px 30px 0px;">
 								<tr>
 									<th>작성자</th>
-									<td><input type="text" style="margin-bottom: 0px;" class="notice_field " name="admin_name" placeholder="UnoMás" readonly>
-										<input type="hidden" name="admin_num" value="1">
-									</td>
+									<td><input type="text" style="margin-bottom: 0px;"
+										class="notice_field " name="admin_name" placeholder="UnoMás"
+										readonly> <input type="hidden" name="admin_num"
+										value="1"></td>
 								</tr>
 							</table>
 							<table class="table_info">
@@ -60,13 +61,14 @@
 								</tr>
 								<tr>
 									<td>
-				                        <div class="textarea">
-				                      		<span class="answer" style="text-align: left;">문의 내용 > </span>
-				                      		<span class="qna_content">${fn:replace(qnaVO.qna_content,cn,br) }<hr></span>
-				                      		
-				                      		<textarea inputmode="text" name="qnacom_content" class="textarea-text" placeholder="내용을 입력하세요"></textarea>
-				                        </div>
-			                       	</td>
+										<div class="textarea">
+											<span class="answer" style="text-align: left;">문의 내용 ></span>
+											<span class="qna_content">${fn:replace(qnaVO.qna_content,cn,br) }<hr></span>
+
+											<textarea inputmode="text" name="qnacom_content"
+												class="textarea-text" placeholder="내용을 입력하세요"></textarea>
+										</div>
+									</td>
 								</tr>
 							</table>
 							<button type="submit" class="count-button">등록</button>
@@ -74,7 +76,8 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
 	<!-- Partner Logo Section End -->
     <!-- Footer Section Begin -->

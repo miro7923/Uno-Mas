@@ -42,6 +42,9 @@ public interface OrderDAO {
 	// 총 주문 개수
 	public List<Integer> myOrderCount(String num) throws Exception;
 
-	public Map<Integer, List> getMyOrderList(String num, UserCriteria cri) throws Exception;
+	// 주문 목록
+	public Map<Integer, List> getMyOrderList(String num, List<Integer> limitList) throws Exception;
 
+	// 결제 정보 가져오기(with.order_code)
+	public PayVO getPayInfo(int order_code) throws Exception;
 }
