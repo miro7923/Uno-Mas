@@ -5,6 +5,11 @@ div {
     display: block;
 }
 
+#sBtn {
+	background: #B9CE45;
+    border: 1px solid #B9CE45;
+}
+
 #headerTop {
 width: 1050px;
 margin-top: 0px;
