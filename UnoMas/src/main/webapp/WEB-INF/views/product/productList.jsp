@@ -10,7 +10,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
-
+<meta charset="UTF-8">
+<title>상품 목록</title>
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
