@@ -54,7 +54,7 @@
                     </div>
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
-                            <a href="/index">
+                            <a href="/UnoMas/">
                                 <img src="${path}/resources/img/logo.png" alt="로고">
                             </a>
                         </div>
