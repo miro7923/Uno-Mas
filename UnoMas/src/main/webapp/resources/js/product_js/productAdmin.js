@@ -211,7 +211,7 @@ function uploadImg(num, type) {
 	var form = new FormData();
 	form.append('uploadImg' + num, $('#uploadImg' + num)[0].files[0]);
 	
-	var newUrl = '/product/upload_';
+	var newUrl = '/UnoMas/product/upload_';
 	switch(type) {
 		case 'detail':
 			newUrl += 'deImg';

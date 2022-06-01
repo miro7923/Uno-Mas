@@ -10,9 +10,9 @@
 <meta name="viewport"
 	content="user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,width=device-width">
 -->
-	<link rel="stylesheet" href="${path}/resources/css/themify-icons.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/elegant-icons.css?after" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/order_css/shippingLocation.css">
+	<link rel="stylesheet" href="${path}/UnoMas/resources/css/themify-icons.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/UnoMas/resources/css/elegant-icons.css?after" type="text/css">
+    <link rel="stylesheet" href="${path}/UnoMas/resources/css/order_css/shippingLocation.css">
 </head>
 
 <body
@@ -116,15 +116,15 @@
         <button type="button" class="button" onclick="javascript:window.close();return false;">닫기</button>
     </div>
     
-	<script src="${path}/resources/js/jquery-3.3.1.min.js"></script>
-	<script src="${path}/resources/js/bootstrap.min.js"></script>
-	<script src="${path}/resources/js/jquery-ui.min.js"></script>
-	<script src="${path}/resources/js/jquery.countdown.min.js"></script>
-	<script src="${path}/resources/js/jquery.nice-select.min.js"></script>
-	<script src="${path}/resources/js/jquery.zoom.min.js"></script>
-	<script src="${path}/resources/js/jquery.dd.min.js"></script>
-	<script src="${path}/resources/js/jquery.slicknav.js"></script>
-	<script src="${path}/resources/js/owl.carousel.min.js"></script>
-    <script src="${path}/resources/js/order_js/shippingLocation.js"></script>
+	<script src="${path}/UnoMas/resources/js/jquery-3.3.1.min.js"></script>
+	<script src="${path}/UnoMas/resources/js/bootstrap.min.js"></script>
+	<script src="${path}/UnoMas/resources/js/jquery-ui.min.js"></script>
+	<script src="${path}/UnoMas/resources/js/jquery.countdown.min.js"></script>
+	<script src="${path}/UnoMas/resources/js/jquery.nice-select.min.js"></script>
+	<script src="${path}/UnoMas/resources/js/jquery.zoom.min.js"></script>
+	<script src="${path}/UnoMas/resources/js/jquery.dd.min.js"></script>
+	<script src="${path}/UnoMas/resources/js/jquery.slicknav.js"></script>
+	<script src="${path}/UnoMas/resources/js/owl.carousel.min.js"></script>
+    <script src="${path}/UnoMas/resources/js/order_js/shippingLocation.js"></script>
 </body>
 </html>

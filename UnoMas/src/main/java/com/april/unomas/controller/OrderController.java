@@ -182,11 +182,9 @@ public class OrderController {
 		int result = orderService.createOrder(vo);
 		
 		if (result == 0) {
-			log.info("@@@@@@@@@@@ 주문정보 저장 실패");
 			return new ResponseEntity<Integer>(0, HttpStatus.NOT_ACCEPTABLE);
 		}
 		
-		log.info("@@@@@@@@@@@@ 주문정보 저장 성공");
 		return new ResponseEntity<Integer>(1, HttpStatus.CREATED);
 	}
 	
@@ -328,7 +326,7 @@ public class OrderController {
 		model.addAttribute("payInfo", payInfo);
 		model.addAttribute("pagingNum", pagingNum);
 		
-		return "/order/myOrderDetail";
+		return "order/myOrderDetail";
 	}
 	
 

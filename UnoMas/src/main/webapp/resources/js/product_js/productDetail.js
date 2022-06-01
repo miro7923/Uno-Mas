@@ -32,7 +32,7 @@ function updateReviewReadcnt(num) {
 		// 조회수 증가
 	    $.ajax({
 			type: 'get',
-			url: '/product/update_readcnt?prod_num='+$('#prod_num').val()+'&review_num='+reNum,
+			url: '/UnoMas/product/update_readcnt?prod_num='+$('#prod_num').val()+'&review_num='+reNum,
 			success: function(data) {
 				$('#reviewReadcnt'+num).text(data);
 			},
@@ -46,7 +46,7 @@ function updateReviewReadcnt(num) {
 function addLikeCnt(review_num, idNum) {
 	$.ajax({
 		type: 'get',
-		url: '/product/update_likecnt?review_num='+review_num,
+		url: '/UnoMas/product/update_likecnt?review_num='+review_num,
 		success: function(data) {
 			$('#reviewLikecnt' + idNum).text(data);
 		},
@@ -59,7 +59,7 @@ function addLikeCnt(review_num, idNum) {
 function cancelLikeCnt(review_num, idNum) {
 	$.ajax({
 		type: 'get',
-		url: '/product/cancel_like?review_num'+review_num,
+		url: '/UnoMas/product/cancel_like?review_num'+review_num,
 		success: function(data) {
 			$('#reviewLikecnt' + idNum).text(data);
 		},
@@ -94,7 +94,7 @@ function toggleWishlistBtn(user_num, prod_num) {
 		// 위시리스트에 추가되어 있으면 삭제
 		$.ajax({
 			type: 'get',
-			url: '/product/delete_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
+			url: '/UnoMas/product/delete_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
 			success: function() {
 				// 버튼만 변경
 				$('#isInWishlist').attr('value', false);
@@ -114,7 +114,7 @@ function toggleWishlistBtn(user_num, prod_num) {
 			// 그렇지 않으면 추가
 			$.ajax({
 				type: 'get',
-				url: '/product/add_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
+				url: '/UnoMas/product/add_wishlist?user_num=' + user_num + '&prod_num=' + prod_num,
 				success: function() {
 					// 버튼만 변경
 					$('#isInWishlist').attr('value', true);
@@ -172,7 +172,7 @@ function insertCart() {
     else {
         $.ajax({
 		type: 'get',
-        url: '/product/insert_cart',
+        url: '/UnoMas/product/insert_cart',
         data: {
             'user_num': $('#user_num').val(),
             'prod_num': $('#prod_num').val(),
@@ -180,7 +180,7 @@ function insertCart() {
               },
         success: function() {
             if (confirm('장바구니에 상품을 넣었습니다! 장바구니로 이동 하시겠습니까?'))
-            	location.href = '/product/cart/list';
+            	location.href = '/UnoMas/product/cart/list';
         }
         });
     }
@@ -188,7 +188,7 @@ function insertCart() {
 
 function askLogin() {
 	if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?'))
-		location.href = '/user/login';
+		location.href = '/UnoMas/user/login';
 }
 
 function getPageNum() {
@@ -220,7 +220,7 @@ function changePageNum(num, maxNum, boardType) {
 	    
 	    $.ajax({
 			type: 'get',
-			url: '/product/review_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			url: '/UnoMas/product/review_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
 				$('#reviewListAjax').html(data);
 				
@@ -251,7 +251,7 @@ function changePageNum(num, maxNum, boardType) {
 	    
 		$.ajax({
 			type: 'get',
-			url: '/product/inquiry_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
+			url: '/UnoMas/product/inquiry_list?prod_num=' + $('#prod_num').val() + '&page=' + num,
 			success: function(data) {
 				$('#inqDiv').html(data);
 
@@ -267,8 +267,8 @@ function changePageNum(num, maxNum, boardType) {
 function confirmToRemove(type, postNum, prodNum) {
 	if (confirm('정말 삭제 하시겠습니까?')) {
 		if (type == 'review')
-			location.href = '/product/remove_review?review_num=' + postNum + '&prod_num=' + prodNum;
+			location.href = '/UnoMas/product/remove_review?review_num=' + postNum + '&prod_num=' + prodNum;
 		else 
-			location.href = '/product/remove_inquiry?inquiry_num=' + postNum + '&prod_num=' + prodNum;
+			location.href = '/UnoMas/product/remove_inquiry?inquiry_num=' + postNum + '&prod_num=' + prodNum;
 	}
 }

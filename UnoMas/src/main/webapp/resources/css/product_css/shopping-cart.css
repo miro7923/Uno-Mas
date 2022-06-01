@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.proceed-checkout ul li.cart-total span {
+	color: #B9CE45;
+}
 
 .proceed-checkout ul li.shipping {
 	font-weight: 400;

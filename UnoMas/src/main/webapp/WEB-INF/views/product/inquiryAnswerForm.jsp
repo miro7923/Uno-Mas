@@ -13,7 +13,7 @@
 
 <%
     if (session.getAttribute("saveAID") == null) {
-    	response.sendRedirect("/index");
+    	response.sendRedirect("/UnoMas/index");
     }
 %>
 
@@ -28,7 +28,7 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>문의 답변하기</h4>
-						<form action="/product/write_inq_comment" method="post" class="comment-form">
+						<form action="/UnoMas/product/write_inq_comment" method="post" class="comment-form">
 						    <div class="row">
 						        <div class="col-lg-12">
 						            <input type="hidden" value="${sessionScope.saveANUM }" name="admin_num">

@@ -150,8 +150,6 @@
 		                                    </c:choose>
                                         </c:otherwise>
                                     </c:choose>
-								   <form action="/product/insert_cart">
-								   </form>
 								       <c:choose>
 								           <c:when test="${vo.prod_stock == 0 }">
 								              <button class="primary-btn pd-cart soldout" id="cartBtn" disabled>상품 준비 중입니다.</button>
@@ -279,7 +277,7 @@
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
 												문의 및 요청사항은 마이페이지 내  
-												<span onclick="window.parent.location.href = '/user/mypage'"
+												<span onclick="window.parent.location.href = '/UnoMas/user/mypage'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
 										<div class="comment-option" id="reviewListAjax">
@@ -347,7 +345,7 @@
 										
 															<c:if test="${sessionScope.saveID != null && sessionScope.saveNUM == reviewVo.user_num }">
 																<p class="text-right">
-																    <a href="/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
+																    <a href="/UnoMas/product/modify_review?review_num=${reviewVo.review_num }">수정</a> &nbsp; 
 																    <a href="javascript:void(0)" onclick="confirmToRemove('review', ${reviewVo.review_num}, ${vo.prod_num })" 
 																    style="color: #5179a5;">삭제</a>
 																</p>
@@ -372,7 +370,7 @@
 												    <input type="hidden" value="1" id="curReviewPage">
 													<div class="col-lg-12 text-center">
 														<c:if test="${reviewPm.prev == true }">
-															<a href="/product/review_list?page=${reviewPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+															<a href="/UnoMas/product/review_list?page=${reviewPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
 														</c:if>
 														
 														<c:forEach var="block" varStatus="it" begin="${reviewPm.startPage }" end="${reviewPm.endPage }" step="1">
@@ -384,12 +382,12 @@
 														</c:forEach>
 														
 														<c:if test="${reviewPm.next == true }">
-															<a href="/product/review_list?page=${reviewPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+															<a href="/UnoMas/product/review_list?page=${reviewPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
 														</c:if>
 													</div>
 												</div>
 												<c:if test="${sessionScope.saveID != null }">
-													<button type="button" class="site-btn" onclick="location.href='/product/write_review?prod_num='+${vo.prod_num};">
+													<button type="button" class="site-btn" onclick="location.href='/UnoMas/product/write_review?prod_num='+${vo.prod_num};">
 													후기쓰기
 													</button>
 												</c:if>
@@ -405,7 +403,7 @@
 												공간입니다. 해당 게시판의 성격과 다른 글은 사전동의 없이 담당 게시판으로 이동될 수 있습니다.</li>
 											<li><span data-icon="&#x5e"></span> 배송관련, 주문(취소/교환/환불)관련
 												문의 및 요청사항은 마이페이지 내 <!-- @@ 1:1 문의글 작성 페이지 링크로 수정 @@ --> <span
-												onclick="window.parent.location.href = '/user/mypage'"
+												onclick="window.parent.location.href = '/UnoMas/user/mypage'"
 												class="personalInquiry">1:1 문의</span>에 남겨주세요.</li>
 										</ul>
 										<div class="comment-option">
@@ -460,13 +458,13 @@
 															<c:if test="${sessionScope.saveID != null && sessionScope.saveNUM == inquiryVo.user_num }">
 
 																<p class="text-right">
-																    <a href="/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
+																    <a href="/UnoMas/product/modify_inquiry?inquiry_num=${inquiryVo.p_inquiry_num }">수정</a> &nbsp; 
 																    <a href="javascript:void(0)" 
 																    onclick="confirmToRemove('inquiry', ${inquiryVo.p_inquiry_num}, ${vo.prod_num })" style="color: #5179a5;">삭제</a>
 																</p>
 															</c:if>
 															<c:if test="${sessionScope.saveANUM != null && inqComList != null && inqComList[it.index] == null }">
-																<p class="text-right"><a href="/product/write_inq_comment?prod_num=${vo.prod_num }&p_inquiry_num=${inquiryVo.p_inquiry_num}">답변하기</a></p>
+																<p class="text-right"><a href="/UnoMas/product/write_inq_comment?prod_num=${vo.prod_num }&p_inquiry_num=${inquiryVo.p_inquiry_num}">답변하기</a></p>
 															</c:if>
 															
 															<c:if test="${inqComList != null && inqComList[it.index] != null }">
@@ -481,7 +479,7 @@
 												    <input type="hidden" value="1" id="curInquiryPage">
 													<div class="col-lg-12 text-center">
 														<c:if test="${inquiryPm.prev }">
-															<a href="/product/inquiry_list?page=${inquiryPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+															<a href="/UnoMas/product/inquiry_list?page=${inquiryPm.startPage - 1 }" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
 														</c:if>
 														
 														<c:forEach var="block" varStatus="it" begin="${inquiryPm.startPage }" end="${inquiryPm.endPage }" step="1">
@@ -493,12 +491,12 @@
 														</c:forEach>
 														
 														<c:if test="${inquiryPm.next }">
-															<a href="/product/inquiry_list?page=${inquiryPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+															<a href="/UnoMas/product/inquiry_list?page=${inquiryPm.endPage + 1 }" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
 														</c:if>
 													</div>
 												</div>
 											    <c:if test="${sessionScope.saveID != null }">
-													<button type="submit" class="site-btn" onclick="location.href='/product/write_inquiry?prod_num='+${vo.prod_num};">
+													<button type="submit" class="site-btn" onclick="location.href='/UnoMas/product/write_inquiry?prod_num='+${vo.prod_num};">
 													문의하기
 													</button>
 											    </c:if>

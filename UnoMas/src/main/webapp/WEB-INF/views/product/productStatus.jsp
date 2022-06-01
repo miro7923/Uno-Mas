@@ -31,7 +31,7 @@
 				<div class="col-lg-9">
 					<h2>개별상품조회 :: ${vo.prod_name }</h2><div class="line"><hr></div>
 					<div class="container">
-						<form action="/product/modify" method="get" class="checkout-form" >
+						<form action="/UnoMas/product/modify" method="get" class="checkout-form" >
 						<c:forEach var="vo" items="${productList }"></c:forEach>
 						
 							<!-- 기본정보 -->

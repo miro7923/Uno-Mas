@@ -13,7 +13,7 @@
 
 <%
     if (session.getAttribute("saveID") == null) {
-    	response.sendRedirect("/index");
+    	response.sendRedirect("/UnoMas/index");
     }
 %>
 
@@ -28,10 +28,10 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>문의하기</h4>
-						<form action="/product/write_inquiry" method="post" class="comment-form">
+						<form action="/UnoMas/product/write_inquiry" method="post" class="comment-form">
 						    <div class="row">
 						        <div class="col-lg-12">
-						            <input type="hidden" value="${sesseionScope.saveNUM }" name="user_num">
+						            <input type="hidden" value="${sessionScope.saveNUM }" name="user_num">
 						            <input type="hidden" value="${vo.prod_num }" name="prod_num">
   						            <p class="productName">상품명 : ${vo.prod_name }</p>
 						        </div>

@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +52,7 @@ public class ProductAjaxController {
 	
 	// ajax로 장바구니에 물건 담기
 	@RequestMapping(value = "/insert_cart", method = RequestMethod.GET)
-	public void insertCartPOST(@RequestParam("user_num") int user_num, 
+	public ResponseEntity insertCartPOST(@RequestParam("user_num") int user_num, 
 			@RequestParam("prod_num") int prod_num, @RequestParam("prod_amount") int prod_amount) throws Exception {
 		log.info("insertCartPOST() 호출");
 
@@ -63,6 +64,8 @@ public class ProductAjaxController {
 			// 장바구니에 있는 상품이면 수량 증가
 			service.modifyCartAmount(user_num, prod_num, prod_amount);
 		}
+		
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/update_readcnt", method = RequestMethod.GET)
@@ -117,7 +120,6 @@ public class ProductAjaxController {
 	
 	@RequestMapping(value = "/upload_topImg", method = RequestMethod.POST)
 	public String uploadTopImgPOST(@RequestParam("uploadImg1") MultipartFile file) throws Exception {
-		log.info("@@@@@@@@@@@@@@@@@@@ 상세이미지 등록 컨트롤러 이동");
 		String fileName = null;
 		if (!file.isEmpty()) {
 			fileName = Commons.convertImgName(file.getOriginalFilename(), service.getLastProdNum() + 1, ImgType.TOP);
