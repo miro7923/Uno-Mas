@@ -55,14 +55,14 @@ public class AdminController {
 	
 	@RequestMapping(value = "/main",method = RequestMethod.GET)
 	public String adminMainGET(Criter cri,Model model) throws Exception{
-		return "/admin/main";
+		return "admin/main";
 	}
 
 	@RequestMapping(value = "/admin_logout",method = RequestMethod.GET)
 	public String adminLogoutGET(AdminVO vo,HttpSession session) throws Exception {
 		session.invalidate();
 		
-		return "/index";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/notice_board",method = RequestMethod.GET)
@@ -72,7 +72,7 @@ public class AdminController {
 		List<NoticeVO> noticeList = service.noticeView(cri);
 		model.addAttribute("noticeList",noticeList);
 		model.addAttribute("pagingVO",pagingVO);
-		return "/admin/notice_board";
+		return "admin/notice_board";
 	}
 	
 	@RequestMapping(value = "/notice_search",method = RequestMethod.GET)
@@ -82,14 +82,14 @@ public class AdminController {
 		List<NoticeVO> noticeList = service.noticeView(cri);
 		model.addAttribute("noticeList",noticeList);
 		model.addAttribute("pagingVO",pagingVO);
-		return "/admin/notice_search";
+		return "admin/notice_search";
 	}
 	
 	@RequestMapping(value = "/notice_write",method = RequestMethod.GET)
 	public String noticeWriteGET(Model model,HttpSession session) throws Exception{
 		AdminVO vo = (AdminVO) session.getAttribute("saveID");
 		model.addAttribute("vo",vo);
-		return "/admin/notice_write";
+		return "admin/notice_write";
 	}
 	
 	@RequestMapping(value = "/notice_write",method = RequestMethod.POST)
@@ -119,21 +119,21 @@ public class AdminController {
 		vo.setNotice_img(imageName);
 		}		
 		service.noticeWrite(vo);
-		return "redirect:/admin/notice_board";
+		return "redirect:/UnoMas/admin/notice_board";
 	}
 	
 	@RequestMapping(value = "/notice_read",method = RequestMethod.GET)
 	public String noticeInfoGET(@RequestParam("notice_num") int notice_num,Model model) throws Exception{
 		service.rCountUp(notice_num);
 		model.addAttribute("vo",service.getNotice(notice_num));
-		return "/admin/notice_read";
+		return "admin/notice_read";
 	}
 	
 	@RequestMapping(value="/notice_update",method = RequestMethod.GET)
 	public String noticeUpdateGET(@RequestParam("notice_num") int notice_num, Model model) throws Exception {
 		NoticeVO vo = service.getNotice(notice_num);
 		model.addAttribute("vo",vo);
-		return "/admin/notice_update";
+		return "admin/notice_update";
 	}
 	
 	@RequestMapping(value="/notice_update",method = RequestMethod.POST)
@@ -143,25 +143,25 @@ public class AdminController {
 		vo.setNotice_title(request.getParameter("notice_title"));
 		vo.setNotice_content(request.getParameter("notice_content"));
 		service.noticeUpdate(vo);
-		return "redirect:/admin/notice_board";
+		return "redirect:/UnoMas/admin/notice_board";
 	}
 	
 	@RequestMapping(value="/notice_delete",method = RequestMethod.GET)
 	public String noticeDeleteGET(@RequestParam("notice_num") int notice_num) throws Exception {
 		service.noticeDelete(notice_num);
-		return "redirect:/admin/notice_board";
+		return "redirect:/UnoMas/admin/notice_board";
 	}
 	
 	@RequestMapping(value = "/faq_write",method = RequestMethod.GET)
 	public String boardWriteGET() throws Exception{
-		return "/admin/faq_write";
+		return "admin/faq_write";
 	}
 	
 	// 글쓰기  /board/regist  (post)
 	@RequestMapping(value = "/faq_write",method = RequestMethod.POST)
 	public String boardWritePOST(BoardVO vo, HttpServletRequest request,RedirectAttributes rttr) throws Exception{
 		service.faqWrite(vo);
-		return "redirect:/admin/faq_board";
+		return "redirect:/UnoMas/admin/faq_board";
 	}
 	
 	@RequestMapping(value = "/faq_sort",method = RequestMethod.GET)
@@ -172,7 +172,7 @@ public class AdminController {
 		model.addAttribute("pList",pList);
 		model.addAttribute("pagingVO",pagingVO);
 		model.addAttribute("qnacate_num",qnacate_num);
-		return "/admin/faq_sort";
+		return "admin/faq_sort";
 	}
 	
 	@RequestMapping(value="/faq_board",method = RequestMethod.GET)
@@ -182,7 +182,7 @@ public class AdminController {
 	    List<BoardVO> pList = service.faqView(cri);
 	    model.addAttribute("pList", pList);
 	    model.addAttribute("pagingVO", pagingVO);
-	    return "/admin/faq_board";
+	    return "admin/faq_board";
 	}
 	
 	@RequestMapping(value="/faq_search",method = RequestMethod.GET)
@@ -192,40 +192,40 @@ public class AdminController {
 	    List<BoardVO> pList = service.faqView(cri);
 	    model.addAttribute("pList", pList);
 	    model.addAttribute("pagingVO", pagingVO);
-	    return "/admin/faq_search";
+	    return "admin/faq_search";
 	}
 	
 	@RequestMapping(value="/faq_update",method = RequestMethod.GET)
 	public String updateBoardGET(@RequestParam("faq_num") int faq_num, Model model) throws Exception {
 		BoardVO vo = service.getFaq(faq_num);
 		model.addAttribute("vo",vo);
-		return "/admin/faq_update";
+		return "admin/faq_update";
 	}
 	
 	@RequestMapping(value="/faq_update",method = RequestMethod.POST)
 	public String updateBoardPOST(BoardVO vo) throws Exception {
 		service.faqUpdate(vo);
-		return "redirect:/admin/faq_board";
+		return "redirect:/UnoMas/admin/faq_board";
 	}
 	
 	@RequestMapping(value="/faq_delete",method = RequestMethod.GET)
 	public String deleteBoard(@RequestParam("faq_num") int faq_num) throws Exception {
 		service.faqDelete(faq_num);
-		return "redirect:/admin/faq_board";
+		return "redirect:/UnoMas/admin/faq_board";
 	}
 	
 	@RequestMapping(value = "/qna_board",method = RequestMethod.GET)
 	public String inquiryPagingGET(HttpServletRequest request,Criter cri,Model model,HttpSession session) throws Exception {
 		String adminVO = (String) session.getAttribute("saveAID");
 		if(adminVO == null) {
-			return "redirect:/user/user_login";
+			return "redirect:/UnoMas/user/user_login";
 		}
 		List<QnaVO> pList = service.qnaView(cri);
 		model.addAttribute("pList",pList);
 		PagingVO pagingVO = new PagingVO(cri);
 		pagingVO.setTotalCount(service.qnaCount());
 		model.addAttribute("pagingVO",pagingVO);
-		return "/admin/qna_board";
+		return "admin/qna_board";
 	}
 	
 	@RequestMapping(value = "/qna_comment",method = RequestMethod.GET)
@@ -236,20 +236,20 @@ public class AdminController {
 
 		model.addAttribute("qnaVO",service.getQna(qna_num));
 		model.addAttribute("qna_num",qna_num);
-		return "/admin/qna_comment";
+		return "admin/qna_comment";
 	}
 	
 	@RequestMapping(value = "/qna_comment",method = RequestMethod.POST)
 	public String qnaCommentWritePOST(Qna_ComVO qna_comVO,HttpServletRequest request) throws Exception {
 		service.qnaCommentWrite(qna_comVO);
 		service.qnaProcessUp(Integer.parseInt(request.getParameter("qna_num")));
-		return "redirect:/admin/qna_board";
+		return "redirect:/UnoMas/admin/qna_board";
 	}
 	
 	@RequestMapping(value = "/qna_commentView",method = RequestMethod.GET)
 	public String qnaCommentViewGET(@RequestParam("qna_num") Integer qna_num,Model model) throws Exception {
 		model.addAttribute("vo",service.qnaCommentView(qna_num));
-		return "/admin/qna_commentView";
+		return "admin/qna_commentView";
 	}
 	
 	@RequestMapping(value = "/image1Down",method = RequestMethod.GET)
@@ -279,7 +279,7 @@ public class AdminController {
 	public String qnaDeleteGET(@RequestParam("qna_num") Integer qna_num) throws Exception {
 		service.deleteQna(qna_num);
 		
-		return "redirect:/admin/qna_board";
+		return "redirect:/UnoMas/admin/qna_board";
 
 	}
 	

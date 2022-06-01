@@ -83,7 +83,7 @@
                 <tr>
                     <td width="50" nowrap="" align="center" >${num }</td>
                     <td style="padding-left:10px; text-align:left; color:#999">
-                        <a href="/board/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a>
+                        <a href="/UnoMas/board/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a>
                     </td>
                     <td>
                     <c:choose>
@@ -113,27 +113,27 @@
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
                 <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/faq_search${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/faq_search${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
                 		<span>&lt;&lt;</span>
                 	</a>
                 </li>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/faq_search${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/faq_search${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/faq_search${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/UnoMas/board/faq_search${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <c:if test="${pagingVO.next }">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/faq_search${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/faq_search${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
                   <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/faq_search${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/faq_search${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
                 		<span>&gt;&gt;</span>
                 	</a>
                 </li>

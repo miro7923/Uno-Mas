@@ -78,7 +78,7 @@
 
 <tr>
 <th scope="row">첨부파일</th>
-<td><a class="nfile" href="/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
+<td><a class="nfile" href="/UnoMas/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
 </tr>
 
 <tr class="etcArea">
