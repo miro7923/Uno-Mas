@@ -79,22 +79,26 @@ function memberCk(){
 	};
 	
 	$.ajax({
-		async: true,
 		type: "POST",
-		url: "/user/login",
+		url: "/UnoMas/user/login",
 		data: {
 			'user_id': $("#id").val(), 
 			'user_pass': $("#pass").val()
 		},
 		success: function(result) {
-			if(result != "1") {
-				$("#cir_text").html("잘못된 아이디 혹은 비밀번호입니다.");
-				
-			} else {
+				console.log(document.referrer);
+			alert(result);
+			
+			if(result == 1) {
+				console.log(document.referrer);
+				alert('로그인');
 				window.location.replace(document.referrer);
+			} else {
+				$("#cir_text").html("잘못된 아이디 혹은 비밀번호입니다.");
 			}
 		},
 		error: function(error) {
+			alert('에러 리턴');
 		}
 	}); 
 	

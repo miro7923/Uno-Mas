@@ -100,12 +100,12 @@ public class UserController {
 	// 로그인 페이지 구현 (POST)
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public String loginPOST(UserVO vo, HttpSession session) {
+	public ResponseEntity<Integer> loginPOST(UserVO vo, HttpSession session) {
 
 		HashMap<String, Integer> loginMap = service.loginUser(vo);
 
-		String result = String.valueOf(loginMap.get("result"));
-		if (result.equals("1")) {
+		int result = Integer.valueOf(loginMap.get("result"));
+		if (result == 1) {
 			if (vo.getUser_id().contains("admin")) {
 				session.setAttribute("saveAID", vo.getUser_id());
 				session.setAttribute("saveANUM", loginMap.get("num"));
@@ -114,7 +114,7 @@ public class UserController {
 				session.setAttribute("saveNUM", loginMap.get("num"));
 			}
 		}
-		return result;
+		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 
 	// 로그아웃 구현
