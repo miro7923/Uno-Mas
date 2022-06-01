@@ -53,7 +53,7 @@ public class WishController {
 	  
 		service.deleteWish(wish_num);  
 
-		return "redirect:/UnoMas/product/wishlist/list";
+		return "redirect:/product/wishlist/list";
 	}
 	
 	// 찜 선택 삭제
@@ -127,7 +127,7 @@ public class WishController {
 		if(user_num!=0) {
 			service.deleteAllWish(user_num);
 		}
-	    return "redirect:/UnoMas/product/wishlist/list";
+	    return "redirect:/product/wishlist/list";
 	}
 	
 	// 장바구니 단품 담기

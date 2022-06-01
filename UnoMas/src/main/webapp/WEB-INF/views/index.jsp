@@ -342,7 +342,7 @@
                 <div class="col-lg-3">
                     <div class="product-large set-bg" id="newarrival" data-setbg="${path}/resources/img/index/newarrival.jpg">
                         <h2>신상품</h2>
-                        <a class="newarrival" href="/product/new_list">Discover More</a>
+                        <a class="newarrival" href="/UnoMas/product/new_list">Discover More</a>
                     </div>
                 </div>
                 <div class="col-lg-8 offset-lg-1">
