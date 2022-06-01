@@ -42,7 +42,7 @@
 					<div class="container">
 
 						<form method="post" action="/UnoMas/admin/notice_update"
-							class="checkout-form">
+							class="checkout-form" name="fr">
 
 							<br>
 							
