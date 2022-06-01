@@ -13,6 +13,7 @@
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
 	href="${path}/resources/css/product_css/shopping-cart.css?after" type="text/css">
+<title>장바구니</title>
 <!-- Start Header -->
 
 <body>
