@@ -7,7 +7,7 @@
 <html lang="zxx">
 <meta charset=UTF-8>
 <link rel="stylesheet" href="${path}/resources/css/user_css/updateMyInfo.css">
-
+<title>회원정보수정</title>
 <body>
 	<!-- 헤더 -->
 	<jsp:include page="../inc/top.jsp"></jsp:include>

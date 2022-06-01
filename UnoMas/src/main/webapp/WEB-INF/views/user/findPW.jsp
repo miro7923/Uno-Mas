@@ -9,7 +9,6 @@
 <title>비밀번호 찾기</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/user_sub.css">
 </head>
-
 <body>
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <jsp:include page="../inc/header.jsp"></jsp:include>
