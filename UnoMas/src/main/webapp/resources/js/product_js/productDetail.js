@@ -108,7 +108,7 @@ function toggleWishlistBtn(user_num, prod_num) {
 	else {
 		if (user_num == null) {
 			if (confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?'))
-				location.href = '/user/login';
+				location.href = '/UnoMas/user/login';
 		}
 		else {			
 			// 그렇지 않으면 추가
