@@ -87,6 +87,7 @@ function memberCk(){
 		},
 		success: function(result) {
 			console.log(document.referrer);
+			alert(document.referrer);
 			
 			if(result == 1) {
 				window.location.replace(document.referrer);
