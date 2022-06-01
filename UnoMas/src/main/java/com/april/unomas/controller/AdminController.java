@@ -119,7 +119,7 @@ public class AdminController {
 		vo.setNotice_img(imageName);
 		}		
 		service.noticeWrite(vo);
-		return "redirect:/UnoMas/admin/notice_board";
+		return "redirect:/admin/notice_board";
 	}
 	
 	@RequestMapping(value = "/notice_read",method = RequestMethod.GET)

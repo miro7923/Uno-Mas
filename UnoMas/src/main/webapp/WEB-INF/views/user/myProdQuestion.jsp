@@ -46,21 +46,21 @@
 							<td>${regdate }</td>
 							
 							<th scope="col">상태</th>
-<%-- 							<c:choose> --%>
-<%-- 								<c:when test="${vo.p_inquiry_process eq false }"> --%>
-<!-- 									<td style="color: red">답변 대기</td> -->
-<%-- 								</c:when> --%>
-<%-- 								<c:otherwise> --%>
-<!-- 									<td style="color: blue">답변 완료</td> -->
-<%-- 								</c:otherwise> --%>
-<%-- 							</c:choose> --%>
+							<c:choose>
+								<c:when test="${vo.p_inquiry_process eq false }">
+									<td style="color: red">답변 대기</td>
+								</c:when>
+								<c:otherwise>
+									<td style="color: blue">답변 완료</td>
+								</c:otherwise>
+							</c:choose>
 
 
 							<td style="width: 180px;">
-								<a href="/product/modify_inquiry?inquiry_num=${vo.p_inquiry_num }&pageInfo=my&pagingNum=${pagingNum}">
+								<a href="/UnoMas/product/modify_inquiry?inquiry_num=${vo.p_inquiry_num }&pageInfo=my&pagingNum=${pagingNum}">
 								  <input type="button" value="수정하기" class="review_btn" style="border-color: #B9CE45;">
 								</a>
-								<a href="/product/remove_inquiry?inquiry_num=${vo.p_inquiry_num }&pageInfo=my&pagingNum=${pagingNum}&prod_num=${vo.prod_num}">
+								<a href="/UnoMas/product/remove_inquiry?inquiry_num=${vo.p_inquiry_num }&pageInfo=my&pagingNum=${pagingNum}&prod_num=${vo.prod_num}">
 								  <input type="button" value="삭제하기" onclick="" class="review_btn" style="border-color: red;">
 								</a>
 							</td>

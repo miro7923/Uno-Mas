@@ -92,7 +92,7 @@ public class UserController {
 	}
 
 	// 로그인 페이지 구현 (GET)
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login")
 	public String loginGET() {
 		return "user/login";
 	}
@@ -101,10 +101,9 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
-
 		HashMap<String, Integer> loginMap = service.loginUser(vo);
-
 		String result = String.valueOf(loginMap.get("result"));
+
 		if (result.equals("1")) {
 			if (vo.getUser_id().contains("admin")) {
 				session.setAttribute("saveAID", vo.getUser_id());
@@ -318,19 +317,20 @@ public class UserController {
 			) {
 
 		String saveNUM = String.valueOf(session.getAttribute("saveNUM"));
-		int totalReviewCnt = service.myReviewCnt(saveNUM);
+		int totalpqCnt = service.myPqaCnt(saveNUM);
+		System.out.println("상품 문의 개수:" + totalpqCnt);
 
 		UserCriteria cri = new UserCriteria();
 		cri.setPage(Integer.parseInt(pagingNum));
 		cri.setPerPageNum(5);
 		
-		List<BoardReviewVO> reviewList = service.getMyReview(saveNUM, cri);
+		List<ProdInquiryVO> pqnaList = service.getMyPquestion(saveNUM, cri);
 		
 		UserPageMaker pm = new UserPageMaker();
 		pm.setCri(cri);
-		pm.setTotalCount(totalReviewCnt);
+		pm.setTotalCount(totalpqCnt);
 		
-		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pqnaList", pqnaList);
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 		

@@ -65,7 +65,8 @@ function getCookie(cookieName){
 }
 
 
-function memberCk(){
+function memberCk(e){
+
 	if($("#id").val() == "") {
 		$("#cir_text").text("아이디를 입력하세요."); 
 		$("#id").focus();
@@ -77,21 +78,29 @@ function memberCk(){
 		$("#pass").focus();
 		return false;
 	};
-	
+
 	$.ajax({
 		async: true,
 		type: "POST",
-		url: "/user/login",
 		data: {
 			'user_id': $("#id").val(), 
 			'user_pass': $("#pass").val()
 		},
+		url: "login",
 		success: function(result) {
+			console.log("여기로 안들어와: " + result);
 			if(result != "1") {
 				$("#cir_text").html("잘못된 아이디 혹은 비밀번호입니다.");
-				
 			} else {
-				window.location.replace(document.referrer);
+				let prev_url = document.referrer;
+				let host_url = "http://" +  window.location.host;
+				let url_info = prev_url.replace(host_url, "");
+				
+				if(url_info == "/UnoMas/user/login") {
+					location.href="/UnoMas"
+				} else {
+					window.location.replace(document.referrer);
+				}
 			}
 		},
 		error: function(error) {
