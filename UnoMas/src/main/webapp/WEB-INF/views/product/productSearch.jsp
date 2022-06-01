@@ -56,7 +56,7 @@
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item" id="productItem">
 										<div class="pi-pic">
-											<a href="/product/product_detail?prod_num=${vo.prod_num }"> 
+											<a href="/UnoMas/product/product_detail?prod_num=${vo.prod_num }"> 
 											<c:choose>
 												<c:when test="${vo.prod_stock == 0 }">
 													<img src='<spring:url value="/resources/upload/images/products/soldout/${vo.prod_image4 }"></spring:url>' alt="" class="soldOut">
@@ -83,7 +83,7 @@
 											</ul>
 										</div>
 										<div class="pi-text">
-											<a href="/product/product_detail?prod_num=${vo.prod_num }">
+											<a href="/UnoMas/product/product_detail?prod_num=${vo.prod_num }">
 											    <c:choose>
 											        <c:when test="${vo.prod_stock == 0 }">
 														<h5>${vo.prod_name } (품절)</h5>
@@ -121,19 +121,19 @@
 						<div class="col-lg-12 text-center">
 						<c:if test="${pm.prev }">
 						        
-						            <a href="/product/sale_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
+						            <a href="/UnoMas/product/sale_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
 						</c:if>
 						
 						<c:forEach var="block" varStatus="it" begin="${pm.startPage }" end="${pm.endPage }" step="1">
 							<span>
-								        <!----> <a href="/product/sale_list?pageNum=${it.index}" 
+								        <!----> <a href="/UnoMas/product/sale_list?pageNum=${it.index}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
 										onclick="changePageNum(${it.index }, ${pm.endPage - pm.startPage + 1 });">${block } <!----></a>
 							</span> 
 						</c:forEach>
 						
 						<c:if test="${pm.next && pm.endPage > 0 }">
-						            <a href="/product/sale_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
+						            <a href="/UnoMas/product/sale_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
 						</c:if>
 						</div>
 					</div>

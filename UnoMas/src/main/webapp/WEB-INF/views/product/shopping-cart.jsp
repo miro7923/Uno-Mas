@@ -73,7 +73,7 @@
 
 							<c:otherwise>
 								<form id="cartForm" name="cartForm" method="post"
-									action="/order/order">
+									action="/UnoMas/order/order">
 									<table>
 										<thead>
 											<tr>

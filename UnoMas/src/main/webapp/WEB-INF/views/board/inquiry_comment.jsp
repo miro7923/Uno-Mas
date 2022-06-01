@@ -106,7 +106,7 @@
 <table width="100%">
 <tbody><tr>
 <td align="right">
-<a href="/board/inquiry_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
+<a href="/UnoMas/board/inquiry_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
 </td>
 </tr>
 </tbody></table>

@@ -37,7 +37,7 @@ public interface AdminDAO {
 	public Integer noticeTotal();
 	
 	// 공지사항 검색 글 갯수
-	public Integer noticeTotal(Criter cri);
+	public Integer searchNoticeTotal(Criter cri);
 	
 	// 공지사항 글쓰기
 	public void noticeInsert(NoticeVO vo);
@@ -61,7 +61,7 @@ public interface AdminDAO {
 	public Integer faqTotal();
 	
 	// 자주하는 질문 검색 글 갯수
-	public Integer faqTotal(Criter cri);
+	public Integer searchFaqTotal(Criter cri);
 	
 	// 자주하는 질문 정렬 글 갯수
 	public Integer faqSortTotal(Integer qnacate_num);

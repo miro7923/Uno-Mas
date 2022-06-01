@@ -7,13 +7,13 @@
     <div class="inner_snb">
         <ul class="list_menu">
             <li>
-                <a href="/board/faq_paging">공지사항</a>
+                <a href="/UnoMas/board/faq_paging">공지사항</a>
             </li>
             <li>
-                <a href="/board/qni_paging">자주하는 질문</a>
+                <a href="/UnoMas/board/qni_paging">자주하는 질문</a>
             </li>
             <li>
-                <a href="/board/inquiry_paging">1:1 문의</a>
+                <a href="/UnoMas/board/inquiry_paging">1:1 문의</a>
             </li>
         </ul>
     </div>

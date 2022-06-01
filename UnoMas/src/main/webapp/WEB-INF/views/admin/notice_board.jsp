@@ -37,24 +37,27 @@
 						<hr>
 					</div>
 					<div class="container">
-						<form action="#" class="checkout-form" name="frmList" onsubmit="return chkFormList(this)">
-						<input type="hidden" name="id" value="notice">
+						
 							<div class="row">
 								<div class="row">
 									<div class="col-lg-3" style="padding-right:0px; border-right: none;">
-										<select class="selectBox" name="searchType">
+
+										<select class="selectBox" name="searchType" id="search_type_notice">
+
 											<option value="title">제목</option>
 										</select>
 										</div>
 										<div class="col-lg-9" style="padding-left:0px;">
 											<div class="input-search">
-												<input type="text" id="keyword" name="keyword" value="" placeholder="검색어를 입력해주세요.">
-												<button type="button" id="search_btn" onclick="search_admin_notice()">
+												<input type="text" id="keyword_notice" class="keyword_notice" name="keyword" value="" placeholder="검색어를 입력해주세요.">
+												<button id="search_btn" onclick="search_admin_notice()">
 													<i class="ti-search"></i>
 												</button>
 											</div><br>
 										</div>
 										<div class="col-lg-12">
+										<form class="checkout-form" name="frmList" onsubmit="return chkFormList(this)">
+						<input type="hidden" name="id" value="notice">
 											<table class="table_board">
 												<thead>
 													<tr>
@@ -69,7 +72,7 @@
 													<c:forEach items="${noticeList }" var="vo">
 														<tr>
 															<td>${vo.notice_num }</td>
-															<td><a href="/admin/notice_read?notice_num=${vo.notice_num }">
+															<td><a href="/UnoMas/admin/notice_read?notice_num=${vo.notice_num }">
 																	<span class="title">${vo.notice_title }</span>
 																</a>
 															</td>
@@ -105,15 +108,16 @@
 												</div>
 											</div>
 											<!-- 페이징 처리 끝 -->
+											</form>
 											<div class="col-lg-12" style="padding:0px;">
 												<div class="row" style="display: inline;">
-		                                        	<button type="button" class="register-button" onclick="location.href='/admin/notice_write';">공지사항 등록</button>
+		                                        	<button type="button" class="register-button" onclick="location.href='/UnoMas/admin/notice_write';">공지사항 등록</button>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -137,7 +141,9 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/admin_js/adminSearch.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
+    <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 </body>
 
 </html>

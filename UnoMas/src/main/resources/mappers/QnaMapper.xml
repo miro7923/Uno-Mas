@@ -42,13 +42,18 @@
 		<collection property="adminVO" resultMap="adminMap"></collection>
 	</resultMap>
 	
+<!-- 	<insert id="createQna"> -->
+<!-- 		INSERT INTO board_qna(user_num,qna_title,qna_content,qnacate_num,qna_image1,qna_image2) -->
+<!-- 		VALUES ( -->
+<!-- 		(SELECT user_num -->
+<!-- 		FROM users -->
+<!-- 		WHERE user_id = #{user_id} -->
+<!-- 		),#{qna_title},#{qna_content},#{qnacate_num},#{qna_image1},#{qna_image2}) -->
+<!-- 	</insert> -->
+	
 	<insert id="createQna">
 		INSERT INTO board_qna(user_num,qna_title,qna_content,qnacate_num,qna_image1,qna_image2)
-		VALUES (
-		(SELECT user_num
-		FROM users
-		WHERE user_id = #{user_id}
-		),#{qna_title},#{qna_content},#{qnacate_num},#{qna_image1},#{qna_image2})
+		VALUES (#{user_num},#{qna_title},#{qna_content},#{qnacate_num},#{qna_image1},#{qna_image2})
 	</insert>
 		
 	<select id="pagingQna1" resultMap="qnaMap">

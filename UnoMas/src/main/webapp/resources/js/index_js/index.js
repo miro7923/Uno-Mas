@@ -1,7 +1,7 @@
 function insertCart(user_num, prod_num) {
 	$.ajax({
 		type: 'get',
-		url: '/index/insert_cart?user_num='+user_num+'&prod_num='+prod_num+'&prod_amount=1',
+		url: '/UnoMas/index/insert_cart?user_num='+user_num+'&prod_num='+prod_num+'&prod_amount=1',
 		success: function() {
 			if (confirm('상품을 장바구니에 담았습니다! 장바구니로 이동 하시겠어요?'))
 				location.href = '/UnoMas/product/cart/list';

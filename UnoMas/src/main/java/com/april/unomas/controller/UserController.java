@@ -9,8 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,7 +74,7 @@ public class UserController {
 			vo.setUser_emailagree(0);
 		}
 		service.joinUser(vo);
-		return "redirect:/UnoMas/user/login";
+		return "redirect:/user/login";
 
 	}
 	
@@ -99,7 +102,7 @@ public class UserController {
 	@ResponseBody
 	public String loginPOST(UserVO vo, HttpSession session) {
 
-		HashMap loginMap = service.loginUser(vo);
+		HashMap<String, Integer> loginMap = service.loginUser(vo);
 
 		String result = String.valueOf(loginMap.get("result"));
 		if (result.equals("1")) {
@@ -117,8 +120,10 @@ public class UserController {
 	// 로그아웃 구현
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpSession session) {
+		
 		session.invalidate();
 		return "redirect:/";
+
 	}
 
 	// 아이디 찾기
@@ -127,57 +132,91 @@ public class UserController {
 		return "user/findID";
 	}
 
+	// 아이디 찾기(POST)
 	@RequestMapping(value = "/find_id", method = RequestMethod.POST)
 	@ResponseBody
 	public String findIDPost(UserVO vo) {
+		
 		String result = Integer.toString(service.findIdProcess(vo));
+		
 		return result;
 	}
 
-	// 비번 찾기
+	// 비밀번호 찾기
 	@RequestMapping(value = "/find_pw")
 	public String findPW() {
 		return "user/findPW";
 	}
 
+	// 비밀번호 찾기(POST)
 	@RequestMapping(value = "/find_pw", method = RequestMethod.POST)
 	@ResponseBody
 	public HashMap<String, String> findPWPost(UserVO vo) {
+		
 		HashMap<String, String> findpw_map = service.findPwProcess(vo);
 
 		return findpw_map;
 	}
 
-	// 비번 변경
+	// 비밀번호 변경(GET)
 	@RequestMapping(value = "/change_pw")
 	public String changePWGet(@RequestParam(value = "id", required = false) String id, Model model) {
+		
 		model.addAttribute("id", id);
+		
 		return "user/changePW";
 	}
 
+	// 비밀번호 변경(POST)
 	@RequestMapping(value = "/change_pw", method = RequestMethod.POST)
 	@ResponseBody
 	public String changePWPost(UserVO vo) {
+		
 		String result = Integer.toString(service.changePW(vo));
 
 		return result;
 	}
-	
-	
-	// 비밀번호 확인
+
+	// 회원정보수정(GET)
+	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
+	public String myInfoUpdateGET(HttpSession session, Model model) {
+
+		String saveID = (String) session.getAttribute("saveID");
+		UserVO userInfoVO = service.getUserInfo(saveID);
+		model.addAttribute("userInfoVO", userInfoVO);
+
+		Integer saveNUM = (Integer) session.getAttribute("saveNUM");
+		List<UserVO> addAddrList = service.getAddAddr(saveNUM);
+		model.addAttribute("addAddrList", addAddrList);
+
+		return "user/updateMyInfo";
+	}
+
+	// 회원정보수정(POST)
+	@ResponseBody
+	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
+	public ResponseEntity<Integer> myInfoUpdatePOST(@RequestBody UserVO vo) {
+
+		service.updateUser(vo);
+		service.updateAddAddr(vo);
+
+		return new ResponseEntity<Integer>(1, HttpStatus.OK);
+	}
+
+	// 비밀번호 확인(GET)
 	@RequestMapping(value = "/check_pw", method = RequestMethod.GET)
 	public String pwCheck() {
-		return "/user/checkPW";
+		return "user/checkPW";
 	}
 	
-	// 비밀번호 확인
+	// 비밀번호 확인(POST)
 	@RequestMapping(value = "/check_pw", method=RequestMethod.POST)
 	@ResponseBody
 	public String pwCheck(UserVO vo) {
 		return Integer.toString(service.checkPW(vo));
 	}
 
-	// mypage
+	// 마이페이지
 	@RequestMapping(value = "/mypage")
 	public String mypage(HttpSession session, Model model) throws Exception {
 		int saveNUM = (int)session.getAttribute("saveNUM");
@@ -203,36 +242,19 @@ public class UserController {
         model.addAttribute("fee", fee); 				// 배송료
         model.addAttribute("sum", sumMoney+fee); 		// 총 결제 예상금액(장바구니+배송비)
 		
-		return "/user/myPage";
+		return "user/myPage";
 	}
 
 	
 	// 회원정보 조회	
 	@RequestMapping(value = "/myInfo")
 	public String myInfo(HttpSession session, Model model) {
+		
 		String saveID = (String) session.getAttribute("saveID");
 		UserVO userInfoVO = service.getUserInfo(saveID); 
 		model.addAttribute("userInfoVO", userInfoVO);
+		
 		return "user/myInfo";
-	}
-	
-
-	//회원정보수정(GET)
-	// http://localhost:8088/user/update_myInfo
-	@RequestMapping(value = "/update_myInfo", method = RequestMethod.GET)
-	public String myInfoUpdateGET(HttpSession session, Model model) {
-		String saveID = (String) session.getAttribute("saveID");
-		UserVO userInfoVO = service.getUserInfo(saveID);
-		model.addAttribute("userInfoVO", userInfoVO);
-		return "user/updateMyInfo";
-	}
-
-	// 회원정보수정(POST)
-	// http://localhost:8088/user/update_myInfo
-	@RequestMapping(value = "/update_myInfo", method = RequestMethod.POST)
-	public String myInfoUpdatePOST(UserVO vo) {
-		service.updateUser(vo);
-		return "redirect:/UnoMas/user/myInfo";
 	}
 
 	// 포인트 페이지
@@ -259,7 +281,7 @@ public class UserController {
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 		
-		return "/user/myPoint";
+		return "user/myPoint";
 	}
 	
 	
@@ -344,7 +366,7 @@ public class UserController {
 
 	// guide
 	@RequestMapping(value = "/return_guide")
-	public String canclePinfo() {
+	public String cancelPinfo() {
 		return "user/returnGuide";
 	}
 
@@ -376,7 +398,5 @@ public class UserController {
 		} 
 		return totalResult;
 	}
-	
-
 
 }

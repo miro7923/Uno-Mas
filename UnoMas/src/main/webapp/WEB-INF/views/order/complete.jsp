@@ -15,7 +15,7 @@
 
 <%
     if (session.getAttribute("saveID") == null) {
-    	response.sendRedirect("/index");
+    	response.sendRedirect("/UnoMas/index");
     }
 %>
 <body>
@@ -26,7 +26,7 @@
 	<!-- 상품 주문 영역 -->
 	<section class="checkout-section spad">
 		<div class="container">
-			<form action="/order/purchase" class="checkout-form">
+			<form action="/UnoMas/order/purchase" class="checkout-form">
 				<div class="row">
 					<div class="col-lg-12">
 						<h4>${userVO.user_name }님의 결제가 완료되었습니다!</h4>
@@ -68,13 +68,13 @@
 													<div class="row">
 														<div class="col-lg-2 text-center">
 															<div class="img_center">
-															    <a href="/product/product_detail?prod_num=${order.prod_num }" target="_blank">
+															    <a href="/UnoMas/product/product_detail?prod_num=${order.prod_num }" target="_blank">
 															    <img src="<spring:url value="/resources/upload/images/products/thumbnail/${prodThumbList[i.index] }"></spring:url>" width="80" height="80"></a>
 																<!--N=a:odd.product-->
 															</div>
 														</div>
 														<div class="col-lg-10 align-self-center">
-															<a href="/product/product_detail?prod_num=${order.prod_num }"
+															<a href="/UnoMas/product/product_detail?prod_num=${order.prod_num }"
 																target="_blank">${order.prod_name }</a>
 															<!--N=a:odd.product-->
 														</div>
@@ -216,8 +216,8 @@
 				<br>
 				<div class="row text-center">
 					<div class="col-lg-12 mt-5">
-					    <button type="button" class="site-btn" onclick="location.href='/';">홈</button>
-						<button type="button" class="site-btn" onclick="location.href='/user/mypage';">마이페이지</button>
+					    <button type="button" class="site-btn" onclick="location.href='/UnoMas';">홈</button>
+						<button type="button" class="site-btn" onclick="location.href='/UnoMas/user/mypage';">마이페이지</button>
 					</div>
 				</div>
 			</form>

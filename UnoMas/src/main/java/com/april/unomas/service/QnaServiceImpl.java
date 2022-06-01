@@ -45,6 +45,11 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public Qna_ComVO getComment(Integer qna_num) {
 		return dao.getComment(qna_num);
+	}
+
+	@Override
+	public void qnaCreate(QnaVO vo) throws Exception {
+		dao.qnaCreate(vo);
 	}	
 	
 }

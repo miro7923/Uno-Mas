@@ -4,7 +4,7 @@
  $(document).ready(function() {
 			$("#qni_category").change(function() {
 				var changeVal = $(this).val();
-				location.href="/board/qni_sort?qnacate_num="+changeVal;
+				location.href="/UnoMas/board/qni_sort?qnacate_num="+changeVal;
 			});
 		});
 		
@@ -39,6 +39,6 @@ var preContent;
 		
 function deleteAction(data) {
 		if(confirm("삭제하시겠습니까?") == true){
-			location.href='/board/inquiry_delete?qna_num='+data;
+			location.href='/UnoMas/board/inquiry_delete?qna_num='+data;
 		}
 	}

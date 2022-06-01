@@ -32,11 +32,11 @@
 						<c:if test="${topcate_num <= 5 }">
 							<ul class="categoryList">
 							    <input type="hidden" id="dcateNum" value="${dcate_num }"> 
-							    <li><a href="/product/product_list?topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
+							    <li><a href="/UnoMas/product/product_list?topcate_num=${topcate_num}&pageNum=${pageNum}&dcate_num=0" 
 							        class="category" id="category0" style="color: black;" 
 							        onclick="changeSort(0, 0, ${fn:length(dcateList) });"> 전체보기</a>
 								<c:forEach var="dcate" items="${dcateNumList }" varStatus="it">
-									<li><a href="/product/product_list?topcate_num=${topcate_num}&pageNum=1&dcate_num=${dcate}" 
+									<li><a href="/UnoMas/product/product_list?topcate_num=${topcate_num}&pageNum=1&dcate_num=${dcate}" 
 									class="category" id="category${dcate }" style="color: black;" 
 										onclick="changeSort(${dcate }, ${fn:length(dcateList) });"> ${dcateList[it.index] }</a></li>
 								</c:forEach>
@@ -58,7 +58,7 @@
 								<div class="col-lg-4 col-sm-6">
 									<div class="product-item" id="productItem">
 										<div class="pi-pic">
-											<a href="/product/product_detail?prod_num=${vo.prod_num }"> 
+											<a href="/UnoMas/product/product_detail?prod_num=${vo.prod_num }"> 
 											<c:choose>
 												<c:when test="${vo.prod_stock == 0 }">
 													<img src='<spring:url value="/resources/upload/images/products/soldout/${vo.prod_image4 }"></spring:url>' alt="" class="soldOut">
@@ -85,7 +85,7 @@
 											</ul>
 										</div>
 										<div class="pi-text">
-											<a href="/product/product_detail?prod_num=${vo.prod_num }">
+											<a href="/UnoMas/product/product_detail?prod_num=${vo.prod_num }">
 											    <c:choose>
 											        <c:when test="${vo.prod_stock == 0 }">
 														<h5>${vo.prod_name } (품절)</h5>
@@ -125,13 +125,13 @@
 						<c:if test="${pm.prev }">
 						    <c:choose>
 						        <c:when test="${topcate_num <= 5 }">
-									<a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${pm.startPage - 1}&dcate_num=${dcate_num}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
+									<a href="/UnoMas/product/product_list?topcate_num=${topcate_num }&pageNum=${pm.startPage - 1}&dcate_num=${dcate_num}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a> 
 						        </c:when>
 						        <c:when test="${topcate_num == 6 }">
-						            <a href="/product/new_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
+						            <a href="/UnoMas/product/new_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
 						        </c:when>
 						        <c:otherwise>
-						            <a href="/product/sale_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
+						            <a href="/UnoMas/product/sale_list?pageNum=${pm.startPage - 1}" class="arrow_carrot-left_alt pagingBtn" id="prev"></a>
 						        </c:otherwise>
 						    </c:choose>
 						</c:if>
@@ -140,17 +140,17 @@
 							<span>
 							    <c:choose>
 								    <c:when test="${topcate_num <= 5 }">
-										<!----> <a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${block}&dcate_num=${dcate_num}" 
+										<!----> <a href="/UnoMas/product/product_list?topcate_num=${topcate_num }&pageNum=${block}&dcate_num=${dcate_num}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
 										onclick="changePageNum(${it.index }, ${pm.endPage - pm.startPage + 1 });">${block } <!----></a>
 								    </c:when>
 								    <c:when test="${topcate_num == 6 }">
-								        <!----> <a href="/product/new_list?pageNum=${it.index}" 
+								        <!----> <a href="/UnoMas/product/new_list?pageNum=${it.index}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
 										onclick="changePageNum(${it.index }, ${pm.endPage - pm.startPage + 1 });">${block } <!----></a>
 								    </c:when>
 								    <c:otherwise>
-								        <!----> <a href="/product/sale_list?pageNum=${it.index}" 
+								        <!----> <a href="/UnoMas/product/sale_list?pageNum=${it.index}" 
 										class="pagingBtn" id="page${it.index }" style="color: black;"
 										onclick="changePageNum(${it.index }, ${pm.endPage - pm.startPage + 1 });">${block } <!----></a>
 								    </c:otherwise>
@@ -161,13 +161,13 @@
 						<c:if test="${pm.next && pm.endPage > 0 }">
 						    <c:choose>
 						        <c:when test="${topcate_num <= 5 }">
-									<a href="/product/product_list?topcate_num=${topcate_num }&pageNum=${pm.endPage + 1}&dcate_num=${dcate_num}" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
+									<a href="/UnoMas/product/product_list?topcate_num=${topcate_num }&pageNum=${pm.endPage + 1}&dcate_num=${dcate_num}" class="arrow_carrot-right_alt pagingBtn" id="next"></a> 
 						        </c:when>
 						        <c:when test="${topcate_num == 6 }">
-						            <a href="/product/new_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
+						            <a href="/UnoMas/product/new_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
 						        </c:when>
 						        <c:otherwise>
-						            <a href="/product/sale_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
+						            <a href="/UnoMas/product/sale_list?pageNum=${pm.endPage + 1}" class="arrow_carrot-right_alt pagingBtn" id="next"></a>
 						        </c:otherwise>
 						    </c:choose>
 						</c:if>

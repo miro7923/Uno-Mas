@@ -45,7 +45,8 @@ public class UserServiceImpl implements UserService {
 	// 로그인
 	@Override
 	public HashMap loginUser(UserVO vo) {
-		return dao.loginUser(vo);
+		HashMap<String, Integer> loginMap = dao.loginUser(vo);
+		return loginMap;
 	}
 	
 	// 아이디 찾기

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -210,7 +212,7 @@ public class ProductController {
 		vo.setProd_num(service.getLastProdNum());
 		service.insertProduct(vo);
 		
-		return "redirect:/product/product_lookup";
+		return "redirect:/UnoMas/product/product_lookup";
 	}
 	
 	@RequestMapping(value = "/product_lookup", method = RequestMethod.GET)
@@ -284,12 +286,12 @@ public class ProductController {
 		log.info("수정할 정보: "+vo);
 		service.updateProduct(vo);
 		
-		return "redirect:/product/product_lookup";
+		return "redirect:/UnoMas/product/product_lookup";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public Integer productsDelete(@RequestParam(value = "chbox[]") List<String> chArr, 
+	public ResponseEntity<Integer> productsDelete(@RequestParam(value = "chbox[]") List<String> chArr, 
 			ProductVO vo) throws Exception {
 		log.info("productsDelete 호출");
 		log.info(vo+"");
@@ -312,7 +314,7 @@ public class ProductController {
 			}
 			result = 1;
 		
-		return result;
+		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/shopping-cart")
@@ -465,7 +467,7 @@ public class ProductController {
 		
 		service.removeReview(review_num);
 		
-		if(pageInfo.equals("pReview")) {
+		if(pageInfo != null && pageInfo.equals("pReview")) {
 			return "redirect:/user/my_review?pagingNum="+pagingNum;
 		} else {
 			return "redirect:/product/product_detail?prod_num=" + prod_num;
@@ -493,8 +495,6 @@ public class ProductController {
 	@RequestMapping(value = "/list_inquiry", method = RequestMethod.GET)
 	public String getInquiryListGET(@RequestParam("prod_num") int prod_num, 
 			@RequestParam("page") int page, Model model) throws Exception {
-		log.info("@@@@@@@@@@@@@@@ getInquiryList() 호출");
-		
 		ProdCriteria pc = new ProdCriteria();
 		pc.setPage(page);
 		pc.setPerPageNum(7);
@@ -513,7 +513,7 @@ public class ProductController {
 		model.addAttribute("inquiryPm", inquiryPm);
 		model.addAttribute("page", page);
 		
-		return "/product/inqBoardAjax";
+		return "product/inqBoardAjax";
 	}
 	
 

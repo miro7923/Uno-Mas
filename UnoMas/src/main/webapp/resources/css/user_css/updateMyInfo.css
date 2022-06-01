@@ -6,7 +6,6 @@ a{
 	text-decoration: none;
 }
 
-
 .myinfo_container {
 	display: flex;
 	width: 1084px;
@@ -53,9 +52,27 @@ a{
     color: #666;
     width: 165px;
 }
-.table_info th, .table_info td {
+.table_info th, td {
         padding: 10px 0px 10px 20px;
     border-top: 1px solid #ededed;
+}
+#birthCheckDiv {
+	margin: 15px 0px;
+	display:none;
+}
+
+.table_addr th {
+	padding: 10px 0px 10px 20px;
+    border-top: 1px solid #ededed;
+    background: #f9f9f9;
+    color: #666;
+    width: 165px;
+}
+.table_addr td {
+    padding: 10px 0px 10px 20px;
+    border-top: 1px solid #ededed;
+    word-break:break-all;
+    word-wrap:break-word;
 }
 
 .myinfo_content > th, td {
@@ -76,7 +93,7 @@ a{
 	margin:10px 0px;
     font-size: 12px;
 }
-#account, #account_holder {
+.rebate_account #account, #account_holder {
 	box-sizing: border-box;
     display: inline-block;
     height: 38px;
@@ -155,7 +172,7 @@ ul, ol {
 	margin:5px auto;
 	
 }
-#postalcode, #postalcode1, #postalcode2, #addr_num {
+.postalcode, .addr_name {
 	box-sizing: border-box;
     display: inline-block;
     margin:6px auto;
@@ -169,7 +186,7 @@ ul, ol {
     font-size: 13px;
     
 }
-#roadaddr, #roadaddr1, #roadaddr2 {
+.roadaddr {
 	box-sizing: border-box;
     display: inline-block;
     margin:2px auto;
@@ -182,7 +199,7 @@ ul, ol {
     font-size: 13px;
     
 }
-#detailaddr {
+.detailaddr {
 	box-sizing: border-box;
     display: inline-block;
     margin:2px auto;
@@ -235,7 +252,19 @@ ul, ol {
     border: 1px solid #B9CE45;
 }
 
-
+.updateAddr {
+	box-sizing: border-box;
+    display: inline-block;
+    margin:5px 10px;
+    padding: 3px 25px;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #22741C;
+    font-size: 12px;
+    font-weight:500;
+    color: #22741C;
+}
 
 
 

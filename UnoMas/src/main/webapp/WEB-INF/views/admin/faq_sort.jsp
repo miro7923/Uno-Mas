@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -16,7 +17,6 @@
 	pageContext.setAttribute("br", " ");
 	pageContext.setAttribute("cn", "\n");
 %>
-<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -180,7 +180,7 @@
 									</div>
 									<!-- 페이징 처리 끝-->
 									<div class="col-lg-12">
-                                		<button type="button" class="register-button" onclick="location.href='/admin/faq_write';">자주하는 질문 등록</button>
+                                		<button type="button" class="register-button" onclick="location.href='/UnoMas/admin/faq_write';">자주하는 질문 등록</button>
 									</div>
 								</div>
 							</div>
@@ -206,6 +206,8 @@
     <script src="${path}/resources/js/jquery.slicknav.js"></script>
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
+    <script src="${path}/resources/js/admin_js/adminMain.js"></script>
+    <script src="${path}/resources/js/admin_js/adminSearch.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
     <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 </body>

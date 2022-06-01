@@ -83,7 +83,7 @@
                 <tr>
                     <td width="50" nowrap="" align="center" >${num }</td>
                     <td style="padding-left:10px; text-align:left; color:#999">
-                        <a href="/board/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a>
+                        <a href="/UnoMas/board/faq_detail?notice_num=${vo.notice_num }"><b>${vo.notice_title }</b></a>
                     </td>
                     <td>
                     <c:choose>

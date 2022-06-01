@@ -8,12 +8,12 @@
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet"
-	href="${path}/resources/css/reviewWritingForm.css?after22">
+	href="${path}/resources/css/product_css/reviewWritingForm.css?after22">
 <!-- Header end -->
 
 <%
     if (session.getAttribute("saveID") == null) {
-    	response.sendRedirect("/index");
+    	response.sendRedirect("/UnoMas/index");
     }
 %>
 
@@ -28,7 +28,7 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>문의하기</h4>
-						<form action="/product/modify_inquiry?pageInfo=${pageInfo }&pagingNum=${pagingNum}" method="post" class="comment-form">
+						<form action="/UnoMas/product/modify_inquiry?pageInfo=${pageInfo }&pagingNum=${pagingNum}" method="post" class="comment-form">
 						    <div class="row">
 						        <div class="col-lg-12">
 						            <input type="hidden" value="${vo.p_inquiry_num }" name="p_inquiry_num">

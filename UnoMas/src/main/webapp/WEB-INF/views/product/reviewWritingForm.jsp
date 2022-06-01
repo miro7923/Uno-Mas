@@ -13,7 +13,7 @@
 
 <%
     if (session.getAttribute("saveID") == null) {
-    	response.sendRedirect("/index");
+    	response.sendRedirect("/UnoMas/index");
     }
 %>
 
@@ -28,7 +28,7 @@
 				<div class="comment-option">
 					<div class="leave-comment">
 						<h4>후기쓰기</h4>
-						<form action="/product/write_review" method="post" class="comment-form" enctype="multipart/form-data">
+						<form action="/UnoMas/product/write_review" method="post" class="comment-form" enctype="multipart/form-data">
 							<div class="row">
 								<div class="col-lg-12">
 									<!-- @@ DB 전송시 파라미터로 넘겨줘서 해당 번호 상품에 등록되도록 하기 -->

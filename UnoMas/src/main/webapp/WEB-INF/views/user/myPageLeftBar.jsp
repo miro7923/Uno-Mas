@@ -18,10 +18,10 @@
 			<a href="/UnoMas/product/wishlist/list?pageInfo=my">찜한 상품</a>
 			<a href="/UnoMas/product/cart/list?pageInfo=my">장바구니</a>
 		<br>
-		
 <!-- 		<h4>My 공동구매</h4> -->
 <!-- 			<a href="">참여내역</a> -->
 <!-- 		<br> -->
+
 		
 		<h4>My 활동</h4>
 			<a href="/UnoMas/user/my_review">리뷰관리</a>

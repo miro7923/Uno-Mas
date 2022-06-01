@@ -144,6 +144,15 @@
 		FROM board_notice
 	</select>
 	
+	<select id="searchNoticeCount" resultType="Integer">
+		<![CDATA[
+		SELECT COUNT(*)
+		FROM board_notice
+		WHERE notice_num > 0
+		]]>
+		<include refid="search_condition"></include>
+	</select>
+	
 	<insert id="noticeInsert">
 		INSERT INTO board_notice(admin_num,notice_title,notice_content,notice_file,notice_img,notice_ip)
 		VALUES (#{admin_num},#{notice_title},#{notice_content},#{notice_file},#{notice_img},#{notice_ip})
@@ -207,6 +216,14 @@
 		SELECT COUNT(*) 
 		FROM board_faq
 		WHERE qnacate_num=#{qnacate_num}
+	</select>
+	
+	<select id="searchFaqCount" resultType="Integer">
+		SELECT COUNT(*)
+		FROM board_faq b
+		JOIN qna_category q
+		WHERE b.qnacate_num = q.qnacate_num
+		<include refid="search_condition_faq"></include>
 	</select>
 	
 	<select id="faqCount" resultType="Integer">

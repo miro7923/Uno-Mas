@@ -78,7 +78,7 @@
 
 <tr>
 <th scope="row">첨부파일</th>
-<td><a class="nfile" href="/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
+<td><a class="nfile" href="/UnoMas/board/nFileDown?notice_file=${vo.notice_file }">${vo.notice_file }</a><input type="hidden" name="notice_file" value="${vo.notice_file }"></td>
 </tr>
 
 <tr class="etcArea">
@@ -123,7 +123,7 @@ ${fn:replace(vo.notice_content,cn,br)}
 <table width="100%">
 <tbody><tr>
 <td align="right">
-<a href="/board/faq_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
+<a href="/UnoMas/board/faq_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
 </td>
 
 </tr>

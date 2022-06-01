@@ -43,7 +43,7 @@
                     <h2 class="tit">1:1 문의<span class="tit_sub"></span></h2>
                 </div>
     
-    <input type="button" value="글쓰기" class="site-btn" onclick="location.href='/board/inquiry_form';">
+    <input type="button" value="글쓰기" class="site-btn" onclick="location.href='/UnoMas/board/inquiry_form';">
  
 
         <form name="frmList" id="form" method="get" action="?">
@@ -76,7 +76,7 @@
                         	<td class="td_answerstatus">답변대기</td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->
                         </c:when>
                         <c:otherwise>
-                        	<td class="td_answerstatus"><a href="/board/inquiry_comment?qna_num=${vo.qna_num }" style="color: red;">답변완료</a></td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->                        	
+                        	<td class="td_answerstatus"><a href="/UnoMas/board/inquiry_comment?qna_num=${vo.qna_num }" style="color: red;">답변완료</a></td> <!-- 답변대기 컬러 #999999 답변완료 컬러 #5f0080; !-->                        	
                         </c:otherwise>
                         </c:choose>
                         <td class="td_delete"><input type="button" class="site-btn" style="margin:0px;" value="삭제" onclick="deleteAction(${vo.qna_num})"></td>
@@ -95,10 +95,10 @@
 			            <span>${vo.qnaCateVO.qnacate_name }</span>
 			            <div class="question mt-3 pb-5 px-3">
 			            <c:if test="${vo.qna_image1 ne null}">
-			            <a href="/board/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="../resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
+			            <a href="/UnoMas/board/image1Down?qna_image1=${vo.qna_image1 }"><img name="qna_image1" alt="img1" src="../resources/upload/images/board/qna/${vo.qna_image1 }"></a><input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
 			            </c:if>
 			            <c:if test="${vo.qna_image2  ne null}">
-			            <a href="/board/image2Down?qna_image2=${vo.qna_image2 }"><img name="qna_image2" alt="img2" src="../resources/upload/images/board/qna/${vo.qna_image2 }"></a><input type="hidden" value="${vo.qna_image2 }" name="qna_image2"><br>
+			            <a href="/UnoMas/board/image2Down?qna_image2=${vo.qna_image2 }"><img name="qna_image2" alt="img2" src="../resources/upload/images/board/qna/${vo.qna_image2 }"></a><input type="hidden" value="${vo.qna_image2 }" name="qna_image2"><br>
 			            </c:if>
 			            <span> 문의 내용 >> </span><br><br>${fn:replace(vo.qna_content,cn,br)}
 			        </div>

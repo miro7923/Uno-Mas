@@ -67,7 +67,7 @@ $(function(){ // 장바구니 비우기
 	
 	$("#btnDelete").click(function(){
 		if(confirm("장바구니를 비우시겠습니까?")){
-			location.href="/product/cart/deleteAll";
+			location.href="/UnoMas/product/cart/deleteAll";
 		}
 	});
 });
@@ -135,7 +135,7 @@ function calcTotalPrice(idx, type) {
         // DB의 상품 개수 갱신
         $.ajax({
 			type: 'get',
-			url: '/product/cart/quantity',
+			url: '/UnoMas/product/cart/quantity',
 			data: {
 				'prod_amount': q,
 				'prod_num': $('#prod_num'+(idx+1)).val(),

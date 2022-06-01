@@ -1,6 +1,6 @@
 package com.april.unomas.domain;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Data;
 
@@ -10,7 +10,7 @@ public class NoticeVO {
 	private Integer admin_num;
 	private String notice_title;
 	private String notice_content;
-	private Date notice_regdate;
+	private Timestamp notice_regdate;
 	private Integer notice_readcnt;
 	private String notice_ip;
 	private String notice_file;
