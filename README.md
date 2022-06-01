@@ -46,7 +46,7 @@
 <p align="center"><img src="/images/erdDiagram.png"></p>
 
 ## 구동 화면
-
+* 메인 페이지
 <p align="center"><img src="/images/unomasMain.png"></p>
 
 ## 개발일지
