@@ -74,7 +74,7 @@ public class UserController {
 			vo.setUser_emailagree(0);
 		}
 		service.joinUser(vo);
-		return "redirect:/UnoMas/user/login";
+		return "redirect:/user/login";
 
 	}
 	
@@ -123,7 +123,7 @@ public class UserController {
 		
 		session.invalidate();
 		
-		return "redirect:/UnoMas/index";
+		return "redirect:/index";
 	}
 
 	// 아이디 찾기
@@ -242,7 +242,7 @@ public class UserController {
         model.addAttribute("fee", fee); 				// 배송료
         model.addAttribute("sum", sumMoney+fee); 		// 총 결제 예상금액(장바구니+배송비)
 		
-		return "/user/myPage";
+		return "user/myPage";
 	}
 
 	
@@ -281,7 +281,7 @@ public class UserController {
 		model.addAttribute("pagingNum", pagingNum);
 		model.addAttribute("pm", pm);
 		
-		return "/user/myPoint";
+		return "user/myPoint";
 	}
 	
 	
