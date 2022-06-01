@@ -118,10 +118,9 @@ public class UserController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutGET(HttpSession session) {
 		session.invalidate();
-		return "redirect:/UnoMas/index";
+		return "redirect:/";
 	}
 
-	
 	// 아이디 찾기
 	@RequestMapping(value = "/find_id")
 	public String findIDGet() {
