@@ -304,7 +304,13 @@ li {
 .input-search {
     position: relative;
 }
-
+.keyword_notice{
+	width: 100%;
+	height: 46px;
+	border: 2px solid #ebebeb;
+	margin-bottom: 25px;
+	padding-left: 15px;
+}
 /* .checkout-form input { */
 /*     width: 100%; */
 /*     height: 46px; */

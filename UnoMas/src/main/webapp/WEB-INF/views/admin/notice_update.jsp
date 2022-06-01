@@ -40,20 +40,27 @@
 						<hr>
 					</div>
 					<div class="container">
+
 						<form method="post" action="/UnoMas/admin/notice_update"
 							class="checkout-form">
+
 							<br>
+							
 							<table class="table_board">
 								<tr>
 									<th>작성자</th>
-									<td colspan="3"><input type="text" class="input_field" style="margin-bottom:0px;" value="UnoMás" readonly>
-										<input type="hidden" name="admin_num" value="1">
-									</td>
+
+									<td colspan="3"><input type="text" class="input_field"
+										name="admin_num" value="UnoMás" readonly>
+										<input type="hidden" id="notice_num" name="notice_num" value="${vo.notice_num }">
+										</td>
+										
 								</tr>
 								<tr>
 									<th>제목</th>
-									<td colspan="3"><input type="text" class="input_field" style="margin-bottom:0px;"
-										name="notice_title" value="${vo.notice_title }"></td>
+									<td colspan="3"><input type="text" class="input_field"
+										name="notice_title" id="notice_title" value="${vo.notice_title }"></td>
+
 								</tr>
 							</table>
 							<table class="table_board">
@@ -63,13 +70,13 @@
 								<tr>
 									<td>
 										<div class="textarea">
-											<textarea inputmode="text" name="notice_content"
+											<textarea inputmode="text" name="notice_content" id="notice_content"
 												class="textarea-text" placeholder="내용을 입력하세요">${vo.notice_content }</textarea>
 										</div>
 									</td>
 								</tr>
 							</table>
-							<button type="submit" class="count-button">등록</button>
+							<button type="button" class="count-button" onclick="notice_UpCK()">등록</button>
 							<br><br>
 						</form>
 					</div>
@@ -96,6 +103,7 @@
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
+    <script src="${path}/resources/js/admin_js/adminNoticeUp.js"></script>
 </body>
 
 </html>

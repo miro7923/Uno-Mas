@@ -191,13 +191,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Integer noticeCount(Criter cri) throws Exception {
-		return dao.noticeTotal(cri);
+	public Integer searchNoticeCount(Criter cri) throws Exception {
+		return dao.searchNoticeTotal(cri);
 	}
 
 	@Override
-	public Integer faqCount(Criter cri) throws Exception {
-		return dao.faqTotal(cri);
+	public Integer searchFaqCount(Criter cri) throws Exception {
+		return dao.searchFaqTotal(cri);
 	}
 	
 	

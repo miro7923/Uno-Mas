@@ -37,24 +37,25 @@
 						<hr>
 					</div>
 					<div class="container">
-						<form action="#" class="checkout-form" name="frmList" onsubmit="return chkFormList(this)">
-						<input type="hidden" name="id" value="notice">
+						
 							<div class="row">
 								<div class="row">
 									<div class="col-lg-3" style="padding-right:0px; border-right: none;">
-										<select class="selectBox" name="searchType">
+										<select class="selectBox" name="searchType" id="search_type_notice">
 											<option value="title">제목</option>
 										</select>
 										</div>
 										<div class="col-lg-9" style="padding-left:0px;">
 											<div class="input-search">
-												<input type="text" id="keyword" name="keyword" value="" placeholder="검색어를 입력해주세요.">
-												<button type="button" id="search_btn" onclick="search_admin_notice()">
+												<input type="text" id="keyword_notice" class="keyword_notice" name="keyword" value="" placeholder="검색어를 입력해주세요.">
+												<button id="search_btn" onclick="search_admin_notice()">
 													<i class="ti-search"></i>
 												</button>
 											</div><br>
 										</div>
 										<div class="col-lg-12">
+										<form class="checkout-form" name="frmList" onsubmit="return chkFormList(this)">
+						<input type="hidden" name="id" value="notice">
 											<table class="table_board">
 												<thead>
 													<tr>
@@ -86,18 +87,22 @@
 													<ul class="pagination">
 														<c:if test="${pagingVO.prev }">
 															<li class="page-item"><a class="page-link text-dark"
+
 																href='<c:url value="/UnoMas/admin/notice_board${pagingVO.makeQuery(pagingVO.startPage-1) }"/>'
+
 																aria-label="Previous"> <span aria-hidden="true">&lt;</span>
 															</a></li>
 														</c:if>
 														<c:forEach begin="${pagingVO.startPage }"
 															end="${pagingVO.endPage }" var="pageNum">
 															<li class="page-item"><a class="page-link text-dark"
+
 																href='<c:url value="/UnoMas/admin/notice_board${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
 														</c:forEach>
 														<c:if test="${pagingVO.next }">
 															<li class="page-item"><a class="page-link text-dark"
 																href='<c:url value="/UnoMas/admin/notice_board${pagingVO.makeQuery(pagingVO.endPage+1) }"/>'
+
 																aria-label="Next"> <span aria-hidden="true">&gt;</span>
 															</a></li>
 														</c:if>
@@ -105,6 +110,7 @@
 												</div>
 											</div>
 											<!-- 페이징 처리 끝 -->
+											</form>
 											<div class="col-lg-12" style="padding:0px;">
 												<div class="row" style="display: inline;">
 		                                        	<button type="button" class="register-button" onclick="location.href='/UnoMas/admin/notice_write';">공지사항 등록</button>
@@ -113,7 +119,7 @@
 										</div>
 									</div>
 								</div>
-						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -138,6 +144,7 @@
     <script src="${path}/resources/js/owl.carousel.min.js"></script>
     <script src="${path}/resources/js/main.js"></script>
     <script src="${path}/resources/js/product_js/productAdmin.js"></script>
+    <jsp:include page="../inc/adminScript.jsp"></jsp:include>
 </body>
 
 </html>

@@ -136,27 +136,27 @@
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
                 <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/qni_search${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_search${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
                 		<span>&lt;&lt;</span>
                 	</a>
                 </li>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/qni_search${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_search${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/qni_search${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_search${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <c:if test="${pagingVO.next }">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/qni_search${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_search${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
                   <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/qni_search${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_search${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
                 		<span>&gt;&gt;</span>
                 	</a>
                 </li>

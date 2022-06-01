@@ -20,5 +20,7 @@ public interface QnaDAO {
 	public void deleteQna(Integer qna_num);
 	
 	public Qna_ComVO getComment(Integer qna_num);
+
+	public void qnaCreate(QnaVO vo);
 	
 }

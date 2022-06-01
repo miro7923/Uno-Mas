@@ -63,7 +63,7 @@
 								<div class="row">
 									<div class="col-lg-3"
 										style="padding-right: 0px; border-right: none;">
-										<select class="selectBox" id="search_type" name="search_type">
+										<select class="selectBox" id="search_type_faq" name="search_type">
 											<option value="">검색조건</option>
 											<option value="title">제목</option>
 											<option value="cate">카테고리</option>
@@ -72,10 +72,9 @@
 									</div>
 									<div class="col-lg-9" style="padding-left: 0px;">
 										<div class="input-search">
-											<input type="text" id="keyword" name="keyword" value=""
+											<input type="text" id="keyword_faq" name="keyword" value=""
 												placeholder="검색어를 입력해주세요.">
-											<button type="button" id="search_btn"
-												onclick="search_admin_faq()">
+											<button id="search_btn" onclick="search_admin_faq()">
 												<i class="ti-search"></i>
 											</button>
 										</div>
@@ -186,8 +185,10 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</section>
+
 
 	<!-- Partner Logo Section End -->
     <!-- Footer Section Begin -->

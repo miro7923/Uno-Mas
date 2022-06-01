@@ -131,27 +131,27 @@
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
                 <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_sort${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
                 		<span>&lt;&lt;</span>
                 	</a>
                 </li>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_sort${pagingVO.makeQuery(pagingVO.startPage-1) }&qnacate_num=${qnacate_num }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_sort${pagingVO.makeQuery(pageNum) }&qnacate_num=${qnacate_num }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <c:if test="${pagingVO.next }">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_sort${pagingVO.makeQuery(pagingVO.endPage+1) }&qnacate_num=${qnacate_num }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
                   <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/qni_sort${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/qni_sort${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
                 		<span>&gt;&gt;</span>
                 	</a>
                 </li>
