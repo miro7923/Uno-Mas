@@ -72,7 +72,7 @@ $("#selectInsertWish_btn").click(function(){ // 장바구니 선택 담기
 			} else if (result == 2) {
 				alert("장바구니에 담을 수 없는 상품이 있습니다.");
 			} else {
-				alert("장바구니 담기를 실패했습니다.!!");
+				alert("장바구니 담기를 실패했습니다.");
 			}
 		}
 	});
