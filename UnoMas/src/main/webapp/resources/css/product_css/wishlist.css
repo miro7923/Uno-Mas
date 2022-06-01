@@ -44,3 +44,7 @@
 .cart-table table tr td.p-price, .cart-table table tr td.total-price {
 	color: #B9CE45;
 }
+
+.shopping-cart {
+	min-height: 700px;
+}

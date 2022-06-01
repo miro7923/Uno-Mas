@@ -122,8 +122,8 @@ public class UserController {
 	public String logoutGET(HttpSession session) {
 		
 		session.invalidate();
-		
-		return "redirect:/index";
+		return "redirect:/";
+
 	}
 
 	// 아이디 찾기

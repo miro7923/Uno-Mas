@@ -1,4 +1,4 @@
-*{ margin:0px; padding: 0px; font-size: 13px;}
+*{ margin:0px; padding: 0px; }
 
 .myOrderLsit_container {
 	display: flex;
@@ -27,7 +27,7 @@
 }
 
 .null_text {
-	font-size: 20px;
+	font-size: 17px;
     text-align: center;
     padding: 100px;
 }

@@ -21,6 +21,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Inject
 	private OrderDAO dao;
+	
 	private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
 	
 	@Override
