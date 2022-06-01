@@ -50,6 +50,7 @@
 </script>
 
 <!-- Start Header -->
+<title>UnoMas 관리자페이지</title>
 <body>
     <!-- Header Section Begin -->
     <jsp:include page="../inc/adminHeader2.jsp"></jsp:include>

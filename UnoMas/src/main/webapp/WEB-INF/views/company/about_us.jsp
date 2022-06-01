@@ -256,7 +256,7 @@
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/jy.png" alt="jy" />
                             <h4>김진영</h4>
-                            <p class="text-muted">게시판파트</p>
+                            <p class="text-muted">고객센터, 관리자페이지파트</p>
                         </div>
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="${path}/resources/img/about_us/team/sj.jpg" alt="sj" />
                             <h4>박승지</h4>
-                            <p class="text-muted">상품파트, 메인페이지파트</p>
+                            <p class="text-muted">상품파트, 관리자페이지파트</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -294,7 +294,7 @@
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contact Us</h2>
                 </div>
-                <form id="contactForm" data-sb-form-api-token="f1e01f3d-dfc2-496d-b5e2-9faeefa25c9a">
+                <form id="contactForm" data-sb-form-api-token="6400dfe3-6565-4b75-b865-2261324a6439">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
                             <div class="form-group">

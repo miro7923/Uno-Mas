@@ -9,6 +9,7 @@
 <!-- Start header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/index_css/eventMay.css?after" type="text/css">
+<title>이벤트</title>
 <!-- Start header -->
 
 <body>

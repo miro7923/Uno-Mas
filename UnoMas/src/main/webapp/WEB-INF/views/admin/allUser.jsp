@@ -72,7 +72,7 @@
 										<td>${fn:substring(tel,0,3) }-${fn:substring(tel,3,7) }-${fn:substring(tel,7,11) }</td>
 										<th>이메일</th>
 										<td>${vo.user_email }</td>
-										<th scope="cols">이메일 동의</th>
+										<th scope="cols">수신 동의</th>
 										<c:choose>
 											<c:when test="${vo.user_emailagree == 1 }">
 												<td style="color: blue">O</td>

@@ -113,7 +113,7 @@ public class UserController {
 				session.setAttribute("saveNUM", loginMap.get("num"));
 			}
 		}
-		return result;
+		return new ResponseEntity<Integer>(result, HttpStatus.OK);
 	}
 
 	// 로그아웃 구현

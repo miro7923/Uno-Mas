@@ -34,8 +34,7 @@ public class CartController {
 		
 		//로그인 여부를 체크하기 위해 세션에 저장된 아이디 확인
 
-		UserVO uvo = (UserVO)session.getAttribute("saveID");
-	    int user_num= uvo.getUser_num();
+	    int user_num= (int)session.getAttribute("saveNUM");
         vo.setUser_num(user_num);
         // 장바구니에 기존 상품 있는지 검사
         int count = cartService.countCart(vo.getProd_num(),user_num);
@@ -75,8 +74,7 @@ public class CartController {
 	// 장바구니 비우기
 	@RequestMapping("deleteAll")
 	   public String deleteAll(HttpSession session) {
-		UserVO vo = (UserVO)session.getAttribute("saveID");
-	    int user_num= vo.getUser_num();
+	    int user_num= (int)session.getAttribute("saveNUM");
 	    if(user_num!=0) {
 	    	cartService.deleteAll(user_num);
 	    }

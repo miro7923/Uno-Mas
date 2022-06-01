@@ -8,6 +8,7 @@
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/product_css/productAdmin.css?after5">
+<title>UnoMas 관리자페이지</title>
 <!-- Start Header -->
 
 <body>

@@ -80,7 +80,6 @@ function memberCk(e){
 	};
 
 	$.ajax({
-		async: true,
 		type: "POST",
 		data: {
 			'user_id': $("#id").val(), 
@@ -88,7 +87,6 @@ function memberCk(e){
 		},
 		url: "login",
 		success: function(result) {
-			console.log("여기로 안들어와: " + result);
 			if(result != "1") {
 				$("#cir_text").html("잘못된 아이디 혹은 비밀번호입니다.");
 			} else {
@@ -101,9 +99,10 @@ function memberCk(e){
 				} else {
 					window.location.replace(document.referrer);
 				}
-			}
+      }
 		},
 		error: function(error) {
+			alert('에러 리턴');
 		}
 	}); 
 	

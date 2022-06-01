@@ -7,7 +7,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
-
+<meta charset="UTF-8">
+<title>결제 완료</title>
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/order_css/order.css?after22">
