@@ -86,12 +86,9 @@ function memberCk(){
 			'user_pass': $("#pass").val()
 		},
 		success: function(result) {
-				console.log(document.referrer);
-			alert(result);
+			console.log(document.referrer);
 			
 			if(result == 1) {
-				console.log(document.referrer);
-				alert('로그인');
 				window.location.replace(document.referrer);
 			} else {
 				$("#cir_text").html("잘못된 아이디 혹은 비밀번호입니다.");
