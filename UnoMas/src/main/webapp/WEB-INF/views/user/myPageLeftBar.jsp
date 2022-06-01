@@ -9,7 +9,7 @@
 
 
 <div class="left-bar">
-	<div class="page_name"><a href="/user/mypage">마이페이지</a></div>
+	<div class="page_name"><a href="/UnoMas/user/mypage">마이페이지</a></div>
 	
 	<div class="mypage-cate">
 		<h4>My 쇼핑</h4>
@@ -19,9 +19,9 @@
 			<a href="/UnoMas/product/cart/list?pageInfo=my">장바구니</a>
 		<br>
 		
-		<h4>My 공동구매</h4>
-			<a href="">참여내역</a>
-		<br>
+<!-- 		<h4>My 공동구매</h4> -->
+<!-- 			<a href="">참여내역</a> -->
+<!-- 		<br> -->
 		
 		<h4>My 활동</h4>
 			<a href="/UnoMas/user/my_review">리뷰관리</a>

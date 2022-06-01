@@ -62,22 +62,29 @@
 		  	  </thead>
 		  	  
 		  	  <tbody style="min-height: 300px">
-		  	  	<c:forEach var="row" items="${list}" varStatus="i">
-		  		 	<tr>
-			  			<td>
-			  				<img src='<spring:url value="/resources/upload/images/products/thumbnail/${row.prod_image3 }"></spring:url>' 
-			  				alt="" style="width: 90px; height: 90px;">
-						</td>
-						<td>
-							<a href="/UnoMas/product/product_detail?prod_num=${row.prod_num }" class="prod_detail_a">${row.prod_name}</a>
-						</td>
-						<td>
-							<span id="prodPrice${i.index }">${row.prod_price }</span>원
-						</td>
-			  			<td>${row.prod_amount}개</td>
-			  			<td>${row.prod_price*row.prod_amount} 원</td>
-		  			</tr>
-		  		</c:forEach>
+		  	    <c:choose> 
+					<c:when test="${empty list }">
+						<td colspan="5" class="null_text">장바구니 목록이 없습니다.</td>
+					</c:when>
+					<c:otherwise>
+				  	  	<c:forEach var="row" items="${list}" varStatus="i">
+				  		 	<tr>
+					  			<td>
+					  				<img src='<spring:url value="/resources/upload/images/products/thumbnail/${row.prod_image3 }"></spring:url>' 
+					  				alt="" style="width: 90px; height: 90px;">
+								</td>
+								<td>
+									<a href="/UnoMas/product/product_detail?prod_num=${row.prod_num }" class="prod_detail_a">${row.prod_name}</a>
+								</td>
+								<td>
+									<span id="prodPrice${i.index }">${row.prod_price }</span>원
+								</td>
+					  			<td>${row.prod_amount}개</td>
+					  			<td>${row.prod_price*row.prod_amount} 원</td>
+				  			</tr>
+				  		</c:forEach>
+				  	</c:otherwise>
+				  </c:choose>
 		  	  </tbody>
   			</table>
   			
