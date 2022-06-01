@@ -326,4 +326,16 @@ public class ProductServiceImpl implements ProductService{
 	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception {
 		return dao.getInqComment(p_inquiry_num);
 	}
+
+	@Override
+	public void prodCommProcessUp(int prod_num, int p_inquiry_num) throws Exception {
+		dao.prodCommProcessUp(prod_num, p_inquiry_num);
+	}
+
+	@Override
+	public int getProcess(int prod_num, int p_inquiry_num) throws Exception {
+		return dao.getProcess(prod_num, p_inquiry_num);
+	}
+	
+	
 }

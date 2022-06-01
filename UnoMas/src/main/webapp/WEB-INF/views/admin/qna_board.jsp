@@ -98,11 +98,11 @@
 				                                            	<span class="answer">1차 카테고리 ${vo.qnaCateVO.qnacate_name } > 2차 카테고리 ${vo.qnacate2 }</span> 
 										                    	<textarea inputmode="text" name="notice_content" class="textarea-text" placeholder="내용을 입력하세요" readonly>${fn:replace(vo.qna_content,cn,br)}</textarea>
 										                   		첨부 이미지(1) <a href="/UnoMas/admin/image1Down?qna_image1=${vo.qna_image1 }">
-										                   					<img name="qna_image1" alt="img1" src="/resources/upload/images/board/qna/${vo.qna_image1 }">
+										                   					<img name="qna_image1" alt="img1" src="../resources/upload/images/board/qna/${vo.qna_image1 }">
 										                   				</a>
 										                   				<input type="hidden" value="${vo.qna_image1 }" name="qna_image1"><br>
 			            										첨부 이미지(2) <a href="/UnoMas/admin/image2Down?qna_image2=${vo.qna_image2 }">
-			            													<img name="qna_image2" alt="img2" src="/resources/upload/images/board/qna/${vo.qna_image2 }">
+			            													<img name="qna_image2" alt="img2" src="../resources/upload/images/board/qna/${vo.qna_image2 }">
 			            												</a>
 			            												<input type="hidden" value="${vo.qna_image2 }" name="qna_image2">
 										                    </div>

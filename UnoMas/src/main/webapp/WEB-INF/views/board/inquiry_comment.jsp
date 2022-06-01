@@ -10,8 +10,8 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Uno más 1:1문의</title>
 </head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>

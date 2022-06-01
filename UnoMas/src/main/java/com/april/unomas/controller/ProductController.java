@@ -148,9 +148,12 @@ public class ProductController {
 			reviewList.get(i).setUser_id(service.getUserid(reviewList.get(i).getUser_num()));
 		
 		List<ProdInquiryVO> inquiryList = service.getInquiryList(pc);
-		for (int i = 0; i < inquiryList.size(); i++)
+		for (int i = 0; i < inquiryList.size(); i++) {
 			inquiryList.get(i).setUser_id(service.getUserid(inquiryList.get(i).getUser_num()));
-		
+			if(service.getProcess(inquiryList.get(i).getProd_num(), inquiryList.get(i).getP_inquiry_num()) == 1) {
+				
+			}
+		}
 		// 리뷰/문의 게시판 하단 페이징 처리
 		int reviewCnt = service.getReviewCnt(prod_num);
 		ProdPageMaker reviewPm = new ProdPageMaker();
@@ -577,6 +580,8 @@ public class ProductController {
 		log.info("ProdCommentVO: "+vo);
 		
 		int prod_num = Integer.parseInt(request.getParameter("prod_num"));
+		int p_inquiry_num = Integer.parseInt(request.getParameter("p_inquiry_num"));
+		service.prodCommProcessUp(prod_num, p_inquiry_num);
 		
 		return "redirect:/product/product_detail?prod_num=" + prod_num;
 	}

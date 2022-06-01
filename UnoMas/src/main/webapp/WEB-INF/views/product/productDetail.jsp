@@ -469,6 +469,7 @@
 															
 															<c:if test="${inqComList != null && inqComList[it.index] != null }">
 															    <p><br><br>${inqComList[it.index].com_content }</p>
+															    <br><p>답변완료</p>
 															</c:if>
 														</div>
 													</c:forEach>

@@ -374,4 +374,21 @@ public class ProductDAOImpl implements ProductDAO {
 	public ProdCommentVO getInqComment(int p_inquiry_num) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".getInqComment", p_inquiry_num);
 	}
+
+	@Override
+	public void prodCommProcessUp(int prod_num, int p_inquiry_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("prod_num", prod_num);
+		map.put("p_inquiry_num", p_inquiry_num);
+		sqlSession.update(NAMESPACE+".pProcessUp",map);
+	}
+
+	@Override
+	public int getProcess(int prod_num, int p_inquiry_num) throws Exception {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("prod_num", prod_num);
+		map.put("p_inquiry_num", p_inquiry_num);
+		return sqlSession.selectOne(NAMESPACE+".processCk",map);
+	}
+	
 }
