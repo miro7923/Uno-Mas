@@ -77,7 +77,7 @@ public class BoardController {
 	@RequestMapping(value = "/qni_write",method = RequestMethod.POST)
 	public String boardWritePOST(BoardVO vo, HttpServletRequest request,RedirectAttributes rttr) throws Exception{
 		service.boardWrite(vo);
-		return "redirect:/UnoMas/board/qni_paging";
+		return "redirect:/board/qni_paging";
 	}
 	
 	@RequestMapping(value = "/faq_insert",method = RequestMethod.GET)
@@ -123,13 +123,13 @@ public class BoardController {
 	@RequestMapping(value="/qni_update",method = RequestMethod.POST)
 	public String updateBoardPOST(BoardVO vo) throws Exception {
 		service.updateBoard(vo);
-		return "redirect:/UnoMas/board/qni_paging";
+		return "redirect:/board/qni_paging";
 	}
 	
 	@RequestMapping(value="/qni_delete",method = RequestMethod.GET)
 	public String deleteBoard(@RequestParam("faq_num") int faq_num) throws Exception {
 		service.deleteBoard(faq_num);
-		return "redirect:/UnoMas/board/qni_paging";
+		return "redirect:/board/qni_paging";
 	}
 	
 	@RequestMapping(value="/faq_paging",method = RequestMethod.GET)
@@ -152,13 +152,13 @@ public class BoardController {
 	@RequestMapping(value="/faq_update",method = RequestMethod.POST)
 	public String updateNoticePOST(NoticeVO vo) throws Exception {
 		nService.updateNotice(vo);
-		return "redirect:/UnoMas/board/faq_paging";
+		return "redirect:/board/faq_paging";
 	}
 	
 	@RequestMapping(value="/faq_delete",method = RequestMethod.GET)
 	public String deleteNoticeGET(@RequestParam("notice_num") int notice_num) throws Exception {
 		nService.deleteNotice(notice_num);
-		return "redirect:/UnoMas/board/faq_paging";
+		return "redirect:/board/faq_paging";
 	}
 	
 	@RequestMapping(value="/inquiry_form",method = RequestMethod.GET)
@@ -198,7 +198,7 @@ public class BoardController {
 		
 //			qService.qnaWrite(saveID,vo);
 			qService.qnaCreate(vo);
-		return "redirect:/UnoMas/board/inquiry_paging";
+		return "redirect:/board/inquiry_paging";
 	}
 	
 	@RequestMapping(value = "/inquiry_paging",method = RequestMethod.GET)
@@ -206,7 +206,7 @@ public class BoardController {
 		if(session.getAttribute("saveID") == null) {
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>if(confirm('로그인 하시겠습니까?')){ location.href='/user/login';} else { history.back();}</script>");
+			out.println("<script>if(confirm('로그인 하시겠습니까?')){ location.href='/UnoMas/user/login';} else { history.back();}</script>");
 			out.flush();
 			out.close();
 		}
@@ -244,7 +244,7 @@ public class BoardController {
 		nService.noticeInsert(vo);
 		
 		// 페이지 이동(/board/list)
-		return "redirect:/UnoMas/board/faq_paging";
+		return "redirect:/board/faq_paging";
 	}
 	
 	@RequestMapping(value = "/nFileDown",method = RequestMethod.GET)
@@ -288,9 +288,9 @@ public class BoardController {
 		qService.deleteInquiry(qna_num);
 		
 		if(pageInfo.equals("my")) {
-			return "redirect:/UnoMas/user/my_question";
+			return "redirect:/user/my_question";
 		} else {
-			return "redirect:/UnoMas/board/inquiry_paging";
+			return "redirect:/board/inquiry_paging";
 		}
 	}
 	

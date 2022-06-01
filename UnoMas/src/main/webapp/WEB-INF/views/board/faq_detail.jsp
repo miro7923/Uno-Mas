@@ -123,7 +123,7 @@ ${fn:replace(vo.notice_content,cn,br)}
 <table width="100%">
 <tbody><tr>
 <td align="right">
-<a href="/board/faq_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
+<a href="/UnoMas/board/faq_paging"><span class="bhs_button yb" style="float:none;">목록</span></a>
 </td>
 
 </tr>
