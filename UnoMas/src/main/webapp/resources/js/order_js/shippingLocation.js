@@ -24,7 +24,7 @@ function changePageNum(num, maxNum) {
     
     $.ajax({
 		type: 'get',
-		url: '/order/addr_book?user_num=' + $('#user_num').val() + '&pageNum=' + num,
+		url: '/UnoMas/order/addr_book?user_num=' + $('#user_num').val() + '&pageNum=' + num,
 		success: function(data) {
 			$('#pop_wrap').html(data);
 			

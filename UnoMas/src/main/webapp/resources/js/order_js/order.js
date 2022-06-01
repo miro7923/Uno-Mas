@@ -52,7 +52,7 @@ function requestPay() {
 	    	uid = rsp.imp_uid;
       	  // 결제검증
       		$.ajax({
-				url: '/order/verify_iamport/' + rsp.imp_uid,
+				url: '/UnoMas/order/verify_iamport/' + rsp.imp_uid,
 				type: 'post'
 			}).done(function(data) {
 				if ($('#total').val() == data.response.amount) {
@@ -90,7 +90,7 @@ function requestPay() {
 						});
 					
 			        	jQuery.ajax({
-			            	url: "/order/complete", // 예: https://www.myservice.com/payments/complete
+			            	url: "/UnoMas/order/complete", // 예: https://www.myservice.com/payments/complete
 			            	type: "POST",
 			            	dataType: 'json',
 			            	contentType: 'application/json',
@@ -121,7 +121,7 @@ function requestPay() {
 function createPayInfo(uid) {
 	$.ajax({
 		type: 'get',
-		url: '/order/pay_info',
+		url: '/UnoMas/order/pay_info',
 		data: {
 			'imp_uid': uid,
 			'amount': $('#total').val(),
@@ -131,7 +131,7 @@ function createPayInfo(uid) {
 		success: function(data) {
 			alert('결제가 완료 되었습니다.');
       		// 결제완료 페이지로 이동
-      		location.replace('/order/complete?pay_num='+data);
+      		location.replace('/UnoMas/order/complete?pay_num='+data);
 		},
 		error: function() {
 			alert('결제정보 저장 통신 실패');
