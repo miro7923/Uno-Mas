@@ -39,7 +39,7 @@
 				</div>
 				
 				<div id="buttons">
-					<input type="submit" value="로그인" id="loginus" onclick="return memberCk()">
+					<input type="button" value="로그인" id="loginus" onclick="memberCk()">
 					<input type="button" value="회원가입" id="joinus" onclick=" location.href='/UnoMas/user/register';">
 				</div>
 			</form>
