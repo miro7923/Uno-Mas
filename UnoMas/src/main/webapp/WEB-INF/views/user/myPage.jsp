@@ -12,7 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${path}/resources/css/user_css/myPage.css">
 <link rel="stylesheet" href="${path}/resources/css/order_css/myOrderList.css">
-<title>UnoMas 마이페이지</title>
+<title>마이페이지</title>
 </head>
 <body>
   <jsp:include page="../inc/top.jsp"></jsp:include>
