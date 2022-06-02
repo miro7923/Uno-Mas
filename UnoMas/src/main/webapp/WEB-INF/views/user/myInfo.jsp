@@ -4,6 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
+<title>내 정보</title>
 <link rel="stylesheet" href="${path}/resources/css/user_css/myInfo.css">
 <!-- Start Header -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
