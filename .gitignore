@@ -2,6 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,macos,eclipse,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,eclipse,java
 
+SmsService.java
+
 log4j.xml
 
 lecture
@@ -168,7 +170,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-<<<<<<< HEAD
-
-=======
->>>>>>> de52868f65748472ec3b96d7abb4b1a1dd29dcaf
