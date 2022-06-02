@@ -25,7 +25,7 @@ function delFunc() {
 					url: "delete_user",
 					success: function(result) {
 						if (result == "1") {
-							location
+							location.href="/UnoMas";
 						} else {
 							$('[name=warn_text2]').text("*탈퇴 실패. 잠시후 다시 시도해주세요.");
 						} 

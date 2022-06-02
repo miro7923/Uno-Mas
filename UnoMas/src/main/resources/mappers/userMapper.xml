@@ -113,7 +113,7 @@
   <!-- 회원탈퇴 -->
   <update id="deleteUser">
   	UPDATE users 
-  	SET user_status=-1
+  	SET user_status=-1, user_deldate=now()
   	WHERE user_id=#{user_id}
   </update>
 
