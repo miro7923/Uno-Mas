@@ -417,6 +417,18 @@
         VALUES(#{p_inquiry_num}, #{admin_num}, #{com_content})
     </insert>
     
+    <update id="pProcessUp">
+    	UPDATE prod_inquiry
+    	SET p_inquiry_process = p_inquiry_process + 1
+    	WHERE prod_num=#{prod_num} AND p_inquiry_num=#{p_inquiry_num}
+    </update>
+    
+    <select id="processCk" resultType="Integer">
+    	SELECT p_inquiry_num
+    	from prod_inquiry
+    	WHERE prod_num=#{prod_num} AND p_inquiry_num=#{p_inquiry_num}
+    </select>
+    
     <!-- 상품 문의글 가져오기 -->
     <select id="getInqComment" resultType="ProdCommentVO">
         SELECT *

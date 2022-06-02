@@ -10,7 +10,10 @@
 
 <!DOCTYPE html>
 <html lang="ko">
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Uno más 1:1문의</title>
+</head>
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/order.css?after22">
@@ -20,6 +23,7 @@
 <link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
 
 <!-- Header end -->
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>
@@ -127,27 +131,27 @@
                 <ul class="pagination">
                 <c:if test="${pagingVO.prev }">
                 <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/inquiry_paging${pagingVO.makeQuery(pagingVO.firstPage) }"/>' >
                 		<span>&lt;&lt;</span>
                 	</a>
                 </li>
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/inquiry_paging${pagingVO.makeQuery(pagingVO.startPage-1) }"/>' aria-label="Previous">
                       <span aria-hidden="true">&lt;</span>
                     </a>
                   </li>
                   </c:if>
                   <c:forEach begin="${pagingVO.startPage }" end="${pagingVO.endPage }" var="pageNum">
-                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
+                  <li class="page-item"><a class="page-link text-dark" href='<c:url value="/UnoMas/board/inquiry_paging${pagingVO.makeQuery(pageNum) }"/>'>${pageNum }</a></li>
                   </c:forEach>
                   <c:if test="${pagingVO.next }">
                   <li class="page-item">
-                    <a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
+                    <a class="page-link text-dark" href='<c:url value="/UnoMas/board/inquiry_paging${pagingVO.makeQuery(pagingVO.endPage+1) }"/>' aria-label="Next">
                       <span aria-hidden="true">&gt;</span>
                     </a>
                   </li>
                   <li class="page-item">
-                	<a class="page-link text-dark" href='<c:url value="/board/inquiry_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
+                	<a class="page-link text-dark" href='<c:url value="/UnoMas/board/inquiry_paging${pagingVO.makeQuery(pagingVO.lastPage) }"/>' >
                 		<span>&gt;&gt;</span>
                 	</a>
                 </li>

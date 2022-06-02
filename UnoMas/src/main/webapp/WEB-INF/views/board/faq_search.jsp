@@ -5,6 +5,10 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="zxx">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Uno más 공지사항</title>
+</head>
 <!-- Head start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/board_css/inquiry_list.css?after22" type="text/css">
@@ -12,6 +16,7 @@
 <link rel="stylesheet" href="${path}/resources/css/board_css/board_main.css?after22" type="text/css">
 <link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
 <!-- Head End -->
+
 <body>
     <!-- Header Section Begin -->
     

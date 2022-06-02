@@ -4,7 +4,10 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="ko">
-
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Uno más 1:1문의</title>
+</head>
 <!-- Header start -->
 <jsp:include page="../inc/top.jsp"></jsp:include>
 <link rel="stylesheet" href="${path}/resources/css/order.css?after22">
@@ -14,6 +17,7 @@
 <link rel="stylesheet" href="${path}/resources/css/board_css/board_sub_menu.css?after22" type="text/css">
 
 <!-- Header end -->
+
 <body>
 	<!-- Header Section Begin -->
 	<jsp:include page="../inc/header.jsp"></jsp:include>

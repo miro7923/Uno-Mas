@@ -179,6 +179,10 @@ public interface ProductService {
 	public List<ProductVO> searchProd(Criter pc) throws Exception;
 	
 	public int getSearchProdCnt(Criter pc) throws Exception;
+	
+	public void prodCommProcessUp(int prod_num, int p_inquiry_num) throws Exception;
+	
+	public int getProcess(int prod_num, int p_inquiry_num) throws Exception;
 
 	// 가정의달 소고기 상품 정보
 	public List<SelectVO> mayEvent() throws Exception;
