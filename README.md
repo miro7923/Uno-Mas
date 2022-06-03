@@ -6,7 +6,7 @@
 * 기간 : 2022.04.13 ~ 2022.06.02
 * 환경 : Apache Tomcat 8.5, Chrome 브라우저
 * 주제 : 식자재 쇼핑몰
-* 개발 : Spring Tool Suite 4, MySQL Workbench
+* 개발 : Spring Tool Suite 4, MySQL Workbench 8.0.19
 * 사용 언어 : JAVA(JDK 1.8), MySQL8, HTML5, CSS3, JavaScript, JSP & Servlet
 * 사용 기술 : Spring Framework, MyBatis, MVC Model2, jQuery, Ajax, Open API(다음 우편번호, 아임포트 결제, JAVA 메일)
 * 디자인 프레임워크 : Bootstrap
